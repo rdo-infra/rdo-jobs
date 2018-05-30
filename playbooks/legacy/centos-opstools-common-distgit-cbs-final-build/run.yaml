@@ -1,0 +1,32 @@
+- hosts: all
+  name: Autoconverted job legacy-centos-opstools-common-distgit-cbs-final-build from
+    old job centos-opstools-common-distgit-cbs-final-build
+  tasks:
+
+    - name: Ensure legacy workspace directory
+      file:
+        path: '{{ ansible_user_dir }}/workspace'
+        state: directory
+
+    - shell:
+        cmd: |
+          # Set koji client identity
+          echo "Set koji client identity"
+          tar -xzf ${CLIENTSECRET} -C /home/jenkins/
+        chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'
+
+    - shell:
+        cmd: |
+          sudo yum -y install centos-packager createrepo
+          git clone http://review.rdoproject.org/r/gating_scripts
+          cd gating_scripts
+          ./pkg-export.sh opstools7-common-el7 cbs
+        chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'
+
+    - shell:
+        cmd: |
+          echo "done. exiting"
+        chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'
