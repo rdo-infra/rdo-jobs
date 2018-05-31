@@ -1,0 +1,9 @@
+- project:
+    check:
+      jobs:
+        - tox-docs:
+            nodeset: dib-centos-7
+    gate:
+      jobs:
+        - tox-docs:
+            nodeset: dib-centos-7
