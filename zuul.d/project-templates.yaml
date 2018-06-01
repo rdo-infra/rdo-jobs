@@ -1,0 +1,9 @@
+# Shared project-templates specific to the RDO Project
+
+- project-template:
+    name: system-required
+    description: |
+      Jobs that *every* project in RDO CI should have by default.
+    merge-check:
+      jobs:
+        - noop
