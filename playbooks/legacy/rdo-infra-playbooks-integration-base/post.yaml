@@ -1,0 +1,12 @@
+- hosts: all
+  tasks:
+
+    - shell:
+        cmd: |
+          mkdir $WORKSPACE/logs
+          export ARA_DATABASE="sqlite:///$WORKSPACE/ara.sqlite"
+          sudo -E $WORKSPACE/ansible/bin/ara generate html $WORKSPACE/logs/ara
+
+          # Ensure permissions allow artifact uploading
+          sudo chown -R "$(id -u).$(id -g)" $WORKSPACE/logs
+        chdir: '{{ ansible_user_dir }}/workspace'
