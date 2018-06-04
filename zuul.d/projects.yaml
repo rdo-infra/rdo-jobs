@@ -1,8 +1,28 @@
+# TODO: Remove test job when switching to base
+- job:
+    name: tox-docs-test
+    parent: base-test
+    run: tox-run.yaml
+    pre-run:
+      - tox-pre.yaml
+    post-run:
+      - tox-docs-post.yaml
+      - tox-post.yaml
+    vars:
+      tox_envlist: docs
+      tox_environment:
+        NOSE_WITH_HTML_OUTPUT: 1
+        NOSE_HTML_OUT_FILE: nose_results.html
+        NOSE_WITH_XUNIT: 1
+
 - project:
     name: rdo-jobs
     check:
       jobs:
-        - tox-docs
+        # TODO: rename to tox-docs once working
+        - tox-docs-test:
+            nodeset: container-centos
     gate:
       jobs:
-        - tox-docs
+        - tox-docs-test:
+            nodeset: container-centos
