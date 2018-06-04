@@ -1,0 +1,7 @@
+- job:
+    name: legacy-base
+    abstract: true
+    description: |
+      Base job for autoconverted legacy jobs
+    pre-run: playbooks/legacy/pre.yaml
+    nodeset: rdo-centos-7
