@@ -1,0 +1,10 @@
+- hosts: all
+  tasks:
+
+    - shell:
+        cmd: |
+          if [[ -e $WORKSPACE/logs/collect_logs.sh ]]; then
+            bash $WORKSPACE/logs/collect_logs.sh
+          fi
+        executable: /bin/bash
+        chdir: '{{ ansible_user_dir }}/workspace'
