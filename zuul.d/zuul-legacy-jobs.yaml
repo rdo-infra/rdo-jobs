@@ -1,0 +1,1533 @@
+- job:
+    name: legacy-DLRN-build-tripleo
+    parent: legacy-base
+    run: playbooks/legacy/DLRN-build-tripleo/run.yaml
+    dependencies:
+      - legacy-DLRN-rpmbuild
+    voting: false
+    branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+
+- job:
+    name: legacy-DLRN-rpmbuild
+    parent: legacy-base
+    run: playbooks/legacy/DLRN-rpmbuild/run.yaml
+    branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+
+- job:
+    name: legacy-DLRN-rpmbuild-fedora
+    parent: legacy-base
+    run: playbooks/legacy/DLRN-rpmbuild-fedora/run.yaml
+    voting: false
+    branches: ^(master)|(rpm-master)$
+
+- job:
+    name: legacy-DLRN-rpmbuild-rpm-packaging-centos
+    parent: legacy-base
+    run: playbooks/legacy/DLRN-rpmbuild-rpm-packaging-centos/run.yaml
+
+- job:
+    name: legacy-DLRN-rpmbuild-rpm-packaging-fedora
+    parent: legacy-base
+    run: playbooks/legacy/DLRN-rpmbuild-rpm-packaging-fedora/run.yaml
+
+- job:
+    name: legacy-centos-opstools-common-distgit-cbs-final-build
+    parent: legacy-base
+    run: playbooks/legacy/centos-opstools-common-distgit-cbs-final-build/run.yaml
+
+- job:
+    name: legacy-centos-opstools-common-distgit-cbs-validate
+    parent: legacy-base
+    run: playbooks/legacy/centos-opstools-common-distgit-cbs-validate/run.yaml
+
+- job:
+    name: legacy-centos-opstools-doc
+    parent: legacy-base
+    run: playbooks/legacy/centos-opstools-doc/run.yaml
+
+- job:
+    name: legacy-centos-opstools-fluentd-012-distgit-cbs-final-build
+    parent: legacy-base
+    run: playbooks/legacy/centos-opstools-fluentd-012-distgit-cbs-final-build/run.yaml
+
+- job:
+    name: legacy-centos-opstools-fluentd-012-distgit-cbs-validate
+    parent: legacy-base
+    run: playbooks/legacy/centos-opstools-fluentd-012-distgit-cbs-validate/run.yaml
+
+- job:
+    name: legacy-centos-opstools-perfmon-common-distgit-cbs-final-build
+    parent: legacy-base
+    run: playbooks/legacy/centos-opstools-perfmon-common-distgit-cbs-final-build/run.yaml
+
+- job:
+    name: legacy-centos-opstools-perfmon-common-distgit-cbs-validate
+    parent: legacy-base
+    run: playbooks/legacy/centos-opstools-perfmon-common-distgit-cbs-validate/run.yaml
+
+- job:
+    name: legacy-centos-opstools-rpmbuild
+    parent: legacy-base
+    run: playbooks/legacy/centos-opstools-rpmbuild/run.yaml
+
+- job:
+    name: legacy-centos-opstools-rpmlint
+    parent: legacy-base
+    run: playbooks/legacy/centos-opstools-rpmlint/run.yaml
+
+- job:
+    name: legacy-centos-opstools-sensu-110-distgit-cbs-final-build
+    parent: legacy-base
+    run: playbooks/legacy/centos-opstools-sensu-110-distgit-cbs-final-build/run.yaml
+
+- job:
+    name: legacy-centos-opstools-sensu-110-distgit-cbs-validate
+    parent: legacy-base
+    run: playbooks/legacy/centos-opstools-sensu-110-distgit-cbs-validate/run.yaml
+
+- job:
+    name: legacy-centos-opstools-sensu-common-distgit-cbs-final-build
+    parent: legacy-base
+    run: playbooks/legacy/centos-opstools-sensu-common-distgit-cbs-final-build/run.yaml
+
+- job:
+    name: legacy-centos-opstools-sensu-common-distgit-cbs-validate
+    parent: legacy-base
+    run: playbooks/legacy/centos-opstools-sensu-common-distgit-cbs-validate/run.yaml
+
+- job:
+    name: legacy-centos-opstools-tox
+    parent: legacy-base
+    run: playbooks/legacy/centos-opstools-tox/run.yaml
+
+- job:
+    name: legacy-centos-sinkhole-functional-nv
+    parent: legacy-base
+    run: playbooks/legacy/centos-sinkhole-functional-nv/run.yaml
+
+- job:
+    name: legacy-common-distgit-cbs-final-build
+    parent: legacy-base
+    run: playbooks/legacy/common-distgit-cbs-final-build/run.yaml
+    branches: ^common-rdo$
+
+- job:
+    name: legacy-common-distgit-cbs-validate
+    parent: legacy-base
+    run: playbooks/legacy/common-distgit-cbs-validate/run.yaml
+    branches: ^common-rdo$
+
+- job:
+    name: legacy-config-check
+    parent: legacy-base
+    run: playbooks/legacy/config-check/run.yaml
+
+- job:
+    name: legacy-config-distgit-mirror-github
+    parent: legacy-base
+    run: playbooks/legacy/config-distgit-mirror-github/run.yaml
+
+- job:
+    name: legacy-config-sanity-check
+    parent: legacy-base
+    run: playbooks/legacy/config-sanity-check/run.yaml
+
+- job:
+    name: legacy-config-update
+    parent: legacy-base
+    run: playbooks/legacy/config-update/run.yaml
+
+- job:
+    name: legacy-experimental-tripleo-centos-7-master-containers-build
+    parent: legacy-base
+    run: playbooks/legacy/experimental-tripleo-centos-7-master-containers-build/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-experimental-weirdo-dlrn-master-packstack-scenario001
+    parent: legacy-base
+    run: playbooks/legacy/experimental-weirdo-dlrn-master-packstack-scenario001/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+    dependencies:
+      - legacy-DLRN-rpmbuild
+
+- job:
+    name: legacy-experimental-weirdo-dlrn-master-packstack-scenario002
+    parent: legacy-base
+    run: playbooks/legacy/experimental-weirdo-dlrn-master-packstack-scenario002/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+    dependencies:
+      - legacy-DLRN-rpmbuild
+
+- job:
+    name: legacy-experimental-weirdo-dlrn-master-packstack-scenario003
+    parent: legacy-base
+    run: playbooks/legacy/experimental-weirdo-dlrn-master-packstack-scenario003/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+    dependencies:
+      - legacy-DLRN-rpmbuild
+
+- job:
+    name: legacy-experimental-weirdo-dlrn-master-puppet-scenario001
+    parent: legacy-base
+    run: playbooks/legacy/experimental-weirdo-dlrn-master-puppet-scenario001/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+    dependencies:
+      - legacy-DLRN-rpmbuild
+
+- job:
+    name: legacy-experimental-weirdo-dlrn-master-puppet-scenario002
+    parent: legacy-base
+    run: playbooks/legacy/experimental-weirdo-dlrn-master-puppet-scenario002/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+    dependencies:
+      - legacy-DLRN-rpmbuild
+
+- job:
+    name: legacy-experimental-weirdo-dlrn-master-puppet-scenario003
+    parent: legacy-base
+    run: playbooks/legacy/experimental-weirdo-dlrn-master-puppet-scenario003/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+    dependencies:
+      - legacy-DLRN-rpmbuild
+
+- job:
+    name: legacy-experimental-weirdo-dlrn-master-puppet-scenario004
+    parent: legacy-base
+    run: playbooks/legacy/experimental-weirdo-dlrn-master-puppet-scenario004/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+    dependencies:
+      - legacy-DLRN-rpmbuild
+
+- job:
+    name: legacy-fedora-sinkhole-functional-nv
+    parent: legacy-base
+    run: playbooks/legacy/fedora-sinkhole-functional-nv/run.yaml
+
+- job:
+    name: legacy-fedora-stable-repoclosure
+    parent: legacy-base
+    run: playbooks/legacy/fedora-stable-repoclosure/run.yaml
+
+- job:
+    name: legacy-newton-distgit-cbs-validate
+    parent: legacy-base
+    run: playbooks/legacy/newton-distgit-cbs-validate/run.yaml
+    branches: ^newton-rdo$
+
+- job:
+    name: legacy-ocata-distgit-cbs-final-build
+    parent: legacy-base
+    run: playbooks/legacy/ocata-distgit-cbs-final-build/run.yaml
+    branches: ^ocata-rdo$
+
+- job:
+    name: legacy-ocata-distgit-cbs-validate
+    parent: legacy-base
+    run: playbooks/legacy/ocata-distgit-cbs-validate/run.yaml
+    branches: ^ocata-rdo$
+
+- job:
+    name: legacy-octavia-build-amphora-master
+    parent: legacy-base
+    run: playbooks/legacy/octavia-build-amphora-master/run.yaml
+
+- job:
+    name: legacy-octavia-build-amphora-queens
+    parent: legacy-base
+    run: playbooks/legacy/octavia-build-amphora-queens/run.yaml
+
+- job:
+    name: legacy-periodic-tripleo-centos-7-master-containers-build
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-centos-7-master-containers-build/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-centos-7-master-promote-consistent-to-tripleo-ci-testing
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-centos-7-master-promote-consistent-to-tripleo-ci-testing/run.yaml
+    timeout: 1800
+
+- job:
+    name: legacy-periodic-tripleo-centos-7-ocata-promote-consistent-to-tripleo-ci-testing
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-centos-7-ocata-promote-consistent-to-tripleo-ci-testing/run.yaml
+    timeout: 1800
+
+- job:
+    name: legacy-periodic-tripleo-centos-7-pike-containers-build
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-centos-7-pike-containers-build/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-centos-7-pike-promote-consistent-to-tripleo-ci-testing
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-centos-7-pike-promote-consistent-to-tripleo-ci-testing/run.yaml
+    timeout: 1800
+
+- job:
+    name: legacy-periodic-tripleo-centos-7-queens-containers-build
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-centos-7-queens-containers-build/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-centos-7-queens-promote-consistent-to-tripleo-ci-testing
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-centos-7-queens-promote-consistent-to-tripleo-ci-testing/run.yaml
+    timeout: 1800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-master
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-master/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-pike
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-pike/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-queens
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-queens/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-master
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-master/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-pike
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-pike/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-queens
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-queens/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-master
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-master/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-pike
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-pike/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-queens
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-queens/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-master
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-master/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-pike
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-pike/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-queens
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-queens/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-master
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-master/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-pike
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-pike/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-queens
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-queens/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-master
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-master/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-queens
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-queens/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-queens
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-queens/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-ocata-upload
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-ocata-upload/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-pike-upload
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-pike-upload/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-ocata
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-ocata/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-pike
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-pike/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-queens
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-queens/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-singlenode-featureset027-master
+    parent: legacy-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-singlenode-featureset027-master/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-pike-distgit-cbs-final-build
+    parent: legacy-base
+    run: playbooks/legacy/pike-distgit-cbs-final-build/run.yaml
+    branches: ^pike-rdo$
+
+- job:
+    name: legacy-pike-distgit-cbs-validate
+    parent: legacy-base
+    run: playbooks/legacy/pike-distgit-cbs-validate/run.yaml
+    branches: ^pike-rdo$
+
+- job:
+    name: legacy-publish-cico-jjb
+    parent: legacy-base
+    run: playbooks/legacy/publish-cico-jjb/run.yaml
+
+- job:
+    name: legacy-puppet-lint
+    parent: legacy-base
+    run: playbooks/legacy/puppet-lint/run.yaml
+
+- job:
+    name: legacy-puppet-spec
+    parent: legacy-base
+    run: playbooks/legacy/puppet-spec/run.yaml
+
+- job:
+    name: legacy-puppet-syntax
+    parent: legacy-base
+    run: playbooks/legacy/puppet-syntax/run.yaml
+
+- job:
+    name: legacy-queens-distgit-cbs-final-build
+    parent: legacy-base
+    run: playbooks/legacy/queens-distgit-cbs-final-build/run.yaml
+    branches: ^queens-rdo$
+
+- job:
+    name: legacy-queens-distgit-cbs-validate
+    parent: legacy-base
+    run: playbooks/legacy/queens-distgit-cbs-validate/run.yaml
+    branches: ^queens-rdo$
+
+- job:
+    name: legacy-rdo-deps-uc-send-review
+    parent: legacy-base
+    run: playbooks/legacy/rdo-deps-uc-send-review/run.yaml
+
+- job:
+    name: legacy-rdo-infra-playbooks-integration-base
+    parent: legacy-base
+    run: playbooks/legacy/rdo-infra-playbooks-integration-base/run.yaml
+
+- job:
+    name: legacy-rdo-infra-playbooks-integration-logserver-nv
+    parent: legacy-base
+    run: playbooks/legacy/rdo-infra-playbooks-integration-logserver-nv/run.yaml
+
+- job:
+    name: legacy-rdo-infra-playbooks-integration-sensu-client
+    parent: legacy-base
+    run: playbooks/legacy/rdo-infra-playbooks-integration-sensu-client/run.yaml
+
+- job:
+    name: legacy-rdo-infra-playbooks-integration-sensu-client-fedora-nv
+    parent: legacy-base
+    run: playbooks/legacy/rdo-infra-playbooks-integration-sensu-client-fedora-nv/run.yaml
+
+- job:
+    name: legacy-rdo-infra-playbooks-integration-sensu-client-nv
+    parent: legacy-base
+    run: playbooks/legacy/rdo-infra-playbooks-integration-sensu-client-nv/run.yaml
+
+- job:
+    name: legacy-rdo-infra-playbooks-integration-sensu-server
+    parent: legacy-base
+    run: playbooks/legacy/rdo-infra-playbooks-integration-sensu-server/run.yaml
+
+- job:
+    name: legacy-rdo-infra-playbooks-integration-sensu-server-nv
+    parent: legacy-base
+    run: playbooks/legacy/rdo-infra-playbooks-integration-sensu-server-nv/run.yaml
+
+- job:
+    name: legacy-rdo-kolla-build-containers
+    parent: legacy-base
+    run: playbooks/legacy/rdo-kolla-build-containers/run.yaml
+
+- job:
+    name: legacy-rdo-kolla-build-integration
+    parent: legacy-base
+    run: playbooks/legacy/rdo-kolla-build-integration/run.yaml
+
+- job:
+    name: legacy-rdo-registry-integration
+    parent: legacy-base
+    run: playbooks/legacy/rdo-registry-integration/run.yaml
+
+- job:
+    name: legacy-rdo-send-stable-release
+    parent: legacy-base
+    run: playbooks/legacy/rdo-send-stable-release/run.yaml
+
+- job:
+    name: legacy-rdoinfo-DLRN-check
+    parent: legacy-base
+    run: playbooks/legacy/rdoinfo-DLRN-check/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-rdoinfo-buildsys-tags-update-ocata-release
+    parent: legacy-base
+    run: playbooks/legacy/rdoinfo-buildsys-tags-update-ocata-release/run.yaml
+
+- job:
+    name: legacy-rdoinfo-buildsys-tags-update-ocata-testing
+    parent: legacy-base
+    run: playbooks/legacy/rdoinfo-buildsys-tags-update-ocata-testing/run.yaml
+
+- job:
+    name: legacy-rdoinfo-buildsys-tags-update-pike-release
+    parent: legacy-base
+    run: playbooks/legacy/rdoinfo-buildsys-tags-update-pike-release/run.yaml
+
+- job:
+    name: legacy-rdoinfo-buildsys-tags-update-pike-testing
+    parent: legacy-base
+    run: playbooks/legacy/rdoinfo-buildsys-tags-update-pike-testing/run.yaml
+
+- job:
+    name: legacy-rdoinfo-buildsys-tags-update-queens-release
+    parent: legacy-base
+    run: playbooks/legacy/rdoinfo-buildsys-tags-update-queens-release/run.yaml
+
+- job:
+    name: legacy-rdoinfo-buildsys-tags-update-queens-testing
+    parent: legacy-base
+    run: playbooks/legacy/rdoinfo-buildsys-tags-update-queens-testing/run.yaml
+
+- job:
+    name: legacy-rdoinfo-create-project
+    parent: legacy-base
+    run: playbooks/legacy/rdoinfo-create-project/run.yaml
+
+- job:
+    name: legacy-rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016-nv
+    parent: legacy-base
+    run: playbooks/legacy/rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016-nv/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005-nv
+    parent: legacy-base
+    run: playbooks/legacy/rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005-nv/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-rdoinfo-tripleo-ocata-testing-centos-7-multinode-1ctlr-featureset005-nv
+    parent: legacy-base
+    run: playbooks/legacy/rdoinfo-tripleo-ocata-testing-centos-7-multinode-1ctlr-featureset005-nv/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-rdoinfo-tripleo-pike-release-centos-7-multinode-1ctlr-featureset006-nv
+    parent: legacy-base
+    run: playbooks/legacy/rdoinfo-tripleo-pike-release-centos-7-multinode-1ctlr-featureset006-nv/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-rdoinfo-tripleo-pike-testing-centos-7-multinode-1ctlr-featureset006-nv
+    parent: legacy-base
+    run: playbooks/legacy/rdoinfo-tripleo-pike-testing-centos-7-multinode-1ctlr-featureset006-nv/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-rdoinfo-upper-constraints-update-master
+    parent: legacy-base
+    run: playbooks/legacy/rdoinfo-upper-constraints-update-master/run.yaml
+
+- job:
+    name: legacy-rdoinfo-upper-constraints-update-newton
+    parent: legacy-base
+    run: playbooks/legacy/rdoinfo-upper-constraints-update-newton/run.yaml
+
+- job:
+    name: legacy-rdoinfo-upper-constraints-update-ocata
+    parent: legacy-base
+    run: playbooks/legacy/rdoinfo-upper-constraints-update-ocata/run.yaml
+
+- job:
+    name: legacy-rdoinfo-upper-constraints-update-pike
+    parent: legacy-base
+    run: playbooks/legacy/rdoinfo-upper-constraints-update-pike/run.yaml
+
+- job:
+    name: legacy-rdoinfo-upper-constraints-update-queens
+    parent: legacy-base
+    run: playbooks/legacy/rdoinfo-upper-constraints-update-queens/run.yaml
+
+- job:
+    name: legacy-rebuild-fedora-dependencies
+    parent: legacy-base
+    run: playbooks/legacy/rebuild-fedora-dependencies/run.yaml
+
+- job:
+    name: legacy-rpmlint
+    parent: legacy-base
+    run: playbooks/legacy/rpmlint/run.yaml
+    dependencies:
+      - legacy-DLRN-rpmbuild
+    branches: ^rpm-master$
+
+- job:
+    name: legacy-tox-jjb
+    parent: legacy-base
+    run: playbooks/legacy/tox-jjb/run.yaml
+
+- job:
+    name: legacy-tox-validate
+    parent: legacy-base
+    run: playbooks/legacy/tox-validate/run.yaml
+
+- job:
+    name: legacy-tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master/run.yaml
+    timeout: 10800
+    branches: ^master$
+    irrelevant-files:
+      - ^.*\.md$
+      - ^.*\.rst$
+      - ^Puppetfile.*$
+      - ^doc/.*$
+      - ^etc/.*$
+      - ^metadata.json$
+      - ^releasenotes/.*$
+      - ^requirements.txt$
+      - ^setup.*$
+      - ^spec/.*$
+      - ^test-requirements.txt$
+      - tox.ini
+
+- job:
+    name: legacy-tripleo-ci-centos-7-container-to-container-upgrades-master-nv
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-master-nv/run.yaml
+    timeout: 10800
+    voting: false
+    branches: ^master$
+    irrelevant-files:
+      - ^.*\.md$
+      - ^.*\.rst$
+      - ^Puppetfile.*$
+      - ^doc/.*$
+      - ^etc/.*$
+      - ^metadata.json$
+      - ^releasenotes/.*$
+      - ^requirements.txt$
+      - ^setup.*$
+      - ^spec/.*$
+      - ^test-requirements.txt$
+      - tox.ini
+
+- job:
+    name: legacy-tripleo-ci-centos-7-container-to-container-upgrades-queens-nv
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-queens-nv/run.yaml
+    timeout: 10800
+    voting: false
+    branches: ^stable/queens$
+    irrelevant-files:
+      - ^.*\.md$
+      - ^.*\.rst$
+      - ^Puppetfile.*$
+      - ^doc/.*$
+      - ^etc/.*$
+      - ^metadata.json$
+      - ^releasenotes/.*$
+      - ^requirements.txt$
+      - ^setup.*$
+      - ^spec/.*$
+      - ^test-requirements.txt$
+      - tox.ini
+
+- job:
+    name: legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch-nv
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch-nv/run.yaml
+    timeout: 10800
+    voting: false
+    branches: ^master$
+    irrelevant-files:
+      - ^.*\.md$
+      - ^.*\.rst$
+      - ^Puppetfile.*$
+      - ^doc/.*$
+      - ^etc/.*$
+      - ^metadata.json$
+      - ^releasenotes/.*$
+      - ^requirements.txt$
+      - ^setup.*$
+      - ^spec/.*$
+      - ^test-requirements.txt$
+      - tox.ini
+
+- job:
+    name: legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike-nv
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-containers-multinode-upgrades-pike-nv/run.yaml
+    timeout: 10800
+    voting: false
+    branches: ^stable/pike$
+    irrelevant-files:
+      - ^.*\.md$
+      - ^.*\.rst$
+      - ^Puppetfile.*$
+      - ^doc/.*$
+      - ^etc/.*$
+      - ^metadata.json$
+      - ^releasenotes/.*$
+      - ^requirements.txt$
+      - ^setup.*$
+      - ^spec/.*$
+      - ^test-requirements.txt$
+      - tox.ini
+
+- job:
+    name: legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset016-master
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset016-master/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset017-master
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset017-master/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset018-master
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset018-master/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset019-master
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset019-master/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens-nv
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens-nv/run.yaml
+    timeout: 10800
+    voting: false
+    branches: ^stable/queens$
+    irrelevant-files:
+      - ^.*\.md$
+      - ^.*\.rst$
+      - ^Puppetfile.*$
+      - ^doc/.*$
+      - ^etc/.*$
+      - ^metadata.json$
+      - ^releasenotes/.*$
+      - ^requirements.txt$
+      - ^setup.*$
+      - ^spec/.*$
+      - ^test-requirements.txt$
+      - tox.ini
+
+- job:
+    name: legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master/run.yaml
+    timeout: 10800
+    branches: ^master$
+    irrelevant-files:
+      - ^.*\.md$
+      - ^.*\.rst$
+      - ^Puppetfile.*$
+      - ^doc/.*$
+      - ^etc/.*$
+      - ^metadata.json$
+      - ^releasenotes/.*$
+      - ^requirements.txt$
+      - ^setup.*$
+      - ^spec/.*$
+      - ^test-requirements.txt$
+      - tox.ini
+
+- job:
+    name: legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master/run.yaml
+    timeout: 10800
+    branches: ^master$
+    irrelevant-files:
+      - ^.*\.md$
+      - ^.*\.rst$
+      - ^Puppetfile.*$
+      - ^doc/.*$
+      - ^etc/.*$
+      - ^metadata.json$
+      - ^releasenotes/.*$
+      - ^requirements.txt$
+      - ^setup.*$
+      - ^spec/.*$
+      - ^test-requirements.txt$
+      - tox.ini
+
+- job:
+    name: legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike/run.yaml
+    timeout: 10800
+    branches: ^stable/pike$
+    irrelevant-files:
+      - ^.*\.md$
+      - ^.*\.rst$
+      - ^Puppetfile.*$
+      - ^doc/.*$
+      - ^etc/.*$
+      - ^metadata.json$
+      - ^releasenotes/.*$
+      - ^requirements.txt$
+      - ^setup.*$
+      - ^spec/.*$
+      - ^test-requirements.txt$
+      - tox.ini
+
+- job:
+    name: legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata-nv
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata-nv/run.yaml
+    timeout: 10800
+    voting: false
+    branches: ^stable/(0.6.x|ocata)$
+    irrelevant-files:
+      - ^.*\.md$
+      - ^.*\.rst$
+      - ^Puppetfile.*$
+      - ^doc/.*$
+      - ^etc/.*$
+      - ^metadata.json$
+      - ^releasenotes/.*$
+      - ^requirements.txt$
+      - ^setup.*$
+      - ^spec/.*$
+      - ^test-requirements.txt$
+      - tox.ini
+
+- job:
+    name: legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike/run.yaml
+    timeout: 10800
+    branches: ^stable/pike$
+    irrelevant-files:
+      - ^.*\.md$
+      - ^.*\.rst$
+      - ^Puppetfile.*$
+      - ^doc/.*$
+      - ^etc/.*$
+      - ^metadata.json$
+      - ^releasenotes/.*$
+      - ^requirements.txt$
+      - ^setup.*$
+      - ^spec/.*$
+      - ^test-requirements.txt$
+      - tox.ini
+
+- job:
+    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata-branch
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata-branch/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike-branch
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike-branch/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens-branch
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens-branch/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-master
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-master/run.yaml
+    timeout: 10800
+    branches: ^master$
+    irrelevant-files:
+      - ^.*\.md$
+      - ^.*\.rst$
+      - ^Puppetfile.*$
+      - ^doc/.*$
+      - ^etc/.*$
+      - ^metadata.json$
+      - ^releasenotes/.*$
+      - ^requirements.txt$
+      - ^setup.*$
+      - ^spec/.*$
+      - ^test-requirements.txt$
+      - tox.ini
+
+- job:
+    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-ocata
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-ocata/run.yaml
+    timeout: 10800
+    branches: ^stable/(0.6.x|ocata)$
+    irrelevant-files:
+      - ^.*\.md$
+      - ^.*\.rst$
+      - ^Puppetfile.*$
+      - ^doc/.*$
+      - ^etc/.*$
+      - ^metadata.json$
+      - ^releasenotes/.*$
+      - ^requirements.txt$
+      - ^setup.*$
+      - ^spec/.*$
+      - ^test-requirements.txt$
+      - tox.ini
+
+- job:
+    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-pike
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-pike/run.yaml
+    timeout: 10800
+    branches: ^stable/pike$
+    irrelevant-files:
+      - ^.*\.md$
+      - ^.*\.rst$
+      - ^Puppetfile.*$
+      - ^doc/.*$
+      - ^etc/.*$
+      - ^metadata.json$
+      - ^releasenotes/.*$
+      - ^requirements.txt$
+      - ^setup.*$
+      - ^spec/.*$
+      - ^test-requirements.txt$
+      - tox.ini
+
+- job:
+    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-queens
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-queens/run.yaml
+    timeout: 10800
+    branches: ^stable/queens$
+    irrelevant-files:
+      - ^.*\.md$
+      - ^.*\.rst$
+      - ^Puppetfile.*$
+      - ^doc/.*$
+      - ^etc/.*$
+      - ^metadata.json$
+      - ^releasenotes/.*$
+      - ^requirements.txt$
+      - ^setup.*$
+      - ^spec/.*$
+      - ^test-requirements.txt$
+      - tox.ini
+
+- job:
+    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master/run.yaml
+    timeout: 10800
+    branches: ^master$
+    irrelevant-files:
+      - ^.*\.md$
+      - ^.*\.rst$
+      - ^Puppetfile.*$
+      - ^coe/kubernetes.*$
+      - ^coe/openshift.*$
+      - ^doc/.*$
+      - ^docker/services/.*ovn.*$
+      - ^docker/services/aodh.*$
+      - ^docker/services/barbican.*$
+      - ^docker/services/ceilometer.*$
+      - ^docker/services/ceph.*$
+      - ^docker/services/cinder.*$
+      - ^docker/services/congress.*$
+      - ^docker/services/ec2-api.*$
+      - ^docker/services/gnocchi.*$
+      - ^docker/services/logging.*$
+      - ^docker/services/manila.*$
+      - ^docker/services/metrics.*$
+      - ^docker/services/monitoring.*$
+      - ^docker/services/panko.*$
+      - ^docker/services/sahara.*$
+      - ^docker/services/tacker.*$
+      - ^environments/.*opendaylight.*$
+      - ^environments/kubernetes.*$
+      - ^environments/openshift.*$
+      - ^etc/.*$
+      - ^manifests/profile/base/aodh.*$
+      - ^manifests/profile/base/barbican.*$
+      - ^manifests/profile/base/ceilometer.*$
+      - ^manifests/profile/base/ceph.*$
+      - ^manifests/profile/base/cinder.*$
+      - ^manifests/profile/base/congress.*$
+      - ^manifests/profile/base/glance.*$
+      - ^manifests/profile/base/gnocchi.*$
+      - ^manifests/profile/base/logging.*$
+      - ^manifests/profile/base/manila.*$
+      - ^manifests/profile/base/metrics.*$
+      - ^manifests/profile/base/monitoring.*$
+      - ^manifests/profile/base/neutron/agents/ovn.*$
+      - ^manifests/profile/base/neutron/opendaylight/.*$
+      - ^manifests/profile/base/neutron/ovn.*$
+      - ^manifests/profile/base/neutron/plugins/ml2/ovn.*$
+      - ^manifests/profile/base/nova/ec2.*$
+      - ^manifests/profile/base/panko.*$
+      - ^manifests/profile/base/sahara.*$
+      - ^manifests/profile/base/tacker.*$
+      - ^manifests/profile/pacemaker/manila.*$
+      - ^manifests/profile/pacemaker/ovn.*$
+      - ^metadata.json$
+      - ^puppet/services/.*opendaylight.*$
+      - ^puppet/services/.*ovn.*$
+      - ^puppet/services/aodh.*$
+      - ^puppet/services/barbican.*$
+      - ^puppet/services/ceilometer.*$
+      - ^puppet/services/ceph.*$
+      - ^puppet/services/cinder.*$
+      - ^puppet/services/congress.*$
+      - ^puppet/services/ec2-api.*$
+      - ^puppet/services/glance.*$
+      - ^puppet/services/gnocchi.*$
+      - ^puppet/services/logging.*$
+      - ^puppet/services/manila.*$
+      - ^puppet/services/metrics.*$
+      - ^puppet/services/monitoring.*$
+      - ^puppet/services/panko.*$
+      - ^puppet/services/sahara.*$
+      - ^puppet/services/tacker.*$
+      - ^releasenotes/.*$
+      - ^requirements.txt$
+      - ^setup.*$
+      - ^spec/.*$
+      - ^test-requirements.txt$
+      - ci/environments/scenario.*$
+      - ci/pingtests/scenario.*$
+      - manifests/profile/base/neutron/opendaylight.pp
+      - manifests/profile/base/neutron/plugins/ml2/opendaylight.pp
+      - manifests/profile/base/neutron/plugins/ovs/opendaylight.pp
+      - tox.ini
+
+- job:
+    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens/run.yaml
+    timeout: 10800
+    branches: ^stable/queens$
+    irrelevant-files:
+      - ^.*\.md$
+      - ^.*\.rst$
+      - ^Puppetfile.*$
+      - ^coe/kubernetes.*$
+      - ^coe/openshift.*$
+      - ^doc/.*$
+      - ^docker/services/.*ovn.*$
+      - ^docker/services/aodh.*$
+      - ^docker/services/barbican.*$
+      - ^docker/services/ceilometer.*$
+      - ^docker/services/ceph.*$
+      - ^docker/services/cinder.*$
+      - ^docker/services/congress.*$
+      - ^docker/services/ec2-api.*$
+      - ^docker/services/gnocchi.*$
+      - ^docker/services/logging.*$
+      - ^docker/services/manila.*$
+      - ^docker/services/metrics.*$
+      - ^docker/services/monitoring.*$
+      - ^docker/services/panko.*$
+      - ^docker/services/sahara.*$
+      - ^docker/services/tacker.*$
+      - ^environments/.*opendaylight.*$
+      - ^environments/kubernetes.*$
+      - ^environments/openshift.*$
+      - ^etc/.*$
+      - ^manifests/profile/base/aodh.*$
+      - ^manifests/profile/base/barbican.*$
+      - ^manifests/profile/base/ceilometer.*$
+      - ^manifests/profile/base/ceph.*$
+      - ^manifests/profile/base/cinder.*$
+      - ^manifests/profile/base/congress.*$
+      - ^manifests/profile/base/glance.*$
+      - ^manifests/profile/base/gnocchi.*$
+      - ^manifests/profile/base/logging.*$
+      - ^manifests/profile/base/manila.*$
+      - ^manifests/profile/base/metrics.*$
+      - ^manifests/profile/base/monitoring.*$
+      - ^manifests/profile/base/neutron/agents/ovn.*$
+      - ^manifests/profile/base/neutron/opendaylight/.*$
+      - ^manifests/profile/base/neutron/ovn.*$
+      - ^manifests/profile/base/neutron/plugins/ml2/ovn.*$
+      - ^manifests/profile/base/nova/ec2.*$
+      - ^manifests/profile/base/panko.*$
+      - ^manifests/profile/base/sahara.*$
+      - ^manifests/profile/base/tacker.*$
+      - ^manifests/profile/pacemaker/manila.*$
+      - ^manifests/profile/pacemaker/ovn.*$
+      - ^metadata.json$
+      - ^puppet/services/.*opendaylight.*$
+      - ^puppet/services/.*ovn.*$
+      - ^puppet/services/aodh.*$
+      - ^puppet/services/barbican.*$
+      - ^puppet/services/ceilometer.*$
+      - ^puppet/services/ceph.*$
+      - ^puppet/services/cinder.*$
+      - ^puppet/services/congress.*$
+      - ^puppet/services/ec2-api.*$
+      - ^puppet/services/glance.*$
+      - ^puppet/services/gnocchi.*$
+      - ^puppet/services/logging.*$
+      - ^puppet/services/manila.*$
+      - ^puppet/services/metrics.*$
+      - ^puppet/services/monitoring.*$
+      - ^puppet/services/panko.*$
+      - ^puppet/services/sahara.*$
+      - ^puppet/services/tacker.*$
+      - ^releasenotes/.*$
+      - ^requirements.txt$
+      - ^setup.*$
+      - ^spec/.*$
+      - ^test-requirements.txt$
+      - ci/environments/scenario.*$
+      - ci/pingtests/scenario.*$
+      - manifests/profile/base/neutron/opendaylight.pp
+      - manifests/profile/base/neutron/plugins/ml2/opendaylight.pp
+      - manifests/profile/base/neutron/plugins/ovs/opendaylight.pp
+      - tox.ini
+
+- job:
+    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master-tht
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master-tht/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens-tht
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens-tht/run.yaml
+    timeout: 10800
+
+- job:
+    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master
+    parent: legacy-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master/run.yaml
+    timeout: 10800
+    branches: ^master$
+    irrelevant-files:
+      - ^.*\.md$
+      - ^.*\.rst$
+      - ^Puppetfile.*$
+      - ^doc/.*$
+      - ^etc/.*$
+      - ^metadata.json$
+      - ^releasenotes/.*$
+      - ^requirements.txt$
+      - ^setup.*$
+      - ^spec/.*$
+      - ^test-requirements.txt$
+      - tox.ini
+
+- job:
+    name: legacy-update-buildsys-tags
+    parent: legacy-base
+    run: playbooks/legacy/update-buildsys-tags/run.yaml
+
+- job:
+    name: legacy-validate-buildsys-tags
+    parent: legacy-base
+    run: playbooks/legacy/validate-buildsys-tags/run.yaml
+
+- job:
+    name: legacy-validate-dependencies-rebuilds
+    parent: legacy-base
+    run: playbooks/legacy/validate-dependencies-rebuilds/run.yaml
+
+- job:
+    name: legacy-weirdo-ansible-lint
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-ansible-lint/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+
+- job:
+    name: legacy-weirdo-dlrn-master-packstack-scenario001
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-dlrn-master-packstack-scenario001/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+    dependencies:
+      - legacy-DLRN-rpmbuild
+    voting: false
+    branches: ^(rpm-)?master$
+
+- job:
+    name: legacy-weirdo-dlrn-master-packstack-scenario002
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-dlrn-master-packstack-scenario002/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+    dependencies:
+      - legacy-DLRN-rpmbuild
+    voting: false
+    branches: ^(rpm-)?master$
+
+- job:
+    name: legacy-weirdo-dlrn-master-packstack-scenario003
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-dlrn-master-packstack-scenario003/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+    dependencies:
+      - legacy-DLRN-rpmbuild
+    voting: false
+    branches: ^(rpm-)?master$
+
+- job:
+    name: legacy-weirdo-dlrn-master-puppet-scenario001
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-dlrn-master-puppet-scenario001/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+    dependencies:
+      - legacy-DLRN-rpmbuild
+    voting: false
+    branches: ^(rpm-)?master$
+
+- job:
+    name: legacy-weirdo-dlrn-master-puppet-scenario002
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-dlrn-master-puppet-scenario002/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+    dependencies:
+      - legacy-DLRN-rpmbuild
+    voting: false
+    branches: ^(rpm-)?master$
+
+- job:
+    name: legacy-weirdo-dlrn-master-puppet-scenario003
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-dlrn-master-puppet-scenario003/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+    dependencies:
+      - legacy-DLRN-rpmbuild
+    voting: false
+    branches: ^(rpm-)?master$
+
+- job:
+    name: legacy-weirdo-dlrn-master-puppet-scenario004
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-dlrn-master-puppet-scenario004/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+    dependencies:
+      - legacy-DLRN-rpmbuild
+    voting: false
+    branches: ^(rpm-)?master$
+
+- job:
+    name: legacy-weirdo-docs
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-docs/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+    files:
+      - ^docs/.*$
+      - ^.*\.rst$
+
+- job:
+    name: legacy-weirdo-integration-master-packstack-scenario001
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-integration-master-packstack-scenario001/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+
+- job:
+    name: legacy-weirdo-integration-master-packstack-scenario003
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-integration-master-packstack-scenario003/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+
+- job:
+    name: legacy-weirdo-integration-master-puppet-scenario001
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-integration-master-puppet-scenario001/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+
+- job:
+    name: legacy-weirdo-integration-master-puppet-scenario003
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-integration-master-puppet-scenario003/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+
+- job:
+    name: legacy-weirdo-integration-master-puppet-scenario004
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-integration-master-puppet-scenario004/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+
+- job:
+    name: legacy-weirdo-integration-newton-packstack-scenario001
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-integration-newton-packstack-scenario001/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+
+- job:
+    name: legacy-weirdo-integration-newton-packstack-scenario003
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-integration-newton-packstack-scenario003/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+
+- job:
+    name: legacy-weirdo-integration-newton-puppet-scenario001
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-integration-newton-puppet-scenario001/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+
+- job:
+    name: legacy-weirdo-integration-newton-puppet-scenario003
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-integration-newton-puppet-scenario003/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+
+- job:
+    name: legacy-weirdo-integration-ocata-packstack-scenario002
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-integration-ocata-packstack-scenario002/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+
+- job:
+    name: legacy-weirdo-integration-ocata-puppet-scenario002
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-integration-ocata-puppet-scenario002/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+
+- job:
+    name: legacy-weirdo-integration-pike-packstack-scenario001
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-integration-pike-packstack-scenario001/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+
+- job:
+    name: legacy-weirdo-integration-pike-packstack-scenario002
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-integration-pike-packstack-scenario002/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+
+- job:
+    name: legacy-weirdo-integration-pike-puppet-scenario001
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-integration-pike-puppet-scenario001/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+
+- job:
+    name: legacy-weirdo-integration-pike-puppet-scenario002
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-integration-pike-puppet-scenario002/run.yaml
+    required-projects:
+      - rdo-infra/weirdo
+
+- job:
+    name: legacy-weirdo-validate-buildsys-tags
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-validate-buildsys-tags/run.yaml
