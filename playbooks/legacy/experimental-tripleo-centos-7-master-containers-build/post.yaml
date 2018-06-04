@@ -1,0 +1,11 @@
+- hosts: all
+  tasks:
+
+    - shell:
+        cmd: |
+          mkdir -p $WORKSPACE/logs
+          cp -a /tmp/kolla $WORKSPACE/logs/
+
+          # Ensure permissions allow artifact uploading
+          sudo chown -R "$(id -u).$(id -g)" $WORKSPACE/logs
+        chdir: '{{ ansible_user_dir }}/workspace'
