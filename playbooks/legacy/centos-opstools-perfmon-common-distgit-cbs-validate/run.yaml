@@ -1,0 +1,50 @@
+- hosts: all
+  name: Autoconverted job legacy-centos-opstools-perfmon-common-distgit-cbs-validate
+    from old job centos-opstools-perfmon-common-distgit-cbs-validate
+  tasks:
+
+    - name: Ensure legacy workspace directory
+      file:
+        path: '{{ ansible_user_dir }}/workspace'
+        state: directory
+
+    - shell:
+        cmd: |
+          # Set koji client identity
+          echo "Set koji client identity"
+          tar -xzf ${CLIENTSECRET} -C /home/jenkins/
+        chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'
+
+    - shell:
+        cmd: |
+          sudo yum -y install centos-packager createrepo
+          git clone http://review.rdoproject.org/r/gating_scripts
+          cd gating_scripts
+          ./pkg-validate.sh opstools7-perfmon-common-el7 cbs
+        chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'
+
+    - shell:
+        cmd: |
+          # shamelessly copied from distgit.yaml
+          # First, we create a chroot to be used in the installation
+          sudo mkdir -p /tmp/root/var/lib/rpm
+          sudo rpm --root /tmp/root --initdb
+          sudo yum -y install yum-utils
+          yumdownloader centos-release
+          sudo rpm --root /tmp/root -ivh --nodeps centos-release-*.rpm
+          # rpmfactory-temp-release-1.0-1 is built by the base-pkg-validation builder
+          # It defines two repositories: the newton one (from CBS) and the temporary CBS one that contains
+          # packages we freshly built within that Koji task
+          sudo rpm --root /tmp/root -i /home/jenkins/rpmbuild/RPMS/noarch/rpmfactory-temp-release-1.0-1.noarch.rpm
+          # Packages in the temp repository contained only the packages fetched from CBS
+          # This should list the packages we just build in that Koji task
+          yum --installroot=/tmp/root --disablerepo='*' --enablerepo='temp' list available
+          pkgs=$(yum --installroot=/tmp/root --disablerepo='*' --enablerepo='temp' list available | awk '/temp$/ {printf "%s ", $1}')
+          # Force installation of python-setuptools as is required for some packages (skydive, ansible)
+          sudo yum install --installroot=/tmp/root --disableexcludes=all -y python-setuptools
+          # Here we install locally the kust built packages
+          sudo yum install --installroot=/tmp/root -y $pkgs
+        chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'
