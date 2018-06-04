@@ -2,7 +2,9 @@
     name: rdo-jobs
     check:
       jobs:
-        - tox-docs
+        - tox-docs:
+            nodeset: container-centos-7
     gate:
       jobs:
-        - tox-docs
+        - tox-docs:
+            nodeset: container-centos-7
