@@ -1,0 +1,34 @@
+- hosts: all
+  tasks:
+
+    - shell:
+        cmd: |
+          # WeIRDO uses ARA for ansible-playbook run visualization
+          export ARA_DATABASE="sqlite:///$WORKSPACE/ara-sqlite"
+
+          # Generate ARA playbook analysis (do not fail job if generation fails)
+          sudo -E weirdo/.tox/ansible-playbook/bin/ara generate html /var/log/weirdo/ara || true
+
+          mkdir logs
+          sudo cp -a /var/log/weirdo/* logs/
+          # Copy database (experimental)
+          sudo mkdir logs/ara-database
+          sudo cp $WORKSPACE/ara.sqlite logs/ara-database/ansible.sqlite
+
+          # Ensure permissions allow artifact uploading
+          sudo chown -R "$(id -u).$(id -g)" logs
+        executable: /bin/bash
+        chdir: '{{ ansible_user_dir }}/workspace'
+
+    - name: Copy files from {{ ansible_user_dir }}/workspace/ on node
+      synchronize:
+        src: '{{ ansible_user_dir }}/workspace/'
+        dest: logs/$LOG_PATH
+        mode: pull
+        copy_links: true
+        verify_host: true
+        rsync_opts:
+          - --include=/logs/**
+          - --include=*/
+          - --exclude=*
+          - --prune-empty-dirs

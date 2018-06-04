@@ -1,0 +1,97 @@
+- hosts: all
+  name: Autoconverted job legacy-rdo-deps-uc-send-review from old job rdo-deps-uc-send-review
+  tasks:
+
+    - name: Ensure legacy workspace directory
+      file:
+        path: '{{ ansible_user_dir }}/workspace'
+        state: directory
+
+    - shell:
+        cmd: |
+          set -e -x
+          if [[ "${ZUUL_PIPELINE}" == "post" ]]; then
+          # Source is review.rdoproject.org
+          GIT_URL=https://review.rdoproject.org/r
+          elif [[ "${ZUUL_PIPELINE}" == "openstack-post" ]]; then
+          # Source is git.openstack.org
+          GIT_URL=https://git.openstack.org
+          fi
+          echo "Clean workspace"
+          rm -Rf ./*
+          echo "Clone $ZUUL_PROJECT"
+          git clone ${GIT_URL}/${ZUUL_PROJECT} ${ZUUL_PROJECT}
+          # ZUUL_NEWREV is the variable with the commit to be used
+          echo "Checking out $ZUUL_NEWREV"
+          pushd $ZUUL_PROJECT
+          git checkout $ZUUL_NEWREV
+          popd
+        chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'
+
+    - shell:
+        cmd: |
+          set +e -x
+          virtualenv --system-site-packages .venv
+          . .venv/bin/activate
+          pip install pymod2pkg sh git-review ruamel.yaml rdopkg
+          if [ "${ZUUL_PROJECT}" != 'rdoinfo' ]; then
+              /usr/zuul-env/bin/zuul-cloner http://review.rdoproject.org/r rdoinfo
+          fi
+          if [ "${ZUUL_REF}" == 'master' ]; then
+              RELEASE="rocky"
+          else
+              RELEASE="${ZUUL_REF/stable\//}"
+          fi
+          export PHASE="candidate"
+          pushd $ZUUL_PROJECT
+          SUBJECT=$(git log --oneline $ZUUL_COMMIT|head -1|cut -d " " -f 2)
+          if [ $SUBJECT == "Merge" ]; then
+             REAL_COMMIT=$(git show $ZUUL_COMMIT|grep ^Merge:|awk '{print $(NF)}')
+          else
+             REAL_COMMIT=$ZUUL_COMMIT
+          fi
+          UPSTREAM_CHANGE_ID=$(git show $REAL_COMMIT|grep Change-Id:|awk '{print $(NF)}')
+          change_list=($(git show $REAL_COMMIT upper-constraints.txt|grep -P '^\+(?:(?!\+\+))|^-(?:(?!--))'))
+          change_list=${change_list[@]/#[+-]/}
+          popd
+          if [ -z "${change_list//[[:space:]]/}" ]; then
+              echo "INFO: No update in upper-constraints, Exiting"
+              exit 0
+          fi
+          git clone http://review.rdoproject.org/r/gating_scripts $WORKSPACE/gating_scripts
+          pushd $WORKSPACE/rdoinfo
+          python $WORKSPACE/gating_scripts/buildsys-tags/add-buildsys-tags.py \
+              -l $change_list \
+              -r $RELEASE \
+              -p $PHASE
+          DIFF=$(git diff deps.yml)
+          if [ -n "$DIFF" ]; then
+            mkdir -p ~/.ssh
+            cat >> ~/.ssh/config << EOF
+
+          Host review.rdoproject.org
+            IdentityFile $SSH_KEY
+          EOF
+            chmod 600 ~/.ssh/config
+            sudo chmod 600 $SSH_KEY
+            sudo chown jenkins:jenkins $SSH_KEY
+            ssh-keyscan -p 29418 review.rdoproject.org >> ~/.ssh/known_hosts
+            chmod 644 ~/.ssh/known_hosts
+            COMMIT_MSG="CBS tags sync with uc for $RELEASE-$PHASE\n\nUpstream-Id: $UPSTREAM_CHANGE_ID"
+            git config user.name "rdo-trunk"
+            git config user.email "javier.pena@redhat.com"
+            git config gitreview.username "rdo-trunk"
+            git checkout -b proposal
+            git review -s -v
+            echo -e $COMMIT_MSG | git commit -F- deps.yml
+            # Just in case, check if there are changes between this version and the current review
+            curl https://review.rdoproject.org/r/changes/rdoinfo~master~$CHANGE_ID/revisions/current/files/deps.yml/content |base64 -d > deps_current.yml
+            diff deps.yml deps_current.yml
+            if [ $? -ne 0 ]; then
+                git review -t "rdoinfo-deps-uc-update-$RELEASE" < /dev/null
+            fi
+            popd
+          fi
+        chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'
