@@ -1,0 +1,90 @@
+- hosts: all
+  name: Autoconverted job legacy-rdo-send-stable-release from old job rdo-send-stable-release
+  tasks:
+
+    - name: Ensure legacy workspace directory
+      file:
+        path: '{{ ansible_user_dir }}/workspace'
+        state: directory
+
+    - shell:
+        cmd: |
+          set -e -x
+          if [[ "${ZUUL_PIPELINE}" == "post" ]]; then
+          # Source is review.rdoproject.org
+          GIT_URL=https://review.rdoproject.org/r
+          elif [[ "${ZUUL_PIPELINE}" == "openstack-post" ]]; then
+          # Source is git.openstack.org
+          GIT_URL=https://git.openstack.org
+          fi
+          echo "Clean workspace"
+          rm -Rf ./*
+          echo "Clone $ZUUL_PROJECT"
+          git clone ${GIT_URL}/${ZUUL_PROJECT} ${ZUUL_PROJECT}
+          # ZUUL_NEWREV is the variable with the commit to be used
+          echo "Checking out $ZUUL_NEWREV"
+          pushd $ZUUL_PROJECT
+          git checkout $ZUUL_NEWREV
+          popd
+        chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'
+
+    - shell:
+        cmd: |
+          set -e -x
+          if [ "${ZUUL_PROJECT}" != 'rdoinfo' ]; then
+              /usr/zuul-env/bin/zuul-cloner http://review.rdoproject.org/r rdoinfo
+          fi
+          # Currently releng requires rdoinfo to be in $HOME/rdoinfo
+          rm -rf ~/rdoinfo
+          ln -s $PWD/rdoinfo ~/rdoinfo
+          /usr/zuul-env/bin/zuul-cloner http://review.rdoproject.org/r rdo-infra/releng
+          virtualenv --system-site-packages .venv
+          . .venv/bin/activate
+          pushd rdo-infra/releng
+          pip install .
+          popd
+          # Prepare environment to send a review
+          mkdir -p ~/.ssh
+          cat >> ~/.ssh/config << EOF
+
+          Host review.rdoproject.org
+            IdentityFile $SSH_KEY
+          EOF
+          chmod 600 ~/.ssh/config
+          sudo chmod 600 $SSH_KEY
+          sudo chown jenkins:jenkins $SSH_KEY
+          ssh-keyscan -p 29418 review.rdoproject.org >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+          git config --global --add user.name "rdo-trunk"
+          git config --global --add user.email "javier.pena@redhat.com"
+          git config --global --add gitreview.username "rdo-trunk"
+
+          BASE_CMD="rdo_release_review -u rdo-trunk -c RDO -e dev@lists.rdoproject.org"
+          RELEASES="newton ocata pike queens"
+          for r in $RELEASES;do
+            case $ZUUL_PROJECT in
+              rdoinfo )
+                pushd rdoinfo
+                git checkout $ZUUL_COMMIT
+                popd
+                $BASE_CMD -r $r -p ~/rdoinfo
+              ;;
+              openstack/releases )
+                # When using reviews from openstack/releases to generate new releases
+                # we need to get the real commit (not the merge one) to search the
+                # review using gerrit API.
+                pushd openstack/releases
+                SUBJECT=$(git log --oneline $ZUUL_COMMIT|head -1|cut -d " " -f 2)
+                if [ $SUBJECT == "Merge" ]; then
+                  REAL_COMMIT=$(git show $ZUUL_COMMIT|grep ^Merge:|awk '{print $(NF)}')
+                else
+                  REAL_COMMIT=$ZUUL_COMMIT
+                fi
+                $BASE_CMD -r $r -n commit:$REAL_COMMIT
+                popd
+              ;;
+            esac
+          done
+        chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'
