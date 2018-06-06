@@ -8,3 +8,4 @@
           fi
         executable: /bin/bash
         chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'

@@ -11,7 +11,10 @@
         cmd: |
           set -e
           rm -Rf config build
-          /usr/zuul-env/bin/zuul-cloner http://gerrit/r config
+          # zuul-cloner is installed as /usr/zuul-env/bin/zuul-cloner
+          # in nodepool images
+          export PATH=$PATH:/usr/zuul-env/bin
+          zuul-cloner http://gerrit/r config
           # Prepare a default configuration for zuul and nodepool
           mkdir -p build/nodepool build/zuul build/repoxplorer
           cp ~jenkins/defconf/zuul.conf build/zuul/zuul.conf
