@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bab921fb_04e76ce5",
+        "filename": "playbooks/legacy/DLRN-build-tripleo/run.yaml",
+        "patchSetId": 35
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 16
+      },
+      "writtenOn": "2018-06-06T19:21:28Z",
+      "side": 1,
+      "message": "There\u0027s 162 instances of this line across all the legacy playbooks and they\u0027re no-op (since template-name is no longer a thing), we should probably get rid of those.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 60
+      },
+      "revId": "be2fb6cd73813024a637cb9025ab2a25cb24c13d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab921fb_e4eb58af",
+        "filename": "playbooks/legacy/DLRN-build-tripleo/run.yaml",
+        "patchSetId": 35
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 16
+      },
+      "writtenOn": "2018-06-06T19:21:28Z",
+      "side": 1,
+      "message": "There\u0027s 6 instances of this command, does this need to be zuul instead of jenkins ?",
+      "range": {
+        "startLine": 65,
+        "startChar": 34,
+        "endLine": 65,
+        "endChar": 41
+      },
+      "revId": "be2fb6cd73813024a637cb9025ab2a25cb24c13d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab921fb_c4d174fd",
+        "filename": "playbooks/legacy/DLRN-build-tripleo/run.yaml",
+        "patchSetId": 35
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 16
+      },
+      "writtenOn": "2018-06-06T19:21:28Z",
+      "side": 1,
+      "message": "I don\u0027t suspect this will work as-is in v3.\n\nIn v2, we\u0027re uploading artifacts to a location that can be re-constructed and used by other jobs part of the same buildset:\n\n    https://github.com/rdo-infra/review.rdoproject.org-config/blob/e435275e6d24b643976182eb8c841ca894ae35a3/zuul/zuul_functions.py#L17-L30\n\nTypically, this will be done by the DLRN-rpmbuild job. DLRN will build and upload a repository and the following job(s) will use that repository.\n\nI suppose we can reproduce this behavior with zuul_return but I haven\u0027t tested this use case in v3 yet.",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 45
+      },
+      "revId": "be2fb6cd73813024a637cb9025ab2a25cb24c13d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab921fb_24095096",
+        "filename": "playbooks/legacy/DLRN-rpmbuild/run.yaml",
+        "patchSetId": 35
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 16
+      },
+      "writtenOn": "2018-06-06T19:21:28Z",
+      "side": 1,
+      "message": "@Javier, Alfredo: We should try to validate that run_tests.sh [1] and run_project_tests.sh [2] will work properly in v3, it uses a lot of zuul env vars that are no longer supplied.\n\n[1]: https://github.com/softwarefactory-project/DLRN/blob/master/scripts/run_tests.sh\n[2]: https://github.com/softwarefactory-project/DLRN/blob/master/scripts/run_project_tests.sh",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 12
+      },
+      "revId": "be2fb6cd73813024a637cb9025ab2a25cb24c13d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab921fb_4404447d",
+        "filename": "playbooks/legacy/periodic-tripleo-centos-7-master-containers-build/run.yaml",
+        "patchSetId": 35
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 16
+      },
+      "writtenOn": "2018-06-06T19:21:28Z",
+      "side": 1,
+      "message": "unrelated: this looks wrong",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 22
+      },
+      "revId": "be2fb6cd73813024a637cb9025ab2a25cb24c13d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab921fb_64d8681e",
+        "filename": "playbooks/legacy/publish-cico-jjb/run.yaml",
+        "patchSetId": 35
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 16
+      },
+      "writtenOn": "2018-06-06T19:21:28Z",
+      "side": 1,
+      "message": "This is going to require us to migrate the secret from jenkins.",
+      "range": {
+        "startLine": 66,
+        "startChar": 17,
+        "endLine": 66,
+        "endChar": 34
+      },
+      "revId": "be2fb6cd73813024a637cb9025ab2a25cb24c13d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab921fb_a4ce8058",
+        "filename": "playbooks/legacy/rdoinfo-buildsys-tags-update-queens-testing/run.yaml",
+        "patchSetId": 35
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 16
+      },
+      "writtenOn": "2018-06-06T19:21:28Z",
+      "side": 1,
+      "message": "There\u0027s 38 instances of the /home/jenkins path being hardcoded, these should be /home/zuul or something else, right ?",
+      "range": {
+        "startLine": 66,
+        "startChar": 38,
+        "endLine": 66,
+        "endChar": 52
+      },
+      "revId": "be2fb6cd73813024a637cb9025ab2a25cb24c13d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab921fb_84db7c1b",
+        "filename": "playbooks/legacy/rdoinfo-buildsys-tags-update-queens-testing/run.yaml",
+        "patchSetId": 35
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 16
+      },
+      "writtenOn": "2018-06-06T19:21:28Z",
+      "side": 1,
+      "message": "I remember you asking me about this ssh key, is it still relevant ? Regardless, the owner probably isn\u0027t going to be jenkins.",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 47
+      },
+      "revId": "be2fb6cd73813024a637cb9025ab2a25cb24c13d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
