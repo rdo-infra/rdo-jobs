@@ -69,6 +69,7 @@
     name: legacy-centos-opstools-rpmbuild
     parent: legacy-base
     run: playbooks/legacy/centos-opstools-rpmbuild/run.yaml
+    post-run: playbooks/legacy/centos-opstools-rpmbuild/post.yaml
 
 - job:
     name: legacy-centos-opstools-rpmlint
@@ -96,14 +97,9 @@
     run: playbooks/legacy/centos-opstools-sensu-common-distgit-cbs-validate/run.yaml
 
 - job:
-    name: legacy-centos-opstools-tox
+    name: legacy-centos-sinkhole-functional
     parent: legacy-base
-    run: playbooks/legacy/centos-opstools-tox/run.yaml
-
-- job:
-    name: legacy-centos-sinkhole-functional-nv
-    parent: legacy-base
-    run: playbooks/legacy/centos-sinkhole-functional-nv/run.yaml
+    run: playbooks/legacy/centos-sinkhole-functional/run.yaml
 
 - job:
     name: legacy-common-distgit-cbs-final-build
@@ -250,9 +246,14 @@
       - legacy-DLRN-rpmbuild
 
 - job:
-    name: legacy-fedora-sinkhole-functional-nv
+    name: legacy-fedora-sinkhole-functional
     parent: legacy-base
-    run: playbooks/legacy/fedora-sinkhole-functional-nv/run.yaml
+    run: playbooks/legacy/fedora-sinkhole-functional/run.yaml
+
+- job:
+    name: legacy-fedora-stable-image-build
+    parent: legacy-base
+    run: playbooks/legacy/fedora-stable-image-build/run.yaml
 
 - job:
     name: legacy-fedora-stable-repoclosure
@@ -638,48 +639,62 @@
     parent: legacy-base
     run: playbooks/legacy/rdo-infra-playbooks-integration-base/run.yaml
     post-run: playbooks/legacy/rdo-infra-playbooks-integration-base/post.yaml
+    required-projects:
+      - centos-opstools/opstools-ansible
+      - rdo-infra/ansible-role-rdo-base
+      - rdo-infra/ansible-role-rdo-bot
+      - rdo-infra/rdo-infra-playbooks
 
 - job:
-    name: legacy-rdo-infra-playbooks-integration-logserver-nv
+    name: legacy-rdo-infra-playbooks-integration-logserver
     parent: legacy-base
-    run: playbooks/legacy/rdo-infra-playbooks-integration-logserver-nv/run.yaml
-    post-run: playbooks/legacy/rdo-infra-playbooks-integration-logserver-nv/post.yaml
+    run: playbooks/legacy/rdo-infra-playbooks-integration-logserver/run.yaml
+    post-run: playbooks/legacy/rdo-infra-playbooks-integration-logserver/post.yaml
+    required-projects:
+      - centos-opstools/opstools-ansible
+      - rdo-infra/ansible-role-rdo-base
+      - rdo-infra/ansible-role-rdo-bot
+      - rdo-infra/rdo-infra-playbooks
 
 - job:
     name: legacy-rdo-infra-playbooks-integration-sensu-client
     parent: legacy-base
     run: playbooks/legacy/rdo-infra-playbooks-integration-sensu-client/run.yaml
     post-run: playbooks/legacy/rdo-infra-playbooks-integration-sensu-client/post.yaml
+    required-projects:
+      - centos-opstools/opstools-ansible
+      - rdo-infra/ansible-role-rdo-base
+      - rdo-infra/ansible-role-rdo-bot
+      - rdo-infra/rdo-infra-playbooks
 
 - job:
-    name: legacy-rdo-infra-playbooks-integration-sensu-client-fedora-nv
+    name: legacy-rdo-infra-playbooks-integration-sensu-client-fedora
     parent: legacy-base
-    run: playbooks/legacy/rdo-infra-playbooks-integration-sensu-client-fedora-nv/run.yaml
-    post-run: playbooks/legacy/rdo-infra-playbooks-integration-sensu-client-fedora-nv/post.yaml
-
-- job:
-    name: legacy-rdo-infra-playbooks-integration-sensu-client-nv
-    parent: legacy-base
-    run: playbooks/legacy/rdo-infra-playbooks-integration-sensu-client-nv/run.yaml
-    post-run: playbooks/legacy/rdo-infra-playbooks-integration-sensu-client-nv/post.yaml
+    run: playbooks/legacy/rdo-infra-playbooks-integration-sensu-client-fedora/run.yaml
+    post-run: playbooks/legacy/rdo-infra-playbooks-integration-sensu-client-fedora/post.yaml
+    required-projects:
+      - centos-opstools/opstools-ansible
+      - rdo-infra/ansible-role-rdo-base
+      - rdo-infra/ansible-role-rdo-bot
+      - rdo-infra/rdo-infra-playbooks
 
 - job:
     name: legacy-rdo-infra-playbooks-integration-sensu-server
     parent: legacy-base
     run: playbooks/legacy/rdo-infra-playbooks-integration-sensu-server/run.yaml
     post-run: playbooks/legacy/rdo-infra-playbooks-integration-sensu-server/post.yaml
-
-- job:
-    name: legacy-rdo-infra-playbooks-integration-sensu-server-nv
-    parent: legacy-base
-    run: playbooks/legacy/rdo-infra-playbooks-integration-sensu-server-nv/run.yaml
-    post-run: playbooks/legacy/rdo-infra-playbooks-integration-sensu-server-nv/post.yaml
+    required-projects:
+      - centos-opstools/opstools-ansible
+      - rdo-infra/ansible-role-rdo-base
+      - rdo-infra/ansible-role-rdo-bot
+      - rdo-infra/rdo-infra-playbooks
 
 - job:
     name: legacy-rdo-kolla-build-containers
     parent: legacy-base
     run: playbooks/legacy/rdo-kolla-build-containers/run.yaml
     post-run: playbooks/legacy/rdo-kolla-build-containers/post.yaml
+    timeout: 5400
 
 - job:
     name: legacy-rdo-kolla-build-integration
@@ -740,38 +755,38 @@
     run: playbooks/legacy/rdoinfo-create-project/run.yaml
 
 - job:
-    name: legacy-rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016-nv
+    name: legacy-rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016
     parent: legacy-base
-    run: playbooks/legacy/rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016-nv/run.yaml
-    post-run: playbooks/legacy/rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016-nv/post.yaml
+    run: playbooks/legacy/rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016/run.yaml
+    post-run: playbooks/legacy/rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016/post.yaml
     timeout: 10800
 
 - job:
-    name: legacy-rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005-nv
+    name: legacy-rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005
     parent: legacy-base
-    run: playbooks/legacy/rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005-nv/run.yaml
-    post-run: playbooks/legacy/rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005-nv/post.yaml
+    run: playbooks/legacy/rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005/run.yaml
+    post-run: playbooks/legacy/rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005/post.yaml
     timeout: 10800
 
 - job:
-    name: legacy-rdoinfo-tripleo-ocata-testing-centos-7-multinode-1ctlr-featureset005-nv
+    name: legacy-rdoinfo-tripleo-ocata-testing-centos-7-multinode-1ctlr-featureset005
     parent: legacy-base
-    run: playbooks/legacy/rdoinfo-tripleo-ocata-testing-centos-7-multinode-1ctlr-featureset005-nv/run.yaml
-    post-run: playbooks/legacy/rdoinfo-tripleo-ocata-testing-centos-7-multinode-1ctlr-featureset005-nv/post.yaml
+    run: playbooks/legacy/rdoinfo-tripleo-ocata-testing-centos-7-multinode-1ctlr-featureset005/run.yaml
+    post-run: playbooks/legacy/rdoinfo-tripleo-ocata-testing-centos-7-multinode-1ctlr-featureset005/post.yaml
     timeout: 10800
 
 - job:
-    name: legacy-rdoinfo-tripleo-pike-release-centos-7-multinode-1ctlr-featureset006-nv
+    name: legacy-rdoinfo-tripleo-pike-release-centos-7-multinode-1ctlr-featureset006
     parent: legacy-base
-    run: playbooks/legacy/rdoinfo-tripleo-pike-release-centos-7-multinode-1ctlr-featureset006-nv/run.yaml
-    post-run: playbooks/legacy/rdoinfo-tripleo-pike-release-centos-7-multinode-1ctlr-featureset006-nv/post.yaml
+    run: playbooks/legacy/rdoinfo-tripleo-pike-release-centos-7-multinode-1ctlr-featureset006/run.yaml
+    post-run: playbooks/legacy/rdoinfo-tripleo-pike-release-centos-7-multinode-1ctlr-featureset006/post.yaml
     timeout: 10800
 
 - job:
-    name: legacy-rdoinfo-tripleo-pike-testing-centos-7-multinode-1ctlr-featureset006-nv
+    name: legacy-rdoinfo-tripleo-pike-testing-centos-7-multinode-1ctlr-featureset006
     parent: legacy-base
-    run: playbooks/legacy/rdoinfo-tripleo-pike-testing-centos-7-multinode-1ctlr-featureset006-nv/run.yaml
-    post-run: playbooks/legacy/rdoinfo-tripleo-pike-testing-centos-7-multinode-1ctlr-featureset006-nv/post.yaml
+    run: playbooks/legacy/rdoinfo-tripleo-pike-testing-centos-7-multinode-1ctlr-featureset006/run.yaml
+    post-run: playbooks/legacy/rdoinfo-tripleo-pike-testing-centos-7-multinode-1ctlr-featureset006/post.yaml
     timeout: 10800
 
 - job:
@@ -844,10 +859,10 @@
       - tox.ini
 
 - job:
-    name: legacy-tripleo-ci-centos-7-container-to-container-upgrades-master-nv
+    name: legacy-tripleo-ci-centos-7-container-to-container-upgrades-master
     parent: legacy-base
-    run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-master-nv/run.yaml
-    post-run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-master-nv/post.yaml
+    run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-master/run.yaml
+    post-run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-master/post.yaml
     timeout: 10800
     voting: false
     branches: ^master$
@@ -866,10 +881,10 @@
       - tox.ini
 
 - job:
-    name: legacy-tripleo-ci-centos-7-container-to-container-upgrades-queens-nv
+    name: legacy-tripleo-ci-centos-7-container-to-container-upgrades-queens
     parent: legacy-base
-    run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-queens-nv/run.yaml
-    post-run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-queens-nv/post.yaml
+    run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-queens/run.yaml
+    post-run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-queens/post.yaml
     timeout: 10800
     voting: false
     branches: ^stable/queens$
@@ -888,13 +903,13 @@
       - tox.ini
 
 - job:
-    name: legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch-nv
+    name: legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike
     parent: legacy-base
-    run: playbooks/legacy/tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch-nv/run.yaml
-    post-run: playbooks/legacy/tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch-nv/post.yaml
+    run: playbooks/legacy/tripleo-ci-centos-7-containers-multinode-upgrades-pike/run.yaml
+    post-run: playbooks/legacy/tripleo-ci-centos-7-containers-multinode-upgrades-pike/post.yaml
     timeout: 10800
     voting: false
-    branches: ^master$
+    branches: ^stable/pike$
     irrelevant-files:
       - ^.*\.md$
       - ^.*\.rst$
@@ -910,13 +925,13 @@
       - tox.ini
 
 - job:
-    name: legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike-nv
+    name: legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch
     parent: legacy-base
-    run: playbooks/legacy/tripleo-ci-centos-7-containers-multinode-upgrades-pike-nv/run.yaml
-    post-run: playbooks/legacy/tripleo-ci-centos-7-containers-multinode-upgrades-pike-nv/post.yaml
+    run: playbooks/legacy/tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch/run.yaml
+    post-run: playbooks/legacy/tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch/post.yaml
     timeout: 10800
     voting: false
-    branches: ^stable/pike$
+    branches: ^master$
     irrelevant-files:
       - ^.*\.md$
       - ^.*\.rst$
@@ -960,10 +975,10 @@
     timeout: 10800
 
 - job:
-    name: legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens-nv
+    name: legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens
     parent: legacy-base
-    run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens-nv/run.yaml
-    post-run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens-nv/post.yaml
+    run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens/run.yaml
+    post-run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens/post.yaml
     timeout: 10800
     voting: false
     branches: ^stable/queens$
@@ -1045,10 +1060,10 @@
       - tox.ini
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata-nv
+    name: legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata
     parent: legacy-base
-    run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata-nv/run.yaml
-    post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata-nv/post.yaml
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata/run.yaml
+    post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata/post.yaml
     timeout: 10800
     voting: false
     branches: ^stable/(0.6.x|ocata)$
