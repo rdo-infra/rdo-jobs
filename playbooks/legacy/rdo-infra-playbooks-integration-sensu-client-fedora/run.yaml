@@ -1,6 +1,6 @@
 - hosts: all
-  name: Autoconverted job legacy-rdo-infra-playbooks-integration-sensu-server from
-    old job rdo-infra-playbooks-integration-sensu-server-nv
+  name: Autoconverted job legacy-rdo-infra-playbooks-integration-sensu-client-fedora
+    from old job rdo-infra-playbooks-integration-sensu-client-fedora-nv
   tasks:
 
     - name: Ensure legacy workspace directory
@@ -155,11 +155,11 @@
             if [ -f samples/secrets.vault.yml ]; then
                 cat samples/secrets.vault.yml > playbooks/group_vars/all/secrets.vault.yml
             fi
-            ansible-playbook -i $ANSIBLE_HOSTS playbooks/sensu-server.yml \
+            ansible-playbook -i $ANSIBLE_HOSTS playbooks/sensu-client.yml \
               -e "rdobot_nickname=not_rdobot" \
               -e "sensu_rabbitmq_server=localhost"
             echo "Re-running for idempotency"
-            ansible-playbook -i $ANSIBLE_HOSTS playbooks/sensu-server.yml \
+            ansible-playbook -i $ANSIBLE_HOSTS playbooks/sensu-client.yml \
               -e "rdobot_nickname=not_rdobot" \
               -e "sensu_rabbitmq_server=localhost"
           popd

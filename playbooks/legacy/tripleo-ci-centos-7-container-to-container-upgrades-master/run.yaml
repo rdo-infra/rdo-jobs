@@ -1,5 +1,6 @@
 - hosts: all
-  name: Autoconverted job legacy-fedora-stable-repoclosure from old job fedora-stable-repoclosure
+  name: Autoconverted job legacy-tripleo-ci-centos-7-container-to-container-upgrades-master
+    from old job gate-tripleo-ci-centos-7-container-to-container-upgrades-master-nv
   tasks:
 
     - name: Ensure legacy workspace directory
@@ -61,55 +62,67 @@
     - shell:
         cmd: |
           set -e
-          mkdir -p $WORKSPACE/logs
-          if [ $(grep -c ^CentOS /etc/system-release) -eq 0 ]; then
-              PKG_CFG="/etc/dnf/dnf.conf"
-              PYTHON_VERSION='python3'
-              sudo dnf remove -y yum-utils
-              sudo dnf install -y createrepo_c dnf-utils fedora-packager
-          else
-              PKG_CFG="/etc/yum.conf"
-              PYTHON_VERSION='python2'
-              sudo yum -y install centos-release-yum4
-              sudo yum -y install yum4
-              sudo yum4 -y install dnf-plugins-core
-              sudo yum -y install createrepo_c centos-packager
-          fi
-          # cachedir configuration added by dib breaks running some dnf
-          # commands with non-root users.
-          sudo sed -i '/^cachedir.*/d' $PKG_CFG
-          # diskimage builder excludes some packages from repos as pip
-          # and virtualenb what breaks synchronization.
-          sudo sed -i '/^exclude.*/d' $PKG_CFG
-          git clone https://review.rdoproject.org/r/rdo-infra/sinkhole
-          virtualenv -p $PYTHON_VERSION --system-site-packages .venv
-          source .venv/bin/activate
-          pushd sinkhole
-          pip install .
-          popd
-          cd $ZUUL_PROJECT
-          OUTPUT_DIR=$(grep output_dir fedora_config | cut -d= -f2 | tr -d '[:space:]')
-          sudo mkdir -p $OUTPUT_DIR
-          sudo chown ${USER} $OUTPUT_DIR
-          if [ -f comps*xml ];then
-              cp comps*xml $OUTPUT_DIR
-          fi
-          echo "INFO: Running synchronization using sinkhole"
-          sinkhole --config fedora_config config_file
-          if [ -f $OUTPUT_DIR/comps*xml ];then
-              rm $OUTPUT_DIR/comps*xml
-          fi
+          set -x
+          cat > clonemap.yaml << EOF
+          clonemap:
+            - name: openstack-infra/devstack-gate
+              dest: devstack-gate
+          EOF
+          /usr/zuul-env/bin/zuul-cloner -m clonemap.yaml --cache-dir /opt/git \
+              git://git.openstack.org \
+              openstack-infra/devstack-gate
+        executable: /bin/bash
+        chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'
+
+    - shell:
+        cmd: |
+          git clone https://review.rdoproject.org/r/p/rdo-infra/ci-config.git $WORKSPACE/rdo-infra/ci-config
+        chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'
+
+    - shell:
+        cmd: |
+          cat <<EOF | sudo tee /etc/nodepool/provider
+          NODEPOOL_PROVIDER=rdo-cloud-tripleo
+          NODEPOOL_CLOUD=rax
+          NODEPOOL_REGION=dfw
+          NODEPOOL_AZ=
+          EOF
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
     - shell:
         cmd: |
           set -e
-          cd $ZUUL_PROJECT
-          OUTPUT_DIR=$(grep output_dir fedora_config | cut -d= -f2 | tr -d '[:space:]')
-          dnf clean all
-          repoquery --repofrompath=temp,file://${OUTPUT_DIR} --disablerepo='*' --enablerepo=temp -q -a > $WORKSPACE/logs/repoquery_output.txt
-          echo "INFO: Running repoclosure"
-          repoclosure --repofrompath=temp,file://${OUTPUT_DIR} --disablerepo='*' --enablerepo=temp
+          set -x
+
+          export TOCI_JOBTYPE=multinode-1ctlr-featureset040
+
+          # ZUUL Doesn't set these for periodic jobs
+          export ZUUL_BRANCH=${ZUUL_BRANCH:-master}
+          export ZUUL_REF=${ZUUL_REF:-None}
+
+          export BRANCH_OVERRIDE=default
+          if [ "$BRANCH_OVERRIDE" != "default" ] ; then
+              export OVERRIDE_ZUUL_BRANCH=$BRANCH_OVERRIDE
+          fi
+
+          export PYTHONUNBUFFERED=true
+          export DEVSTACK_GATE_TEMPEST=0
+          export DEVSTACK_GATE_EXERCISES=0
+          export DEVSTACK_GATE_HORIZON=1
+          export PROJECTS="openstack/tripleo-quickstart $PROJECTS"
+          export PROJECTS="openstack/tripleo-quickstart-extras $PROJECTS"
+          export PROJECTS="openstack/tripleo-upgrade $PROJECTS"
+
+          sudo chown -hR $(whoami) /opt/git
+          function gate_hook {
+              bash -xe /opt/stack/new/tripleo-ci/toci_gate_test.sh
+          }
+          export -f gate_hook
+          cp devstack-gate/devstack-vm-gate-wrap.sh ./safe-devstack-vm-gate-wrap.sh
+          ./safe-devstack-vm-gate-wrap.sh
+        executable: /bin/bash
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
