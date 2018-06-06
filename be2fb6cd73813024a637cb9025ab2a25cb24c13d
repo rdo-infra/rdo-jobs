@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bab921fb_64ef48b1",
+        "filename": "playbooks/legacy/DLRN-build-tripleo/run.yaml",
+        "patchSetId": 35
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 233
+      },
+      "writtenOn": "2018-06-06T19:52:19Z",
+      "side": 1,
+      "message": "sure, I can do that in a follow up.",
+      "parentUuid": "bab921fb_04e76ce5",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 60
+      },
+      "revId": "be2fb6cd73813024a637cb9025ab2a25cb24c13d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bab921fb_e4eb58af",
         "filename": "playbooks/legacy/DLRN-build-tripleo/run.yaml",
         "patchSetId": 35
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "bab921fb_441204b6",
+        "filename": "playbooks/legacy/DLRN-build-tripleo/run.yaml",
+        "patchSetId": 35
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 233
+      },
+      "writtenOn": "2018-06-06T19:52:19Z",
+      "side": 1,
+      "message": "It works now, but what we can do once we migrate all jobs is either remove the remove the JJB template or modify it.  If we do it now, I don\u0027t think the JJB jobs in jenkins will continue to work",
+      "parentUuid": "bab921fb_c4d174fd",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 45
+      },
+      "revId": "be2fb6cd73813024a637cb9025ab2a25cb24c13d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bab921fb_24095096",
         "filename": "playbooks/legacy/DLRN-rpmbuild/run.yaml",
         "patchSetId": 35
@@ -82,6 +130,30 @@
       "writtenOn": "2018-06-06T19:21:28Z",
       "side": 1,
       "message": "@Javier, Alfredo: We should try to validate that run_tests.sh [1] and run_project_tests.sh [2] will work properly in v3, it uses a lot of zuul env vars that are no longer supplied.\n\n[1]: https://github.com/softwarefactory-project/DLRN/blob/master/scripts/run_tests.sh\n[2]: https://github.com/softwarefactory-project/DLRN/blob/master/scripts/run_project_tests.sh",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 12
+      },
+      "revId": "be2fb6cd73813024a637cb9025ab2a25cb24c13d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab921fb_241710a5",
+        "filename": "playbooks/legacy/DLRN-rpmbuild/run.yaml",
+        "patchSetId": 35
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 233
+      },
+      "writtenOn": "2018-06-06T19:52:19Z",
+      "side": 1,
+      "message": "yes, once we land this I plan on doing DLRN next,.",
+      "parentUuid": "bab921fb_24095096",
       "range": {
         "startLine": 79,
         "startChar": 0,
@@ -140,6 +212,30 @@
     },
     {
       "key": {
+        "uuid": "bab921fb_040c0c93",
+        "filename": "playbooks/legacy/publish-cico-jjb/run.yaml",
+        "patchSetId": 35
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 233
+      },
+      "writtenOn": "2018-06-06T19:52:19Z",
+      "side": 1,
+      "message": "yah, haven\u0027t tested this job yet. So expect it to be updated.",
+      "parentUuid": "bab921fb_64d8681e",
+      "range": {
+        "startLine": 66,
+        "startChar": 17,
+        "endLine": 66,
+        "endChar": 34
+      },
+      "revId": "be2fb6cd73813024a637cb9025ab2a25cb24c13d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bab921fb_a4ce8058",
         "filename": "playbooks/legacy/rdoinfo-buildsys-tags-update-queens-testing/run.yaml",
         "patchSetId": 35
@@ -151,6 +247,30 @@
       "writtenOn": "2018-06-06T19:21:28Z",
       "side": 1,
       "message": "There\u0027s 38 instances of the /home/jenkins path being hardcoded, these should be /home/zuul or something else, right ?",
+      "range": {
+        "startLine": 66,
+        "startChar": 38,
+        "endLine": 66,
+        "endChar": 52
+      },
+      "revId": "be2fb6cd73813024a637cb9025ab2a25cb24c13d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab921fb_e410f8aa",
+        "filename": "playbooks/legacy/rdoinfo-buildsys-tags-update-queens-testing/run.yaml",
+        "patchSetId": 35
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 233
+      },
+      "writtenOn": "2018-06-06T19:52:19Z",
+      "side": 1,
+      "message": "this can be updated in JJB, but will do in a follow up",
+      "parentUuid": "bab921fb_a4ce8058",
       "range": {
         "startLine": 66,
         "startChar": 38,
