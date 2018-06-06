@@ -19,6 +19,7 @@
           sudo chown -R "$(id -u).$(id -g)" logs
         executable: /bin/bash
         chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'
 
     - name: Copy files from {{ ansible_user_dir }}/workspace/ on node
       synchronize:

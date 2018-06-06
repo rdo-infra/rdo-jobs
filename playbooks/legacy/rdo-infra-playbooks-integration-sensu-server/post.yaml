@@ -10,3 +10,4 @@
           # Ensure permissions allow artifact uploading
           sudo chown -R "$(id -u).$(id -g)" $WORKSPACE/logs
         chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'

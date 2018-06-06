@@ -62,16 +62,27 @@
         cmd: |
           set -e
           mkdir -p $WORKSPACE/logs
+          if [ $(grep -c ^CentOS /etc/system-release) -eq 0 ]; then
+              PKG_CFG="/etc/dnf/dnf.conf"
+              PYTHON_VERSION='python3'
+              sudo dnf remove -y yum-utils
+              sudo dnf install -y createrepo_c dnf-utils fedora-packager
+          else
+              PKG_CFG="/etc/yum.conf"
+              PYTHON_VERSION='python2'
+              sudo yum -y install centos-release-yum4
+              sudo yum -y install yum4
+              sudo yum4 -y install dnf-plugins-core
+              sudo yum -y install createrepo_c centos-packager
+          fi
           # cachedir configuration added by dib breaks running some dnf
           # commands with non-root users.
-          sudo sed -i '/^cachedir.*/d' /etc/dnf/dnf.conf
+          sudo sed -i '/^cachedir.*/d' $PKG_CFG
           # diskimage builder excludes some packages from repos as pip
           # and virtualenb what breaks synchronization.
-          sudo sed -i '/^exclude.*/d' /etc/dnf/dnf.conf
-          sudo dnf remove -y yum-utils
-          sudo dnf install -y createrepo_c dnf-utils fedora-packager
+          sudo sed -i '/^exclude.*/d' $PKG_CFG
           git clone https://review.rdoproject.org/r/rdo-infra/sinkhole
-          virtualenv -p python3 --system-site-packages .venv
+          virtualenv -p $PYTHON_VERSION --system-site-packages .venv
           source .venv/bin/activate
           pushd sinkhole
           pip install .
@@ -85,12 +96,20 @@
           fi
           echo "INFO: Running synchronization using sinkhole"
           sinkhole --config fedora_config config_file
-          echo "INFO: Running repoclosure"
-          dnf clean all
-          repoquery --repofrompath=temp,file://${OUTPUT_DIR} --disablerepo='*' --enablerepo=temp -q -a > $WORKSPACE/logs/repoquery_output.txt
-          repoclosure --repofrompath=temp,file://${OUTPUT_DIR} --disablerepo='*' --enablerepo=temp
           if [ -f $OUTPUT_DIR/comps*xml ];then
               rm $OUTPUT_DIR/comps*xml
           fi
+        chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'
+
+    - shell:
+        cmd: |
+          set -e
+          cd $ZUUL_PROJECT
+          OUTPUT_DIR=$(grep output_dir fedora_config | cut -d= -f2 | tr -d '[:space:]')
+          dnf clean all
+          repoquery --repofrompath=temp,file://${OUTPUT_DIR} --disablerepo='*' --enablerepo=temp -q -a > $WORKSPACE/logs/repoquery_output.txt
+          echo "INFO: Running repoclosure"
+          repoclosure --repofrompath=temp,file://${OUTPUT_DIR} --disablerepo='*' --enablerepo=temp
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'

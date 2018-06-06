@@ -8,6 +8,7 @@
           export SUCCESS=$([[ "$JOB_EXIT_VALUE" == 0 && "$UPLOAD_EXIT_VALUE" == 0  ]] && echo true || echo false)
           bash -xe $WORKSPACE/rdo-infra/ci-config/ci-scripts/tripleo-upstream/dlrnapi_report.sh
         chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'
 
     - shell:
         cmd: |
@@ -16,3 +17,4 @@
           fi
         executable: /bin/bash
         chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'
