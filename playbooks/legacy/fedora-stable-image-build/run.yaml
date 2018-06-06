@@ -1,5 +1,5 @@
 - hosts: all
-  name: Autoconverted job legacy-fedora-stable-repoclosure from old job fedora-stable-repoclosure
+  name: Autoconverted job legacy-fedora-stable-image-build from old job fedora-stable-image-build
   tasks:
 
     - name: Ensure legacy workspace directory
@@ -105,11 +105,11 @@
     - shell:
         cmd: |
           set -e
+          mkdir -p $WORKSPACE/logs
           cd $ZUUL_PROJECT
           OUTPUT_DIR=$(grep output_dir fedora_config | cut -d= -f2 | tr -d '[:space:]')
-          dnf clean all
-          repoquery --repofrompath=temp,file://${OUTPUT_DIR} --disablerepo='*' --enablerepo=temp -q -a > $WORKSPACE/logs/repoquery_output.txt
-          echo "INFO: Running repoclosure"
-          repoclosure --repofrompath=temp,file://${OUTPUT_DIR} --disablerepo='*' --enablerepo=temp
+          if [ -d images/dib ]; then
+              bash -x images/dib/build-image-dib.sh $OUTPUT_DIR
+          fi
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
