@@ -5,3 +5,14 @@
       Base job for autoconverted legacy jobs
     pre-run: playbooks/legacy/pre.yaml
     nodeset: rdo-centos-7
+
+- job:
+    name: rdo-tox-ansible-lint
+    parent: tox
+    description: |
+      Runs code linting tests.
+
+      Uses tox with the ``ansible-linters`` environment. Projects
+      should be encouraged to move to the tox-linters job.
+    vars:
+      tox_envlist: ansible-lint
