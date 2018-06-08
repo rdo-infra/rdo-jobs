@@ -1,6 +1,6 @@
 - hosts: all
   name: Autoconverted job legacy-rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016
-    from old job rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016-nv
+    from old job rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016-upstream-centos-7-2-node-nv
   tasks:
 
     - name: Ensure legacy workspace directory
@@ -53,7 +53,9 @@
           # location as zuul-cloner will so that manual and periodic jobs
           # can share builders
               git clone --depth=1 $GIT_SOURCE/$ZUUL_PROJECT $ZUUL_PROJECT
-          else
+          elif [[ ! -d /home/zuul ]]; then
+              # NOTE(pabelanger): There is no need to use zuul-cloner for zuulv3
+              # jobs here.
               /usr/zuul-env/bin/zuul-cloner -v $GIT_SOURCE $ZUUL_PROJECT
           fi
         chdir: '{{ ansible_user_dir }}/workspace'
@@ -63,6 +65,14 @@
         cmd: |
           set -e
           set -x
+          if [ -d /home/zuul ]; then
+              # NOTE(pabelanger): Due to a bug with fetch-zuul-cloner, we need
+              # to symlink openstack-infra/devstack-gate into rdoproject.org
+              # namespace.  This is an ugly hack that needs to be fixed.
+              mkdir -p /home/zuul/src/review.rdoproject.org/openstack-infra
+              ln -s /home/zuul/src/git.openstack.org/openstack-infra/devstack-gate \
+                  /home/zuul/src/review.rdoproject.org/openstack-infra/
+          fi
           cat > clonemap.yaml << EOF
           clonemap:
             - name: openstack-infra/devstack-gate
@@ -124,7 +134,7 @@
           job="validate-buildsys-tags"
           LOG_PATH="$BASE_LOG_PATH/$ZUUL_PIPELINE/$job/$ZUUL_REF"
           logs="https://logs.rdoproject.org/$LOG_PATH/"
-          # If we couldn't find a working repository, give up
+          # If we could not find a working repository, give up
           curl -o $CREPOS_FILE -sf "$logs/repos/changed_repos.txt" || exit 1
 
           for tag in $O_RELEASE $C_RELEASE
@@ -158,10 +168,10 @@
               echo "ipa_image_url: http://images.rdoproject.org/$RELEASE/rdo_trunk/current-tripleo/ironic-python-agent.tar"
               echo "images:"
               echo "  - name: overcloud-full"
-              echo "    url: \"{{ overcloud_image_url }}\""
+              echo "    url: http://images.rdoproject.org/$RELEASE/rdo_trunk/current-tripleo/overcloud-full.tar"
               echo "    type: tar"
               echo "  - name: ipa_images"
-              echo "    url: \"{{ ipa_image_url }}\""
+              echo "    url: http://images.rdoproject.org/$RELEASE/rdo_trunk/current-tripleo/ironic-python-agent.tar"
               echo "    type: tar"
               echo "repo_cmd_before: |"
               echo "  sudo yum remove -y rdo-release centos-release-openstack-* centos-release-ceph-* || true;"

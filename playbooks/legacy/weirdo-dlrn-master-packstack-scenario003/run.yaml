@@ -53,7 +53,9 @@
           # location as zuul-cloner will so that manual and periodic jobs
           # can share builders
               git clone --depth=1 $GIT_SOURCE/$ZUUL_PROJECT $ZUUL_PROJECT
-          else
+          elif [[ ! -d /home/zuul ]]; then
+              # NOTE(pabelanger): There is no need to use zuul-cloner for zuulv3
+              # jobs here.
               /usr/zuul-env/bin/zuul-cloner -v $GIT_SOURCE $ZUUL_PROJECT
           fi
         chdir: '{{ ansible_user_dir }}/workspace'
@@ -90,7 +92,7 @@
             break
           done
 
-          # If we couldn't find a working repository, give up
+          # If we could not find a working repository, give up
           curl -o /dev/null -sIf "${logs}" || exit 1
 
           # Use the latest repository hash
@@ -111,7 +113,7 @@
             done
           fi
 
-          # If we couldn't find a working repository, give up
+          # If we could not find a working repository, give up
           curl -o /dev/null -sIf "${repository}" || exit 1
 
           # Configure the repository

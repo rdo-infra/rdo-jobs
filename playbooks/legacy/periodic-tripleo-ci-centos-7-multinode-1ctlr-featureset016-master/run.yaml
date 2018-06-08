@@ -53,7 +53,9 @@
           # location as zuul-cloner will so that manual and periodic jobs
           # can share builders
               git clone --depth=1 $GIT_SOURCE/$ZUUL_PROJECT $ZUUL_PROJECT
-          else
+          elif [[ ! -d /home/zuul ]]; then
+              # NOTE(pabelanger): There is no need to use zuul-cloner for zuulv3
+              # jobs here.
               /usr/zuul-env/bin/zuul-cloner -v $GIT_SOURCE $ZUUL_PROJECT
           fi
         chdir: '{{ ansible_user_dir }}/workspace'
@@ -63,6 +65,14 @@
         cmd: |
           set -e
           set -x
+          if [ -d /home/zuul ]; then
+              # NOTE(pabelanger): Due to a bug with fetch-zuul-cloner, we need
+              # to symlink openstack-infra/devstack-gate into rdoproject.org
+              # namespace.  This is an ugly hack that needs to be fixed.
+              mkdir -p /home/zuul/src/review.rdoproject.org/openstack-infra
+              ln -s /home/zuul/src/git.openstack.org/openstack-infra/devstack-gate \
+                  /home/zuul/src/review.rdoproject.org/openstack-infra/
+          fi
           cat > clonemap.yaml << EOF
           clonemap:
             - name: openstack-infra/devstack-gate
@@ -107,7 +117,7 @@
 
           export TOCI_JOBTYPE=periodic-multinode-1ctlr-featureset016
 
-          # ZUUL Doesn't set these for periodic jobs
+          # ZUUL Does not set these for periodic jobs
           export ZUUL_BRANCH=${ZUUL_BRANCH:-master}
           export ZUUL_REF=${ZUUL_REF:-None}
 

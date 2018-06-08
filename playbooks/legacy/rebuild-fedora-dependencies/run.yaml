@@ -52,7 +52,9 @@
           # location as zuul-cloner will so that manual and periodic jobs
           # can share builders
               git clone --depth=1 $GIT_SOURCE/$ZUUL_PROJECT $ZUUL_PROJECT
-          else
+          elif [[ ! -d /home/zuul ]]; then
+              # NOTE(pabelanger): There is no need to use zuul-cloner for zuulv3
+              # jobs here.
               /usr/zuul-env/bin/zuul-cloner -v $GIT_SOURCE $ZUUL_PROJECT
           fi
         chdir: '{{ ansible_user_dir }}/workspace'
@@ -125,7 +127,7 @@
               fi
               echo "INFO: Checking for $build on CBS"
               cbs buildinfo $build|grep "No such build"
-              # If build already exist in CBS, don't need to rebuild
+              # If build already exist in CBS, do not need to rebuild
               # it from fedora
               if [ $? -ne 0 ];then
                   echo "INFO: build $build exists in CBS"

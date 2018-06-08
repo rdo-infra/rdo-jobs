@@ -52,7 +52,9 @@
           # location as zuul-cloner will so that manual and periodic jobs
           # can share builders
               git clone --depth=1 $GIT_SOURCE/$ZUUL_PROJECT $ZUUL_PROJECT
-          else
+          elif [[ ! -d /home/zuul ]]; then
+              # NOTE(pabelanger): There is no need to use zuul-cloner for zuulv3
+              # jobs here.
               /usr/zuul-env/bin/zuul-cloner -v $GIT_SOURCE $ZUUL_PROJECT
           fi
         chdir: '{{ ansible_user_dir }}/workspace'
@@ -61,7 +63,8 @@
     - shell:
         cmd: |
           set -e -x
-          /usr/zuul-env/bin/zuul-cloner http://review.rdoproject.org/r rdo-infra/releng
+          /usr/zuul-env/bin/zuul-cloner http://review.rdoproject.org/r \
+            rdo-infra/releng
           virtualenv --system-site-packages .venv
           . .venv/bin/activate
           pushd rdo-infra/releng
@@ -70,7 +73,15 @@
           export PARENT_JOB="validate-buildsys-tags"
           git clone http://review.rdoproject.org/r/gating_scripts
           pushd gating_scripts/buildsys-tags
-          bash ./launch_weirdo_jobs.sh
+          if [ -z $BASE_LOG_PATH ]; then
+            # NOTE(pabelanger): We are running under zuulv3 here, so setup some
+            # missing variables. Obviously this should be cleaned up after we
+            # migrate.
+            export BASE_LOG_PATH={{ zuul.change[-2:] }}/{{ zuul.change }}/{{ zuul.patchset }}
+            export PARENT_JOB=legacy-validate-buildsys-tags
+            export ZUUL_REF={{ zuul.build[:7] }}
+          fi
+          bash -ex ./launch_weirdo_jobs.sh
           popd
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
