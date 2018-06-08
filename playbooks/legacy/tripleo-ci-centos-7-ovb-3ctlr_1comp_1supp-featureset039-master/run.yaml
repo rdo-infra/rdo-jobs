@@ -63,6 +63,14 @@
         cmd: |
           set -e
           set -x
+          if [ -d /home/zuul ]; then
+              # NOTE(pabelanger): Due to a bug with fetch-zuul-cloner, we need
+              # to symlink openstack-infra/devstack-gate into rdoproject.org
+              # namespace.  This is an ugly hack that needs to be fixed.
+              mkdir -p /home/zuul/src/review.rdoproject.org/openstack-infra
+              ln -s /home/zuul/src/git.openstack.org/openstack-infra/devstack-gate \
+                  /home/zuul/src/review.rdoproject.org/openstack-infra/
+          fi
           cat > clonemap.yaml << EOF
           clonemap:
             - name: openstack-infra/devstack-gate
@@ -99,7 +107,7 @@
 
           export TOCI_JOBTYPE=ovb-3ctlr_1comp_1supp-featureset039
 
-          # ZUUL Doesn't set these for periodic jobs
+          # ZUUL Does not set these for periodic jobs
           export ZUUL_BRANCH=${ZUUL_BRANCH:-master}
           export ZUUL_REF=${ZUUL_REF:-None}
 

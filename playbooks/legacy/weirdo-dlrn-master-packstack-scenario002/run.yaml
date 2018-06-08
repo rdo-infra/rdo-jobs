@@ -90,7 +90,7 @@
             break
           done
 
-          # If we couldn't find a working repository, give up
+          # If we could not find a working repository, give up
           curl -o /dev/null -sIf "${logs}" || exit 1
 
           # Use the latest repository hash
@@ -111,7 +111,7 @@
             done
           fi
 
-          # If we couldn't find a working repository, give up
+          # If we could not find a working repository, give up
           curl -o /dev/null -sIf "${repository}" || exit 1
 
           # Configure the repository
