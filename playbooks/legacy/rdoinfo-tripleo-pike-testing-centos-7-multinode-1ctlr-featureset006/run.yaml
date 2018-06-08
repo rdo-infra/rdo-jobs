@@ -1,6 +1,6 @@
 - hosts: all
   name: Autoconverted job legacy-rdoinfo-tripleo-pike-testing-centos-7-multinode-1ctlr-featureset006
-    from old job rdoinfo-tripleo-pike-testing-centos-7-multinode-1ctlr-featureset006-nv
+    from old job rdoinfo-tripleo-pike-testing-centos-7-multinode-1ctlr-featureset006-upstream-centos-7-2-node-nv
   tasks:
 
     - name: Ensure legacy workspace directory
@@ -63,6 +63,10 @@
         cmd: |
           set -e
           set -x
+          mkdir -p /home/zuul-worker/src/review.rdoproject.org/openstack-infra
+          ln -s /home/zuul-worker/src/git.openstack.org/openstack-infra/devstack-gate \
+              /home/zuul-worker/src/review.rdoproject.org/openstack-infra/
+
           cat > clonemap.yaml << EOF
           clonemap:
             - name: openstack-infra/devstack-gate
