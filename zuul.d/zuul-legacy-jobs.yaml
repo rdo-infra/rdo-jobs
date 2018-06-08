@@ -712,6 +712,8 @@
     name: legacy-rdo-send-stable-release
     parent: legacy-base
     run: playbooks/legacy/rdo-send-stable-release/run.yaml
+    required-projects:
+      - rdo-infra/releng
 
 - job:
     name: legacy-rdoinfo-DLRN-check
@@ -760,6 +762,8 @@
     run: playbooks/legacy/rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016/run.yaml
     post-run: playbooks/legacy/rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016/post.yaml
     timeout: 10800
+    required-projects:
+      - rdoinfo
 
 - job:
     name: legacy-rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005
@@ -767,6 +771,8 @@
     run: playbooks/legacy/rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005/run.yaml
     post-run: playbooks/legacy/rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005/post.yaml
     timeout: 10800
+    required-projects:
+      - rdoinfo
 
 - job:
     name: legacy-rdoinfo-tripleo-ocata-testing-centos-7-multinode-1ctlr-featureset005
@@ -774,6 +780,8 @@
     run: playbooks/legacy/rdoinfo-tripleo-ocata-testing-centos-7-multinode-1ctlr-featureset005/run.yaml
     post-run: playbooks/legacy/rdoinfo-tripleo-ocata-testing-centos-7-multinode-1ctlr-featureset005/post.yaml
     timeout: 10800
+    required-projects:
+      - rdoinfo
 
 - job:
     name: legacy-rdoinfo-tripleo-pike-release-centos-7-multinode-1ctlr-featureset006
@@ -781,6 +789,8 @@
     run: playbooks/legacy/rdoinfo-tripleo-pike-release-centos-7-multinode-1ctlr-featureset006/run.yaml
     post-run: playbooks/legacy/rdoinfo-tripleo-pike-release-centos-7-multinode-1ctlr-featureset006/post.yaml
     timeout: 10800
+    required-projects:
+      - rdoinfo
 
 - job:
     name: legacy-rdoinfo-tripleo-pike-testing-centos-7-multinode-1ctlr-featureset006
@@ -788,6 +798,8 @@
     run: playbooks/legacy/rdoinfo-tripleo-pike-testing-centos-7-multinode-1ctlr-featureset006/run.yaml
     post-run: playbooks/legacy/rdoinfo-tripleo-pike-testing-centos-7-multinode-1ctlr-featureset006/post.yaml
     timeout: 10800
+    required-projects:
+      - rdoinfo
 
 - job:
     name: legacy-rdoinfo-upper-constraints-update-master
@@ -1833,3 +1845,6 @@
     name: legacy-weirdo-validate-buildsys-tags
     parent: legacy-base
     run: playbooks/legacy/weirdo-validate-buildsys-tags/run.yaml
+    required-projects:
+      - rdo-infra/releng
+      - rdo-infra/weirdo
