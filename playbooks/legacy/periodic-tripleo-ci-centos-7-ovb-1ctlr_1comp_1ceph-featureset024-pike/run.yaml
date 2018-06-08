@@ -63,6 +63,10 @@
         cmd: |
           set -e
           set -x
+          mkdir -p /home/zuul/src/review.rdoproject.org/openstack-infra
+          ln -s /home/zuul/src/git.openstack.org/openstack-infra/devstack-gate \
+              /home/zuul/src/review.rdoproject.org/openstack-infra/
+
           cat > clonemap.yaml << EOF
           clonemap:
             - name: openstack-infra/devstack-gate
@@ -107,7 +111,7 @@
 
           export TOCI_JOBTYPE=periodic-ovb-1ctlr_1comp_1ceph-featureset024
 
-          # ZUUL Doesn't set these for periodic jobs
+          # ZUUL Does not set these for periodic jobs
           export ZUUL_BRANCH=${ZUUL_BRANCH:-master}
           export ZUUL_REF=${ZUUL_REF:-None}
 

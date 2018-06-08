@@ -125,7 +125,7 @@
               fi
               echo "INFO: Checking for $build on CBS"
               cbs buildinfo $build|grep "No such build"
-              # If build already exist in CBS, don't need to rebuild
+              # If build already exist in CBS, do not need to rebuild
               # it from fedora
               if [ $? -ne 0 ];then
                   echo "INFO: build $build exists in CBS"

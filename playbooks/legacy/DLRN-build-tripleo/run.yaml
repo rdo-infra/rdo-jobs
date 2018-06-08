@@ -91,7 +91,7 @@
           LOG_PATH="${BASE_LOG_PATH}/${ZUUL_PIPELINE}/DLRN-rpmbuild/${ZUUL_REF}"
           logs="https://logs.rdoproject.org/${LOG_PATH}"
 
-          # If we couldn't find a working repository, give up
+          # If we could not find a working repository, give up
           curl -o /dev/null -sIf "${logs}" || exit 1
 
           # Use the latest repository hash
