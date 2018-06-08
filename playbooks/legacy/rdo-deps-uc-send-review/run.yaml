@@ -36,7 +36,8 @@
           . .venv/bin/activate
           pip install pymod2pkg sh git-review ruamel.yaml rdopkg
           if [ "${ZUUL_PROJECT}" != 'rdoinfo' ]; then
-              /usr/zuul-env/bin/zuul-cloner http://review.rdoproject.org/r rdoinfo
+              /usr/zuul-env/bin/zuul-cloner http://review.rdoproject.org/r \
+                rdoinfo
           fi
           if [ "${ZUUL_REF}" == 'master' ]; then
               RELEASE="rocky"
