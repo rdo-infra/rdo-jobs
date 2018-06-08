@@ -70,6 +70,8 @@
         owner: zuul-worker
         path: /home/zuul
         state: directory
+      when:
+        - ansible_user == "zuul-worker"
 
     # TODO(pabelanger): To be removed with above.
     - name: Symlink /home/zuul-worker/workspace
@@ -78,3 +80,5 @@
           ln -s /home/zuul-worker/workspace /home/zuul/workspace
         executable: /bin/bash
       environment: '{{ zuul | zuul_legacy_vars }}'
+      when:
+        - ansible_user == "zuul-worker"
