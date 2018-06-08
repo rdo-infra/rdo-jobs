@@ -61,7 +61,8 @@
     - shell:
         cmd: |
           set -e -x
-          /usr/zuul-env/bin/zuul-cloner http://review.rdoproject.org/r rdo-infra/releng
+          /usr/zuul-env/bin/zuul-cloner http://review.rdoproject.org/r \
+            rdo-infra/releng
           virtualenv --system-site-packages .venv
           . .venv/bin/activate
           pushd rdo-infra/releng
@@ -70,7 +71,10 @@
           export PARENT_JOB="validate-buildsys-tags"
           git clone http://review.rdoproject.org/r/gating_scripts
           pushd gating_scripts/buildsys-tags
-          bash ./launch_weirdo_jobs.sh
+
+          export BASE_LOG_PATH={{ zuul.change[-2:] }}/{{ zuul.change }}/{{ zuul.patchset }}
+          export ZUUL_REF={{ zuul.ref }}
+          bash -ex ./launch_weirdo_jobs.sh
           popd
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
