@@ -2,7 +2,7 @@
   roles:
     - role: fetch-zuul-cloner
       destination: "/usr/zuul-env/bin/zuul-cloner"
-      repo_src_dir: "/home/zuul-worker/src/review.rdoproject.org"
+      repo_src_dir: "/home/zuul/src/review.rdoproject.org"
 
   tasks:
     - name: Create nodepool directory
