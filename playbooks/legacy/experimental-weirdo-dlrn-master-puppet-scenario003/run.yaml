@@ -66,7 +66,7 @@
           # of the parent DLRN-rpmbuild job.
           # This allows to install the packages in that repository and test
           # them.
-          set +e
+          set +ex
 
           # Re-construct the expected repository URL
           if [[ "${ZUUL_BRANCH}" =~ stable/ ]]; then
@@ -89,6 +89,11 @@
             curl -o /dev/null -sIf "${logs}" || continue
             break
           done
+
+          # NOTE(pabelanger): Override logs for zuulv3 jobs.
+          if [[ -d /home/zuul ]]; then
+              logs={{ buildset_artifacts_url }}
+          fi
 
           # If we could not find a working repository, give up
           curl -o /dev/null -sIf "${logs}" || exit 1
