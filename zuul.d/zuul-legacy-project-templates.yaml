@@ -8,15 +8,6 @@
         - noop
 
 - project-template:
-    name: package-check-jobs
-    check:
-      jobs:
-        - legacy-tox-validate
-    gate:
-      jobs:
-        - legacy-tox-validate
-
-- project-template:
     name: package-distgit-check-jobs
     check:
       jobs:
@@ -32,6 +23,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - legacy-DLRN-rpmbuild-fedora:
+            nodeset: rdo-fedora-28
             voting: false
             branches: ^(master)|(rpm-master)$
         - legacy-newton-distgit-cbs-validate:
@@ -83,6 +75,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - legacy-DLRN-rpmbuild-fedora:
+            nodeset: rdo-fedora-28
             voting: false
             branches: ^(master)|(rpm-master)$
         - legacy-newton-distgit-cbs-validate:
@@ -135,6 +128,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - legacy-DLRN-rpmbuild-fedora:
+            nodeset: rdo-fedora-28
             voting: false
             branches: ^(master)|(rpm-master)$
         - legacy-newton-distgit-cbs-validate:
@@ -189,6 +183,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - legacy-DLRN-rpmbuild-fedora:
+            nodeset: rdo-fedora-28
             voting: false
             branches: ^(master)|(rpm-master)$
         - legacy-newton-distgit-cbs-validate:
@@ -251,6 +246,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - legacy-DLRN-rpmbuild-fedora:
+            nodeset: rdo-fedora-28
             voting: false
             branches: ^(master)|(rpm-master)$
         - legacy-newton-distgit-cbs-validate:
@@ -321,6 +317,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - legacy-DLRN-rpmbuild-fedora:
+            nodeset: rdo-fedora-28
             voting: false
             branches: ^(master)|(rpm-master)$
         - legacy-newton-distgit-cbs-validate:
@@ -384,6 +381,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - legacy-DLRN-rpmbuild-fedora:
+            nodeset: rdo-fedora-28
             voting: false
             branches: ^(master)|(rpm-master)$
         - legacy-newton-distgit-cbs-validate:
@@ -441,6 +439,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - legacy-DLRN-rpmbuild-fedora:
+            nodeset: rdo-fedora-28
             voting: false
             branches: ^(master)|(rpm-master)$
         - legacy-newton-distgit-cbs-validate:
@@ -493,6 +492,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - legacy-DLRN-rpmbuild-fedora:
+            nodeset: rdo-fedora-28
             voting: false
             branches: ^(master)|(rpm-master)$
         - legacy-newton-distgit-cbs-validate:
@@ -547,6 +547,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - legacy-DLRN-rpmbuild-fedora:
+            nodeset: rdo-fedora-28
             voting: false
             branches: ^(master)|(rpm-master)$
         - legacy-newton-distgit-cbs-validate:
@@ -599,6 +600,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - legacy-DLRN-rpmbuild-fedora:
+            nodeset: rdo-fedora-28
             voting: false
             branches: ^(master)|(rpm-master)$
         - legacy-newton-distgit-cbs-validate:
@@ -658,6 +660,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - legacy-DLRN-rpmbuild-fedora:
+            nodeset: rdo-fedora-28
             voting: false
             branches: ^(master)|(rpm-master)$
         - legacy-newton-distgit-cbs-validate:
@@ -718,6 +721,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - legacy-DLRN-rpmbuild-fedora:
+            nodeset: rdo-fedora-28
             voting: false
             branches: ^(master)|(rpm-master)$
         - legacy-newton-distgit-cbs-validate:
@@ -780,6 +784,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - legacy-DLRN-rpmbuild-fedora:
+            nodeset: rdo-fedora-28
             voting: false
             branches: ^(master)|(rpm-master)$
         - legacy-newton-distgit-cbs-validate:
@@ -835,6 +840,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - legacy-DLRN-rpmbuild-fedora:
+            nodeset: rdo-fedora-28
             voting: false
             branches: ^(master)|(rpm-master)$
         - legacy-newton-distgit-cbs-validate:
@@ -884,6 +890,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - legacy-DLRN-rpmbuild-fedora:
+            nodeset: rdo-fedora-28
             voting: false
             branches: ^(master)|(rpm-master)$
         - legacy-newton-distgit-cbs-validate:
