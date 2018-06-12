@@ -7,3 +7,12 @@
     merge-check:
       jobs:
         - noop
+
+- project-template:
+    name: package-check-jobs
+    check:
+      jobs:
+        - legacy-tox-validate
+    gate:
+      jobs:
+        - legacy-tox-validate
