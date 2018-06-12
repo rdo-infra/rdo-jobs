@@ -124,10 +124,6 @@
           # and not just in the mock buildroot.
           sudo yum -y install https://buildlogs.centos.org/centos/7/cloud/x86_64/openstack-pike/common/openstack-macros-2018.1.0-0.noarch.rpm
           pushd DLRN
-          # FIXME(jpena) use test patch for avoid issues when building from master: https://softwarefactory-project.io/r/11232
-          git config --global user.email "jenkins@review.rdoproject.org"
-          git config --global user.name "CI Test Bot"
-          git fetch https://softwarefactory-project.io/r/DLRN refs/changes/32/11232/4 && git cherry-pick FETCH_HEAD
           # Setup virtualenv with tox and use it
           tox -epy27 --notest
           . .tox/py27/bin/activate
@@ -160,7 +156,7 @@
           sed -i "s%#directory=.*%directory=$directory%" projects.ini
           sed -i "s%#skip=.*%skip=$skip%" projects.ini
           sed -i "s%#use_version_from_spec=.*%use_version_from_spec=$use_version_from_spec%" projects.ini
-          sed -i "s%#allow_tarball=.*%allow_tarball=1%" projects.ini
+          sed -i "s%#keep_tarball=.*%keep_tarball=1%" projects.ini
           sed -i "s%pkginfo_driver=.*%pkginfo_driver=$pkginfo_driver%" projects.ini
           sed -i "s%baseurl=.*%baseurl=$baseurl%" projects.ini
           sed -i "s%source=.*%source=$branch%" projects.ini
@@ -212,6 +208,8 @@
           popd
           mkdir logs
           cp -a DLRN/logs/* logs/
+          # NOTE(pabelanger): Support zuulv3 jobs
+          ln -s logs buildset
           exit $ret
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
