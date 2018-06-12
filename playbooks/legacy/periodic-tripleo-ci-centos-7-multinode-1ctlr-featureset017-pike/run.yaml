@@ -107,7 +107,7 @@
 
           export TOCI_JOBTYPE=periodic-multinode-1ctlr-featureset017
 
-          # ZUUL Doesn't set these for periodic jobs
+          # ZUUL Does not set these for periodic jobs
           export ZUUL_BRANCH=${ZUUL_BRANCH:-master}
           export ZUUL_REF=${ZUUL_REF:-None}
 

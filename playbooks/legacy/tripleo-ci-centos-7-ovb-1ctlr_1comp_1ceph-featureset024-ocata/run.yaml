@@ -99,7 +99,7 @@
 
           export TOCI_JOBTYPE=ovb-1ctlr_1comp_1ceph-featureset024
 
-          # ZUUL Doesn't set these for periodic jobs
+          # ZUUL Does not set these for periodic jobs
           export ZUUL_BRANCH=${ZUUL_BRANCH:-master}
           export ZUUL_REF=${ZUUL_REF:-None}
 
