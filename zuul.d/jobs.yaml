@@ -1,5 +1,6 @@
 - job:
     name: legacy-base
+    parent: base-test
     abstract: true
     description: |
       Base job for autoconverted legacy jobs
