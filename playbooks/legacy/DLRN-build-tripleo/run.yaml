@@ -91,6 +91,11 @@
           LOG_PATH="${BASE_LOG_PATH}/${ZUUL_PIPELINE}/DLRN-rpmbuild/${ZUUL_REF}"
           logs="https://logs.rdoproject.org/${LOG_PATH}"
 
+          # NOTE(pabelanger): Override logs for zuulv3 jobs.
+          if [[ -d /home/zuul ]]; then
+              logs={{ buildset_artifacts_url }}
+          fi
+
           # If we could not find a working repository, give up
           curl -o /dev/null -sIf "${logs}" || exit 1
 
@@ -153,6 +158,8 @@
           # Retrieve logs/repositories/packages
           mkdir logs
           cp -a ${OUTPUT_DIRECTORY}/* logs/
+          # NOTE(pabelanger): Support zuulv3 jobs
+          ln -s logs buildset
           exit $ret
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'

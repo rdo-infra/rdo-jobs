@@ -87,6 +87,8 @@
           # Retrieve logs/repositories/packages
           mkdir logs
           cp -a DLRN/logs/* logs/
+          # NOTE(pabelanger): Support zuulv3 jobs
+          ln -s logs buildset
           exit $ret
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'

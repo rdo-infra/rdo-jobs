@@ -2,6 +2,7 @@
     name: legacy-DLRN-build-tripleo
     parent: legacy-base
     run: playbooks/legacy/DLRN-build-tripleo/run.yaml
+    post-run: playbooks/legacy/DLRN-build-tripleo/post.yaml
     dependencies:
       - legacy-DLRN-rpmbuild
     voting: false
@@ -11,24 +12,20 @@
     name: legacy-DLRN-rpmbuild
     parent: legacy-base
     run: playbooks/legacy/DLRN-rpmbuild/run.yaml
+    post-run: playbooks/legacy/DLRN-rpmbuild/post.yaml
     branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-
-- job:
-    name: legacy-DLRN-rpmbuild-fedora
-    parent: legacy-base
-    run: playbooks/legacy/DLRN-rpmbuild-fedora/run.yaml
-    voting: false
-    branches: ^(master)|(rpm-master)$
 
 - job:
     name: legacy-DLRN-rpmbuild-rpm-packaging-centos
     parent: legacy-base
     run: playbooks/legacy/DLRN-rpmbuild-rpm-packaging-centos/run.yaml
+    post-run: playbooks/legacy/DLRN-rpmbuild-rpm-packaging-centos/post.yaml
 
 - job:
     name: legacy-DLRN-rpmbuild-rpm-packaging-fedora
     parent: legacy-base
     run: playbooks/legacy/DLRN-rpmbuild-rpm-packaging-fedora/run.yaml
+    post-run: playbooks/legacy/DLRN-rpmbuild-rpm-packaging-fedora/post.yaml
 
 - job:
     name: legacy-centos-opstools-common-distgit-cbs-final-build
@@ -100,18 +97,6 @@
     name: legacy-centos-sinkhole-functional
     parent: legacy-base
     run: playbooks/legacy/centos-sinkhole-functional/run.yaml
-
-- job:
-    name: legacy-common-distgit-cbs-final-build
-    parent: legacy-base
-    run: playbooks/legacy/common-distgit-cbs-final-build/run.yaml
-    branches: ^common-rdo$
-
-- job:
-    name: legacy-common-distgit-cbs-validate
-    parent: legacy-base
-    run: playbooks/legacy/common-distgit-cbs-validate/run.yaml
-    branches: ^common-rdo$
 
 - job:
     name: legacy-config-check
@@ -261,24 +246,6 @@
     name: legacy-fedora-stable-repoclosure
     parent: legacy-base
     run: playbooks/legacy/fedora-stable-repoclosure/run.yaml
-
-- job:
-    name: legacy-newton-distgit-cbs-validate
-    parent: legacy-base
-    run: playbooks/legacy/newton-distgit-cbs-validate/run.yaml
-    branches: ^newton-rdo$
-
-- job:
-    name: legacy-ocata-distgit-cbs-final-build
-    parent: legacy-base
-    run: playbooks/legacy/ocata-distgit-cbs-final-build/run.yaml
-    branches: ^ocata-rdo$
-
-- job:
-    name: legacy-ocata-distgit-cbs-validate
-    parent: legacy-base
-    run: playbooks/legacy/ocata-distgit-cbs-validate/run.yaml
-    branches: ^ocata-rdo$
 
 - job:
     name: legacy-octavia-build-amphora-master
@@ -674,18 +641,6 @@
       - openstack-infra/devstack-gate
 
 - job:
-    name: legacy-pike-distgit-cbs-final-build
-    parent: legacy-base
-    run: playbooks/legacy/pike-distgit-cbs-final-build/run.yaml
-    branches: ^pike-rdo$
-
-- job:
-    name: legacy-pike-distgit-cbs-validate
-    parent: legacy-base
-    run: playbooks/legacy/pike-distgit-cbs-validate/run.yaml
-    branches: ^pike-rdo$
-
-- job:
     name: legacy-publish-cico-jjb
     parent: legacy-base
     run: playbooks/legacy/publish-cico-jjb/run.yaml
@@ -704,18 +659,6 @@
     name: legacy-puppet-syntax
     parent: legacy-base
     run: playbooks/legacy/puppet-syntax/run.yaml
-
-- job:
-    name: legacy-queens-distgit-cbs-final-build
-    parent: legacy-base
-    run: playbooks/legacy/queens-distgit-cbs-final-build/run.yaml
-    branches: ^queens-rdo$
-
-- job:
-    name: legacy-queens-distgit-cbs-validate
-    parent: legacy-base
-    run: playbooks/legacy/queens-distgit-cbs-validate/run.yaml
-    branches: ^queens-rdo$
 
 - job:
     name: legacy-rdo-deps-uc-send-review

@@ -5,3 +5,12 @@
       Base job for autoconverted legacy jobs
     pre-run: playbooks/legacy/pre.yaml
     nodeset: rdo-centos-7
+
+- job:
+    name: legacy-DLRN-rpmbuild-fedora
+    parent: legacy-base
+    run: playbooks/legacy/DLRN-rpmbuild-fedora/run.yaml
+    post-run: playbooks/legacy/DLRN-rpmbuild-fedora/post.yaml
+    voting: false
+    branches: ^(master)|(rpm-master)$
+    nodeset: rdo-fedora-28
