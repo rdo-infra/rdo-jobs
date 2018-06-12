@@ -2,6 +2,7 @@
     name: legacy-DLRN-build-tripleo
     parent: legacy-base
     run: playbooks/legacy/DLRN-build-tripleo/run.yaml
+    post-run: playbooks/legacy/DLRN-build-tripleo/post.yaml
     dependencies:
       - legacy-DLRN-rpmbuild
     voting: false
@@ -11,12 +12,14 @@
     name: legacy-DLRN-rpmbuild
     parent: legacy-base
     run: playbooks/legacy/DLRN-rpmbuild/run.yaml
+    post-run: playbooks/legacy/DLRN-rpmbuild/post.yaml
     branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
 
 - job:
     name: legacy-DLRN-rpmbuild-fedora
     parent: legacy-base
     run: playbooks/legacy/DLRN-rpmbuild-fedora/run.yaml
+    post-run: playbooks/legacy/DLRN-rpmbuild-rpm-fedora/post.yaml
     voting: false
     branches: ^(master)|(rpm-master)$
 
@@ -24,11 +27,13 @@
     name: legacy-DLRN-rpmbuild-rpm-packaging-centos
     parent: legacy-base
     run: playbooks/legacy/DLRN-rpmbuild-rpm-packaging-centos/run.yaml
+    post-run: playbooks/legacy/DLRN-rpmbuild-rpm-packaging-centos/post.yaml
 
 - job:
     name: legacy-DLRN-rpmbuild-rpm-packaging-fedora
     parent: legacy-base
     run: playbooks/legacy/DLRN-rpmbuild-rpm-packaging-fedora/run.yaml
+    post-run: playbooks/legacy/DLRN-rpmbuild-rpm-packaging-fedora/post.yaml
 
 - job:
     name: legacy-centos-opstools-common-distgit-cbs-final-build

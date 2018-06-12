@@ -85,8 +85,8 @@
           fi
           popd
           # Retrieve logs/repositories/packages
-          mkdir logs
-          cp -a DLRN/logs/* logs/
+          mkdir buildset
+          cp -a DLRN/logs/* buildset/
           exit $ret
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
