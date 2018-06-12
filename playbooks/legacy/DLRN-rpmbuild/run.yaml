@@ -90,3 +90,8 @@
           exit $ret
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
+
+
+    - name: Run set-artifact-path-for-children role
+      include_role:
+        name: set-artifact-path-for-children
