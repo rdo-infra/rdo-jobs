@@ -16,3 +16,34 @@
     gate:
       jobs:
         - legacy-tox-validate
+
+- project-template:
+    name: package-distgit-check-jobs
+    check:
+      jobs:
+        - legacy-rpmlint:
+            dependencies:
+              - legacy-DLRN-rpmbuild
+            branches: ^rpm-master$
+        - legacy-DLRN-build-tripleo:
+            dependencies:
+              - legacy-DLRN-rpmbuild
+            voting: false
+            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - legacy-DLRN-rpmbuild-fedora:
+            nodeset: rdo-fedora-28
+            voting: false
+            branches: ^(master)|(rpm-master)$
+        - distgit-cbs-validate
+    gate:
+      jobs:
+        - legacy-DLRN-rpmbuild:
+            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - legacy-ocata-distgit-cbs-final-build:
+            branches: ^ocata-rdo$
+        - legacy-pike-distgit-cbs-final-build:
+            branches: ^pike-rdo$
+        - legacy-queens-distgit-cbs-final-build:
+            branches: ^queens-rdo$
+        - legacy-common-distgit-cbs-final-build:
+            branches: ^common-rdo$

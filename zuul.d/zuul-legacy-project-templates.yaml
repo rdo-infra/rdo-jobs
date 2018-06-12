@@ -8,54 +8,92 @@
         - noop
 
 - project-template:
-    name: package-check-jobs
-    check:
+    name: tripleo-ovb-001-experimental
+    openstack-experimental:
       jobs:
-        - legacy-tox-validate
-    gate:
-      jobs:
-        - legacy-tox-validate
+        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master:
+            branches: ^master$
+        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens:
+            branches: ^stable/queens$
+        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike:
+            branches: ^stable/pike$
+        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata:
+            branches: ^stable/(0.6.x|ocata)$
 
 - project-template:
-    name: package-distgit-check-jobs
-    check:
+    name: tripleo-ovb-check
+    openstack-check:
       jobs:
-        - legacy-rpmlint:
-            dependencies:
-              - legacy-DLRN-rpmbuild
-            branches: ^rpm-master$
-        - legacy-DLRN-build-tripleo:
-            dependencies:
-              - legacy-DLRN-rpmbuild
+        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master:
+            branches: ^master$
+        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens:
+            branches: ^stable/queens$
+        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike:
+            branches: ^stable/pike$
+        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata:
+            branches: ^stable/(0.6.x|ocata)$
+        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master:
+            branches: ^master$
+        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens:
+            branches: ^stable/queens$
+        - legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike:
+            branches: ^stable/pike$
+        - legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike:
+            branches: ^stable/pike$
+        - legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata:
             voting: false
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-        - legacy-DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-        - legacy-DLRN-rpmbuild-fedora:
-            voting: false
-            branches: ^(master)|(rpm-master)$
-        - legacy-newton-distgit-cbs-validate:
-            branches: ^newton-rdo$
-        - legacy-ocata-distgit-cbs-validate:
-            branches: ^ocata-rdo$
-        - legacy-pike-distgit-cbs-validate:
-            branches: ^pike-rdo$
-        - legacy-queens-distgit-cbs-validate:
-            branches: ^queens-rdo$
-        - legacy-common-distgit-cbs-validate:
-            branches: ^common-rdo$
-    gate:
+            branches: ^stable/(0.6.x|ocata)$
+
+- project-template:
+    name: tripleo-ovb-experimental
+    openstack-experimental:
       jobs:
-        - legacy-DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-        - legacy-ocata-distgit-cbs-final-build:
-            branches: ^ocata-rdo$
-        - legacy-pike-distgit-cbs-final-build:
-            branches: ^pike-rdo$
-        - legacy-queens-distgit-cbs-final-build:
-            branches: ^queens-rdo$
-        - legacy-common-distgit-cbs-final-build:
-            branches: ^common-rdo$
+        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-ocata:
+            branches: ^stable/(0.6.x|ocata)$
+        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-pike:
+            branches: ^stable/pike$
+        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-queens:
+            branches: ^stable/queens$
+        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-master:
+            branches: ^master$
+        - legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master:
+            branches: ^master$
+        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master:
+            branches: ^master$
+
+- project-template:
+    name: tripleo-upgrades-check
+    openstack-check:
+      jobs:
+        - legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike:
+            voting: false
+            branches: ^stable/pike$
+        - legacy-tripleo-ci-centos-7-container-to-container-upgrades-queens:
+            voting: false
+            branches: ^stable/queens$
+        - legacy-tripleo-ci-centos-7-container-to-container-upgrades-master:
+            voting: false
+            branches: ^master$
+        - legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens:
+            voting: false
+            branches: ^stable/queens$
+
+- project-template:
+    name: tripleo-upgrades-check-branchless
+    openstack-check:
+      jobs:
+        - legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch:
+            voting: false
+            branches: ^master$
+        - legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master:
+            branches: ^master$
+        - legacy-tripleo-ci-centos-7-container-to-container-upgrades-master:
+            voting: false
+            branches: ^master$
+    openstack-experimental:
+      jobs:
+        - legacy-tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master:
+            branches: ^master$
 
 - project-template:
     name: weirdo-dlrn-master-aodh
@@ -85,13 +123,13 @@
         - legacy-DLRN-rpmbuild-fedora:
             voting: false
             branches: ^(master)|(rpm-master)$
-        - legacy-newton-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^newton-rdo$
-        - legacy-ocata-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^ocata-rdo$
-        - legacy-pike-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^pike-rdo$
-        - legacy-queens-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^queens-rdo$
     experimental:
       jobs:
@@ -137,13 +175,13 @@
         - legacy-DLRN-rpmbuild-fedora:
             voting: false
             branches: ^(master)|(rpm-master)$
-        - legacy-newton-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^newton-rdo$
-        - legacy-ocata-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^ocata-rdo$
-        - legacy-pike-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^pike-rdo$
-        - legacy-queens-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^queens-rdo$
     experimental:
       jobs:
@@ -191,13 +229,13 @@
         - legacy-DLRN-rpmbuild-fedora:
             voting: false
             branches: ^(master)|(rpm-master)$
-        - legacy-newton-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^newton-rdo$
-        - legacy-ocata-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^ocata-rdo$
-        - legacy-pike-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^pike-rdo$
-        - legacy-queens-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^queens-rdo$
     experimental:
       jobs:
@@ -253,13 +291,13 @@
         - legacy-DLRN-rpmbuild-fedora:
             voting: false
             branches: ^(master)|(rpm-master)$
-        - legacy-newton-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^newton-rdo$
-        - legacy-ocata-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^ocata-rdo$
-        - legacy-pike-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^pike-rdo$
-        - legacy-queens-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^queens-rdo$
     experimental:
       jobs:
@@ -323,13 +361,13 @@
         - legacy-DLRN-rpmbuild-fedora:
             voting: false
             branches: ^(master)|(rpm-master)$
-        - legacy-newton-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^newton-rdo$
-        - legacy-ocata-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^ocata-rdo$
-        - legacy-pike-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^pike-rdo$
-        - legacy-queens-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^queens-rdo$
     experimental:
       jobs:
@@ -386,13 +424,13 @@
         - legacy-DLRN-rpmbuild-fedora:
             voting: false
             branches: ^(master)|(rpm-master)$
-        - legacy-newton-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^newton-rdo$
-        - legacy-ocata-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^ocata-rdo$
-        - legacy-pike-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^pike-rdo$
-        - legacy-queens-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^queens-rdo$
     experimental:
       jobs:
@@ -443,13 +481,13 @@
         - legacy-DLRN-rpmbuild-fedora:
             voting: false
             branches: ^(master)|(rpm-master)$
-        - legacy-newton-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^newton-rdo$
-        - legacy-ocata-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^ocata-rdo$
-        - legacy-pike-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^pike-rdo$
-        - legacy-queens-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^queens-rdo$
     experimental:
       jobs:
@@ -495,13 +533,13 @@
         - legacy-DLRN-rpmbuild-fedora:
             voting: false
             branches: ^(master)|(rpm-master)$
-        - legacy-newton-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^newton-rdo$
-        - legacy-ocata-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^ocata-rdo$
-        - legacy-pike-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^pike-rdo$
-        - legacy-queens-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^queens-rdo$
     experimental:
       jobs:
@@ -549,13 +587,13 @@
         - legacy-DLRN-rpmbuild-fedora:
             voting: false
             branches: ^(master)|(rpm-master)$
-        - legacy-newton-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^newton-rdo$
-        - legacy-ocata-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^ocata-rdo$
-        - legacy-pike-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^pike-rdo$
-        - legacy-queens-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^queens-rdo$
     experimental:
       jobs:
@@ -601,13 +639,13 @@
         - legacy-DLRN-rpmbuild-fedora:
             voting: false
             branches: ^(master)|(rpm-master)$
-        - legacy-newton-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^newton-rdo$
-        - legacy-ocata-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^ocata-rdo$
-        - legacy-pike-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^pike-rdo$
-        - legacy-queens-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^queens-rdo$
     experimental:
       jobs:
@@ -660,13 +698,13 @@
         - legacy-DLRN-rpmbuild-fedora:
             voting: false
             branches: ^(master)|(rpm-master)$
-        - legacy-newton-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^newton-rdo$
-        - legacy-ocata-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^ocata-rdo$
-        - legacy-pike-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^pike-rdo$
-        - legacy-queens-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^queens-rdo$
     experimental:
       jobs:
@@ -720,13 +758,13 @@
         - legacy-DLRN-rpmbuild-fedora:
             voting: false
             branches: ^(master)|(rpm-master)$
-        - legacy-newton-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^newton-rdo$
-        - legacy-ocata-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^ocata-rdo$
-        - legacy-pike-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^pike-rdo$
-        - legacy-queens-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^queens-rdo$
     experimental:
       jobs:
@@ -782,13 +820,13 @@
         - legacy-DLRN-rpmbuild-fedora:
             voting: false
             branches: ^(master)|(rpm-master)$
-        - legacy-newton-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^newton-rdo$
-        - legacy-ocata-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^ocata-rdo$
-        - legacy-pike-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^pike-rdo$
-        - legacy-queens-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^queens-rdo$
     experimental:
       jobs:
@@ -837,13 +875,13 @@
         - legacy-DLRN-rpmbuild-fedora:
             voting: false
             branches: ^(master)|(rpm-master)$
-        - legacy-newton-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^newton-rdo$
-        - legacy-ocata-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^ocata-rdo$
-        - legacy-pike-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^pike-rdo$
-        - legacy-queens-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^queens-rdo$
     experimental:
       jobs:
@@ -886,13 +924,13 @@
         - legacy-DLRN-rpmbuild-fedora:
             voting: false
             branches: ^(master)|(rpm-master)$
-        - legacy-newton-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^newton-rdo$
-        - legacy-ocata-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^ocata-rdo$
-        - legacy-pike-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^pike-rdo$
-        - legacy-queens-distgit-cbs-validate:
+        - distgit-cbs-validate:
             branches: ^queens-rdo$
     experimental:
       jobs:
