@@ -1,0 +1,9 @@
+- name: Set zuul-log-path fact
+  include_role:
+    name: set-zuul-log-path-fact
+
+- name: Return artifact path to Zuul
+  delegate_to: localhost
+  zuul_return:
+    data:
+      rdo_artifact_path: "https://logs.rdoproject.org/{{ zuul_log_path }}/"
