@@ -3,6 +3,10 @@
     check:
       jobs:
         - tox-docs
+        - test1
+        - test2:
+            dependencies:
+              - test1
     gate:
       jobs:
         - tox-docs
