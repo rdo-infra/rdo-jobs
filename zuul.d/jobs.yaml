@@ -5,3 +5,13 @@
       Base job for autoconverted legacy jobs
     pre-run: playbooks/legacy/pre.yaml
     nodeset: rdo-centos-7
+
+- job:
+    name: test1
+    parent: base-test
+    run: playbooks/test1.yaml
+
+- job:
+    name: test2
+    parent: base-test
+    run: playbooks/test2.yaml

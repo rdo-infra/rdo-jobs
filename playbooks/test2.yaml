@@ -1,0 +1,4 @@
+- hosts: all
+  tasks:
+    - name: test
+      shell: "echo {{ buildset_artifacts_url }}"
