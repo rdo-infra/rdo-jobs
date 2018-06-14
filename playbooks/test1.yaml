@@ -1,0 +1,19 @@
+- hosts: all
+  tasks:
+    - name: test
+      copy:
+        content: test
+        dest: /tmp/test.txt
+
+    - name: dir
+      file:
+        path: "{{ zuul.executor.log_root }}/buildset"
+        state: directory
+      delegate_to: localhost
+
+    - name: Collect tox logs
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/buildset"
+        mode: pull
+        src: /tmp/test.txt
+        verify_host: true
