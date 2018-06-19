@@ -74,6 +74,7 @@
     - shell:
         cmd: |
           cd $ZUUL_PROJECT
+          export LANG=en_US.UTF-8
           export PUPPET_GEM_VERSION='~> 3.8.0'
           mkdir .bundled_gems
           export GEM_HOME=`pwd`/.bundled_gems
