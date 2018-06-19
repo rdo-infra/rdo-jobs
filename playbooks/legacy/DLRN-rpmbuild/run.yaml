@@ -75,6 +75,11 @@
           # This job supports building reviews for both review.rdoproject.org
           # and review.openstack.org. Builds that are run as third party for
           # review.o.o are in the Zuul pipelines prefixed by "openstack-".
+
+          # NOTE(pabelanger): We need to export zuul-env path for DLRN test
+          # scripts, this job is now zuulv3 so DLRN should stop using
+          # zuul-cloner.
+          export PATH=$PATH:/usr/zuul-env/bin
           pushd DLRN
           if [[ "$ZUUL_PIPELINE" =~ "openstack-" ]]; then
               timeout --signal=SIGKILL 3600 ./scripts/run_project_tests.sh http://review.rdoproject.org/r/p/rdoinfo.git
