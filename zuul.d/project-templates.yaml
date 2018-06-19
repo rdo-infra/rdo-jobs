@@ -36,9 +36,11 @@
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
             voting: false
-        - distgit-cbs-validate
+        - distgit-cbs-validate:
+            branches: ^(?!rpm-master).*$
     gate:
       jobs:
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-        - distgit-cbs-final-build
+        - distgit-cbs-final-build:
+            branches: ^(?!rpm-master).*$
