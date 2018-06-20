@@ -85,6 +85,7 @@
     run: playbooks/legacy/experimental-weirdo-dlrn-master-packstack-scenario001/run.yaml
     post-run: playbooks/legacy/experimental-weirdo-dlrn-master-packstack-scenario001/post.yaml
     required-projects:
+      - openstack/packstack
       - rdo-infra/ansible-role-weirdo-common
       - rdo-infra/ansible-role-weirdo-kolla
       - rdo-infra/ansible-role-weirdo-logs
@@ -100,6 +101,7 @@
     run: playbooks/legacy/experimental-weirdo-dlrn-master-packstack-scenario002/run.yaml
     post-run: playbooks/legacy/experimental-weirdo-dlrn-master-packstack-scenario002/post.yaml
     required-projects:
+      - openstack/packstack
       - rdo-infra/ansible-role-weirdo-common
       - rdo-infra/ansible-role-weirdo-kolla
       - rdo-infra/ansible-role-weirdo-logs
@@ -115,6 +117,7 @@
     run: playbooks/legacy/experimental-weirdo-dlrn-master-packstack-scenario003/run.yaml
     post-run: playbooks/legacy/experimental-weirdo-dlrn-master-packstack-scenario003/post.yaml
     required-projects:
+      - openstack/packstack
       - rdo-infra/ansible-role-weirdo-common
       - rdo-infra/ansible-role-weirdo-kolla
       - rdo-infra/ansible-role-weirdo-logs
@@ -705,6 +708,7 @@
     name: legacy-rdoinfo-DLRN-check
     parent: legacy-base
     run: playbooks/legacy/rdoinfo-DLRN-check/run.yaml
+    post-run: playbooks/legacy/rdoinfo-DLRN-check/post.yaml
     timeout: 10800
 
 - job:
@@ -1536,6 +1540,7 @@
     name: legacy-validate-buildsys-tags
     parent: legacy-base
     run: playbooks/legacy/validate-buildsys-tags/run.yaml
+    post-run: playbooks/legacy/validate-buildsys-tags/post.yaml
 
 - job:
     name: legacy-validate-dependencies-rebuilds
@@ -1560,6 +1565,7 @@
     run: playbooks/legacy/weirdo-dlrn-master-packstack-scenario001/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn-master-packstack-scenario001/post.yaml
     required-projects:
+      - openstack/packstack
       - rdo-infra/ansible-role-weirdo-common
       - rdo-infra/ansible-role-weirdo-kolla
       - rdo-infra/ansible-role-weirdo-logs
@@ -1577,6 +1583,7 @@
     run: playbooks/legacy/weirdo-dlrn-master-packstack-scenario002/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn-master-packstack-scenario002/post.yaml
     required-projects:
+      - openstack/packstack
       - rdo-infra/ansible-role-weirdo-common
       - rdo-infra/ansible-role-weirdo-kolla
       - rdo-infra/ansible-role-weirdo-logs
@@ -1594,6 +1601,7 @@
     run: playbooks/legacy/weirdo-dlrn-master-packstack-scenario003/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn-master-packstack-scenario003/post.yaml
     required-projects:
+      - openstack/packstack
       - rdo-infra/ansible-role-weirdo-common
       - rdo-infra/ansible-role-weirdo-kolla
       - rdo-infra/ansible-role-weirdo-logs
@@ -1695,6 +1703,7 @@
     post-run: playbooks/legacy/weirdo-integration-master-packstack-scenario001/post.yaml
     timeout: 5400
     required-projects:
+      - openstack/packstack
       - rdo-infra/ansible-role-weirdo-common
       - rdo-infra/ansible-role-weirdo-kolla
       - rdo-infra/ansible-role-weirdo-logs
@@ -1709,6 +1718,7 @@
     post-run: playbooks/legacy/weirdo-integration-master-packstack-scenario003/post.yaml
     timeout: 5400
     required-projects:
+      - openstack/packstack
       - rdo-infra/ansible-role-weirdo-common
       - rdo-infra/ansible-role-weirdo-kolla
       - rdo-infra/ansible-role-weirdo-logs
@@ -1765,6 +1775,7 @@
     post-run: playbooks/legacy/weirdo-integration-newton-packstack-scenario001/post.yaml
     timeout: 5400
     required-projects:
+      - openstack/packstack
       - rdo-infra/ansible-role-weirdo-common
       - rdo-infra/ansible-role-weirdo-kolla
       - rdo-infra/ansible-role-weirdo-logs
@@ -1779,6 +1790,7 @@
     post-run: playbooks/legacy/weirdo-integration-newton-packstack-scenario003/post.yaml
     timeout: 5400
     required-projects:
+      - openstack/packstack
       - rdo-infra/ansible-role-weirdo-common
       - rdo-infra/ansible-role-weirdo-kolla
       - rdo-infra/ansible-role-weirdo-logs
@@ -1821,6 +1833,7 @@
     post-run: playbooks/legacy/weirdo-integration-ocata-packstack-scenario002/post.yaml
     timeout: 5400
     required-projects:
+      - openstack/packstack
       - rdo-infra/ansible-role-weirdo-common
       - rdo-infra/ansible-role-weirdo-kolla
       - rdo-infra/ansible-role-weirdo-logs
@@ -1849,6 +1862,7 @@
     post-run: playbooks/legacy/weirdo-integration-pike-packstack-scenario001/post.yaml
     timeout: 5400
     required-projects:
+      - openstack/packstack
       - rdo-infra/ansible-role-weirdo-common
       - rdo-infra/ansible-role-weirdo-kolla
       - rdo-infra/ansible-role-weirdo-logs
@@ -1863,6 +1877,7 @@
     post-run: playbooks/legacy/weirdo-integration-pike-packstack-scenario002/post.yaml
     timeout: 5400
     required-projects:
+      - openstack/packstack
       - rdo-infra/ansible-role-weirdo-common
       - rdo-infra/ansible-role-weirdo-kolla
       - rdo-infra/ansible-role-weirdo-logs
