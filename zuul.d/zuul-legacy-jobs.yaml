@@ -994,11 +994,6 @@
     run: playbooks/legacy/rdoinfo-upper-constraints-update-queens/run.yaml
 
 - job:
-    name: legacy-rebuild-fedora-dependencies
-    parent: legacy-base
-    run: playbooks/legacy/rebuild-fedora-dependencies/run.yaml
-
-- job:
     name: legacy-rpmlint
     parent: legacy-base
     run: playbooks/legacy/rpmlint/run.yaml
