@@ -1847,11 +1847,6 @@
     post-run: playbooks/legacy/validate-buildsys-tags/post.yaml
 
 - job:
-    name: legacy-validate-dependencies-rebuilds
-    parent: legacy-base
-    run: playbooks/legacy/validate-dependencies-rebuilds/run.yaml
-
-- job:
     name: legacy-weirdo-ansible-lint
     parent: legacy-base
     run: playbooks/legacy/weirdo-ansible-lint/run.yaml
