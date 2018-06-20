@@ -70,7 +70,7 @@
         cmd: |
           set +e
           sudo yum -y install createrepo mock redhat-rpm-config rpmdevtools
-          sudo usermod -a -G mock jenkins
+          sudo usermod -a -G mock zuul
 
           # Clone DLRN
           git clone https://github.com/softwarefactory-project/DLRN --depth 1
