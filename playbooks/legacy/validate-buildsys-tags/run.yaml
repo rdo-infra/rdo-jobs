@@ -72,5 +72,6 @@
           bash ./create_temporary_repos.sh $WORKSPACE/rdoinfo $WORKSPACE/logs
           bash ./validate_updates.sh $WORKSPACE/logs
           popd
+          ln -s logs buildset
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
