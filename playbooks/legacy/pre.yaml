@@ -1,8 +1,8 @@
 - hosts: all
   roles:
-    - role: fetch-zuul-cloner
+    - role: fetch-zuul-cloner-fork
       destination: "/usr/zuul-env/bin/zuul-cloner"
-      repo_src_dir: "/home/zuul/src/review.rdoproject.org"
+      repo_src_dir: "/home/zuul/src"
 
   tasks:
     - name: Create nodepool directory
