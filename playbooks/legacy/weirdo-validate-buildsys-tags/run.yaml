@@ -71,7 +71,11 @@
           export PARENT_JOB="validate-buildsys-tags"
           git clone http://review.rdoproject.org/r/gating_scripts
           pushd gating_scripts/buildsys-tags
-          bash ./launch_weirdo_jobs.sh
+          # NOTE(pabelanger): Override logs for zuulv3 jobs.
+          if [[ -d /home/zuul ]]; then
+              export logs={{ buildset_artifacts_url }}
+          fi
+          bash -x ./launch_weirdo_jobs.sh
           popd
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
