@@ -191,6 +191,7 @@
     name: legacy-fedora-sinkhole-functional
     parent: legacy-base
     run: playbooks/legacy/fedora-sinkhole-functional/run.yaml
+    nodeset: rdo-fedora-28
 
 - job:
     name: legacy-fedora-stable-image-build
@@ -201,6 +202,7 @@
     name: legacy-fedora-stable-repoclosure
     parent: legacy-base
     run: playbooks/legacy/fedora-stable-repoclosure/run.yaml
+    nodeset: rdo-fedora-28
 
 - job:
     name: legacy-octavia-build-amphora-master
