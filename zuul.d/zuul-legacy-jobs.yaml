@@ -939,31 +939,6 @@
       - rdoinfo
 
 - job:
-    name: legacy-rdoinfo-upper-constraints-update-master
-    parent: legacy-base
-    run: playbooks/legacy/rdoinfo-upper-constraints-update-master/run.yaml
-
-- job:
-    name: legacy-rdoinfo-upper-constraints-update-newton
-    parent: legacy-base
-    run: playbooks/legacy/rdoinfo-upper-constraints-update-newton/run.yaml
-
-- job:
-    name: legacy-rdoinfo-upper-constraints-update-ocata
-    parent: legacy-base
-    run: playbooks/legacy/rdoinfo-upper-constraints-update-ocata/run.yaml
-
-- job:
-    name: legacy-rdoinfo-upper-constraints-update-pike
-    parent: legacy-base
-    run: playbooks/legacy/rdoinfo-upper-constraints-update-pike/run.yaml
-
-- job:
-    name: legacy-rdoinfo-upper-constraints-update-queens
-    parent: legacy-base
-    run: playbooks/legacy/rdoinfo-upper-constraints-update-queens/run.yaml
-
-- job:
     name: legacy-rebuild-fedora-dependencies
     parent: legacy-base
     run: playbooks/legacy/rebuild-fedora-dependencies/run.yaml
