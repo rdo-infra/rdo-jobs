@@ -855,13 +855,6 @@
     post-run: playbooks/legacy/rdo-registry-integration/post.yaml
 
 - job:
-    name: legacy-rdo-send-stable-release
-    parent: legacy-base
-    run: playbooks/legacy/rdo-send-stable-release/run.yaml
-    required-projects:
-      - rdo-infra/releng
-
-- job:
     name: legacy-rdoinfo-DLRN-check
     parent: legacy-base
     run: playbooks/legacy/rdoinfo-DLRN-check/run.yaml
@@ -1780,12 +1773,6 @@
       - ^spec/.*$
       - ^test-requirements.txt$
       - tox.ini
-
-- job:
-    name: legacy-update-buildsys-tags
-    parent: legacy-base
-    run: playbooks/legacy/update-buildsys-tags/run.yaml
-    post-run: playbooks/legacy/update-buildsys-tags/post.yaml
 
 - job:
     name: legacy-validate-buildsys-tags
