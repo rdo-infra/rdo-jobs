@@ -869,36 +869,6 @@
     timeout: 10800
 
 - job:
-    name: legacy-rdoinfo-buildsys-tags-update-ocata-release
-    parent: legacy-base
-    run: playbooks/legacy/rdoinfo-buildsys-tags-update-ocata-release/run.yaml
-
-- job:
-    name: legacy-rdoinfo-buildsys-tags-update-ocata-testing
-    parent: legacy-base
-    run: playbooks/legacy/rdoinfo-buildsys-tags-update-ocata-testing/run.yaml
-
-- job:
-    name: legacy-rdoinfo-buildsys-tags-update-pike-release
-    parent: legacy-base
-    run: playbooks/legacy/rdoinfo-buildsys-tags-update-pike-release/run.yaml
-
-- job:
-    name: legacy-rdoinfo-buildsys-tags-update-pike-testing
-    parent: legacy-base
-    run: playbooks/legacy/rdoinfo-buildsys-tags-update-pike-testing/run.yaml
-
-- job:
-    name: legacy-rdoinfo-buildsys-tags-update-queens-release
-    parent: legacy-base
-    run: playbooks/legacy/rdoinfo-buildsys-tags-update-queens-release/run.yaml
-
-- job:
-    name: legacy-rdoinfo-buildsys-tags-update-queens-testing
-    parent: legacy-base
-    run: playbooks/legacy/rdoinfo-buildsys-tags-update-queens-testing/run.yaml
-
-- job:
     name: legacy-rdoinfo-create-project
     parent: legacy-base
     run: playbooks/legacy/rdoinfo-create-project/run.yaml
