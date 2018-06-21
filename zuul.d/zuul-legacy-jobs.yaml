@@ -997,6 +997,7 @@
     name: legacy-rebuild-fedora-dependencies
     parent: legacy-base
     run: playbooks/legacy/rebuild-fedora-dependencies/run.yaml
+    post-run: playbooks/legacy/rebuild-fedora-dependencies/post.yaml
 
 - job:
     name: legacy-rpmlint
@@ -1839,6 +1840,7 @@
     name: legacy-update-buildsys-tags
     parent: legacy-base
     run: playbooks/legacy/update-buildsys-tags/run.yaml
+    post-run: playbooks/legacy/update-buildsys-tags/post.yaml
 
 - job:
     name: legacy-validate-buildsys-tags
@@ -1850,6 +1852,7 @@
     name: legacy-validate-dependencies-rebuilds
     parent: legacy-base
     run: playbooks/legacy/validate-dependencies-rebuilds/run.yaml
+    post-run: playbooks/legacy/validate-dependencies-rebuilds/post.yaml
 
 - job:
     name: legacy-weirdo-ansible-lint
