@@ -9,13 +9,6 @@
 
     - shell:
         cmd: |
-          # DEBUG zuul-cloner error
-          sudo sed -i "s/raise exceptions.RevNotFound/self.log.exception('DEBUG RevNotFound'); raise exceptions.RevNotFound/" /usr/lib/python2.7/site-packages/zuul/lib/cloner.py
-        chdir: '{{ ansible_user_dir }}/workspace'
-      environment: '{{ zuul | zuul_legacy_vars }}'
-
-    - shell:
-        cmd: |
           set -e -x
           if [[ "${ZUUL_PIPELINE}" == "post" ]]; then
           # Source is review.rdoproject.org
