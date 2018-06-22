@@ -755,11 +755,6 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-publish-cico-jjb
-    parent: legacy-base
-    run: playbooks/legacy/publish-cico-jjb/run.yaml
-
-- job:
     name: legacy-puppet-lint
     parent: legacy-base
     run: playbooks/legacy/puppet-lint/run.yaml
