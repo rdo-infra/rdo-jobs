@@ -1,0 +1,6 @@
+- hosts: localhost
+  tasks:
+    - name: good task
+      file:
+        path: "{{ zuul.executor.work_root }}/artifacts"
+        state: directory

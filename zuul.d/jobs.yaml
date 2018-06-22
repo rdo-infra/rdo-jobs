@@ -16,3 +16,24 @@
     nodeset: rdo-fedora-28
     required-projects:
       - rdoinfo
+
+- job:
+    name: check-job-run
+    abstract: true
+    voting: false
+    nodeset:
+      nodes: []
+
+- job:
+    name: check-job-run-bad
+    parent: check-job-run
+    run: playbooks/check-job-run/bad.yaml
+
+- job:
+    name: check-job-run-good
+    parent: check-job-run
+    run: playbooks/check-job-run/good.yaml
+
+- job:
+    name: example-hello-world
+    run: playbooks/example-hello-world/run.yaml

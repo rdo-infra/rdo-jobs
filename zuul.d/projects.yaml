@@ -3,6 +3,11 @@
     check:
       jobs:
         - tox-docs
+        - check-job-run-bad
+        - check-job-run-good
+        - example-hello-world:
+            dependencies:
+              - check-job-run-bad
     gate:
       jobs:
         - tox-docs
