@@ -1,0 +1,6 @@
+- hosts: localhost
+  tasks:
+    - name: bad task
+      file:
+        path: /etc/artifacts"
+        state: directory
