@@ -942,11 +942,6 @@
     branches: ^rpm-master$
 
 - job:
-    name: legacy-tox-jjb
-    parent: legacy-base
-    run: playbooks/legacy/tox-jjb/run.yaml
-
-- job:
     name: legacy-tox-validate
     parent: legacy-base
     run: playbooks/legacy/tox-validate/run.yaml
