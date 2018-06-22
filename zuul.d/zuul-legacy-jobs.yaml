@@ -84,6 +84,7 @@
     parent: legacy-base
     run: playbooks/legacy/experimental-weirdo-dlrn-master-packstack-scenario001/run.yaml
     post-run: playbooks/legacy/experimental-weirdo-dlrn-master-packstack-scenario001/post.yaml
+    timeout: 5400
     required-projects:
       - openstack/packstack
       - rdo-infra/ansible-role-weirdo-common
@@ -100,6 +101,7 @@
     parent: legacy-base
     run: playbooks/legacy/experimental-weirdo-dlrn-master-packstack-scenario002/run.yaml
     post-run: playbooks/legacy/experimental-weirdo-dlrn-master-packstack-scenario002/post.yaml
+    timeout: 5400
     required-projects:
       - openstack/packstack
       - rdo-infra/ansible-role-weirdo-common
@@ -116,6 +118,7 @@
     parent: legacy-base
     run: playbooks/legacy/experimental-weirdo-dlrn-master-packstack-scenario003/run.yaml
     post-run: playbooks/legacy/experimental-weirdo-dlrn-master-packstack-scenario003/post.yaml
+    timeout: 5400
     required-projects:
       - openstack/packstack
       - rdo-infra/ansible-role-weirdo-common
@@ -132,6 +135,7 @@
     parent: legacy-base
     run: playbooks/legacy/experimental-weirdo-dlrn-master-puppet-scenario001/run.yaml
     post-run: playbooks/legacy/experimental-weirdo-dlrn-master-puppet-scenario001/post.yaml
+    timeout: 5400
     required-projects:
       - rdo-infra/ansible-role-weirdo-common
       - rdo-infra/ansible-role-weirdo-kolla
@@ -147,6 +151,7 @@
     parent: legacy-base
     run: playbooks/legacy/experimental-weirdo-dlrn-master-puppet-scenario002/run.yaml
     post-run: playbooks/legacy/experimental-weirdo-dlrn-master-puppet-scenario002/post.yaml
+    timeout: 5400
     required-projects:
       - rdo-infra/ansible-role-weirdo-common
       - rdo-infra/ansible-role-weirdo-kolla
@@ -162,6 +167,7 @@
     parent: legacy-base
     run: playbooks/legacy/experimental-weirdo-dlrn-master-puppet-scenario003/run.yaml
     post-run: playbooks/legacy/experimental-weirdo-dlrn-master-puppet-scenario003/post.yaml
+    timeout: 5400
     required-projects:
       - rdo-infra/ansible-role-weirdo-common
       - rdo-infra/ansible-role-weirdo-kolla
@@ -177,6 +183,7 @@
     parent: legacy-base
     run: playbooks/legacy/experimental-weirdo-dlrn-master-puppet-scenario004/run.yaml
     post-run: playbooks/legacy/experimental-weirdo-dlrn-master-puppet-scenario004/post.yaml
+    timeout: 5400
     required-projects:
       - rdo-infra/ansible-role-weirdo-common
       - rdo-infra/ansible-role-weirdo-kolla
@@ -1783,6 +1790,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn-master-packstack-scenario001/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn-master-packstack-scenario001/post.yaml
+    timeout: 5400
     required-projects:
       - openstack/packstack
       - rdo-infra/ansible-role-weirdo-common
@@ -1801,6 +1809,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn-master-packstack-scenario002/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn-master-packstack-scenario002/post.yaml
+    timeout: 5400
     required-projects:
       - openstack/packstack
       - rdo-infra/ansible-role-weirdo-common
@@ -1819,6 +1828,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn-master-packstack-scenario003/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn-master-packstack-scenario003/post.yaml
+    timeout: 5400
     required-projects:
       - openstack/packstack
       - rdo-infra/ansible-role-weirdo-common
@@ -1837,6 +1847,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn-master-puppet-scenario001/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn-master-puppet-scenario001/post.yaml
+    timeout: 5400
     required-projects:
       - rdo-infra/ansible-role-weirdo-common
       - rdo-infra/ansible-role-weirdo-kolla
@@ -1854,6 +1865,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn-master-puppet-scenario002/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn-master-puppet-scenario002/post.yaml
+    timeout: 5400
     required-projects:
       - rdo-infra/ansible-role-weirdo-common
       - rdo-infra/ansible-role-weirdo-kolla
@@ -1871,6 +1883,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn-master-puppet-scenario003/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn-master-puppet-scenario003/post.yaml
+    timeout: 5400
     required-projects:
       - rdo-infra/ansible-role-weirdo-common
       - rdo-infra/ansible-role-weirdo-kolla
@@ -1888,6 +1901,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn-master-puppet-scenario004/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn-master-puppet-scenario004/post.yaml
+    timeout: 5400
     required-projects:
       - rdo-infra/ansible-role-weirdo-common
       - rdo-infra/ansible-role-weirdo-kolla
