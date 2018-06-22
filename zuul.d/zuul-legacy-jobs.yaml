@@ -934,12 +934,6 @@
       - rdoinfo
 
 - job:
-    name: legacy-rebuild-fedora-dependencies
-    parent: legacy-base
-    run: playbooks/legacy/rebuild-fedora-dependencies/run.yaml
-    post-run: playbooks/legacy/rebuild-fedora-dependencies/post.yaml
-
-- job:
     name: legacy-rpmlint
     parent: legacy-base
     run: playbooks/legacy/rpmlint/run.yaml
