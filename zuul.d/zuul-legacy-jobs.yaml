@@ -864,11 +864,6 @@
     timeout: 10800
 
 - job:
-    name: legacy-rdoinfo-create-project
-    parent: legacy-base
-    run: playbooks/legacy/rdoinfo-create-project/run.yaml
-
-- job:
     name: legacy-rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016
     parent: legacy-base
     run: playbooks/legacy/rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016/run.yaml
