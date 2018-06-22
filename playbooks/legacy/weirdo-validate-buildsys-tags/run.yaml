@@ -58,9 +58,21 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
+    - name: Set WEIRDO_TOKEN_FILE fact
+      set_facts:
+        WEIRDO_TOKEN_FILE: "{{ ansible_user_dir }}/.weirdo-token"
+
+    - name: Copy weirdo-token content
+      copy:
+        content: "{{ weirdo_token.token }}"
+        dest: "{{ WEIRDO_TOKEN_FILE }}"
+        mode: 0400
+      no_log: True
+
     - shell:
         cmd: |
           set -e -x
+          export WEIRDO_TOKEN_FILE="{{ WEIRDO_TOKEN_FILE }}"
           /usr/zuul-env/bin/zuul-cloner http://review.rdoproject.org/r \
             rdo-infra/releng
           virtualenv --system-site-packages .venv
@@ -79,3 +91,9 @@
           popd
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
+
+    - name: Copy weirdo-token content
+      file:
+        path: "{{ WEIRDO_TOKEN_FILE }}"
+        state: absent
+      no_log: True
