@@ -7,6 +7,14 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
+    - name: Copy rdoinfo-DLRN.sh script
+      copy:
+        src: rdoinfo-DLRN.sh
+        dest: '{{ ansible_user_dir }}/rdoinfo-DLRN.sh'
+        owner: '{{ ansible_user }}'
+        group: '{{ ansible_user }}'
+        mode: 0755
+
     - shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
@@ -110,7 +118,7 @@
           pushd DLRN
           ret=0
           if [ -n "${PACKAGES_UPDATED_MASTER}" ]; then
-              timeout --signal=SIGKILL 10800  /opt/nodepool-scripts/rdoinfo-DLRN.sh $CURRENT_MASTER_TAG "${PACKAGES_UPDATED_MASTER}"
+              timeout --signal=SIGKILL 10800  {{ ansible_user_dir }}/rdoinfo-DLRN.sh $CURRENT_MASTER_TAG "${PACKAGES_UPDATED_MASTER}"
               ret1=$?
               if [ $ret1 -ne 0 ]; then
                   ret=$ret1
@@ -120,7 +128,7 @@
               sudo rm -rf /var/cache/mock/*
           fi
           if [ -n "${PACKAGES_UPDATED_QUEENS}" ]; then
-              timeout --signal=SIGKILL 10800 /opt/nodepool-scripts/rdoinfo-DLRN.sh queens "${PACKAGES_UPDATED_QUEENS}"
+              timeout --signal=SIGKILL 10800 {{ ansible_user_dir }}/rdoinfo-DLRN.sh queens "${PACKAGES_UPDATED_QUEENS}"
               ret1=$?
               if [ $ret1 -ne 0 ]; then
                   ret=$ret1
@@ -140,7 +148,7 @@
               sudo rm -rf /var/cache/mock/*
           fi
           if [ -n "${PACKAGES_UPDATED_OCATA}" ]; then
-              timeout --signal=SIGKILL 10800 /opt/nodepool-scripts/rdoinfo-DLRN.sh ocata "${PACKAGES_UPDATED_OCATA}"
+              timeout --signal=SIGKILL 10800 {{ ansible_user_dir }}/rdoinfo-DLRN.sh ocata "${PACKAGES_UPDATED_OCATA}"
               ret1=$?
               if [ $ret1 -ne 0 ]; then
                   ret=$ret1
@@ -150,7 +158,7 @@
               sudo rm -rf /var/cache/mock/*
           fi
           if [ -n "${PACKAGES_UPDATED_NEWTON}" ]; then
-              timeout --signal=SIGKILL 10800 /opt/nodepool-scripts/rdoinfo-DLRN.sh newton "${PACKAGES_UPDATED_NEWTON}"
+              timeout --signal=SIGKILL 10800 {{ ansible_user_dir }}/rdoinfo-DLRN.sh newton "${PACKAGES_UPDATED_NEWTON}"
               ret1=$?
               if [ $ret1 -ne 0 ]; then
                   ret=$ret1
@@ -164,6 +172,8 @@
           # Retrieve logs/repositories/packages
           mkdir logs
           cp -a DLRN/logs/* logs/
+          # NOTE(jpena): Support zuulv3 jobs
+          ln -s logs buildset
           exit $ret
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
