@@ -9,6 +9,7 @@
 - job:
     name: legacy-DLRN-rpmbuild-fedora
     parent: legacy-base
+    timeout: 10800
     run: playbooks/legacy/DLRN-rpmbuild-fedora/run.yaml
     post-run: playbooks/legacy/DLRN-rpmbuild-fedora/post.yaml
     voting: false
