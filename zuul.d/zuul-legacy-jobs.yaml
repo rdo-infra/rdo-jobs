@@ -1797,6 +1797,7 @@
     parent: legacy-base
     run: playbooks/legacy/validate-buildsys-tags/run.yaml
     post-run: playbooks/legacy/validate-buildsys-tags/post.yaml
+    timeout: 10800
 
 - job:
     name: legacy-weirdo-ansible-lint
