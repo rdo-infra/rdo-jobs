@@ -886,7 +886,7 @@
 
 - job:
     name: legacy-rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016
-    parent: legacy-base
+    parent: legacy-dsvm-base
     run: playbooks/legacy/rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016/run.yaml
     post-run: playbooks/legacy/rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016/post.yaml
     nodeset: upstream-centos-7-2-node
@@ -900,7 +900,7 @@
 
 - job:
     name: legacy-rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005
-    parent: legacy-base
+    parent: legacy-dsvm-base
     run: playbooks/legacy/rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005/run.yaml
     post-run: playbooks/legacy/rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005/post.yaml
     nodeset: upstream-centos-7-2-node
@@ -914,7 +914,7 @@
 
 - job:
     name: legacy-rdoinfo-tripleo-ocata-testing-centos-7-multinode-1ctlr-featureset005
-    parent: legacy-base
+    parent: legacy-dsvm-base
     run: playbooks/legacy/rdoinfo-tripleo-ocata-testing-centos-7-multinode-1ctlr-featureset005/run.yaml
     post-run: playbooks/legacy/rdoinfo-tripleo-ocata-testing-centos-7-multinode-1ctlr-featureset005/post.yaml
     nodeset: upstream-centos-7-2-node
@@ -928,7 +928,7 @@
 
 - job:
     name: legacy-rdoinfo-tripleo-pike-release-centos-7-multinode-1ctlr-featureset006
-    parent: legacy-base
+    parent: legacy-dsvm-base
     run: playbooks/legacy/rdoinfo-tripleo-pike-release-centos-7-multinode-1ctlr-featureset006/run.yaml
     post-run: playbooks/legacy/rdoinfo-tripleo-pike-release-centos-7-multinode-1ctlr-featureset006/post.yaml
     nodeset: upstream-centos-7-2-node
@@ -942,7 +942,7 @@
 
 - job:
     name: legacy-rdoinfo-tripleo-pike-testing-centos-7-multinode-1ctlr-featureset006
-    parent: legacy-base
+    parent: legacy-dsvm-base
     run: playbooks/legacy/rdoinfo-tripleo-pike-testing-centos-7-multinode-1ctlr-featureset006/run.yaml
     post-run: playbooks/legacy/rdoinfo-tripleo-pike-testing-centos-7-multinode-1ctlr-featureset006/post.yaml
     nodeset: upstream-centos-7-2-node
