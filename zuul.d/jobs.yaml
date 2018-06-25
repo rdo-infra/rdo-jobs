@@ -4,7 +4,7 @@
     description: |
       Base job for autoconverted legacy jobs
     pre-run: playbooks/legacy/pre.yaml
-    nodeset: rdo-centos-7
+    nodeset: upstream-centos-7
 
 - job:
     name: legacy-DLRN-rpmbuild-fedora
