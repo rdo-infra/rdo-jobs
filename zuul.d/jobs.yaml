@@ -6,6 +6,74 @@
     pre-run: playbooks/legacy/pre.yaml
     nodeset: rdo-centos-7
 
+# NOTE(pabelanger): We should be consuming openstack-zuul-jobs here, but we have
+# to pull in more nodesets.  We can first test using this.
+- job:
+    name: legacy-dsvm-base
+    abstract: true
+    description: |
+      Base job for autoconverted legacy devstack-gate jobs
+
+      This job runs devstack-gate with as few changes as possible and
+      may be used by jobs which have been automatically converted as
+      part of the migration to Zuul v3.
+    pre-run: playbooks/legacy/pre.yaml
+    nodeset: upstream-centos-7
+    required-projects:
+      - git.openstack.org/openstack-dev/devstack
+      - git.openstack.org/openstack-infra/devstack-gate
+      - git.openstack.org/openstack-infra/tripleo-ci
+      - git.openstack.org/openstack/ceilometer
+      - git.openstack.org/openstack/ceilometermiddleware
+      - git.openstack.org/openstack/cinder
+      - git.openstack.org/openstack/django_openstack_auth
+      - git.openstack.org/openstack/glance
+      - git.openstack.org/openstack/glance_store
+      - git.openstack.org/openstack/heat
+      - git.openstack.org/openstack/heat-cfntools
+      - git.openstack.org/openstack/heat-templates
+      - git.openstack.org/openstack/horizon
+      - git.openstack.org/openstack/keystone
+      - git.openstack.org/openstack/keystoneauth
+      - git.openstack.org/openstack/keystonemiddleware
+      - git.openstack.org/openstack/manila
+      - git.openstack.org/openstack/manila-ui
+      - git.openstack.org/openstack/neutron
+      - git.openstack.org/openstack/neutron-fwaas
+      - git.openstack.org/openstack/neutron-lbaas
+      - git.openstack.org/openstack/neutron-vpnaas
+      - git.openstack.org/openstack/nova
+      - git.openstack.org/openstack/octavia
+      - git.openstack.org/openstack/os-apply-config
+      - git.openstack.org/openstack/os-brick
+      - git.openstack.org/openstack/os-client-config
+      - git.openstack.org/openstack/os-collect-config
+      - git.openstack.org/openstack/os-net-config
+      - git.openstack.org/openstack/os-refresh-config
+      - git.openstack.org/openstack/osc-lib
+      - git.openstack.org/openstack/requirements
+      - git.openstack.org/openstack/swift
+      - git.openstack.org/openstack/tempest
+      - git.openstack.org/openstack/tripleo-heat-templates
+      - git.openstack.org/openstack/tripleo-image-elements
+      - git.openstack.org/openstack/zaqar
+
+# NOTE(pabelanger): We should be consuming openstack-zuul-jobs here, but we have
+# to pull in more nodesets.  We can first test using this.
+- job:
+    name: legacy-dsvm-base-multinode
+    abstract: true
+    parent: legacy-dsvm-base
+    description: |
+      Base job for multinode devstack jobs.
+
+      Will setup firewall rules on all the nodes allowing them to talk to
+      each other.
+    pre-run: playbooks/legacy/multinode-networking/pre.yaml
+    roles:
+      - zuul: openstack-infra/zuul-jobs
+    nodeset: upstream-centos-7-2-node
+
 - job:
     name: legacy-DLRN-rpmbuild-fedora
     parent: legacy-base
