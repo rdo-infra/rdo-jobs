@@ -6,6 +6,58 @@
     pre-run: playbooks/legacy/pre.yaml
     nodeset: rdo-centos-7
 
+# NOTE(pabelanger): We should be consuming openstack-zuul-jobs here, but we have
+# to pull in more nodesets.  We can first test using this.
+- job:
+    name: legacy-dsvm-base
+    abstract: true
+    description: |
+      Base job for autoconverted legacy devstack-gate jobs
+
+      This job runs devstack-gate with as few changes as possible and
+      may be used by jobs which have been automatically converted as
+      part of the migration to Zuul v3.
+    pre-run: playbooks/legacy/pre.yaml
+    nodeset: upstream-centos-7
+    required-projects:
+      - openstack-dev/devstack
+      - openstack-infra/devstack-gate
+      - openstack-infra/tripleo-ci
+      - openstack/ceilometer
+      - openstack/ceilometermiddleware
+      - openstack/cinder
+      - openstack/django_openstack_auth
+      - openstack/glance
+      - openstack/glance_store
+      - openstack/heat
+      - openstack/heat-cfntools
+      - openstack/heat-templates
+      - openstack/horizon
+      - openstack/keystone
+      - openstack/keystoneauth
+      - openstack/keystonemiddleware
+      - openstack/manila
+      - openstack/manila-ui
+      - openstack/neutron
+      - openstack/neutron-fwaas
+      - openstack/neutron-lbaas
+      - openstack/neutron-vpnaas
+      - openstack/nova
+      - openstack/octavia
+      - openstack/os-apply-config
+      - openstack/os-brick
+      - openstack/os-client-config
+      - openstack/os-collect-config
+      - openstack/os-net-config
+      - openstack/os-refresh-config
+      - openstack/osc-lib
+      - openstack/requirements
+      - openstack/swift
+      - openstack/tempest
+      - openstack/tripleo-heat-templates
+      - openstack/tripleo-image-elements
+      - openstack/zaqar
+
 - job:
     name: legacy-DLRN-rpmbuild-fedora
     parent: legacy-base
