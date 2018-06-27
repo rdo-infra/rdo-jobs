@@ -1,24 +1,6 @@
 - hosts: all
   tasks:
 
-    - shell:
-        cmd: |
-          source $WORKSPACE/hash_info.sh
-          export TOCI_JOBTYPE=periodic-ovb-3ctlr_1comp-featureset001
-          export SUCCESS=$([[ "$JOB_EXIT_VALUE" == 0 ]] && echo true || echo false)
-          bash -xe $WORKSPACE/rdo-infra/ci-config/ci-scripts/tripleo-upstream/dlrnapi_report.sh
-        chdir: '{{ ansible_user_dir }}/workspace'
-      environment: '{{ zuul | zuul_legacy_vars }}'
-
-    - shell:
-        cmd: |
-          if [[ -e $WORKSPACE/logs/collect_logs.sh ]]; then
-            bash $WORKSPACE/logs/collect_logs.sh
-          fi
-        executable: /bin/bash
-        chdir: '{{ ansible_user_dir }}/workspace'
-      environment: '{{ zuul | zuul_legacy_vars }}'
-
     - name: Copy files from {{ ansible_user_dir }}/workspace/ on node
       synchronize:
         src: '{{ ansible_user_dir }}/workspace/'
