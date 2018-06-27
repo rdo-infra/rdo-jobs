@@ -61,11 +61,6 @@
     run: playbooks/legacy/config-check/run.yaml
 
 - job:
-    name: legacy-config-distgit-mirror-github
-    parent: legacy-base
-    run: playbooks/legacy/config-distgit-mirror-github/run.yaml
-
-- job:
     name: legacy-config-sanity-check
     parent: legacy-base
     run: playbooks/legacy/config-sanity-check/run.yaml
