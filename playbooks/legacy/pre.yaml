@@ -3,7 +3,7 @@
     # TODO(pabelanger): Maybe promote this in to base jobs? But is
     # openstack-infra specific.
     - role: mirror-info-fork
-      mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
+      mirror_fqdn: "mirror.regionone.rdo-cloud.rdoproject.org"
     - role: fetch-zuul-cloner-fork
       destination: "/usr/zuul-env/bin/zuul-cloner"
       repo_src_dir: "/home/zuul/src"
