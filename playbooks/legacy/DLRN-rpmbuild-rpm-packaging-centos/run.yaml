@@ -119,8 +119,8 @@
           # Prepare directories
           mkdir -p data/repos
 
-          if [ -e /usr/bin/zuul-cloner ]; then
-            zuul-cloner --workspace data/ git://git.openstack.org openstack/rpm-packaging --branch $branch
+          if [ -e /usr/zuul-env/bin/zuul-cloner ]; then
+            /usr/zuul-env/bin/zuul-cloner --workspace data/ git://git.openstack.org openstack/rpm-packaging --branch $branch
             mv data/openstack/rpm-packaging data/package_info
           else
             # We are outside the gate, just do a regular git clone
