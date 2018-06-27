@@ -123,7 +123,7 @@
             zuul-cloner --workspace data/ git://git.openstack.org openstack/rpm-packaging --branch $branch
             mv data/openstack/rpm-packaging data/package_info
           else
-            # We're outside the gate, just do a regular git clone
+            # We are outside the gate, just do a regular git clone
             pushd data/
             # rm -rf first for idempotency
             rm -rf package_info

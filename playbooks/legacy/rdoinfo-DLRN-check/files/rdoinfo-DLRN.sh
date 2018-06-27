@@ -17,7 +17,7 @@ src="master"
 branch=""
 tag="rocky-uc"
 
-# If we're testing a commit on a specific branch, make sure we're using it
+# If we are testing a commit on a specific branch, make sure we are using it
 if [[ "${TAG}" != "rocky-uc" ]]; then
     branch=$(echo $TAG | awk -F- '{print $1}')
     tag=$TAG
@@ -64,7 +64,7 @@ for PACKAGE in ${PACKAGES_TO_BUILD}; do
         popd
         mv data/$PROJECT_DISTRO data/$PROJECT_DISTRO_DIR
     else
-        # We're outside the gate, just do a regular git clone
+        # We re outside the gate, just do a regular git clone
         pushd data/
         # rm -rf first for idempotency
         rm -rf $PROJECT_DISTRO_DIR
