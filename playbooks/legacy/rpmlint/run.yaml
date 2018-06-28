@@ -173,6 +173,9 @@
           addFilter("no-documentation")
           addFilter("non-readable")
 
+          # vitrage-ui exceptions
+          addFilter("openstack-vitrage-ui.noarch: W: non-conffile-in-etc /etc/openstack-dashboard/enabled/_4140_admin_template_vitrage_panel.py.*")
+
           # ironic exceptions
           addFilter("openstack-ironic-common.noarch: E: non-standard-dir-perm /var/log/ironic 0?750L?")
           addFilter("python-ironic-tests.noarch: E: wrong-script-interpreter /usr/lib/python2.7/site-packages/ironic/tests/.* ipxe")
