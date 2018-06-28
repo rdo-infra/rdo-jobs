@@ -117,7 +117,7 @@
           fi
           baseurl="https://trunk.rdoproject.org/centos7-${branch}/"
 
-          # Fetch base mock configuration, we'll update it to match TripleO requirements
+          # Fetch base mock configuration, we will update it to match TripleO requirements
           cp DLRN/scripts/centos.cfg .
           # Remove the last line, then add all required repos
           sed -i '$ d' centos.cfg
