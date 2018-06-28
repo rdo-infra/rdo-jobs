@@ -86,6 +86,13 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
+    - name: Remove excludes from /etc/dnf/dnf.conf
+      lineinfile:
+        path: /etc/dnf/dnf.conf
+        state: absent
+        regexp: '^exclude='
+      become: true
+
     - shell:
         cmd: |
           set -e
