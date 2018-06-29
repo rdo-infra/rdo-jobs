@@ -87,7 +87,7 @@
 
 - job:
     name: puppet-openstack-base
-    pre-run: playbooks/puppet-openstack-integration/prepare-node-common.yaml
+    pre-run: playbooks/legacy/puppet-openstack-integration/prepare-node-common.yaml
     parent: legacy-base
     abstract: true
     vars:
@@ -142,9 +142,9 @@
     name: puppet-openstack-integration-run-base
     parent: puppet-openstack-integration-base
     abstract: true
-    pre-run: playbooks/puppet-openstack-integration/prepare-node-integration.yaml
-    run: playbooks/puppet-openstack-integration/run-integration-tests.yaml
-    post-run: playbooks/puppet-openstack-integration/upload-logs.yaml
+    pre-run: playbooks/legacy/puppet-openstack-integration/prepare-node-integration.yaml
+    run: playbooks/legacy/puppet-openstack-integration/run-integration-tests.yaml
+    post-run: playbooks/legacy/puppet-openstack-integration/upload-logs.yaml
     timeout: 5400
     irrelevant-files:
       - ^.*\.md$
