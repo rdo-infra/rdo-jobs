@@ -156,10 +156,8 @@
              fi
           fi
           # Retrieve logs/repositories/packages
-          mkdir logs
-          cp -a ${OUTPUT_DIRECTORY}/* logs/
-          # NOTE(pabelanger): Support zuulv3 jobs
-          ln -s logs buildset
+          mkdir buildset
+          cp -a ${OUTPUT_DIRECTORY}/* buildset/
           exit $ret
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
