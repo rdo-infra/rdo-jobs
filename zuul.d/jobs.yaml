@@ -98,16 +98,44 @@
     abstract: true
     parent: puppet-openstack-base
     required-projects:
+      - name: git.openstack.org/openstack/puppet-aodh
+      - name: git.openstack.org/openstack/puppet-barbican
+      - name: git.openstack.org/openstack/puppet-ceilometer
       - name: git.openstack.org/openstack/puppet-ceph
+      - name: git.openstack.org/openstack/puppet-cinder
+      - name: git.openstack.org/openstack/puppet-cloudkitty
+      - name: git.openstack.org/openstack/puppet-congress
+      - name: git.openstack.org/openstack/puppet-designate
+      - name: git.openstack.org/openstack/puppet-ec2api
       - name: git.openstack.org/openstack/puppet-glance
+      - name: git.openstack.org/openstack/puppet-gnocchi
+      - name: git.openstack.org/openstack/puppet-heat
+      - name: git.openstack.org/openstack/puppet-horizon
+      - name: git.openstack.org/openstack/puppet-ironic
       - name: git.openstack.org/openstack/puppet-keystone
+      - name: git.openstack.org/openstack/puppet-manila
+      - name: git.openstack.org/openstack/puppet-mistral
+      - name: git.openstack.org/openstack/puppet-monasca
+      - name: git.openstack.org/openstack/puppet-murano
+      - name: git.openstack.org/openstack/puppet-neutron
+      - name: git.openstack.org/openstack/puppet-nova
+      - name: git.openstack.org/openstack/puppet-octavia
       - name: git.openstack.org/openstack/puppet-openstack-integration
       - name: git.openstack.org/openstack/puppet-openstack_extras
       - name: git.openstack.org/openstack/puppet-openstacklib
       - name: git.openstack.org/openstack/puppet-oslo
+      - name: git.openstack.org/openstack/puppet-ovn
+      - name: git.openstack.org/openstack/puppet-panko
+      - name: git.openstack.org/openstack/puppet-qdr
+      - name: git.openstack.org/openstack/puppet-sahara
       - name: git.openstack.org/openstack/puppet-swift
+      - name: git.openstack.org/openstack/puppet-tacker
       - name: git.openstack.org/openstack/puppet-tempest
+      - name: git.openstack.org/openstack/puppet-trove
+      - name: git.openstack.org/openstack/puppet-vitrage
       - name: git.openstack.org/openstack/puppet-vswitch
+      - name: git.openstack.org/openstack/puppet-watcher
+      - name: git.openstack.org/openstack/puppet-zaqar
       - name: git.openstack.org/openstack/tempest
 
 - job:
