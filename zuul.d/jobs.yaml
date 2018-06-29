@@ -88,6 +88,7 @@
 - job:
     name: puppet-openstack-base
     pre-run: playbooks/puppet-openstack-integration/prepare-node-common.yaml
+    parent: legacy-base
     abstract: true
     vars:
       use_puppetlabs: false
