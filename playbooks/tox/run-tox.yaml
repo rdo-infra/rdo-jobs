@@ -1,0 +1,4 @@
+- hosts: all
+  tasks:
+    - name: Run tox enviroment {{ tox_env }}
+      shell: tox -e{{ tox_env }}
