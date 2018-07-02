@@ -77,7 +77,7 @@
 
 - job:
     name: legacy-experimental-tripleo-centos-7-master-containers-build
-    parent: legacy-base
+    parent: legacy-dsvm-base
     run: playbooks/legacy/experimental-tripleo-centos-7-master-containers-build/run.yaml
     post-run: playbooks/legacy/experimental-tripleo-centos-7-master-containers-build/post.yaml
     timeout: 10800
@@ -228,7 +228,7 @@
 
 - job:
     name: legacy-periodic-tripleo-centos-7-master-containers-build
-    parent: legacy-base
+    parent: legacy-dsvm-base
     run: playbooks/legacy/periodic-tripleo-centos-7-master-containers-build/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-centos-7-master-containers-build/post.yaml
     timeout: 10800
@@ -240,7 +240,7 @@
 
 - job:
     name: legacy-periodic-tripleo-centos-7-master-promote-consistent-to-tripleo-ci-testing
-    parent: legacy-base
+    parent: legacy-dsvm-base
     run: playbooks/legacy/periodic-tripleo-centos-7-master-promote-consistent-to-tripleo-ci-testing/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-centos-7-master-promote-consistent-to-tripleo-ci-testing/post.yaml
     timeout: 1800
@@ -250,7 +250,7 @@
 
 - job:
     name: legacy-periodic-tripleo-centos-7-ocata-promote-consistent-to-tripleo-ci-testing
-    parent: legacy-base
+    parent: legacy-dsvm-base
     run: playbooks/legacy/periodic-tripleo-centos-7-ocata-promote-consistent-to-tripleo-ci-testing/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-centos-7-ocata-promote-consistent-to-tripleo-ci-testing/post.yaml
     timeout: 1800
@@ -260,7 +260,7 @@
 
 - job:
     name: legacy-periodic-tripleo-centos-7-pike-containers-build
-    parent: legacy-base
+    parent: legacy-dsvm-base
     run: playbooks/legacy/periodic-tripleo-centos-7-pike-containers-build/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-centos-7-pike-containers-build/post.yaml
     timeout: 10800
@@ -272,7 +272,7 @@
 
 - job:
     name: legacy-periodic-tripleo-centos-7-pike-promote-consistent-to-tripleo-ci-testing
-    parent: legacy-base
+    parent: legacy-dsvm-base
     run: playbooks/legacy/periodic-tripleo-centos-7-pike-promote-consistent-to-tripleo-ci-testing/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-centos-7-pike-promote-consistent-to-tripleo-ci-testing/post.yaml
     timeout: 1800
@@ -282,7 +282,7 @@
 
 - job:
     name: legacy-periodic-tripleo-centos-7-queens-containers-build
-    parent: legacy-base
+    parent: legacy-dsvm-base
     run: playbooks/legacy/periodic-tripleo-centos-7-queens-containers-build/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-centos-7-queens-containers-build/post.yaml
     timeout: 10800
@@ -294,7 +294,7 @@
 
 - job:
     name: legacy-periodic-tripleo-centos-7-queens-promote-consistent-to-tripleo-ci-testing
-    parent: legacy-base
+    parent: legacy-dsvm-base
     run: playbooks/legacy/periodic-tripleo-centos-7-queens-promote-consistent-to-tripleo-ci-testing/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-centos-7-queens-promote-consistent-to-tripleo-ci-testing/post.yaml
     timeout: 1800
@@ -775,7 +775,7 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-singlenode-featureset027-master
-    parent: legacy-base
+    parent: legacy-dsvm-base
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-singlenode-featureset027-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-singlenode-featureset027-master/post.yaml
     timeout: 10800
@@ -971,7 +971,7 @@
 
 - job:
     name: legacy-tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master
-    parent: legacy-base
+    parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master/post.yaml
     timeout: 10800
@@ -998,7 +998,7 @@
 
 - job:
     name: legacy-tripleo-ci-centos-7-container-to-container-upgrades-master
-    parent: legacy-base
+    parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-master/post.yaml
     timeout: 10800
@@ -1026,7 +1026,7 @@
 
 - job:
     name: legacy-tripleo-ci-centos-7-container-to-container-upgrades-queens
-    parent: legacy-base
+    parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-queens/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-queens/post.yaml
     timeout: 10800
