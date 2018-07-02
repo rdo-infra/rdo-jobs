@@ -1,0 +1,11 @@
+- hosts: all
+  task:
+    - name: Install packages to run tox
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - python27
+        - python35
+        - python2-pip
+        - python3-pip
