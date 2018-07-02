@@ -70,8 +70,6 @@
           clonemap:
             - name: 'rdo-infra/rdo-infra-playbooks'
               dest: 'rdo-infra-playbooks'
-            - name: 'rdo-infra/ansible-role-rdo-(.*)'
-              dest: 'rdo-infra-playbooks/roles/rdo-infra/\1'
             - name: 'centos-opstools/opstools-ansible'
               dest: 'rdo-infra-playbooks/roles/opstools-ansible'
           EOF
@@ -80,8 +78,6 @@
           /usr/zuul-env/bin/zuul-cloner -m $CLONEMAP \
             https://review.rdoproject.org/r \
             rdo-infra/rdo-infra-playbooks \
-            rdo-infra/ansible-role-rdo-base \
-            rdo-infra/ansible-role-rdo-bot \
             centos-opstools/opstools-ansible
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
