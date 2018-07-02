@@ -153,11 +153,13 @@
             fi
             ansible-playbook -i $ANSIBLE_HOSTS playbooks/base.yml \
               -e "rdobot_nickname=not_rdobot" \
-              -e "sensu_rabbitmq_server=localhost"
+              -e "sensu_rabbitmq_server=localhost" \
+              -e "deploy_telegraf=true"
             echo "Re-running for idempotency"
             ansible-playbook -i $ANSIBLE_HOSTS playbooks/base.yml \
               -e "rdobot_nickname=not_rdobot" \
-              -e "sensu_rabbitmq_server=localhost"
+              -e "sensu_rabbitmq_server=localhost" \
+              -e "deploy_telegraf=true"
           popd
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
