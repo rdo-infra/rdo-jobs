@@ -74,6 +74,21 @@
       - zuul: openstack-infra/zuul-jobs
     nodeset: upstream-centos-7-2-node
 
+# NOTE(pabelanger): We parent to legacy-tripleo-ci-periodic-base here because we
+# need dlrnapi secret, this is exactly the same as above.
+- job:
+    name: legacy-tripleo-ci-periodic-multinode
+    parent: legacy-tripleo-ci-periodic-base
+    description: |
+      Base job for multinode devstack jobs.
+
+      Will setup firewall rules on all the nodes allowing them to talk to
+      each other.
+    pre-run: playbooks/legacy/multinode-networking/pre.yaml
+    roles:
+      - zuul: openstack-infra/zuul-jobs
+    nodeset: upstream-centos-7-2-node
+
 - job:
     name: legacy-DLRN-rpmbuild-fedora
     parent: legacy-base

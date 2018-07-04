@@ -227,6 +227,8 @@
     run: playbooks/legacy/periodic-tripleo-centos-7-master-containers-build/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-centos-7-master-containers-build/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-singlenode-featureset023
     required-projects:
       - openstack-infra/devstack-gate
       - openstack/tripleo-quickstart
@@ -259,6 +261,8 @@
     run: playbooks/legacy/periodic-tripleo-centos-7-pike-containers-build/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-centos-7-pike-containers-build/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-singlenode-featureset023
     required-projects:
       - openstack-infra/devstack-gate
       - openstack/tripleo-quickstart
@@ -281,6 +285,8 @@
     run: playbooks/legacy/periodic-tripleo-centos-7-queens-containers-build/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-centos-7-queens-containers-build/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-singlenode-featureset023
     required-projects:
       - openstack-infra/devstack-gate
       - openstack/tripleo-quickstart
@@ -299,10 +305,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-master
-    parent: legacy-dsvm-base-multinode
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset010
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -312,10 +320,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-pike
-    parent: legacy-dsvm-base-multinode
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-pike/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-pike/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset010
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -325,10 +335,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-queens
-    parent: legacy-dsvm-base-multinode
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-queens/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-queens/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset010
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -338,10 +350,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-master
-    parent: legacy-dsvm-base-multinode
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset016
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -351,10 +365,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-pike
-    parent: legacy-dsvm-base-multinode
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-pike/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-pike/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset016
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -364,10 +380,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-queens
-    parent: legacy-dsvm-base-multinode
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-queens/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-queens/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset016
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -377,10 +395,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-master
-    parent: legacy-dsvm-base-multinode
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset017
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -390,10 +410,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-pike
-    parent: legacy-dsvm-base-multinode
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-pike/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-pike/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset017
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -403,10 +425,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-queens
-    parent: legacy-dsvm-base-multinode
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-queens/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-queens/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset017
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -416,10 +440,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-master
-    parent: legacy-dsvm-base-multinode
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset018
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -429,10 +455,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-pike
-    parent: legacy-dsvm-base-multinode
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-pike/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-pike/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset018
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -442,10 +470,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-queens
-    parent: legacy-dsvm-base-multinode
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-queens/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-queens/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset018
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -455,10 +485,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-master
-    parent: legacy-dsvm-base-multinode
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset019
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -468,10 +500,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-pike
-    parent: legacy-dsvm-base-multinode
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-pike/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-pike/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset019
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -481,10 +515,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-queens
-    parent: legacy-dsvm-base-multinode
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-queens/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-queens/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset019
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -494,10 +530,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-master
-    parent: legacy-dsvm-base-multinode
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset030
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -507,10 +545,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-queens
-    parent: legacy-dsvm-base-multinode
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-queens/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-queens/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset030
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -520,10 +560,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master
-    parent: legacy-dsvm-base-multinode
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset037
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -533,10 +575,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-queens
-    parent: legacy-dsvm-base-multinode
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-queens/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-queens/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset037
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -546,10 +590,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload
-    parent: legacy-dsvm-base
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-ovb-1ctlr_1comp-featureset002
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -560,10 +606,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-ocata-upload
-    parent: legacy-dsvm-base
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-ocata-upload/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-ocata-upload/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-ovb-1ctlr_1comp-featureset002
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -574,10 +622,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-pike-upload
-    parent: legacy-dsvm-base
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-pike-upload/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-pike-upload/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-ovb-1ctlr_1comp-featureset002
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -588,10 +638,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload
-    parent: legacy-dsvm-base
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-ovb-1ctlr_1comp-featureset002
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -602,10 +654,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master
-    parent: legacy-dsvm-base
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-ovb-1ctlr_1comp-featureset020
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -616,10 +670,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-ocata
-    parent: legacy-dsvm-base
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-ocata/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-ocata/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-ovb-1ctlr_1comp-featureset020
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -630,10 +686,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-pike
-    parent: legacy-dsvm-base
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-pike/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-pike/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-ovb-1ctlr_1comp-featureset020
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -644,10 +702,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-queens
-    parent: legacy-dsvm-base
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-queens/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-queens/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-ovb-1ctlr_1comp-featureset020
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -658,10 +718,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike
-    parent: legacy-dsvm-base
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-ovb-1ctlr_1comp-featureset022
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -672,10 +734,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike
-    parent: legacy-dsvm-base
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-ovb-1ctlr_1comp_1ceph-featureset024
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -686,10 +750,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
-    parent: legacy-dsvm-base
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-ovb-3ctlr_1comp-featureset001
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -700,10 +766,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata
-    parent: legacy-dsvm-base
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-ovb-3ctlr_1comp-featureset001
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -714,10 +782,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike
-    parent: legacy-dsvm-base
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-ovb-3ctlr_1comp-featureset001
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -728,10 +798,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens
-    parent: legacy-dsvm-base
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-ovb-3ctlr_1comp-featureset001
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -742,10 +814,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master
-    parent: legacy-dsvm-base
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-ovb-3ctlr_1comp-featureset035
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -756,10 +830,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens
-    parent: legacy-dsvm-base
+    parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-ovb-3ctlr_1comp-featureset035
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -770,10 +846,12 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-singlenode-featureset027-master
-    parent: legacy-dsvm-base
+    parent: legacy-tripleo-ci-periodic-base
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-singlenode-featureset027-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-singlenode-featureset027-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: periodic-singlenode-featureset027
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -892,6 +970,8 @@
     run: playbooks/legacy/rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016/run.yaml
     post-run: playbooks/legacy/rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: gate-multinode-1ctlr-featureset016
     required-projects:
       - openstack-infra/devstack-gate
       - openstack/tripleo-quickstart
@@ -905,6 +985,8 @@
     run: playbooks/legacy/rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005/run.yaml
     post-run: playbooks/legacy/rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: gate-multinode-1ctlr-featureset005
     required-projects:
       - openstack-infra/devstack-gate
       - openstack/tripleo-quickstart
@@ -918,6 +1000,8 @@
     run: playbooks/legacy/rdoinfo-tripleo-ocata-testing-centos-7-multinode-1ctlr-featureset005/run.yaml
     post-run: playbooks/legacy/rdoinfo-tripleo-ocata-testing-centos-7-multinode-1ctlr-featureset005/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: gate-multinode-1ctlr-featureset005
     required-projects:
       - openstack-infra/devstack-gate
       - openstack/tripleo-quickstart
@@ -931,6 +1015,8 @@
     run: playbooks/legacy/rdoinfo-tripleo-pike-release-centos-7-multinode-1ctlr-featureset006/run.yaml
     post-run: playbooks/legacy/rdoinfo-tripleo-pike-release-centos-7-multinode-1ctlr-featureset006/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: gate-multinode-1ctlr-featureset006
     required-projects:
       - openstack-infra/devstack-gate
       - openstack/tripleo-quickstart
@@ -944,6 +1030,8 @@
     run: playbooks/legacy/rdoinfo-tripleo-pike-testing-centos-7-multinode-1ctlr-featureset006/run.yaml
     post-run: playbooks/legacy/rdoinfo-tripleo-pike-testing-centos-7-multinode-1ctlr-featureset006/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: gate-multinode-1ctlr-featureset006
     required-projects:
       - openstack-infra/devstack-gate
       - openstack/tripleo-quickstart
@@ -970,6 +1058,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: multinode-1ctlr-featureset051
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -997,6 +1087,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: multinode-1ctlr-featureset040
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -1025,6 +1117,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-queens/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-queens/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: multinode-1ctlr-featureset040
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -1053,6 +1147,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-containers-multinode-upgrades-pike/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-containers-multinode-upgrades-pike/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: multinode-1ctlr-featureset011
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -1081,6 +1177,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: multinode-1ctlr-featureset011
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -1109,6 +1207,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset016-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset016-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: multinode-1ctlr-featureset016
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -1122,6 +1222,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset017-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset017-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: multinode-1ctlr-featureset017
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -1135,6 +1237,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset018-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset018-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: multinode-1ctlr-featureset018
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -1148,6 +1252,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset019-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset019-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: multinode-1ctlr-featureset019
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -1161,6 +1267,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: multinode-1ctlr-featureset036
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -1189,6 +1297,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: multinode-1ctlr-featureset037
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -1216,6 +1326,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: ovb-1ctlr_1comp-featureset020
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -1244,6 +1356,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: ovb-1ctlr_1comp-featureset022
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -1272,6 +1386,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: ovb-1ctlr_1comp_1ceph-featureset024
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -1301,6 +1417,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: ovb-1ctlr_1comp_1ceph-featureset024
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -1329,6 +1447,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: ovb-3ctlr_1comp-featureset001
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -1343,6 +1463,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: ovb-3ctlr_1comp-featureset001
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -1357,6 +1479,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata-branch/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata-branch/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: ovb-3ctlr_1comp-featureset001
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -1371,6 +1495,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: ovb-3ctlr_1comp-featureset001
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -1385,6 +1511,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike-branch/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike-branch/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: ovb-3ctlr_1comp-featureset001
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -1399,6 +1527,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: ovb-3ctlr_1comp-featureset001
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -1413,6 +1543,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens-branch/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens-branch/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: ovb-3ctlr_1comp-featureset001
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -1427,6 +1559,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: ovb-3ctlr_1comp-featureset021
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -1455,6 +1589,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-ocata/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-ocata/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: ovb-3ctlr_1comp-featureset021
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -1483,6 +1619,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-pike/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-pike/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: ovb-3ctlr_1comp-featureset021
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -1511,6 +1649,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-queens/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-queens/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: ovb-3ctlr_1comp-featureset021
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -1539,6 +1679,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: ovb-3ctlr_1comp-featureset035
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -1633,6 +1775,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: ovb-3ctlr_1comp-featureset035
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -1727,6 +1871,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: ovb-3ctlr_1comp-featureset042
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -1741,6 +1887,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master-tht/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master-tht/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: ovb-3ctlr_1comp-featureset042
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -1755,6 +1903,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: ovb-3ctlr_1comp-featureset042
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -1769,6 +1919,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens-tht/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens-tht/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: ovb-3ctlr_1comp-featureset042
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -1783,6 +1935,8 @@
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master/post.yaml
     timeout: 10800
+    vars:
+      toci_jobtype: ovb-3ctlr_1comp_1supp-featureset039
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
