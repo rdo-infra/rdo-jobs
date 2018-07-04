@@ -250,15 +250,22 @@
           for fname in $(ls *.rpm); do
               name=$(rpm -qp --qf '%{NAME}\n' $fname)
 
-              eval $(sqlite3 -line $db "select location_href as pkgfile from packages where name = '$name' and arch != 'src';"|sed 's/ //g')
+              eval $(sqlite3 -line $db "select rpm_sourcerpm as srpm from packages where name = '$name' and arch != 'src';"|sed 's/ //g')
+              sqlite3 -line $db "select location_href as pkgfile from packages where rpm_sourcerpm = '$srpm' and arch != 'src';"|sed 's/ //g' >> old_packages_list
+          done
 
-              # if there is no previous package, it means that is new
-              # packages so just run rpmlint on the packages and exit
-              if [ -z "$pkgfile" ]; then
-                  rpmlint *.rpm | tee rpmlint.new.txt
-                  exit 0
-              fi
+          cat old_packages_list |sort -u|grep -v ^$ > old_packages
 
+          # if there is no previous package, it means that is new
+          # packages so just run rpmlint on the packages and exit
+          if [ $(wc -l old_packages) -eq 0 ];then
+              rpmlint *.rpm | tee rpmlint.new.txt
+              exit 0
+          fi
+
+          cat old_packages|while read line
+          do
+              eval $line
               curl -o old/$pkgfile $baseurl/$pkgfile
           done
 
