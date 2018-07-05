@@ -227,6 +227,7 @@
     run: playbooks/legacy/periodic-tripleo-centos-7-master-containers-build/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-centos-7-master-containers-build/post.yaml
     timeout: 10800
+    toci_jobtype: periodic-singlenode-featureset023
     required-projects:
       - openstack-infra/devstack-gate
       - openstack/tripleo-quickstart
