@@ -231,3 +231,9 @@
     parent: puppet-openstack-integration-5-scenario-py3
     nodeset: upstream-centos-7
     branches: ^master
+
+- job:
+    name: octavia-build-amphora
+    parent: publish-rdoproject-artifacts
+    run: playbooks/octavia-build-amphora/run.yaml
+    post-run: playbooks/octavia-build-amphora/post.yaml
