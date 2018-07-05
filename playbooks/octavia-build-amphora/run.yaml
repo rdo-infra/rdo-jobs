@@ -1,0 +1,31 @@
+- hosts: all
+  name: Job to periodically build an Octavia amphora
+  tasks:
+    - shell:
+        cmd: |
+          set -e -x
+          if [ "{{ zuul.branch }}" == master ]; then
+            export RELEASE=master
+          else
+            export RELEASE=$(echo "{{ zuul.branch }}" | cut -d/ -f 2)
+          fi
+          export IMAGE_NAME=CentOS-7-x86_64-GenericCloud-1801-01.qcow2
+          sudo yum -y install libguestfs-tools policycoreutils-python wget
+          sudo wget -O /etc/yum.repos.d/delorean.repo https://trunk.rdoproject.org/centos7-${RELEASE}/current/delorean.repo
+          sudo wget -O /etc/yum.repos.d/delorean-deps.repo https://trunk.rdoproject.org/centos7-${RELEASE}/delorean-deps.repo
+          sudo yum -y install openstack-octavia-diskimage-create
+          wget https://cloud.centos.org/centos/7/images/$IMAGE_NAME
+          sudo systemctl start libvirtd
+          sudo LIBGUESTFS_BACKEND_SETTINGS=force_tcg LIBGUESTFS_BACKEND=direct virt-customize -a $IMAGE_NAME --selinux-relabel --run-command 'yum-config-manager --add-repo https://trunk.rdoproject.org/centos7-${RELEASE}/delorean-deps.repo'
+          sudo LIBGUESTFS_BACKEND_SETTINGS=force_tcg LIBGUESTFS_BACKEND=direct virt-customize -a $IMAGE_NAME --selinux-relabel --run-command 'yum-config-manager --add-repo https://trunk.rdoproject.org/centos7-${RELEASE}/current-passed-ci/delorean.repo'
+          sudo DIB_LOCAL_IMAGE=$PWD/$IMAGE_NAME /usr/bin/octavia-diskimage-create.sh -s 3 -p -i centos -o amphora-x64-haproxy-centos.qcow2
+          # Create output directory
+          mkdir -p images/octavia/$RELEASE
+          if [ -f amphora-x64-haproxy-centos.qcow2 ]; then
+              curdate=$(date +%Y%m%d-%H%M%S)
+              mv amphora-x64-haproxy-centos.qcow2 images/octavia/${RELEASE}/amphora-x64-haproxy-centos-$curdate.qcow2
+              pushd images/octavia/${RELEASE}
+              ln -s amphora-x64-haproxy-centos-$curdate.qcow2 amphora-x64-haproxy-centos.qcow2
+              popd
+          fi
+        chdir: '{{ zuul.project.src_dir }}'

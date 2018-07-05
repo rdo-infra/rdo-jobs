@@ -235,16 +235,6 @@
     nodeset: rdo-fedora-28
 
 - job:
-    name: legacy-octavia-build-amphora-master
-    parent: legacy-base
-    run: playbooks/legacy/octavia-build-amphora-master/run.yaml
-
-- job:
-    name: legacy-octavia-build-amphora-queens
-    parent: legacy-base
-    run: playbooks/legacy/octavia-build-amphora-queens/run.yaml
-
-- job:
     name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-master
     parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-master/run.yaml
