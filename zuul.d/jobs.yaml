@@ -200,3 +200,53 @@
     parent: puppet-openstack-integration-5-scenario-py3
     nodeset: upstream-centos-7
     branches: ^master
+
+- job:
+    name: test-secrets
+    parent: run-test-command
+    - secret:
+        name: fake
+        data:
+          openrc: !encrypted/pkcs1-oaep
+            - Y3XckGEqKrx9AgBPkcrYGEIPrre+5+JUZndEWspPiqUwgbZMRnW2wvVzAVnC4wcJVw7N+
+              mmPjLMJciB2SnuMgFJLzRd69Xyt3G9Ko+DGCIBQsT2aSRlrerxJoJVEgwunv0Bho/Xsel
+              4vqYknnSH2gs9GuW82m8VyEV7cbJra8PeOSKs0dnK5IHEFTLJ6bTAm4oABN4tvktYIief
+              uCKid2UIlZ4Wmc9C9pfclMIAm67kN2eFWmj8BdAHisAerP0f+bJ59UgzRtsc0SA2TKz2I
+              /deYlbTis0lUYoXI3+wkGRMJUTynTqoFFAiU3FWMtN8FJcQXUM/o1GIRgtUaUR09+mVg8
+              IKb/1vLFtxPrgvv1aOTbCvcjc7XeMmDOqxMQTqx0rkICKVKZJoDwZS64iY7Lf/rBn49Yr
+              xGoJ5wwYI73/YMYO7tnZPXBQDQFIqc9ZZHv59kUGMQ8T9JIRj9gb8fnA9L95tuJqK0qwU
+              AxeSsW2881GCHigjnSlOPgM2zYx6HJX0+jO7S+/Gzr+SOJ9c+3EyKVSO/qPXZTXTxA8Dp
+              blhv05c2Bj3dKYfzcM3bwXpwZ3rWoTBefXxRLcQ8w6gD/KUgr6H4OwzSYoIKWEXAakQH2
+              gbxeXb4g0grzIUMufKd2Nu28wq1EviX8Ys/SVQ5utA6PCzvuReDO7vjTnndFJI=
+            - VGX3Bc16ub7WusDj8Y6tJiwrB1RpKXg8VoW8NwQ0Qi3t+eerWjZkHuSqPFxfW9020ctoY
+              pNtQvLyZDeeQaFvVui5dd4X1fpYc0ZdUMQFJ03WmmETk7eJuzTir1JxjvleasE/PA4QN3
+              myMNDL+9T3GDRunQjHyzWzrfKujwUYm4FONOFeZ4Fz6I3yP0pZXDDanp1NqX6X2aCLlf2
+              3GRFlTiny+HxPJbT3neeolF2mkEXodpPuYUryX1XXZYJJiAuUyd89qBhPUcg9mzFqTA2c
+              w91ScGEwiOeQGV3/PMPhonC6zWTQWZoNan5Fnlfw+7cVRVGWlxW3iGkQyj/qYIWRWBTuK
+              L+qyppnytrfKftBOjs9XL+DTo35qfCUCWBQcVNjdak99Cc7JuDTSVsamFmt7UWVS/RqPN
+              IPxcCLRGiIBZvOpDeX1mNEG8aEEF33we/1rykRRxJ4SWrvZZfjDjW4WfVAzxHA+sbjYgK
+              QJkHX89F+DE7nkVIiWUBXl/4kDcmDrqHpU6gifxUsQ0GgieWYbo4m2GZfiXxsXbnzPSVW
+              rijGEquATjGYn1ibA+NYl1Dx/ze8I3/cvbY6H5vCCHj/5U4DjdXtk7aMMcDOxcevLWbzu
+              UMRPrlaRF+FPwnFFuov/1LIkWY78Muariz9V1bRL5zA6vhwinVL9b+QAk5TJJw=
+            - go5ceyiKjGg8H2tnoqJ3TwDKtBuCN9o4AA1nNnxJNGp1dH8VxB+WtObeOTVJhDG0/Iw3C
+              cRqJTruje5NRtahJEoOUf7gj94+g1WAhAEm9bmZ7wy8ziPs25wsJ2/3dPp/P6MWCswzeE
+              ONIruS3iF4UXagBtx/QWwTG8ZIUyQngeAEz4sFbmdWcZKYsJV5m1opi+rMs6izibUWxzF
+              g03n3sgF97rqFEPsIr7FKXHAoLX6O8IuBXgpDKpFktbi3xoiQSN6qKqkRz1ISfFnEPyuD
+              I7KSwFV8yyAF8s96wyzHq/s072+IZrys660IRYWa7s37vQEHKtPYAMRW0hhRGsyvX9NNN
+              7lUxVWfj3GbZKyvOuypY/6ev/G+nZktGxaQ6N2aSbGisHZs1If0obZgacwH9/Aq2LBuP3
+              3L54/pjbTygVlqh64nXgfKptZYNriJVuTupLoLXxcFi+0OUFZSOmliqrsmCa98xuje3Da
+              yewYDDcaIs72lhXjuMKPZq9Upqwm85wDpU6QjeYBwtuKZKaJbJuU07ZEN+Vfq6N0q7vH5
+              1iWhLQcdSziarUPry7N9pgT+ja1AfWreuUHNZGQZgfYjIf2BNjTny1wrTkBGtt8gGzKPB
+              AURYVe5toWD7k4HZryh7xekCHyogmm5OZJd3erbBhZBAKmuUaGd949YUe111Ts=
+            - f+t3uNw9KXwh2x2qK7u2mXOoGsvEhZIXq5kqseZt/jE8iMBl8yRgIciIRfKvPz5zHNF45
+              Z9/1FbH0SaxUhEHiszL+i+iDhdT/T2mWGsDiZiq8v/gw3WV9a9yYZBl37t1QFvk/3cM0e
+              s4QOoW7IbdljtrJr1GidArDN7Sf14KBHxen4W7WuUh41fLRMcdXTpGvno+GvReeQa1pq3
+              LQF5Lo7rjM/ILsbTrLQdrhTESKB3LrsMWSLmdG5P+IOykcYv3uRijch2npi9tkCO8v2Ri
+              6x9r9mAH8b0lkuz7uqn8tfE9DzicEZ0HQmdJzvQNCI/QpeLGtZLL5OE6Wb79cS1FnyZv7
+              O4TDDEQoTYiKTPsH597s0QrXPjbrfpBnK/VrHE1xZGuss/jtGfso3bx0TYhdi3WhA5rnj
+              6cbbPy34Ew1Dxw70LybVgmEz2rjDF5gM8JAOODhzh2ZIjo8CgareiVY+DzDSrREkKUCSB
+              hT/ZB5xKRSPQiM17iD1CNvQTKlnVH4ySCfctOx0eqRL6+VOyhhQFoH85dVb36CxxPAXHs
+              J5DkA4UJXghc2ska3Gg+MGReim9LqzDD9FxbJ3hGnyHxYZ95y2Jo0Z4+uGPCukwEmRrqZ
+              TSYCyokY9QGcAww5VOLVWDMMHceUsZ9vMYoCcw+aiDXzZxK2GIFa6k9boLPp2I=
+    vars:
+      test_command: "echo {{ openrc }}"
