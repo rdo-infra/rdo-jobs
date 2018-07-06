@@ -200,3 +200,9 @@
     parent: puppet-openstack-integration-5-scenario-py3
     nodeset: upstream-centos-7
     branches: ^master
+
+- job:
+    name: test-secrets
+    parent: run-test-command
+    vars:
+      test_command: "ls -la"
