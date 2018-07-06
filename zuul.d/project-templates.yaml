@@ -44,3 +44,14 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: ^(?!rpm-master).*$
+
+- project-template:
+    name: puppet-openstack-integration-python3-jobs
+    openstack-check:
+      jobs:
+        - puppet-openstack-integration-5-scenario-py3-tempest-centos-7:
+            voting: false
+            branches: ^master$
+        - puppet-openstack-integration-5-scenario-py3-tempest-fedora-28:
+            voting: false
+            branches: ^master$
