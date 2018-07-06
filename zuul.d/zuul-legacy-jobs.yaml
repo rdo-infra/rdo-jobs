@@ -236,16 +236,6 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-centos-7-ocata-promote-consistent-to-tripleo-ci-testing
-    parent: legacy-dsvm-base
-    run: playbooks/legacy/periodic-tripleo-centos-7-ocata-promote-consistent-to-tripleo-ci-testing/run.yaml
-    post-run: playbooks/legacy/periodic-tripleo-centos-7-ocata-promote-consistent-to-tripleo-ci-testing/post.yaml
-    timeout: 1800
-    required-projects:
-      - openstack-infra/devstack-gate
-      - openstack-infra/tripleo-ci
-
-- job:
     name: legacy-periodic-tripleo-centos-7-pike-containers-build
     parent: legacy-dsvm-base
     run: playbooks/legacy/periodic-tripleo-centos-7-pike-containers-build/run.yaml
@@ -258,16 +248,6 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
-
-- job:
-    name: legacy-periodic-tripleo-centos-7-pike-promote-consistent-to-tripleo-ci-testing
-    parent: legacy-dsvm-base
-    run: playbooks/legacy/periodic-tripleo-centos-7-pike-promote-consistent-to-tripleo-ci-testing/run.yaml
-    post-run: playbooks/legacy/periodic-tripleo-centos-7-pike-promote-consistent-to-tripleo-ci-testing/post.yaml
-    timeout: 1800
-    required-projects:
-      - openstack-infra/devstack-gate
-      - openstack-infra/tripleo-ci
 
 - job:
     name: legacy-periodic-tripleo-centos-7-queens-containers-build
