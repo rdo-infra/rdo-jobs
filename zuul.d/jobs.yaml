@@ -18,7 +18,7 @@
       may be used by jobs which have been automatically converted as
       part of the migration to Zuul v3.
     pre-run: playbooks/legacy/pre.yaml
-    nodeset: upstream-centos-7
+    nodeset: legacy-upstream-centos-7
     required-projects:
       - git.openstack.org/openstack-dev/devstack
       - git.openstack.org/openstack-infra/devstack-gate

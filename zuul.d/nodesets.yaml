@@ -5,6 +5,12 @@
         label: dib-centos-7
 
 - nodeset:
+    name: legacy-upstream-centos-7
+    nodes:
+      - name: primary
+        label: upstream-centos-7
+
+- nodeset:
     name: rdo-centos-7
     nodes:
       - name: rdo-centos-7
