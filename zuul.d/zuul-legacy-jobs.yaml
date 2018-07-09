@@ -222,48 +222,6 @@
     run: playbooks/legacy/octavia-build-amphora-queens/run.yaml
 
 - job:
-    name: legacy-periodic-tripleo-centos-7-master-containers-build
-    parent: legacy-dsvm-base
-    run: playbooks/legacy/periodic-tripleo-centos-7-master-containers-build/run.yaml
-    post-run: playbooks/legacy/periodic-tripleo-centos-7-master-containers-build/post.yaml
-    timeout: 10800
-    vars:
-      toci_jobtype: periodic-singlenode-featureset023
-    required-projects:
-      - openstack-infra/devstack-gate
-      - openstack/tripleo-quickstart
-      - openstack/tripleo-quickstart-extras
-      - openstack/tripleo-upgrade
-
-- job:
-    name: legacy-periodic-tripleo-centos-7-pike-containers-build
-    parent: legacy-dsvm-base
-    run: playbooks/legacy/periodic-tripleo-centos-7-pike-containers-build/run.yaml
-    post-run: playbooks/legacy/periodic-tripleo-centos-7-pike-containers-build/post.yaml
-    timeout: 10800
-    vars:
-      toci_jobtype: periodic-singlenode-featureset023
-    required-projects:
-      - openstack-infra/devstack-gate
-      - openstack/tripleo-quickstart
-      - openstack/tripleo-quickstart-extras
-      - openstack/tripleo-upgrade
-
-- job:
-    name: legacy-periodic-tripleo-centos-7-queens-containers-build
-    parent: legacy-dsvm-base
-    run: playbooks/legacy/periodic-tripleo-centos-7-queens-containers-build/run.yaml
-    post-run: playbooks/legacy/periodic-tripleo-centos-7-queens-containers-build/post.yaml
-    timeout: 10800
-    vars:
-      toci_jobtype: periodic-singlenode-featureset023
-    required-projects:
-      - openstack-infra/devstack-gate
-      - openstack/tripleo-quickstart
-      - openstack/tripleo-quickstart-extras
-      - openstack/tripleo-upgrade
-
-- job:
     name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-master
     parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-master/run.yaml
