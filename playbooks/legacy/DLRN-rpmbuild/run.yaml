@@ -79,6 +79,7 @@
           # NOTE(pabelanger): We need to export zuul-env path for DLRN test
           # scripts, this job is now zuulv3 so DLRN should stop using
           # zuul-cloner.
+          export LANG=en_US.UTF-8
           export PATH=$PATH:/usr/zuul-env/bin
           pushd DLRN
           if [[ "$ZUUL_PIPELINE" =~ "openstack-" ]]; then
