@@ -222,8 +222,8 @@
     run: playbooks/legacy/octavia-build-amphora-queens/run.yaml
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-master
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-master
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-master/post.yaml
     timeout: 10800
@@ -237,8 +237,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-pike
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-pike
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-pike/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-pike/post.yaml
     timeout: 10800
@@ -252,8 +252,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-queens
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-queens
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-queens/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-queens/post.yaml
     timeout: 10800
@@ -267,8 +267,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-master
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-master
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-master/post.yaml
     timeout: 10800
@@ -282,8 +282,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-pike
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-pike
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-pike/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-pike/post.yaml
     timeout: 10800
@@ -297,8 +297,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-queens
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-queens
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-queens/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-queens/post.yaml
     timeout: 10800
@@ -312,8 +312,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-master
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-master
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-master/post.yaml
     timeout: 10800
@@ -327,8 +327,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-pike
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-pike
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-pike/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-pike/post.yaml
     timeout: 10800
@@ -342,8 +342,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-queens
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-queens
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-queens/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-queens/post.yaml
     timeout: 10800
@@ -357,8 +357,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-master
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-master
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-master/post.yaml
     timeout: 10800
@@ -372,8 +372,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-pike
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-pike
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-pike/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-pike/post.yaml
     timeout: 10800
@@ -387,8 +387,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-queens
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-queens
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-queens/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-queens/post.yaml
     timeout: 10800
@@ -402,8 +402,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-master
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-master
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-master/post.yaml
     timeout: 10800
@@ -417,8 +417,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-pike
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-pike
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-pike/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-pike/post.yaml
     timeout: 10800
@@ -432,8 +432,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-queens
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-queens
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-queens/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-queens/post.yaml
     timeout: 10800
@@ -447,8 +447,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-master
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-master
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-master/post.yaml
     timeout: 10800
@@ -462,8 +462,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-queens
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-queens
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-queens/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-queens/post.yaml
     timeout: 10800
@@ -477,8 +477,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master/post.yaml
     timeout: 10800
@@ -492,8 +492,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-queens
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-queens
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-queens/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-queens/post.yaml
     timeout: 10800
@@ -507,8 +507,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload
-    parent: legacy-tripleo-ci-periodic-multinode-upload
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload
+    parent: tripleo-ci-periodic-multinode-upload
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload/post.yaml
     timeout: 10800
@@ -523,8 +523,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-ocata-upload
-    parent: legacy-tripleo-ci-periodic-multinode-upload
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-ocata-upload
+    parent: tripleo-ci-periodic-multinode-upload
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-ocata-upload/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-ocata-upload/post.yaml
     timeout: 10800
@@ -539,8 +539,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-pike-upload
-    parent: legacy-tripleo-ci-periodic-multinode-upload
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-pike-upload
+    parent: tripleo-ci-periodic-multinode-upload
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-pike-upload/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-pike-upload/post.yaml
     timeout: 10800
@@ -555,8 +555,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload
-    parent: legacy-tripleo-ci-periodic-multinode-upload
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload
+    parent: tripleo-ci-periodic-multinode-upload
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload/post.yaml
     timeout: 10800
@@ -571,8 +571,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master/post.yaml
     timeout: 18000
@@ -587,8 +587,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-ocata
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-ocata
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-ocata/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-ocata/post.yaml
     timeout: 18000
@@ -603,8 +603,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-pike
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-pike
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-pike/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-pike/post.yaml
     timeout: 18000
@@ -619,8 +619,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-queens
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-queens
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-queens/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-queens/post.yaml
     timeout: 18000
@@ -635,8 +635,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike/post.yaml
     timeout: 10800
@@ -651,8 +651,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike/post.yaml
     timeout: 10800
@@ -667,8 +667,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master/post.yaml
     timeout: 10800
@@ -683,8 +683,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata/post.yaml
     timeout: 10800
@@ -699,8 +699,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike/post.yaml
     timeout: 10800
@@ -715,8 +715,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens/post.yaml
     timeout: 10800
@@ -731,8 +731,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master/post.yaml
     timeout: 10800
@@ -747,8 +747,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens
-    parent: legacy-tripleo-ci-periodic-multinode
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens
+    parent: tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens/post.yaml
     timeout: 10800
@@ -763,8 +763,8 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-singlenode-featureset027-master
-    parent: legacy-tripleo-ci-periodic-base
+    name: periodic-tripleo-ci-centos-7-singlenode-featureset027-master
+    parent: tripleo-ci-periodic-base
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-singlenode-featureset027-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-singlenode-featureset027-master/post.yaml
     timeout: 10800
@@ -971,7 +971,7 @@
     run: playbooks/legacy/tox-validate/run.yaml
 
 - job:
-    name: legacy-tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master
+    name: tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master/post.yaml
@@ -1000,7 +1000,7 @@
       - tox.ini
 
 - job:
-    name: legacy-tripleo-ci-centos-7-container-to-container-upgrades-master
+    name: tripleo-ci-centos-7-container-to-container-upgrades-master
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-master/post.yaml
@@ -1030,7 +1030,7 @@
       - tox.ini
 
 - job:
-    name: legacy-tripleo-ci-centos-7-container-to-container-upgrades-queens
+    name: tripleo-ci-centos-7-container-to-container-upgrades-queens
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-queens/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-queens/post.yaml
@@ -1060,7 +1060,7 @@
       - tox.ini
 
 - job:
-    name: legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike
+    name: tripleo-ci-centos-7-containers-multinode-upgrades-pike
     parent: legacy-dsvm-base-multinode
     run: playbooks/legacy/tripleo-ci-centos-7-containers-multinode-upgrades-pike/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-containers-multinode-upgrades-pike/post.yaml
@@ -1090,7 +1090,7 @@
       - tox.ini
 
 - job:
-    name: legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch
+    name: tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch
     parent: legacy-dsvm-base-multinode
     run: playbooks/legacy/tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch/post.yaml
@@ -1120,7 +1120,7 @@
       - tox.ini
 
 - job:
-    name: legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset016-master
+    name: tripleo-ci-centos-7-multinode-1ctlr-featureset016-master
     parent: legacy-dsvm-base-multinode
     run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset016-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset016-master/post.yaml
@@ -1135,7 +1135,7 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset017-master
+    name: tripleo-ci-centos-7-multinode-1ctlr-featureset017-master
     parent: legacy-dsvm-base-multinode
     run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset017-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset017-master/post.yaml
@@ -1150,7 +1150,7 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset018-master
+    name: tripleo-ci-centos-7-multinode-1ctlr-featureset018-master
     parent: legacy-dsvm-base-multinode
     run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset018-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset018-master/post.yaml
@@ -1165,7 +1165,7 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset019-master
+    name: tripleo-ci-centos-7-multinode-1ctlr-featureset019-master
     parent: legacy-dsvm-base-multinode
     run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset019-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset019-master/post.yaml
@@ -1180,7 +1180,7 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens
+    name: tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens
     parent: legacy-dsvm-base-multinode
     run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens/post.yaml
@@ -1210,7 +1210,7 @@
       - tox.ini
 
 - job:
-    name: legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master
+    name: tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master
     parent: legacy-dsvm-base-multinode
     run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master/post.yaml
@@ -1239,7 +1239,7 @@
       - tox.ini
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master/post.yaml
@@ -1269,7 +1269,7 @@
       - tox.ini
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike/post.yaml
@@ -1299,7 +1299,7 @@
       - tox.ini
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata/post.yaml
@@ -1330,7 +1330,7 @@
       - tox.ini
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike/post.yaml
@@ -1360,7 +1360,7 @@
       - tox.ini
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master/post.yaml
@@ -1376,7 +1376,7 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata/post.yaml
@@ -1392,7 +1392,7 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata-branch
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata-branch
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata-branch/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata-branch/post.yaml
@@ -1408,7 +1408,7 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike/post.yaml
@@ -1424,7 +1424,7 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike-branch
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike-branch
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike-branch/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike-branch/post.yaml
@@ -1440,7 +1440,7 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens/post.yaml
@@ -1456,7 +1456,7 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens-branch
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens-branch
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens-branch/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens-branch/post.yaml
@@ -1472,7 +1472,7 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-master
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-master
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-master/post.yaml
@@ -1502,7 +1502,7 @@
       - tox.ini
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-ocata
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-ocata
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-ocata/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-ocata/post.yaml
@@ -1532,7 +1532,7 @@
       - tox.ini
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-pike
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-pike
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-pike/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-pike/post.yaml
@@ -1562,7 +1562,7 @@
       - tox.ini
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-queens
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-queens
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-queens/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-queens/post.yaml
@@ -1592,7 +1592,7 @@
       - tox.ini
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master/post.yaml
@@ -1688,7 +1688,7 @@
       - tox.ini
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens/post.yaml
@@ -1784,7 +1784,7 @@
       - tox.ini
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master/post.yaml
@@ -1800,7 +1800,7 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master-tht
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master-tht
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master-tht/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master-tht/post.yaml
@@ -1816,7 +1816,7 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens/post.yaml
@@ -1832,7 +1832,7 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens-tht
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens-tht
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens-tht/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens-tht/post.yaml
@@ -1848,7 +1848,7 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master/post.yaml
