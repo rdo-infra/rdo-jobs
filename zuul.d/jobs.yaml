@@ -74,11 +74,11 @@
       - zuul: openstack-infra/zuul-jobs
     nodeset: upstream-centos-7-2-node
 
-# NOTE(pabelanger): We parent to legacy-tripleo-ci-periodic-base here because we
+# NOTE(pabelanger): We parent to tripleo-ci-periodic-base here because we
 # need dlrnapi secret, this is exactly the same as above.
 - job:
-    name: legacy-tripleo-ci-periodic-multinode
-    parent: legacy-tripleo-ci-periodic-base
+    name: tripleo-ci-periodic-multinode
+    parent: tripleo-ci-periodic-base
     description: |
       Base job for multinode devstack jobs.
 
@@ -90,8 +90,8 @@
     nodeset: upstream-centos-7-2-node
 
 - job:
-    name: legacy-tripleo-ci-periodic-multinode-upload
-    parent: legacy-tripleo-ci-periodic-base-upload
+    name: tripleo-ci-periodic-multinode-upload
+    parent: tripleo-ci-periodic-base-upload
     description: |
       Base job for multinode devstack jobs.
 
