@@ -521,6 +521,8 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+    secrets:
+      - uploader_ssh_key
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-ocata-upload
@@ -537,6 +539,8 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+    secrets:
+      - uploader_ssh_key
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-pike-upload
@@ -553,6 +557,8 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+    secrets:
+      - uploader_ssh_key
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload
@@ -569,6 +575,8 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+    secrets:
+      - uploader_ssh_key
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master

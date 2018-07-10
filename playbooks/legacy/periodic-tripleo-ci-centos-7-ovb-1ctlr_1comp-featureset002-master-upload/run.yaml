@@ -135,6 +135,12 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
+    - name: Write out upload ssh key
+      copy:
+        dest: "~/.ssh/id_rsa_uploader"
+        content: "{{ uploader_ssh_key.ssh_private_key }}"
+        mode: 0600
+
     - shell:
         cmd: |
           export RELEASE=master
