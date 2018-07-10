@@ -575,7 +575,7 @@
     parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master/post.yaml
-    timeout: 10800
+    timeout: 18000
     vars:
       toci_jobtype: periodic-ovb-1ctlr_1comp-featureset020
     nodeset: tripleo-ovb-centos-7
@@ -591,7 +591,7 @@
     parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-ocata/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-ocata/post.yaml
-    timeout: 10800
+    timeout: 18000
     vars:
       toci_jobtype: periodic-ovb-1ctlr_1comp-featureset020
     nodeset: tripleo-ovb-centos-7
@@ -607,7 +607,7 @@
     parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-pike/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-pike/post.yaml
-    timeout: 10800
+    timeout: 18000
     vars:
       toci_jobtype: periodic-ovb-1ctlr_1comp-featureset020
     nodeset: tripleo-ovb-centos-7
@@ -623,7 +623,7 @@
     parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-queens/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-queens/post.yaml
-    timeout: 10800
+    timeout: 18000
     vars:
       toci_jobtype: periodic-ovb-1ctlr_1comp-featureset020
     nodeset: tripleo-ovb-centos-7
@@ -1243,7 +1243,7 @@
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master/post.yaml
-    timeout: 10800
+    timeout: 18000
     vars:
       toci_jobtype: ovb-1ctlr_1comp-featureset020
     nodeset: tripleo-ovb-centos-7
