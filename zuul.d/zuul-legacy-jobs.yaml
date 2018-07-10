@@ -508,7 +508,7 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload
-    parent: legacy-tripleo-ci-periodic-multinode
+    parent: legacy-tripleo-ci-periodic-multinode-upload
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload/post.yaml
     timeout: 10800
@@ -524,7 +524,7 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-ocata-upload
-    parent: legacy-tripleo-ci-periodic-multinode
+    parent: legacy-tripleo-ci-periodic-multinode-upload
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-ocata-upload/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-ocata-upload/post.yaml
     timeout: 10800
@@ -540,7 +540,7 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-pike-upload
-    parent: legacy-tripleo-ci-periodic-multinode
+    parent: legacy-tripleo-ci-periodic-multinode-upload
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-pike-upload/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-pike-upload/post.yaml
     timeout: 10800
@@ -556,7 +556,7 @@
 
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload
-    parent: legacy-tripleo-ci-periodic-multinode
+    parent: legacy-tripleo-ci-periodic-multinode-upload
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload/post.yaml
     timeout: 10800
