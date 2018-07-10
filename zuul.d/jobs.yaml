@@ -90,6 +90,19 @@
     nodeset: upstream-centos-7-2-node
 
 - job:
+    name: legacy-tripleo-ci-periodic-multinode-upload
+    parent: legacy-tripleo-ci-periodic-base-upload
+    description: |
+      Base job for multinode devstack jobs.
+
+      Will setup firewall rules on all the nodes allowing them to talk to
+      each other.
+    pre-run: playbooks/legacy/multinode-networking/pre.yaml
+    roles:
+      - zuul: openstack-infra/zuul-jobs
+    nodeset: upstream-centos-7-2-node
+
+- job:
     name: legacy-DLRN-rpmbuild-fedora
     parent: legacy-base
     run: playbooks/legacy/DLRN-rpmbuild-fedora/run.yaml
