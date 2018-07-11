@@ -89,12 +89,13 @@
           NODEPOOL_REGION=dfw
           NODEPOOL_AZ=
           EOF
+          echo "export RELEASE=queens" > $WORKSPACE/upload_release.sh
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
     - shell:
         cmd: |
-          export RELEASE=queens
+          source $WORKSPACE/upload_release.sh
           export PROMOTE_NAME=tripleo-ci-testing
           bash -xe $WORKSPACE/rdo-infra/ci-config/ci-scripts/tripleo-upstream/get-hash.sh
         chdir: '{{ ansible_user_dir }}/workspace'
@@ -132,16 +133,5 @@
           cp devstack-gate/devstack-vm-gate-wrap.sh ./safe-devstack-vm-gate-wrap.sh
           ./safe-devstack-vm-gate-wrap.sh
         executable: /bin/bash
-        chdir: '{{ ansible_user_dir }}/workspace'
-      environment: '{{ zuul | zuul_legacy_vars }}'
-
-    - shell:
-        cmd: |
-          export RELEASE=queens
-          mkdir -p $WORKSPACE/logs/images-upload/
-          bash -xe $WORKSPACE/rdo-infra/ci-config/ci-scripts/tripleo-upstream/convert-upload-undercloud.sh
-          bash -xe $WORKSPACE/rdo-infra/ci-config/ci-scripts/tripleo-upstream/upload-cloud-images.sh
-          echo export UPLOAD_EXIT_VALUE=$? >> $WORKSPACE/hash_info.sh
-          cp $HOME/.__repo_setup.sh.log $WORKSPACE/logs/images-upload
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
