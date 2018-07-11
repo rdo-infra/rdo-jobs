@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bab921fb_83410f0e",
+        "filename": "playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload/run.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 233
+      },
+      "writtenOn": "2018-07-11T14:45:13Z",
+      "side": 1,
+      "message": "you can move this into a zuul jobs variable, and all playbooks will have access to it.\n\nthen use reference via ansible variable {{ jobvar }}",
+      "revId": "acbc13c9584e821b868f88e5d67c50bbce6ee1f4",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
