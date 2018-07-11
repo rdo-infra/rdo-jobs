@@ -514,6 +514,7 @@
     timeout: 10800
     vars:
       toci_jobtype: periodic-ovb-1ctlr_1comp-featureset002
+      release: master
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -530,6 +531,7 @@
     timeout: 10800
     vars:
       toci_jobtype: periodic-ovb-1ctlr_1comp-featureset002
+      release: ocata
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -546,6 +548,7 @@
     timeout: 10800
     vars:
       toci_jobtype: periodic-ovb-1ctlr_1comp-featureset002
+      release: pike
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
@@ -562,6 +565,7 @@
     timeout: 10800
     vars:
       toci_jobtype: periodic-ovb-1ctlr_1comp-featureset002
+      release: queens
     nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
