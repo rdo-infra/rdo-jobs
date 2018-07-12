@@ -20,6 +20,7 @@
     pre-run: playbooks/legacy/pre.yaml
     nodeset: legacy-upstream-centos-7
     required-projects:
+      - git.openstack.org/openstack/browbeat
       - git.openstack.org/openstack-dev/devstack
       - git.openstack.org/openstack-infra/devstack-gate
       - git.openstack.org/openstack-infra/tripleo-ci

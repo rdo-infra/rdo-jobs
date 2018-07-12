@@ -1882,6 +1882,23 @@
       - tox.ini
 
 - job:
+    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053-master
+    parent: legacy-dsvm-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053-master/run.yaml
+    post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053-master/post.yaml
+    timeout: 14400
+    vars:
+      toci_jobtype: ovb-3ctlr_1comp-featureset053
+    nodeset: tripleo-ovb-centos-7
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack-infra/tripleo-ci
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - openstack/browbeat
+
+- job:
     name: legacy-validate-buildsys-tags
     parent: legacy-base
     run: playbooks/legacy/validate-buildsys-tags/run.yaml
