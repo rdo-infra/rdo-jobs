@@ -900,6 +900,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
       - rdoinfo
 
 - job:
@@ -915,6 +916,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
       - rdoinfo
 
 - job:
@@ -930,6 +932,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
       - rdoinfo
 
 - job:
@@ -945,6 +948,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
       - rdoinfo
 
 - job:
@@ -960,6 +964,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
       - rdoinfo
 
 - job:
@@ -989,6 +994,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
     branches: ^master$
     irrelevant-files:
       - ^.*\.md$
@@ -1018,6 +1024,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
     voting: false
     branches: ^master$
     irrelevant-files:
@@ -1048,6 +1055,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
     voting: false
     branches: ^stable/queens$
     irrelevant-files:
@@ -1078,6 +1086,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
     voting: false
     branches: ^stable/pike$
     irrelevant-files:
@@ -1108,6 +1117,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
     voting: false
     branches: ^master$
     irrelevant-files:
@@ -1138,6 +1148,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
 
 - job:
     name: legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset017-master
@@ -1153,6 +1164,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
 
 - job:
     name: legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset018-master
@@ -1168,6 +1180,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
 
 - job:
     name: legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset019-master
@@ -1183,6 +1196,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
 
 - job:
     name: legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens
@@ -1198,6 +1212,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
     voting: false
     branches: ^stable/queens$
     irrelevant-files:
@@ -1228,6 +1243,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
     branches: ^master$
     irrelevant-files:
       - ^.*\.md$
@@ -1258,6 +1274,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
     branches: ^master$
     irrelevant-files:
       - ^.*\.md$
@@ -1288,6 +1305,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
     branches: ^stable/pike$
     irrelevant-files:
       - ^.*\.md$
@@ -1318,6 +1336,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
     voting: false
     branches: ^stable/(0.6.x|ocata)$
     irrelevant-files:
@@ -1349,6 +1368,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
     branches: ^stable/pike$
     irrelevant-files:
       - ^.*\.md$
@@ -1379,6 +1399,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
 
 - job:
     name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata
@@ -1395,6 +1416,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
 
 - job:
     name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata-branch
@@ -1411,6 +1433,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
 
 - job:
     name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike
@@ -1427,6 +1450,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
 
 - job:
     name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike-branch
@@ -1443,6 +1467,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
 
 - job:
     name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens
@@ -1459,6 +1484,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
 
 - job:
     name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens-branch
@@ -1475,6 +1501,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
 
 - job:
     name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-master
@@ -1491,6 +1518,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
     branches: ^master$
     irrelevant-files:
       - ^.*\.md$
@@ -1521,6 +1549,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
     branches: ^stable/(0.6.x|ocata)$
     irrelevant-files:
       - ^.*\.md$
@@ -1551,6 +1580,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
     branches: ^stable/pike$
     irrelevant-files:
       - ^.*\.md$
@@ -1581,6 +1611,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
     branches: ^stable/queens$
     irrelevant-files:
       - ^.*\.md$
@@ -1611,6 +1642,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
     branches: ^master$
     irrelevant-files:
       - ^.*\.md$
@@ -1707,6 +1739,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
     branches: ^stable/queens$
     irrelevant-files:
       - ^.*\.md$
@@ -1803,6 +1836,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
 
 - job:
     name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master-tht
@@ -1819,6 +1853,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
 
 - job:
     name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens
@@ -1835,6 +1870,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
 
 - job:
     name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens-tht
@@ -1851,6 +1887,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
 
 - job:
     name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master
@@ -1867,6 +1904,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
+      - openstack/browbeat
     branches: ^master$
     irrelevant-files:
       - ^.*\.md$
@@ -1881,6 +1919,23 @@
       - ^spec/.*$
       - ^test-requirements.txt$
       - tox.ini
+
+- job:
+    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053-master
+    parent: legacy-dsvm-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053-master/run.yaml
+    post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053-master/post.yaml
+    timeout: 14400
+    vars:
+      toci_jobtype: ovb-3ctlr_1comp-featureset053
+    nodeset: tripleo-ovb-centos-7
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack-infra/tripleo-ci
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - openstack/browbeat
 
 - job:
     name: legacy-validate-buildsys-tags
