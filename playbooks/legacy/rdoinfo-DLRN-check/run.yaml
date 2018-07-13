@@ -138,7 +138,7 @@
               sudo rm -rf /var/cache/mock/*
           fi
           if [ -n "${PACKAGES_UPDATED_PIKE}" ]; then
-              timeout --signal=SIGKILL 10800 /opt/nodepool-scripts/rdoinfo-DLRN.sh pike "${PACKAGES_UPDATED_PIKE}"
+              timeout --signal=SIGKILL 10800 {{ ansible_user_dir }}/rdoinfo-DLRN.sh pike "${PACKAGES_UPDATED_PIKE}"
               ret1=$?
               if [ $ret1 -ne 0 ]; then
                   ret=$ret1
