@@ -27,7 +27,7 @@
 
     - shell:
         cmd: |
-          ARGS="centos https://trunk.rdoproject.org/centos7/"
+          ARGS="{{ ansible_distribution | lower }} https://trunk.rdoproject.org/centos7/"
           if [[ "{{ zuul.pipeline }}" =~ "openstack-" ]]; then
               ARGS=""
           fi
