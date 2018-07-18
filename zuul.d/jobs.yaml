@@ -1,4 +1,17 @@
 - job:
+    name: base
+    parent: base-minimal
+    description:
+      The base job for RDO's installation of Zuul.
+
+      All jobs ultimately inherit from this. But we parent to
+      base-minimal for things like secrets. Care should taken on
+      modifying this job, since everything uses it.
+
+      Changes to this job will be self testing.
+    abstract: true
+
+- job:
     name: legacy-base
     abstract: true
     description: |
