@@ -104,14 +104,10 @@
 
 - job:
     name: legacy-DLRN-rpmbuild-fedora
-    parent: legacy-base
-    run: playbooks/legacy/DLRN-rpmbuild-fedora/run.yaml
-    post-run: playbooks/legacy/DLRN-rpmbuild-fedora/post.yaml
+    parent: legacy-DLRN-rpmbuild
     voting: false
     branches: ^(master)|(rpm-master)$
     nodeset: rdo-fedora-28
-    required-projects:
-      - rdoinfo
 
 - job:
     name: puppet-openstack-base
