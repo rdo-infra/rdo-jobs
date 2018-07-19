@@ -10,6 +10,7 @@
 
       Changes to this job will be self testing.
     abstract: true
+    pre-run: playbooks/base/pre.yaml
 
 - job:
     name: legacy-base
