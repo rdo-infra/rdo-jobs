@@ -1,5 +1,14 @@
 - hosts: all
   tasks:
+    # NOTE(pabelanger): We run this role in its own play to ensure unbound is
+    # restarted before proceeding with any other role.  This is because of
+    # how handlers work in ansible.
+    - name: Run configure-unbound role
+      include_role:
+        name: configure-unbound
+
+- hosts: all
+  tasks:
     - name: Run prepare-workspace role
       include_role:
         name: prepare-workspace
