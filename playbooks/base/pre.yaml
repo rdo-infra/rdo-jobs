@@ -1,5 +1,17 @@
 - hosts: all
   tasks:
+    # NOTE(pabelanger): We run this role in its own play to ensure unbound is
+    # restarted before proceeding with any other role.  This is because of
+    # how handlers work in ansible.
+    - name: Run configure-unbound role
+      include_role:
+        name: configure-unbound
+      when: |
+        nodepool.label == 'upstream-centos-7' or
+        nodepool.label == 'tripleo-ovb-centos-7'
+
+- hosts: all
+  tasks:
     - name: Run prepare-workspace role
       include_role:
         name: prepare-workspace
