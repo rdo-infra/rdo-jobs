@@ -11,6 +11,8 @@
       Changes to this job will be self testing.
     abstract: true
     pre-run: playbooks/base/pre.yaml
+    roles:
+      - zuul: git.openstack.org/openstack-infra/openstack-zuul-jobs
 
 - job:
     name: legacy-base
