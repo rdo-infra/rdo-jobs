@@ -1,6 +1,6 @@
 - job:
     name: base
-    parent: base-minimal
+    parent: base-minimal-test
     description:
       The base job for RDO's installation of Zuul.
 
@@ -19,6 +19,8 @@
       Base job for autoconverted legacy jobs
     pre-run: playbooks/legacy/pre.yaml
     nodeset: rdo-centos-7
+    roles:
+      - zuul: review.rdoproject.org/rdo-jobs
 
 # NOTE(pabelanger): We should be consuming openstack-zuul-jobs here, but we have
 # to pull in more nodesets.  We can first test using this.
