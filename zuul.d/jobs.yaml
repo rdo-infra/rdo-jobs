@@ -11,6 +11,8 @@
       Changes to this job will be self testing.
     abstract: true
     pre-run: playbooks/base/pre.yaml
+    roles:
+      - zuul: review.rdoproject.org/rdo-jobs
 
 - job:
     name: legacy-base
