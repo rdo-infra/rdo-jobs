@@ -656,6 +656,54 @@
       - openstack/tripleo-upgrade
 
 - job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-queens
+    parent: legacy-tripleo-ci-periodic-multinode
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-queens/run.yaml
+    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-queens/post.yaml
+    timeout: 18000
+    vars:
+      toci_jobtype: periodic-ovb-1ctlr_1comp-featureset021
+    nodeset: tripleo-ovb-centos-7
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack-infra/tripleo-ci
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-pike
+    parent: legacy-tripleo-ci-periodic-multinode
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-pike/run.yaml
+    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-pike/post.yaml
+    timeout: 18000
+    vars:
+      toci_jobtype: periodic-ovb-1ctlr_1comp-featureset021
+    nodeset: tripleo-ovb-centos-7
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack-infra/tripleo-ci
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-ocata
+    parent: legacy-tripleo-ci-periodic-multinode
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-ocata/run.yaml
+    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-ocata/post.yaml
+    timeout: 18000
+    vars:
+      toci_jobtype: periodic-ovb-1ctlr_1comp-featureset021
+    nodeset: tripleo-ovb-centos-7
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack-infra/tripleo-ci
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+
+- job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike
     parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike/run.yaml
