@@ -1,6 +1,4 @@
 - hosts: all
-  name: Autoconverted job legacy-weirdo-integration-master-packstack-scenario001 from
-    old job gate-weirdo-integration-master-packstack-scenario001
   tasks:
 
     - name: Ensure legacy workspace directory
@@ -14,7 +12,7 @@
 
           # If this is called in a periodic job, these will not be set
           echo "Use default for ZUUL_BRANCH and ZUUL_REF if needed"
-          export ZUUL_BRANCH=${ZUUL_BRANCH:-master}
+          export ZUUL_BRANCH=${ZUUL_BRANCH:-{{ openstack_release }}}
           export ZUUL_REF=${ZUUL_REF:-None}
 
           # In the post pipeline ZUUL_REF is master but does not behave as we want
@@ -97,25 +95,32 @@
 
           # Backwards compat for project and openstack_release
           # (dmsimard) TODO: Clean this up ASAP
-          if [[ "packstack" == "puppet" ]]; then
+          if [[ "{{ zuul.job }}" == *"puppet"* ]]; then
               project="puppet-openstack"
           else
               project="packstack"
           fi
 
-          if [[ "master" != "master" ]]; then
-              version="stable/master"
+          if [[ "{{ openstack_release }}" != "master" ]]; then
+              version="stable/{{ openstack_release }}"
           else
-              version="master"
+              version="{{ openstack_release }}"
+          fi
+          scenario="{{ scenario }}"
+
+          if [[ "${ZUUL_PIPELINE}" =~ "experimental" ]]; then
+              delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/current/delorean.repo"
+          elif [[ "{{ openstack_release }}" == "master" ]]; then
+              delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/puppet-passed-ci/delorean.repo"
+          else
+              delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/current-passed-ci/delorean.repo"
           fi
 
-          delorean_deps_url="https://trunk.rdoproject.org/centos7-master/delorean-deps.repo"
-          if [[ "false" == "true" ]]; then
-              delorean_url="https://trunk.rdoproject.org/centos7-master/current/delorean.repo"
-          elif [[ "master" == "master" ]]; then
-              delorean_url="https://trunk.rdoproject.org/centos7-master/puppet-passed-ci/delorean.repo"
+          if [ -f /etc/fedora-release ]; then
+              delorean_deps_url="https://trunk.rdoproject.org/fedora/delorean-deps.repo"
+              delorean_url="https://trunk.rdoproject.org/fedora/current/delorean.repo"
           else
-              delorean_url="https://trunk.rdoproject.org/centos7-master/current-passed-ci/delorean.repo"
+              delorean_deps_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/delorean-deps.repo"
           fi
 
           cd weirdo
@@ -126,9 +131,9 @@
           localhost log_destination=/var/log/weirdo
           EOF
 
-          tox -e ansible-playbook -- -vv -b -i hosts playbooks/$project-scenario001.yml \
+          tox -e ansible-playbook -- -vv -b -i hosts playbooks/$project-$scenario.yml \
               -e version=$version \
-              -e openstack_release=master \
+              -e openstack_release="{{ openstack_release }}" \
               -e delorean_url=$delorean_url \
               -e delorean_deps_url=$delorean_deps_url \
               -e enable_puppet_modules_rpm=true
