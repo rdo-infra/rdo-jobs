@@ -3,6 +3,9 @@
     check:
       jobs:
         - tox-docs
+        - legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-master
+        - legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-master
+        - legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-master
     gate:
       jobs:
         - tox-docs
