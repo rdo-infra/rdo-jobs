@@ -87,7 +87,9 @@
 
       Will setup firewall rules on all the nodes allowing them to talk to
       each other.
-    pre-run: playbooks/legacy/multinode-networking/pre.yaml
+    pre-run:
+      - playbooks/legacy/multinode-networking/pre.yaml
+      - playbooks/legacy/tripleo-ci/ceph.yaml
     roles:
       - zuul: openstack-infra/zuul-jobs
     nodeset: upstream-centos-7-2-node
@@ -102,7 +104,9 @@
 
       Will setup firewall rules on all the nodes allowing them to talk to
       each other.
-    pre-run: playbooks/legacy/multinode-networking/pre.yaml
+    pre-run:
+      - playbooks/legacy/multinode-networking/pre.yaml
+      - playbooks/legacy/tripleo-ci/ceph.yaml
     roles:
       - zuul: openstack-infra/zuul-jobs
     nodeset: upstream-centos-7-2-node
