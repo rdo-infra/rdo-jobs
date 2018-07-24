@@ -13,7 +13,7 @@
       file:
         path: /etc/nodepool
         state: directory
-        mode: 0755
+        mode: 0777
       become: true
     - name: Create nodepool sub_nodes file
       copy:
