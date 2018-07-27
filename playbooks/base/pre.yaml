@@ -9,6 +9,10 @@
 
 - hosts: all
   tasks:
+    - name: Run validate-host role
+      include_role:
+        name: validate-host
+
     - name: Run prepare-workspace role
       include_role:
         name: prepare-workspace
