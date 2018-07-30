@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9abe1de1_0c63231c",
+        "filename": "playbooks/legacy/tripleo-ci/ceph.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2018-07-30T11:18:56Z",
+      "side": 1,
+      "message": "can we change this slightly. I am thinking add two blocks one when dev_loop3_res.stat.exists where we just skip and exit and another where it doesn\u0027t exist and we do this stuff.\n\nThe reason is we can then just merge this first. If tripleo. sh is still being called before this, then it wont fail here. \n\nI can then land a patch on tripleo-ci to remove the tripleo.sh --bootstrap-subnodes from toci_gate_test.sh as discussed in https://trello.com/c/lrSUMaqw/885-translate-tripleosh-bootstrap-subnodes-into-a-series-of-tasks-s17\n\nOnce that merges we can then even remove the conditional and revert back to this as above.\n\nwdyt do you agree thanks",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 24,
+        "endChar": 13
+      },
+      "revId": "f0b4ceba9b995d0d3fc9226faf62deae3908e26d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
