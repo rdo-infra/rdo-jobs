@@ -1,0 +1,12 @@
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053-master
+    parent: tripleo-ci-base
+    timeout: 14400
+    branches: master
+    vars:
+      toci_jobtype: ovb-3ctlr_1comp-featureset053
+      environment_type: ovb
+      nodes: 3ctlr_1comp
+      featureset: '053'
+    nodeset: upstream-centos-7
+
