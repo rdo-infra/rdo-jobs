@@ -51,3 +51,55 @@
       - name: subnodes
         nodes:
           - secondary
+
+- nodeset:
+    name: two-centos-7-nodes
+    nodes:
+      - name: primary
+        label: upstream-centos-7
+      - name: secondary
+        label: upstream-centos-7
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes:
+          - secondary
+      - name: subnodes
+        nodes:
+          - secondary
+
+- nodeset:
+    name: single-centos-7-node
+    nodes:
+      - name: primary
+        label: upstream-centos-7
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: three-centos-7-nodes
+    nodes:
+      - name: primary
+        label: upstream-centos-7
+      - name: secondary-1
+        label: upstream-centos-7
+      - name: secondary-2
+        label: centos-7
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes:
+          - secondary-1
+          - secondary-2
+      - name: subnodes
+        nodes:
+          - secondary-1
+          - secondary-2
