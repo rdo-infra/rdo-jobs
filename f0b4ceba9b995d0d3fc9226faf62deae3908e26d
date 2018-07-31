@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9abe1de1_004f6793",
+        "filename": "playbooks/legacy/tripleo-ci/ceph.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2018-07-31T09:13:31Z",
+      "side": 1,
+      "message": "ack you\u0027re right i got the sequencing the wrong way around.\n\nHm I don\u0027t really want to edit tripleo.sh --bootstrap since the ultimate goal here is to just stop using it ! But I also can\u0027t think of another way so I\u0027ll update https://review.openstack.org/#/c/587012/ and add a guard for the /dev/loop3 for now with some note about removing it once these both merge",
+      "parentUuid": "9abe1de1_4048bf5b",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 24,
+        "endChar": 13
+      },
+      "revId": "f0b4ceba9b995d0d3fc9226faf62deae3908e26d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9abe1de1_8c5e1344",
         "filename": "zuul.d/jobs.yaml",
         "patchSetId": 7
