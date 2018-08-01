@@ -14,6 +14,12 @@
     vars:
       ara_report_type: database
       ara_report_path: ara-report
+    nodeset:
+    nodeset:
+      name: ansible-centos-7
+      nodes:
+        - name: ansible-centos-7
+          label: ansible-centos-7
 
 - job:
     name: legacy-base
