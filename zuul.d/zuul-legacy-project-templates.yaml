@@ -132,6 +132,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-validate:
             branches: ^queens-rdo$
+        - distgit-cbs-validate:
+            branches: ^rocky-rdo$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
@@ -152,6 +154,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-final-build:
             branches: ^queens-rdo$
+        - distgit-cbs-final-build:
+            branches: ^rocky-rdo$
 
 - project-template:
     name: weirdo-dlrn-master-barbican
@@ -185,6 +189,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-validate:
             branches: ^queens-rdo$
+        - distgit-cbs-validate:
+            branches: ^rocky-rdo$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario002:
@@ -202,6 +208,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-final-build:
             branches: ^queens-rdo$
+        - distgit-cbs-final-build:
+            branches: ^rocky-rdo$
 
 - project-template:
     name: weirdo-dlrn-master-ceilometer
@@ -240,6 +248,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-validate:
             branches: ^queens-rdo$
+        - distgit-cbs-validate:
+            branches: ^rocky-rdo$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
@@ -260,6 +270,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-final-build:
             branches: ^queens-rdo$
+        - distgit-cbs-final-build:
+            branches: ^rocky-rdo$
 
 - project-template:
     name: weirdo-dlrn-master-cinder
@@ -303,6 +315,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-validate:
             branches: ^queens-rdo$
+        - distgit-cbs-validate:
+            branches: ^rocky-rdo$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
@@ -326,6 +340,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-final-build:
             branches: ^queens-rdo$
+        - distgit-cbs-final-build:
+            branches: ^rocky-rdo$
 
 - project-template:
     name: weirdo-dlrn-master-glance
@@ -374,6 +390,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-validate:
             branches: ^queens-rdo$
+        - distgit-cbs-validate:
+            branches: ^rocky-rdo$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
@@ -400,6 +418,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-final-build:
             branches: ^queens-rdo$
+        - distgit-cbs-final-build:
+            branches: ^rocky-rdo$
 
 - project-template:
     name: weirdo-dlrn-master-gnocchi
@@ -438,6 +458,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-validate:
             branches: ^queens-rdo$
+        - distgit-cbs-validate:
+            branches: ^rocky-rdo$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
@@ -458,6 +480,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-final-build:
             branches: ^queens-rdo$
+        - distgit-cbs-final-build:
+            branches: ^rocky-rdo$
 
 - project-template:
     name: weirdo-dlrn-master-heat
@@ -496,6 +520,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-validate:
             branches: ^queens-rdo$
+        - distgit-cbs-validate:
+            branches: ^rocky-rdo$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
@@ -516,6 +542,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-final-build:
             branches: ^queens-rdo$
+        - distgit-cbs-final-build:
+            branches: ^rocky-rdo$
 
 - project-template:
     name: weirdo-dlrn-master-horizon
@@ -549,6 +577,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-validate:
             branches: ^queens-rdo$
+        - distgit-cbs-validate:
+            branches: ^rocky-rdo$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario003:
@@ -566,6 +596,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-final-build:
             branches: ^queens-rdo$
+        - distgit-cbs-final-build:
+            branches: ^rocky-rdo$
 
 - project-template:
     name: weirdo-dlrn-master-keystone
@@ -604,6 +636,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-validate:
             branches: ^queens-rdo$
+        - distgit-cbs-validate:
+            branches: ^rocky-rdo$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
@@ -624,6 +658,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-final-build:
             branches: ^queens-rdo$
+        - distgit-cbs-final-build:
+            branches: ^rocky-rdo$
 
 - project-template:
     name: weirdo-dlrn-master-networking-bgpvpn
@@ -657,6 +693,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-validate:
             branches: ^queens-rdo$
+        - distgit-cbs-validate:
+            branches: ^rocky-rdo$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario004:
@@ -674,6 +712,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-final-build:
             branches: ^queens-rdo$
+        - distgit-cbs-final-build:
+            branches: ^rocky-rdo$
 
 - project-template:
     name: weirdo-dlrn-master-neutron
@@ -717,6 +757,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-validate:
             branches: ^queens-rdo$
+        - distgit-cbs-validate:
+            branches: ^rocky-rdo$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
@@ -740,6 +782,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-final-build:
             branches: ^queens-rdo$
+        - distgit-cbs-final-build:
+            branches: ^rocky-rdo$
 
 - project-template:
     name: weirdo-dlrn-master-nova
@@ -778,6 +822,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-validate:
             branches: ^queens-rdo$
+        - distgit-cbs-validate:
+            branches: ^rocky-rdo$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
@@ -798,6 +844,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-final-build:
             branches: ^queens-rdo$
+        - distgit-cbs-final-build:
+            branches: ^rocky-rdo$
 
 - project-template:
     name: weirdo-dlrn-master-oslo
@@ -841,6 +889,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-validate:
             branches: ^queens-rdo$
+        - distgit-cbs-validate:
+            branches: ^rocky-rdo$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario002:
@@ -864,6 +914,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-final-build:
             branches: ^queens-rdo$
+        - distgit-cbs-final-build:
+            branches: ^rocky-rdo$
 
 - project-template:
     name: weirdo-dlrn-master-watcher
@@ -897,6 +949,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-validate:
             branches: ^queens-rdo$
+        - distgit-cbs-validate:
+            branches: ^rocky-rdo$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario004:
@@ -914,6 +968,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-final-build:
             branches: ^queens-rdo$
+        - distgit-cbs-final-build:
+            branches: ^rocky-rdo$
 
 - project-template:
     name: weirdo-dlrn-master-zaqar
@@ -947,6 +1003,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-validate:
             branches: ^queens-rdo$
+        - distgit-cbs-validate:
+            branches: ^rocky-rdo$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario002:
@@ -964,6 +1022,8 @@
             branches: ^pike-rdo$
         - distgit-cbs-final-build:
             branches: ^queens-rdo$
+        - distgit-cbs-final-build:
+            branches: ^rocky-rdo$
 
 - project-template:
     name: weirdo-gate-jobs
