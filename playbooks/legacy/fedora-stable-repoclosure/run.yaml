@@ -105,10 +105,12 @@
     - shell:
         cmd: |
           set -e
-          cd $ZUUL_PROJECT
+          pushd $ZUUL_PROJECT
           OUTPUT_DIR=$(grep output_dir fedora_config | cut -d= -f2 | tr -d '[:space:]')
           dnf clean all
-          repoquery --repofrompath=temp,file://${OUTPUT_DIR} --disablerepo='*' --enablerepo=temp -q -a > $WORKSPACE/logs/repoquery_output.txt
+          popd
+          mkdir buildset
+          repoquery --repofrompath=temp,file://${OUTPUT_DIR} --disablerepo='*' --enablerepo=temp -q -a > buildset/repoquery_output.txt
           echo "INFO: Running repoclosure"
           repoclosure --repofrompath=temp,file://${OUTPUT_DIR} --disablerepo='*' --enablerepo=temp
         chdir: '{{ ansible_user_dir }}/workspace'
