@@ -884,6 +884,224 @@
       - openstack/tripleo-upgrade
 
 - job:
+    name: legacy-periodic-tripleo-ci-centos-7-singlenode-featureset027-rocky
+    parent: legacy-tripleo-ci-periodic-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-singlenode-featureset027-rocky/run.yaml
+    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-singlenode-featureset027-rocky/post.yaml
+    timeout: 10800
+    vars:
+      toci_jobtype: periodic-singlenode-featureset027
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack-infra/tripleo-ci
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-rocky
+    parent: legacy-tripleo-ci-periodic-multinode
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-rocky/run.yaml
+    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-rocky/post.yaml
+    timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset010
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack-infra/tripleo-ci
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-rocky
+    parent: legacy-tripleo-ci-periodic-multinode
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-rocky/run.yaml
+    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-rocky/post.yaml
+    timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset016
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack-infra/tripleo-ci
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-rocky
+    parent: legacy-tripleo-ci-periodic-multinode
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-rocky/run.yaml
+    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-rocky/post.yaml
+    timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset017
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack-infra/tripleo-ci
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-rocky
+    parent: legacy-tripleo-ci-periodic-multinode
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-rocky/run.yaml
+    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-rocky/post.yaml
+    timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset018
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack-infra/tripleo-ci
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-rocky
+    parent: legacy-tripleo-ci-periodic-multinode
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-rocky/run.yaml
+    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-rocky/post.yaml
+    timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset019
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack-infra/tripleo-ci
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-rocky
+    parent: legacy-tripleo-ci-periodic-multinode
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-rocky/run.yaml
+    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-rocky/post.yaml
+    timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset030
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack-infra/tripleo-ci
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-rocky
+    parent: legacy-tripleo-ci-periodic-multinode
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-rocky/run.yaml
+    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-rocky/post.yaml
+    timeout: 10800
+    vars:
+      toci_jobtype: periodic-multinode-1ctlr-featureset037
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack-infra/tripleo-ci
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset050-upgrades-rocky
+    parent: legacy-tripleo-ci-periodic-base
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset050-upgrades-rocky/run.yaml
+    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset050-upgrades-rocky/post.yaml
+    timeout: 10800
+    vars:
+      toci_jobtype: periodic-singlenode-featureset050
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack-infra/tripleo-ci
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-rocky-upload
+    parent: legacy-tripleo-ci-periodic-multinode-upload
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-rocky-upload/run.yaml
+    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-rocky-upload/post.yaml
+    timeout: 10800
+    vars:
+      toci_jobtype: periodic-ovb-1ctlr_1comp-featureset002
+      release: rocky
+    nodeset: tripleo-ovb-centos-7
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack-infra/tripleo-ci
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-rocky
+    parent: legacy-tripleo-ci-periodic-multinode
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-rocky/run.yaml
+    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-rocky/post.yaml
+    timeout: 18000
+    vars:
+      toci_jobtype: periodic-ovb-1ctlr_1comp-featureset020
+    nodeset: tripleo-ovb-centos-7
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack-infra/tripleo-ci
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-rocky
+    parent: legacy-tripleo-ci-periodic-multinode
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-rocky/run.yaml
+    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-rocky/post.yaml
+    timeout: 18000
+    vars:
+      toci_jobtype: periodic-ovb-1ctlr_1comp-featureset021
+    nodeset: tripleo-ovb-centos-7
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack-infra/tripleo-ci
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky
+    parent: legacy-tripleo-ci-periodic-multinode
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky/run.yaml
+    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky/post.yaml
+    timeout: 10800
+    vars:
+      toci_jobtype: periodic-ovb-3ctlr_1comp-featureset001
+    nodeset: tripleo-ovb-centos-7
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack-infra/tripleo-ci
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+
+- job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-rocky
+    parent: legacy-tripleo-ci-periodic-multinode
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-rocky/run.yaml
+    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-rocky/post.yaml
+    timeout: 10800
+    vars:
+      toci_jobtype: periodic-ovb-3ctlr_1comp-featureset035
+    nodeset: tripleo-ovb-centos-7
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack-infra/tripleo-ci
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+
+- job:
     name: legacy-puppet-lint
     parent: legacy-base
     run: playbooks/legacy/puppet-lint/run.yaml
