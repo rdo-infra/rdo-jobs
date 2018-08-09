@@ -1,6 +1,6 @@
 - hosts: primary
-  name: Autoconverted job legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset050-upgrades-master
-    from old job periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset050-upgrades-master
+  name: Autoconverted job legacy-periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-master
+    from old job periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-master
   tasks:
 
     - name: Ensure legacy workspace directory
