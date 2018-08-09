@@ -515,13 +515,13 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset050-upgrades-master
+    name: legacy-periodic-tripleo-ci-centos-7-containerized-undercloud-upgrades-master
     parent: legacy-tripleo-ci-periodic-multinode
-    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset050-upgrades-master/run.yaml
-    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset050-upgrades-master/post.yaml
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-containerized-undercloud-upgrades-master/run.yaml
+    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-containerized-undercloud-upgrades-master/post.yaml
     timeout: 10800
     vars:
-      toci_jobtype: periodic-multinode-1ctlr-featureset050
+      toci_jobtype: periodic-singlenode-featureset050
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
