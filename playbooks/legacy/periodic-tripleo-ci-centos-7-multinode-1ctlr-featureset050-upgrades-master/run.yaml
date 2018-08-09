@@ -105,7 +105,7 @@
           set -e
           set -x
 
-          export TOCI_JOBTYPE=periodic-multinode-1ctlr-featureset050
+          export TOCI_JOBTYPE=periodic-singlenode-featureset050
 
           # ZUUL Does not set these for periodic jobs
           export ZUUL_BRANCH=${ZUUL_BRANCH:-master}
