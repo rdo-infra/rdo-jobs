@@ -1,5 +1,9 @@
 - hosts: all
   roles:
+    - test-emit-job-header
+
+- hosts: all
+  roles:
     - role: prepare-workspace
     - role: configure-mirrors
       mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
