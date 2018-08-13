@@ -2309,13 +2309,13 @@
       - rdo-infra/weirdo
 
 - job:
-    name: legacy-weirdo-integration-newton-packstack-scenario001
+    name: legacy-weirdo-integration-queens-packstack-scenario001
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
     timeout: 5400
     vars:
-      openstack_release: newton
+      openstack_release: queens
       scenario: scenario001
     required-projects:
       - openstack/packstack
@@ -2327,13 +2327,13 @@
       - rdo-infra/weirdo
 
 - job:
-    name: legacy-weirdo-integration-newton-packstack-scenario003
+    name: legacy-weirdo-integration-queens-packstack-scenario003
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
     timeout: 5400
     vars:
-      openstack_release: newton
+      openstack_release: queens
       scenario: scenario003
     required-projects:
       - openstack/packstack
@@ -2345,13 +2345,13 @@
       - rdo-infra/weirdo
 
 - job:
-    name: legacy-weirdo-integration-newton-puppet-scenario001
+    name: legacy-weirdo-integration-queens-puppet-scenario001
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
     timeout: 5400
     vars:
-      openstack_release: newton
+      openstack_release: queens
       scenario: scenario001
     required-projects:
       - rdo-infra/ansible-role-weirdo-common
@@ -2362,13 +2362,13 @@
       - rdo-infra/weirdo
 
 - job:
-    name: legacy-weirdo-integration-newton-puppet-scenario003
+    name: legacy-weirdo-integration-queens-puppet-scenario003
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
     timeout: 5400
     vars:
-      openstack_release: newton
+      openstack_release: queens
       scenario: scenario003
     required-projects:
       - rdo-infra/ansible-role-weirdo-common
