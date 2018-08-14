@@ -1006,10 +1006,10 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset050-upgrades-rocky
+    name: legacy-periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-rocky
     parent: legacy-tripleo-ci-periodic-base
-    run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset050-upgrades-rocky/run.yaml
-    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset050-upgrades-rocky/post.yaml
+    run: playbooks/legacy/periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-rocky/run.yaml
+    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-rocky/post.yaml
     timeout: 10800
     vars:
       toci_jobtype: periodic-singlenode-featureset050
