@@ -235,6 +235,14 @@
     nodeset: rdo-fedora-28
 
 - job:
+    name: legacy-fedora-stable-imagefactory
+    parent: legacy-base
+    run: playbooks/legacy/fedora-stable-imagefactory/run.yaml
+    required-projects:
+      - rdo-infra/fedora-stable-config
+    nodeset: rdo-fedora-28
+
+- job:
     name: legacy-octavia-build-amphora-master
     parent: legacy-base
     run: playbooks/legacy/octavia-build-amphora-master/run.yaml
