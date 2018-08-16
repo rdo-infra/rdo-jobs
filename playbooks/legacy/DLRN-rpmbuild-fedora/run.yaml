@@ -126,7 +126,7 @@
               timeout --signal=SIGKILL 3600 ./scripts/run_project_tests.sh http://review.rdoproject.org/r/p/rdoinfo.git
               ret=$?
           else
-              timeout --signal=SIGKILL 3600 ./scripts/run_tests.sh http://review.rdoproject.org/r/p/rdoinfo.git "fedora" "https://trunk.rdoproject.org/fedora/" "rocky-py3-uc"
+              timeout --signal=SIGKILL 3600 ./scripts/run_tests.sh http://review.rdoproject.org/r/p/rdoinfo.git "fedora" "https://trunk.rdoproject.org/fedora/" "stein-py3-uc"
               ret=$?
           fi
           popd
