@@ -1301,7 +1301,7 @@
 
 - job:
     name: legacy-tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master
-    parent: legacy-dsvm-base
+    parent: legacy-dsvm-base-multinode
     run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master/post.yaml
     timeout: 10800
@@ -1331,7 +1331,7 @@
 
 - job:
     name: legacy-tripleo-ci-centos-7-container-to-container-upgrades-master
-    parent: legacy-dsvm-base
+    parent: legacy-dsvm-base-multinode
     run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-master/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-master/post.yaml
     timeout: 10800
@@ -1362,7 +1362,7 @@
 
 - job:
     name: legacy-tripleo-ci-centos-7-container-to-container-upgrades-queens
-    parent: legacy-dsvm-base
+    parent: legacy-dsvm-base-multinode
     run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-queens/run.yaml
     post-run: playbooks/legacy/tripleo-ci-centos-7-container-to-container-upgrades-queens/post.yaml
     timeout: 10800
