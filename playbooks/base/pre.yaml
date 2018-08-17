@@ -1,5 +1,17 @@
 - hosts: all
+
   roles:
     - role: prepare-workspace
     - role: configure-mirrors
       mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
+
+  tasks:
+    - name: Run emit-job-header role
+      include_role:
+        name: emit-job-header
+      vars:
+        zuul_log_url: http://example.org
+
+    - name: Run log-inventory role
+      include_role:
+        name: log-inventory
