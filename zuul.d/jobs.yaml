@@ -16,6 +16,23 @@
       ara_report_path: ara-report
 
 - job:
+    name: base-test
+    parent: base-minimal-test
+    description:
+      The base job for RDO's installation of Zuul.
+
+      All jobs ultimately inherit from this. But we parent to
+      base-minimal for things like secrets. Care should taken on
+      modifying this job, since everything uses it.
+
+      Changes to this job will be self testing.
+    abstract: true
+    pre-run: playbooks/base/pre.yaml
+    vars:
+      ara_report_type: database
+      ara_report_path: ara-report
+
+- job:
     name: legacy-base
     abstract: true
     description: |

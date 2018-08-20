@@ -1,8 +1,13 @@
+- job:
+    name: test-job
+    parent: base-test
+    run: test.yaml
+
 - project:
     name: rdo-jobs
     check:
       jobs:
-        - tox-docs
+        - test-job
     gate:
       jobs:
         - tox-docs
