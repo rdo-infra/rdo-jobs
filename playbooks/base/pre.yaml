@@ -1,5 +1,14 @@
 - hosts: all
   roles:
     - role: prepare-workspace
-    - role: configure-mirrors
-      mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
+  tasks:
+    - name: Check if worker can sudo
+      command: sudo -n true
+      failed_when: false
+      register: _worker_is_sudoer
+
+    - import_role:
+        name: configure-mirrors
+      vars:
+        mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
+      when: _worker_is_sudoer.rc == 0
