@@ -1,3 +1,17 @@
+# Container nodesets
+- nodeset:
+    name: container-centos
+    nodes:
+      - name: container
+        label: runc-centos-7
+
+- nodeset:
+    name: container-fedora
+    nodes:
+      - name: container
+        label: runc-fedora-29
+
+# Dib centos
 - nodeset:
     name: dib-centos-7
     nodes:
