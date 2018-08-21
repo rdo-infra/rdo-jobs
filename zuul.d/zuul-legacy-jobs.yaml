@@ -2261,6 +2261,8 @@
     parent: legacy-base
     run: playbooks/legacy/validate-buildsys-tags/run.yaml
     post-run: playbooks/legacy/validate-buildsys-tags/post.yaml
+    required-projects:
+      - review.rdoproject.org/rdo-infra/gating_scripts
 
 - job:
     name: legacy-weirdo-ansible-lint
