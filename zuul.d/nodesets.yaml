@@ -103,3 +103,9 @@
         nodes:
           - secondary-1
           - secondary-2
+
+- nodeset:
+    name: legacy-centos-7
+    nodes:
+      - name: primary
+        label: upstream-centos-7
