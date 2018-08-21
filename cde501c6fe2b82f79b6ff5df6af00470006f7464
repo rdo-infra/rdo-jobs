@@ -16,6 +16,24 @@
       "revId": "cde501c6fe2b82f79b6ff5df6af00470006f7464",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_335cec24",
+        "filename": "playbooks/base/pre.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 19
+      },
+      "writtenOn": "2018-08-21T00:51:44Z",
+      "side": 1,
+      "message": "It seems like the correct condition is that worker is sudoer. The role may work in a chroot, it just needs to use \"become\".",
+      "parentUuid": "9abe1de1_9c818a92",
+      "revId": "cde501c6fe2b82f79b6ff5df6af00470006f7464",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
