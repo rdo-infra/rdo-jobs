@@ -70,9 +70,7 @@
           virtualenv  --system-site-packages .venv
           . .venv/bin/activate
           pip install ruamel.yaml rdopkg
-          # clone scripts and run
-          git clone http://review.rdoproject.org/r/gating_scripts
-          pushd gating_scripts/buildsys-tags/
+          pushd {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}/buildsys-tags
           # define logs variable with the URL wher logs will be pushed
           if [ -d /home/zuul ]; then
               export logs="https://logs.rdoproject.org/{{ zuul_log_path }}/buildset"
