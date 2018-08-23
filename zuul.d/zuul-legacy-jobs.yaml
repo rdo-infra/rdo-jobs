@@ -505,6 +505,7 @@
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master/post.yaml
     timeout: 10800
+    voting: false
     vars:
       toci_jobtype: periodic-multinode-1ctlr-featureset037
     required-projects:
