@@ -3,6 +3,9 @@
     check:
       jobs:
         - tox-docs
+        - legacy-tripleo-ci-centos-7-container-to-container-upgrades-queens
+        - legacy-tripleo-ci-centos-7-container-to-container-upgrades-master
+        - legacy-tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master
     gate:
       jobs:
         - tox-docs
