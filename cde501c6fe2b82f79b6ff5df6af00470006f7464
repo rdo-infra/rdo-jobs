@@ -34,6 +34,24 @@
       "revId": "cde501c6fe2b82f79b6ff5df6af00470006f7464",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_021e300c",
+        "filename": "playbooks/base/pre.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 233
+      },
+      "writtenOn": "2018-08-23T15:13:14Z",
+      "side": 1,
+      "message": "Yah, I think the concern I really have is, we only want certain images not to configure mirrors right now.  Today, that is the runc container.   I figured ansible_is_chroot was the better check then sudo.\n\nHowever, I\u0027d really maybe like to see us consider using a label name here, or label regex.   Like I said, really scared we are going to boot VMs and for some reason skip configuring the mirrors.",
+      "parentUuid": "9abe1de1_335cec24",
+      "revId": "cde501c6fe2b82f79b6ff5df6af00470006f7464",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
