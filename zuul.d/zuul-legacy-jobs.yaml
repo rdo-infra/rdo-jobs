@@ -1711,6 +1711,23 @@
       - openstack/browbeat
 
 - job:
+    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
+    parent: legacy-dsvm-base
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master/run.yaml
+    post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master/post.yaml
+    timeout: 10800
+    vars:
+      toci_jobtype: ovb-3ctlr_1comp-featureset001
+    nodeset: upstream-centos-7-vexxhost
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack-infra/tripleo-ci
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - openstack/browbeat
+
+- job:
     name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata/run.yaml
