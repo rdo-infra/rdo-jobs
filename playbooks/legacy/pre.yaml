@@ -15,6 +15,15 @@
         state: directory
         mode: 0777
       become: true
+    - name: Create nodepool provider file
+      blockinfile:
+        path: /etc/nodepool/provider
+        create: yes
+        block: |
+          NODEPOOL_PROVIDER="{{ hostvars[item]['nodepool']['provider'] }}"
+          NODEPOOL_CLOUD="{{ hostvars[item]['nodepool']['cloud'] }}"
+          NODEPOOL_REGION="{{ hostvars[item]['nodepool']['region'] }}"
+          NODEPOOL_AZ="{{ hostvars[item]['nodepool']['az'] }}"
     - name: Create nodepool sub_nodes file
       copy:
         dest: /etc/nodepool/sub_nodes

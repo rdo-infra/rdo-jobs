@@ -84,10 +84,10 @@
     - shell:
         cmd: |
           cat <<EOF | sudo tee /etc/nodepool/provider
-          NODEPOOL_PROVIDER=rdo-cloud-tripleo
-          NODEPOOL_CLOUD=rax
-          NODEPOOL_REGION=dfw
-          NODEPOOL_AZ=
+          NODEPOOL_PROVIDER="{{ hostvars[item]['nodepool']['provider'] }}"
+          NODEPOOL_CLOUD="{{ hostvars[item]['nodepool']['cloud'] }}"
+          NODEPOOL_REGION="{{ hostvars[item]['nodepool']['region'] }}"
+          NODEPOOL_AZ="{{ hostvars[item]['nodepool']['az'] }}"
           EOF
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
