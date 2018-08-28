@@ -50,6 +50,22 @@
       with_items:
         - id_rsa
         - id_rsa.pub
+    - name: dump subnodes IPs to yaml file
+      copy:
+        content: |
+            {% if hostvars['tripleo-ovb-centos-7'] is defined %}
+            {% set deployed_nodes={"primary_node": hostvars['tripleo-ovb-centos-7']['nodepool']['private_ipv4'], "subnodes":[]} %}
+            {% endif %}
+            {% if hostvars['primary'] is defined %}
+            {% set deployed_nodes={"primary_node": hostvars['primary']['nodepool']['private_ipv4'], "subnodes":[]} %}
+            {% endif %}
+            {% if groups['subnodes'] is defined %}
+            {% for subnode in groups['subnodes'] %}
+            {% if deployed_nodes["subnodes"].append(hostvars[subnode]['nodepool']['private_ipv4']) %} {% endif %}
+            {% endfor %}
+            {% endif %}
+            {{ deployed_nodes|to_nice_yaml }}
+        dest: /tmp/deployed_nodes.yml
 
     - name: Add sudoers role for zuul-sudo-grep.sh
       copy:
