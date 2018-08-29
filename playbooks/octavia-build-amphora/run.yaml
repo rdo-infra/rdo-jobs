@@ -20,11 +20,11 @@
           sudo LIBGUESTFS_BACKEND_SETTINGS=force_tcg LIBGUESTFS_BACKEND=direct virt-customize -a $IMAGE_NAME --selinux-relabel --run-command "yum-config-manager --add-repo https://trunk.rdoproject.org/centos7-${RELEASE}/current-passed-ci/delorean.repo"
           sudo DIB_LOCAL_IMAGE=$PWD/$IMAGE_NAME /usr/bin/octavia-diskimage-create.sh -s 3 -p -i centos -o amphora-x64-haproxy-centos.qcow2
           # Create output directory
-          mkdir -p images/octavia/$RELEASE
+          mkdir -p images/$RELEASE
           if [ -f amphora-x64-haproxy-centos.qcow2 ]; then
               curdate=$(date +%Y%m%d-%H%M%S)
-              mv amphora-x64-haproxy-centos.qcow2 images/octavia/${RELEASE}/amphora-x64-haproxy-centos-$curdate.qcow2
-              pushd images/octavia/${RELEASE}
+              mv amphora-x64-haproxy-centos.qcow2 images/${RELEASE}/amphora-x64-haproxy-centos-$curdate.qcow2
+              pushd images/${RELEASE}
               ln -s amphora-x64-haproxy-centos-$curdate.qcow2 amphora-x64-haproxy-centos.qcow2
               popd
           fi
