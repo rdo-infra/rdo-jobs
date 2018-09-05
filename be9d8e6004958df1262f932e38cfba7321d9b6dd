@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9abe1de1_e12211b9",
+        "filename": "playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-rocky/run.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 155
+      },
+      "writtenOn": "2018-09-05T13:43:48Z",
+      "side": 1,
+      "message": "seems like 1ctlr_1comp is only for periodic, and in all patch jobs we have 3ctlr_1comp",
+      "parentUuid": "9abe1de1_e1c7b143",
+      "range": {
+        "startLine": 100,
+        "startChar": 30,
+        "endLine": 100,
+        "endChar": 59
+      },
+      "revId": "be9d8e6004958df1262f932e38cfba7321d9b6dd",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9abe1de1_6165e143",
         "filename": "playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-rocky/run.yaml",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2018-09-05T12:44:37Z",
       "side": 1,
       "message": "I\u0027m not very familiar with the Quickstart-based jobs, but why are we setting this to \"default\" in some cases, and \"stable/rocky\" in others?",
+      "range": {
+        "startLine": 106,
+        "startChar": 33,
+        "endLine": 106,
+        "endChar": 40
+      },
+      "revId": "be9d8e6004958df1262f932e38cfba7321d9b6dd",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_217249e6",
+        "filename": "playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-rocky/run.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 155
+      },
+      "writtenOn": "2018-09-05T13:43:48Z",
+      "side": 1,
+      "message": "in jobs that run on master of CI repos (cause they are not branched) we want to check specific releases too, so sometimes we force branch with \"branch override\", those jobs usually have names -branch here.",
+      "parentUuid": "9abe1de1_6165e143",
       "range": {
         "startLine": 106,
         "startChar": 33,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9abe1de1_e16a111a",
+        "filename": "zuul.d/zuul-legacy-jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 698,
+      "author": {
+        "id": 155
+      },
+      "writtenOn": "2018-09-05T13:43:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9abe1de1_61bba1c5",
+      "range": {
+        "startLine": 684,
+        "startChar": 0,
+        "endLine": 698,
+        "endChar": 33
+      },
+      "revId": "be9d8e6004958df1262f932e38cfba7321d9b6dd",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9abe1de1_81dd9516",
         "filename": "zuul.d/zuul-legacy-jobs.yaml",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2018-09-05T11:06:03Z",
       "side": 1,
       "message": "rocky-branch not needed?",
+      "range": {
+        "startLine": 2008,
+        "startChar": 67,
+        "endLine": 2008,
+        "endChar": 72
+      },
+      "revId": "be9d8e6004958df1262f932e38cfba7321d9b6dd",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_c1770d01",
+        "filename": "zuul.d/zuul-legacy-jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 2008,
+      "author": {
+        "id": 155
+      },
+      "writtenOn": "2018-09-05T13:43:48Z",
+      "side": 1,
+      "message": "no, we run only fs001 branchful, for CI repos.",
+      "parentUuid": "9abe1de1_81dd9516",
       "range": {
         "startLine": 2008,
         "startChar": 67,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "9abe1de1_a17419fd",
+        "filename": "zuul.d/zuul-legacy-jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 2233,
+      "author": {
+        "id": 155
+      },
+      "writtenOn": "2018-09-05T13:43:48Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "9abe1de1_a1c1b930",
+      "range": {
+        "startLine": 2233,
+        "startChar": 63,
+        "endLine": 2233,
+        "endChar": 72
+      },
+      "revId": "be9d8e6004958df1262f932e38cfba7321d9b6dd",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9abe1de1_41b09ddd",
         "filename": "zuul.d/zuul-legacy-jobs.yaml",
         "patchSetId": 2
@@ -128,6 +248,30 @@
       "writtenOn": "2018-09-05T11:06:03Z",
       "side": 1,
       "message": "rocky",
+      "range": {
+        "startLine": 2248,
+        "startChar": 22,
+        "endLine": 2248,
+        "endChar": 28
+      },
+      "revId": "be9d8e6004958df1262f932e38cfba7321d9b6dd",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_8160f536",
+        "filename": "zuul.d/zuul-legacy-jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 2248,
+      "author": {
+        "id": 155
+      },
+      "writtenOn": "2018-09-05T13:43:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9abe1de1_41b09ddd",
       "range": {
         "startLine": 2248,
         "startChar": 22,
