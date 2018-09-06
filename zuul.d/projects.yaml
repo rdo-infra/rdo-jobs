@@ -3,6 +3,10 @@
     check:
       jobs:
         - tox-docs
+        - legacy-periodic-tripleo-centos-7-master-promote-consistent-to-tripleo-ci-testing
+        - legacy-periodic-tripleo-centos-7-rocky-promote-consistent-to-tripleo-ci-testing
+        - legacy-periodic-tripleo-ci-centos-7-singlenode-featureset027-rocky
+        - legacy-periodic-tripleo-ci-centos-7-singlenode-featureset027-master
     gate:
       jobs:
         - tox-docs
