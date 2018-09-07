@@ -77,6 +77,13 @@
           - secondary
 
 - nodeset:
+    name: single-fedora-28-node
+    nodes:
+      # NOTE(aschultz) this deviates from the upstream (openstack) node set
+      - name: primary
+        label: rdo-fedora-28
+
+- nodeset:
     name: single-centos-7-node
     nodes:
       - name: primary
