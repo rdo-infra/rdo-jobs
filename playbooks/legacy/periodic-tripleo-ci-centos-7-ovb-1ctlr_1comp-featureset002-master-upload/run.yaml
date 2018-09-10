@@ -77,7 +77,7 @@
 
     - shell:
         cmd: |
-          git clone https://review.rdoproject.org/r/p/rdo-infra/ci-config.git $WORKSPACE/rdo-infra/ci-config
+          git clone https://review.rdoproject.org/r/p/rdo-infra/ci-config.git $WORKSPACE/rdo-infra/ci-config && git fetch ssh://qinqon@review.rdoproject.org:29418/rdo-infra/ci-config refs/changes/04/16204/1 && git checkout FETCH_HEAD
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
