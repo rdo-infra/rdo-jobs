@@ -1712,11 +1712,11 @@
       - openstack/browbeat
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
+    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky-vexxhost
     parent: legacy-dsvm-base
-    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master/run.yaml
-    post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master/post.yaml
-    timeout: 10800
+    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky/run.yaml
+    post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky/post.yaml
+    timeout: 18000
     vars:
       toci_jobtype: ovb-3ctlr_1comp-featureset001
     nodeset: upstream-centos-7-vexxhost
