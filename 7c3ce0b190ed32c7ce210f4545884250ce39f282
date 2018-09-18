@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9abe1de1_9fdde544",
+        "filename": "playbooks/legacy/periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset038-master/run.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 30
+      },
+      "writtenOn": "2018-09-18T15:38:34Z",
+      "side": 1,
+      "message": "It will be better to use:\n\nNODEPOOL_PROVIDER\u003d\"{{ nodepool.provider }}\"\nNODEPOOL_CLOUD\u003d\"{{ nodepool.cloud }}\"\nNODEPOOL_REGION\u003d\"{{ nodepool.region }}\"\nNODEPOOL_AZ\u003d\"{{ nodepool.az }}\"\n\nTo ensure job could be run on vexxhost and rdocloud",
+      "range": {
+        "startLine": 87,
+        "startChar": 1,
+        "endLine": 90,
+        "endChar": 22
+      },
+      "revId": "7c3ce0b190ed32c7ce210f4545884250ce39f282",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
