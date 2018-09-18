@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9abe1de1_3fcc9988",
+        "filename": "playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky/run.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 63
+      },
+      "writtenOn": "2018-09-18T16:30:40Z",
+      "side": 1,
+      "message": "These playbooks were copied and pasted from probably the queens counterparts. I see you changed some of the master reference to rocky, but theere are some things to consider.\nThis playbook will never be run in a periodic job, since it\u0027s specific to this job and this job only, and this is not a periodic job. ZUUL_BRANCH and ZUUL_REF will be set. None of the these will be considered",
+      "revId": "2bd55e135f926352db9dba2dd821e23a0dd64424",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_1fc9d578",
+        "filename": "playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky/run.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 63
+      },
+      "writtenOn": "2018-09-18T16:30:40Z",
+      "side": 1,
+      "message": "This playbook will never run on post pipeline. There is no post pipeline anymore, but this code was intended for master branch. If you change master to rocky here, you\u0027ll actually change ZUUL_REF to NONE for the run pipeline, which may have bad consequences.",
+      "revId": "2bd55e135f926352db9dba2dd821e23a0dd64424",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
