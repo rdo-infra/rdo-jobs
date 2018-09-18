@@ -1123,17 +1123,6 @@
       - rdo-infra/rdo-infra-playbooks
 
 - job:
-    name: legacy-rdo-infra-playbooks-integration-logserver
-    parent: legacy-base
-    run: playbooks/legacy/rdo-infra-playbooks-integration-logserver/run.yaml
-    post-run: playbooks/legacy/rdo-infra-playbooks-integration-logserver/post.yaml
-    required-projects:
-      - centos-opstools/opstools-ansible
-      - rdo-infra/ansible-role-rdo-base
-      - rdo-infra/ansible-role-rdo-bot
-      - rdo-infra/rdo-infra-playbooks
-
-- job:
     name: legacy-rdo-infra-playbooks-integration-sensu-client
     parent: legacy-base
     run: playbooks/legacy/rdo-infra-playbooks-integration-sensu-client/run.yaml
