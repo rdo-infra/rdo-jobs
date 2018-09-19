@@ -217,6 +217,8 @@
               echo "  sudo yum clean all;"
               echo "  sudo yum repolist;"
               echo "  sudo yum update -y"
+              echo "  # add bootstrap dependencies tripleo/+bug/1785067"
+              echo "  sudo yum install -y openstack-heat-agents"
               if [ $STABLE_REPOSITORIES != false ]; then
                   echo "overcloud_repo_paths:"
                   echo "  - \"\$(ls /etc/yum.repos.d/CentOS-OpenStack-$O_RELEASE*)\""
