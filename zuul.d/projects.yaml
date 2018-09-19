@@ -3,6 +3,11 @@
     check:
       jobs:
         - tox-docs
+        - legacy-tripleo-ci-centos-7-container-to-container-upgrades-queens
+        - legacy-tripleo-ci-centos-7-container-to-container-upgrades-master
+        - legacy-tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master
+        - legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens
+        - legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch
     gate:
       jobs:
         - tox-docs
