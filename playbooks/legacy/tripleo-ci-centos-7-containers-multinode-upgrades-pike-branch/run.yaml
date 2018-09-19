@@ -115,6 +115,7 @@
           export PROJECTS="openstack/tripleo-quickstart $PROJECTS"
           export PROJECTS="openstack/tripleo-quickstart-extras $PROJECTS"
           export PROJECTS="openstack/tripleo-upgrade $PROJECTS"
+          export VXLAN_VARS="-e toci_vxlan_networking=false -e vxlan_networking=false"
 
           sudo chown -hR $(whoami) /opt/git
           function gate_hook {
