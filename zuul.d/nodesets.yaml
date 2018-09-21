@@ -35,6 +35,17 @@
         label: tripleo-ovb-centos-7
 
 - nodeset:
+    name: tripleo-ovb-centos-7-primary
+    nodes:
+      - name: primary
+        label: tripleo-ovb-centos-7
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
+- nodeset:
     name: upstream-centos-7-vexxhost
     nodes:
       - name: upstream-centos-7-vexxhost
