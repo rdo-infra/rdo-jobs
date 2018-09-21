@@ -11,6 +11,42 @@
       - playbooks/legacy/pre.yaml
 
 - job:
+    name: tripleo-ci-base-multinode-rdo
+    abstract: true
+    description: |
+        Base abstract job for multinode in RDO CI zuulv3 jobs
+    parent: tripleo-ci-base-multinode
+    vars:
+      environment_type: multinode
+    nodeset: two-centos-7-nodes
+    pre-run:
+      - playbooks/legacy/pre.yaml
+
+- job:
+    name: tripleo-ci-base-singlenode-rdo
+    abstract: true
+    description: |
+        Base abstract job for singlenode in RDO CI zuulv3 jobs
+    parent: tripleo-ci-base-singlenode
+    vars:
+      environment_type: singlenode
+    nodeset: single-centos-7-node
+    pre-run:
+      - playbooks/legacy/pre.yaml
+
+- job:
+    name: tripleo-ci-base-standalone-rdo
+    abstract: true
+    description: |
+        Base abstract job for standalone in RDO CI zuulv3 jobs
+    parent: tripleo-ci-base-standalone
+    vars:
+      environment_type: standalone
+    nodeset: single-centos-7-node
+    pre-run:
+      - playbooks/legacy/pre.yaml
+
+- job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053-master
     parent: tripleo-ci-base-ovb-rdo
     timeout: 14400
@@ -25,3 +61,21 @@
         - baremetal-full-overcloud.yml
         - baremetal-full-overcloud-validate.yml
         - browbeat-minimal.yml
+
+- job:
+    name: tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master
+    parent: tripleo-ci-base-multinode-rdo
+    timeout: 10800
+    branches: ^master$
+    voting: false
+    vars:
+      nodes: 1ctlr
+      featureset: '037'
+
+- job:
+    name: periodic-tripleo-ci-centos-7-singlenode-featureset027-rocky
+    parent: tripleo-ci-base-singlenode-rdo
+    timeout: 10800
+    branches: ^stable/rocky$
+    vars:
+      featureset: '027'
