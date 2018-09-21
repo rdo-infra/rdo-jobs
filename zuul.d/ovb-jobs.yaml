@@ -1,0 +1,507 @@
+---
+# zuul.d/ovb-jobs.yaml
+# Zuul layout for TripleO OVB RDO Cloud related jobs.
+# It contains all the jobs related to OVB testing in RDO Cloud.
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
+    parent: tripleo-ci-base-ovb-periodic
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
+    parent: tripleo-ci-base-ovb-rdo
+    branches: master
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata
+    parent: tripleo-ci-base-ovb-periodic
+    branches: ^stable/ocata$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/ocata$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata-branch
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata-branch
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^master$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      branch_override: "stable/ocata"
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike
+    parent: tripleo-ci-base-ovb-periodic
+    branches: ^stable/pike$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/pike$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike-branch
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike-branch
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^master$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      branch_override: "stable/pike"
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens
+    parent: tripleo-ci-base-ovb-periodic
+    branches: ^stable/queens$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/queens$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens-branch
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens-branch
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^master$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      branch_override: "stable/queens"
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky
+    parent: tripleo-ci-base-ovb-periodic
+    branches: ^stable/rocky$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/rocky$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky-branch
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky-branch
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^master$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      branch_override: "stable/rocky"
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
+    parent: tripleo-ci-base-ovb-rdo
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+    nodeset: upstream-centos-7-vexxhost
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload
+    parent: tripleo-ci-base-ovb-periodic-upload
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '002'
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-rocky-upload
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-rocky-upload
+    parent: tripleo-ci-base-ovb-periodic-upload
+    branches: ^stable/rocky$
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '002'
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-ocata-upload
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-ocata-upload
+    parent: tripleo-ci-base-ovb-periodic-upload
+    branches: ^stable/ocata$
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '002'
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-pike-upload
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-pike-upload
+    parent: tripleo-ci-base-ovb-periodic-upload
+    branches: ^stable/pike$
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '002'
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload
+    parent: tripleo-ci-base-ovb-periodic-upload
+    branches: ^stable/queens$
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '002'
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master
+    parent: tripleo-ci-base-ovb-periodic
+    timeout: 18000
+    branches: ^master$
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '020'
+
+# legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master
+    parent: tripleo-ci-base-ovb-rdo
+    timeout: 18000
+    branches: ^master$
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '020'
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-ocata
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-ocata
+    parent: tripleo-ci-base-ovb-rdo
+    timeout: 18000
+    branches: ^stable/ocata$
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '020'
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-queens
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-queens
+    parent: tripleo-ci-base-ovb-rdo
+    timeout: 18000
+    branches: ^stable/queens$
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '020'
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-pike
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-pike
+    parent: tripleo-ci-base-ovb-rdo
+    timeout: 18000
+    branches: ^stable/pike$
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '020'
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-rocky
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-rocky
+    parent: tripleo-ci-base-ovb-rdo
+    timeout: 18000
+    branches: ^stable/rocky$
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '020'
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike
+    parent: tripleo-ci-base-ovb-periodic
+    branches: ^stable/pike$
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '022'
+
+# legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/pike$
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '022'
+
+# legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/(0.6.x|ocata)$
+    voting: false
+    vars:
+      nodes: 1ctlr_1comp_1ceph
+      featureset: '024'
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-master
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-master
+    parent: tripleo-ci-base-ovb-periodic
+    branches: ^master$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '021'
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-master
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-master
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^master$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '021'
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-rocky
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-rocky
+    parent: tripleo-ci-base-ovb-periodic
+    branches: ^stable/rocky$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '021'
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-rocky
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-rocky
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/rocky$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '021'
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-queens
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-queens
+    parent: tripleo-ci-base-ovb-periodic
+    branches: ^stable/queens$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '021'
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-queens
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-queens
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/queens$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '021'
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-pike
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-pike
+    parent: tripleo-ci-base-ovb-periodic
+    branches: ^stable/pike$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '021'
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-pike
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-pike
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/pike$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '021'
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-ocata
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-ocata
+    parent: tripleo-ci-base-ovb-periodic
+    branches: ^stable/ocata$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '021'
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-ocata
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-ocata
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/ocata$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '021'
+
+# legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/pike$
+    vars:
+      nodes: 1ctlr_1comp_1ceph
+      featureset: '024'
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master
+    parent: tripleo-ci-base-ovb-periodic
+    branches: ^master$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '035'
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^master$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '035'
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-rocky
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-rocky
+    parent: tripleo-ci-base-ovb-periodic
+    branches: ^stable/rocky$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '035'
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-rocky
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-rocky
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/rocky$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '035'
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens
+    parent: tripleo-ci-base-ovb-periodic
+    branches: ^stable/queens$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '035'
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/queens$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '035'
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset039-master
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^master$
+    vars:
+      nodes: 3ctlr_1comp_1supp
+      featureset: '039'
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053-master
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053-master
+    parent: tripleo-ci-base-ovb-rdo
+    timeout: 14400
+    branches: master
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '053'
+      playbooks:
+        - ovb-setup.yml
+        - baremetal-full-undercloud.yml
+        - baremetal-full-overcloud-prep.yml
+        - baremetal-full-overcloud.yml
+        - baremetal-full-overcloud-validate.yml
+        - browbeat-minimal.yml
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens-tht
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens-tht
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/queens$
+    timeout: 10800
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '042'
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens
+# Needed? duplicate of previous?
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/queens$
+    timeout: 10800
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '042'
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master-tht
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master-tht
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^master$
+    timeout: 10800
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '042'
+
+# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master
+# Needed? duplicate of previous?
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^master
+    timeout: 10800
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '042'
+
+# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike
+    parent: tripleo-ci-base-ovb-periodic
+    branches: ^master
+    timeout: 10800
+    vars:
+      nodes: 1ctlr_1comp_1ceph
+      featureset: '024'
+
+
