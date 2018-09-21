@@ -1,0 +1,82 @@
+---
+# zuul.d/base.yaml
+# This file contains parent layouts for all TripleO RDO Cloud related jobs.
+# Do not add children specific layout here.
+
+- job:
+    name: tripleo-ci-base-ovb-rdo
+    abstract: true
+    description: |
+        Base abstract job for OVB in RDO CI zuulv3 jobs
+    parent: tripleo-ci-base-ovb
+    vars:
+      environment_type: ovb
+    nodeset: tripleo-ovb-centos-7-primary
+    pre-run:
+      - playbooks/legacy/pre.yaml
+
+- job:
+    name: tripleo-ci-base-ovb-rdo-periodic
+    abstract: true
+    description: Fake periodic parent
+    parent: tripleo-ci-base-ovb-rdo
+
+- job:
+    name: tripleo-ci-base-multinode-rdo-periodic
+    abstract: true
+    description: Fake periodic parent
+    parent: tripleo-ci-base-multinode-rdo
+
+- job:
+    name: tripleo-ci-base-singlenode-rdo-periodic
+    abstract: true
+    description: Fake periodic parent
+    parent: tripleo-ci-base-singlenode-rdo
+
+- job:
+    name: tripleo-ci-base-standalone-rdo-periodic
+    abstract: true
+    description: Fake periodic parent
+    parent: tripleo-ci-base-standalone-rdo
+
+- job:
+    name: tripleo-ci-base-ovb-rdo-periodic-upload
+    abstract: true
+    description: Fake periodic parent
+    parent: tripleo-ci-base-ovb-rdo-periodic
+
+- job:
+    name: tripleo-ci-base-multinode-rdo
+    abstract: true
+    description: |
+        Base abstract job for multinode in RDO CI zuulv3 jobs
+    parent: tripleo-ci-base-multinode
+    vars:
+      environment_type: multinode
+    nodeset: two-centos-7-nodes
+    pre-run:
+      - playbooks/legacy/pre.yaml
+
+- job:
+    name: tripleo-ci-base-singlenode-rdo
+    abstract: true
+    description: |
+        Base abstract job for singlenode in RDO CI zuulv3 jobs
+    parent: tripleo-ci-base-singlenode
+    vars:
+      environment_type: singlenode
+    nodeset: single-centos-7-node
+    pre-run:
+      - playbooks/legacy/pre.yaml
+
+- job:
+    name: tripleo-ci-base-standalone-rdo
+    abstract: true
+    description: |
+        Base abstract job for standalone in RDO CI zuulv3 jobs
+    parent: tripleo-ci-base-standalone
+    vars:
+      environment_type: standalone
+    nodeset: single-centos-7-node
+    pre-run:
+      - playbooks/legacy/pre.yaml
