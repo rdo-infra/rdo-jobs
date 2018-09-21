@@ -1,0 +1,33 @@
+# Role to be called by rdoifno TripleO jobs
+
+- name: Generate shell script
+  template:
+    src: temp_repos.sh.j2
+    dest: /tmp/temp_repos.sh
+
+- name: generate workspace directory
+  file: "{{ ansuble_user_dir }}"/workspace
+  state: directory
+
+- name: Create temporary repos
+  shell: bash -xe /tmp/temp_repos.sh
+    chdir: '{{ ansible_user_dir }}/workspace'
+  environment: '{{ zuul | zuul_legacy_vars }}'
+
+- name: Copy tripleo.yml to path where oooq will pick it up
+  shell:
+    cmd: |
+      set -e
+      set -x
+      # Create directory for used by rdo-rsync-logs
+      mkdir -p {{ ansible_user_dir }}/workspace/logs
+      # If this configuration is not required, exit early
+      if [ -f "{{ ansible_user_dir }}/workspace/not_required" ]; then
+          echo "Job for {{ zuul.branch }}-testing not required"
+          exit 0
+      fi
+
+      sudo rm -f "/home/zuul/src/git.openstack.org/openstack/tripleo-quickstart/config/release/tripleo-ci/{{ zuul.branch }}.yml"
+      sudo mv tripleo.yml "/home/zuul/src/git.openstack.org/openstack/tripleo-quickstart/config/release/tripleo-ci/{{ zuul.branch }}.yml"
+    chdir: '{{ ansible_user_dir }}/workspace'
+  environment: '{{ zuul | zuul_legacy_vars }}'
