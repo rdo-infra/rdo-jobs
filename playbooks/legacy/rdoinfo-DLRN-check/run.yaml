@@ -80,6 +80,7 @@
     - shell:
         cmd: |
           set +e -x
+          export LANG=en_US.UTF-8
           pushd $ZUUL_PROJECT
           virtualenv --system-site-packages .venv
           . .venv/bin/activate
