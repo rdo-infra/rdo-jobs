@@ -1,0 +1,20 @@
+---
+# zuul.d/ovb-jobs.yaml
+# Zuul layout for TripleO OVB RDO Cloud related jobs.
+# It contains all the jobs related to OVB testing in RDO Cloud.
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053-master
+    parent: tripleo-ci-base-ovb-rdo
+    timeout: 14400
+    branches: master
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '053'
+      playbooks:
+        - ovb-setup.yml
+        - baremetal-full-undercloud.yml
+        - baremetal-full-overcloud-prep.yml
+        - baremetal-full-overcloud.yml
+        - baremetal-full-overcloud-validate.yml
+        - browbeat-minimal.yml

@@ -1,0 +1,15 @@
+---
+# zuul.d/multinode-jobs.yaml
+# Zuul layout for TripleO RDO Cloud related multinode jobs.
+# It contains all the jobs using deployed-servers in nodepool.
+
+- job:
+    name: tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master
+    parent: tripleo-ci-base-multinode-rdo
+    timeout: 10800
+    branches: ^master$
+    voting: false
+    vars:
+      nodes: 1ctlr
+      featureset: '037'
+
