@@ -1,0 +1,6 @@
+- hosts: primary
+  tasks:
+
+    - name: Include rdoinfo role
+      include_role:
+        name: tripleo-ci-rdoinfo
