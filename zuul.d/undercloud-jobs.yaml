@@ -1,0 +1,12 @@
+---
+# zuul.d/undercloud-jobs.yaml
+# Zuul layout for TripleO RDO Cloud related undercloud jobs.
+# It contains all the jobs related to undercloud testing.
+
+- job:
+    name: periodic-tripleo-ci-centos-7-singlenode-featureset027-master
+    parent: tripleo-ci-base-singlenode-rdo
+    timeout: 10800
+    branches: ^master$
+    vars:
+      featureset: '027'
