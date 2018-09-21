@@ -1,0 +1,84 @@
+---
+# zuul.d/ovb-jobs.yaml
+# Zuul layout for TripleO OVB RDO Cloud related jobs.
+# It contains all the jobs related to OVB testing in RDO Cloud.
+
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master
+    parent: tripleo-ci-base-ovb-rdo
+    timeout: 18000
+    branches: ^master$
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '020'
+
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/pike$
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '022'
+
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/(0.6.x|ocata)$
+    voting: false
+    vars:
+      nodes: 1ctlr_1comp_1ceph
+      featureset: '024'
+
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/pike$
+    vars:
+      nodes: 1ctlr_1comp_1ceph
+      featureset: '024'
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
+    parent: tripleo-ci-base-ovb-rdo
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
+    parent: tripleo-ci-base-ovb-rdo
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+    nodeset: upstream-centos-7-vexxhost
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata
+    parent: tripleo-ci-base-ovb-rdo
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata-branch
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/ocata$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053-master
+    parent: tripleo-ci-base-ovb-rdo
+    timeout: 14400
+    branches: master
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '053'
+      playbooks:
+        - ovb-setup.yml
+        - baremetal-full-undercloud.yml
+        - baremetal-full-overcloud-prep.yml
+        - baremetal-full-overcloud.yml
+        - baremetal-full-overcloud-validate.yml
+        - browbeat-minimal.yml
