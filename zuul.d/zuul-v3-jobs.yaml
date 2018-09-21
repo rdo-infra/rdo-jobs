@@ -11,6 +11,18 @@
       - playbooks/legacy/pre.yaml
 
 - job:
+    name: tripleo-ci-base-multinode-rdo
+    abstract: true
+    description: |
+        Base abstract job for multinode in RDO CI zuulv3 jobs
+    parent: tripleo-ci-base-multinode
+    vars:
+      environment_type: multinode
+    nodeset: two-centos-7-nodes
+    pre-run:
+      - playbooks/legacy/pre.yaml
+
+- job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053-master
     parent: tripleo-ci-base-ovb-rdo
     timeout: 14400
@@ -25,3 +37,28 @@
         - baremetal-full-overcloud.yml
         - baremetal-full-overcloud-validate.yml
         - browbeat-minimal.yml
+
+- job:
+    name: tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master
+    parent: tripleo-ci-base-multinode-rdo
+    timeout: 10800
+    branches: ^master$
+    voting: false
+    vars:
+      environment_type: multinode
+      nodes: 1ctlr
+      featureset: '037'
+    irrelevant-files:
+      - ^.*\.md$
+      - ^.*\.rst$
+      - ^Puppetfile.*$
+      - ^doc/.*$
+      - ^etc/.*$
+      - ^metadata.json$
+      - ^releasenotes/.*$
+      - ^requirements.txt$
+      - ^setup.*$
+      - ^spec/.*$
+      - ^test-requirements.txt$
+      - tox.ini
+
