@@ -121,13 +121,19 @@
           # scripts, this job is now zuulv3 so DLRN should stop using
           # zuul-cloner.
           export PATH=$PATH:/usr/zuul-env/bin
+          export TAG="{{  tag | default('') }}"
           pushd DLRN
           if [[ "$ZUUL_PIPELINE" =~ "openstack-" ]]; then
               timeout --signal=SIGKILL 3600 ./scripts/run_project_tests.sh http://review.rdoproject.org/r/p/rdoinfo.git
               ret=$?
           else
-              timeout --signal=SIGKILL 3600 ./scripts/run_tests.sh http://review.rdoproject.org/r/p/rdoinfo.git "fedora" "https://trunk.rdoproject.org/fedora/"
-              ret=$?
+              if [ -z "$TAG" ];then
+                  timeout --signal=SIGKILL 3600 ./scripts/run_tests.sh http://review.rdoproject.org/r/p/rdoinfo.git "fedora" "https://trunk.rdoproject.org/fedora/"
+                  ret=$?
+              else
+                  timeout --signal=SIGKILL 3600 ./scripts/run_tests.sh http://review.rdoproject.org/r/p/rdoinfo.git "fedora" "https://trunk.rdoproject.org/fedora/ $TAG"
+                  ret=$?
+              fi
           fi
           popd
           # Retrieve logs/repositories/packages
