@@ -136,6 +136,12 @@
       - rdoinfo
 
 - job:
+    name: legacy-DLRN-rpmbuild-fedora-pinned
+    parent: legacy-DLRN-rpmbuild-fedora
+    vars:
+      tag: stein-py3-uc
+
+- job:
     name: puppet-openstack-base
     pre-run: playbooks/legacy/puppet-openstack-integration/prepare-node-common.yaml
     parent: legacy-base

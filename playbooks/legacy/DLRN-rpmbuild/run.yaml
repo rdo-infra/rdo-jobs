@@ -27,7 +27,11 @@
 
     - shell:
         cmd: |
+          if [ -z "{{  tag | default('') }}" ];then
           ARGS="centos https://trunk.rdoproject.org/centos7/"
+          else
+          ARGS="centos https://trunk.rdoproject.org/centos7/ {{ tag }}"
+          fi
           if [[ "{{ zuul.pipeline }}" =~ "openstack-" ]]; then
               ARGS=""
           fi

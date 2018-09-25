@@ -19,6 +19,12 @@
       - rdoinfo
 
 - job:
+    name: legacy-DLRN-rpmbuild-pinned
+    parent: legacy-DLRN-rpmbuild
+    vars:
+      tag: 'stein-uc'
+
+- job:
     name: legacy-DLRN-rpmbuild-rpm-packaging-centos
     parent: legacy-base
     run: playbooks/legacy/DLRN-rpmbuild-rpm-packaging-centos/run.yaml

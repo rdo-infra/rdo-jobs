@@ -126,8 +126,13 @@
               timeout --signal=SIGKILL 3600 ./scripts/run_project_tests.sh http://review.rdoproject.org/r/p/rdoinfo.git
               ret=$?
           else
-              timeout --signal=SIGKILL 3600 ./scripts/run_tests.sh http://review.rdoproject.org/r/p/rdoinfo.git "fedora" "https://trunk.rdoproject.org/fedora/"
-              ret=$?
+              if [ -z "{{  tag | default('') }}" ];then
+                  timeout --signal=SIGKILL 3600 ./scripts/run_tests.sh http://review.rdoproject.org/r/p/rdoinfo.git "fedora" "https://trunk.rdoproject.org/fedora/"
+                  ret=$?
+              else
+                  timeout --signal=SIGKILL 3600 ./scripts/run_tests.sh http://review.rdoproject.org/r/p/rdoinfo.git "fedora" "https://trunk.rdoproject.org/fedora/ {{ tag }}"
+                  ret=$?
+              fi
           fi
           popd
           # Retrieve logs/repositories/packages
