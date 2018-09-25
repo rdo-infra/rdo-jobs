@@ -19,8 +19,6 @@
             branches: ^stable/queens$
         - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike:
             branches: ^stable/pike$
-        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata:
-            branches: ^stable/(0.6.x|ocata)$
 
 - project-template:
     name: tripleo-ovb-check
@@ -34,8 +32,6 @@
             branches: ^stable/queens$
         - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike:
             branches: ^stable/pike$
-        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata:
-            branches: ^stable/(0.6.x|ocata)$
         - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master:
             branches: ^master$
         - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-rocky:
@@ -46,16 +42,11 @@
             branches: ^stable/pike$
         - legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike:
             branches: ^stable/pike$
-        - legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata:
-            voting: false
-            branches: ^stable/(0.6.x|ocata)$
 
 - project-template:
     name: tripleo-ovb-experimental
     openstack-experimental:
       jobs:
-        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-ocata:
-            branches: ^stable/(0.6.x|ocata)$
         - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-pike:
             branches: ^stable/pike$
         - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-queens:
