@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9abe1de1_e2efa5ae",
+        "filename": "zuul.d/jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2018-09-25T17:09:06Z",
+      "side": 1,
+      "message": "You could make legacy-DLRN-rpmbuild-fedora its parent, so you just have to add the \"run: \" tag, and the rest will be inherited.",
+      "range": {
+        "startLine": 140,
+        "startChar": 12,
+        "endLine": 140,
+        "endChar": 23
+      },
+      "revId": "ef2767e01515b139fc757b2809934a370e843d31",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_a2308d57",
+        "filename": "zuul.d/zuul-legacy-jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2018-09-25T17:09:06Z",
+      "side": 1,
+      "message": "Same as for the fedora job. In this case, I would make sure we only run on the master or rpm-master branch.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 15
+      },
+      "revId": "ef2767e01515b139fc757b2809934a370e843d31",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
