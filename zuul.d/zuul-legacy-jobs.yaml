@@ -552,23 +552,6 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-ocata-upload
-    parent: legacy-tripleo-ci-periodic-multinode-upload
-    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-ocata-upload/run.yaml
-    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-ocata-upload/post.yaml
-    timeout: 10800
-    vars:
-      toci_jobtype: periodic-ovb-1ctlr_1comp-featureset002
-      release: ocata
-    nodeset: tripleo-ovb-centos-7
-    required-projects:
-      - openstack-infra/devstack-gate
-      - openstack-infra/tripleo-ci
-      - openstack/tripleo-quickstart
-      - openstack/tripleo-quickstart-extras
-      - openstack/tripleo-upgrade
-
-- job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-pike-upload
     parent: legacy-tripleo-ci-periodic-multinode-upload
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-pike-upload/run.yaml
@@ -607,22 +590,6 @@
     parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master/post.yaml
-    timeout: 18000
-    vars:
-      toci_jobtype: periodic-ovb-1ctlr_1comp-featureset020
-    nodeset: tripleo-ovb-centos-7
-    required-projects:
-      - openstack-infra/devstack-gate
-      - openstack-infra/tripleo-ci
-      - openstack/tripleo-quickstart
-      - openstack/tripleo-quickstart-extras
-      - openstack/tripleo-upgrade
-
-- job:
-    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-ocata
-    parent: legacy-tripleo-ci-periodic-multinode
-    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-ocata/run.yaml
-    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-ocata/post.yaml
     timeout: 18000
     vars:
       toci_jobtype: periodic-ovb-1ctlr_1comp-featureset020
@@ -714,22 +681,6 @@
       - openstack/tripleo-upgrade
 
 - job:
-    name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-ocata
-    parent: legacy-tripleo-ci-periodic-multinode
-    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-ocata/run.yaml
-    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-ocata/post.yaml
-    timeout: 18000
-    vars:
-      toci_jobtype: periodic-ovb-1ctlr_1comp-featureset021
-    nodeset: tripleo-ovb-centos-7
-    required-projects:
-      - openstack-infra/devstack-gate
-      - openstack-infra/tripleo-ci
-      - openstack/tripleo-quickstart
-      - openstack/tripleo-quickstart-extras
-      - openstack/tripleo-upgrade
-
-- job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike
     parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike/run.yaml
@@ -766,22 +717,6 @@
     parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master/run.yaml
     post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master/post.yaml
-    timeout: 10800
-    vars:
-      toci_jobtype: periodic-ovb-3ctlr_1comp-featureset001
-    nodeset: tripleo-ovb-centos-7
-    required-projects:
-      - openstack-infra/devstack-gate
-      - openstack-infra/tripleo-ci
-      - openstack/tripleo-quickstart
-      - openstack/tripleo-quickstart-extras
-      - openstack/tripleo-upgrade
-
-- job:
-    name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata
-    parent: legacy-tripleo-ci-periodic-multinode
-    run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata/run.yaml
-    post-run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata/post.yaml
     timeout: 10800
     vars:
       toci_jobtype: periodic-ovb-3ctlr_1comp-featureset001
@@ -1201,38 +1136,6 @@
       - rdoinfo
 
 - job:
-    name: legacy-rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005
-    parent: legacy-dsvm-base-multinode
-    run: playbooks/legacy/rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005/run.yaml
-    post-run: playbooks/legacy/rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005/post.yaml
-    timeout: 10800
-    vars:
-      toci_jobtype: gate-multinode-1ctlr-featureset005
-    required-projects:
-      - openstack-infra/devstack-gate
-      - openstack/tripleo-quickstart
-      - openstack/tripleo-quickstart-extras
-      - openstack/tripleo-upgrade
-      - openstack/browbeat
-      - rdoinfo
-
-- job:
-    name: legacy-rdoinfo-tripleo-ocata-testing-centos-7-multinode-1ctlr-featureset005
-    parent: legacy-dsvm-base-multinode
-    run: playbooks/legacy/rdoinfo-tripleo-ocata-testing-centos-7-multinode-1ctlr-featureset005/run.yaml
-    post-run: playbooks/legacy/rdoinfo-tripleo-ocata-testing-centos-7-multinode-1ctlr-featureset005/post.yaml
-    timeout: 10800
-    vars:
-      toci_jobtype: gate-multinode-1ctlr-featureset005
-    required-projects:
-      - openstack-infra/devstack-gate
-      - openstack/tripleo-quickstart
-      - openstack/tripleo-quickstart-extras
-      - openstack/tripleo-upgrade
-      - openstack/browbeat
-      - rdoinfo
-
-- job:
     name: legacy-rdoinfo-tripleo-pike-release-centos-7-multinode-1ctlr-featureset006
     parent: legacy-dsvm-base-multinode
     run: playbooks/legacy/rdoinfo-tripleo-pike-release-centos-7-multinode-1ctlr-featureset006/run.yaml
@@ -1620,38 +1523,6 @@
       - tox.ini
 
 - job:
-    name: legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata
-    parent: legacy-dsvm-base
-    run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata/run.yaml
-    post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata/post.yaml
-    timeout: 10800
-    vars:
-      toci_jobtype: ovb-1ctlr_1comp_1ceph-featureset024
-    nodeset: tripleo-ovb-centos-7
-    required-projects:
-      - openstack-infra/devstack-gate
-      - openstack-infra/tripleo-ci
-      - openstack/tripleo-quickstart
-      - openstack/tripleo-quickstart-extras
-      - openstack/tripleo-upgrade
-      - openstack/browbeat
-    voting: false
-    branches: ^stable/(0.6.x|ocata)$
-    irrelevant-files:
-      - ^.*\.md$
-      - ^.*\.rst$
-      - ^Puppetfile.*$
-      - ^doc/.*$
-      - ^etc/.*$
-      - ^metadata.json$
-      - ^releasenotes/.*$
-      - ^requirements.txt$
-      - ^setup.*$
-      - ^spec/.*$
-      - ^test-requirements.txt$
-      - tox.ini
-
-- job:
     name: legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike
     parent: legacy-dsvm-base
     run: playbooks/legacy/tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike/run.yaml
@@ -1708,40 +1579,6 @@
     vars:
       toci_jobtype: ovb-3ctlr_1comp-featureset001
     nodeset: upstream-centos-7-vexxhost
-    required-projects:
-      - openstack-infra/devstack-gate
-      - openstack-infra/tripleo-ci
-      - openstack/tripleo-quickstart
-      - openstack/tripleo-quickstart-extras
-      - openstack/tripleo-upgrade
-      - openstack/browbeat
-
-- job:
-    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata
-    parent: legacy-dsvm-base
-    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata/run.yaml
-    post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata/post.yaml
-    timeout: 10800
-    vars:
-      toci_jobtype: ovb-3ctlr_1comp-featureset001
-    nodeset: tripleo-ovb-centos-7
-    required-projects:
-      - openstack-infra/devstack-gate
-      - openstack-infra/tripleo-ci
-      - openstack/tripleo-quickstart
-      - openstack/tripleo-quickstart-extras
-      - openstack/tripleo-upgrade
-      - openstack/browbeat
-
-- job:
-    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata-branch
-    parent: legacy-dsvm-base
-    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata-branch/run.yaml
-    post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata-branch/post.yaml
-    timeout: 10800
-    vars:
-      toci_jobtype: ovb-3ctlr_1comp-featureset001
-    nodeset: tripleo-ovb-centos-7
     required-projects:
       - openstack-infra/devstack-gate
       - openstack-infra/tripleo-ci
@@ -1870,37 +1707,6 @@
       - openstack/tripleo-upgrade
       - openstack/browbeat
     branches: ^master$
-    irrelevant-files:
-      - ^.*\.md$
-      - ^.*\.rst$
-      - ^Puppetfile.*$
-      - ^doc/.*$
-      - ^etc/.*$
-      - ^metadata.json$
-      - ^releasenotes/.*$
-      - ^requirements.txt$
-      - ^setup.*$
-      - ^spec/.*$
-      - ^test-requirements.txt$
-      - tox.ini
-
-- job:
-    name: legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-ocata
-    parent: legacy-dsvm-base
-    run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-ocata/run.yaml
-    post-run: playbooks/legacy/tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-ocata/post.yaml
-    timeout: 18000
-    vars:
-      toci_jobtype: ovb-3ctlr_1comp-featureset021
-    nodeset: tripleo-ovb-centos-7
-    required-projects:
-      - openstack-infra/devstack-gate
-      - openstack-infra/tripleo-ci
-      - openstack/tripleo-quickstart
-      - openstack/tripleo-quickstart-extras
-      - openstack/tripleo-upgrade
-      - openstack/browbeat
-    branches: ^stable/(0.6.x|ocata)$
     irrelevant-files:
       - ^.*\.md$
       - ^.*\.rst$
