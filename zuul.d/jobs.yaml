@@ -136,6 +136,17 @@
       - rdoinfo
 
 - job:
+    name: legacy-DLRN-rpmbuild-fedora-pinned
+    parent: legacy-base
+    run: playbooks/legacy/DLRN-rpmbuild-fedora-pinned/run.yaml
+    post-run: playbooks/legacy/DLRN-rpmbuild-fedora/post.yaml
+    voting: false
+    branches: ^(master)|(rpm-master)$
+    nodeset: rdo-fedora-28
+    required-projects:
+      - rdoinfo
+
+- job:
     name: puppet-openstack-base
     pre-run: playbooks/legacy/puppet-openstack-integration/prepare-node-common.yaml
     parent: legacy-base

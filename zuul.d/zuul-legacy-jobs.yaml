@@ -19,6 +19,16 @@
       - rdoinfo
 
 - job:
+    name: legacy-DLRN-rpmbuild-pinned
+    parent: legacy-base
+    run: playbooks/legacy/DLRN-rpmbuild-pinned/run.yaml
+    post-run: playbooks/legacy/DLRN-rpmbuild/post.yaml
+    branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+    required-projects:
+      - DLRN
+      - rdoinfo
+
+- job:
     name: legacy-DLRN-rpmbuild-rpm-packaging-centos
     parent: legacy-base
     run: playbooks/legacy/DLRN-rpmbuild-rpm-packaging-centos/run.yaml
