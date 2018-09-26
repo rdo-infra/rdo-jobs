@@ -735,6 +735,11 @@
       - openstack/tripleo-upgrade
 
 - job:
+    name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
+    parent: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
+    nodeset: upstream-centos-7-vexxhost
+
+- job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike
     parent: legacy-tripleo-ci-periodic-multinode
     run: playbooks/legacy/periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike/run.yaml
