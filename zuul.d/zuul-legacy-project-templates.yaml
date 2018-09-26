@@ -71,7 +71,7 @@
 
 - project-template:
     name: tripleo-upgrades-check
-    openstack-check:
+    openstack-experimental:
       jobs:
         - legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike:
             voting: false
@@ -88,7 +88,7 @@
 
 - project-template:
     name: tripleo-upgrades-check-branchless
-    openstack-check:
+    openstack-experimental:
       jobs:
         - legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch:
             voting: false
@@ -98,8 +98,6 @@
         - legacy-tripleo-ci-centos-7-container-to-container-upgrades-master:
             voting: false
             branches: ^master$
-    openstack-experimental:
-      jobs:
         - legacy-tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master:
             branches: ^master$
 
