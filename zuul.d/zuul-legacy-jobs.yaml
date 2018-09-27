@@ -737,6 +737,7 @@
 - job:
     name: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
     parent: legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
+    timeout: 18000
     nodeset: upstream-centos-7-vexxhost
 
 - job:
