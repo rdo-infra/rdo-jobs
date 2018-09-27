@@ -38,6 +38,10 @@
             voting: false
         - distgit-cbs-validate:
             branches: ^(?!rpm-master).*$
+        - legacy-DLRN-rpmbuild-pinned:
+            voting: false
+        - legacy-DLRN-rpmbuild-fedora-pinned:
+            voting: false
     gate:
       jobs:
         - legacy-DLRN-rpmbuild:
