@@ -2539,6 +2539,7 @@
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
     timeout: 5400
+    voting: false
     vars:
       openstack_release: master
       scenario: scenario-py3
