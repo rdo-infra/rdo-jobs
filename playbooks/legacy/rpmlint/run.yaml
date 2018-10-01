@@ -220,7 +220,6 @@
           # Exceptions for horizon
           addFilter("python-django-horizon.noarch: E: non-executable-script /usr/lib/python2.7/site-packages/openstack_auth/tests/run_tests.py 0644L /usr/bin/env")
           addFilter("python-django-horizon.noarch: E: zero-length /usr/lib/python2.7/site-packages/openstack_auth/tests/models.py")
-          addFilter("python-django-horizon.noarch: E: zero-length /usr/lib/python2.7/site-packages/openstack_auth/tests/templates/auth/blank.html")
 
           # Exceptions for ceilometer
           addFilter("openstack-ceilometer-common.noarch: W: obsolete-not-provided openstack-ceilometer-api")
