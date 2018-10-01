@@ -469,8 +469,10 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
+        - legacy-DLRN-rpmbuild-pinned:
+            branches: ^rpm-master$
         - legacy-DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+            branches: ^(master|stable/pike)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: ^ocata-rdo$
         - distgit-cbs-final-build:
