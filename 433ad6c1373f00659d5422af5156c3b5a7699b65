@@ -22,6 +22,30 @@
       "revId": "433ad6c1373f00659d5422af5156c3b5a7699b65",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_65eddaee",
+        "filename": "playbooks/legacy/rpmlint/run.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2018-10-01T13:37:12Z",
+      "side": 1,
+      "message": "The problem in the log is that, rpmlint is ONLY skipping the error with python- from current built, but not from the new one, so it differs. Solution an add the python2- (and not removing it from python-) or remove it so that it doesn\u0027t skip it from both python- and python2-.",
+      "parentUuid": "9abe1de1_a5e3f204",
+      "range": {
+        "startLine": 222,
+        "startChar": 21,
+        "endLine": 222,
+        "endChar": 28
+      },
+      "revId": "433ad6c1373f00659d5422af5156c3b5a7699b65",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
