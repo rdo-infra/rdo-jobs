@@ -1,8 +1,11 @@
 - project:
-    name: rdo-jobs
     check:
       jobs:
-        - tox-docs
+      - legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master
+      - periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master
+      - legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master
+      - tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master
     gate:
       jobs:
-        - tox-docs
+      - tox-docs
+    name: rdo-jobs
