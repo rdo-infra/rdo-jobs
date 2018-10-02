@@ -1,8 +1,9 @@
 - project:
-    name: rdo-jobs
     check:
       jobs:
-        - tox-docs
+      - legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-rocky
+      - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-rocky
     gate:
       jobs:
-        - tox-docs
+      - tox-docs
+    name: rdo-jobs
