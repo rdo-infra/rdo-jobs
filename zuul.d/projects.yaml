@@ -1,8 +1,11 @@
 - project:
-    name: rdo-jobs
     check:
       jobs:
-        - tox-docs
+      - legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-master
+      - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-master
+      - legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset019-master
+      - tripleo-ci-centos-7-multinode-1ctlr-featureset019-master
     gate:
       jobs:
-        - tox-docs
+      - tox-docs
+    name: rdo-jobs
