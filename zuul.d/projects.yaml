@@ -1,8 +1,7 @@
 - project:
-    name: rdo-jobs
     check:
-      jobs:
-        - tox-docs
+      jobs: []
     gate:
       jobs:
-        - tox-docs
+      - tox-docs
+    name: rdo-jobs
