@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "9abe1de1_2ef21f70",
+        "filename": "roles/tripleo-ci-rdoinfo/templates/temp_repos.sh.j2",
+        "patchSetId": 44
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 242
+      },
+      "writtenOn": "2018-10-03T15:44:56Z",
+      "side": 1,
+      "message": "yes - moving to an rdoinfo review",
+      "parentUuid": "9abe1de1_d3d22c00",
+      "revId": "70b32bc9c9296c2ed64a421efd65c5a06036dc56",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9abe1de1_13366452",
         "filename": "roles/tripleo-ci-rdoinfo/templates/temp_repos.sh.j2",
         "patchSetId": 44
@@ -65,6 +83,30 @@
     },
     {
       "key": {
+        "uuid": "9abe1de1_0ee99b80",
+        "filename": "roles/tripleo-ci-rdoinfo/templates/temp_repos.sh.j2",
+        "patchSetId": 44
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 242
+      },
+      "writtenOn": "2018-10-03T15:44:56Z",
+      "side": 1,
+      "message": "ack",
+      "parentUuid": "9abe1de1_13366452",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 64
+      },
+      "revId": "70b32bc9c9296c2ed64a421efd65c5a06036dc56",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9abe1de1_f301b06b",
         "filename": "zuul.d/multinode-jobs.yaml",
         "patchSetId": 44
@@ -76,6 +118,30 @@
       "writtenOn": "2018-10-02T19:39:04Z",
       "side": 1,
       "message": "why not just\nbranches: master",
+      "range": {
+        "startLine": 10,
+        "startChar": 15,
+        "endLine": 10,
+        "endChar": 21
+      },
+      "revId": "70b32bc9c9296c2ed64a421efd65c5a06036dc56",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_aefe2f36",
+        "filename": "zuul.d/multinode-jobs.yaml",
+        "patchSetId": 44
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 242
+      },
+      "writtenOn": "2018-10-03T15:44:56Z",
+      "side": 1,
+      "message": "I assume because anyone can create a branch like master-test and we would pick that up.\nopen to other answers",
+      "parentUuid": "9abe1de1_f301b06b",
       "range": {
         "startLine": 10,
         "startChar": 15,
@@ -157,6 +223,30 @@
     },
     {
       "key": {
+        "uuid": "9abe1de1_4e9673f1",
+        "filename": "zuul.d/ovb-jobs.yaml",
+        "patchSetId": 44
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 242
+      },
+      "writtenOn": "2018-10-03T15:44:56Z",
+      "side": 1,
+      "message": "18000 timeout is for fs020 only. Are you suggesting we create a base fs020 job?",
+      "parentUuid": "9abe1de1_93f3949e",
+      "range": {
+        "startLine": 192,
+        "startChar": 4,
+        "endLine": 192,
+        "endChar": 18
+      },
+      "revId": "70b32bc9c9296c2ed64a421efd65c5a06036dc56",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9abe1de1_73eec0b5",
         "filename": "zuul.d/ovb-jobs.yaml",
         "patchSetId": 44
@@ -191,6 +281,30 @@
       "writtenOn": "2018-10-02T19:39:04Z",
       "side": 1,
       "message": "move to base",
+      "range": {
+        "startLine": 10,
+        "startChar": 4,
+        "endLine": 10,
+        "endChar": 18
+      },
+      "revId": "70b32bc9c9296c2ed64a421efd65c5a06036dc56",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_2e99ff1f",
+        "filename": "zuul.d/undercloud-jobs.yaml",
+        "patchSetId": 44
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 242
+      },
+      "writtenOn": "2018-10-03T15:44:56Z",
+      "side": 1,
+      "message": "not needed - this is the base timeout in tripleoci - removing",
+      "parentUuid": "9abe1de1_532cdc01",
       "range": {
         "startLine": 10,
         "startChar": 4,
