@@ -323,3 +323,56 @@
     vars:
       nodes: 1ctlr
       featureset: '051'
+
+# legacy-rdoinfo-tripleo-pike-testing-centos-7-multinode-1ctlr-featureset006
+- job:
+    name: rdoinfo-tripleo-pike-testing-centos-7-multinode-1ctlr-featureset006
+    parent: tripleo-ci-base-multinode-rdoinfo
+    timeout: 10800
+    branches: ^master$
+    vars:
+      nodes: 1ctlr
+      featureset: '006'
+      phase: 'testing'
+
+# legacy-rdoinfo-tripleo-pike-release-centos-7-multinode-1ctlr-featureset006
+- job:
+    name: rdoinfo-tripleo-pike-release-centos-7-multinode-1ctlr-featureset006
+    parent: tripleo-ci-base-multinode-rdoinfo
+    timeout: 10800
+    branches: ^master$
+    vars:
+      nodes: 1ctlr
+      featureset: '006'
+
+# legacy-rdoinfo-tripleo-ocata-testing-centos-7-multinode-1ctlr-featureset005
+- job:
+    name: rdoinfo-tripleo-ocata-testing-centos-7-multinode-1ctlr-featureset005
+    parent: tripleo-ci-base-multinode-rdoinfo
+    timeout: 10800
+    branches: ^master$
+    vars:
+      nodes: 1ctlr
+      featureset: '005'
+      phase: 'testing'
+
+# legacy-rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005
+- job:
+    name: rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005
+    parent: tripleo-ci-base-multinode-rdoinfo
+    timeout: 10800
+    branches: ^master$
+    vars:
+      nodes: 1ctlr
+      featureset: '005'
+
+# legacy-rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016
+- job:
+    name: rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016
+    parent: tripleo-ci-base-multinode-rdoinfo
+    timeout: 10800
+    branches: ^master$
+    vars:
+      nodes: 1ctlr
+      featureset: '016'
+      phase: 'testing'
