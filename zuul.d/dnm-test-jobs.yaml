@@ -1,0 +1,28 @@
+# To test container builds
+- job:
+    name: tripleo-ci-base-singlenode-containers-build
+    abstract: true
+    parent: tripleo-ci-base-singlenode-periodic
+    run: playbooks/legacy/tripleo-ci-centos-7-containers-build/run.yaml
+    #secrets:
+    #  - rdo_registry
+    vars:
+       featureset: '023'
+       rdo_registry:
+         token: very-secret-stuff
+
+- job:
+    name: periodic-tripleo-centos-7-master-containers-build
+    parent: tripleo-ci-base-singlenode-containers-build
+    branches: '^master$'
+    vars:
+      release: 'master'
+
+- job:
+    name: periodic-tripleo-centos-7-rocky-containers-build
+    parent: tripleo-ci-base-singlenode-containers-build
+    branches: '^master$'
+    vars:
+      override_branch: 'stable/rocky'
+      release: 'rocky'
+
