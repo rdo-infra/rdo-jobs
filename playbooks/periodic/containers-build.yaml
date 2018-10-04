@@ -1,0 +1,26 @@
+- hosts: primary
+  vars:
+    ci_config_repo: "{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/ci-config'].src_dir }}"
+    workspace: "{{ ansible_user_dir }}/workspace"
+  tasks:
+
+    - name: Set zuul-log-path fact
+      include_role:
+        name: set-zuul-log-path-fact
+
+    - shell:
+        cmd: |
+          export RELEASE="{{ release }}"
+          bash -xe {{ ci_config_repo }}/ci-scripts/tripleo-upstream/build-containers-images.sh
+        chdir: '{{ workspace }}'
+      environment: "{{ zuul | zuul_legacy_vars | combine({'REGISTRY_PASSWORD': rdo_registry.token}) }}"
+
+    - shell:
+        cmd: |
+          export LOG_PATH="{{ zuul_log_path }}"
+          cp -a /tmp/kolla $LOG_PATH/
+          # Ensure permissions allow artifact uploading
+          sudo chown -R "$(id -u).$(id -g)" $LOG_PATH
+        chdir: '{{ workspace }}'
+      environment: '{{ zuul | zuul_legacy_vars }}'
+
