@@ -1,0 +1,26 @@
+- hosts: all
+  vars:
+    ci_config_repo: "{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/ci-config'].src_dir }}"
+    workspace: "{{ ansible_user_dir }}/workspace"
+  tasks:
+
+    - name: Ensure legacy workspace directory
+      file:
+        path: '{{ workspace }}'
+        state: directory
+
+    - shell:
+        cmd: |
+          export RELEASE="{{ release }}"
+          export PROMOTE_NAME=consistent
+          bash -xe {{ ci_config_repo }}/ci-scripts/tripleo-upstream/get-hash.sh
+        chdir: '{{ workspace }}'
+      environment: '{{ zuul | zuul_legacy_vars }}'
+
+    - shell:
+        cmd: |
+          export RELEASE="{{ release }}"
+          export PROMOTE_NAME=tripleo-ci-testing
+          bash -xe {{ ci_config_repo }}/ci-scripts/tripleo-upstream/promote-hash.sh
+        chdir: '{{ workspace }}'
+      environment: "{{ zuul | zuul_legacy_vars | combine({'DLRNAPI_PASSWORD': dlrnapi.password}) }}"
