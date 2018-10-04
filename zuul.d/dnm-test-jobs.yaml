@@ -1,0 +1,33 @@
+# To test container builds
+- job:
+    name: tripleo-ci-base-singlenode-containers-build
+    abstract: true
+    parent: tripleo-ci-base-singlenode-rdo
+    run: playbooks/legacy-tripleo-ci-periodic-base-containers-build/run.yaml
+    required-projects:
+      - rdo-infra/ci-config
+    secrets:
+      - rdo_registry
+    vars:
+       featureset: '023'
+
+- job:
+    name: periodic-tripleo-centos-7-master-containers-build
+    parent: tripleo-ci-base-singlenode-containers-build
+    branches: '^master$'
+
+- job:
+    name: periodic-tripleo-centos-7-pike-containers-build
+    parent: tripleo-ci-base-singlenode-containers-build
+    branches: '^stable/pike$'
+
+- job:
+    name: periodic-tripleo-centos-7-queens-containers-build
+    parent: tripleo-ci-base-singlenode-containers-build
+    branches: '^stable/queens$'
+
+- job:
+    name: periodic-tripleo-centos-7-rocky-containers-build
+    parent: tripleo-ci-base-singlenode-containers-build
+    branches: '^stable/rocky$'
+
