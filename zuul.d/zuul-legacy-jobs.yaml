@@ -1056,6 +1056,8 @@
     name: legacy-rdo-deps-uc-send-review
     parent: legacy-base
     run: playbooks/legacy/rdo-deps-uc-send-review/run.yaml
+    required-projects:
+      - rdoinfo
 
 - job:
     name: legacy-rdo-infra-playbooks-integration-base
