@@ -1,0 +1,30 @@
+# To test container builds
+#
+#
+
+- job:
+    name: tripleo-ci-base-promote-consistent-to-tripleo-ci-testing
+    abstract: true
+    parent: tripleo-ci-base-singlenode-periodic
+    timeout: 1800
+    run: playbooks/legacy/tripleo-ci-centos-7-promote-consistent-to-tripleo-ci-testing/run.yaml
+    #secrets:
+    #  - dlrnapi
+    vars:
+      dlrnapi:
+        password: very-secret-stuff
+- job:
+    name: periodic-tripleo-centos-7-master-promote-consistent-to-tripleo-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-tripleo-ci-testing
+    branches: '^master$'
+    vars:
+      release: 'master'
+
+- job:
+    name: periodic-tripleo-centos-7-rocky-promote-consistent-to-tripleo-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-tripleo-ci-testing
+    branches: '^master$'
+    vars:
+      override_branch: 'stable/rocky'
+      release: 'rocky'
+
