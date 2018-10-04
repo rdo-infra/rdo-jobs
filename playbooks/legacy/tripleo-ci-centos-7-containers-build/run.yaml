@@ -1,0 +1,26 @@
+- name: Run {{ featureset }}
+  import_paybook: "{{ zuul.projects['git.openstack.org/openstack-infra/tripleo-ci'].src_dir }}/playbooks/tripleo-ci/run-v3.yaml"
+
+- hosts: primary
+  tasks:
+
+    - name: Set zuul-log-path fact
+      include_role:
+        name: set-zuul-log-path-fact
+
+    - shell:
+        cmd: |
+          export RELEASE="{{ release }}"
+          bash -xe {{ tripleo_ci_dir }}/ci-scripts/tripleo-upstream/build-containers-images.sh
+        chdir: '{{ workspace }}'
+      environment: "{{ zuul | zuul_legacy_vars | combine({'REGISTRY_PASSWORD': rdo_registry.token}) }}"
+
+    - shell:
+        cmd: |
+          export LOG_PATH="{{ zuul_log_path }}"
+          cp -a /tmp/kolla $LOG_PATH/
+          # Ensure permissions allow artifact uploading
+          sudo chown -R "$(id -u).$(id -g)" $LOG_PATH
+        chdir: '{{ workspace }}'
+      environment: '{{ zuul | zuul_legacy_vars }}'
+
