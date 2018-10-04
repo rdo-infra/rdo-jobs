@@ -1,0 +1,17 @@
+- hosts: all
+  vars:
+    workspace: "{{ ansible_user_dir }}/workspace"
+  tasks:
+    - name: Copy files from {{ workspace }} on node
+      synchronize:
+        src: '{{ workspace }}'
+        dest: '{{ zuul.executor.log_root }}'
+        mode: pull
+        copy_links: true
+        verify_host: true
+        rsync_opts:
+          - --include=/logs/**
+          - --include=/buildset/**
+          - --include=*/
+          - --exclude=*
+          - --prune-empty-dirs
