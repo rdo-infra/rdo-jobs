@@ -1,8 +1,5 @@
 - project:
-    name: rdo-jobs
     check:
       jobs:
-        - tox-docs
-    gate:
-      jobs:
-        - tox-docs
+        - periodic-tripleo-centos-7-master-containers-build
+        - periodic-tripleo-centos-7-rocky-containers-build
