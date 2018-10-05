@@ -1,0 +1,39 @@
+---
+- pipeline:
+    name: fake-openstack-periodic
+    description: |
+      Newly uploaded patchsets enter this pipeline to receive an
+      initial +/-1 Verified vote.
+    success-message: Build succeeded (check pipeline).
+    failure-message: |
+      Build failed (check pipeline).  For information on how to proceed, see
+      http://docs.openstack.org/infra/manual/developers.html#automated-testing
+    manager: independent
+    require:
+      rdoproject.org:
+        open: True
+        current-patchset: True
+    trigger:
+      openstack.org:
+        - event: patchset-created
+        - event: change-restored
+        - event: comment-added
+          comment: (?i)^(Patch Set [0-9]+:)?( [\w\\+-]*)*(\n\n)?\s*(recheck|check-rdo|verify-rdo)
+    success:
+      # Note: we are using another connection to report with rdo project ci account
+      rdoci:
+        Verified: 1
+      sqlreporter:
+    failure:
+      # Note: we are using another connection to report with rdo project ci account
+      rdoci:
+        Verified: -1
+      sqlreporter:
+
+- project:
+    name: rdo-jobs
+    templates:
+      - system-required
+    fake-openstack-periodic:
+      jobs:
+        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
