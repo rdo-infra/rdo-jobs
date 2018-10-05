@@ -1,0 +1,8 @@
+---
+- project:
+    name: rdo-jobs
+    templates:
+      - system-required
+    openstack-check:
+      jobs:
+        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
