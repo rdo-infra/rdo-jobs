@@ -7,22 +7,22 @@
 - job:
     name: periodic-tripleo-ci-centos-7-singlenode-featureset027-master
     parent: tripleo-ci-base-singlenode-periodic
-    branches: ^master$
     vars:
       featureset: '027'
+      branch_override: stable/rocky
 
 # legacy-periodic-tripleo-ci-centos-7-singlenode-featureset027-rocky
 - job:
     name: periodic-tripleo-ci-centos-7-singlenode-featureset027-rocky
     parent: tripleo-ci-base-singlenode-periodic
-    branches: ^stable/rocky$
     vars:
       featureset: '027'
+      branch_override: stable/rocky
 
 # legacy-periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-rocky
 - job:
     name: periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-rocky
     parent: tripleo-ci-base-singlenode-periodic
-    branches: ^stable/rocky$
     vars:
       featureset: '050'
+      branch_override: stable/rocky
