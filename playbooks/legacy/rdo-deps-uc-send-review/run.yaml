@@ -39,18 +39,18 @@
               /usr/zuul-env/bin/zuul-cloner http://review.rdoproject.org/r \
                 rdoinfo
           fi
-          if [ "${ZUUL_REF}" == 'master' ]; then
-              RELEASE="rocky"
+          if [ "${ZUUL_BRANCH}" == 'master' ]; then
+              RELEASE="stein"
           else
-              RELEASE="${ZUUL_REF/stable\//}"
+              RELEASE="${ZUUL_BRANCH/stable\//}"
           fi
           export PHASE="candidate"
           pushd $ZUUL_PROJECT
-          SUBJECT=$(git log --oneline $ZUUL_COMMIT|head -1|cut -d " " -f 2)
+          SUBJECT=$(git log --oneline $ZUUL_NEWREV|head -1|cut -d " " -f 2)
           if [ $SUBJECT == "Merge" ]; then
-             REAL_COMMIT=$(git show $ZUUL_COMMIT|grep ^Merge:|awk '{print $(NF)}')
+             REAL_COMMIT=$(git show $ZUUL_NEWREV|grep ^Merge:|awk '{print $(NF)}')
           else
-             REAL_COMMIT=$ZUUL_COMMIT
+             REAL_COMMIT=$ZUUL_NEWREV
           fi
           UPSTREAM_CHANGE_ID=$(git show $REAL_COMMIT|grep Change-Id:|awk '{print $(NF)}')
           change_list=($(git show $REAL_COMMIT upper-constraints.txt|grep -P '^\+(?:(?!\+\+))|^-(?:(?!--))'))
