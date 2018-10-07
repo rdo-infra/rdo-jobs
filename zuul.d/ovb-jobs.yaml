@@ -179,7 +179,7 @@
 # legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-queens
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-queens
-    parent: tripleo-ci-base-ovb-rdo
+    parent: tripleo-ci-base-ovb-periodic
     timeout: 18000
     vars:
       nodes: 1ctlr_1comp
@@ -190,7 +190,7 @@
 # legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-pike
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-pike
-    parent: tripleo-ci-base-ovb-rdo
+    parent: tripleo-ci-base-ovb-periodic
     timeout: 18000
     vars:
       nodes: 1ctlr_1comp
@@ -201,7 +201,7 @@
 # legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-rocky
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-rocky
-    parent: tripleo-ci-base-ovb-rdo
+    parent: tripleo-ci-base-ovb-periodic
     timeout: 18000
     vars:
       nodes: 1ctlr_1comp
