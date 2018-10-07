@@ -10,6 +10,7 @@
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
+      release: master
 
 # legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
 - job:
@@ -20,34 +21,6 @@
       nodes: 3ctlr_1comp
       featureset: '001'
 
-# legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata
-    parent: tripleo-ci-base-ovb-periodic
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '001'
-      branch_override: "stable/ocata"
-
-# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata
-- job:
-    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^stable/ocata$
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '001'
-
-# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata-branch
-- job:
-    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ocata-branch
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^master$
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '001'
-      branch_override: "stable/ocata"
-
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike
@@ -56,6 +29,7 @@
       nodes: 3ctlr_1comp
       featureset: '001'
       branch_override: "stable/pike"
+      release: pike
 
 # legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike
 - job:
@@ -84,6 +58,7 @@
       nodes: 3ctlr_1comp
       featureset: '001'
       branch_override: "stable/queens"
+      release: queens
 
 # legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens
 - job:
@@ -112,6 +87,7 @@
       nodes: 3ctlr_1comp
       featureset: '001'
       branch_override: "stable/rocky"
+      release: rocky
 
 # legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky
 - job:
@@ -158,15 +134,7 @@
       nodes: 1ctlr_1comp
       featureset: '002'
       branch_override: "stable/rocky"
-
-# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-ocata-upload
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-ocata-upload
-    parent: tripleo-ci-base-ovb-periodic-upload
-    vars:
-      nodes: 1ctlr_1comp
-      featureset: '002'
-      branch_override: "stable/ocata"
+      release: rocky
 
 # legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-pike-upload
 - job:
@@ -176,6 +144,7 @@
       nodes: 1ctlr_1comp
       featureset: '002'
       branch_override: "stable/pike"
+      release: pike
 
 # legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload
 - job:
@@ -185,6 +154,7 @@
       nodes: 1ctlr_1comp
       featureset: '002'
       branch_override: "stable/queens"
+      release: queens
 
 # legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master
 - job:
@@ -194,6 +164,7 @@
     vars:
       nodes: 1ctlr_1comp
       featureset: '020'
+      release: master
 
 # legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master
 - job:
@@ -205,16 +176,6 @@
       nodes: 1ctlr_1comp
       featureset: '020'
 
-# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-ocata
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-ocata
-    parent: tripleo-ci-base-ovb-rdo
-    timeout: 18000
-    vars:
-      nodes: 1ctlr_1comp
-      featureset: '020'
-      branch_override: "stable/ocata"
-
 # legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-queens
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-queens
@@ -224,6 +185,7 @@
       nodes: 1ctlr_1comp
       featureset: '020'
       branch_override: "stable/queens"
+      release: queens
 
 # legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-pike
 - job:
@@ -234,6 +196,7 @@
       nodes: 1ctlr_1comp
       featureset: '020'
       branch_override: "stable/pike"
+      release: pike
 
 # legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-rocky
 - job:
@@ -244,6 +207,7 @@
       nodes: 1ctlr_1comp
       featureset: '020'
       branch_override: "stable/rocky"
+      release: rocky
 
 # legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike
 - job:
@@ -253,6 +217,7 @@
       nodes: 1ctlr_1comp
       featureset: '022'
       branch_override: "stable/pike"
+      release: pike
 
 # legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike
 - job:
@@ -263,16 +228,6 @@
       nodes: 1ctlr_1comp
       featureset: '022'
 
-# legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata
-- job:
-    name: tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-ocata
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^stable/(0.6.x|ocata)$
-    voting: false
-    vars:
-      nodes: 1ctlr_1comp_1ceph
-      featureset: '024'
-
 # legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-master
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-master
@@ -280,6 +235,7 @@
     vars:
       nodes: 1ctlr_1comp
       featureset: '021'
+      release: master
 
 # legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-master
 - job:
@@ -298,6 +254,7 @@
       nodes: 1ctlr_1comp
       featureset: '021'
       branch_override: "stable/rocky"
+      release: rocky
 
 # legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-rocky
 - job:
@@ -316,6 +273,7 @@
       nodes: 1ctlr_1comp
       featureset: '021'
       branch_override: "stable/queens"
+      release: queens
 
 # legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-queens
 - job:
@@ -334,30 +292,13 @@
       nodes: 1ctlr_1comp
       featureset: '021'
       branch_override: "stable/pike"
+      release: pike
 
 # legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-pike
 - job:
     name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-pike
     parent: tripleo-ci-base-ovb-rdo
     branches: ^stable/pike$
-    vars:
-      nodes: 1ctlr_1comp
-      featureset: '021'
-
-# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-ocata
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-ocata
-    parent: tripleo-ci-base-ovb-periodic
-    vars:
-      nodes: 1ctlr_1comp
-      featureset: '021'
-      branch_override: "stable/ocata"
-
-# legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-ocata
-- job:
-    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-ocata
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^stable/ocata$
     vars:
       nodes: 1ctlr_1comp
       featureset: '021'
@@ -378,6 +319,7 @@
     vars:
       nodes: 3ctlr_1comp
       featureset: '035'
+      release: master
 
 # legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master
 - job:
@@ -396,6 +338,7 @@
       nodes: 3ctlr_1comp
       featureset: '035'
       branch_override: "stable/rocky"
+      release: rocky
 
 # legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-rocky
 - job:
@@ -414,6 +357,7 @@
       nodes: 3ctlr_1comp
       featureset: '035'
       branch_override: "stable/queens"
+      release: queens
 
 # legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens
 - job:
@@ -501,5 +445,4 @@
       nodes: 1ctlr_1comp_1ceph
       featureset: '024'
       branch_override: "stable/pike"
-
-
+      release: pike
