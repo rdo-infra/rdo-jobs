@@ -311,6 +311,28 @@
       nodes: 1ctlr
       featureset: '011'
 
+# legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike
+- job:
+    name: tripleo-ci-centos-7-containers-multinode-upgrades-pike
+    parent: tripleo-ci-base-multinode-rdo
+    branches: ^stable/pike$
+    voting: false
+    vars:
+      nodes: 1ctlr
+      featureset: '011'
+      release: pike
+
+# legacy-tripleo-ci-centos-7-containers-multinode-upgrades-queens
+- job:
+    name: tripleo-ci-centos-7-containers-multinode-upgrades-queens
+    parent: tripleo-ci-base-multinode-rdo
+    branches: ^stable/queens$
+    voting: false
+    vars:
+      nodes: 1ctlr
+      featureset: '040'
+      release: queens
+
 # legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master
 - job:
     name: tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master
