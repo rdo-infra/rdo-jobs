@@ -24,56 +24,56 @@
     name: tripleo-ovb-check
     openstack-check:
       jobs:
-        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master:
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master:
             branches: ^master$
-        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky:
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky:
             branches: ^stable/rocky$
-        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens:
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens:
             branches: ^stable/queens$
-        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike:
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike:
             branches: ^stable/pike$
-        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master:
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master:
             branches: ^master$
-        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-rocky:
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-rocky:
             branches: ^stable/rocky$
-        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens:
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens:
             branches: ^stable/queens$
-        - legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike:
+        - tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike:
             branches: ^stable/pike$
-        - legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike:
+        - tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike:
             branches: ^stable/pike$
 
 - project-template:
     name: tripleo-ovb-experimental
     openstack-experimental:
       jobs:
-        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-pike:
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-pike:
             branches: ^stable/pike$
-        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-queens:
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-queens:
             branches: ^stable/queens$
-        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-rocky:
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-rocky:
             branches: ^stable/rocky$
-        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-master:
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset021-master:
             branches: ^master$
-        - legacy-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master:
+        - tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master:
             branches: ^master$
-        - legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master:
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master:
             branches: ^master$
 
 - project-template:
     name: tripleo-upgrades-check
     openstack-experimental:
       jobs:
-        - legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike:
+        - tripleo-ci-centos-7-containers-multinode-upgrades-pike:
             voting: false
             branches: ^stable/pike$
-        - legacy-tripleo-ci-centos-7-container-to-container-upgrades-queens:
+        - tripleo-ci-centos-7-container-to-container-upgrades-queens:
             voting: false
             branches: ^stable/queens$
-        - legacy-tripleo-ci-centos-7-container-to-container-upgrades-master:
+        - tripleo-ci-centos-7-container-to-container-upgrades-master:
             voting: false
             branches: ^master$
-        - legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens:
+        - tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens:
             voting: false
             branches: ^stable/queens$
 
@@ -81,15 +81,15 @@
     name: tripleo-upgrades-check-branchless
     openstack-experimental:
       jobs:
-        - legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch:
+        - tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch:
             voting: false
             branches: ^master$
-        - legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master:
+        - tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master:
             branches: ^master$
-        - legacy-tripleo-ci-centos-7-container-to-container-upgrades-master:
+        - tripleo-ci-centos-7-container-to-container-upgrades-master:
             voting: false
             branches: ^master$
-        - legacy-tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master:
+        - tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master:
             branches: ^master$
 
 - project-template:
