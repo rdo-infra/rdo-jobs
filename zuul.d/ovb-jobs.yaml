@@ -86,6 +86,22 @@
         - browbeat-minimal.yml
 
 - job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset041
+    parent: tripleo-ci-base-ovb-rdo
+    timeout: 14400
+    branches: master
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '041'
+      playbooks:
+        - ovb-setup.yml
+        - baremetal-full-undercloud.yml
+        - baremetal-full-overcloud-prep.yml
+        - baremetal-full-overcloud.yml
+        - baremetal-full-overcloud-validate.yml
+        - overcloud-validate-ha.yml
+
+- job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042
     parent: tripleo-ci-base-ovb-rdo
     branches: ^(?!stable/(newton|ocata|pike)).*$
