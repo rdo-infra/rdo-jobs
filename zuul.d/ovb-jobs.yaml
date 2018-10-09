@@ -94,6 +94,33 @@
       nodes: 3ctlr_1comp
       featureset: '042'
 
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike-branch
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^master$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      branch_override: "stable/pike"
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens-branch
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^master$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      branch_override: "stable/queens"
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky-branch
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^master$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      branch_override: "stable/rocky"
+
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
@@ -131,16 +158,6 @@
       nodes: 3ctlr_1comp
       featureset: '001'
 
-# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike-branch
-- job:
-    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike-branch
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^master$
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '001'
-      branch_override: "stable/pike"
-
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens
@@ -160,16 +177,6 @@
       nodes: 3ctlr_1comp
       featureset: '001'
 
-# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens-branch
-- job:
-    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens-branch
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^master$
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '001'
-      branch_override: "stable/queens"
-
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky
@@ -188,16 +195,6 @@
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
-
-# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky-branch
-- job:
-    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky-branch
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^master$
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '001'
-      branch_override: "stable/rocky"
 
 # legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
 - job:
