@@ -394,18 +394,7 @@
         - baremetal-full-overcloud-validate.yml
         - browbeat-minimal.yml
 
-# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens-tht
-- job:
-    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens-tht
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^stable/queens$
-    timeout: 10800
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '042'
-
 # legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens
-# Needed? duplicate of previous?
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-queens
     parent: tripleo-ci-base-ovb-rdo
@@ -415,26 +404,25 @@
       nodes: 3ctlr_1comp
       featureset: '042'
 
-# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master-tht
 - job:
-    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master-tht
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-rocky
     parent: tripleo-ci-base-ovb-rdo
-    branches: ^master$
+    branches: ^stable/rocky$
     timeout: 10800
     vars:
       nodes: 3ctlr_1comp
       featureset: '042'
 
 # legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master
-# Needed? duplicate of previous?
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-master
     parent: tripleo-ci-base-ovb-rdo
-    branches: ^master
+    branches: master
     timeout: 10800
     vars:
       nodes: 3ctlr_1comp
       featureset: '042'
+
 
 # legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike
 - job:
