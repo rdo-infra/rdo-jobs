@@ -3,6 +3,97 @@
 # Zuul layout for TripleO OVB RDO Cloud related jobs.
 # It contains all the jobs related to OVB testing in RDO Cloud.
 
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
+    parent: tripleo-ci-base-ovb-rdo
+    branches: "^.*$"
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^(?!stable/(newton|ocata|pike)).*$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '035'
+
+# Job for testing featureset002 changes
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload
+    parent: tripleo-ci-base-ovb-rdo
+    branches: "^.*$"
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '002'
+
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020
+    parent: tripleo-ci-base-ovb-rdo
+    timeout: 18000
+    branches: ^(?!stable/(newton|ocata)).*$
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '020'
+
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/pike$
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '022'
+
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^(?!stable/(newton|ocata)).*$
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '021'
+
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/pike$
+    vars:
+      nodes: 1ctlr_1comp_1ceph
+      featureset: '024'
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^master$
+    vars:
+      nodes: 3ctlr_1comp_1supp
+      featureset: '039'
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053
+    parent: tripleo-ci-base-ovb-rdo
+    timeout: 14400
+    branches: ^master$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '053'
+      playbooks:
+        - ovb-setup.yml
+        - baremetal-full-undercloud.yml
+        - baremetal-full-overcloud-prep.yml
+        - baremetal-full-overcloud.yml
+        - baremetal-full-overcloud-validate.yml
+        - browbeat-minimal.yml
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^(?!stable/(newton|ocata|pike)).*$
+    timeout: 10800
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '042'
+
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
