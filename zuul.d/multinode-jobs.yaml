@@ -3,15 +3,6 @@
 # Zuul layout for TripleO RDO Cloud related multinode jobs.
 # It contains all the jobs using deployed-servers in nodepool.
 
-# legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset016-master
-- job:
-    name: tripleo-ci-centos-7-multinode-1ctlr-featureset016-master
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^master$
-    vars:
-      nodes: 1ctlr
-      featureset: '016'
-
 - job:
     name: tripleo-ci-centos-7-multinode-1ctlr-featureset016
     parent: tripleo-ci-base-multinode-rdo
@@ -19,15 +10,6 @@
     vars:
       nodes: 1ctlr
       featureset: '016'
-
-# legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset017-master
-- job:
-    name: tripleo-ci-centos-7-multinode-1ctlr-featureset017-master
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^master$
-    vars:
-      nodes: 1ctlr
-      featureset: '017'
 
 - job:
     name: tripleo-ci-centos-7-multinode-1ctlr-featureset017
@@ -37,15 +19,6 @@
       nodes: 1ctlr
       featureset: '017'
 
-# legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset018-master
-- job:
-    name: tripleo-ci-centos-7-multinode-1ctlr-featureset018-master
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^master$
-    vars:
-      nodes: 1ctlr
-      featureset: '018'
-
 - job:
     name: tripleo-ci-centos-7-multinode-1ctlr-featureset018
     parent: tripleo-ci-base-multinode-rdo
@@ -53,15 +26,6 @@
     vars:
       nodes: 1ctlr
       featureset: '018'
-
-# legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset019-master
-- job:
-    name: tripleo-ci-centos-7-multinode-1ctlr-featureset019-master
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^master$
-    vars:
-      nodes: 1ctlr
-      featureset: '019'
 
 - job:
     name: tripleo-ci-centos-7-multinode-1ctlr-featureset019
