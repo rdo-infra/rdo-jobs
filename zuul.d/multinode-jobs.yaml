@@ -3,6 +3,179 @@
 # Zuul layout for TripleO RDO Cloud related multinode jobs.
 # It contains all the jobs using deployed-servers in nodepool.
 
+# legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset016-master
+- job:
+    name: tripleo-ci-centos-7-multinode-1ctlr-featureset016-master
+    parent: tripleo-ci-base-multinode-rdo
+    branches: ^master$
+    vars:
+      nodes: 1ctlr
+      featureset: '016'
+
+- job:
+    name: tripleo-ci-centos-7-multinode-1ctlr-featureset016
+    parent: tripleo-ci-base-multinode-rdo
+    branches: ^master$
+    vars:
+      nodes: 1ctlr
+      featureset: '016'
+
+# legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset017-master
+- job:
+    name: tripleo-ci-centos-7-multinode-1ctlr-featureset017-master
+    parent: tripleo-ci-base-multinode-rdo
+    branches: ^master$
+    vars:
+      nodes: 1ctlr
+      featureset: '017'
+
+- job:
+    name: tripleo-ci-centos-7-multinode-1ctlr-featureset017
+    parent: tripleo-ci-base-multinode-rdo
+    branches: ^master$
+    vars:
+      nodes: 1ctlr
+      featureset: '017'
+
+# legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset018-master
+- job:
+    name: tripleo-ci-centos-7-multinode-1ctlr-featureset018-master
+    parent: tripleo-ci-base-multinode-rdo
+    branches: ^master$
+    vars:
+      nodes: 1ctlr
+      featureset: '018'
+
+- job:
+    name: tripleo-ci-centos-7-multinode-1ctlr-featureset018
+    parent: tripleo-ci-base-multinode-rdo
+    branches: ^master$
+    vars:
+      nodes: 1ctlr
+      featureset: '018'
+
+# legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset019-master
+- job:
+    name: tripleo-ci-centos-7-multinode-1ctlr-featureset019-master
+    parent: tripleo-ci-base-multinode-rdo
+    branches: ^master$
+    vars:
+      nodes: 1ctlr
+      featureset: '019'
+
+- job:
+    name: tripleo-ci-centos-7-multinode-1ctlr-featureset019
+    parent: tripleo-ci-base-multinode-rdo
+    branches: ^master$
+    vars:
+      nodes: 1ctlr
+      featureset: '019'
+
+# legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch
+- job:
+    name: tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch
+    parent: tripleo-ci-base-multinode-rdo
+    branches: ^master$
+    voting: false
+    vars:
+      nodes: 1ctlr
+      featureset: '011'
+
+# legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike
+- job:
+    name: tripleo-ci-centos-7-containers-multinode-upgrades-pike
+    parent: tripleo-ci-base-multinode-rdo
+    branches: ^stable/pike$
+    voting: false
+    vars:
+      nodes: 1ctlr
+      featureset: '011'
+      release: pike
+
+# legacy-tripleo-ci-centos-7-containers-multinode-upgrades-queens
+- job:
+    name: tripleo-ci-centos-7-containers-multinode-upgrades-queens
+    parent: tripleo-ci-base-multinode-rdo
+    branches: ^stable/queens$
+    voting: false
+    vars:
+      nodes: 1ctlr
+      featureset: '040'
+      release: queens
+
+# legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master
+- job:
+    name: tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master
+    parent: tripleo-ci-base-multinode-rdo
+    branches: ^master$
+    voting: false
+    vars:
+      nodes: 1ctlr
+      featureset: '037'
+
+- job:
+    name: tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates
+    parent: tripleo-ci-base-multinode-rdo
+    branches: ^(?!stable/(newton|ocata|pike)).*$
+    voting: false
+    vars:
+      nodes: 1ctlr
+      featureset: '037'
+
+# legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens
+- job:
+    name: tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens
+    parent: tripleo-ci-base-multinode-rdo
+    branches: ^stable/queens$
+    voting: false
+    timeout: 10800
+    vars:
+      nodes: 1ctlr
+      featureset: '036'
+
+# legacy-tripleo-ci-centos-7-container-to-container-upgrades-queens
+- job:
+    name: tripleo-ci-centos-7-container-to-container-upgrades-queens
+    parent: tripleo-ci-base-multinode-rdo
+    branches: ^stable/queens$
+    voting: false
+    timeout: 10800
+    vars:
+      nodes: 1ctlr
+      featureset: '040'
+
+# legacy-tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master
+- job:
+    name: tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master
+    parent: tripleo-ci-base-multinode-rdo
+    branches: ^master$
+    voting: false
+    timeout: 10800
+    vars:
+      nodes: 1ctlr
+      featureset: '051'
+
+- job:
+    name: tripleo-ci-centos-7-container-to-container-featureset051-upgrades
+    parent: tripleo-ci-base-multinode-rdo
+    branches: ^master$
+    voting: false
+    timeout: 10800
+    vars:
+      nodes: 1ctlr
+      featureset: '051'
+
+# legacy-tripleo-ci-centos-7-container-to-container-upgrades-master
+- job:
+    name: tripleo-ci-centos-7-container-to-container-upgrades-master
+    parent: tripleo-ci-base-multinode-rdo
+    branches: ^master$
+    voting: false
+    timeout: 10800
+    vars:
+      nodes: 1ctlr
+      featureset: '040'
+
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-master
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-master
@@ -51,15 +224,6 @@
       featureset: '016'
       release: master
 
-# legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset016-master
-- job:
-    name: tripleo-ci-centos-7-multinode-1ctlr-featureset016-master
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^master$
-    vars:
-      nodes: 1ctlr
-      featureset: '016'
-
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-rocky
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-rocky
@@ -98,15 +262,6 @@
       nodes: 1ctlr
       featureset: '017'
       release: master
-
-# legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset017-master
-- job:
-    name: tripleo-ci-centos-7-multinode-1ctlr-featureset017-master
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^master$
-    vars:
-      nodes: 1ctlr
-      featureset: '017'
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-rocky
 - job:
@@ -147,15 +302,6 @@
       featureset: '018'
       release: master
 
-# legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset018-master
-- job:
-    name: tripleo-ci-centos-7-multinode-1ctlr-featureset018-master
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^master$
-    vars:
-      nodes: 1ctlr
-      featureset: '018'
-
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-rocky
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-rocky
@@ -194,15 +340,6 @@
       nodes: 1ctlr
       featureset: '019'
       release: master
-
-# legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset019-master
-- job:
-    name: tripleo-ci-centos-7-multinode-1ctlr-featureset019-master
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^master$
-    vars:
-      nodes: 1ctlr
-      featureset: '019'
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-rocky
 - job:
@@ -300,90 +437,3 @@
       nodes: 1ctlr
       featureset: '050'
       release: master
-
-# legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch
-- job:
-    name: tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^master$
-    voting: false
-    vars:
-      nodes: 1ctlr
-      featureset: '011'
-
-# legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike
-- job:
-    name: tripleo-ci-centos-7-containers-multinode-upgrades-pike
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^stable/pike$
-    voting: false
-    vars:
-      nodes: 1ctlr
-      featureset: '011'
-      release: pike
-
-# legacy-tripleo-ci-centos-7-containers-multinode-upgrades-queens
-- job:
-    name: tripleo-ci-centos-7-containers-multinode-upgrades-queens
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^stable/queens$
-    voting: false
-    vars:
-      nodes: 1ctlr
-      featureset: '040'
-      release: queens
-
-# legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master
-- job:
-    name: tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^master$
-    voting: false
-    vars:
-      nodes: 1ctlr
-      featureset: '037'
-
-# legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens
-- job:
-    name: tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^stable/queens$
-    voting: false
-    timeout: 10800
-    vars:
-      nodes: 1ctlr
-      featureset: '036'
-
-# legacy-tripleo-ci-centos-7-container-to-container-upgrades-queens
-- job:
-    name: tripleo-ci-centos-7-container-to-container-upgrades-queens
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^stable/queens$
-    voting: false
-    timeout: 10800
-    vars:
-      nodes: 1ctlr
-      featureset: '040'
-
-# legacy-tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master
-- job:
-    name: tripleo-ci-centos-7-container-to-container-featureset051-upgrades-master
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^master$
-    voting: false
-    timeout: 10800
-    vars:
-      nodes: 1ctlr
-      featureset: '051'
-
-
-# legacy-tripleo-ci-centos-7-container-to-container-upgrades-master
-- job:
-    name: tripleo-ci-centos-7-container-to-container-upgrades-master
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^master$
-    voting: false
-    timeout: 10800
-    vars:
-      nodes: 1ctlr
-      featureset: '040'
