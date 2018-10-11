@@ -242,6 +242,9 @@
           addFilter("python2-os-xenapi.noarch: E: non-executable-script /usr/lib/python2.7/site-packages/os_xenapi/utils/xenapi_facts.py 0644L /usr/bin/env")
           addFilter("python2-os-xenapi.noarch: E: non-executable-script /usr/lib/python2.7/site-packages/os_xenapi/utils/consoles.py 0644L /usr/bin/env")
 
+          # Exceptions for oslo.config
+          addFilter("python2-oslo-config.noarch: E: non-executable-script /usr/lib/python2.7/site-packages/oslo_config/validator.py 0644L /usr/bin/env")
+
           EOF
 
           # now download all these packages from the previous repository
