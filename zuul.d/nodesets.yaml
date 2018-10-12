@@ -48,8 +48,13 @@
 - nodeset:
     name: upstream-centos-7-vexxhost
     nodes:
-      - name: upstream-centos-7-vexxhost
+      - name: primary
         label: upstream-centos-7-vexxhost
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
 
 - nodeset:
     name: upstream-centos-7
