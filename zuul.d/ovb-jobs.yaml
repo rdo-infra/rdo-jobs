@@ -212,10 +212,10 @@
       nodes: 3ctlr_1comp
       featureset: '001'
 
-# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
 - job:
-    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky-vexxhost
     parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/rocky$
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
