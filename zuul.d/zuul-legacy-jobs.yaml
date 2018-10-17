@@ -646,6 +646,25 @@
       - rdo-infra/weirdo
 
 - job:
+    name: legacy-weirdo-integration-master-packstack-scenario-py3
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-integration/run.yaml
+    post-run: playbooks/legacy/weirdo-integration/post.yaml
+    timeout: 5400
+    voting: false
+    vars:
+      openstack_release: master
+      scenario: scenario-py3
+    required-projects:
+      - openstack/packstack
+      - rdo-infra/ansible-role-weirdo-common
+      - rdo-infra/ansible-role-weirdo-kolla
+      - rdo-infra/ansible-role-weirdo-logs
+      - rdo-infra/ansible-role-weirdo-packstack
+      - rdo-infra/ansible-role-weirdo-puppet-openstack
+      - rdo-infra/weirdo
+
+- job:
     name: legacy-weirdo-integration-master-puppet-scenario001
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
