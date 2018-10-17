@@ -118,7 +118,7 @@
 
           if [ -f /etc/fedora-release ]; then
               delorean_deps_url="https://trunk.rdoproject.org/fedora/delorean-deps.repo"
-              delorean_url="https://trunk.rdoproject.org/fedora/current/delorean.repo"
+              delorean_url="https://trunk.rdoproject.org/fedora/puppet-passed-ci/delorean.repo"
           else
               delorean_deps_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/delorean-deps.repo"
           fi
