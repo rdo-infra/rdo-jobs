@@ -4,6 +4,14 @@
 # It contains all the jobs using deployed-servers in nodepool.
 
 - job:
+    name: tripleo-ci-centos-7-multinode-1ctlr-featureset010
+    parent: tripleo-ci-base-multinode-rdo
+    branches: ^master$
+    vars:
+      nodes: 1ctlr
+      featureset: '010'
+
+- job:
     name: tripleo-ci-centos-7-multinode-1ctlr-featureset016
     parent: tripleo-ci-base-multinode-rdo
     branches: ^master$
