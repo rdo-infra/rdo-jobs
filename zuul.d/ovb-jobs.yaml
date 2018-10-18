@@ -138,6 +138,16 @@
       branch_override: "stable/rocky"
 
 - job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens-vexxhost-branch
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^master$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      branch_override: "stable/queens"
+    nodeset: upstream-centos-7-vexxhost
+
+- job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky-vexxhost-branch
     parent: tripleo-ci-base-ovb-rdo
     branches: ^master$
