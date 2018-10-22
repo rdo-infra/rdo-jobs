@@ -28,3 +28,11 @@
       featureset: '050'
       branch_override: "stable/rocky"
       release: rocky
+
+# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset050-updates-master
+- job:
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset050-upgrades-master
+    parent: tripleo-ci-base-singlenode-periodic
+    vars:
+      featureset: '050'
+      release: master
