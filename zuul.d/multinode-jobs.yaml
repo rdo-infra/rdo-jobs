@@ -379,12 +379,3 @@
       featureset: '037'
       branch_override: "stable/queens"
       release: queens
-
-# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset050-updates-master
-- job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset050-upgrades-master
-    parent: tripleo-ci-base-multinode-periodic
-    vars:
-      nodes: 1ctlr
-      featureset: '050'
-      release: master
