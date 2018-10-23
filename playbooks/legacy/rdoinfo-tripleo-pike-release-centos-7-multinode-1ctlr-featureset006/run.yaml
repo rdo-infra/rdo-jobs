@@ -113,7 +113,7 @@
               O_RELEASE="$RELEASE"
           fi
 
-          if [[ ( "$RELEASE" == "newton" ) || ( "$RELEASE" == "ocata" ) || ("$RELEASE" == "pike" ) ]];then
+          if [[ ( "$RELEASE" == "ocata" ) || ("$RELEASE" == "pike" ) ]];then
               C_RELEASE=common
           else
               C_RELEASE=""

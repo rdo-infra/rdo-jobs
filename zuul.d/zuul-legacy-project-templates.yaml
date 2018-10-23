@@ -69,8 +69,6 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^newton-rdo$
-        - distgit-cbs-validate:
             branches: ^ocata-rdo$
         - distgit-cbs-validate:
             branches: ^pike-rdo$
@@ -125,8 +123,6 @@
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
             voting: false
-        - distgit-cbs-validate:
-            branches: ^newton-rdo$
         - distgit-cbs-validate:
             branches: ^ocata-rdo$
         - distgit-cbs-validate:
@@ -184,8 +180,6 @@
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
             voting: false
-        - distgit-cbs-validate:
-            branches: ^newton-rdo$
         - distgit-cbs-validate:
             branches: ^ocata-rdo$
         - distgit-cbs-validate:
@@ -251,8 +245,6 @@
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
             voting: false
-        - distgit-cbs-validate:
-            branches: ^newton-rdo$
         - distgit-cbs-validate:
             branches: ^ocata-rdo$
         - distgit-cbs-validate:
@@ -327,8 +319,6 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^newton-rdo$
-        - distgit-cbs-validate:
             branches: ^ocata-rdo$
         - distgit-cbs-validate:
             branches: ^pike-rdo$
@@ -395,8 +385,6 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^newton-rdo$
-        - distgit-cbs-validate:
             branches: ^ocata-rdo$
         - distgit-cbs-validate:
             branches: ^pike-rdo$
@@ -459,8 +447,6 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^newton-rdo$
-        - distgit-cbs-validate:
             branches: ^ocata-rdo$
         - distgit-cbs-validate:
             branches: ^pike-rdo$
@@ -515,8 +501,6 @@
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
             voting: false
-        - distgit-cbs-validate:
-            branches: ^newton-rdo$
         - distgit-cbs-validate:
             branches: ^ocata-rdo$
         - distgit-cbs-validate:
@@ -575,8 +559,6 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^newton-rdo$
-        - distgit-cbs-validate:
             branches: ^ocata-rdo$
         - distgit-cbs-validate:
             branches: ^pike-rdo$
@@ -631,8 +613,6 @@
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
             voting: false
-        - distgit-cbs-validate:
-            branches: ^newton-rdo$
         - distgit-cbs-validate:
             branches: ^ocata-rdo$
         - distgit-cbs-validate:
@@ -696,8 +676,6 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^newton-rdo$
-        - distgit-cbs-validate:
             branches: ^ocata-rdo$
         - distgit-cbs-validate:
             branches: ^pike-rdo$
@@ -760,8 +738,6 @@
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
             voting: false
-        - distgit-cbs-validate:
-            branches: ^newton-rdo$
         - distgit-cbs-validate:
             branches: ^ocata-rdo$
         - distgit-cbs-validate:
@@ -828,8 +804,6 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^newton-rdo$
-        - distgit-cbs-validate:
             branches: ^ocata-rdo$
         - distgit-cbs-validate:
             branches: ^pike-rdo$
@@ -888,8 +862,6 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^newton-rdo$
-        - distgit-cbs-validate:
             branches: ^ocata-rdo$
         - distgit-cbs-validate:
             branches: ^pike-rdo$
@@ -942,8 +914,6 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^newton-rdo$
-        - distgit-cbs-validate:
             branches: ^ocata-rdo$
         - distgit-cbs-validate:
             branches: ^pike-rdo$
@@ -980,12 +950,10 @@
             files:
               - ^docs/.*$
               - ^.*\.rst$
-        - legacy-weirdo-integration-newton-packstack-scenario001
         - legacy-weirdo-integration-ocata-packstack-scenario002
         - legacy-weirdo-integration-pike-packstack-scenario002
         - legacy-weirdo-integration-queens-packstack-scenario001
         - legacy-weirdo-integration-master-packstack-scenario003
-        - legacy-weirdo-integration-newton-puppet-scenario001
         - legacy-weirdo-integration-ocata-puppet-scenario002
         - legacy-weirdo-integration-pike-puppet-scenario002
         - legacy-weirdo-integration-queens-puppet-scenario001
@@ -994,12 +962,10 @@
             voting: false
     experimental:
       jobs:
-        - legacy-weirdo-integration-newton-packstack-scenario003
         - legacy-weirdo-integration-ocata-packstack-scenario002
         - legacy-weirdo-integration-pike-packstack-scenario001
         - legacy-weirdo-integration-queens-packstack-scenario003
         - legacy-weirdo-integration-master-packstack-scenario001
-        - legacy-weirdo-integration-newton-puppet-scenario003
         - legacy-weirdo-integration-ocata-puppet-scenario002
         - legacy-weirdo-integration-pike-puppet-scenario001
         - legacy-weirdo-integration-queens-puppet-scenario003
