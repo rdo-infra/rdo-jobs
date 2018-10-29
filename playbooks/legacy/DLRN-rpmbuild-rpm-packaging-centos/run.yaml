@@ -163,4 +163,4 @@
           cp -a DLRN/logs/* buildset/
           exit $ret
         chdir: '{{ ansible_user_dir }}/workspace'
-      environment: '{{ zuul | zuul_legacy_vars }}'
+      environment: "{{ zuul | zuul_legacy_vars | combine({'LANG': 'en_US.UTF-8'}) }}"
