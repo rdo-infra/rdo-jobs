@@ -146,6 +146,16 @@
       featureset: '001'
     nodeset: upstream-centos-7-vexxhost
 
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky-vexxhost
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/rocky$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+    nodeset: upstream-centos-7-vexxhost
+
 # =================  P E R I O D I C   J O B S
 
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
