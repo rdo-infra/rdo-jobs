@@ -141,6 +141,7 @@
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
     parent: tripleo-ci-base-ovb-rdo
+    branches: ^master$
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
