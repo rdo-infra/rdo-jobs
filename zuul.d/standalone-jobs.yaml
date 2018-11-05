@@ -1,0 +1,19 @@
+---
+# zuul.d/standalone-jobs.yaml
+# Zuul layout for TripleO standalone jobs.
+# It contains all the jobs related to standalone installer testing.
+
+- job:
+    name: periodic-tripleo-ci-centos-7-standalone-master
+    parent: tripleo-ci-base-singlenode-periodic
+    vars:
+      featureset: '052'
+      release: master
+
+- job:
+    name: periodic-tripleo-ci-centos-7-standalone-rocky
+    parent: tripleo-ci-base-singlenode-periodic
+    vars:
+      featureset: '052'
+      branch_override: "stable/rocky"
+      release: rocky
