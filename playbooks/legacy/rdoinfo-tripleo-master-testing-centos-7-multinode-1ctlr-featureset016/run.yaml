@@ -310,7 +310,7 @@
           export STABLE_RELEASE=master
 
           sudo rm -f /opt/stack/new/tripleo-quickstart/config/release/tripleo-ci/master.yml
-          sudo mv tripleo.yml /opt/stack/new/tripleo-quickstart/config/release/tripleo-ci/master.yml
+          sudo mv tripleo.yml /opt/stack/new/tripleo-quickstart/config/release/tripleo-ci/CentOS-7/master.yml
 
           export PYTHONUNBUFFERED=true
           export DEVSTACK_GATE_TEMPEST=0

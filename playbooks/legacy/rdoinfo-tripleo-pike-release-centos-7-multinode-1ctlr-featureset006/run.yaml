@@ -312,7 +312,7 @@
           export STABLE_RELEASE=pike
 
           sudo rm -f /opt/stack/new/tripleo-quickstart/config/release/tripleo-ci/pike.yml
-          sudo mv tripleo.yml /opt/stack/new/tripleo-quickstart/config/release/tripleo-ci/pike.yml
+          sudo mv tripleo.yml /opt/stack/new/tripleo-quickstart/config/release/tripleo-ci/CentOS-7/pike.yml
 
           export PYTHONUNBUFFERED=true
           export DEVSTACK_GATE_TEMPEST=0
