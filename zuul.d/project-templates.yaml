@@ -313,6 +313,12 @@
         - tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039
 
 - project-template:
+    name: vexxhost-experimental
+    openstack-experimental:
+      jobs:
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
+
+- project-template:
     name: ovb-001-experimental
     openstack-experimental:
       jobs:
