@@ -1,0 +1,215 @@
+- hosts: primary
+  name: rdoinfo-tripleo-centos-7-standalone-featureset052
+  tasks:
+
+    - name: Create release file
+      shell:
+        cmd: |
+          # This builder, when run from a child job of validate-buildsys-tags
+          # configures the temporary repositories created by it
+          # This allows to install the packages in that repository and test
+          # them.
+          set +e -x
+          # This job requires variables $RELEASE and $PHASE to be defined.
+
+          # Replaced by ansible variables rdoinfo_phase and rdoinfo_release
+          #PHASE='testing'
+          #RELEASE='master'
+
+          REQUIRED=0
+          MASTER_RELEASE=stein
+          CREPOS_FILE=changed_repos.txt
+
+          if [ -z "{{ rdoinfo_phase|default("") }}" -o -z "{{ rdoinfo_release|default("") }}" ]; then
+              echo "ERROR in job definition"
+              exit 1
+          fi
+
+          if [ "{{ rdoinfo_release }}" = "master" ]; then
+              O_RELEASE=$MASTER_RELEASE
+          else
+              O_RELEASE="{{ rdoinfo_release }}"
+          fi
+
+          if [[ ( "{{ rdoinfo release }}" == "ocata" ) || ("{{ rdoinfo_release }}" == "pike" ) ]];then
+              C_RELEASE=common
+          else
+              C_RELEASE=""
+          fi
+
+          # Re-construct the expected repository URL
+          ZUUL_REF=$(echo $ZUUL_REF |cut -f4 -d /)
+          job="validate-buildsys-tags"
+          LOG_PATH="$BASE_LOG_PATH/$ZUUL_PIPELINE/$job/$ZUUL_REF"
+          logs="https://logs.rdoproject.org/$LOG_PATH/"
+
+          # NOTE(pabelanger): Override logs for zuulv3 jobs.
+          if [[ -d /home/zuul ]]; then
+              logs={{ buildset_artifacts_url }}
+          fi
+
+          # If we could not find a working repository, give up
+          curl -o $CREPOS_FILE -sf "$logs/repos/changed_repos.txt" || exit 1
+
+          for tag in $O_RELEASE $C_RELEASE
+          do
+              if grep -q -E "$tag-{{ rdoinfo_phase }}" $CREPOS_FILE; then
+                  REQUIRED=1
+              fi
+          done
+
+          if [ $REQUIRED -eq 0 ];then
+              echo "INFO: this test is not required"| tee not_required
+              exit 0
+          fi
+
+
+          COMMON_TESTING_TAG="cloud7-openstack-common-testing"
+          COMMON_RELEASE_TAG="cloud7-openstack-common-release"
+          COMMON_TESTING=$(grep -c $COMMON_TESTING_TAG $CREPOS_FILE)
+          COMMON_RELEASE=$(grep -c $COMMON_RELEASE_TAG $CREPOS_FILE)
+
+          function create_config(){
+              echo "artg_skipped_projects:"
+              echo "  - rdoinfo"
+              echo "release: {{ rdoinfo_release }}"
+              if [ $STABLE_REPOSITORIES != false ]; then
+                  echo "run_tempest: false"
+                  echo "test_ping: true"
+              fi
+              echo "dlrn_hash_tag: current-tripleo"
+              echo "overcloud_image_url: http://images.rdoproject.org/{{ rdoinfo_release }}/rdo_trunk/current-tripleo/overcloud-full.tar"
+              echo "ipa_image_url: http://images.rdoproject.org/{{ rdoinfo_release }}/rdo_trunk/current-tripleo/ironic-python-agent.tar"
+              echo "images:"
+              echo "  - name: overcloud-full"
+              echo "    url: http://images.rdoproject.org/{{ rdoinfo_release }}/rdo_trunk/current-tripleo/overcloud-full.tar"
+              echo "    type: tar"
+              echo "  - name: ipa_images"
+              echo "    url: http://images.rdoproject.org/{{ rdoinfo_release }}/rdo_trunk/current-tripleo/ironic-python-agent.tar"
+              echo "    type: tar"
+              echo "repo_cmd_before: |"
+              echo "  sudo yum remove -y rdo-release centos-release-openstack-* centos-release-ceph-* || true;"
+              echo "  sudo rpm -e epel-release || true;"
+              echo "  sudo rm -rf /etc/yum.repos.d/delorean*;"
+              echo "  sudo rm -rf /etc/yum.repos.d/*.rpmsave;"
+              echo "  sudo yum clean all"
+              echo "repos:"
+              if [ $STABLE_REPOSITORIES != false ]; then
+                  echo "  - type: package"
+                  echo "    pkg_name: centos-release-openstack-$O_RELEASE"
+                  echo "    custom_cmd: 'sudo yum install -y --enablerepo=extras'"
+              else
+                  echo "  - type: package"
+                  echo "    pkg_name: centos-release-ceph-luminous"
+                  echo "    custom_cmd: 'sudo yum install -y --enablerepo=extras'"
+              fi
+              INDEX=0
+              for repo in $REPOS_URL
+              do
+                  echo "  - type: file"
+                  echo "    filename: delorean-$INDEX.repo"
+                  echo "    down_url: $repo"
+                  ((INDEX++))
+              done
+              echo "  - type: generic"
+              echo "    reponame: centos-opstools"
+              echo "    filename: centos-opstools.repo"
+              echo "    baseurl: http://mirror.centos.org/centos/7/opstools/x86_64/"
+              echo "  - type: generic"
+              echo "    reponame: quickstart-centos-base"
+              echo "    filename: quickstart-centos-base.repo"
+              echo "    baseurl: http://mirror.regionone.rdo-cloud.rdoproject.org/centos/7/os/x86_64/"
+              echo "repo_cmd_after: |"
+              echo "  sudo yum-config-manager --save --setopt centos-ceph-jewel.gpgcheck=0"
+              echo '  {% if not enable_opstools_repo|default(false)|bool %}sudo yum-config-manager --save --setopt centos-opstools.enable=0;'
+              echo '  {%endif %}'
+              if [ $STABLE_REPOSITORIES != false ]; then
+                  echo "  sudo yum-config-manager --save --setopt centos-qemu-ev.gpgcheck=0"
+                  echo "  sudo yum-config-manager --save --setopt centos-openstack-$O_RELEASE.gpgcheck=0"
+                  echo "  sudo yum-config-manager --disable rdo-trunk-$O_RELEASE-tested"
+                  if [ $TESTING_REPOSITORY = true ]; then
+                      echo "  sudo yum-config-manager --disable centos-openstack-$O_RELEASE"
+                      echo "  sudo yum-config-manager --enable centos-openstack-$O_RELEASE-test"
+                  fi
+              fi
+              echo "  sudo yum clean all;"
+              echo "  sudo yum repolist;"
+              echo "  sudo yum update -y"
+              if [ $STABLE_REPOSITORIES != false ]; then
+                  echo "overcloud_repo_paths:"
+                  echo "  - \"\$(ls /etc/yum.repos.d/CentOS-OpenStack-$O_RELEASE*)\""
+                  echo "  - \"\$(ls /etc/yum.repos.d/CentOS-QEMU*)\""
+                  echo "  - \"\$(ls /etc/yum.repos.d/CentOS-Ceph-*)\""
+                  INDEX=0
+                  for repo in $REPOS_URL
+                  do
+                      echo "  - \"/etc/yum.repos.d/delorean-$INDEX.repo\""
+                      ((INDEX++))
+                  done
+              fi
+              echo "undercloud_rpm_dependencies: >-"
+              echo "  python-tripleoclient"
+              echo "  ceph-ansible"
+              if [ "{{ rdoinfo_release }}" = "master" ]; then
+                  echo "update_containers: true"
+                  echo "gating_repo_name: temp-*"
+              fi
+          }
+
+
+          case {{ rdoinfo_phase }} in
+          testing)
+              if [ "{{ rdoinfo_release }}" = "master" ]; then
+                  REPOS_URL="http://trunk.rdoproject.org/centos7-master/current-passed-ci/delorean.repo http://trunk.rdoproject.org/centos7-master/delorean-deps.repo"
+                  STABLE_REPOSITORIES=false
+                  TESTING_REPOSITORY=false
+              else
+                  REPOS_URL=""
+                  STABLE_REPOSITORIES=true
+                  TESTING_REPOSITORY=true
+              fi
+              if [ $(grep -c $O_RELEASE-{{ rdoinfo_phase }} $CREPOS_FILE) -ne 0 ]; then
+                  REPO="cloud7-openstack-$O_RELEASE-{{ rdoinfo_phase }}"
+                  REPOS_URL="$REPOS_URL $logs/repos/$REPO/temp-$REPO.repo"
+              fi
+              if [ $COMMON_TESTING -ne 0 ];then
+                  REPOS_URL="$REPOS_URL $logs/repos/$COMMON_TESTING_TAG/temp-$COMMON_TESTING_TAG.repo"
+              fi
+              create_config | tee -a tripleo.yml
+          ;;
+          release)
+              STABLE_REPOSITORIES=true
+              TESTING_REPOSITORY=false
+              if [ $(grep -c $O_RELEASE-{{ rdoinfo_phase }} $CREPOS_FILE) -ne 0 ]; then
+                  REPO="cloud7-openstack-$O_RELEASE-{{ rdoinfo_phase }}"
+                  REPOS_URL="$logs/repos/$REPO/temp-$REPO.repo"
+              else
+                  REPOS_URL=""
+              fi
+              if [ $COMMON_RELEASE -ne 0 ];then
+                  REPOS_URL="$REPOS_URL $logs/repos/$COMMON_RELEASE_TAG/temp-$COMMON_RELEASE_TAG.repo"
+              fi
+              create_config | tee -a tripleo.yml
+          ;;
+          esac
+        chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'
+
+    - name: Detect if we created the file to stop quickstart run
+      stat:
+        path: "{{ workspace }}/not_required"
+      register: stop_file
+
+    - name: inject release file into quickstart
+      shell:
+        cmd: |
+          sudo mv tripleo.yml {{ tripleo-quickstart-path  }} config/release/tripleo-ci/CentOS-7/{{ rdoinfo_release }}.yml
+      when: not stop_file.stat.exists
+
+    - name: Run quickstart
+      include_role:
+         name: run-test
+      vars:
+        release: "{{ rdoinfo_release }}"
+      when: not stop_file.stat.exists
+
