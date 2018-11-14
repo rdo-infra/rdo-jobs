@@ -2,7 +2,8 @@
     name: rdo-jobs
     check:
       jobs:
-        - tox-docs
+        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master
+        - periodic-tripleo-ci-centos-7-standalone-master
     gate:
       jobs:
         - tox-docs
