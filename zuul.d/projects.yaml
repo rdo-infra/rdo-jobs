@@ -3,6 +3,12 @@
     check:
       jobs:
         - tox-docs
+        - legacy-validate-buildsys-tags
+          # tricking tests:
+          #        - rdoinfo-tripleo-master-testing-centos-7-standalone-featureset052:
+        - legacy-rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016:
+           dependencies:
+             - legacy-validate-buildsys-tags
     gate:
       jobs:
         - tox-docs
