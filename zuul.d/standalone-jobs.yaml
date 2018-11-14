@@ -17,3 +17,11 @@
       featureset: '052'
       branch_override: "stable/rocky"
       release: rocky
+
+- job:
+    name: rdoinfo-tripleo-master-testing-centos-7-standalone-featureset052
+    parent: tripleo-ci-base-singlenode-rdo
+    vars:
+      featureset: '052'
+      rdoinfo_release: master
+      rdoinfo_phase: testing
