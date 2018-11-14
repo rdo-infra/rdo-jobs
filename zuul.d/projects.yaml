@@ -3,6 +3,10 @@
     check:
       jobs:
         - tox-docs
+        - legacy-validate-buildsys-tags
+        - rdoinfo-tripleo-master-testing-centos-7-standalone-featureset052:
+           dependencies:
+             - legacy-validate-buildsys-tags
     gate:
       jobs:
         - tox-docs
