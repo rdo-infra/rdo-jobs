@@ -332,12 +332,17 @@
 
 - job:
     name: legacy-rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016
-    parent: legacy-dsvm-base-multinode
-    run: playbooks/legacy/rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016/run.yaml
-    post-run: playbooks/legacy/rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016/post.yaml
+    parent: tripleo-ci-base-multinode-rdo
+    run: playbooks/run-rdoinfo.yaml
     timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
     vars:
-      toci_jobtype: gate-multinode-1ctlr-featureset016
+      rdoinfo_release: master
+      rdoinfo_phase: testing
+      featureset: 016
+      nodes: 1ctlr
+      environment_type: multinode
     required-projects:
       - openstack-infra/devstack-gate
       - openstack/tripleo-quickstart
@@ -345,7 +350,6 @@
       - openstack/tripleo-upgrade
       - openstack/browbeat
       - rdoinfo
-
 - job:
     name: legacy-rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005
     parent: legacy-dsvm-base-multinode
