@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9abe1de1_5faba41d",
+        "filename": "playbooks/run-rdoinfo.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2018-11-15T10:20:51Z",
+      "side": 1,
+      "message": "This playbook will be used by different jobs with different phase/release/FS combinations, so i guess the name should be job name agnostic?",
+      "range": {
+        "startLine": 2,
+        "startChar": 8,
+        "endLine": 2,
+        "endChar": 71
+      },
+      "revId": "f75f220e26c8ea1d9687c46e7504dbe60ff48c63",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_dfb69489",
+        "filename": "playbooks/run-rdoinfo.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2018-11-15T10:20:51Z",
+      "side": 1,
+      "message": "if this is intended to be reused in different jobs, it should be parametrized from the job assigned vars.",
+      "range": {
+        "startLine": 14,
+        "startChar": 10,
+        "endLine": 15,
+        "endChar": 26
+      },
+      "revId": "f75f220e26c8ea1d9687c46e7504dbe60ff48c63",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_bfb9a07b",
+        "filename": "playbooks/run-rdoinfo.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2018-11-15T10:20:51Z",
+      "side": 1,
+      "message": "does run-test role currently support this release parameter?",
+      "range": {
+        "startLine": 208,
+        "startChar": 8,
+        "endLine": 208,
+        "endChar": 38
+      },
+      "revId": "f75f220e26c8ea1d9687c46e7504dbe60ff48c63",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_7fac2835",
+        "filename": "playbooks/run-rdoinfo.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2018-11-15T10:20:51Z",
+      "side": 1,
+      "message": "For me information, how run-test knows the FS to run?, by the job name?",
+      "revId": "f75f220e26c8ea1d9687c46e7504dbe60ff48c63",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
