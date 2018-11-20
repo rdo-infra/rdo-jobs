@@ -368,3 +368,11 @@
       featureset: '024'
       branch_override: "stable/pike"
       release: pike
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-exp
+    parent: tripleo-ci-base-ovb-rdo-experimental2
+    branches: "^.*$"
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'

@@ -1,0 +1,109 @@
+---
+- hosts: all
+  roles:
+    # TODO(pabelanger): Maybe promote this in to base jobs? But is
+    # openstack-infra specific.
+    - role: mirror-info-fork
+      mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
+    - role: fetch-zuul-cloner-fork
+      destination: "/usr/zuul-env/bin/zuul-cloner"
+      repo_src_dir: "/home/zuul/src"
+
+  tasks:
+    - name: Create nodepool directory
+      file:
+        path: /etc/nodepool
+        state: directory
+        mode: 0777
+      become: true
+    - name: Create nodepool sub_nodes file
+      copy:
+        dest: /etc/nodepool/sub_nodes
+        content: ""
+    - name: Create nodepool sub_nodes_private file
+      copy:
+        dest: /etc/nodepool/sub_nodes_private
+        content: ""
+    - name: Populate nodepool sub_nodes file
+      lineinfile:
+        path: /etc/nodepool/sub_nodes
+        line: "{{ hostvars[item]['nodepool']['public_ipv4'] }}"
+      with_items: "{{ groups['subnodes'] }}"
+      when: groups['subnodes'] is defined
+    - name: Populate nodepool sub_nodes_private file
+      lineinfile:
+        path: /etc/nodepool/sub_nodes_private
+        line: "{{ hostvars[item]['nodepool']['private_ipv4'] }}"
+      with_items: "{{ groups['subnodes'] }}"
+      when: groups['subnodes'] is defined
+    - name: Create nodepool primary file
+      copy:
+        dest: /etc/nodepool/primary_node_private
+        content: "{{ hostvars['primary']['nodepool']['private_ipv4'] }}"
+      when: hostvars['primary'] is defined
+    - name: Create nodepool node_private for this node
+      copy:
+        dest: /etc/nodepool/node_private
+        content: "{{ nodepool.private_ipv4 }}"
+      become: true
+    - name: Copy ssh keys to nodepool directory
+      command: "cp .ssh/{{ item }} /etc/nodepool/{{ item }}"
+      with_items:
+        - id_rsa
+        - id_rsa.pub
+
+    - name: Add sudoers role for zuul-sudo-grep.sh
+      copy:
+        dest: /etc/sudoers.d/zuul-sudo-grep
+        content: "zuul ALL = NOPASSWD:/usr/local/jenkins/slave_scripts/zuul-sudo-grep.sh\n"
+        mode: 0440
+      become: true
+
+    - name: Validate sudoers config after edits
+      command: "/usr/sbin/visudo -c"
+      become: true
+
+    - name: Show the environment passed in to job shell scripts
+      shell:
+        cmd: |
+          env
+        executable: /bin/bash
+      environment: '{{ zuul | zuul_legacy_vars }}'
+
+    # TODO(pabelanger): We need to patch zuul to remove this.
+    - name: Workaround hardcoded /home/zuul/workspace in zuul_legacy_vars
+      become: true
+      file:
+        group: zuul-worker
+        owner: zuul-worker
+        path: /home/zuul
+        state: directory
+      when: ansible_user_id == "zuul-worker"
+
+    # TODO(pabelanger): To be removed with above.
+    - name: Symlink /home/zuul-worker/workspace
+      shell:
+        cmd: |
+          ln -s /home/zuul-worker/workspace /home/zuul/workspace
+        executable: /bin/bash
+      environment: '{{ zuul | zuul_legacy_vars }}'
+      when: ansible_user_id == "zuul-worker"
+
+    - name: Ensure legacy workspace directory
+      file:
+        path: '{{ ansible_user_dir }}/workspace'
+        state: directory
+      when: ansible_user_id != "zuul-worker"
+
+- hosts: all
+  vars:
+    ci_config_repo: "{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/config'].src_dir }}"
+    workspace: "{{ ansible_user_dir }}/workspace"
+  tasks:
+
+    - name: Create OVB environment
+      include_role:
+        name: ovb-manage-stack
+      vars:
+        ovb_manage_stack_mode: create
+        local_working_dir: "{{ workspace }}"
