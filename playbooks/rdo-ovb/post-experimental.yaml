@@ -1,0 +1,14 @@
+---
+- hosts: all
+  vars:
+    ci_config_repo: "{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/config'].src_dir }}"
+    workspace: "{{ ansible_user_dir }}/workspace"
+  tasks:
+
+    - name: Delete OVB environment
+      include_role:
+        name: ovb-manage
+      vars:
+        ovb_manage_stack_mode: delete
+        ovb_working_dir: "{{ workspace }}"
+        logs_dir: "{{ workspace }}/logs"

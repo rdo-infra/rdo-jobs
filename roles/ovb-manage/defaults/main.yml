@@ -1,0 +1,64 @@
+---
+ovb_working_dir: "/tmp/ovb"
+logs_dir: "{{ ovb_working_dir }}/logs"
+failed_log: "{{ logs_dir }}/failed_ovb_stack.log"
+nodes_file: "{{ ovb_working_dir }}/instackenv.json"
+ovb_repo_version: master
+ovb_repo_url: https://github.com/cybertron/openstack-virtual-baremetal.git
+ovb_repo_source_dir:
+ovb_repo_directory: "{{ ovb_working_dir }}/openstack-virtual-baremetal"
+ovb_clone: true
+fail_in_remove: false
+tmp:
+  idnum: "{{ 100000 |random }}"
+key_name: tripleo-ci-team
+stack_name: 'baremetal_{{ idnum }}'
+nodes: 3ctlr_1comp # overwritten in job config
+nodes_config:
+    3ctlr_1comp: 4
+    1ctlr_1comp: 2
+    1ctlr_1comp_1ceph: 3
+    3ctlr_1comp_1supp: 5
+node_count: "{{ nodes_config[nodes] }}"
+
+clouds_yaml: "/tmp/clouds.yaml"
+cloud_name: rdocloud # or vexxhost
+cloud_credentials: "{{ cloud_secrets[cloud_name]|default('') }}"
+os_username: "{{ cloud_credentials.username|default('nosecret') }}"
+os_password: "{{ cloud_credentials.password|default('nosecret') }}"
+os_project_name: "{{ cloud_credentials.project_name|default('nosecret') }}"
+os_auth_url: "{{ cloud_credentials.auth_url|default('nosecret') }}"
+os_region_name: "{{ cloud_credentials.region_name|default('nosecret') }}"
+identity_api_version: "{{ cloud_credentials.identity_api_version|default('') }}"
+os_user_domain_name: "{{ cloud_credentials.user_domain_name|default('') }}"
+os_project_domain_id: "{{ cloud_credentials.project_domain_id|default('') }}"
+
+cloud_settings:
+    rdocloud:
+        public_ip_net: 38.145.32.0/22
+        undercloud_flavor: m1.large # not used
+        baremetal_flavor: m1.large # ci.m1.large
+        bmc_flavor: m1.medium # ci.m1.medium
+        extra_node_flavor: m1.small # ci.m1.small
+        baremetal_image: CentOS-7-x86_64-GenericCloud-1804_02
+    vexxhost:
+        public_ip_net: public
+        undercloud_flavor: ci.m1.nodepool
+        baremetal_flavor: ci.m1.large
+        bmc_flavor: ci.m1.small
+        extra_node_flavor: ci.m1.small
+        baremetal_image: CentOS-7-x86_64-GenericCloud
+
+net_iso: 'multi-nic' # 'multi-nic' or 'public-bond' or '' or 'none'
+create_undercloud: false
+ovb_args: ''
+env_args: >-
+    -e {{ ovb_working_dir }}/env-{{ idnum }}-base.yaml
+    -e {{ ovb_repo_directory }}/environments/bmc-use-cache.yaml
+    -e {{ ovb_repo_directory }}/environments/undercloud-floating-none.yaml
+net_args: ''
+undercloud_args: >-
+    {%-if not create_undercloud|bool -%}
+    -e {{ ovb_repo_directory }}/environments/quintupleo-no-undercloud.yaml
+    {%- else -%}{%- endif -%}
+role_args: ''

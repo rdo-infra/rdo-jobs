@@ -1,0 +1,90 @@
+---
+- name: Recover idnum
+  shell: cat {{ ovb_working_dir }}/idnum
+  register: idnum_shell
+
+- name: Set fact for idnum
+  set_fact:
+    idnum: "{{ idnum_shell.stdout }}"
+
+- name: Generate clouds.yaml file
+  template:
+    src: clouds.yaml.j2
+    dest: "{{ clouds_yaml }}"
+    mode: 0755
+
+- name: Start deletion process
+  block:
+
+    - name: Find out all servers
+      shell: "{{ ovb_working_dir }}/.venv/bin/openstack server list -f value -c Name"
+      register: servers
+
+    - name: Dump console log of servers
+      shell: "{{ ovb_working_dir }}/.venv/bin/openstack console log show {{ item }} > {{ logs_dir }}/{{ item }}-console.log"
+      loop: "{{ servers.stdout_lines }}"
+      ignore_errors: true
+
+    - name: Find out undercloud host ID
+      include: find_undercloud_uuid.yml
+
+    - name: List ports of undercloud for delete
+      shell: "{{ ovb_working_dir }}/.venv/bin/openstack port list --server {{ undercloud_uuid }} --network {{ item.net }} -f value -c id"
+      loop:
+        - { net: "provision-{{ idnum }}", delete: true }
+        - { net: "public-{{ idnum }}", delete: "{% if net_iso and net_iso != 'none' %}true{% endif %}" }
+      register: undercloud_ports
+      when: item.delete|bool
+
+    - name: Delete undercloud ports of OVB networks
+      shell: "{{ ovb_working_dir }}/.venv/bin/openstack port delete {{ item.stdout }}"
+      loop: "{{ undercloud_ports.results }}"
+      when: '"stdout" in item and item.stdout'
+
+    - name: Wait a little until ports are deleted
+      pause:
+        seconds: 10
+
+    - name: Delete stack
+      shell: "{{ ovb_working_dir }}/.venv/bin/openstack stack delete {{ stack_name }} -y"
+
+    - name: Wait until stack is created of failed
+      shell: "{{ ovb_working_dir }}/.venv/bin/openstack stack show {{ stack_name }} -f yaml"
+      register: result
+      until: ("IN_PROGRESS" not in result.stdout or result.rc != 0)
+      retries: 10
+      delay: 30
+      ignore_errors: true
+
+    - name: Check stack status if exists
+      shell: "{{ ovb_working_dir }}/.venv/bin/openstack stack show {{ stack_name }} -f yaml"
+      register: stack_exists
+      failed_when: stack_exists.rc == 0
+      no_log: (stack_exists.rc == 0)|bool
+
+  rescue:
+    # Don't fail a job if OVB can't delete
+    - name: Show stack status if exists
+      shell: "{{ ovb_working_dir }}/.venv/bin/openstack stack show {{ stack_name }} -f yaml"
+      register: stack_exists
+      ignore_errors: true
+
+    - name: Print stack status
+      debug: msg="{{ stack_exists.stdout }}"
+      ignore_errors: true
+
+    - name: Fail a job if OVB can't delete
+      fail:
+        msg: "Failed to delete OVB stack!"
+      when: fail_in_remove|bool and stack_exists.rc == 0
+
+  always:
+
+    - name: remove clouds.yaml file
+      file:
+        path: "{{ clouds_yaml }}"
+        state: absent
+
+  environment:
+    - OS_CLIENT_CONFIG_FILE: "{{ clouds_yaml }}"
+    - OS_CLOUD: "{{ cloud_name }}"

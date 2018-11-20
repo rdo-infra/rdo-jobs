@@ -1,0 +1,35 @@
+---
+- name: Ensure local working dir exists
+  file:
+    path: "{{ ovb_working_dir }}"
+    state: directory
+
+- name: Ensure logs dir exists
+  file:
+    path: "{{ logs_dir }}"
+    state: directory
+
+- name: Clone Openstack Virtual Baremetal repo if it does not exist
+  git:
+    repo: "{{ ovb_repo_url }}"
+    dest: "{{ ovb_repo_directory }}"
+    version: "{{ ovb_repo_version }}"
+  when: ovb_clone|bool
+
+- name: Link Openstack Virtual Baremetal repo from directory
+  file:
+    src: "{{ ovb_repo_source_dir }}"
+    dest: "{{ ovb_repo_directory }}"
+    state: link
+  when: not ovb_clone|bool and ovb_repo_source_dir
+
+- name: Install opesntack client
+  include: install_openstack_deps.yml
+
+- name: Create OVB stack
+  include: ovb-create-stack.yml
+  when: ovb_manage_stack_mode == 'create'
+
+- name: Delete OVB stack
+  include: ovb-delete-stack.yml
+  when: ovb_manage_stack_mode == 'delete'

@@ -1,0 +1,118 @@
+---
+- name: Generate idnum for all run-related entities
+  set_fact:
+    idnum: "{{ tmp.idnum }}"
+
+- name: Dump idnum for later stack deletion
+  copy:
+    content: "{{ idnum }}"
+    dest: "{{ ovb_working_dir }}/idnum"
+
+- name: Generate OVB parameters template
+  include: generate_template.yml
+
+- name: Generate clouds.yaml file
+  template:
+    src: clouds.yaml.j2
+    dest: "{{ clouds_yaml }}"
+    mode: 0755
+
+- name: Install heat stack
+  block:
+
+    - name: Create a stack
+      shell: |
+        {{ ovb_working_dir }}/.venv/bin/python {{ ovb_repo_directory }}/bin/deploy.py {{ ovb_args }};
+      args:
+        chdir: "{{ ovb_repo_directory }}"
+
+    - name: Wait until stack is created of failed
+      shell: >-
+        {{ ovb_working_dir }}/.venv/bin/openstack stack show {{ stack_name }} -f yaml
+      register: result
+      until: ("COMPLETE" in result.stdout) or ("FAILED" in result.stdout) or result.rc != 0
+      retries: 10
+      delay: 30
+      # no_log: true
+
+    - name: Dump stderr in case of command failure
+      debug:
+        msg: "{{ result.stderr }}"
+      when: result.rc != 0
+
+    - name: Dump failed stack
+      shell: |
+        {{ ovb_working_dir }}/.venv/bin/openstack stack show {{ stack_name }} 2>&1 | tee {{ failed_log }}
+        {{ ovb_working_dir }}/.venv/bin/openstackstack failures list --long {{ stack_name }} >> {{ failed_log }} 2>&1
+      when: '"FAILED" in result.stdout'
+
+    - name: Show stack status
+      shell: >-
+        {{ ovb_working_dir }}/.venv/bin/openstack stack show {{ stack_name }} -f yaml
+
+    - name: Fail if stack did not deploy successfully
+      fail:
+        msg: "Stack {{ stack_name }} did not deploy successfully. See the stack status message above."
+      when: '"CREATE_COMPLETE" not in result.stdout'
+
+    - name: Return floating ip outputs
+      shell: >
+        {{ ovb_working_dir }}/.venv/bin/openstack stack show {{ stack_name }} -f json -c outputs
+      register: stack_outputs
+      #no_log: true
+
+    - name: Find out undercloud host ID
+      include: find_undercloud_uuid.yml
+
+    - name: Find ID of provision network
+      shell: "{{ ovb_working_dir }}/.venv/bin/openstack network show provision-{{ idnum }} -f value -c id"
+      register: provision_id
+
+    - name: Find ID of public network
+      shell: "{{ ovb_working_dir }}/.venv/bin/openstack network show public-{{ idnum }} -f value -c id"
+      register: public_id
+      when: net_iso and net_iso != 'none'
+
+    - name: Attach instance to provision OVB network
+      shell: "{{ ovb_working_dir }}/.venv/bin/openstack server add network {{ undercloud_uuid }} {{ provision_id.stdout }}"
+
+    - name: Attach instance to public OVB network
+      shell: "{{ ovb_working_dir }}/.venv/bin/openstack server add network {{ undercloud_uuid }} {{ public_id.stdout }}"
+      when: net_iso and net_iso != 'none'
+
+    - name: Find ports in provision network
+      shell: "{{ ovb_working_dir }}/.venv/bin/openstack port list --network {{ provision_id.stdout }} --server {{ undercloud_uuid }} -f value -c ID"
+      register: provision_port
+
+    - name: Find ports in public network
+      shell: "{{ ovb_working_dir }}/.venv/bin/openstack port list --network {{ public_id.stdout }} --server {{ undercloud_uuid }} -f value -c ID"
+      register: public_port
+      when: net_iso and net_iso != 'none'
+
+    - name: Disable security in provision ports
+      shell: "{{ ovb_working_dir }}/.venv/bin/openstack port set {{ provision_port.stdout }} --no-security-group --disable-port-security"
+
+    - name: Disable security in public ports
+      shell: "{{ ovb_working_dir }}/.venv/bin/openstack port set {{ public_port.stdout }} --no-security-group --disable-port-security"
+      when: net_iso and net_iso != 'none'
+
+    - name: Build nodes.json file to be used as instackenv.json
+      shell: >
+        {{ ovb_working_dir }}/.venv/bin/python {{ ovb_repo_directory }}/bin/build-nodes-json
+        --env {{ ovb_repo_directory }}/env-{{ idnum }}.yaml
+        --network_details
+        --nodes_json {{ nodes_file }}
+      args:
+        chdir: "{{ ovb_working_dir }}"
+      register: nodes_json
+
+  always:
+
+    - name: remove clouds.yaml file
+      file:
+        path: "{{ clouds_yaml }}"
+        state: absent
+
+  environment:
+    - OS_CLIENT_CONFIG_FILE: "{{ clouds_yaml }}"
+    - OS_CLOUD: "{{ cloud_name }}"
