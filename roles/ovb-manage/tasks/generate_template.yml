@@ -1,0 +1,62 @@
+---
+- name: Copy environment files from OVB repo
+  command: cp "{{ item.0 }}" "{{ item.1 }}"
+  loop:
+    - - "{{ ovb_repo_directory }}/environments/base.yaml"
+      - "{{ ovb_working_dir }}/env-{{ idnum }}-base.yaml"
+    - - "{{ ovb_repo_directory }}/environments/base-role.yaml"
+      - "{{ ovb_working_dir }}/env-{{ idnum }}-compute.yaml"
+    - - "{{ ovb_repo_directory }}/environments/base-extra-node.yaml"
+      - "{{ ovb_working_dir }}/env-{{ idnum }}-extra.yaml"
+
+- name: Customize the base template
+  replace:
+    path: "{{ ovb_working_dir }}/env-{{ idnum }}-base.yaml"
+    regexp: "{{ item.0 }}"
+    replace: "{{ item.1 }}"
+  loop:
+    - - 'bmc_image:.*'
+      - 'bmc_image: bmc-template'
+    - - 'key_name:.*'
+      - 'key_name: {{ key_name }}'
+    - - 'node_count:.*'
+      - 'node_count: {{ node_count }}'
+
+- name: Customize the base template for known clouds
+  replace:
+    path: "{{ ovb_working_dir }}/env-{{ idnum }}-base.yaml"
+    regexp: "{{ item.0 }}"
+    replace: "{{ item.1 }}"
+  loop:
+    - - 'provision_net_shared:.*'
+      - 'provision_net_shared: false'
+    - - 'public_net_shared:.*'
+      - 'public_net_shared: false'
+    - - 'bmc_flavor:.*'
+      - "bmc_flavor: {{ cloud_settings[cloud_name]['bmc_flavor'] }}"
+    - - 'baremetal_flavor:.*'
+      - "baremetal_flavor: {{ cloud_settings[cloud_name]['baremetal_flavor'] }}"
+    - - 'undercloud_flavor:.*'
+      - "undercloud_flavor: {{ cloud_settings[cloud_name]['undercloud_flavor'] }}"
+  when:
+    - cloud_name is defined
+    - cloud_name in cloud_settings
+
+- name: Set network isolation
+  set_fact:
+    net_args: >-
+      {%- if net_iso == 'multi-nic' -%} -e {{ ovb_repo_directory }}/environments/all-networks-port-security.yaml
+      {%- elif net_iso == 'public-bond' -%} -e {{ ovb_repo_directory }}/environments/all-networks-public-bond-port-security.yaml
+      {%- else -%} -e {{ ovb_repo_directory }}/environments/port-security.yaml
+      {%- endif -%}
+
+- name: Set arguments for OVB stack
+  set_fact:
+    ovb_args: >-
+      --name {{ stack_name }} --quintupleo --id {{ idnum }}
+      {{ env_args }} {{ undercloud_args }} {{ net_args }} {{ role_args }}
+
+- name: Print ovb args
+  debug:
+    msg:
+      "OVB args:'{{ ovb_args }}'"
