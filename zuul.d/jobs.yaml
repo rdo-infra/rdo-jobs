@@ -248,3 +248,16 @@
     parent: publish-rdoproject-artifacts
     run: playbooks/octavia-build-amphora/run.yaml
     post-run: playbooks/octavia-build-amphora/post.yaml
+
+- job:
+    name: tripleo-ci-base-ovb-rdo-experimental2
+    abstract: true
+    description: |
+        Base abstract job for OVB in RDO CI zuulv3 jobs experimental
+    parent: tripleo-ci-base-ovb
+    timeout: 10800
+    nodeset: tripleo-ovb-centos-7-primary
+    pre-run:
+      - playbooks/tripleo-rdo-base/pre.yaml
+      - playbooks/rdo-ovb/pre-experimental.yaml
+    post-run: playbooks/rdo-ovb/post-experimental.yaml
