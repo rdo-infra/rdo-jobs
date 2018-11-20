@@ -1,0 +1,12 @@
+---
+- name: Create OVB stack
+  include: ovb-create-stack.yml
+  when: ovb_manage_stack_mode == 'create'
+
+- name: Delete OVB stack
+  include: ovb-delete-stack.yml
+  when: ovb_manage_stack_mode == 'delete'
+
+- name: Just test
+  include: ovb-test.yml
+  when: ovb_manage_stack_mode == 'test'
