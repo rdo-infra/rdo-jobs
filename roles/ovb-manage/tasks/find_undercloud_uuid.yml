@@ -1,0 +1,14 @@
+---
+- name: Find UUID of instance for vexxhost
+  shell: cat /mnt/config/openstack/latest/meta_data.json
+  register: js
+  when: cloud_name == 'vexxhost'
+
+- name: Find out UUID of instance
+  shell: curl http://169.254.169.254/openstack/latest/meta_data.json 2>/dev/null
+  register: js
+  when: cloud_name == 'rdocloud'
+
+- name: Set UUID of undercloud
+  set_fact:
+    undercloud_uuid: "{{ js.stdout | from_json | json_query('uuid') }}"

@@ -1,0 +1,17 @@
+clouds:
+  {{ cloud_name }}:
+    {% if identity_api_version is defined and identity_api_version -%}
+    identity_api_version: {{ identity_api_version }}
+    {% endif -%}
+    region_name: {{ os_region_name }}
+    auth:
+      username: {{ os_username }}
+      password: {{ os_password }}
+      project_name: {{ os_project_name }}
+      auth_url: {{ os_auth_url }}
+      {% if os_user_domain_name is defined and os_user_domain_name -%}
+      user_domain_name: {{ os_user_domain_name }}
+      {% endif -%}
+      {% if os_project_domain_name is defined and os_project_domain_name -%}
+      project_domain_name: {{ os_project_domain_name }}
+      {% endif %}
