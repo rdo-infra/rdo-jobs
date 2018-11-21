@@ -143,6 +143,9 @@
                   monitoring:
           EOF
 
+          # Install required roles
+          ansible-galaxy install -r requirements.yml
+
           pushd rdo-infra-playbooks
             # Use test data for the runs
             if [ -f samples/secrets.vault.yml ]; then
