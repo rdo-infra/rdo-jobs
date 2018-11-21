@@ -144,6 +144,9 @@
           EOF
 
           pushd rdo-infra-playbooks
+            # Install required roles
+            ansible-galaxy install -r requirements.yml
+
             # Use test data for the runs
             if [ -f samples/secrets.vault.yml ]; then
                 cat samples/secrets.vault.yml > playbooks/group_vars/all/secrets.vault.yml
