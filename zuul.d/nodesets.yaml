@@ -4,6 +4,43 @@
       - name: dib-centos-7
         label: dib-centos-7
 
+# Devstack nodeset
+- nodeset:
+    name: openstack-single-node
+    nodes:
+      - name: controller
+        label: upstream-centos-7
+
+- nodeset:
+    name: openstack-two-node
+    nodes:
+      - name: controller
+        label: upstream-centos-7
+      - name: compute1
+        label: upstream-centos-7
+    groups:
+      # Node where tests are executed and test results collected
+      - name: tempest
+        nodes:
+          - controller
+      # Nodes running the compute service
+      - name: compute
+        nodes:
+          - controller
+          - compute1
+      # Nodes that are not the controller
+      - name: subnode
+        nodes:
+          - compute1
+      # Switch node for multinode networking setup
+      - name: switch
+        nodes:
+          - controller
+      # Peer nodes for multinode networking setup
+      - name: peers
+        nodes:
+          - compute1
+
 - nodeset:
     name: legacy-upstream-centos-7
     nodes:
