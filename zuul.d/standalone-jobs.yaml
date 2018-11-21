@@ -5,14 +5,14 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-master
-    parent: tripleo-ci-base-singlenode-periodic
+    parent: tripleo-ci-base-standalone-periodic
     vars:
       featureset: '052'
       release: master
 
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-rocky
-    parent: tripleo-ci-base-singlenode-periodic
+    parent: tripleo-ci-base-standalone-periodic
     vars:
       featureset: '052'
       branch_override: "stable/rocky"
