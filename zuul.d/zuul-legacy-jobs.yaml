@@ -27,6 +27,7 @@
 - job:
     name: legacy-DLRN-rpmbuild-rpm-packaging-centos
     parent: legacy-base
+    timeout: 5400
     run: playbooks/legacy/DLRN-rpmbuild-rpm-packaging-centos/run.yaml
     post-run: playbooks/legacy/DLRN-rpmbuild-rpm-packaging-centos/post.yaml
     required-projects:
@@ -35,6 +36,7 @@
 - job:
     name: legacy-DLRN-rpmbuild-rpm-packaging-fedora
     parent: legacy-base
+    timeout: 5400
     run: playbooks/legacy/DLRN-rpmbuild-rpm-packaging-fedora/run.yaml
     post-run: playbooks/legacy/DLRN-rpmbuild-rpm-packaging-fedora/post.yaml
     nodeset: rdo-fedora-28
