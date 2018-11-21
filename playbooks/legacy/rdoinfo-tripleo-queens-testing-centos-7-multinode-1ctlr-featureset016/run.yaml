@@ -1,6 +1,5 @@
 - hosts: primary
-  name: Autoconverted job legacy-rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016
-    from old job rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016-nv
+  name: legacy-rdoinfo-tripleo-queens-testing-centos-7-multinode-1ctlr-featureset016
   tasks:
 
     - name: Ensure legacy workspace directory
@@ -96,7 +95,7 @@
           # This job requires variables $RELEASE and $PHASE to be defined.
 
           PHASE='testing'
-          RELEASE='master'
+          RELEASE='queens'
 
           REQUIRED=0
           MASTER_RELEASE=stein
@@ -160,6 +159,8 @@
                   echo "test_ping: true"
               fi
               echo "dlrn_hash_tag: current-tripleo"
+              echo "docker_registry_namespace: tripleoqueens"
+              echo "docker_image_tag: current-tripleo"
               echo "overcloud_image_url: http://images.rdoproject.org/$RELEASE/rdo_trunk/current-tripleo/overcloud-full.tar"
               echo "ipa_image_url: http://images.rdoproject.org/$RELEASE/rdo_trunk/current-tripleo/ironic-python-agent.tar"
               echo "images:"
@@ -218,6 +219,8 @@
               echo "  sudo yum clean all;"
               echo "  sudo yum repolist;"
               echo "  sudo yum update -y"
+              echo "  # add bootstrap dependencies tripleo/+bug/1785067"
+              echo "  sudo yum install -y openstack-heat-agents"
               if [ $STABLE_REPOSITORIES != false ]; then
                   echo "overcloud_repo_paths:"
                   echo "  - \"\$(ls /etc/yum.repos.d/CentOS-OpenStack-$O_RELEASE*)\""
@@ -233,7 +236,7 @@
               echo "undercloud_rpm_dependencies: >-"
               echo "  python-tripleoclient"
               echo "  ceph-ansible"
-              if [ $RELEASE = "master" ]; then
+              if [ $RELEASE = "queens" ]; then
                   echo "update_containers: true"
                   echo "gating_repo_name: temp-*"
               fi
@@ -242,15 +245,9 @@
 
           case $PHASE in
           testing)
-              if [ $RELEASE = master ]; then
-                  REPOS_URL="http://trunk.rdoproject.org/centos7-master/current-passed-ci/delorean.repo http://trunk.rdoproject.org/centos7-master/delorean-deps.repo"
-                  STABLE_REPOSITORIES=false
-                  TESTING_REPOSITORY=false
-              else
-                  REPOS_URL=""
-                  STABLE_REPOSITORIES=true
-                  TESTING_REPOSITORY=true
-              fi
+              REPOS_URL="http://trunk.rdoproject.org/centos7-queens/current-passed-ci/delorean.repo http://trunk.rdoproject.org/centos7-queens/delorean-deps.repo"
+              STABLE_REPOSITORIES=false
+              TESTING_REPOSITORY=false
               if [ $(grep -c $O_RELEASE-$PHASE $CREPOS_FILE) -ne 0 ]; then
                   REPO="cloud7-openstack-$O_RELEASE-$PHASE"
                   REPOS_URL="$REPOS_URL $logs/repos/$REPO/temp-$REPO.repo"
@@ -258,13 +255,14 @@
               create_config | tee -a tripleo.yml
           ;;
           release)
-              STABLE_REPOSITORIES=true
+              REPOS_URL="http://trunk.rdoproject.org/centos7-queens/current-passed-ci/delorean.repo http://trunk.rdoproject.org/centos7-queens/delorean-deps.repo"
+              STABLE_REPOSITORIES=false
               TESTING_REPOSITORY=false
               if [ $(grep -c $O_RELEASE-$PHASE $CREPOS_FILE) -ne 0 ]; then
                   REPO="cloud7-openstack-$O_RELEASE-$PHASE"
-                  REPOS_URL="$logs/repos/$REPO/temp-$REPO.repo"
+                  REPOS_URL="$REPOS_URL $logs/repos/$REPO/temp-$REPO.repo"
               else
-                  REPOS_URL=""
+                  REPOS_URL="$REPOS_URL"
               fi
               create_config | tee -a tripleo.yml
           ;;
@@ -297,15 +295,15 @@
           mkdir -p $WORKSPACE/logs
           # If this configuration is not required, exit early
           if [ -f $WORKSPACE/not_required ]; then
-              echo "Job for master-testing not required"
+              echo "Job for queens-testing not required"
               exit 0
           fi
 
           export TOCI_JOBTYPE=gate-multinode-1ctlr-featureset016
-          export STABLE_RELEASE=master
+          export STABLE_RELEASE=queens
 
-          sudo rm -f /opt/stack/new/tripleo-quickstart/config/release/tripleo-ci/master.yml
-          sudo mv tripleo.yml /opt/stack/new/tripleo-quickstart/config/release/tripleo-ci/CentOS-7/master.yml
+          sudo rm -f /opt/stack/new/tripleo-quickstart/config/release/tripleo-ci/queens.yml
+          sudo mv tripleo.yml /opt/stack/new/tripleo-quickstart/config/release/tripleo-ci/CentOS-7/queens.yml
 
           export PYTHONUNBUFFERED=true
           export DEVSTACK_GATE_TEMPEST=0
