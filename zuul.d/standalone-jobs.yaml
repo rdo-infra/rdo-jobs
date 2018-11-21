@@ -11,6 +11,17 @@
       release: master
 
 - job:
+    name: periodic-tripleo-ci-centos-7-standalone-full-tempest-master
+    parent: tripleo-ci-base-standalone-periodic
+    vars:
+      featureset: '052'
+      release: master
+      test_white_regex: '.*'
+      test_black_regex:
+        - 'sahara_tempest_plugin'
+        - 'manila_tempest_tests'
+
+- job:
     name: periodic-tripleo-ci-centos-7-standalone-rocky
     parent: tripleo-ci-base-standalone-periodic
     vars:
