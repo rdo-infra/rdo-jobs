@@ -9,11 +9,3 @@
     vars:
       featureset: '052'
       release: master
-
-- job:
-    name: periodic-tripleo-ci-centos-7-standalone-rocky
-    parent: tripleo-ci-base-standalone-periodic
-    vars:
-      featureset: '052'
-      branch_override: "stable/rocky"
-      release: rocky
