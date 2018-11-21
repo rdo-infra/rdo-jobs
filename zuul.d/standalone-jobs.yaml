@@ -9,3 +9,12 @@
     vars:
       featureset: '052'
       release: master
+
+- job:
+    name: periodic-tripleo-ci-centos-7-standalone-full-tempest-master
+    parent: tripleo-ci-base-standalone-periodic
+    vars:
+      featureset: '052'
+      release: master
+      featureset_override:
+        test_white_regex: '.*'
