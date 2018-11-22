@@ -349,6 +349,61 @@
       - rdoinfo
 
 - job:
+    name: legacy-rdoinfo-tripleo-master-testing-centos-7-ovb-3ctlr_1comp-featureset030
+    parent: tripleo-ci-base-ovb-rdo
+    run: playbooks/legacy/rdoinfo-tripleo-master-testing-centos-7-ovb-3ctlr_1comp-featureset030/run.yaml
+    post-run: playbooks/legacy/rdoinfo-tripleo-master-testing-centos-7-ovb-3ctlr_1comp-featureset030/post.yaml
+    timeout: 10800
+    vars:
+      toci_jobtype: gate-ovb-3ctlr_1comp-featureset030
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - openstack/browbeat
+      - rdoinfo
+      - git.openstack.org/openstack-dev/devstack
+      - git.openstack.org/openstack-infra/devstack-gate
+      - git.openstack.org/openstack-infra/tripleo-ci
+      - git.openstack.org/openstack/ceilometer
+      - git.openstack.org/openstack/ceilometermiddleware
+      - git.openstack.org/openstack/cinder
+      - git.openstack.org/openstack/django_openstack_auth
+      - git.openstack.org/openstack/glance
+      - git.openstack.org/openstack/glance_store
+      - git.openstack.org/openstack/heat
+      - git.openstack.org/openstack/heat-cfntools
+      - git.openstack.org/openstack/heat-templates
+      - git.openstack.org/openstack/horizon
+      - git.openstack.org/openstack/keystone
+      - git.openstack.org/openstack/keystoneauth
+      - git.openstack.org/openstack/keystonemiddleware
+      - git.openstack.org/openstack/manila
+      - git.openstack.org/openstack/manila-ui
+      - git.openstack.org/openstack/neutron
+      - git.openstack.org/openstack/neutron-fwaas
+      - git.openstack.org/openstack/neutron-lbaas
+      - git.openstack.org/openstack/neutron-vpnaas
+      - git.openstack.org/openstack/nova
+      - git.openstack.org/openstack/placement
+      - git.openstack.org/openstack/octavia
+      - git.openstack.org/openstack/os-apply-config
+      - git.openstack.org/openstack/os-brick
+      - git.openstack.org/openstack/os-client-config
+      - git.openstack.org/openstack/os-collect-config
+      - git.openstack.org/openstack/os-net-config
+      - git.openstack.org/openstack/os-refresh-config
+      - git.openstack.org/openstack/osc-lib
+      - git.openstack.org/openstack/requirements
+      - git.openstack.org/openstack/swift
+      - git.openstack.org/openstack/tempest
+      - git.openstack.org/openstack/tripleo-heat-templates
+      - git.openstack.org/openstack/tripleo-common
+      - git.openstack.org/openstack/tripleo-image-elements
+      - git.openstack.org/openstack/zaqar
+
+- job:
     name: legacy-rdoinfo-tripleo-rocky-testing-centos-7-multinode-1ctlr-featureset016
     parent: legacy-dsvm-base-multinode
     run: playbooks/legacy/rdoinfo-tripleo-rocky-testing-centos-7-multinode-1ctlr-featureset016/run.yaml
