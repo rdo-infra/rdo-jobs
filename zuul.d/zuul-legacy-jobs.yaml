@@ -349,6 +349,22 @@
       - rdoinfo
 
 - job:
+    name: legacy-rdoinfo-tripleo-master-testing-centos-7-ovb-3ctlr_1comp-featureset030
+    parent: tripleo-ci-base-ovb-rdo
+    run: playbooks/legacy/rdoinfo-tripleo-master-testing-centos-7-ovb-3ctlr_1comp-featureset030/run.yaml
+    post-run: playbooks/legacy/rdoinfo-tripleo-master-testing-centos-7-ovb-3ctlr_1comp-featureset030/post.yaml
+    timeout: 10800
+    vars:
+      toci_jobtype: gate-ovb-3ctlr_1comp-featureset030
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - openstack/browbeat
+      - rdoinfo
+
+- job:
     name: legacy-rdoinfo-tripleo-rocky-testing-centos-7-multinode-1ctlr-featureset016
     parent: legacy-dsvm-base-multinode
     run: playbooks/legacy/rdoinfo-tripleo-rocky-testing-centos-7-multinode-1ctlr-featureset016/run.yaml
