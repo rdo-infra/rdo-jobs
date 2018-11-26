@@ -1,6 +1,6 @@
 - job:
     name: base
-    parent: base-minimal
+    parent: base-minimal-test
     description:
       The base job for RDO's installation of Zuul.
 
@@ -10,6 +10,8 @@
 
       Changes to this job will be self testing.
     abstract: true
+    roles:
+      - zuul: review.rdoproject.org/rdo-jobs
     pre-run: playbooks/base/pre.yaml
     vars:
       ara_report_type: database
