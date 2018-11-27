@@ -248,3 +248,30 @@
     parent: publish-rdoproject-artifacts
     run: playbooks/octavia-build-amphora/run.yaml
     post-run: playbooks/octavia-build-amphora/post.yaml
+
+#NOTE(jpena): this is just a fake job to keep Zuul happy, because it is
+#             required by some openstack-dev/devstack jobs.
+- job:
+    name: tempest-full
+    parent: base
+
+- job:
+    name: devstack-platform-opensuse-tumbleweed
+    nodeset: upstream-centos-7
+
+- job:
+    name: devstack-platform-fedora-latest
+    nodeset: upstream-centos-7
+
+- job:
+    name: devstack-platform-opensuse-150
+    nodeset: upstream-centos-7
+
+- job:
+    name: devstack-platform-centos-7
+    nodeset: upstream-centos-7
+
+- job:
+    name: devstack-platform-opensuse-423
+    nodeset: upstream-centos-7
+
