@@ -248,3 +248,9 @@
     parent: publish-rdoproject-artifacts
     run: playbooks/octavia-build-amphora/run.yaml
     post-run: playbooks/octavia-build-amphora/post.yaml
+
+#NOTE(jpena): this is just a fake job to keep Zuul happy, because it is
+#             required by some openstack-dev/devstack jobs.
+- job:
+    name: tempest-full
+    parent: base
