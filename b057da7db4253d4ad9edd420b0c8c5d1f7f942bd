@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9abe1de1_703c52c8",
+        "filename": "zuul.d/standalone-jobs.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2018-11-28T08:04:32Z",
+      "side": 1,
+      "message": "Can we define this job something like this:\n- job:\n    name: periodic-tripleo-ci-centos-7-standalone-full-tempest-master\n    parent: periodic-tripleo-ci-centos-7-standalone-master\n    vars:\n      featureset_override:\n        test_white_regex: \u0027.*\u0027\n\nIt will use the above defined job parent.",
+      "range": {
+        "startLine": 13,
+        "startChar": 1,
+        "endLine": 20,
+        "endChar": 30
+      },
+      "revId": "b057da7db4253d4ad9edd420b0c8c5d1f7f942bd",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
