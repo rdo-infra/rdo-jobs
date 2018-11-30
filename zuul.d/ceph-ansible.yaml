@@ -14,10 +14,6 @@
       #- plugins/.*
       #- library/.*
       #- group_vars/.*
-    nodeset:
-      nodes:
-        - name: test
-          label: runc-fedora-29
 
 - job:
     name: tripleo-ceph-integration-master
