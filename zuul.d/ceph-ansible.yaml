@@ -1,0 +1,41 @@
+---
+- job:
+    # This is an abstract job to share common bits for each ooo-ceph integration jobs
+    name: tripleo-ceph-integration
+    # abstract means you can't use it directly, it can only be the parent of a job.
+    abstract: true
+    run: playbooks/tripleo-ceph-integration.yaml
+    # files makes the job run only if one of the elem is modified by the PR
+    files:
+      # Until job is working as expected, use a test file trigger
+      - test-ci
+      # When the job is working, only run it when those files are modified
+      #- roles/.*
+      #- plugins/.*
+      #- library/.*
+      #- group_vars/.*
+    nodeset:
+      nodes:
+        - name: test
+          label: runc-fedora-29
+
+- job:
+    name: tripleo-ceph-integration-master
+    parent: tripleo-ceph-integration
+    # branches makes this job run only for master PR
+    branches: master
+    required-projects:
+      # without options, the branch of the PR is used for the required-projects
+      - name: git.openstack.org/openstack/tripleo-heat-templates
+      - name: github.com/ceph/ceph-ansible
+
+- job:
+    name: tripleo-ceph-integration-queens
+    parent: tripleo-ceph-integration
+    # this job run only for stable-3.2 PR
+    branches: stable-3.2
+    required-projects:
+      - name: git.openstack.org/openstack/tripleo-heat-templates
+        # using override-checkout, we can map ceph-ansible branch to rdo branch
+        override-checkout: stable/queens
+      - name: github.com/ceph/ceph-ansible
