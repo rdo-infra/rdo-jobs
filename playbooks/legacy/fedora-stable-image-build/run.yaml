@@ -70,8 +70,9 @@
           else
               PKG_CFG="/etc/yum.conf"
               PYTHON_VERSION='python2'
-              sudo yum -y install centos-release-yum4
-              sudo yum -y install yum4
+              # Since CentOS 7.6, we have a nextgen-yum4 package with yum4
+              sudo yum clean all
+              sudo yum -y install nextgen-yum4
               sudo yum4 -y install dnf-plugins-core
               sudo yum -y install createrepo_c centos-packager
           fi
@@ -90,6 +91,12 @@
           cd $ZUUL_PROJECT
           OUTPUT_DIR=$(grep output_dir fedora_config | cut -d= -f2 | tr -d '[:space:]')
           sudo mkdir -p $OUTPUT_DIR
+          # We need to ensure all directories are accessible by the zuul user
+          MYDIR=$OUTPUT_DIR
+          while [ "$MYDIR" != "/" ]; do
+            sudo chmod 755 $MYDIR
+            MYDIR=$(dirname $MYDIR)
+          done
           sudo chown ${USER} $OUTPUT_DIR
           if [ -f comps*xml ];then
               cp comps*xml $OUTPUT_DIR
