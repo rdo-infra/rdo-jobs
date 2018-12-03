@@ -8,13 +8,17 @@
   template:
     src: templates/zuul-cloner-shim.py.j2
     dest: "{{ virtualenv }}/bin/zuul-cloner"
-  become: yes
-
-- name: Change zuul-cloner permissions
-  file:
-    path: "{{ virtualenv }}/bin/zuul-cloner"
     mode: 0755
   become: yes
+
+- name: Ensure zuul-cloner permission env perm
+  file:
+    path: "{{ virtualenv }}"
+    mode: 0755
+    state: directory
+  with_items:
+    - /bin
+    - /
 
 - name: Make repositories writable so that people can hardlink
   file:
