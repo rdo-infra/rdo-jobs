@@ -16,6 +16,7 @@
     path: "{{ virtualenv }}/{{ item }}"
     mode: 0755
     state: directory
+  become: yes
   with_items:
     - /bin
     - /
