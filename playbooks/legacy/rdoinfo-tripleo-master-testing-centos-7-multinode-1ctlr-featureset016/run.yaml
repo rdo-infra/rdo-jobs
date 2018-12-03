@@ -236,6 +236,8 @@
               if [ $RELEASE = "master" ]; then
                   echo "update_containers: true"
                   echo "gating_repo_name: temp-*"
+                  echo "dlrn_use_local_mirrors: false"
+                  echo "update_containers_repo: 'temp-*,gating-repo'"
               fi
           }
 
