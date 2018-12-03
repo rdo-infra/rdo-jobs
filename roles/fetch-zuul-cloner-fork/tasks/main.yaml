@@ -13,13 +13,12 @@
 
 - name: Ensure zuul-cloner permission env perm
   file:
-    path: "{{ virtualenv }}/{{ item }}"
+    path: "{{ virtualenv }}"
     mode: 0755
     state: directory
+    mode: u=rwX,g=rX,o=rX
+    recurse: yes
   become: yes
-  with_items:
-    - /bin
-    - /
 
 - name: Make repositories writable so that people can hardlink
   file:
