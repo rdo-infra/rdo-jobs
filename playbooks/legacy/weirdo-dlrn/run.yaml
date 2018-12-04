@@ -6,6 +6,14 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
+    - block:
+       - name: Do not run weirdo if there are no new packages to test in parent job
+         debug:
+           msg: "No new packages detected, skiping weirdo execution"
+
+       - meta: end_play
+      when: buildset_artifacts_url is not defined
+
     - shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
