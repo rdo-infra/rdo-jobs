@@ -1,208 +1,210 @@
 - hosts: all
   tasks:
+    - name: Run weirdo
+      block:
+      - name: Ensure legacy workspace directory
+        file:
+          path: '{{ ansible_user_dir }}/workspace'
+          state: directory
 
-    - name: Ensure legacy workspace directory
-      file:
-        path: '{{ ansible_user_dir }}/workspace'
-        state: directory
+      - shell:
+          cmd: |
+            echo "[DEBUG]: JJB template name: {template-name}"
 
-    - shell:
-        cmd: |
-          echo "[DEBUG]: JJB template name: {template-name}"
+            # If this is called in a periodic job, these will not be set
+            echo "Use default for ZUUL_BRANCH and ZUUL_REF if needed"
+            export ZUUL_BRANCH=${ZUUL_BRANCH:-master}
+            export ZUUL_REF=${ZUUL_REF:-None}
 
-          # If this is called in a periodic job, these will not be set
-          echo "Use default for ZUUL_BRANCH and ZUUL_REF if needed"
-          export ZUUL_BRANCH=${ZUUL_BRANCH:-master}
-          export ZUUL_REF=${ZUUL_REF:-None}
+            # In the post pipeline ZUUL_REF is master but does not behave as we want
+            # So fall back on None
+            [ "$ZUUL_REF" = "master" ] && ZUUL_REF=None
+            echo "Clean workspace"
+            rm -Rf ./*
 
-          # In the post pipeline ZUUL_REF is master but does not behave as we want
-          # So fall back on None
-          [ "$ZUUL_REF" = "master" ] && ZUUL_REF=None
-          echo "Clean workspace"
-          rm -Rf ./*
+            echo "Clone $ZUUL_PROJECT"
+            # zuul-cloner is installed as /usr/zuul-env/bin/zuul-cloner
+            # in upstream images
+            export PATH=$PATH:/usr/zuul-env/bin
 
-          echo "Clone $ZUUL_PROJECT"
-          # zuul-cloner is installed as /usr/zuul-env/bin/zuul-cloner
-          # in upstream images
-          export PATH=$PATH:/usr/zuul-env/bin
+            # Note (dmsimard): If we are running for a periodic job, there is no
+            # incentive in using Zuul cloner because the jobs are not going to
+            # potentially depend on things from the zuul context (ex: depends-on)
+            # The zuul git namespace (where the job was triggered from) is also
+            # wonky for periodic jobs. A periodic pipeline targetted at an
+            # upstream project would still end up trying to clone from review.rdo.
+            # This should be revisited in Zuul v3 which is supposedly not a
+            # problem
 
-          # Note (dmsimard): If we are running for a periodic job, there is no
-          # incentive in using Zuul cloner because the jobs are not going to
-          # potentially depend on things from the zuul context (ex: depends-on)
-          # The zuul git namespace (where the job was triggered from) is also
-          # wonky for periodic jobs. A periodic pipeline targetted at an
-          # upstream project would still end up trying to clone from review.rdo.
-          # This should be revisited in Zuul v3 which is supposedly not a
-          # problem
+            # We can receive reviews from review.openstack.org.
+            # Builds that are run as third party for review.o.o are in the Zuul
+            # pipelines prefixed by "openstack-".
+            GIT_SOURCE="https://review.rdoproject.org/r"
+            if [[ "${ZUUL_PIPELINE}" =~ "openstack-" ]]; then
+                GIT_SOURCE="https://git.openstack.org"
+            fi
 
-          # We can receive reviews from review.openstack.org.
-          # Builds that are run as third party for review.o.o are in the Zuul
-          # pipelines prefixed by "openstack-".
-          GIT_SOURCE="https://review.rdoproject.org/r"
-          if [[ "${ZUUL_PIPELINE}" =~ "openstack-" ]]; then
-              GIT_SOURCE="https://git.openstack.org"
-          fi
+            git config --global http.postBuffer 524288000
+            git config --global https.postBuffer 524288000
 
-          git config --global http.postBuffer 524288000
-          git config --global https.postBuffer 524288000
+            if [[ "${ZUUL_PIPELINE}" =~ "periodic" ]]; then
+            # Note (trown): we need to make sure we clone this to the same
+            # location as zuul-cloner will so that manual and periodic jobs
+            # can share builders
+                git clone --depth=1 $GIT_SOURCE/$ZUUL_PROJECT $ZUUL_PROJECT
+            else
+                /usr/zuul-env/bin/zuul-cloner -v $GIT_SOURCE $ZUUL_PROJECT
+            fi
+          chdir: '{{ ansible_user_dir }}/workspace'
+        environment: '{{ zuul | zuul_legacy_vars }}'
 
-          if [[ "${ZUUL_PIPELINE}" =~ "periodic" ]]; then
-          # Note (trown): we need to make sure we clone this to the same
-          # location as zuul-cloner will so that manual and periodic jobs
-          # can share builders
-              git clone --depth=1 $GIT_SOURCE/$ZUUL_PROJECT $ZUUL_PROJECT
-          else
-              /usr/zuul-env/bin/zuul-cloner -v $GIT_SOURCE $ZUUL_PROJECT
-          fi
-        chdir: '{{ ansible_user_dir }}/workspace'
-      environment: '{{ zuul | zuul_legacy_vars }}'
+      - shell:
+          cmd: |
+            # This builder, when run from a child job of a DLRN based job,
+            # configures the DLRN repository that was uploaded as an artifact
+            # of the parent DLRN-rpmbuild job.
+            # This allows to install the packages in that repository and test
+            # them.
+            set +ex
 
-    - shell:
-        cmd: |
-          # This builder, when run from a child job of a DLRN based job,
-          # configures the DLRN repository that was uploaded as an artifact
-          # of the parent DLRN-rpmbuild job.
-          # This allows to install the packages in that repository and test
-          # them.
-          set +ex
+            # Re-construct the expected repository URL
+            if [[ "${ZUUL_BRANCH}" =~ stable/ ]]; then
+                # If the branch is stable/something, we have an additional /
+                ZUUL_REF=$(echo ${ZUUL_REF} |cut -f5 -d /)
+            else
+                ZUUL_REF=$(echo ${ZUUL_REF} |cut -f4 -d /)
+            fi
 
-          # Re-construct the expected repository URL
-          if [[ "${ZUUL_BRANCH}" =~ stable/ ]]; then
-              # If the branch is stable/something, we have an additional /
-              ZUUL_REF=$(echo ${ZUUL_REF} |cut -f5 -d /)
-          else
-              ZUUL_REF=$(echo ${ZUUL_REF} |cut -f4 -d /)
-          fi
+            # This builder can be shared across different DLRN based jobs.
+            # Try and find the right one
+            jobs="DLRN-rpmbuild rdoinfo-DLRN-check"
+            for job in $jobs;
+            do
+              # Note, LOG_PATH is expected since we reconstruct it inside
+              # zuul_functions.py
+              LOG_PATH="${BASE_LOG_PATH}/${ZUUL_PIPELINE}/${job}/${ZUUL_REF}"
+              logs="https://logs.rdoproject.org/${LOG_PATH}"
 
-          # This builder can be shared across different DLRN based jobs.
-          # Try and find the right one
-          jobs="DLRN-rpmbuild rdoinfo-DLRN-check"
-          for job in $jobs;
-          do
-            # Note, LOG_PATH is expected since we reconstruct it inside
-            # zuul_functions.py
-            LOG_PATH="${BASE_LOG_PATH}/${ZUUL_PIPELINE}/${job}/${ZUUL_REF}"
-            logs="https://logs.rdoproject.org/${LOG_PATH}"
-
-            curl -o /dev/null -sIf "${logs}" || continue
-            break
-          done
-
-          # NOTE(pabelanger): Override logs for zuulv3 jobs.
-          if [[ -d /home/zuul ]]; then
-              logs={{ buildset_artifacts_url }}
-          fi
-
-          # If we could not find a working repository, give up
-          curl -o /dev/null -sIf "${logs}" || exit 1
-
-          # Use the latest repository hash
-          # If DLRN built multiple packages, there will be multiple repositories.
-          # We want the latest repository which contains all of the packages that were just built.
-          repository="${logs}/centos/current"
-
-          # The rdoinfo-DLRN-check job may create different repos (centos-rpm-master, centos-pike-rdo)
-          # when it builds packages for more than one release. In that case, let us try to find the
-          # right one
-          curl -o /dev/null -sIf "${repository}"
-          if [ $? -ne 0 ]; then
-            releases="rpm-master rocky-rdo queens-rdo pike-rdo ocata-rdo"
-            for release in $releases; do
-                repository="${logs}/centos-${release}/current"
-                curl -o /dev/null -sIf "${repository}" || continue
-                break
+              curl -o /dev/null -sIf "${logs}" || continue
+              break
             done
-          fi
 
-          # If we could not find a working repository, give up
-          curl -o /dev/null -sIf "${repository}" || exit 1
+            # NOTE(pabelanger): Override logs for zuulv3 jobs.
+            if [[ -d /home/zuul ]]; then
+                logs={{ buildset_artifacts_url }}
+            fi
 
-          # Configure the repository
-          name="delorean-zuul-${ZUUL_REF}"
-          sudo bash -c "cat << EOF > /etc/yum.repos.d/${name}.repo
-          [${name}]
-          name=${name}
-          baseurl=${repository}
-          enabled=1
-          gpgcheck=0
-          priority=1
-          EOF"
-        chdir: '{{ ansible_user_dir }}/workspace'
-      environment: '{{ zuul | zuul_legacy_vars }}'
+            # If we could not find a working repository, give up
+            curl -o /dev/null -sIf "${logs}" || exit 1
 
-    - shell:
-        cmd: |
-          CLONEMAP=$(mktemp)
-          function cleanup {
-              rm -f $CLONEMAP
-          }
-          trap cleanup EXIT
-          cat > $CLONEMAP << EOF
-          clonemap:
-            - name: 'rdo-infra/weirdo'
-              dest: 'weirdo'
-            - name: 'rdo-infra/ansible-role-weirdo-(.*)'
-              dest: 'weirdo/playbooks/roles/\1'
-          EOF
+            # Use the latest repository hash
+            # If DLRN built multiple packages, there will be multiple repositories.
+            # We want the latest repository which contains all of the packages that were just built.
+            repository="${logs}/centos/current"
 
-          # Zuul clone WeIRDO and its roles at their expected location
-          /usr/zuul-env/bin/zuul-cloner -m $CLONEMAP \
-            https://review.rdoproject.org/r \
-            rdo-infra/weirdo \
-            rdo-infra/ansible-role-weirdo-common \
-            rdo-infra/ansible-role-weirdo-logs \
-            rdo-infra/ansible-role-weirdo-kolla \
-            rdo-infra/ansible-role-weirdo-packstack \
-            rdo-infra/ansible-role-weirdo-puppet-openstack
+            # The rdoinfo-DLRN-check job may create different repos (centos-rpm-master, centos-pike-rdo)
+            # when it builds packages for more than one release. In that case, let us try to find the
+            # right one
+            curl -o /dev/null -sIf "${repository}"
+            if [ $? -ne 0 ]; then
+              releases="rpm-master rocky-rdo queens-rdo pike-rdo ocata-rdo"
+              for release in $releases; do
+                  repository="${logs}/centos-${release}/current"
+                  curl -o /dev/null -sIf "${repository}" || continue
+                  break
+              done
+            fi
 
-          # TODO(pabelanger): This is to workaround puppet-openstack-integration
-          # trying to use zuul-cloner
-          sudo rm -rf /usr/zuul-env
-        chdir: '{{ ansible_user_dir }}/workspace'
-      environment: '{{ zuul | zuul_legacy_vars }}'
+            # If we could not find a working repository, give up
+            curl -o /dev/null -sIf "${repository}" || exit 1
 
-    - shell:
-        cmd: |
-          # WeIRDO uses ARA for ansible-playbook run visualization
-          export ARA_DATABASE="sqlite:///$WORKSPACE/ara.sqlite"
+            # Configure the repository
+            name="delorean-zuul-${ZUUL_REF}"
+            sudo bash -c "cat << EOF > /etc/yum.repos.d/${name}.repo
+            [${name}]
+            name=${name}
+            baseurl=${repository}
+            enabled=1
+            gpgcheck=0
+            priority=1
+            EOF"
+          chdir: '{{ ansible_user_dir }}/workspace'
+        environment: '{{ zuul | zuul_legacy_vars }}'
 
-          # Backwards compat for project and openstack_release
-          # (dmsimard) TODO: Clean this up ASAP
-          if [[ "{{ zuul.job }}" == *"puppet"* ]]; then
-              project="puppet-openstack"
-          else
-              project="packstack"
-          fi
-          scenario="{{ scenario }}"
+      - shell:
+          cmd: |
+            CLONEMAP=$(mktemp)
+            function cleanup {
+                rm -f $CLONEMAP
+            }
+            trap cleanup EXIT
+            cat > $CLONEMAP << EOF
+            clonemap:
+              - name: 'rdo-infra/weirdo'
+                dest: 'weirdo'
+              - name: 'rdo-infra/ansible-role-weirdo-(.*)'
+                dest: 'weirdo/playbooks/roles/\1'
+            EOF
 
-          if [[ "{{ openstack_release }}" != "master" ]]; then
-              version="stable/{{ openstack_release }}"
-          else
-              version="{{ openstack_release }}"
-          fi
+            # Zuul clone WeIRDO and its roles at their expected location
+            /usr/zuul-env/bin/zuul-cloner -m $CLONEMAP \
+              https://review.rdoproject.org/r \
+              rdo-infra/weirdo \
+              rdo-infra/ansible-role-weirdo-common \
+              rdo-infra/ansible-role-weirdo-logs \
+              rdo-infra/ansible-role-weirdo-kolla \
+              rdo-infra/ansible-role-weirdo-packstack \
+              rdo-infra/ansible-role-weirdo-puppet-openstack
 
-          delorean_deps_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/delorean-deps.repo"
-          if [[ "${ZUUL_PIPELINE}" =~ "experimental" ]]; then
-              delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/current/delorean.repo"
-          elif [[ "{{ openstack_release }}" == "master" ]]; then
-              delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/puppet-passed-ci/delorean.repo"
-          else
-              delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/current-passed-ci/delorean.repo"
-          fi
+            # TODO(pabelanger): This is to workaround puppet-openstack-integration
+            # trying to use zuul-cloner
+            sudo rm -rf /usr/zuul-env
+          chdir: '{{ ansible_user_dir }}/workspace'
+        environment: '{{ zuul | zuul_legacy_vars }}'
 
-          cd weirdo
-          # Prepare Ansible inventory to use localhost
-          cat <<EOF >hosts
-          localhost ansible_connection=local
-          [openstack_nodes]
-          localhost log_destination=/var/log/weirdo
-          EOF
+      - shell:
+          cmd: |
+            # WeIRDO uses ARA for ansible-playbook run visualization
+            export ARA_DATABASE="sqlite:///$WORKSPACE/ara.sqlite"
 
-          tox -e ansible-playbook -- -vv -b -i hosts playbooks/$project-$scenario.yml \
-              -e version=$version \
-              -e openstack_release="{{ openstack_release }}" \
-              -e delorean_url=$delorean_url \
-              -e delorean_deps_url=$delorean_deps_url \
-              -e enable_puppet_modules_rpm=true
-        chdir: '{{ ansible_user_dir }}/workspace'
-      environment: '{{ zuul | zuul_legacy_vars }}'
+            # Backwards compat for project and openstack_release
+            # (dmsimard) TODO: Clean this up ASAP
+            if [[ "{{ zuul.job }}" == *"puppet"* ]]; then
+                project="puppet-openstack"
+            else
+                project="packstack"
+            fi
+            scenario="{{ scenario }}"
+
+            if [[ "{{ openstack_release }}" != "master" ]]; then
+                version="stable/{{ openstack_release }}"
+            else
+                version="{{ openstack_release }}"
+            fi
+
+            delorean_deps_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/delorean-deps.repo"
+            if [[ "${ZUUL_PIPELINE}" =~ "experimental" ]]; then
+                delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/current/delorean.repo"
+            elif [[ "{{ openstack_release }}" == "master" ]]; then
+                delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/puppet-passed-ci/delorean.repo"
+            else
+                delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/current-passed-ci/delorean.repo"
+            fi
+
+            cd weirdo
+            # Prepare Ansible inventory to use localhost
+            cat <<EOF >hosts
+            localhost ansible_connection=local
+            [openstack_nodes]
+            localhost log_destination=/var/log/weirdo
+            EOF
+
+            tox -e ansible-playbook -- -vv -b -i hosts playbooks/$project-$scenario.yml \
+                -e version=$version \
+                -e openstack_release="{{ openstack_release }}" \
+                -e delorean_url=$delorean_url \
+                -e delorean_deps_url=$delorean_deps_url \
+                -e enable_puppet_modules_rpm=true
+          chdir: '{{ ansible_user_dir }}/workspace'
+        environment: '{{ zuul | zuul_legacy_vars }}'
+      when: buildset_artifacts_url is defined
