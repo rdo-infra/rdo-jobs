@@ -61,6 +61,7 @@
     - shell:
         cmd: |
           set -e
+          set -x
           mkdir -p $WORKSPACE/logs
           if [ $(grep -c ^CentOS /etc/system-release) -eq 0 ]; then
               PKG_CFG="/etc/dnf/dnf.conf"
@@ -93,14 +94,18 @@
           sudo mkdir -p $OUTPUT_DIR
           # We need to ensure all directories are accessible by the zuul user
           MYDIR=$OUTPUT_DIR
+          sudo chmod -R 755 $MYDIR
           while [ "$MYDIR" != / ]; do
             sudo chmod 755 $MYDIR
             MYDIR=$(dirname $MYDIR)
           done
-          sudo chown ${USER} $OUTPUT_DIR
+          sudo chown -R ${USER} $OUTPUT_DIR
           if [ -f comps*xml ];then
               cp comps*xml $OUTPUT_DIR
           fi
+          umask
+          sudo umask
+          sudo grep -B2 -A2 umask /etc/profile
           echo "INFO: Running synchronization using sinkhole"
           sinkhole --config fedora_config config_file
           if [ -f $OUTPUT_DIR/comps*xml ];then
@@ -112,6 +117,7 @@
     - shell:
         cmd: |
           set -e
+          set -x
           mkdir -p $WORKSPACE/logs
           cd $ZUUL_PROJECT
           OUTPUT_DIR=$(grep output_dir fedora_config | cut -d= -f2 | tr -d '[:space:]')
