@@ -1,3 +1,4 @@
+---
 - hosts: all
   tasks:
     - name: Ensure bindep.txt dependencies are installed
@@ -13,7 +14,7 @@
         zuul_work_dir: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
 
     - name: Add zuul user to mock group
-      become: yes
+      become: true
       shell:
         cmd: |
           usermod -a -G mock zuul

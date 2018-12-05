@@ -1,3 +1,4 @@
+---
 - hosts: all
   name: Autoconverted job legacy-rdo-kolla-build-containers from old job gate-rdo-kolla-build-containers
   tasks:
@@ -92,7 +93,7 @@
           ---
           - name: Build Kolla images
             hosts: localhost
-            become: yes
+            become: true
             become_user: root
             roles:
               - kolla-build

@@ -1,3 +1,4 @@
+---
 - hosts: all
   name: Autoconverted job legacy-rpmlint from old job gate-rpmlint
   tasks:
@@ -156,7 +157,8 @@
           wget $baseurl/repodata/repomd.xml
 
           # extract the name of primary db from repomd.xml
-          db=$(python -c "import xml.etree.ElementTree as et; ns = {'ns0': 'http://linux.duke.edu/metadata/repo'}; print(et.parse('repomd.xml').getroot().find('ns0:data[@type=\"primary_db\"]/ns0:location', ns).attrib['href'])")
+          db=$(python -c "import xml.etree.ElementTree as et; ns = {'ns0': 'http://linux.duke.edu/metadata/repo'}; \
+            print(et.parse('repomd.xml').getroot().find('ns0:data[@type=\"primary_db\"]/ns0:location', ns).attrib['href'])")
 
           # download this db to get the name of the rpm files
           wget $baseurl/$db
@@ -174,10 +176,12 @@
           addFilter("non-readable")
 
           # vitrage-ui exceptions
-          addFilter("openstack-vitrage-ui.noarch: W: non-conffile-in-etc /etc/openstack-dashboard/enabled/_4140_admin_template_vitrage_panel.py.*")
+          addFilter("openstack-vitrage-ui.noarch: W: \
+            non-conffile-in-etc /etc/openstack-dashboard/enabled/_4140_admin_template_vitrage_panel.py.*")
 
           # ironic exceptions
-          addFilter("openstack-ironic-common.noarch: E: non-standard-dir-perm /var/log/ironic 0?750L?")
+          addFilter("openstack-ironic-common.noarch: E: \
+            non-standard-dir-perm /var/log/ironic 0?750L?")
 
           # Exceptions for nova
           addFilter("openstack-nova-common.noarch: W: obsolete-not-provided openstack-nova-cert")
@@ -243,32 +247,60 @@
           addFilter("python2-os-xenapi.noarch: E: non-executable-script /usr/lib/python2.7/site-packages/os_xenapi/utils/consoles.py 0644L /usr/bin/env")
 
           # Exceptions for openstack-tripleo-heat-templates-compat
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: description-line-too-long C building Heat Templates to do deployments of OpenStack.  These templates provide support for the clouds running the previous upstream version of OpenStack.")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/ci/scripts/freeipa_setup.sh 0644L /bin/bash")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/deployed-server/deployed-server-bootstrap-centos.sh 0644L /bin/bash")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/deployed-server/deployed-server-bootstrap-rhel.sh 0644L /bin/bash")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/docker/docker-puppet.py 0644L /usr/bin/env")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/docker/services/neutron/neutron-cleanup 0644L /bin/bash")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/docker_config_scripts/pyshim.sh 0644L /bin/bash")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/post_deploy/clouds_yaml.py 0644L /usr/bin/env")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/post_deploy/undercloud_ctlplane_network.py 0644L /usr/bin/env")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/post_deploy/undercloud_post.py 0644L /usr/bin/env")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/pre_deploy/rhel-registration/scripts/rhel-registration 0644L /bin/bash")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/pre_deploy/rhel-registration/scripts/rhel-unregistration 0644L /bin/bash")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/pre_deploy/undercloud_pre.sh 0644L /bin/bash")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/puppet/deploy-artifacts.sh 0644L /bin/bash")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/validation-scripts/all-nodes.sh 0644L /bin/bash")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: script-without-shebang /usr/share/openstack-tripleo-heat-templates/compat/environments/neutron-plumgrid.yaml")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: script-without-shebang /usr/share/openstack-tripleo-heat-templates/compat/environments/neutron-sriov.yaml")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: description-line-too-long C building Heat Templates to do deployments of OpenStack.  These templates provide support for the clouds running the previous upstream version of OpenStack.")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/docker/services/neutron/neutron-cleanup 0644L /bin/bash")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/pre_deploy/rhel-registration/scripts/rhel-registration 0644L /bin/bash")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/pre_deploy/rhel-registration/scripts/rhel-unregistration 0644L /bin/bash")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/tasks/tripleo_upgrade_node.sh 0644L /bin/bash")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/puppet/deploy-artifacts.sh 0644L /bin/bash")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/validation-scripts/all-nodes.sh 0644L /bin/bash")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: script-without-shebang /usr/share/openstack-tripleo-heat-templates/compat/environments/neutron-plumgrid.yaml")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: script-without-shebang /usr/share/openstack-tripleo-heat-templates/compat/environments/neutron-sriov.yaml")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: description-line-too-long C building Heat Templates to do deployments of OpenStack.  \
+          These templates provide support for the clouds running the previous upstream version of OpenStack.")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/ci/scripts/freeipa_setup.sh 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/deployed-server/deployed-server-bootstrap-centos.sh 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/deployed-server/deployed-server-bootstrap-rhel.sh 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/docker/docker-puppet.py 0644L /usr/bin/env")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/docker/services/neutron/neutron-cleanup 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/docker_config_scripts/pyshim.sh 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/post_deploy/clouds_yaml.py 0644L /usr/bin/env")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/post_deploy/undercloud_ctlplane_network.py 0644L /usr/bin/env")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/post_deploy/undercloud_post.py 0644L /usr/bin/env")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/pre_deploy/rhel-registration/scripts/rhel-registration 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/pre_deploy/rhel-registration/scripts/rhel-unregistration 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/pre_deploy/undercloud_pre.sh 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/puppet/deploy-artifacts.sh 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/validation-scripts/all-nodes.sh 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: script-without-shebang /usr/share/openstack-tripleo-heat-templates/compat/environments/neutron-plumgrid.yaml")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: script-without-shebang /usr/share/openstack-tripleo-heat-templates/compat/environments/neutron-sriov.yaml")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: description-line-too-long C building Heat Templates to do deployments of OpenStack.  These templates provide support for the clouds \
+          running the previous upstream version of OpenStack.")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/docker/services/neutron/neutron-cleanup 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/pre_deploy/rhel-registration/scripts/rhel-registration 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/pre_deploy/rhel-registration/scripts/rhel-unregistration 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/tasks/tripleo_upgrade_node.sh 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/puppet/deploy-artifacts.sh 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/validation-scripts/all-nodes.sh 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: script-without-shebang /usr/share/openstack-tripleo-heat-templates/compat/environments/neutron-plumgrid.yaml")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
+          E: script-without-shebang /usr/share/openstack-tripleo-heat-templates/compat/environments/neutron-sriov.yaml")
 
           EOF
 

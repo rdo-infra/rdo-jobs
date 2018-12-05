@@ -1,3 +1,4 @@
+---
 - hosts: all
   name: Autoconverted job legacy-rdo-kolla-build-integration from old job rdo-kolla-build-integration
   tasks:
@@ -165,7 +166,7 @@
           ---
           - name: Build Kolla images
             hosts: localhost
-            become: yes
+            become: true
             become_user: root
             roles:
               - kolla-build
