@@ -1,8 +1,11 @@
+---
 - project:
     name: rdo-jobs
     check:
       jobs:
         - tox-docs
+        - tox-linters
     gate:
       jobs:
         - tox-docs
+        - tox-linters

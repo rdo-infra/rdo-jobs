@@ -1,3 +1,4 @@
+---
 - hosts: all
   name: Autoconverted job legacy-rdo-infra-playbooks-integration-base from old job
     rdo-infra-playbooks-integration-base
@@ -8,8 +9,8 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
-    - shell:
-        cmd: |
+    - name: cloning
+      shell: |
           echo "[DEBUG]: JJB template name: {template-name}"
 
           # If this is called in a periodic job, these will not be set
@@ -56,11 +57,13 @@
           else
               /usr/zuul-env/bin/zuul-cloner -v $GIT_SOURCE $ZUUL_PROJECT
           fi
+      args:
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
-        cmd: |
+    - name: clonemap
+      shell: |
+          #!/bin/bash
           CLONEMAP=$(mktemp)
           function cleanup {
               rm -f $CLONEMAP
@@ -79,10 +82,12 @@
             https://review.rdoproject.org/r \
             rdo-infra/rdo-infra-playbooks \
             centos-opstools/opstools-ansible
+      args:
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
+    - name: run playbook integration base
+      shell:
         cmd: |
           set -e
           # Need to inherit system-site-packages for libselinux-python and python-yum
