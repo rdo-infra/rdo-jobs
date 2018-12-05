@@ -1,3 +1,4 @@
+---
 - hosts: all
   name: Autoconverted job legacy-validate-buildsys-tags from old job validate-buildsys-tags
   tasks:
@@ -7,7 +8,8 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
-    - shell:
+    - name: zuul-cloner
+      shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
 
@@ -62,7 +64,8 @@
       include_role:
         name: set-zuul-log-path-fact
 
-    - shell:
+    - name: run validate_updates
+      shell:
         cmd: |
           set -e -x
           # Install requirements

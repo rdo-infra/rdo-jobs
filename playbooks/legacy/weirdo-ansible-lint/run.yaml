@@ -1,3 +1,4 @@
+---
 - hosts: all
   name: Autoconverted job legacy-weirdo-ansible-lint from old job gate-weirdo-ansible-lint
   tasks:
@@ -7,7 +8,8 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
-    - shell:
+    - name: cloning
+      shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
 
@@ -58,8 +60,9 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
-        cmd: |
+    - name: clonemap
+      shell: |
+          #!/bin/bash
           CLONEMAP=$(mktemp)
           function cleanup {
               rm -f $CLONEMAP
@@ -86,10 +89,12 @@
           # TODO(pabelanger): This is to workaround puppet-openstack-integration
           # trying to use zuul-cloner
           sudo rm -rf /usr/zuul-env
+      args:
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
+    - name: tox -e ansible-lint
+      shell:
         cmd: |
           set +e
           cd weirdo

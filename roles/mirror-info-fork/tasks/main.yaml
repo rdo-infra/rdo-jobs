@@ -1,5 +1,6 @@
+---
 - name: Create /etc/ci
-  become: yes
+  become: true
   file:
     path: /etc/ci
     state: directory
@@ -8,7 +9,7 @@
     mode: 0755
 
 - name: Install ci_mirror script
-  become: yes
+  become: true
   template:
     dest: '/etc/ci/mirror_info.sh'
     owner: root
