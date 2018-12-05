@@ -1,3 +1,4 @@
+---
 - hosts: all
   tasks:
 
@@ -13,4 +14,3 @@
           - --include=*/
           - --exclude=*
           - --prune-empty-dirs
-

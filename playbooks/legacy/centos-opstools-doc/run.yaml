@@ -1,3 +1,4 @@
+---
 - hosts: all
   name: Autoconverted job legacy-centos-opstools-doc from old job centos-opstools-doc
   tasks:
@@ -7,7 +8,8 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
-    - shell:
+    - name: cloning
+      shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
 
@@ -58,7 +60,8 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
+    - name: install asciidoctor
+      shell:
         cmd: |
           set +e
           mkdir $WORKSPACE/logs

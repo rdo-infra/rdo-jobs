@@ -1,7 +1,9 @@
+---
 - hosts: all
   tasks:
 
-    - shell:
+    - name: ara config
+      shell:
         cmd: |
           # WeIRDO uses ARA for ansible-playbook run visualization
           export ARA_DATABASE="sqlite:///$WORKSPACE/ara-sqlite"

@@ -1,7 +1,9 @@
+---
 - hosts: all
   tasks:
 
-    - shell:
+    - name: ara generate html
+      shell:
         cmd: |
           mkdir $WORKSPACE/logs
           $WORKSPACE/$ZUUL_PROJECT/.tox/ansible-playbook/bin/ara generate html $WORKSPACE/logs/ara

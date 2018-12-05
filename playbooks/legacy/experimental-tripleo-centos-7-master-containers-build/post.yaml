@@ -1,7 +1,9 @@
+---
 - hosts: all
   tasks:
 
-    - shell:
+    - name: ara generate html
+      shell:
         cmd: |
           mkdir -p $WORKSPACE/logs
           cp -a /tmp/kolla $WORKSPACE/logs/

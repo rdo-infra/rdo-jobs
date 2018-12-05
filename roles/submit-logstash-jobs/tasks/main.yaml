@@ -1,3 +1,4 @@
+---
 - name: Submit logstash processing jobs to log processors
   submit_log_processor_jobs:
     gearman_server: "{{ logstash_gearman_server }}"

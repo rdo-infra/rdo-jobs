@@ -1,3 +1,4 @@
+---
 - hosts: primary
   name: legacy-rdoinfo-tripleo-rocky-testing-centos-7-multinode-1ctlr-featureset030
   tasks:
@@ -7,7 +8,8 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
-    - shell:
+    - name: zuul-cloner
+      shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
 
@@ -58,7 +60,8 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
+    - name: zuul-cloner
+      shell:
         cmd: |
           set -e
           set -x
@@ -74,7 +77,8 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
+    - name: dump NODEPOOL_* vars
+      shell:
         cmd: |
           cat <<EOF | sudo tee /etc/nodepool/provider
           NODEPOOL_PROVIDER="{{ nodepool.provider }}"
@@ -85,7 +89,8 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
+    - name: configures temporary repositories
+      shell:
         cmd: |
           # This builder, when run from a child job of validate-buildsys-tags
           # configures the temporary repositories created by it
@@ -268,7 +273,8 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
+    - name: zuul-cloner
+      shell:
         cmd: |
           set -e
           set -x
@@ -285,7 +291,8 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
+    - name: run safe-devstack-vm-gate-wrap.sh
+      shell:
         cmd: |
           set -e
           set -x
