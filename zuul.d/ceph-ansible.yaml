@@ -10,10 +10,10 @@
       # Until job is working as expected, use a test file trigger
       - test-ci
       # When the job is working, only run it when those files are modified
-      #- roles/.*
-      #- plugins/.*
-      #- library/.*
-      #- group_vars/.*
+      # - roles/.*
+      # - plugins/.*
+      # - library/.*
+      # - group_vars/.*
     nodeset:
       nodes:
         - name: test

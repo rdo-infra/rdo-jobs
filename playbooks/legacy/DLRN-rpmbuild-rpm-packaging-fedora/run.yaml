@@ -1,3 +1,4 @@
+---
 - hosts: all
   name: Autoconverted job legacy-DLRN-rpmbuild-rpm-packaging-fedora from old job DLRN-rpmbuild-rpm-packaging-fedora
   tasks:
@@ -75,7 +76,9 @@
           config_opts['root'] = 'dlrn-fedora-x86_64'
           config_opts['target_arch'] = 'x86_64'
           config_opts['legal_host_arches'] = ('x86_64',)
-          config_opts['chroot_setup_cmd'] = 'install basesystem rpm-build python2-devel gcc make python-sqlalchemy python-webob ghostscript graphviz python-sphinx python-eventlet python-six python-pbr python3-pbr git coreutils glibc-langpack-en openstack-macros'
+          config_opts['chroot_setup_cmd'] = \
+          'install basesystem rpm-build python2-devel gcc make python-sqlalchemy python-webob ghostscript \
+          graphviz python-sphinx python-eventlet python-six python-pbr python3-pbr git coreutils glibc-langpack-en openstack-macros'
           config_opts['dist'] = 'f28'  # only useful for --resultdir variable subst
           config_opts['extra_chroot_dirs'] = [ '/run/lock', ]
           config_opts['releasever'] = '28'
