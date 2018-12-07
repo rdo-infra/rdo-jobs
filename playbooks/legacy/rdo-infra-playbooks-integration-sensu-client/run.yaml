@@ -1,3 +1,4 @@
+---
 - hosts: all
   name: Autoconverted job legacy-rdo-infra-playbooks-integration-sensu-client from
     old job rdo-infra-playbooks-integration-sensu-client-nv
@@ -8,8 +9,10 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
-    - shell:
+    - name: cloning
+      shell:
         cmd: |
+          #!/bin/bash
           echo "[DEBUG]: JJB template name: {template-name}"
 
           # If this is called in a periodic job, these will not be set
@@ -59,8 +62,9 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
-        cmd: |
+    - name: clonemap
+      shell: |
+          #!/bin/bash
           CLONEMAP=$(mktemp)
           function cleanup {
               rm -f $CLONEMAP
@@ -79,11 +83,12 @@
             https://review.rdoproject.org/r \
             rdo-infra/rdo-infra-playbooks \
             centos-opstools/opstools-ansible
+      args:
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
-        cmd: |
+    - name: run sensu client
+      shell: |
           set -e
           # Need to inherit system-site-packages for libselinux-python and python-yum
           virtualenv --system-site-packages $WORKSPACE/ansible
@@ -156,5 +161,6 @@
               -e "rdobot_nickname=not_rdobot" \
               -e "sensu_rabbitmq_server=localhost"
           popd
+      args:
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
