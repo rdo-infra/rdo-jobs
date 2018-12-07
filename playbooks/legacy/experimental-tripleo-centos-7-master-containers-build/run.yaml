@@ -1,3 +1,4 @@
+---
 - hosts: all
   name: Autoconverted job legacy-experimental-tripleo-centos-7-master-containers-build
     from old job experimental-tripleo-centos-7-master-containers-build
@@ -8,7 +9,8 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
-    - shell:
+    - name: cloning
+      shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
 
@@ -59,7 +61,8 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
+    - name: cloning
+      shell:
         cmd: |
           set -e
           set -x
@@ -75,13 +78,15 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
+    - name: cloning ci-config
+      shell:
         cmd: |
           git clone https://review.rdoproject.org/r/p/rdo-infra/ci-config.git $WORKSPACE/rdo-infra/ci-config
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
+    - name: dump NODEPOOL_* vars
+      shell:
         cmd: |
           cat <<EOF | sudo tee /etc/nodepool/provider
           NODEPOOL_PROVIDER="{{ nodepool.provider }}"
@@ -92,7 +97,8 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
+    - name: run get-hash.sh
+      shell:
         cmd: |
           export RELEASE=master
           export PROMOTE_NAME=tripleo-ci-testing
@@ -100,7 +106,8 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
+    - name: run build-containers-images.sh
+      shell:
         cmd: |
           export RELEASE=master
           bash -xe $WORKSPACE/rdo-infra/ci-config/ci-scripts/tripleo-upstream/build-containers-images.sh

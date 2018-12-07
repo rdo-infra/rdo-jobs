@@ -1,3 +1,4 @@
+---
 - hosts: all
   tasks:
     - name: Ensure bindep.txt dependencies are installed
@@ -13,7 +14,7 @@
         zuul_work_dir: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
 
     - name: Add zuul user to mock group
-      become: yes
+      become: true
       shell:
         cmd: |
           usermod -a -G mock zuul
@@ -25,7 +26,8 @@
             sed -e "s|^#baseurl=http://mirror.centos.org/centos|baseurl=$NODEPOOL_CENTOS_MIRROR|;/^mirrorlist=/d" -i scripts/centos.cfg
         chdir: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
 
-    - shell:
+    - name: run_tests.sh
+      shell:
         cmd: |
           export TAG="{{  tag | default('') }}"
           if [ -z "$TAG" ];then

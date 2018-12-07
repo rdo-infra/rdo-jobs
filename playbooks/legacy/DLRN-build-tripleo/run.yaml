@@ -1,3 +1,4 @@
+---
 - hosts: all
   name: Autoconverted job legacy-DLRN-build-tripleo from old job DLRN-build-tripleo
   tasks:
@@ -7,7 +8,8 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
-    - shell:
+    - name: cloning
+      shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
 
@@ -58,7 +60,8 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
+    - name: cloning
+      shell:
         cmd: |
           set +e
           sudo yum -y install createrepo mock redhat-rpm-config rpmdevtools
@@ -69,7 +72,8 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
+    - name: rebuild and test installation of a src.rpm
+      shell:
         cmd: |
           set +e
           # This builder, when run from a child job of a DLRN based job,
@@ -126,7 +130,9 @@
           sed -i 's/priority=.*/priority=10/' /tmp/delorean-current.repo
           sed -i 's/\[delorean\]/\[delorean-current\]/' /tmp/delorean-current.repo
           echo >> /tmp/delorean-current.repo
-          echo "includepkgs=ansible-role-container-registry,ansible-role-tripleo*,ansible-tripleo-ipsec,diskimage-builder,instack,instack-undercloud,os-apply-config,os-collect-config,os-net-config,os-refresh-config,openstack-tripleo-*,python*-tripleo*,puppet-*,python*-paunch*" >> /tmp/delorean-current.repo
+          echo "includepkgs=ansible-role-container-registry,ansible-role-tripleo*,ansible-tripleo-ipsec,diskimage-builder,\
+          instack,instack-undercloud,os-apply-config,os-collect-config,os-net-config,os-refresh-config,openstack-tripleo-*,\
+          python*-tripleo*,puppet-*,python*-paunch*" >> /tmp/delorean-current.repo
           cat /tmp/delorean-current.repo >> centos.cfg
           echo >> centos.cfg
           # current-tripleo

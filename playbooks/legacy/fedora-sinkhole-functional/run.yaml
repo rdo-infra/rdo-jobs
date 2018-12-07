@@ -1,3 +1,4 @@
+---
 - hosts: all
   name: Autoconverted job legacy-fedora-sinkhole-functional from old job fedora-sinkhole-functional
   tasks:
@@ -7,7 +8,8 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
-    - shell:
+    - name: cloning
+      shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
 
@@ -58,7 +60,8 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
+    - name: Running synchronization using sinkhole
+      shell:
         cmd: |
           set -e
           if [ $(grep -c ^CentOS /etc/system-release) -eq 0 ]; then
