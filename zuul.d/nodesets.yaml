@@ -137,6 +137,18 @@
         label: rdo-fedora-28
 
 - nodeset:
+    name: single-fedora-28-node-stable
+    nodes:
+      - name: primary
+        label: rdo-fedora-stable
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
+
+- nodeset:
     name: single-centos-7-node
     nodes:
       - name: primary
