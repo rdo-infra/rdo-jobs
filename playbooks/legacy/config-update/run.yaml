@@ -1,3 +1,4 @@
+---
 - hosts: all
   name: Autoconverted job legacy-config-update from old job config-update
   tasks:
@@ -7,7 +8,8 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
-    - shell:
+    - name: sf_configrepo_update
+      shell:
         cmd: |
           set -e
           echo "[+] Updating configuration using $ZUUL_COMMIT"

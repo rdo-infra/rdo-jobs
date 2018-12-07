@@ -1,3 +1,4 @@
+---
 - hosts: all
   name: Autoconverted job legacy-config-check from old job config-check
   tasks:
@@ -7,7 +8,8 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
-    - shell:
+    - name: cloning
+      shell:
         cmd: |
           set -e
           rm -Rf config build
