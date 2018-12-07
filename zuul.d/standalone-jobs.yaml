@@ -18,3 +18,13 @@
       release: master
       featureset_override:
         test_white_regex: '.*'
+
+- job:
+    name: periodic-tripleo-ci-fedora-28-centos-7-containers-standalone-master
+    parent: tripleo-ci-base-standalone-periodic
+    nodeset: single-upstream-fedora-28-node
+    vars:
+      featureset: '099'
+      featureset_override:
+        run_tempest: false
+      release: master
