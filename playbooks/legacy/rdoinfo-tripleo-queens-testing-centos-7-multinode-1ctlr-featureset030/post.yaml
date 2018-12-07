@@ -1,7 +1,9 @@
+---
 - hosts: primary
   tasks:
 
-    - shell:
+    - name: run collect_logs.sh
+      shell:
         cmd: |
           if [[ -e $WORKSPACE/logs/collect_logs.sh ]]; then
             bash $WORKSPACE/logs/collect_logs.sh

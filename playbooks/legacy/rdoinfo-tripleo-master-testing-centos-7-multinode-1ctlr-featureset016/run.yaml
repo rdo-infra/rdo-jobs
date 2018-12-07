@@ -1,3 +1,4 @@
+---
 - hosts: primary
   name: Autoconverted job legacy-rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016
     from old job rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016-nv
@@ -8,7 +9,8 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
-    - shell:
+    - name: cloning
+      shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
 
@@ -59,8 +61,8 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
-        cmd: |
+    - name: clonemap
+      shell: |
           set -e
           set -x
           cat > clonemap.yaml << EOF
@@ -71,23 +73,25 @@
           /usr/zuul-env/bin/zuul-cloner -m clonemap.yaml --cache-dir /opt/git \
               git://git.openstack.org \
               openstack-infra/devstack-gate
+      args:
         executable: /bin/bash
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
-        cmd: |
+    - name: dump NODEPOOL_* vars
+      shell: |
           cat <<EOF | sudo tee /etc/nodepool/provider
           NODEPOOL_PROVIDER="{{ nodepool.provider }}"
           NODEPOOL_CLOUD="{{ nodepool.cloud }}"
           NODEPOOL_REGION="{{ nodepool.region }}"
           NODEPOOL_AZ="{{ nodepool.az }}"
           EOF
+      args:
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
-        cmd: |
+    - name: run create_config
+      shell: |
           # This builder, when run from a child job of validate-buildsys-tags
           # configures the temporary repositories created by it
           # This allows to install the packages in that repository and test
@@ -269,11 +273,12 @@
               create_config | tee -a tripleo.yml
           ;;
           esac
+      args:
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
-        cmd: |
+    - name: clonemap
+      shell: |
           set -e
           set -x
           sudo mkdir -p /opt/stack/new
@@ -285,12 +290,13 @@
           sudo /usr/zuul-env/bin/zuul-cloner -m clonemap.yaml --cache-dir /opt/git \
               git://git.openstack.org \
               openstack/tripleo-quickstart
+      args:
         executable: /bin/bash
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
-        cmd: |
+    - name: run safe-devstack-vm-gate-wrap.sh
+      shell: |
           set -e
           set -x
           # Create directory for used by rdo-rsync-logs
@@ -322,6 +328,7 @@
           export -f gate_hook
           cp devstack-gate/devstack-vm-gate-wrap.sh ./safe-devstack-vm-gate-wrap.sh
           ./safe-devstack-vm-gate-wrap.sh
+      args:
         executable: /bin/bash
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
