@@ -19,10 +19,3 @@
     recurse: yes
   become: yes
 
-- name: Make repositories writable so that people can hardlink
-  file:
-    path: "{{ ansible_user_dir }}/src"
-    state: directory
-    recurse: yes
-    mode: ugo+rw
-  become: yes
