@@ -46,3 +46,11 @@
       - openstack/tripleo-upgrade
       - openstack/browbeat
       - rdoinfo
+
+- job:
+    name: periodic-tripleo-ci-fedora-28-standalone-master
+    parent: tripleo-ci-base-standalone-periodic
+    nodeset: single-upstream-fedora-28-node
+    vars:
+      featureset: '052'
+      release: master
