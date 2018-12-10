@@ -9,3 +9,14 @@
     vars:
       featureset: '052'
       release: master
+
+- job:
+    name: periodic-tripleo-ci-fedora-28-standalone-master
+    parent: tripleo-ci-base-standalone-periodic
+    nodeset: single-fedora-28-node
+    vars:
+      environment_type: standalone
+      featureset: '052'
+      release: master
+      featureset_override:
+        run_tempest: false
