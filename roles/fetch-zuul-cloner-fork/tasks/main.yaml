@@ -24,5 +24,7 @@
     path: "{{ ansible_user_dir }}/src"
     state: directory
     recurse: yes
-    mode: ugo+rw
+    mode: u=rwX,g=rX,o=rX
+  # do not allow world writable because this is incompatible with loading of
+  # ansible.cfg - see https://bugs.launchpad.net/tripleo/+bug/1807703
   become: yes
