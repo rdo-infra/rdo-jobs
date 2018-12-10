@@ -18,3 +18,14 @@
       release: master
       featureset_override:
         test_white_regex: '.*'
+
+- job:
+    name: periodic-tripleo-ci-fedora-28-standalone-master
+    parent: tripleo-ci-base-standalone-periodic
+    nodeset: single-upstream-fedora-28-node
+    vars:
+      environment_type: standalone
+      featureset: '052'
+      release: master
+      featureset_override:
+        run_tempest: false
