@@ -79,6 +79,8 @@
           source .venv/bin/activate
           pushd $ZUUL_PROJECT
           pip install .
+          # enable debug
+          set -x
           if [ -d functional_tests ]; then
               pushd functional_tests
               for i in $(ls -d scenario*); do
@@ -90,7 +92,13 @@
                   fi
                   echo "INFO: Running synchronization using sinkhole"
                   sinkhole --config fedora_config config_file
-                  echo "INFO: Running repoclosure"
+                  if [ -f expected_packages ];then
+                      cat expected_packages|while read pkg
+                      do
+                          echo "INFO: checking if $pkg is in the repo"
+                          sudo repoquery --repofrompath=temp,file://${OUTPUT_DIR} --disablerepo='*' --enablerepo=temp $pkg
+                      done
+                  fi
                   popd
               done
               popd
