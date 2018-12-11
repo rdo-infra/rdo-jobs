@@ -4,7 +4,7 @@
 # It contains all the jobs using deployed-servers in nodepool.
 
 - job:
-    name: tripleo-ci-centos-7-multinode-1ctlr-featureset010
+    name: tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset010
     parent: tripleo-ci-base-multinode-rdo
     branches: ^master$
     vars:
@@ -12,7 +12,7 @@
       featureset: '010'
 
 - job:
-    name: tripleo-ci-centos-7-multinode-1ctlr-featureset016
+    name: tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset016
     parent: tripleo-ci-base-multinode-rdo
     branches: ^master$
     vars:
@@ -20,7 +20,7 @@
       featureset: '016'
 
 - job:
-    name: tripleo-ci-centos-7-multinode-1ctlr-featureset017
+    name: tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset017
     parent: tripleo-ci-base-multinode-rdo
     branches: ^master$
     vars:
@@ -28,7 +28,7 @@
       featureset: '017'
 
 - job:
-    name: tripleo-ci-centos-7-multinode-1ctlr-featureset018
+    name: tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset018
     parent: tripleo-ci-base-multinode-rdo
     branches: ^master$
     vars:
@@ -36,7 +36,7 @@
       featureset: '018'
 
 - job:
-    name: tripleo-ci-centos-7-multinode-1ctlr-featureset019
+    name: tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset019
     parent: tripleo-ci-base-multinode-rdo
     branches: ^master$
     vars:
@@ -45,7 +45,7 @@
 
 # legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch
 - job:
-    name: tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch
+    name: tripleo-ci-centos-7-x86_64-containers-multinode-upgrades-pike-branch
     parent: tripleo-ci-base-multinode-rdo
     branches: ^master$
     voting: false
@@ -55,7 +55,7 @@
 
 # legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike
 - job:
-    name: tripleo-ci-centos-7-containers-multinode-upgrades-pike
+    name: tripleo-ci-centos-7-x86_64-containers-multinode-upgrades-pike
     parent: tripleo-ci-base-multinode-rdo
     branches: ^stable/pike$
     voting: false
@@ -66,7 +66,7 @@
 
 # legacy-tripleo-ci-centos-7-containers-multinode-upgrades-queens
 - job:
-    name: tripleo-ci-centos-7-containers-multinode-upgrades-queens
+    name: tripleo-ci-centos-7-x86_64-containers-multinode-upgrades-queens
     parent: tripleo-ci-base-multinode-rdo
     branches: ^stable/queens$
     voting: false
@@ -76,7 +76,7 @@
       release: queens
 
 - job:
-    name: tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates
+    name: tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset037-updates
     parent: tripleo-ci-base-multinode-rdo
     branches: ^(?!stable/(newton|ocata|pike)).*$
     voting: false
@@ -86,7 +86,7 @@
 
 # legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens
 - job:
-    name: tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens
+    name: tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset036-oc-ffu-queens
     parent: tripleo-ci-base-multinode-rdo
     branches: ^stable/queens$
     voting: false
@@ -97,7 +97,7 @@
 
 # legacy-tripleo-ci-centos-7-container-to-container-upgrades-queens
 - job:
-    name: tripleo-ci-centos-7-container-to-container-upgrades-queens
+    name: tripleo-ci-centos-7-x86_64-container-to-container-upgrades-queens
     parent: tripleo-ci-base-multinode-rdo
     branches: ^stable/queens$
     voting: false
@@ -107,7 +107,7 @@
       featureset: '040'
 
 - job:
-    name: tripleo-ci-centos-7-container-to-container-featureset051-upgrades
+    name: tripleo-ci-centos-7-x86_64-container-to-container-featureset051-upgrades
     parent: tripleo-ci-base-multinode-rdo
     branches: ^master$
     voting: false
@@ -118,7 +118,7 @@
 
 # legacy-tripleo-ci-centos-7-container-to-container-upgrades-master
 - job:
-    name: tripleo-ci-centos-7-container-to-container-upgrades-master
+    name: tripleo-ci-centos-7-x86_64-container-to-container-upgrades-master
     parent: tripleo-ci-base-multinode-rdo
     branches: ^master$
     voting: false
@@ -129,7 +129,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-master
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-master
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset010-master
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -138,7 +138,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-rocky
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-rocky
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset010-rocky
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -148,7 +148,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-queens
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-queens
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset010-queens
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -158,7 +158,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-pike
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-pike
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset010-pike
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -168,7 +168,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-master
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-master
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset016-master
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -177,7 +177,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-rocky
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-rocky
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset016-rocky
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -187,7 +187,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-queens
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-queens
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset016-queens
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -197,7 +197,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-pike
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-pike
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset016-pike
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -207,7 +207,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-master
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-master
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset017-master
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -216,7 +216,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-rocky
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-rocky
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset017-rocky
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -226,7 +226,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-queens
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-queens
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset017-queens
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -236,7 +236,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-pike
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-pike
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset017-pike
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -246,7 +246,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-master
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-master
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset018-master
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -255,7 +255,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-rocky
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-rocky
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset018-rocky
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -265,7 +265,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-queens
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-queens
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset018-queens
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -275,7 +275,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-pike
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-pike
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset018-pike
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -285,7 +285,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-master
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-master
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset019-master
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -294,7 +294,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-rocky
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-rocky
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset019-rocky
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -304,7 +304,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-queens
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-queens
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset019-queens
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -314,7 +314,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-pike
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-pike
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset019-pike
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -324,7 +324,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-master
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-master
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset030-master
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -333,7 +333,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-rocky
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-rocky
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset030-rocky
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -343,7 +343,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-queens
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-queens
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset030-queens
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -353,7 +353,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset037-updates-master
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -362,7 +362,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-rocky
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-rocky
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset037-updates-rocky
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -372,7 +372,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-queens
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-queens
+    name: periodic-tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset037-updates-queens
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr

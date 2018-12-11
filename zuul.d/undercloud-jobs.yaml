@@ -5,7 +5,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-singlenode-featureset027-master
 - job:
-    name: periodic-tripleo-ci-centos-7-singlenode-featureset027-master
+    name: periodic-tripleo-ci-centos-7-x86_64-singlenode-featureset027-master
     parent: tripleo-ci-base-singlenode-periodic
     vars:
       featureset: '027'
@@ -13,7 +13,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-singlenode-featureset027-rocky
 - job:
-    name: periodic-tripleo-ci-centos-7-singlenode-featureset027-rocky
+    name: periodic-tripleo-ci-centos-7-x86_64-singlenode-featureset027-rocky
     parent: tripleo-ci-base-singlenode-periodic
     vars:
       featureset: '027'
@@ -22,7 +22,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-rocky
 - job:
-    name: periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-rocky
+    name: periodic-tripleo-ci-centos-7-x86_64-singlenode-featureset050-upgrades-rocky
     parent: tripleo-ci-base-singlenode-periodic
     vars:
       featureset: '050'
@@ -31,7 +31,7 @@
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset050-updates-master
 - job:
-    name: periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-master
+    name: periodic-tripleo-ci-centos-7-x86_64-singlenode-featureset050-upgrades-master
     parent: tripleo-ci-base-singlenode-periodic
     vars:
       featureset: '050'

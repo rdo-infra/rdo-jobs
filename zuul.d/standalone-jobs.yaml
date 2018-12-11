@@ -4,7 +4,7 @@
 # It contains all the jobs related to standalone installer testing.
 
 - job:
-    name: periodic-tripleo-ci-centos-7-standalone-master
+    name: periodic-tripleo-ci-centos-7-x86_64-standalone-master
     parent: tripleo-ci-base-standalone-periodic
     vars:
       featureset: '052'

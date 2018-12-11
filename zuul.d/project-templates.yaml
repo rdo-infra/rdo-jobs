@@ -61,9 +61,9 @@
     name: tripleo-ovb
     openstack-check:
       jobs:
-        - tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022
-        - tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024
-        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001:
+        - tripleo-ci-centos-7-x86_64-ovb-1ctlr_1comp-featureset022
+        - tripleo-ci-centos-7-x86_64-ovb-1ctlr_1comp_1ceph-featureset024
+        - tripleo-ci-centos-7-x86_64-ovb-3ctlr_1comp-featureset001:
             irrelevant-files:
               - ^.*\.md$
               - ^.*\.rst$
@@ -143,7 +143,7 @@
               - manifests/profile/base/neutron/plugins/ml2/opendaylight.pp
               - manifests/profile/base/neutron/plugins/ovs/opendaylight.pp
               - tox.ini
-        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035:
+        - tripleo-ci-centos-7-x86_64-ovb-3ctlr_1comp-featureset035:
             irrelevant-files:
               - ^.*\.md$
               - ^.*\.rst$
@@ -223,7 +223,7 @@
               - manifests/profile/base/neutron/plugins/ml2/opendaylight.pp
               - manifests/profile/base/neutron/plugins/ovs/opendaylight.pp
               - tox.ini
-        - tripleo-ci-centos-7-multinode-1ctlr-featureset010:
+        - tripleo-ci-centos-7-x86_64-multinode-1ctlr-featureset010:
             irrelevant-files:
               - ^.*\.md$
               - ^.*\.rst$
@@ -308,27 +308,27 @@
     name: ovb-experimental
     openstack-experimental:
       jobs:
-        - tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021
-        - tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020
-        - tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039
+        - tripleo-ci-centos-7-x86_64-ovb-1ctlr_1comp-featureset021
+        - tripleo-ci-centos-7-x86_64-ovb-1ctlr_1comp-featureset020
+        - tripleo-ci-centos-7-x86_64-ovb-3ctlr_1comp_1supp-featureset039
 
 - project-template:
     name: vexxhost-experimental
     openstack-experimental:
       jobs:
-        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
+        - tripleo-ci-centos-7-x86_64-ovb-3ctlr_1comp-featureset001-master-vexxhost
 
 - project-template:
     name: ovb-001-experimental
     openstack-experimental:
       jobs:
-        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
+        - tripleo-ci-centos-7-x86_64-ovb-3ctlr_1comp-featureset001
 
 - project-template:
     name: ovb-001-check
     openstack-check:
       jobs:
-        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001:
+        - tripleo-ci-centos-7-x86_64-ovb-3ctlr_1comp-featureset001:
             irrelevant-files:
               - ^.*\.md$
               - ^.*\.rst$
@@ -413,7 +413,7 @@
     name: ovb-branchless
     openstack-check:
       jobs:
-        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike-branch:
+        - tripleo-ci-centos-7-x86_64-ovb-3ctlr_1comp-featureset001-pike-branch:
             irrelevant-files:
               - ^.*\.md$
               - ^.*\.rst$
@@ -493,7 +493,7 @@
               - manifests/profile/base/neutron/plugins/ml2/opendaylight.pp
               - manifests/profile/base/neutron/plugins/ovs/opendaylight.pp
               - tox.ini
-        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens-branch:
+        - tripleo-ci-centos-7-x86_64-ovb-3ctlr_1comp-featureset001-queens-branch:
             irrelevant-files:
               - ^.*\.md$
               - ^.*\.rst$
@@ -573,7 +573,7 @@
               - manifests/profile/base/neutron/plugins/ml2/opendaylight.pp
               - manifests/profile/base/neutron/plugins/ovs/opendaylight.pp
               - tox.ini
-        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky-branch:
+        - tripleo-ci-centos-7-x86_64-ovb-3ctlr_1comp-featureset001-rocky-branch:
             irrelevant-files:
               - ^.*\.md$
               - ^.*\.rst$
@@ -658,7 +658,7 @@
     name: ovb-browbeat
     openstack-check:
       jobs:
-      - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053:
+      - tripleo-ci-centos-7-x86_64-ovb-3ctlr_1comp-featureset053:
             irrelevant-files:
               - ^.*\.md$
               - ^.*\.rst$
