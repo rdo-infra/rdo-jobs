@@ -70,8 +70,7 @@
           else
               PKG_CFG="/etc/yum.conf"
               PYTHON_VERSION='python2'
-              sudo yum -y install centos-release-yum4
-              sudo yum -y install yum4
+              sudo yum -y install /usr/bin/yum4
               sudo yum4 -y install dnf-plugins-core
               sudo yum -y install createrepo_c centos-packager
           fi

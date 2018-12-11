@@ -72,7 +72,7 @@
               PYTHON_VERSION='python2'
               # Since CentOS 7.6, we have a nextgen-yum4 package with yum4
               sudo yum clean all
-              sudo yum -y install nextgen-yum4
+              sudo yum -y install /usr/bin/yum4
               sudo yum4 -y install dnf-plugins-core
               sudo yum -y install createrepo_c centos-packager
           fi
