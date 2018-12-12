@@ -83,6 +83,23 @@
         nodes: []
 
 - nodeset:
+    name: tripleo-ovb-fedora-28
+    nodes:
+      - name: tripleo-ovb-fedora-28
+        label: tripleo-ovb-fedora-28
+
+- nodeset:
+    name: tripleo-ovb-fedora-28-primary
+    nodes:
+      - name: primary
+        label: tripleo-ovb-fedora-28
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
+- nodeset:
     name: upstream-centos-7-vexxhost
     nodes:
       - name: primary
