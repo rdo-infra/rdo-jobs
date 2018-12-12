@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9abe1de1_93512611",
+        "filename": "roles/ovb-manage/tasks/ovb-create-stack.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 242
+      },
+      "writtenOn": "2018-12-12T13:54:55Z",
+      "side": 1,
+      "message": "there is a  \u0027--poll\u0027 argument to wait for the stack to be created",
+      "revId": "d7606e2b9bb89fb92945a5630050e7d537271290",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_7358d232",
+        "filename": "roles/ovb-manage/tasks/ovb-create-stack.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 242
+      },
+      "writtenOn": "2018-12-12T13:54:55Z",
+      "side": 1,
+      "message": "yes - I think log here is safe",
+      "revId": "d7606e2b9bb89fb92945a5630050e7d537271290",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_535b8e2e",
+        "filename": "roles/ovb-manage/tasks/ovb-create-stack.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 242
+      },
+      "writtenOn": "2018-12-12T13:54:55Z",
+      "side": 1,
+      "message": "hmmm ... I thought we had sections in the template to deal with port security",
+      "revId": "d7606e2b9bb89fb92945a5630050e7d537271290",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_f34ce271",
+        "filename": "roles/ovb-manage/tasks/ovb-delete-stack.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 242
+      },
+      "writtenOn": "2018-12-12T13:54:55Z",
+      "side": 1,
+      "message": "ok - so without this, the stack delete will say there are active port connections?",
+      "revId": "d7606e2b9bb89fb92945a5630050e7d537271290",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_d3479e49",
+        "filename": "roles/ovb-manage/tasks/ovb-delete-stack.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 242
+      },
+      "writtenOn": "2018-12-12T13:54:55Z",
+      "side": 1,
+      "message": "is deleted or failed",
+      "revId": "d7606e2b9bb89fb92945a5630050e7d537271290",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_b3754a99",
+        "filename": "roles/ovb-manage/tasks/ovb-delete-stack.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 242
+      },
+      "writtenOn": "2018-12-12T13:54:55Z",
+      "side": 1,
+      "message": "why no_log?",
+      "revId": "d7606e2b9bb89fb92945a5630050e7d537271290",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_136516e0",
+        "filename": "roles/ovb-manage/tasks/ovb-delete-stack.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 242
+      },
+      "writtenOn": "2018-12-12T13:54:55Z",
+      "side": 1,
+      "message": "Why the two steps? to print the stack info?",
+      "revId": "d7606e2b9bb89fb92945a5630050e7d537271290",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_133756e4",
+        "filename": "zuul.d/ovb-jobs.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 242
+      },
+      "writtenOn": "2018-12-12T13:54:55Z",
+      "side": 1,
+      "message": "Would be better to put these vars in a RDO Cloud parent job",
+      "revId": "d7606e2b9bb89fb92945a5630050e7d537271290",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_b34e6a6d",
+        "filename": "zuul.d/ovb-jobs.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 242
+      },
+      "writtenOn": "2018-12-12T13:54:55Z",
+      "side": 1,
+      "message": "Only include these value for vexxhost",
+      "revId": "d7606e2b9bb89fb92945a5630050e7d537271290",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
