@@ -11,6 +11,170 @@
       nodes: 3ctlr_1comp
       featureset: '001'
 
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-exp
+    parent: tripleo-ci-base-ovb-rdo-exp
+    branches: "^.*$"
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-exp
+    parent: tripleo-ci-base-ovb-rdo-exp
+    branches: ^(?!stable/(newton|ocata|pike)).*$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '035'
+
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload-exp
+    parent: tripleo-ci-base-ovb-rdo-exp
+    branches: "^.*$"
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '002'
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-exp-vexxhost
+    parent: tripleo-ci-base-ovb-rdo-exp
+    branches: "^.*$"
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      cloud_name: vexxhost
+    nodeset: upstream-centos-7-vexxhost
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-exp-vexxhost
+    parent: tripleo-ci-base-ovb-rdo-exp
+    branches: ^(?!stable/(newton|ocata|pike)).*$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '035'
+      cloud_name: vexxhost
+    nodeset: upstream-centos-7-vexxhost
+
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload-exp-vexxhost
+    parent: tripleo-ci-base-ovb-rdo-exp
+    branches: "^.*$"
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '002'
+      cloud_name: vexxhost
+    nodeset: upstream-centos-7-vexxhost
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053-exp
+    parent: tripleo-ci-base-ovb-rdo-exp
+    timeout: 14400
+    branches: ^master$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '053'
+      playbooks:
+        - ovb-setup.yml
+        - baremetal-full-undercloud.yml
+        - baremetal-full-overcloud-prep.yml
+        - baremetal-full-overcloud.yml
+        - baremetal-full-overcloud-validate.yml
+        - browbeat-minimal.yml
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset041-exp
+    parent: tripleo-ci-base-ovb-rdo-exp
+    timeout: 14400
+    branches: "^.*$"
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '041'
+      playbooks:
+        - ovb-setup.yml
+        - baremetal-full-undercloud.yml
+        - baremetal-full-overcloud-prep.yml
+        - baremetal-full-overcloud.yml
+        - baremetal-full-overcloud-validate.yml
+        - overcloud-validate-ha.yml
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-exp
+    parent: tripleo-ci-base-ovb-rdo-exp
+    branches: ^(?!stable/(newton|ocata|pike)).*$
+    timeout: 10800
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '042'
+
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053-exp-vexxhost
+    parent: tripleo-ci-base-ovb-rdo-exp
+    timeout: 14400
+    branches: ^master$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '053'
+      playbooks:
+        - ovb-setup.yml
+        - baremetal-full-undercloud.yml
+        - baremetal-full-overcloud-prep.yml
+        - baremetal-full-overcloud.yml
+        - baremetal-full-overcloud-validate.yml
+        - browbeat-minimal.yml
+      cloud_name: vexxhost
+    nodeset: upstream-centos-7-vexxhost
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset041-exp-vexxhost
+    parent: tripleo-ci-base-ovb-rdo-exp
+    timeout: 14400
+    branches: "^.*$"
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '041'
+      playbooks:
+        - ovb-setup.yml
+        - baremetal-full-undercloud.yml
+        - baremetal-full-overcloud-prep.yml
+        - baremetal-full-overcloud.yml
+        - baremetal-full-overcloud-validate.yml
+        - overcloud-validate-ha.yml
+      cloud_name: vexxhost
+    nodeset: upstream-centos-7-vexxhost
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-exp-vexxhost
+    parent: tripleo-ci-base-ovb-rdo-exp
+    branches: ^(?!stable/(newton|ocata|pike)).*$
+    timeout: 10800
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '042'
+      cloud_name: vexxhost
+    nodeset: upstream-centos-7-vexxhost
+
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-exp
+    parent: tripleo-ci-base-ovb-rdo-exp
+    timeout: 18000
+    branches: ^(?!stable/(newton|ocata)).*$
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '020'
+
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-exp-vexxhost
+    parent: tripleo-ci-base-ovb-rdo-exp
+    timeout: 18000
+    branches: ^(?!stable/(newton|ocata)).*$
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '020'
+      cloud_name: vexxhost
+    nodeset: upstream-centos-7-vexxhost
+
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035
     parent: tripleo-ci-base-ovb-rdo

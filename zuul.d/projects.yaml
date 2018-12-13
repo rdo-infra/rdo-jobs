@@ -3,6 +3,27 @@
     check:
       jobs:
         - tox-docs
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-exp-vexxhost
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-exp-vexxhost
+        - tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload-exp-vexxhost
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053-exp-vexxhost
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset041-exp-vexxhost
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-exp-vexxhost
+        - tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-exp-vexxhost
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-exp
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-exp
+        - tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload-exp
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053-exp
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset041-exp
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042-exp
+        - tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-exp
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035
+        - tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset041
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042
+        - tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020
     gate:
       jobs:
         - tox-docs
