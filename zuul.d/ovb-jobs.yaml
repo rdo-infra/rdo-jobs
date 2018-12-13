@@ -11,6 +11,25 @@
       nodes: 3ctlr_1comp
       featureset: '001'
 
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-exp
+    parent: tripleo-ci-base-ovb-rdo-exp
+    branches: "^.*$"
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-exp-vexxhost
+    parent: tripleo-ci-base-ovb-rdo-exp
+    branches: "^.*$"
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      cloud_name: vexxhost
+    nodeset: upstream-centos-7-vexxhost
+
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035
     parent: tripleo-ci-base-ovb-rdo
