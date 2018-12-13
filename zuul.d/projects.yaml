@@ -3,6 +3,8 @@
     check:
       jobs:
         - tox-docs
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-exp
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-exp-vexxhost
     gate:
       jobs:
         - tox-docs
