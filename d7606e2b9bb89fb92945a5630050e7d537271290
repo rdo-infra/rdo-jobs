@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9abe1de1_769a0065",
+        "filename": "playbooks/rdo-ovb/pre-experimental.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 155
+      },
+      "writtenOn": "2018-12-13T15:16:01Z",
+      "side": 1,
+      "message": "better to have it \"all\" not to miss different node names in different clouds, anyway it\u0027s only one host - nodepool node.",
+      "parentUuid": "9abe1de1_b39c2ac1",
+      "revId": "d7606e2b9bb89fb92945a5630050e7d537271290",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9abe1de1_73a69211",
         "filename": "roles/ovb-manage/README.md",
         "patchSetId": 8
@@ -30,6 +48,24 @@
       "writtenOn": "2018-12-12T14:01:55Z",
       "side": 1,
       "message": "Still uses shade?",
+      "revId": "d7606e2b9bb89fb92945a5630050e7d537271290",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_569dbc57",
+        "filename": "roles/ovb-manage/README.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 155
+      },
+      "writtenOn": "2018-12-13T15:16:01Z",
+      "side": 1,
+      "message": "no, will fix README",
+      "parentUuid": "9abe1de1_73a69211",
       "revId": "d7606e2b9bb89fb92945a5630050e7d537271290",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "9abe1de1_36a5a8a1",
+        "filename": "roles/ovb-manage/tasks/ovb-create-stack.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 155
+      },
+      "writtenOn": "2018-12-13T15:16:01Z",
+      "side": 1,
+      "message": "I\u0027ll test it, but would leave it to next iterations",
+      "parentUuid": "9abe1de1_93512611",
+      "revId": "d7606e2b9bb89fb92945a5630050e7d537271290",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9abe1de1_7358d232",
         "filename": "roles/ovb-manage/tasks/ovb-create-stack.yml",
         "patchSetId": 8
@@ -64,6 +118,24 @@
       "writtenOn": "2018-12-12T13:54:55Z",
       "side": 1,
       "message": "yes - I think log here is safe",
+      "revId": "d7606e2b9bb89fb92945a5630050e7d537271290",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_16a0648f",
+        "filename": "roles/ovb-manage/tasks/ovb-create-stack.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 155
+      },
+      "writtenOn": "2018-12-13T15:16:01Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "9abe1de1_7358d232",
       "revId": "d7606e2b9bb89fb92945a5630050e7d537271290",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
@@ -104,6 +176,24 @@
     },
     {
       "key": {
+        "uuid": "9abe1de1_93eda627",
+        "filename": "roles/ovb-manage/tasks/ovb-delete-stack.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 155
+      },
+      "writtenOn": "2018-12-13T15:16:01Z",
+      "side": 1,
+      "message": "yep, it can\u0027t delete networks because undercloud here is not part of the stack",
+      "parentUuid": "9abe1de1_f34ce271",
+      "revId": "d7606e2b9bb89fb92945a5630050e7d537271290",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9abe1de1_d3479e49",
         "filename": "roles/ovb-manage/tasks/ovb-delete-stack.yml",
         "patchSetId": 8
@@ -115,6 +205,24 @@
       "writtenOn": "2018-12-12T13:54:55Z",
       "side": 1,
       "message": "is deleted or failed",
+      "revId": "d7606e2b9bb89fb92945a5630050e7d537271290",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_33dffa6a",
+        "filename": "roles/ovb-manage/tasks/ovb-delete-stack.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 155
+      },
+      "writtenOn": "2018-12-13T15:16:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9abe1de1_d3479e49",
       "revId": "d7606e2b9bb89fb92945a5630050e7d537271290",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
@@ -138,6 +246,24 @@
     },
     {
       "key": {
+        "uuid": "9abe1de1_53f70ef5",
+        "filename": "roles/ovb-manage/tasks/ovb-delete-stack.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 155
+      },
+      "writtenOn": "2018-12-13T15:16:01Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "9abe1de1_b3754a99",
+      "revId": "d7606e2b9bb89fb92945a5630050e7d537271290",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9abe1de1_136516e0",
         "filename": "roles/ovb-manage/tasks/ovb-delete-stack.yml",
         "patchSetId": 8
@@ -155,6 +281,24 @@
     },
     {
       "key": {
+        "uuid": "9abe1de1_73f452f1",
+        "filename": "roles/ovb-manage/tasks/ovb-delete-stack.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 155
+      },
+      "writtenOn": "2018-12-13T15:16:01Z",
+      "side": 1,
+      "message": "yes, for seeing delete failure reason, because in upstream ansible runs in non verbose way, so need to print it explicitly",
+      "parentUuid": "9abe1de1_136516e0",
+      "revId": "d7606e2b9bb89fb92945a5630050e7d537271290",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9abe1de1_133756e4",
         "filename": "zuul.d/ovb-jobs.yaml",
         "patchSetId": 8
@@ -166,6 +310,24 @@
       "writtenOn": "2018-12-12T13:54:55Z",
       "side": 1,
       "message": "Would be better to put these vars in a RDO Cloud parent job",
+      "revId": "d7606e2b9bb89fb92945a5630050e7d537271290",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_d3e31e32",
+        "filename": "zuul.d/ovb-jobs.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 155
+      },
+      "writtenOn": "2018-12-13T15:16:01Z",
+      "side": 1,
+      "message": "all secrets will go to secrets section in config repo, it\u0027s only for test here.\n\ncloud_name will be defined in parent job, and \"Vexxhost\" will be set explicitly only for jobs in vexxhost",
+      "parentUuid": "9abe1de1_133756e4",
       "revId": "d7606e2b9bb89fb92945a5630050e7d537271290",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
