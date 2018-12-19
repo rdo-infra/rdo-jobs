@@ -26,6 +26,12 @@
             sed -e "s|^#baseurl=http://mirror.centos.org/centos|baseurl=$NODEPOOL_CENTOS_MIRROR|;/^mirrorlist=/d" -i scripts/centos.cfg
         chdir: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
 
+    - name: Install updated openstack-macros package
+      become: true
+      shell:
+        cmd: |
+          yum -y install https://cbs.centos.org/kojifiles/packages/openstack-macros/2018.2.3/0.el7/noarch/openstack-macros-2018.2.3-0.el7.noarch.rpm
+
     - name: run_tests.sh
       shell:
         cmd: |
