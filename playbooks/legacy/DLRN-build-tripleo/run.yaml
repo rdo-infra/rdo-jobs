@@ -72,6 +72,12 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
+    - name: Install updated openstack-macros package
+      become: true
+      shell:
+        cmd: |
+          yum -y install https://cbs.centos.org/kojifiles/packages/openstack-macros/2018.2.3/0.el7/noarch/openstack-macros-2018.2.3-0.el7.noarch.rpm
+
     - name: rebuild and test installation of a src.rpm
       shell:
         cmd: |
