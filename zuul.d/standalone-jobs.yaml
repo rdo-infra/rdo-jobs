@@ -28,3 +28,7 @@
       featureset_override:
         run_tempest: false
       release: master
+
+- job:
+    name: tripleo-ci-centos-7-standalone-rdo
+    parent: tripleo-ci-base-standalone-rdo
