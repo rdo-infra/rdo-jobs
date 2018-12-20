@@ -52,6 +52,8 @@
     vars:
       nodes: 1ctlr
       featureset: '011'
+      extra_tags:
+        - overcloud-upgrade
 
 # legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike
 - job:
@@ -63,6 +65,8 @@
       nodes: 1ctlr
       featureset: '011'
       release: pike
+      extra_tags:
+        - overcloud-upgrade
 
 # legacy-tripleo-ci-centos-7-containers-multinode-upgrades-queens
 - job:
@@ -74,6 +78,8 @@
       nodes: 1ctlr
       featureset: '040'
       release: queens
+      extra_tags:
+        - overcloud-upgrade
 
 - job:
     name: tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates
@@ -83,6 +89,8 @@
     vars:
       nodes: 1ctlr
       featureset: '037'
+      extra_tags:
+        - overcloud-update
 
 # legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens
 - job:
@@ -94,6 +102,7 @@
     vars:
       nodes: 1ctlr
       featureset: '036'
+      # TODO(marios) needs ffu tag here overcloud-ffu or some-such?
 
 # legacy-tripleo-ci-centos-7-container-to-container-upgrades-queens
 - job:
@@ -105,6 +114,8 @@
     vars:
       nodes: 1ctlr
       featureset: '040'
+      extra_tags:
+        - overcloud-upgrade
 
 - job:
     name: tripleo-ci-centos-7-container-to-container-featureset051-upgrades
@@ -115,6 +126,8 @@
     vars:
       nodes: 1ctlr
       featureset: '051'
+      extra_tags:
+        - overcloud-upgrade
 
 # legacy-tripleo-ci-centos-7-container-to-container-upgrades-master
 - job:
@@ -126,6 +139,8 @@
     vars:
       nodes: 1ctlr
       featureset: '040'
+      extra_tags:
+        - overcloud-upgrade
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-master
 - job:
@@ -359,6 +374,8 @@
       nodes: 1ctlr
       featureset: '037'
       release: master
+      extra_tags:
+        - overcloud-update
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-rocky
 - job:
@@ -369,6 +386,8 @@
       featureset: '037'
       branch_override: "stable/rocky"
       release: rocky
+      extra_tags:
+        - overcloud-update
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-queens
 - job:
@@ -379,3 +398,5 @@
       featureset: '037'
       branch_override: "stable/queens"
       release: queens
+      extra_tags:
+        - overcloud-update
