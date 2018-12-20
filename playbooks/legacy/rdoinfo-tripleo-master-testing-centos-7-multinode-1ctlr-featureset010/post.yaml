@@ -1,0 +1,37 @@
+- hosts: primary
+  tasks:
+
+    - shell:
+        cmd: |
+          if [[ -e $WORKSPACE/logs/collect_logs.sh ]]; then
+            bash $WORKSPACE/logs/collect_logs.sh
+          fi
+        executable: /bin/bash
+        chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'
+
+    - name: Copy files from {{ ansible_user_dir }}/workspace/ on node
+      synchronize:
+        src: '{{ ansible_user_dir }}/workspace/'
+        dest: '{{ zuul.executor.log_root }}'
+        mode: pull
+        copy_links: true
+        verify_host: true
+        rsync_opts:
+          - --include=/logs/**
+          - --include=*/
+          - --exclude=*
+          - --prune-empty-dirs
+
+    - name: Copy files from {{ ansible_user_dir }}/workspace/ on node
+      synchronize:
+        src: '{{ ansible_user_dir }}/workspace/'
+        dest: '{{ zuul.executor.log_root }}'
+        mode: pull
+        copy_links: true
+        verify_host: true
+        rsync_opts:
+          - --include=/buildset/**
+          - --include=*/
+          - --exclude=*
+          - --prune-empty-dirs
