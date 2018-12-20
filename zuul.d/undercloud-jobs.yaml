@@ -28,6 +28,8 @@
       featureset: '050'
       branch_override: "stable/rocky"
       release: rocky
+      extra_tags:
+        - overcloud-upgrade
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset050-updates-master
 - job:
@@ -36,3 +38,5 @@
     vars:
       featureset: '050'
       release: master
+      extra_tags:
+        - overcloud-upgrade
