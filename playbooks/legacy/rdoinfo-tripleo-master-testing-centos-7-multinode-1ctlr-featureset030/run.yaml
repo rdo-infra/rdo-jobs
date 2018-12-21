@@ -200,6 +200,27 @@
               echo "    reponame: quickstart-centos-base"
               echo "    filename: quickstart-centos-base.repo"
               echo "    baseurl: http://mirror.regionone.rdo-cloud.rdoproject.org/centos/7/os/x86_64/"
+              if [ ! -z $delorean_current_url ]; then
+                  echo "  - type: generic"
+                  echo "    reponame: delorean-current"
+                  echo "    filename: delorean-current.repo"
+                  echo "    baseurl: ${delorean_current_url}"
+                  echo "    priority: 10"
+                  echo "    includepkgs:"
+                  echo "      - ansible-role-container-registry"
+                  echo "      - ansible-role-tripleo*"
+                  echo "      - ansible-tripleo-ipsec"
+                  echo "      - instack"
+                  echo "      - instack-undercloud"
+                  echo "      - openstack-tripleo-*"
+                  echo "      - os-apply-config"
+                  echo "      - os-collect-config"
+                  echo "      - os-net-config"
+                  echo "      - os-refresh-config"
+                  echo "      - puppet-*"
+                  echo "      - python*-tripleo*"
+                  echo "      - python*-paunch*"
+              fi
               echo "repo_cmd_after: |"
               echo "  sudo yum install -y yum-plugin-priorities;"
               echo "  sudo yum-config-manager --save --setopt centos-ceph-jewel.gpgcheck=0"
@@ -254,6 +275,7 @@
                   REPO="cloud7-openstack-$O_RELEASE-$PHASE"
                   REPOS_URL="$REPOS_URL $logs/repos/$REPO/temp-$REPO.repo"
               fi
+              delorean_current_url=`curl --silent https://trunk.rdoproject.org/centos7/current/delorean.repo -S  | grep baseurl | cut -d= -f2`
               create_config | tee -a tripleo.yml
           ;;
           release)
@@ -265,6 +287,7 @@
               else
                   REPOS_URL=""
               fi
+              delorean_current_url=`curl --silent https://trunk.rdoproject.org/centos7/current/delorean.repo -S  | grep baseurl | cut -d= -f2`
               create_config | tee -a tripleo.yml
           ;;
           esac
