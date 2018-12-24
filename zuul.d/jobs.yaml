@@ -202,7 +202,7 @@
     pre-run: playbooks/legacy/puppet-openstack-integration/prepare-node-integration.yaml
     run: playbooks/legacy/puppet-openstack-integration/run-integration-tests.yaml
     post-run: playbooks/legacy/puppet-openstack-integration/upload-logs.yaml
-    timeout: 5400
+    timeout: 9000
     irrelevant-files:
       - ^.*\.md$
       - ^doc/.*$
