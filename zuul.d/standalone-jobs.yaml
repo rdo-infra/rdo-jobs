@@ -29,3 +29,26 @@
         run_tempest: false
       release: master
       fedora_centos_mixed_distribution_job: true
+
+- job:
+    name: periodic-tripleo-ci-centos-7-scenario001-standalone
+    parent: tripleo-ci-base-standalone-periodic
+    vars:
+      featureset: '052'
+      release: master
+      standalone_ceph: true
+      featureset_override:
+        standalone_container_cli: docker
+        standalone_environment_files:
+          - 'ci/environments/scenario001-standalone.yaml'
+          - 'environments/low-memory-usage.yaml'
+        tempest_plugins:
+          - python-telemetry-tests-tempest
+          - python-heat-tests-tempest
+        test_white_regex: ''
+        tempest_workers: 1
+        tempest_extra_config: {'telemetry.alarm_granularity': '60'}
+        tempest_whitelist:
+          - 'tempest.api.identity.v3'
+          - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern.test_volume_boot_pattern'
+          - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
