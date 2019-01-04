@@ -2,7 +2,9 @@
     name: rdo-jobs
     check:
       jobs:
-        - tox-docs
-    gate:
+        - periodic-tripleo-ci-centos-7-scenario001-standalone
+            dependencies:
+              - periodic-tripleo-centos-7-master-containers-build
+     gate:
       jobs:
         - tox-docs
