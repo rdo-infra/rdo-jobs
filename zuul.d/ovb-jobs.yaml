@@ -305,6 +305,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-master
     parent: tripleo-ci-base-ovb-periodic
+    timeout: 18000
     vars:
       nodes: 1ctlr_1comp
       featureset: '021'
@@ -314,6 +315,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-rocky
     parent: tripleo-ci-base-ovb-periodic
+    timeout: 18000
     vars:
       nodes: 1ctlr_1comp
       featureset: '021'
@@ -324,6 +326,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-queens
     parent: tripleo-ci-base-ovb-periodic
+    timeout: 18000
     vars:
       nodes: 1ctlr_1comp
       featureset: '021'
@@ -334,6 +337,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-pike
     parent: tripleo-ci-base-ovb-periodic
+    timeout: 18000
     vars:
       nodes: 1ctlr_1comp
       featureset: '021'
