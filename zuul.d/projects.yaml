@@ -2,7 +2,5 @@
     name: rdo-jobs
     check:
       jobs:
-        - tox-docs
-    gate:
-      jobs:
-        - tox-docs
+        - periodic-tripleo-ci-centos-7-scenario002-standalone
+        - periodic-tripleo-ci-centos-7-scenario003-standalone
