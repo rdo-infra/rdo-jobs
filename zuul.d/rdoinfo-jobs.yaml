@@ -1,0 +1,245 @@
+---
+# zuul.d/rdoinfo-jobs.yaml
+# Zuul layout for TripleO RDO Cloud related jobs.
+# It contains all the jobs to run against rdoinfo changes.
+
+- job:
+    name: rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016
+    parent: tripleo-ci-base-multinode-rdo
+    run: playbooks/run-rdoinfo.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      rdoinfo_release: master
+      rdoinfo_phase: testing
+      featureset: '016'
+      nodes: 1ctlr
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - openstack/browbeat
+      - rdoinfo
+
+- job:
+    name: rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset030
+    parent: tripleo-ci-base-multinode-rdo
+    run: playbooks/run-rdoinfo.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      rdoinfo_release: master
+      rdoinfo_phase: testing
+      featureset: '030'
+      nodes: 1ctlr
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - openstack/browbeat
+      - rdoinfo
+
+- job:
+    name: rdoinfo-tripleo-rocky-testing-centos-7-multinode-1ctlr-featureset016
+    parent: tripleo-ci-base-multinode-rdo
+    run: playbooks/run-rdoinfo.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      rdoinfo_release: rocky
+      rdoinfo_phase: testing
+      featureset: '016'
+      nodes: 1ctlr
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - openstack/browbeat
+      - rdoinfo
+
+- job:
+    name: rdoinfo-tripleo-rocky-testing-centos-7-multinode-1ctlr-featureset030
+    parent: tripleo-ci-base-multinode-rdo
+    run: playbooks/run-rdoinfo.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      rdoinfo_release: rocky
+      rdoinfo_phase: testing
+      featureset: '030'
+      nodes: 1ctlr
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - openstack/browbeat
+      - rdoinfo
+
+- job:
+    name: rdoinfo-tripleo-rocky-release-centos-7-multinode-1ctlr-featureset016
+    parent: tripleo-ci-base-multinode-rdo
+    run: playbooks/run-rdoinfo.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      rdoinfo_release: rocky
+      rdoinfo_phase: release
+      featureset: '016'
+      nodes: 1ctlr
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - openstack/browbeat
+      - rdoinfo
+
+- job:
+    name: rdoinfo-tripleo-queens-testing-centos-7-multinode-1ctlr-featureset016
+    parent: tripleo-ci-base-multinode-rdo
+    run: playbooks/run-rdoinfo.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      rdoinfo_release: queens
+      rdoinfo_phase: testing
+      featureset: '016'
+      nodes: 1ctlr
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - openstack/browbeat
+      - rdoinfo
+
+- job:
+    name: rdoinfo-tripleo-queens-testing-centos-7-multinode-1ctlr-featureset030
+    parent: tripleo-ci-base-multinode-rdo
+    run: playbooks/run-rdoinfo.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      rdoinfo_release: queens
+      rdoinfo_phase: testing
+      featureset: '030'
+      nodes: 1ctlr
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - openstack/browbeat
+      - rdoinfo
+
+- job:
+    name: rdoinfo-tripleo-queens-release-centos-7-multinode-1ctlr-featureset016
+    parent: tripleo-ci-base-multinode-rdo
+    run: playbooks/run-rdoinfo.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      rdoinfo_release: queens
+      rdoinfo_phase: release
+      featureset: '016'
+      nodes: 1ctlr
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - openstack/browbeat
+      - rdoinfo
+
+- job:
+    name: rdoinfo-tripleo-pike-testing-centos-7-multinode-1ctlr-featureset006
+    parent: tripleo-ci-base-multinode-rdo
+    run: playbooks/run-rdoinfo.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      rdoinfo_release: pike
+      rdoinfo_phase: testing
+      featureset: '006'
+      nodes: 1ctlr
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - openstack/browbeat
+      - rdoinfo
+
+- job:
+    name: rdoinfo-tripleo-pike-release-centos-7-multinode-1ctlr-featureset006
+    parent: tripleo-ci-base-multinode-rdo
+    run: playbooks/run-rdoinfo.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      rdoinfo_release: pike
+      rdoinfo_phase: release
+      featureset: '006'
+      nodes: 1ctlr
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - openstack/browbeat
+      - rdoinfo
+
+- job:
+    name: rdoinfo-tripleo-ocata-testing-centos-7-multinode-1ctlr-featureset005
+    parent: tripleo-ci-base-multinode-rdo
+    run: playbooks/run-rdoinfo.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      rdoinfo_release: ocata
+      rdoinfo_phase: testing
+      featureset: '005'
+      nodes: 1ctlr
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - openstack/browbeat
+      - rdoinfo
+
+- job:
+    name: rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005
+    parent: tripleo-ci-base-multinode-rdo
+    run: playbooks/run-rdoinfo.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      rdoinfo_release: ocata
+      rdoinfo_phase: release
+      featureset: '005'
+      nodes: 1ctlr
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - openstack/browbeat
+      - rdoinfo
+
