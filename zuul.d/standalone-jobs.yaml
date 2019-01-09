@@ -46,3 +46,47 @@
       - openstack/tripleo-upgrade
       - openstack/browbeat
       - rdoinfo
+
+- job:
+    name: periodic-tripleo-ci-centos-7-scenario002-standalone
+    parent: tripleo-ci-base-standalone-periodic
+    vars:
+      featureset: '052'
+      release: master
+      featureset_override:
+        standalone_container_cli: docker
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario002-standalone.yaml'
+        tempest_whitelist:
+          - 'tempest.api.object_storage.test_object_services.ObjectTest'
+          - 'barbican_tempest_plugin.tests.scenario.test_volume_encryption.VolumeEncryptionTest'
+          - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
+        tempest_plugins:
+          - python-telemetry-tests-tempest
+          - python-barbican-tests-tempest
+        tempest_extra_config:
+          auth.tempest_roles: "'Member, creator'"
+          telemetry.alarm_granularity: '60'
+        test_white_regex: ""
+
+- job:
+    name: periodic-tripleo-ci-centos-7-scenario003-standalone
+    parent: tripleo-ci-base-standalone-periodic
+    vars:
+      featureset: '052'
+      release: master
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario003-standalone.yaml'
+        standalone_container_cli: docker
+        tempest_whitelist:
+          - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps.test_network_basic_ops'
+          - 'sahara_tempest_plugin.tests.api.test_data_sources.DataSourceTest'
+          - 'mistral_tempest_tests.tests.api.v2.test_actions.ActionTestsV2'
+        tempest_plugins:
+          - python-sahara-tests-tempest
+          - python-mistral-tests-tempest
+        test_white_regex: ""
+
