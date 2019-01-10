@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ad0253b_3eee08ed",
+        "filename": "playbooks/run-rdoinfo.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2019-01-10T10:25:57Z",
+      "side": 1,
+      "message": "Common should not be used for repos since queens. See https://review.rdoproject.org/r/#/c/17423/4/playbooks/legacy/rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016/run.yaml",
+      "range": {
+        "startLine": 215,
+        "startChar": 0,
+        "endLine": 217,
+        "endChar": 16
+      },
+      "revId": "d37754259ac1b1d668bac880348180a0259b2a85",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ad0253b_1eba2ce2",
+        "filename": "playbooks/run-rdoinfo.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2019-01-10T10:25:57Z",
+      "side": 1,
+      "message": "ditto.",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 16
+      },
+      "revId": "d37754259ac1b1d668bac880348180a0259b2a85",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ad0253b_deb39409",
+        "filename": "playbooks/run-rdoinfo.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2019-01-10T10:25:57Z",
+      "side": 1,
+      "message": "Instead of using \"when: stop_file.stat.exists\" on each task from here we could add here a task meta: end_play if the file exists.",
+      "revId": "d37754259ac1b1d668bac880348180a0259b2a85",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
