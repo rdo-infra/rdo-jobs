@@ -245,6 +245,91 @@
         path: "{{ workspace }}/not_required"
       register: stop_file
 
+    - name: Build Container images
+      shell:
+        cmd: |
+          set -ex
+
+          echo ======== BUILD CONTAINERS IMAGES
+          WORKSPACE="{{ ansible_user_dir }}/workspace"
+          RELEASE="{{ rdoinfo_release|default("master") }}"
+
+          # Retrieve role
+          mkdir -p $WORKSPACE/roles
+          pushd $WORKSPACE/roles
+              git clone https://github.com/rdo-infra/ansible-role-rdo-kolla-build rdo-kolla-build
+          popd
+
+          # Delete any leftover configuration ansible
+          rm -f $WORKSPACE/ansible.cfg
+          TESTING_TAG="current-tripleo"
+          # devstack gate sets this, but conflicts with anything else
+          unset ANSIBLE_STDOUT_CALLBACK
+          export ANSIBLE_HOST_KEY_CHECKING=False
+          export ANSIBLE_ROLES_PATH="$WORKSPACE/roles"
+
+          # Retain the lack of arch in namespace for x86_64 containers
+          if [ "$CPU_ARCH" = "x86_64" ] || [ "$CPU_ARCH" = "" ]; then
+              CPU_ARCH=""
+          else
+              CPU_ARCH="-$CPU_ARCH"
+          fi
+
+          if [ "{{ rdoinfo_release }}" = "master" ]; then
+              O_RELEASE="stein"
+          else
+              O_RELEASE="{{ rdoinfo_release }}"
+          fi
+
+          # Re-construct the expected repository URL
+          ZUUL_REF=$(echo $ZUUL_REF |cut -f4 -d /)
+          job="validate-buildsys-tags"
+          LOG_PATH="$BASE_LOG_PATH/$ZUUL_PIPELINE/$job/$ZUUL_REF"
+          logs="https://logs.rdoproject.org/$LOG_PATH/"
+
+          # NOTE(pabelanger): Override logs for zuulv3 jobs.
+          if [[ -d /home/zuul ]]; then
+              logs={{ buildset_artifacts_url }}
+          fi
+
+
+          REPO="cloud7-openstack-$O_RELEASE-{{ rdoinfo_phase }}"
+          REPOS_URL="$logs/repos/$REPO/temp-$REPO.repo"
+
+          curl -o $WORKSPACE/temp-$REPO.repo $REPOS_URL
+          curl https://trunk.rdoproject.org/centos7-${RELEASE}/delorean-deps.repo >> $WORKSPACE/temp-$REPO.repo
+
+          cat << EOF > $WORKSPACE/playbook.yml
+          ---
+          - name: Build Kolla images
+            hosts: localhost
+            become: yes
+            become_user: root
+            vars:
+              kolla_registry: "docker.io"
+              kolla_namespace: "tripleo${RELEASE}${CPU_ARCH}"
+              kolla_tag: "$TESTING_TAG"
+              openstack_release: "$RELEASE"
+              trunk_repository: "https://trunk.rdoproject.org/centos7-$RELEASE/$TESTING_TAG/delorean.repo"
+              trunk_deps_repository: "file://${WORKSPACE}/temp-$REPO.repo"
+            tasks:
+              - include_role:
+                  name: "rdo-kolla-build"
+          EOF
+
+          virtualenv --system-site-packages $WORKSPACE/ansible
+          source $WORKSPACE/ansible/bin/activate
+          pip install ansible==2.5.2
+
+          ansible-playbook $WORKSPACE/playbook.yml -e kolla_threads=16
+
+          echo ======== BUILD CONTAINERS IMAGES COMPLETED
+        chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'
+      when:
+        - not stop_file.stat.exists
+        - rdoinfo_build_containers|default(false)
+
     - name: inject release file into quickstart
       shell:
         cmd: |
