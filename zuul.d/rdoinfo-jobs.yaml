@@ -23,6 +23,32 @@
       - openstack/browbeat
       - rdoinfo
 
+# standalone counterpart for featurset016 multinode job
+- job:
+    name: rdoinfo-tripleo-master-centos-7-scenario001-standalone
+    parent: tripleo-ci-base-standalone-rdo
+    run: playbooks/run-rdoinfo.yaml
+    vars:
+      featureset: '052'
+      rdoinfo_release: master
+      rdoinfo_phase: testing
+      standalone_ceph: true
+      featureset_override:
+        standalone_container_cli: docker
+        standalone_environment_files:
+          - 'ci/environments/scenario001-standalone.yaml'
+          - 'environments/low-memory-usage.yaml'
+        tempest_plugins:
+          - python-telemetry-tests-tempest
+          - python-heat-tests-tempest
+        test_white_regex: ''
+        tempest_workers: 1
+        tempest_extra_config: {'telemetry.alarm_granularity': '60'}
+        tempest_whitelist:
+          - 'tempest.api.identity.v3'
+          - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern.test_volume_boot_pattern'
+          - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
+
 - job:
     name: rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset010
     parent: tripleo-ci-base-multinode-rdo
@@ -62,6 +88,25 @@
       - openstack/tripleo-upgrade
       - openstack/browbeat
       - rdoinfo
+
+# standalone counterpart for featurset030 multinode job
+- job:
+    name: rdoinfo-tripleo-master-centos-7-scenario007-standalone
+    parent: tripleo-ci-base-standalone-rdo
+    run: playbooks/run-rdoinfo.yaml
+    vars:
+      featureset: '052'
+      rdoinfo_release: master
+      rdoinfo_phase: testing
+      featureset_override:
+        standalone_container_cli: docker
+        standalone_environment_files:
+          - 'ci/environments/scenario007-standalone.yaml'
+          - 'environments/low-memory-usage.yaml'
+        test_white_regex: ''
+        tempest_workers: 1
+        tempest_whitelist:
+          - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps.test_network_basic_ops'
 
 - job:
     name: rdoinfo-tripleo-rocky-testing-centos-7-multinode-1ctlr-featureset016
