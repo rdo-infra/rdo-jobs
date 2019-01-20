@@ -159,6 +159,24 @@
       cloud_name: vexxhost
     nodeset: upstream-centos-7-vexxhost
 
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-1.0-ovb
+    parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
+    branches: ^stable/1.0$
+    timeout: 10800
+    vars:
+      branch_override: "master"
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-ovb
+    parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
+    branches: ^master$
+    timeout: 10800
+    vars:
+      branch_override: "master"
+
+
 # =================  P E R I O D I C   J O B S
 
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master

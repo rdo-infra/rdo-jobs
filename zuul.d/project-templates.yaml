@@ -744,3 +744,10 @@
               - manifests/profile/base/neutron/plugins/ml2/opendaylight.pp
               - manifests/profile/base/neutron/plugins/ovs/opendaylight.pp
               - tox.ini
+
+- project-template:
+    name: ovb-ci
+    openstack-check:
+      jobs:
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-1.0-ovb
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-ovb
