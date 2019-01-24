@@ -62,6 +62,18 @@
         - puppet-openstack-integration-5-scenario003-tempest-fedora-28
         - puppet-openstack-integration-5-scenario004-tempest-fedora-28
 
+- project-template:
+    name: package-distgit-tripleo-check-jobs
+    check:
+      jobs:
+        - distgit-tripleo-master-testing-centos-7-standalone-featureset052:
+            dependencies:
+              - legacy-DLRN-rpmbuild
+            voting: false
+            branches: ^rpm-master$
+        - legacy-DLRN-rpmbuild:
+            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+
 # TripleO CI templates
 - project-template:
     name: tripleo-ovb
