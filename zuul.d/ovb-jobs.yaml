@@ -10,6 +10,14 @@
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-test
+    parent: tripleo-ci-base-ovb-rdo
+    branches: "^.*$"
+    override-checkout: master
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035
