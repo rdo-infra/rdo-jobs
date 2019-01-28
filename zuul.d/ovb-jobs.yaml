@@ -10,6 +10,21 @@
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-test2
+    parent: tripleo-ci-base-ovb-rdo
+    branches: "^.*$"
+    required-projects:
+      - git.openstack.org/openstack-infra/tripleo-ci
+      - git.openstack.org/openstack/tripleo-quickstart
+      - git.openstack.org/openstack/tripleo-quickstart-extras
+      - git.openstack.org/openstack/tripleo-upgrade
+      - git.openstack.org/openstack/browbeat
+      - git.openstack.org/openstack/tripleo-ha-utils
+      - git.openstack.org/openstack/openstack-virtual-baremetal
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035
