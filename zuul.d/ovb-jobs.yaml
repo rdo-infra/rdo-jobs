@@ -12,6 +12,13 @@
       featureset: '001'
 
 - job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ovb-master
+    parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
+    branches: ^master$
+    required-projects:
+      - git.openstack.org/openstack/openstack-virtual-baremetal
+
+- job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035
     parent: tripleo-ci-base-ovb-rdo
     branches: ^(?!stable/(newton|ocata|pike)).*$
