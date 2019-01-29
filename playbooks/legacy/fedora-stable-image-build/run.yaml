@@ -64,6 +64,7 @@
       shell:
         cmd: |
           set -e
+          export LANG=en_US.UTF-8
           mkdir -p $WORKSPACE/logs
           if [ $(grep -c ^CentOS /etc/system-release) -eq 0 ]; then
               PKG_CFG="/etc/dnf/dnf.conf"
