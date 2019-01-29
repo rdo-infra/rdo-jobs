@@ -88,6 +88,8 @@
           git clone https://review.rdoproject.org/r/rdo-infra/sinkhole
           virtualenv -p $PYTHON_VERSION --system-site-packages .venv
           source .venv/bin/activate
+          locale
+          export LANG=en_US.UTF-8
           pushd sinkhole
           pip install .
           popd
