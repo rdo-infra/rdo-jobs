@@ -49,14 +49,6 @@
     name: puppet-openstack-integration-python3-jobs
     openstack-check-rdo:
       jobs:
-        - puppet-openstack-integration-5-scenario-py3-tempest-centos-7:
-            voting: false
-            branches: ^master$
-        - puppet-openstack-integration-5-scenario-py3-tempest-fedora-28:
-            voting: false
-            branches: ^master$
-    openstack-experimental:
-      jobs:
         - puppet-openstack-integration-5-scenario001-tempest-fedora-28
         - puppet-openstack-integration-5-scenario002-tempest-fedora-28
         - puppet-openstack-integration-5-scenario003-tempest-fedora-28

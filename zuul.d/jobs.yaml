@@ -224,26 +224,6 @@
       puppet: 5
 
 - job:
-    name: puppet-openstack-integration-5-scenario-py3
-    parent: puppet-openstack-integration-5
-    abstract: true
-    vars:
-      scenario: scenario-py3
-      puppet: 5
-
-- job:
-    name: puppet-openstack-integration-5-scenario-py3-tempest-fedora-28
-    parent: puppet-openstack-integration-5-scenario-py3
-    nodeset: rdo-fedora-stable
-    branches: ^master
-
-- job:
-    name: puppet-openstack-integration-5-scenario-py3-tempest-centos-7
-    parent: puppet-openstack-integration-5-scenario-py3
-    nodeset: upstream-centos-7
-    branches: ^master
-
-- job:
     name: puppet-openstack-integration-5-scenario001
     parent: puppet-openstack-integration-5
     abstract: true
