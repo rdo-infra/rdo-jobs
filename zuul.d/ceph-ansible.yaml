@@ -4,7 +4,9 @@
     name: tripleo-ceph-integration
     # abstract means you can't use it directly, it can only be the parent of a job.
     abstract: true
-    run: playbooks/tripleo-ceph-integration.yaml
+    pre-run: playbooks/tripleo-ceph-integration/pre.yaml
+    run: playbooks/tripleo-ceph-integration/run.yaml
+    post-run: playbooks/tripleo-ceph-integration/post.yaml
     # files makes the job run only if one of the elem is modified by the PR
     #files:
       # Until job is working as expected, use a test file trigger
@@ -17,7 +19,7 @@
     nodeset:
       nodes:
         - name: test
-          label: runc-fedora-29
+          label: rdo-centos-7
 
 - job:
     name: tripleo-ceph-integration-master
