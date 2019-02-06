@@ -1,0 +1,18 @@
+---
+- hosts: all
+  tasks:
+    - name: Install pre-requisites
+      package:
+        name:
+          - createrepo
+          - mock
+          - redhat-rpm-config
+          - rpmdevtools
+        state: present
+      become: true
+
+    - name: Add zuul user to mock group
+      become: true
+      shell:
+        cmd: |
+          usermod -a -G mock zuul

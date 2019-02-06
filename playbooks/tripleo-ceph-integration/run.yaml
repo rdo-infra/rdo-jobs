@@ -1,0 +1,19 @@
+---
+- hosts: all
+  tasks:
+    - name: Run make rpm
+      shell:
+        cmd: |
+            make rpm
+        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/ceph/ceph-ansible'].src_dir }}"
+
+    - name: Copy logs to logs directory
+      shell:
+        cmd: |
+            mkdir logs
+            cp *.log logs
+            cp *.rpm logs
+            pushd logs
+            createrepo .
+            popd
+        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/ceph/ceph-ansible'].src_dir }}"

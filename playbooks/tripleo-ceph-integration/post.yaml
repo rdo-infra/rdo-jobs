@@ -1,0 +1,10 @@
+---
+- hosts: all
+  tasks:
+    - name: Copy artefacts
+      synchronize:
+        src: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/ceph/ceph-ansible'].src_dir }}/logs/"
+        dest: "{{ zuul.executor.log_root }}/buildset"
+        mode: pull
+        verify_host: true
+
