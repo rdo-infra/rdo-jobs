@@ -173,6 +173,13 @@
     vars:
       nodes: 3ctlr_1comp_1supp
       featureset: '039'
+      playbooks:
+        - ovb-setup.yml
+        - baremetal-full-freeipa.yml
+        - baremetal-full-undercloud.yml
+        - baremetal-full-overcloud-prep.yml
+        - baremetal-full-overcloud.yml
+        - baremetal-full-overcloud-validate.yml
 
 # =================  P E R I O D I C   J O B S
 
