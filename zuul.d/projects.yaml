@@ -2,7 +2,10 @@
     name: rdo-jobs
     check:
       jobs:
-        - tox-docs
+        - periodic-tripleo-centos-7-master-containers-build:
+            dependencies:
+              - periodic-tripleo-centos-7-master-promote-consistent-to-tripleo-ci-testing
+        - periodic-tripleo-centos-7-master-promote-consistent-to-tripleo-ci-testing
     gate:
       jobs:
         - tox-docs
