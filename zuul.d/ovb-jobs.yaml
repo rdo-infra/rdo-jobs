@@ -166,6 +166,14 @@
       cloud_name: vexxhost
     nodeset: upstream-centos-7-vexxhost
 
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039
+    parent: tripleo-ci-base-ovb-rdo
+    branches: "^.*$"
+    vars:
+      nodes: 3ctlr_1comp_1supp
+      featureset: '039'
+
 # =================  P E R I O D I C   J O B S
 
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
