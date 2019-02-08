@@ -7,7 +7,8 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
-    - shell:
+    - name: cloning
+      shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
 
@@ -58,7 +59,8 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
+    - name: clone ansible-role-rdo-kolla-build
+      shell:
         cmd: |
           set -ex
           if [[ "${ZUUL_PROJECT}" != "rdo-infra/ansible-role-rdo-kolla-build" ]]; then
@@ -68,7 +70,8 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
+    - name: Build Kolla images
+      shell:
         cmd: |
           set -ex
           mkdir -p $WORKSPACE/roles
@@ -92,7 +95,7 @@
           ---
           - name: Build Kolla images
             hosts: localhost
-            become: yes
+            become: true
             become_user: root
             roles:
               - kolla-build

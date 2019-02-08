@@ -1,0 +1,10 @@
+---
+extends: default
+
+rules:
+  document-start: disable
+  line-length:
+    max: 999
+  key-duplicates: enable
+ignore: |
+  .tox
