@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import os
-import sys
+# import os
+# import sys
 
 # -- General configuration ----------------------------------------------------
 
@@ -21,7 +21,7 @@ import sys
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
     'sphinx.ext.autodoc',
-    #'sphinx.ext.intersphinx',
+    # 'sphinx.ext.intersphinx',
     'zuul_sphinx',
 ]
 
@@ -71,4 +71,4 @@ latex_documents = [
 ]
 
 # Example configuration for intersphinx: refer to the Python standard library.
-#intersphinx_mapping = {'http://docs.python.org/': None}
+# intersphinx_mapping = {'http://docs.python.org/': None}
