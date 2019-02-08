@@ -1,6 +1,7 @@
 - hosts: all
   tasks:
-    - shell:
+    - name: clonemap
+      shell:
         cmd: |
           set -e
           set -x

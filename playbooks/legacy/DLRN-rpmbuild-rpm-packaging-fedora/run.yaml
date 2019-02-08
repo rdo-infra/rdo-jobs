@@ -9,6 +9,7 @@
         state: directory
 
     - name: cloning
+      environment: '{{ zuul | zuul_legacy_vars }}'
       shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
@@ -58,9 +59,9 @@
               /usr/zuul-env/bin/zuul-cloner -v $GIT_SOURCE $ZUUL_PROJECT
           fi
         chdir: '{{ ansible_user_dir }}/workspace'
-      environment: '{{ zuul | zuul_legacy_vars }}'
 
     - name: clone DLRN
+      environment: '{{ zuul | zuul_legacy_vars }}'
       shell:
         cmd: |
           set +e
@@ -70,7 +71,6 @@
           # Clone DLRN
           git clone https://github.com/softwarefactory-project/DLRN --depth 1
         chdir: '{{ ansible_user_dir }}/workspace'
-      environment: '{{ zuul | zuul_legacy_vars }}'
 
     - name: write fedora.cfg
       shell:

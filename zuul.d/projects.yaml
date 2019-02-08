@@ -4,7 +4,9 @@
       jobs:
         - tox-docs:
             nodeset: container-centos
+        - tox-linters
     gate:
       jobs:
         - tox-docs:
             nodeset: container-centos
+        - tox-linters

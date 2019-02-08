@@ -8,14 +8,14 @@
     run: playbooks/tripleo-ceph-integration/run.yaml
     post-run: playbooks/tripleo-ceph-integration/post.yaml
     # files makes the job run only if one of the elem is modified by the PR
-    #files:
-      # Until job is working as expected, use a test file trigger
-      #- test-ci
-      # When the job is working, only run it when those files are modified
-      #- roles/.*
-      #- plugins/.*
-      #- library/.*
-      #- group_vars/.*
+    # # files:
+    #   # Until job is working as expected, use a test file trigger
+    #   - test-ci
+    #   # When the job is working, only run it when those files are modified
+    #   - roles/.*
+    #   - plugins/.*
+    #   - library/.*
+    #   - group_vars/.*
     nodeset:
       nodes:
         - name: test
