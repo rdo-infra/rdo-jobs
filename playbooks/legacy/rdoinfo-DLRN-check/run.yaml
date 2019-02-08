@@ -15,7 +15,8 @@
         group: '{{ ansible_user }}'
         mode: 0755
 
-    - shell:
+    - name: cloning
+      shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
 
@@ -66,18 +67,20 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
-        cmd: |
+    - name: cloning dlrn
+      shell: |
           set +e
           sudo yum -y install createrepo mock redhat-rpm-config rpmdevtools
           sudo usermod -a -G mock zuul
 
           # Clone DLRN
           git clone https://github.com/softwarefactory-project/DLRN --depth 1
+      args:
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
+    - name: run dlrn check
+      shell:
         cmd: |
           set +e -x
           export LANG=en_US.UTF-8

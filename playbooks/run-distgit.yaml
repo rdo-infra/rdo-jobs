@@ -3,7 +3,7 @@
   tasks:
     - name: Run pre-quickstart role
       import_role:
-         name: common
+        name: common
 
     - name: check for correct import
       debug:
@@ -136,7 +136,6 @@
 
     - name: Run quickstart
       include_role:
-         name: run-test
+        name: run-test
       vars:
         release: "{{ release }}"
-
