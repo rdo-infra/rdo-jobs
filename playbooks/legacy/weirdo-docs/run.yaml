@@ -7,8 +7,8 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
-    - shell:
-        cmd: |
+    - name: cloning
+      shell: |
           echo "[DEBUG]: JJB template name: {template-name}"
 
           # If this is called in a periodic job, these will not be set
@@ -55,11 +55,13 @@
           else
               /usr/zuul-env/bin/zuul-cloner -v $GIT_SOURCE $ZUUL_PROJECT
           fi
+      args:
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
-        cmd: |
+    - name: zuul-cloner
+      shell: |
+          #!/bin/bash
           CLONEMAP=$(mktemp)
           function cleanup {
               rm -f $CLONEMAP
@@ -86,13 +88,16 @@
           # TODO(pabelanger): This is to workaround puppet-openstack-integration
           # trying to use zuul-cloner
           sudo rm -rf /usr/zuul-env
+      args:
         chdir: '{{ ansible_user_dir }}/workspace'
+        warn: false
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
-        cmd: |
+    - name: tox-docs
+      shell: |
           set +e
           cd weirdo
           tox -e docs
+      args:
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
