@@ -15,12 +15,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import os
 import json
+import os
 import re
 
+from ansible.module_utils.basic import AnsibleModule
+from ansible.module_utils.basic import get_exception
 from ansible.module_utils.six.moves import urllib
-from ansible.module_utils.basic import AnsibleModule, get_exception
 
 import gear
 
@@ -139,12 +140,12 @@ class LogMatcher(object):
         fields["filename"] = filename
         fields["build_name"] = zuul['job']
         fields["build_status"] = self.success and 'SUCCESS' or 'FAILURE'
-        # TODO: this is too simplistic for zuul v3 multinode jobs
+        # TODO(tristanc): this is too simplistic for zuul v3 multinode jobs
         if hosts:
             fields["build_node"] = hosts[0]['nodepool']['label']
         else:
             fields["build_node"] = 'zuul-executor'
-        # TODO: should be build_executor, or removed completely
+        # TODO(tristanc): should be build_executor, or removed completely
         fields["build_master"] = zuul['executor']['hostname']
 
         fields["project"] = zuul['project']['name']
@@ -153,12 +154,12 @@ class LogMatcher(object):
         # TODO(clarkb) can we do better without duplicated data here?
         fields["build_uuid"] = zuul['build']
         fields["build_short_uuid"] = fields["build_uuid"][:7]
-        # TODO: this should be build_pipeline
+        # TODO(tristanc): this should be build_pipeline
         fields["build_queue"] = zuul['pipeline']
-        # TODO: this is not interesteding anymore
+        # TODO(tristanc): this is not interesteding anymore
         fields["build_ref"] = zuul['ref']
         fields["build_branch"] = zuul.get('branch', 'UNKNOWN')
-        # TODO: remove
+        # TODO(tristanc): remove
         fields["build_zuul_url"] = "N/A"
         if 'change' in zuul:
             fields["build_change"] = zuul['change']
@@ -181,7 +182,7 @@ def main():
         argument_spec=dict(
             gearman_server=dict(type='str'),
             gearman_port=dict(type='int', default=4730),
-            # TODO: add ssl support
+            # TODO(tristanc): add ssl support
             host_vars=dict(type='dict'),
             path=dict(type='path'),
             config=dict(type='dict'),

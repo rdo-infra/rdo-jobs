@@ -7,7 +7,8 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
-    - shell:
+    - name: cloning
+      shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
 
@@ -58,7 +59,8 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - shell:
+    - name: tox-validate
+      shell:
         cmd: |
           # Tox update should be put in the slave preparation script
           sudo pip install -U tox
