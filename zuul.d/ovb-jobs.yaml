@@ -34,6 +34,50 @@
       nodes: 3ctlr_1comp
       featureset: '035'
 
+# Job to test changes in tempest-skip-$release
+
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master
+    parent: tripleo-ci-base-ovb-rdo
+    timeout: 18000
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '020'
+      release: master
+
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-pike
+    parent: tripleo-ci-base-ovb-rdo
+    override-checkout: "stable/pike"
+    timeout: 18000
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '020'
+      branch_override: "stable/pike"
+      release: pike
+
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-queens
+    parent: tripleo-ci-base-ovb-rdo
+    override-checkout: "stable/queens"
+    timeout: 18000
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '020'
+      branch_override: "stable/queens"
+      release: queens
+
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-rocky
+    parent: tripleo-ci-base-ovb-rdo
+    override-checkout: "stable/rocky"
+    timeout: 18000
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '020'
+      branch_override: "stable/rocky"
+      release: rocky
+
 # Job for testing featureset002 changes
 - job:
     name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload
