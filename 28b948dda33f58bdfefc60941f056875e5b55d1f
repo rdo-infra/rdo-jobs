@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "fce1003e_dd0ff415",
+        "filename": ".pre-commit-config.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2019-02-11T13:30:30Z",
+      "side": 1,
+      "message": "Will these repos be cloned from github during job?\ni have seen issues from time to time when relying on github mirror. don\u0027t we have pip alternatives for these?",
+      "range": {
+        "startLine": 3,
+        "startChar": 10,
+        "endLine": 3,
+        "endChar": 56
+      },
+      "revId": "28b948dda33f58bdfefc60941f056875e5b55d1f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5b7b30ce_a437ce6e",
+        "filename": "doc/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2019-02-11T13:30:30Z",
+      "side": 1,
+      "message": "why not removing it if it\u0027s not used?",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 12
+      },
+      "revId": "28b948dda33f58bdfefc60941f056875e5b55d1f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ef25f03e_9e320144",
         "filename": "playbooks/legacy/rdo-kolla-build-integration/run.yaml",
         "patchSetId": 8
@@ -18,6 +64,29 @@
         "startChar": 22,
         "endLine": 62,
         "endChar": 26
+      },
+      "revId": "28b948dda33f58bdfefc60941f056875e5b55d1f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c06da9ab_606f5208",
+        "filename": "playbooks/legacy/rpmlint/run.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2019-02-11T13:30:30Z",
+      "side": 1,
+      "message": "we have to handle whitespace carefully here, this is regex, so should match exactly for rpmlint. similar issue can be there in below Filters transition as well.\n\nMay be we can avoid lint check for this playbook. People generally add filter just copypasting from rpmlint errors.",
+      "range": {
+        "startLine": 182,
+        "startChar": 10,
+        "endLine": 182,
+        "endChar": 12
       },
       "revId": "28b948dda33f58bdfefc60941f056875e5b55d1f",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
