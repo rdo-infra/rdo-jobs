@@ -35,13 +35,18 @@
 
           # Re-construct the expected repository URL
           ZUUL_REF=$(echo $ZUUL_REF |cut -f4 -d /)
-          job="legacy-DLRN-rpmbuild"
+          job="{{ repo_create_job|default("legacy-DLRN-rpmbuild") }}"
           LOG_PATH="$BASE_LOG_PATH/$ZUUL_PIPELINE/$job/$ZUUL_REF"
           logs="https://logs.rdoproject.org/$LOG_PATH/"
 
           # NOTE(pabelanger): Override logs for zuulv3 jobs.
           if [[ -d /home/zuul ]]; then
               logs={{ buildset_artifacts_url }}
+          fi
+          if [ "$job" = "legacy-rdoinfo-DLRN-check" ];then
+              extrapath="-rpm-master"
+          else
+              extrapath=""
           fi
 
           function create_config(){
@@ -72,6 +77,10 @@
                   ((INDEX++))
               done
               echo "  - type: generic"
+              echo "    reponame: centos-ceph-luminous"
+              echo "    filename: centos-ceph-luminous.repo"
+              echo "    baseurl: http://mirror.regionone.rdo-cloud.rdoproject.org/centos/7/storage/x86_64/ceph-luminous/"
+              echo "  - type: generic"
               echo "    reponame: centos-opstools"
               echo "    filename: centos-opstools.repo"
               echo "    baseurl: http://mirror.centos.org/centos/7/opstools/x86_64/"
@@ -82,7 +91,7 @@
               echo "  - type: generic"
               echo "    reponame: temp-distgit"
               echo "    filename: temp-distgit.repo"
-              echo "    baseurl: $logs/centos/current/"
+              echo "    baseurl: $logs/centos${extrapath}/current/"
               echo "    priority: 1"
               if [ ! -z $delorean_current_url ]; then
                   echo "  - type: generic"
