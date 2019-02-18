@@ -33,16 +33,31 @@
               exit 1
           fi
 
-          # Re-construct the expected repository URL
-          ZUUL_REF=$(echo $ZUUL_REF |cut -f4 -d /)
-          job="legacy-DLRN-rpmbuild"
-          LOG_PATH="$BASE_LOG_PATH/$ZUUL_PIPELINE/$job/$ZUUL_REF"
-          logs="https://logs.rdoproject.org/$LOG_PATH/"
+          logs={{ buildset_artifacts_url|default("") }}
 
-          # NOTE(pabelanger): Override logs for zuulv3 jobs.
-          if [[ -d /home/zuul ]]; then
-              logs={{ buildset_artifacts_url }}
+          # If we could not find a working repository, give up
+          curl -o /dev/null -sIf "${logs}" || exit 1
+
+          # Use the latest repository hash
+          # If DLRN built multiple packages, there will be multiple repositories.
+          # We want the latest repository which contains all of the packages that were just built.
+          repository="${logs}/centos/current"
+
+          # The rdoinfo-DLRN-check job may create different repos (centos-rpm-master, centos-pike-rdo)
+          # when it builds packages for more than one release. In that case, let us try to find the
+          # right one
+          curl -o /dev/null -sIf "${repository}"
+          if [ $? -ne 0 ]; then
+            releases="rpm-master rocky-rdo queens-rdo pike-rdo ocata-rdo"
+            for release in $releases; do
+                repository="${logs}/centos-${release}/current"
+                curl -o /dev/null -sIf "${repository}" || continue
+                break
+            done
           fi
+
+          # If we could not find a working repository, give up
+          curl -o /dev/null -sIf "${repository}" || exit 1
 
           function create_config(){
               echo "release: {{ release }}"
@@ -72,6 +87,10 @@
                   ((INDEX++))
               done
               echo "  - type: generic"
+              echo "    reponame: centos-ceph-luminous"
+              echo "    filename: centos-ceph-luminous.repo"
+              echo "    baseurl: http://mirror.regionone.rdo-cloud.rdoproject.org/centos/7/storage/x86_64/ceph-luminous/"
+              echo "  - type: generic"
               echo "    reponame: centos-opstools"
               echo "    filename: centos-opstools.repo"
               echo "    baseurl: http://mirror.centos.org/centos/7/opstools/x86_64/"
@@ -82,7 +101,7 @@
               echo "  - type: generic"
               echo "    reponame: temp-distgit"
               echo "    filename: temp-distgit.repo"
-              echo "    baseurl: $logs/centos/current/"
+              echo "    baseurl: $repository"
               echo "    priority: 1"
               if [ ! -z $delorean_current_url ]; then
                   echo "  - type: generic"
