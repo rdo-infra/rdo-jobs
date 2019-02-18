@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b7473d13_93a19fee",
+        "filename": "zuul.d/ovb-jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 63
+      },
+      "writtenOn": "2019-02-18T16:46:31Z",
+      "side": 1,
+      "message": "You\u0027ll need to add override-checkout: pike here. You are launching these jobs on a change in quickstart-extras, which uses only master. If you don\u0027t override the checkout here, all the projects in required-project in the base job will be checkout out from master, which may cause  some problems. So setting release: here may be enough for quickstart itself but not for the other projects involved.",
+      "revId": "bb088c6099729397f2599bcc69a5f95beeb9bf53",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2683983a_3d78d12a",
+        "filename": "zuul.d/ovb-jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 63
+      },
+      "writtenOn": "2019-02-18T16:46:31Z",
+      "side": 1,
+      "message": "Evalueate override checkout: queens here",
+      "revId": "bb088c6099729397f2599bcc69a5f95beeb9bf53",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e9f140d_e41ec91f",
+        "filename": "zuul.d/ovb-jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 63
+      },
+      "writtenOn": "2019-02-18T16:46:31Z",
+      "side": 1,
+      "message": "Evalueate  override checkout: rocky here",
+      "revId": "bb088c6099729397f2599bcc69a5f95beeb9bf53",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
