@@ -3,6 +3,9 @@
     check:
       jobs:
         - tox-docs
+        - tripleo-build-containers-fedora-28:
+            files:
+              - ^zuul.d/build-containers.yaml$
     gate:
       jobs:
         - tox-docs

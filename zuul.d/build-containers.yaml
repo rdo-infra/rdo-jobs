@@ -1,0 +1,15 @@
+---
+# zuul.d/build-containers.yaml
+# Zuul layout for TripleO Build Containers jobs.
+
+- project-template:
+    name: tripleo-build-containers-jobs
+    openstack-check:
+      jobs:
+        - tripleo-build-containers-fedora-28
+
+- job:
+    name: tripleo-build-containers-fedora-28
+    parent: tripleo-build-containers-centos-7
+    nodeset: single-upstream-fedora-28-node
+    voting: false
