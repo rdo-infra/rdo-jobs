@@ -1,5 +1,9 @@
 - project:
     name: rdo-jobs
+    templates:
+      - tripleo-build-containers-jobs:
+          files:
+            - ^zuul.d/build-containers.yaml$
     check:
       jobs:
         - tox-docs:
