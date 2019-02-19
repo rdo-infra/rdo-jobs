@@ -3,6 +3,7 @@
     check:
       jobs:
         - tox-docs
+        - tripleo-build-containers-jobs
     gate:
       jobs:
         - tox-docs
