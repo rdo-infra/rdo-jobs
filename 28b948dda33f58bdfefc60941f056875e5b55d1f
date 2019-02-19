@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0d987fef_ec59515b",
+        "filename": ".pre-commit-config.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 371
+      },
+      "writtenOn": "2019-02-19T17:15:25Z",
+      "side": 1,
+      "message": "No, pre-commit does not support pip. We had no problem using it like this upstream especially because pre-commit does extensibe caching into ~/.cache/pre-commit and it will not even go to github if the right version was cloned previously. Caching does not depend of the repository, each hook-version virtualenv is cached.",
+      "parentUuid": "fce1003e_dd0ff415",
+      "range": {
+        "startLine": 3,
+        "startChar": 10,
+        "endLine": 3,
+        "endChar": 56
+      },
+      "revId": "28b948dda33f58bdfefc60941f056875e5b55d1f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5b7b30ce_a437ce6e",
         "filename": "doc/source/conf.py",
         "patchSetId": 8
@@ -36,6 +60,30 @@
       "writtenOn": "2019-02-11T13:30:30Z",
       "side": 1,
       "message": "why not removing it if it\u0027s not used?",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 12
+      },
+      "revId": "28b948dda33f58bdfefc60941f056875e5b55d1f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3aa9a1e3_23f441b3",
+        "filename": "doc/source/conf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 371
+      },
+      "writtenOn": "2019-02-19T17:15:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b7b30ce_a437ce6e",
       "range": {
         "startLine": 15,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "13c8381d_a6804601",
+        "filename": "playbooks/legacy/rdo-kolla-build-integration/run.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 371
+      },
+      "writtenOn": "2019-02-19T17:15:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef25f03e_9e320144",
+      "range": {
+        "startLine": 62,
+        "startChar": 22,
+        "endLine": 62,
+        "endChar": 26
+      },
+      "revId": "28b948dda33f58bdfefc60941f056875e5b55d1f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c06da9ab_606f5208",
         "filename": "playbooks/legacy/rpmlint/run.yaml",
         "patchSetId": 8
@@ -82,6 +154,30 @@
       "writtenOn": "2019-02-11T13:30:30Z",
       "side": 1,
       "message": "we have to handle whitespace carefully here, this is regex, so should match exactly for rpmlint. similar issue can be there in below Filters transition as well.\n\nMay be we can avoid lint check for this playbook. People generally add filter just copypasting from rpmlint errors.",
+      "range": {
+        "startLine": 182,
+        "startChar": 10,
+        "endLine": 182,
+        "endChar": 12
+      },
+      "revId": "28b948dda33f58bdfefc60941f056875e5b55d1f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f1cff57e_aeccf1ef",
+        "filename": "playbooks/legacy/rpmlint/run.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 371
+      },
+      "writtenOn": "2019-02-19T17:15:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c06da9ab_606f5208",
       "range": {
         "startLine": 182,
         "startChar": 10,
