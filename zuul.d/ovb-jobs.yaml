@@ -404,3 +404,33 @@
       featureset: '024'
       branch_override: "stable/pike"
       release: pike
+
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master
+    parent: tripleo-ci-base-ovb-periodic
+    timeout: 10800
+    vars:
+      nodes: 3ctlr_1comp_1supp
+      featureset: '039'
+      release: master
+      playbooks:
+        - ovb-setup.yml
+        - baremetal-full-freeipa.yml
+        - baremetal-full-undercloud.yml
+        - baremetal-full-overcloud-prep.yml
+        - baremetal-full-overcloud.yml
+        - baremetal-full-overcloud-validate.yml
+
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-rocky
+    parent: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master
+    vars:
+      branch_override: "stable/rocky"
+      release: rocky
+
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-queens
+    parent: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master
+    vars:
+      branch_override: "stable/queens"
+      release: queens
