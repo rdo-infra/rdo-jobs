@@ -76,14 +76,6 @@
       featureset: '024'
 
 - job:
-    name: tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^master$
-    vars:
-      nodes: 3ctlr_1comp_1supp
-      featureset: '039'
-
-- job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053
     parent: tripleo-ci-base-ovb-rdo
     timeout: 14400
