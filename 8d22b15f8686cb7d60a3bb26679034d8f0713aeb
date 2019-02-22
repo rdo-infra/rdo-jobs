@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "525b0141_1d1c64ce",
+        "filename": "zuul.d/build-containers.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2019-02-22T08:21:12Z",
+      "side": 1,
+      "message": "this may be confusing since the centos7 periodic is not here its just f28",
+      "range": {
+        "startLine": 6,
+        "startChar": 16,
+        "endLine": 6,
+        "endChar": 39
+      },
+      "revId": "8d22b15f8686cb7d60a3bb26679034d8f0713aeb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d356e77f_c6efeadd",
+        "filename": "zuul.d/build-containers.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2019-02-22T08:21:12Z",
+      "side": 1,
+      "message": "why are we defining this her vs as periodic directly in the config repo like for centos.\n\nshould i move the centos definition here too?\n\nso is the idea you are going to define a periodi with this one as parent?",
+      "range": {
+        "startLine": 12,
+        "startChar": 12,
+        "endLine": 12,
+        "endChar": 40
+      },
+      "revId": "8d22b15f8686cb7d60a3bb26679034d8f0713aeb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
