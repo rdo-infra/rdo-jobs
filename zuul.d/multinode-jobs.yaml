@@ -385,7 +385,7 @@
     vars:
       nodes: 1ctlr
       featureset: '037'
-      branch_override: "stable/rocky"
+      required-projects.override-checkout: "stable/rocky"
       release: rocky
       extra_tags:
         - overcloud-update
@@ -398,6 +398,7 @@
       nodes: 1ctlr
       featureset: '037'
       branch_override: "stable/queens"
+      required-projects.override_checkout: "stable/queens"
       release: queens
       extra_tags:
         - overcloud-update
