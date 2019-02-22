@@ -147,6 +147,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-master
     parent: tripleo-ci-base-multinode-periodic
+    post-run: playbooks/post-role.yaml
     vars:
       nodes: 1ctlr
       featureset: '010'
