@@ -382,10 +382,10 @@
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-rocky
     parent: tripleo-ci-base-multinode-periodic
+    required-projects.override-checkout: "stable/rocky"
     vars:
       nodes: 1ctlr
       featureset: '037'
-      branch_override: "stable/rocky"
       release: rocky
       extra_tags:
         - overcloud-update
@@ -394,6 +394,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-queens
     parent: tripleo-ci-base-multinode-periodic
+    required-projects.override_checkout: "stable/queens"
     vars:
       nodes: 1ctlr
       featureset: '037'
