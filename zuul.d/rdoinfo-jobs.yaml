@@ -23,6 +23,26 @@
       - openstack/browbeat
       - rdoinfo
 
+- job:
+    name: rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset017
+    parent: tripleo-ci-base-multinode-rdo
+    run: playbooks/run-rdoinfo.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      rdoinfo_release: master
+      rdoinfo_phase: testing
+      featureset: '017'
+      nodes: 1ctlr
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - openstack/browbeat
+      - rdoinfo
+
 # standalone counterpart for featurset016 multinode job
 - job:
     name: rdoinfo-tripleo-master-centos-7-scenario001-standalone
