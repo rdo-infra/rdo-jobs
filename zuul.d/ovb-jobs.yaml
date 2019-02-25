@@ -168,6 +168,7 @@
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039
     parent: tripleo-ci-base-ovb-rdo
+    timeout: 12600
     branches: "^.*$"
     vars:
       nodes: 3ctlr_1comp_1supp
@@ -408,7 +409,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master
     parent: tripleo-ci-base-ovb-periodic
-    timeout: 10800
+    timeout: 12600
     vars:
       nodes: 3ctlr_1comp_1supp
       featureset: '039'
