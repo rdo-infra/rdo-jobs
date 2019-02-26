@@ -16,3 +16,12 @@ logstash_processor_config:
     - name: tempest\.log\.txt
       tags:
         - tempest
+    # for tripleo jobs
+    - name: var/log/extra/logstash\.txt
+      tags:
+        - console
+        - logstash
+    - name: var/log/extra/errors\.txt
+      tags:
+        - console
+        - errors
