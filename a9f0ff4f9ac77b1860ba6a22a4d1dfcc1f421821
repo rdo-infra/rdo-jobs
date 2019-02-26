@@ -2,6 +2,46 @@
   "comments": [
     {
       "key": {
+        "uuid": "acbe27a5_d127faa1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2019-02-26T08:15:05Z",
+      "side": 1,
+      "message": "can you please expand this a bit i think it will  help explain what you\u0027re doing here.\n\nadds the f28 container build in check, but only if the job definition changes? why please needs more.",
+      "range": {
+        "startLine": 10,
+        "startChar": 51,
+        "endLine": 11,
+        "endChar": 31
+      },
+      "revId": "a9f0ff4f9ac77b1860ba6a22a4d1dfcc1f421821",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "600e4853_74a6de4c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2019-02-26T08:15:05Z",
+      "side": 1,
+      "message": "merged maybe you can remove the depends-on just leave a ref",
+      "revId": "a9f0ff4f9ac77b1860ba6a22a4d1dfcc1f421821",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "13aad8f4_be7e3ae3",
         "filename": "zuul.d/projects.yaml",
         "patchSetId": 15
@@ -60,6 +100,30 @@
       "side": 1,
       "message": "This is about running the job at changes in the job definition here.",
       "parentUuid": "3c34cc78_39027eb8",
+      "range": {
+        "startLine": 7,
+        "startChar": 8,
+        "endLine": 9,
+        "endChar": 46
+      },
+      "revId": "a9f0ff4f9ac77b1860ba6a22a4d1dfcc1f421821",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f0060c99_bd866299",
+        "filename": "zuul.d/projects.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2019-02-26T08:15:05Z",
+      "side": 1,
+      "message": "why we want this running only for https://review.rdoproject.org/r/#/c/18913/15/zuul.d/build-containers.yaml though I am missing something can you revise the commit message perhaps",
+      "parentUuid": "c9e978d9_8fb86386",
       "range": {
         "startLine": 7,
         "startChar": 8,
