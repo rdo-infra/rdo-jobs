@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2fc89230_032eda2f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 517
+      },
+      "writtenOn": "2019-02-26T08:36:48Z",
+      "side": 1,
+      "message": "Changes the explanation a little.",
+      "parentUuid": "acbe27a5_d127faa1",
+      "range": {
+        "startLine": 10,
+        "startChar": 51,
+        "endLine": 11,
+        "endChar": 31
+      },
+      "revId": "a9f0ff4f9ac77b1860ba6a22a4d1dfcc1f421821",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "859f47d0_71dbcae8",
         "filename": "/COMMIT_MSG",
         "patchSetId": 15
@@ -165,6 +189,30 @@
       "side": 1,
       "message": "That i got, my question was why?\nGood to keep project config clean(don\u0027t run jobs in \"check\" which are not really necessary, for testing purpose it\u0027s OK), what i don\u0027t get it why treating this job special?\n\ni just see a template and job override with fedora nodeset in zuul.d/build-containers.yaml, most of the logic for this job is in tripleo-ci.",
       "parentUuid": "c9e978d9_8fb86386",
+      "range": {
+        "startLine": 7,
+        "startChar": 8,
+        "endLine": 9,
+        "endChar": 46
+      },
+      "revId": "a9f0ff4f9ac77b1860ba6a22a4d1dfcc1f421821",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "46339825_8ce86529",
+        "filename": "zuul.d/projects.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 517
+      },
+      "writtenOn": "2019-02-26T08:36:48Z",
+      "side": 1,
+      "message": "Has just remove it, is not much what we test there and we can do the same with testproject, let\u0027s merge this we can talk about exercising by job definition later on.",
+      "parentUuid": "ec21864b_c0d7bed8",
       "range": {
         "startLine": 7,
         "startChar": 8,
