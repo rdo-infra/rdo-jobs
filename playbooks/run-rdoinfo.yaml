@@ -321,6 +321,8 @@
                 kolla_registry: "docker.io"
                 kolla_namespace: "tripleo${RELEASE}${CPU_ARCH}"
                 kolla_tag: "$FULL_HASH"
+                kolla_base_image: "centos"
+                kolla_base_tag: "7"
                 openstack_release: "$RELEASE"
                 trunk_repository: "https://trunk.rdoproject.org/centos7-$RELEASE/$TESTING_TAG/delorean.repo"
                 extra_rpm_repos: ["$REPOS_URL"]
