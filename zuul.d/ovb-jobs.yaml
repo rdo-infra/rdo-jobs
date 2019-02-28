@@ -24,6 +24,7 @@
     branches: ^master$
     required-projects:
       - git.openstack.org/openstack/openstack-virtual-baremetal
+    voting: false
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035
