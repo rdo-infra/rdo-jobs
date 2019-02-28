@@ -209,7 +209,7 @@
                   STABLE_REPOSITORIES=true
                   TESTING_REPOSITORY=true
               else
-                  REPOS_URL="http://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/current-passed-ci/delorean.repo http://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/delorean-deps.repo"
+                  REPOS_URL="http://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/current-tripleo/delorean.repo http://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/delorean-deps.repo"
                   STABLE_REPOSITORIES=false
                   TESTING_REPOSITORY=false
                   delorean_current_url=`curl --silent https://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/current/delorean.repo -S  | grep baseurl | cut -d= -f2`
@@ -321,6 +321,8 @@
                 kolla_registry: "docker.io"
                 kolla_namespace: "tripleo${RELEASE}${CPU_ARCH}"
                 kolla_tag: "$FULL_HASH"
+                kolla_base_image: "centos"
+                kolla_base_tag: "7"
                 openstack_release: "$RELEASE"
                 trunk_repository: "https://trunk.rdoproject.org/centos7-$RELEASE/$TESTING_TAG/delorean.repo"
                 extra_rpm_repos: ["$REPOS_URL"]

@@ -142,7 +142,7 @@
           }
 
 
-              REPOS_URL="http://trunk.rdoproject.org/centos7-{{ release }}/current-passed-ci/delorean.repo http://trunk.rdoproject.org/centos7-{{ release }}/delorean-deps.repo"
+              REPOS_URL="http://trunk.rdoproject.org/centos7-{{ release }}/current-tripleo/delorean.repo http://trunk.rdoproject.org/centos7-{{ release }}/delorean-deps.repo"
               delorean_current_url=`curl --silent https://trunk.rdoproject.org/centos7-{{ release }}/current/delorean.repo -S  | grep baseurl | cut -d= -f2`
               create_config | tee -a tripleo.yml
         chdir: '{{ ansible_user_dir }}/workspace'
