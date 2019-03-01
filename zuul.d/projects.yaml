@@ -2,9 +2,5 @@
     name: rdo-jobs
     check:
       jobs:
-        - tox-docs:
-            nodeset: container-centos
-    gate:
-      jobs:
-        - tox-docs:
+        - hello-baremetal:
             nodeset: container-centos
