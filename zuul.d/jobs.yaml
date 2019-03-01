@@ -291,3 +291,7 @@
     parent: publish-rdoproject-artifacts
     run: playbooks/octavia-build-amphora/run.yaml
     post-run: playbooks/octavia-build-amphora/post.yaml
+
+- job:
+    name: trigger-baremetal
+    run: playbooks/hello-baremetal.yaml
