@@ -182,6 +182,21 @@
         - baremetal-full-overcloud.yml
         - baremetal-full-overcloud-validate.yml
 
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_2comp_1supp-featureset039
+    parent: tripleo-ci-base-ovb-rdo
+    timeout: 12600
+    branches: "^.*$"
+    vars:
+      nodes: 1ctlr_2comp_1supp
+      featureset: '039'
+      playbooks:
+        - ovb-setup.yml
+        - baremetal-full-freeipa.yml
+        - baremetal-full-undercloud.yml
+        - baremetal-full-overcloud-prep.yml
+        - baremetal-full-overcloud.yml
+        - baremetal-full-overcloud-validate.yml
 # =================  P E R I O D I C   J O B S
 
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
