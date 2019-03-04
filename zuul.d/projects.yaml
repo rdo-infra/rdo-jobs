@@ -2,6 +2,7 @@
     name: rdo-jobs
     check:
       jobs:
+        - tripleo-ci-centos-7-ovb-1ctlr_2comp_1supp-featureset039-test
         - tox-docs:
             nodeset: container-centos
     gate:
