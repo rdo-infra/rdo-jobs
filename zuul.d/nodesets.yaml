@@ -212,3 +212,9 @@
         nodes:
           - secondary-1
           - secondary-2
+
+# placeholder nodes needed to allow reuse of jobs defined upstream and avoid
+# zuul import failure due to unknown node
+- nodeset:
+    name: ubuntu-bionic
+
