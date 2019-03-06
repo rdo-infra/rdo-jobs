@@ -6,17 +6,15 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
-    - when: buildset_artifacts_url is not defined
-      block:
+    - block:
+       - name: Do not run weirdo if there are no new packages to test in parent job
+         debug:
+           msg: "No new packages detected, skiping weirdo execution"
 
-        - name: Do not run weirdo if there are no new packages to test in parent job
-          debug:
-            msg: "No new packages detected, skiping weirdo execution"
+       - meta: end_play
+      when: buildset_artifacts_url is not defined
 
-        - meta: end_play
-
-    - name: zuul-cloner
-      shell:
+    - shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
 
@@ -67,8 +65,7 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - name: configure repository
-      shell:
+    - shell:
         cmd: |
           # This builder, when run from a child job of a DLRN based job,
           # configures the DLRN repository that was uploaded as an artifact
@@ -141,10 +138,8 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - name: clonemap
-      shell:
+    - shell:
         cmd: |
-          #!/bin/bash
           CLONEMAP=$(mktemp)
           function cleanup {
               rm -f $CLONEMAP
@@ -174,8 +169,7 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - name: tox -e ansible-playbook
-      shell:
+    - shell:
         cmd: |
           # WeIRDO uses ARA for ansible-playbook run visualization
           export ARA_DATABASE="sqlite:///$WORKSPACE/ara.sqlite"

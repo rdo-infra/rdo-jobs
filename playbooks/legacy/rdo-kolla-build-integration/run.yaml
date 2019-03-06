@@ -7,8 +7,7 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
-    - name: cloning
-      shell:
+    - shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
 
@@ -59,8 +58,7 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - name: confiugre DLNR repository
-      shell:
+    - shell:
         cmd: |
           # This builder, when run from a child job of a DLRN based job,
           # configures the DLRN repository that was uploaded as an artifact
@@ -133,8 +131,7 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - name: clone ansible-role-rdo-kolla-build
-      shell:
+    - shell:
         cmd: |
           set -ex
           if [[ "${ZUUL_PROJECT}" != "rdo-infra/ansible-role-rdo-kolla-build" ]]; then
@@ -144,8 +141,7 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - name: configure ara
-      shell:
+    - shell:
         cmd: |
           set -ex
           mkdir -p $WORKSPACE/roles
@@ -169,7 +165,7 @@
           ---
           - name: Build Kolla images
             hosts: localhost
-            become: true
+            become: yes
             become_user: root
             roles:
               - kolla-build

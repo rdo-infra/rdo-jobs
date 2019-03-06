@@ -6,8 +6,7 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
-    - name: cloning
-      shell:
+    - shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
 
@@ -58,9 +57,8 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - name: clonemap
-      shell: |
-          #!/bin/bash
+    - shell:
+        cmd: |
           CLONEMAP=$(mktemp)
           function cleanup {
               rm -f $CLONEMAP
@@ -87,13 +85,10 @@
           # TODO(pabelanger): This is to workaround puppet-openstack-integration
           # trying to use zuul-cloner
           sudo rm -rf /usr/zuul-env
-      args:
         chdir: '{{ ansible_user_dir }}/workspace'
-        warn: false
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - name: configure ara
-      shell:
+    - shell:
         cmd: |
           # WeIRDO uses ARA for ansible-playbook run visualization
           export ARA_DATABASE="sqlite:///$WORKSPACE/ara.sqlite"

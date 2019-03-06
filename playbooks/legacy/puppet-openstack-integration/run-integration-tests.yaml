@@ -1,7 +1,6 @@
 - hosts: all
   tasks:
-    - name: run_tests.sh
-      shell:
+    - shell:
         cmd: |
           set -ex
           trap "./copy_logs.sh" EXIT

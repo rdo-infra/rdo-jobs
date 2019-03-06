@@ -7,8 +7,7 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
-    - name: cloning
-      shell:
+    - shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
 
@@ -59,8 +58,7 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - name: install development tools
-      shell:
+    - shell:
         cmd: |
           if [ -f /usr/bin/yum ]; then
             sudo yum -y remove facter puppet rdo-release
@@ -73,8 +71,7 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - name: rake spec
-      shell:
+    - shell:
         cmd: |
           cd $ZUUL_PROJECT
           export LANG=en_US.UTF-8

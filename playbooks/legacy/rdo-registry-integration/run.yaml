@@ -7,8 +7,7 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
-    - name: cloning
-      shell:
+    - shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
 
@@ -59,8 +58,7 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - name: run_tests.sh
-      shell:
+    - shell:
         cmd: |
           set +e
           cd $ZUUL_PROJECT

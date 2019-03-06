@@ -7,8 +7,7 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
-    - name: cloning
-      shell:
+    - shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
 
@@ -59,8 +58,7 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - name: config repository
-      shell:
+    - shell:
         cmd: |
           # This builder, when run from a child job of a DLRN based job,
           # configures the DLRN repository that was uploaded as an artifact
@@ -133,8 +131,7 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - name: compare rpmlint reports
-      shell:
+    - shell:
         cmd: |
           # This builder, when run from a child job of a DLRN based
           # job, download the packages built from DLRN and compare
@@ -159,8 +156,7 @@
           wget $baseurl/repodata/repomd.xml
 
           # extract the name of primary db from repomd.xml
-          db=$(python -c "import xml.etree.ElementTree as et; ns = {'ns0': 'http://linux.duke.edu/metadata/repo'}; \
-            print(et.parse('repomd.xml').getroot().find('ns0:data[@type=\"primary_db\"]/ns0:location', ns).attrib['href'])")
+          db=$(python -c "import xml.etree.ElementTree as et; ns = {'ns0': 'http://linux.duke.edu/metadata/repo'}; print(et.parse('repomd.xml').getroot().find('ns0:data[@type=\"primary_db\"]/ns0:location', ns).attrib['href'])")
 
           # download this db to get the name of the rpm files
           wget $baseurl/$db
@@ -247,11 +243,9 @@
           addFilter("python2-os-xenapi.noarch: E: non-executable-script /usr/lib/python2.7/site-packages/os_xenapi/utils/consoles.py 0644L /usr/bin/env")
 
           # Exceptions for openstack-tripleo-heat-templates-compat
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: description-line-too-long C building Heat Templates to do deployments of OpenStack.  \
-          These templates provide support for the clouds running the previous upstream version of OpenStack.")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: description-line-too-long C building Heat Templates to do deployments of OpenStack.  These templates provide support for the clouds running the previous upstream version of OpenStack.")
           addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/ci/scripts/freeipa_setup.sh 0644L /bin/bash")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: \
-          E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/deployed-server/deployed-server-bootstrap-centos.sh 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/deployed-server/deployed-server-bootstrap-centos.sh 0644L /bin/bash")
           addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/deployed-server/deployed-server-bootstrap-rhel.sh 0644L /bin/bash")
           addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/docker/docker-puppet.py 0644L /usr/bin/env")
           addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/docker/services/neutron/neutron-cleanup 0644L /bin/bash")
@@ -266,8 +260,7 @@
           addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/validation-scripts/all-nodes.sh 0644L /bin/bash")
           addFilter("openstack-tripleo-heat-templates-compat.noarch: E: script-without-shebang /usr/share/openstack-tripleo-heat-templates/compat/environments/neutron-plumgrid.yaml")
           addFilter("openstack-tripleo-heat-templates-compat.noarch: E: script-without-shebang /usr/share/openstack-tripleo-heat-templates/compat/environments/neutron-sriov.yaml")
-          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: description-line-too-long C building Heat Templates to do deployments of OpenStack.  These templates provide support for the clouds \
-          running the previous upstream version of OpenStack.")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: description-line-too-long C building Heat Templates to do deployments of OpenStack.  These templates provide support for the clouds running the previous upstream version of OpenStack.")
           addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/docker/services/neutron/neutron-cleanup 0644L /bin/bash")
           addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/pre_deploy/rhel-registration/scripts/rhel-registration 0644L /bin/bash")
           addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/pre_deploy/rhel-registration/scripts/rhel-unregistration 0644L /bin/bash")

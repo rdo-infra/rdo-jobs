@@ -3,7 +3,7 @@
   tasks:
     - name: Run pre-quickstart role
       import_role:
-        name: common
+         name: common
 
     - name: check for correct import
       debug:
@@ -252,9 +252,9 @@
 
     - name: Build Container images
       block:
-        - name: Build Container images
-          environment: '{{ zuul | zuul_legacy_vars }}'
-          shell: |
+       - name: Build Container images
+         shell:
+          cmd: |
             set -ex
 
             echo ======== BUILD CONTAINERS IMAGES
@@ -314,10 +314,10 @@
             cat << EOF > $WORKSPACE/playbook.yml
             ---
             - name: Build Kolla images
-            hosts: localhost
-            become: yes
-            become_user: root
-            vars:
+              hosts: localhost
+              become: yes
+              become_user: root
+              vars:
                 kolla_registry: "docker.io"
                 kolla_namespace: "tripleo${RELEASE}${CPU_ARCH}"
                 kolla_tag: "$FULL_HASH"
@@ -326,7 +326,7 @@
                 openstack_release: "$RELEASE"
                 trunk_repository: "https://trunk.rdoproject.org/centos7-$RELEASE/$TESTING_TAG/delorean.repo"
                 extra_rpm_repos: ["$REPOS_URL"]
-            tasks:
+              tasks:
                 - include_role:
                     name: "rdo-kolla-build"
             EOF
@@ -338,20 +338,20 @@
             ansible-playbook $WORKSPACE/playbook.yml -e kolla_threads=16
 
             echo ======== BUILD CONTAINERS IMAGES COMPLETED
-          args:
-            chdir: '{{ ansible_user_dir }}/workspace'
+          chdir: '{{ ansible_user_dir }}/workspace'
+         environment: '{{ zuul | zuul_legacy_vars }}'
 
       always:
-        - name: Copy kolla logs
-          shell: |
-            export LOG_PATH="{{ workspace }}/logs"
-            mkdir -p $LOG_PATH
-            cp -a /tmp/kolla $LOG_PATH/
-            # Ensure permissions allow artifact uploading
-            sudo chown -R "$(id -u).$(id -g)" $LOG_PATH
-          args:
-            chdir: "{{ workspace }}"
-          environment: "{{ zuul | zuul_legacy_vars }}"
+       - name: Copy kolla logs
+         shell: |
+             export LOG_PATH="{{ workspace }}/logs"
+             mkdir -p $LOG_PATH
+             cp -a /tmp/kolla $LOG_PATH/
+             # Ensure permissions allow artifact uploading
+             sudo chown -R "$(id -u).$(id -g)" $LOG_PATH
+         args:
+           chdir: "{{ workspace }}"
+         environment: "{{ zuul | zuul_legacy_vars }}"
       when:
         - not stop_file.stat.exists
         - rdoinfo_build_containers|default(false)
@@ -366,7 +366,8 @@
 
     - name: Run quickstart
       include_role:
-        name: run-test
+         name: run-test
       vars:
         release: "{{ rdoinfo_release }}"
       when: not stop_file.stat.exists
+

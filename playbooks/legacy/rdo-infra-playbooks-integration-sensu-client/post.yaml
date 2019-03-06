@@ -1,8 +1,7 @@
 - hosts: all
   tasks:
 
-    - name: run ara generate html
-      shell:
+    - shell:
         cmd: |
           mkdir $WORKSPACE/logs
           export ARA_DATABASE="sqlite:///$WORKSPACE/ara.sqlite"

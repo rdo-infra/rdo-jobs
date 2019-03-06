@@ -7,8 +7,7 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
-    - name: zuul-cloner
-      shell:
+    - shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
 
@@ -63,8 +62,7 @@
       include_role:
         name: set-zuul-log-path-fact
 
-    - name: run validate_updates
-      shell:
+    - shell:
         cmd: |
           set -e -x
           # Install requirements

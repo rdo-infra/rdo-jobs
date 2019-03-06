@@ -2,19 +2,20 @@
   pip:
     name: PyYAML
     virtualenv: "{{ virtualenv }}"
-  become: true
+  become: yes
 
 - name: Install zuul-cloner shim
   template:
     src: templates/zuul-cloner-shim.py.j2
     dest: "{{ virtualenv }}/bin/zuul-cloner"
     mode: 0755
-  become: true
+  become: yes
 
 - name: Ensure zuul-cloner permission env perm
   file:
     path: "{{ virtualenv }}"
     state: directory
     mode: u=rwX,g=rX,o=rX
-    recurse: true
-  become: true
+    recurse: yes
+  become: yes
+
