@@ -61,7 +61,6 @@
 
     - name: clonemap
       shell: |
-          #!/bin/bash
           CLONEMAP=$(mktemp)
           function cleanup {
               rm -f $CLONEMAP
