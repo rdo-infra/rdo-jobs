@@ -16,6 +16,24 @@
       "revId": "245a07f8049dd0882eaf7d7778857041ee8b2f19",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94e432fb_aa46f398",
+        "filename": "zuul.d/standalone-jobs.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 371
+      },
+      "writtenOn": "2019-03-07T11:56:47Z",
+      "side": 1,
+      "message": "I doubt it would be better because this would prevent us from inheriting configs from the centos one.\n\nIs more important to keep each fedora-28 jobs as close as possible with its centos-7 siblings, that\u0027s why this approach is safer.\n\nConsidering their limited lifetime, i am inclined to say\nthat the less code we write the better.",
+      "parentUuid": "3b59cf68_0d359f61",
+      "revId": "245a07f8049dd0882eaf7d7778857041ee8b2f19",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
