@@ -145,3 +145,22 @@
           'share.capability_create_share_from_snapshot_support': 'False'
         test_white_regex: ''
 
+- job:
+    name: periodic-tripleo-ci-fedora-28-scenario001-standalone-master
+    parent: periodic-tripleo-ci-centos-7-scenario001-standalone-master
+    nodeset: single-upstream-fedora-28-node
+
+- job:
+    name: periodic-tripleo-ci-fedora-28-scenario002-standalone-master
+    parent: periodic-tripleo-ci-centos-7-scenario002-standalone-master
+    nodeset: single-upstream-fedora-28-node
+
+- job:
+    name: periodic-tripleo-ci-fedora-28-scenario003-standalone-master
+    parent: periodic-tripleo-ci-centos-7-scenario003-standalone-master
+    nodeset: single-upstream-fedora-28-node
+
+- job:
+    name: periodic-tripleo-ci-fedora-28-scenario004-standalone-master
+    parent: periodic-tripleo-ci-centos-7-scenario004-standalone-master
+    nodeset: single-upstream-fedora-28-node
