@@ -57,110 +57,36 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-scenario001-standalone-master
-    parent: tripleo-ci-base-standalone-periodic
-    vars:
-      featureset: '052'
-      release: master
-      standalone_ceph: true
-      featureset_override:
-        standalone_container_cli: docker
-        standalone_environment_files:
-          - 'environments/low-memory-usage.yaml'
-          - 'ci/environments/scenario001-standalone.yaml'
-        tempest_plugins:
-          - python-telemetry-tests-tempest
-          - python-heat-tests-tempest
-        test_white_regex: ''
-        tempest_workers: 1
-        tempest_extra_config: {'telemetry.alarm_granularity': '60'}
-        tempest_whitelist:
-          - 'tempest.api.identity.v3'
-          - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern.test_volume_boot_pattern'
-          - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
+    parent: periodic-tripleo-ci-base-scenario001-standalone-master
 
 - job:
     name: periodic-tripleo-ci-centos-7-scenario002-standalone-master
-    parent: tripleo-ci-base-standalone-periodic
-    vars:
-      featureset: '052'
-      release: master
-      featureset_override:
-        standalone_container_cli: docker
-        standalone_environment_files:
-          - 'environments/low-memory-usage.yaml'
-          - 'ci/environments/scenario002-standalone.yaml'
-        tempest_whitelist:
-          - 'tempest.api.object_storage.test_object_services.ObjectTest'
-          - 'barbican_tempest_plugin.tests.scenario.test_volume_encryption.VolumeEncryptionTest'
-          - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
-        tempest_plugins:
-          - python-telemetry-tests-tempest
-          - python-barbican-tests-tempest
-        tempest_extra_config:
-          auth.tempest_roles: "'Member, creator'"
-          telemetry.alarm_granularity: '60'
-        test_white_regex: ""
+    parent: periodic-tripleo-ci-base-scenario002-standalone-master
 
 - job:
     name: periodic-tripleo-ci-centos-7-scenario003-standalone-master
-    parent: tripleo-ci-base-standalone-periodic
-    vars:
-      featureset: '052'
-      release: master
-      featureset_override:
-        standalone_environment_files:
-          - 'environments/low-memory-usage.yaml'
-          - 'ci/environments/scenario003-standalone.yaml'
-        standalone_container_cli: docker
-        tempest_whitelist:
-          - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps.test_network_basic_ops'
-          - 'sahara_tempest_plugin.tests.api.test_data_sources.DataSourceTest'
-          - 'mistral_tempest_tests.tests.api.v2.test_actions.ActionTestsV2'
-        tempest_plugins:
-          - python-sahara-tests-tempest
-          - python-mistral-tests-tempest
-        test_white_regex: ""
+    parent: periodic-tripleo-ci-base-scenario003-standalone-master
 
 - job:
     name: periodic-tripleo-ci-centos-7-scenario004-standalone-master
-    parent: tripleo-ci-base-standalone-periodic
-    vars:
-      featureset: '052'
-      release: master
-      standalone_ceph: true
-      featureset_override:
-        standalone_container_cli: docker
-        standalone_environment_files:
-          - 'environments/low-memory-usage.yaml'
-          - 'ci/environments/scenario004-standalone.yaml'
-        tempest_whitelist:
-          - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps.test_network_basic_ops'
-          - 'manila_tempest_tests.tests.api.test_shares.SharesCephFSTest.test_create_get_delete_share'
-        tempest_plugins:
-          - python2-manila-tests-tempest
-        tempest_extra_config:
-          'share.multitenancy_enabled': 'False'
-          'share.enable_protocols': 'cephfs'
-          'share.capability_snapshot_support': 'False'
-          'share.capability_create_share_from_snapshot_support': 'False'
-        test_white_regex: ''
+    parent: periodic-tripleo-ci-base-scenario004-standalone-master
 
 - job:
     name: periodic-tripleo-ci-fedora-28-scenario001-standalone-master
-    parent: periodic-tripleo-ci-centos-7-scenario001-standalone-master
+    parent: periodic-tripleo-ci-base-scenario001-standalone-master
     nodeset: single-upstream-fedora-28-node
 
 - job:
     name: periodic-tripleo-ci-fedora-28-scenario002-standalone-master
-    parent: periodic-tripleo-ci-centos-7-scenario002-standalone-master
+    parent: periodic-tripleo-ci-base-scenario002-standalone-master
     nodeset: single-upstream-fedora-28-node
 
 - job:
     name: periodic-tripleo-ci-fedora-28-scenario003-standalone-master
-    parent: periodic-tripleo-ci-centos-7-scenario003-standalone-master
+    parent: periodic-tripleo-ci-base-scenario003-standalone-master
     nodeset: single-upstream-fedora-28-node
 
 - job:
     name: periodic-tripleo-ci-fedora-28-scenario004-standalone-master
-    parent: periodic-tripleo-ci-centos-7-scenario004-standalone-master
+    parent: periodic-tripleo-ci-base-scenario004-standalone-master
     nodeset: single-upstream-fedora-28-node
