@@ -15,6 +15,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-singlenode-featureset027-rocky
     parent: tripleo-ci-base-singlenode-periodic
+    override-checkout: "stable/rocky"
     vars:
       featureset: '027'
       branch_override: "stable/rocky"
@@ -24,6 +25,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-rocky
     parent: tripleo-ci-base-singlenode-periodic
+    override-checkout: "stable/rocky"
     vars:
       featureset: '050'
       branch_override: "stable/rocky"
