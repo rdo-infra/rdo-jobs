@@ -112,6 +112,7 @@
 - job:
     name: rdoinfo-tripleo-rocky-testing-centos-7-multinode-1ctlr-featureset016
     parent: tripleo-ci-base-multinode-rdo
+    override-checkout: "stable/rocky"
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
@@ -133,6 +134,7 @@
 - job:
     name: rdoinfo-tripleo-rocky-testing-centos-7-multinode-1ctlr-featureset030
     parent: tripleo-ci-base-multinode-rdo
+    override-checkout: "stable/rocky"
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
@@ -154,6 +156,7 @@
 - job:
     name: rdoinfo-tripleo-rocky-release-centos-7-multinode-1ctlr-featureset016
     parent: tripleo-ci-base-multinode-rdo
+    override-checkout: "stable/rocky"
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
@@ -175,6 +178,7 @@
 - job:
     name: rdoinfo-tripleo-queens-testing-centos-7-multinode-1ctlr-featureset016
     parent: tripleo-ci-base-multinode-rdo
+    override-checkout: "stable/queens"
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
@@ -196,6 +200,7 @@
 - job:
     name: rdoinfo-tripleo-queens-testing-centos-7-multinode-1ctlr-featureset030
     parent: tripleo-ci-base-multinode-rdo
+    override-checkout: "stable/queens"
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
@@ -217,6 +222,7 @@
 - job:
     name: rdoinfo-tripleo-queens-release-centos-7-multinode-1ctlr-featureset016
     parent: tripleo-ci-base-multinode-rdo
+    override-checkout: "stable/queens"
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
@@ -238,6 +244,7 @@
 - job:
     name: rdoinfo-tripleo-pike-testing-centos-7-multinode-1ctlr-featureset006
     parent: tripleo-ci-base-multinode-rdo
+    override-checkout: "stable/pike"
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
@@ -259,6 +266,7 @@
 - job:
     name: rdoinfo-tripleo-pike-release-centos-7-multinode-1ctlr-featureset006
     parent: tripleo-ci-base-multinode-rdo
+    override-checkout: "stable/pike"
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
@@ -280,6 +288,7 @@
 - job:
     name: rdoinfo-tripleo-ocata-testing-centos-7-multinode-1ctlr-featureset005
     parent: tripleo-ci-base-multinode-rdo
+    override-checkout: "stable/ocata"
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
@@ -301,6 +310,7 @@
 - job:
     name: rdoinfo-tripleo-ocata-release-centos-7-multinode-1ctlr-featureset005
     parent: tripleo-ci-base-multinode-rdo
+    override-checkout: "stable/ocata"
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:

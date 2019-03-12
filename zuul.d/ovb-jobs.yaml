@@ -164,6 +164,7 @@
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike-branch
     parent: tripleo-ci-base-ovb-rdo
+    override-checkout: "stable/pike"
     branches: ^master$
     vars:
       nodes: 3ctlr_1comp
@@ -173,6 +174,7 @@
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens-branch
     parent: tripleo-ci-base-ovb-rdo
+    override-checkout: "stable/queens"
     branches: ^master$
     vars:
       nodes: 3ctlr_1comp
@@ -182,6 +184,7 @@
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky-branch
     parent: tripleo-ci-base-ovb-rdo
+    override-checkout: "stable/rocky"
     branches: ^master$
     vars:
       nodes: 3ctlr_1comp
@@ -256,6 +259,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike
     parent: tripleo-ci-base-ovb-periodic
+    override-checkout: "stable/pike"
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
@@ -266,6 +270,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens
     parent: tripleo-ci-base-ovb-periodic
+    override-checkout: "stable/queens"
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
@@ -276,6 +281,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky
     parent: tripleo-ci-base-ovb-periodic
+    override-checkout: "stable/rocky"
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
@@ -304,6 +310,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-rocky-upload
     parent: tripleo-ci-base-ovb-periodic-upload
+    override-checkout: "stable/rocky"
     vars:
       nodes: 1ctlr_1comp
       featureset: '002'
@@ -314,6 +321,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-pike-upload
     parent: tripleo-ci-base-ovb-periodic-upload
+    override-checkout: "stable/pike"
     vars:
       nodes: 1ctlr_1comp
       featureset: '002'
@@ -324,6 +332,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload
     parent: tripleo-ci-base-ovb-periodic-upload
+    override-checkout: "stable/queens"
     vars:
       nodes: 1ctlr_1comp
       featureset: '002'
@@ -344,6 +353,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-queens
     parent: tripleo-ci-base-ovb-periodic
+    override-checkout: "stable/queens"
     timeout: 18000
     vars:
       nodes: 1ctlr_1comp
@@ -355,6 +365,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-pike
     parent: tripleo-ci-base-ovb-periodic
+    override-checkout: "stable/pike"
     timeout: 18000
     vars:
       nodes: 1ctlr_1comp
@@ -366,6 +377,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-rocky
     parent: tripleo-ci-base-ovb-periodic
+    override-checkout: "stable/rocky"
     timeout: 18000
     vars:
       nodes: 1ctlr_1comp
@@ -377,6 +389,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike
     parent: tripleo-ci-base-ovb-periodic
+    override-checkout: "stable/pike"
     vars:
       nodes: 1ctlr_1comp
       featureset: '022'
@@ -397,6 +410,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-rocky
     parent: tripleo-ci-base-ovb-periodic
+    override-checkout: "stable/rocky"
     timeout: 18000
     vars:
       nodes: 1ctlr_1comp
@@ -408,6 +422,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-queens
     parent: tripleo-ci-base-ovb-periodic
+    override-checkout: "stable/queens"
     timeout: 18000
     vars:
       nodes: 1ctlr_1comp
@@ -419,6 +434,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset021-pike
     parent: tripleo-ci-base-ovb-periodic
+    override-checkout: "stable/pike"
     timeout: 18000
     vars:
       nodes: 1ctlr_1comp
@@ -439,6 +455,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-rocky
     parent: tripleo-ci-base-ovb-periodic
+    override-checkout: "stable/rocky"
     vars:
       nodes: 3ctlr_1comp
       featureset: '035'
@@ -449,6 +466,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens
     parent: tripleo-ci-base-ovb-periodic
+    override-checkout: "stable/queens"
     vars:
       nodes: 3ctlr_1comp
       featureset: '035'
@@ -459,6 +477,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike
     parent: tripleo-ci-base-ovb-periodic
+    override-checkout: "stable/pike"
     timeout: 10800
     vars:
       nodes: 1ctlr_1comp_1ceph
@@ -485,6 +504,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-rocky
     parent: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master
+    override-checkout: "stable/rocky"
     vars:
       branch_override: "stable/rocky"
       release: rocky
@@ -492,6 +512,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-queens
     parent: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master
+    override-checkout: "stable/queens"
     vars:
       branch_override: "stable/queens"
       release: queens

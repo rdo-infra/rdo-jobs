@@ -156,6 +156,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-rocky
     parent: tripleo-ci-base-multinode-periodic
+    override-checkout: "stable/rocky"
     vars:
       nodes: 1ctlr
       featureset: '010'
@@ -166,6 +167,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-queens
     parent: tripleo-ci-base-multinode-periodic
+    override-checkout: "stable/queens"
     vars:
       nodes: 1ctlr
       featureset: '010'
@@ -176,6 +178,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-pike
     parent: tripleo-ci-base-multinode-periodic
+    override-checkout: "stable/pike"
     vars:
       nodes: 1ctlr
       featureset: '010'
@@ -195,6 +198,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-rocky
     parent: tripleo-ci-base-multinode-periodic
+    override-checkout: "stable/rocky"
     vars:
       nodes: 1ctlr
       featureset: '016'
@@ -205,6 +209,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-queens
     parent: tripleo-ci-base-multinode-periodic
+    override-checkout: "stable/queens"
     vars:
       nodes: 1ctlr
       featureset: '016'
@@ -215,6 +220,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-pike
     parent: tripleo-ci-base-multinode-periodic
+    override-checkout: "stable/pike"
     vars:
       nodes: 1ctlr
       featureset: '016'
@@ -234,6 +240,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-rocky
     parent: tripleo-ci-base-multinode-periodic
+    override-checkout: "stable/rocky"
     vars:
       nodes: 1ctlr
       featureset: '017'
@@ -244,6 +251,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-queens
     parent: tripleo-ci-base-multinode-periodic
+    override-checkout: "stable/queens"
     vars:
       nodes: 1ctlr
       featureset: '017'
@@ -254,6 +262,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-pike
     parent: tripleo-ci-base-multinode-periodic
+    override-checkout: "stable/pike"
     vars:
       nodes: 1ctlr
       featureset: '017'
@@ -273,6 +282,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-rocky
     parent: tripleo-ci-base-multinode-periodic
+    override-checkout: "stable/rocky"
     vars:
       nodes: 1ctlr
       featureset: '018'
@@ -283,6 +293,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-queens
     parent: tripleo-ci-base-multinode-periodic
+    override-checkout: "stable/queens"
     vars:
       nodes: 1ctlr
       featureset: '018'
@@ -293,6 +304,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-pike
     parent: tripleo-ci-base-multinode-periodic
+    override-checkout: "stable/pike"
     vars:
       nodes: 1ctlr
       featureset: '018'
@@ -312,6 +324,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-rocky
     parent: tripleo-ci-base-multinode-periodic
+    override-checkout: "stable/rocky"
     vars:
       nodes: 1ctlr
       featureset: '019'
@@ -322,6 +335,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-queens
     parent: tripleo-ci-base-multinode-periodic
+    override-checkout: "stable/queens"
     vars:
       nodes: 1ctlr
       featureset: '019'
@@ -332,6 +346,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-pike
     parent: tripleo-ci-base-multinode-periodic
+    override-checkout: "stable/pike"
     vars:
       nodes: 1ctlr
       featureset: '019'
@@ -351,6 +366,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-rocky
     parent: tripleo-ci-base-multinode-periodic
+    override-checkout: "stable/rocky"
     vars:
       nodes: 1ctlr
       featureset: '030'
@@ -361,6 +377,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-queens
     parent: tripleo-ci-base-multinode-periodic
+    override-checkout: "stable/queens"
     vars:
       nodes: 1ctlr
       featureset: '030'
