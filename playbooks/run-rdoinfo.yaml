@@ -191,13 +191,8 @@
               echo "  python-tripleoclient"
               echo "  ceph-ansible"
               if [[ ( "{{ rdoinfo_release }}" != "ocata" ) && ("{{ rdoinfo_release }}" != "pike" ) ]];then
-                  if [[ ( "{{ rdoinfo_build_containers|default(false) | lower }}" == "true" ) ]];then
-                      echo "update_containers: false"
-                      echo "standalone_container_prep_updates: false"
-                  else
-                      echo "update_containers: true"
-                      echo "gating_repo_name: temp-*"
-                  fi
+                  echo "update_containers: true"
+                  echo "gating_repo_name: temp-*"
               fi
           }
 
