@@ -2,6 +2,7 @@
     name: rdo-jobs
     check:
       jobs:
+        - periodic-tripleo-ci-fedora-28-ovb-1ctlr_1comp-featureset002-master
         - tox-docs:
             nodeset: container-centos
     gate:
