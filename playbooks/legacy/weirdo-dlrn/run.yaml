@@ -192,7 +192,7 @@
           delorean_deps_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/delorean-deps.repo"
           if [[ "${ZUUL_PIPELINE}" =~ "experimental" ]]; then
               delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/current/delorean.repo"
-          elif [[ "{{ openstack_release }}" == "master" ]]; then
+          elif [[ "{{ openstack_release }}" == "master" && "$project" == "puppet-openstack" ]]; then
               delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/puppet-passed-ci/delorean.repo"
           else
               delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/current-passed-ci/delorean.repo"
