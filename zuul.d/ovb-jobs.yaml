@@ -88,6 +88,16 @@
       featureset: '002'
 
 - job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload-vexxhost
+    parent: tripleo-ci-base-ovb-rdo
+    branches: "^.*$"
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '002'
+      cloud_name: vexxhost
+    nodeset: upstream-centos-7-vexxhost
+
+- job:
     name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020
     parent: tripleo-ci-base-ovb-rdo
     timeout: 18000
@@ -251,6 +261,16 @@
       nodes: 3ctlr_1comp
       featureset: '001'
       release: master
+
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
+    parent: tripleo-ci-base-ovb-periodic
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      release: master
+    cloud_name: vexxhost
+    nodeset: upstream-centos-7-vexxhost
 
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike
 - job:
