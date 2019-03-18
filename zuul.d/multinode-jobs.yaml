@@ -152,6 +152,16 @@
       featureset: '010'
       release: master
 
+# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-stein
+- job:
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-stein
+    parent: tripleo-ci-base-multinode-periodic
+    vars:
+      nodes: 1ctlr
+      featureset: '010'
+      branch_override: "stable/stein"
+      release: stein
+
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-rocky
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-rocky
@@ -190,6 +200,16 @@
       nodes: 1ctlr
       featureset: '016'
       release: master
+
+# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-stein
+- job:
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-stein
+    parent: tripleo-ci-base-multinode-periodic
+    vars:
+      nodes: 1ctlr
+      featureset: '016'
+      branch_override: "stable/stein"
+      release: stein
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-rocky
 - job:
@@ -230,6 +250,16 @@
       featureset: '017'
       release: master
 
+# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-stein
+- job:
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-stein
+    parent: tripleo-ci-base-multinode-periodic
+    vars:
+      nodes: 1ctlr
+      featureset: '017'
+      branch_override: "stable/stein"
+      release: stein
+
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-rocky
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-rocky
@@ -268,6 +298,16 @@
       nodes: 1ctlr
       featureset: '018'
       release: master
+
+# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-stein
+- job:
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-stein
+    parent: tripleo-ci-base-multinode-periodic
+    vars:
+      nodes: 1ctlr
+      featureset: '018'
+      branch_override: "stable/stein"
+      release: stein
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-rocky
 - job:
@@ -308,6 +348,16 @@
       featureset: '019'
       release: master
 
+# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-stein
+- job:
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-stein
+    parent: tripleo-ci-base-multinode-periodic
+    vars:
+      nodes: 1ctlr
+      featureset: '019'
+      branch_override: "stable/stein"
+      release: stein
+
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-rocky
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-rocky
@@ -347,6 +397,16 @@
       featureset: '030'
       release: master
 
+# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-stein
+- job:
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-stein
+    parent: tripleo-ci-base-multinode-periodic
+    vars:
+      nodes: 1ctlr
+      featureset: '030'
+      branch_override: "stable/stein"
+      release: stein
+
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-rocky
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-rocky
@@ -375,6 +435,19 @@
       nodes: 1ctlr
       featureset: '037'
       release: master
+      extra_tags:
+        - overcloud-update
+
+# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-stein
+- job:
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-stein
+    parent: tripleo-ci-base-multinode-periodic
+    override-checkout: "stable/stein"
+    vars:
+      nodes: 1ctlr
+      featureset: '037'
+      branch_override: "stable/stein"
+      release: stein
       extra_tags:
         - overcloud-update
 
