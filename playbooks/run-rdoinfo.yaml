@@ -192,7 +192,7 @@
               echo "  ceph-ansible"
               if [[ ( "{{ rdoinfo_release }}" != "ocata" ) && ("{{ rdoinfo_release }}" != "pike" ) ]];then
                   echo "update_containers: true"
-                  echo "gating_repo_name: temp-*"
+                  echo "gating_repo_name: temp-*,gating-repo"
               fi
           }
 
