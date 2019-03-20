@@ -14,14 +14,14 @@
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ovb-master
     parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
-    branches: ^master$
+    branches: ^(?!stable/(newton|ocata|pike|queens|rocky)).*$
     required-projects:
       - git.openstack.org/openstack/openstack-virtual-baremetal
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-ovb-master
     parent: tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039
-    branches: ^master$
+    branches: ^(?!stable/(newton|ocata|pike|queens|rocky)).*$
     required-projects:
       - git.openstack.org/openstack/openstack-virtual-baremetal
     voting: false
@@ -77,6 +77,17 @@
       featureset: '020'
       branch_override: "stable/rocky"
       release: rocky
+
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-stein
+    parent: tripleo-ci-base-ovb-rdo
+    override-checkout: "stable/stein"
+    timeout: 18000
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '020'
+      branch_override: "stable/stein"
+      release: stein
 
 # Job for testing featureset002 changes
 - job:
@@ -188,6 +199,15 @@
       featureset: '001'
       branch_override: "stable/rocky"
 
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-stein-branch
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^master$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      branch_override: "stable/stein"
+
 # legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
@@ -199,6 +219,15 @@
       cloud_name: vexxhost
     nodeset: upstream-centos-7-vexxhost
 
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-stein-vexxhost
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^stable/stein$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      cloud_name: vexxhost
+    nodeset: upstream-centos-7-vexxhost
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky-vexxhost
@@ -241,6 +270,7 @@
         - baremetal-full-overcloud-prep.yml
         - baremetal-full-overcloud.yml
         - baremetal-full-overcloud-validate.yml
+
 # =================  P E R I O D I C   J O B S
 
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master

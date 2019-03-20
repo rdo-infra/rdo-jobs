@@ -152,6 +152,15 @@
       featureset: '010'
       release: master
 
+- job:
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-stein
+    parent: tripleo-ci-base-multinode-periodic
+    vars:
+      nodes: 1ctlr
+      featureset: '010'
+      branch_override: "stable/stein"
+      release: stein
+
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-rocky
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-rocky
