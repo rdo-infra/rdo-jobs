@@ -32,7 +32,6 @@
       featureset: '052'
       rdoinfo_release: master
       rdoinfo_phase: testing
-      rdoinfo_build_containers: true
       standalone_ceph: true
       featureset_override:
         standalone_container_cli: docker
@@ -130,6 +129,7 @@
     name: rdoinfo-tripleo-stein-centos-7-scenario001-standalone
     parent: tripleo-ci-base-standalone-rdo
     run: playbooks/run-rdoinfo.yaml
+    override-checkout: 'stable/stein'
     vars:
       featureset: '052'
       rdoinfo_release: stein
@@ -152,11 +152,38 @@
           - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
 
 - job:
+    name: rdoinfo-tripleo-master-centos-7-scenario004-standalone
+    parent: tripleo-ci-base-standalone-rdo
+    run: playbooks/run-rdoinfo.yaml
+    vars:
+      featureset: '052'
+      rdoinfo_release: master
+      rdoinfo_phase: testing
+      standalone_ceph: true
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario004-standalone.yaml'
+        tempest_plugins:
+          - python2-manila-tests-tempest
+        test_white_regex: ''
+        tempest_workers: 1
+        tempest_extra_config:
+          'share.multitenancy_enabled': 'False'
+          'share.enable_protocols': 'cephfs'
+          'share.capability_snapshot_support': 'False'
+          'share.capability_create_share_from_snapshot_support': 'False'
+        tempest_whitelist:
+          - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps.test_network_basic_ops'
+          - 'manila_tempest_tests.tests.api.test_shares.SharesCephFSTest.test_create_get_delete_share'
+
+- job:
     name: rdoinfo-tripleo-stein-testing-centos-7-standalone-featureset052
     parent: tripleo-ci-base-standalone-rdo
     roles:
       - zuul: openstack/tripleo-ci
     run: playbooks/run-rdoinfo.yaml
+    override-checkout: 'stable/stein'
     vars:
       featureset: '052'
       rdoinfo_release: stein
@@ -176,6 +203,7 @@
     timeout: 10800
     roles:
       - zuul: openstack/tripleo-ci
+    override-checkout: 'stable/stein'
     vars:
       rdoinfo_release: stein
       rdoinfo_phase: testing
@@ -197,6 +225,7 @@
     timeout: 10800
     roles:
       - zuul: openstack/tripleo-ci
+    override-checkout: 'stable/rocky'
     vars:
       rdoinfo_release: rocky
       rdoinfo_phase: testing
@@ -218,6 +247,7 @@
     timeout: 10800
     roles:
       - zuul: openstack/tripleo-ci
+    override-checkout: 'stable/rocky'
     vars:
       rdoinfo_release: rocky
       rdoinfo_phase: testing
@@ -239,6 +269,7 @@
     timeout: 10800
     roles:
       - zuul: openstack/tripleo-ci
+    override-checkout: 'stable/rocky'
     vars:
       rdoinfo_release: rocky
       rdoinfo_phase: release
@@ -260,6 +291,7 @@
     timeout: 10800
     roles:
       - zuul: openstack/tripleo-ci
+    override-checkout: 'stable/queens'
     vars:
       rdoinfo_release: queens
       rdoinfo_phase: testing
@@ -281,6 +313,7 @@
     timeout: 10800
     roles:
       - zuul: openstack/tripleo-ci
+    override-checkout: 'stable/queens'
     vars:
       rdoinfo_release: queens
       rdoinfo_phase: testing
@@ -302,6 +335,7 @@
     timeout: 10800
     roles:
       - zuul: openstack/tripleo-ci
+    override-checkout: 'stable/queens'
     vars:
       rdoinfo_release: queens
       rdoinfo_phase: release
@@ -323,6 +357,7 @@
     timeout: 10800
     roles:
       - zuul: openstack/tripleo-ci
+    override-checkout: 'stable/pike'
     vars:
       rdoinfo_release: pike
       rdoinfo_phase: testing
@@ -344,6 +379,7 @@
     timeout: 10800
     roles:
       - zuul: openstack/tripleo-ci
+    override-checkout: 'stable/pike'
     vars:
       rdoinfo_release: pike
       rdoinfo_phase: release
@@ -365,6 +401,7 @@
     timeout: 10800
     roles:
       - zuul: openstack/tripleo-ci
+    override-checkout: 'stable/ocata'
     vars:
       rdoinfo_release: ocata
       rdoinfo_phase: testing
@@ -386,6 +423,7 @@
     timeout: 10800
     roles:
       - zuul: openstack/tripleo-ci
+    override-checkout: 'stable/ocata'
     vars:
       rdoinfo_release: ocata
       rdoinfo_phase: release
