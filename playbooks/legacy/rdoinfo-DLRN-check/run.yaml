@@ -86,13 +86,14 @@
           . .venv/bin/activate
           pip install rdopkg
 
-          CURRENT_MASTER_TAG="stein-uc"
+          CURRENT_MASTER_TAG="train-uc"
 
           PACKAGES_UPDATED_MASTER=""
           PACKAGES_UPDATED_OCATA=""
           PACKAGES_UPDATED_PIKE=""
           PACKAGES_UPDATED_QUEENS=""
           PACKAGES_UPDATED_ROCKY=""
+          PACKAGES_UPDATED_STEIN=""
 
           TAGS_DIFF=$(rdopkg info-tags-diff .)
 
@@ -100,6 +101,9 @@
               PKGNAME=$(awk '{print $1}' <<< $line)
               if [[ -n $(echo "$line" | grep -w $CURRENT_MASTER_TAG) ]]; then
                   PACKAGES_UPDATED_MASTER="$PACKAGES_UPDATED_MASTER $PKGNAME"
+              fi
+              if [[ -n $(echo "$line" | grep -w stein) ]]; then
+                  PACKAGES_UPDATED_STEIN="$PACKAGES_UPDATED_STEIN $PKGNAME"
               fi
               if [[ -n $(echo "$line" | grep -w rocky) ]]; then
                   PACKAGES_UPDATED_ROCKY="$PACKAGES_UPDATED_ROCKY $PKGNAME"
@@ -120,6 +124,16 @@
           ret=0
           if [ -n "${PACKAGES_UPDATED_MASTER}" ]; then
               timeout --signal=SIGKILL 10800  {{ ansible_user_dir }}/rdoinfo-DLRN.sh $CURRENT_MASTER_TAG "${PACKAGES_UPDATED_MASTER}"
+              ret1=$?
+              if [ $ret1 -ne 0 ]; then
+                  ret=$ret1
+              fi
+              # The data/ contents have been archived already, remove to avoid issues with the next branch
+              rm -rf data
+              sudo rm -rf /var/cache/mock/*
+          fi
+          if [ -n "${PACKAGES_UPDATED_STEIN}" ]; then
+              timeout --signal=SIGKILL 10800 {{ ansible_user_dir }}/rdoinfo-DLRN.sh stein "${PACKAGES_UPDATED_STEIN}"
               ret1=$?
               if [ $ret1 -ne 0 ]; then
                   ret=$ret1
