@@ -352,7 +352,7 @@
     post-run: playbooks/legacy/validate-buildsys-tags/post.yaml
     required-projects:
       - review.rdoproject.org/gating_scripts
-    timeout: 5400
+    timeout: 10800
 
 - job:
     name: legacy-weirdo-ansible-lint
