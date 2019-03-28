@@ -31,23 +31,6 @@
       fedora_centos_mixed_distribution_job: true
 
 - job:
-    name: rdoinfo-tripleo-master-testing-centos-7-standalone-featureset052
-    parent: tripleo-ci-base-standalone-rdo
-    roles:
-      - zuul: openstack-infra/tripleo-ci
-    run: playbooks/run-rdoinfo.yaml
-    vars:
-      featureset: '052'
-      rdoinfo_release: master
-      rdoinfo_phase: testing
-    required-projects:
-      - openstack/tripleo-quickstart
-      - openstack/tripleo-quickstart-extras
-      - openstack/tripleo-upgrade
-      - openstack/browbeat
-      - rdoinfo
-
-- job:
     name: periodic-tripleo-ci-fedora-28-standalone-master
     parent: tripleo-ci-base-standalone-periodic
     nodeset: single-upstream-fedora-28-node
