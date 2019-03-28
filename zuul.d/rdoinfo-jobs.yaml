@@ -110,6 +110,48 @@
           - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps.test_network_basic_ops'
 
 - job:
+    name: rdoinfo-tripleo-stein-testing-centos-7-multinode-1ctlr-featureset016
+    parent: tripleo-ci-base-multinode-rdo
+    run: playbooks/run-rdoinfo.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      rdoinfo_release: stein
+      rdoinfo_phase: testing
+      branch_override: "stable/stein"
+      featureset: '016'
+      nodes: 1ctlr
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - openstack/browbeat
+      - rdoinfo
+
+- job:
+    name: rdoinfo-tripleo-stein-testing-centos-7-multinode-1ctlr-featureset030
+    parent: tripleo-ci-base-multinode-rdo
+    run: playbooks/run-rdoinfo.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      rdoinfo_release: stein
+      rdoinfo_phase: testing
+      branch_override: "stable/stein"
+      featureset: '030'
+      nodes: 1ctlr
+    required-projects:
+      - openstack-infra/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - openstack/browbeat
+      - rdoinfo
+
+- job:
     name: rdoinfo-tripleo-rocky-testing-centos-7-multinode-1ctlr-featureset016
     parent: tripleo-ci-base-multinode-rdo
     run: playbooks/run-rdoinfo.yaml
