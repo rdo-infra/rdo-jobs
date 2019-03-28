@@ -29,7 +29,7 @@
           # This job requires variables 'rdoinfo_release' and 'rdoinfo_phase' to be defined.
 
           REQUIRED=0
-          MASTER_RELEASE=stein
+          MASTER_RELEASE=train
           CREPOS_FILE=changed_repos.txt
 
           if [ -z "{{ rdoinfo_phase|default("") }}" -o -z "{{ rdoinfo_release|default("") }}" ]; then
@@ -287,7 +287,7 @@
             fi
 
             if [ "{{ rdoinfo_release }}" = "master" ]; then
-                O_RELEASE="stein"
+                O_RELEASE="train"
             else
                 O_RELEASE="{{ rdoinfo_release }}"
             fi
