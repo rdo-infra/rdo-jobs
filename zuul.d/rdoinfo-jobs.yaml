@@ -70,6 +70,24 @@
       - openstack/browbeat
       - rdoinfo
 
+
+- job:
+    name: rdoinfo-tripleo-master-testing-centos-7-standalone-featureset052
+    parent: tripleo-ci-base-standalone-rdo
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    run: playbooks/run-rdoinfo.yaml
+    vars:
+      featureset: '052'
+      rdoinfo_release: master
+      rdoinfo_phase: testing
+    required-projects:
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - openstack/browbeat
+      - rdoinfo
+
 - job:
     name: rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset030
     parent: tripleo-ci-base-multinode-rdo
@@ -108,6 +126,69 @@
         tempest_workers: 1
         tempest_whitelist:
           - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps.test_network_basic_ops'
+
+- job:
+    name: rdoinfo-tripleo-stein-centos-7-scenario001-standalone
+    parent: tripleo-ci-base-standalone-rdo
+    run: playbooks/run-rdoinfo.yaml
+    vars:
+      featureset: '052'
+      rdoinfo_release: stein
+      rdoinfo_phase: testing
+      standalone_ceph: true
+      branch_override: "stable/stein"
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario001-standalone.yaml'
+        tempest_plugins:
+          - python-telemetry-tests-tempest
+          - python-heat-tests-tempest
+        test_white_regex: ''
+        tempest_workers: 1
+        tempest_extra_config: {'telemetry.alarm_granularity': '60'}
+        tempest_whitelist:
+          - 'tempest.api.identity.v3'
+          - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern.test_volume_boot_pattern'
+          - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
+
+- job:
+    name: rdoinfo-tripleo-stein-testing-centos-7-standalone-featureset052
+    parent: tripleo-ci-base-standalone-rdo
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    run: playbooks/run-rdoinfo.yaml
+    vars:
+      featureset: '052'
+      rdoinfo_release: stein
+      rdoinfo_phase: testing
+      branch_override: "stable/stein"
+    required-projects:
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - openstack/browbeat
+      - rdoinfo
+
+# standalone counterpart for featurset030 multinode job
+- job:
+    name: rdoinfo-tripleo-stein-centos-7-scenario007-standalone
+    parent: tripleo-ci-base-standalone-rdo
+    run: playbooks/run-rdoinfo.yaml
+    vars:
+      featureset: '052'
+      rdoinfo_release: stein
+      rdoinfo_phase: testing
+      branch_override: "stable/stein"
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario007-standalone.yaml'
+        test_white_regex: ''
+        tempest_workers: 1
+        tempest_whitelist:
+          - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps.test_network_basic_ops'
+
 
 - job:
     name: rdoinfo-tripleo-rocky-testing-centos-7-multinode-1ctlr-featureset016
