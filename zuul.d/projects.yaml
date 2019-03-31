@@ -4,6 +4,10 @@
       jobs:
         - tox-docs:
             nodeset: container-centos
+        - periodic-tripleo-centos-7-rocky-containers-build-push:
+            push_containers: false
+        - periodic-tripleo-centos-7-master-containers-build-push:
+            push_containers: false
     gate:
       jobs:
         - tox-docs:
