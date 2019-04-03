@@ -50,13 +50,15 @@
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
           - 'ci/environments/scenario001-standalone.yaml'
-        tempest_plugins:
-          - python-telemetry-tests-tempest
-          - python-heat-tests-tempest
-        test_white_regex: ''
-        tempest_workers: 1
-        tempest_extra_config: {'telemetry.alarm_granularity': '60'}
-        tempest_whitelist:
+        tempest_services:
+          - aodh
+        run_tempest: false
+        use_os_tempest: true
+        tempest_run_concurrency: 1
+        tempest_tempest_conf_overrides:
+          telemetry.alarm_granularity: '60'
+          auth.tempest_roles: "Member"
+        tempest_test_whitelist:
           - 'tempest.api.identity.v3'
           - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern.test_volume_boot_pattern'
           - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
