@@ -53,11 +53,12 @@
           ZUUL_REF=$(echo $ZUUL_REF |cut -f4 -d /)
           job="validate-buildsys-tags"
           LOG_PATH="$BASE_LOG_PATH/$ZUUL_PIPELINE/$job/$ZUUL_REF"
-          logs="https://logs.rdoproject.org/$LOG_PATH/"
+          
+          "https://logs.rdoproject.org/$LOG_PATH/"
 
           # NOTE(pabelanger): Override logs for zuulv3 jobs.
           if [[ -d /home/zuul ]]; then
-              logs={{ buildset_artifacts_url }}
+              logs={{ buildset_artifacts_url|default("http://logs.rdoproject.org/57/19157/8/check/legacy-validate-buildsys-tags/4ff82cd/buildset/") }}
           fi
 
           # If we could not find a working repository, give up
@@ -300,7 +301,7 @@
 
             # NOTE(pabelanger): Override logs for zuulv3 jobs.
             if [[ -d /home/zuul ]]; then
-                logs={{ buildset_artifacts_url }}
+                logs={{ buildset_artifacts_url|default("http://logs.rdoproject.org/57/19157/8/check/legacy-validate-buildsys-tags/4ff82cd/buildset/") }}
             fi
 
             REPO="cloud7-openstack-$O_RELEASE-{{ rdoinfo_phase }}"
