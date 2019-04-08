@@ -302,7 +302,7 @@
     nodeset: single-upstream-fedora-28-node
 
 - job:
-    name: tripleo-ci-centos7-standalone-rdo
+    name: tripleo-ci-centos-7-standalone-rdo
     parent: tripleo-ci-base-standalone-rdo
     vars:
       featureset: '052'
