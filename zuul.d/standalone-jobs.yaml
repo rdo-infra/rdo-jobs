@@ -300,3 +300,16 @@
     name: periodic-tripleo-ci-fedora-28-scenario004-standalone-stein
     parent: periodic-tripleo-ci-centos-7-scenario004-standalone-stein
     nodeset: single-upstream-fedora-28-node
+
+- job:
+    name: tripleo-ci-centos7-standalone-rdo
+    parent: tripleo-ci-base-standalone-rdo
+    vars:
+      featureset: '052'
+
+- job:
+    name: tripleo-ci-fedora-28-standalone-rdo
+    parent: tripleo-ci-base-standalone-rdo
+    nodeset: single-upstream-fedora-28-node
+    vars:
+      featureset: '052'
