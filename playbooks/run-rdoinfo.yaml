@@ -112,6 +112,11 @@
                   echo "  - type: package"
                   echo "    pkg_name: centos-release-openstack-$O_RELEASE"
                   echo "    custom_cmd: 'sudo yum install -y --enablerepo=extras'"
+              elif [ "{{ rdoinfo_release }}" == "master" ]
+                  echo "  - type: generic"
+                  echo "    reponame: quickstart-centos-ceph-nautilus"
+                  echo "    filename: quickstart-centos-ceph-nautilus.repo"
+                  echo "    baseurl: https://buildlogs.centos.org/centos/7/storage/x86_64/ceph-nautilus/"
               else
                   echo "  - type: package"
                   echo "    pkg_name: centos-release-ceph-luminous"
