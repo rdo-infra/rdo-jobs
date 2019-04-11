@@ -112,6 +112,11 @@
                   echo "  - type: package"
                   echo "    pkg_name: centos-release-openstack-$O_RELEASE"
                   echo "    custom_cmd: 'sudo yum install -y --enablerepo=extras'"
+              elif [[ ("{{ rdoinfo_release }}" == "master" ) || ("{{ rdoinfo_release }}" == "stein" ) ]]; then
+                  echo "  - type: generic"
+                  echo "    reponame: quickstart-centos-ceph-nautilus"
+                  echo "    filename: quickstart-centos-ceph-nautilus.repo"
+                  echo "    baseurl: http://mirror.centos.org/centos/7/storage/x86_64/ceph-nautilus"
               else
                   echo "  - type: package"
                   echo "    pkg_name: centos-release-ceph-luminous"
@@ -200,7 +205,7 @@
               echo "  ceph-ansible"
               if [[ ( "{{ rdoinfo_release }}" != "ocata" ) && ("{{ rdoinfo_release }}" != "pike" ) ]];then
                   echo "update_containers: true"
-                  echo "gating_repo_name: temp-*,gating-repo"
+                  echo "gating_repo_name: temp-*,gating-repo,quickstart-centos-ceph-nautilus"
               fi
           }
 
