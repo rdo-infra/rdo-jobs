@@ -1,0 +1,24 @@
+---
+- hosts: primary
+  tasks:
+    - name: Check script existence
+      stat:
+        path: "{{ ansible_user_dir  }}/workspace/logs/collect_logs.sh"
+      register: collect_logs_path
+
+    - name: Copy collect_logs.sh if exists to reuse
+      shell: cp "{{ ansible_user_dir  }}/workspace/logs/collect_logs.sh" "{{ ansible_user_dir  }}/collect_logs.sh"
+      when: collect_logs_path.stat.exists
+
+    - name: Build containers post tasks
+      when:
+        - rdoinfo_build_containers|default(false)
+      block:
+        - name: Run build containers post tasks
+          include_role:
+            name: build-containers
+            tasks_from: post
+
+    - name: Copy collect_logs.sh back to logs directory if exists
+      shell: cp "{{ ansible_user_dir  }}/collect_logs.sh" "{{ ansible_user_dir  }}/workspace/logs/collect_logs.sh"
+      when: collect_logs_path.stat.exists
