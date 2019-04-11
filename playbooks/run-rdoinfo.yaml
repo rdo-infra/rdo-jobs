@@ -80,6 +80,14 @@
           COMMON_RELEASE_TAG="cloud7-openstack-common-release"
           COMMON_TESTING=$(grep -c $COMMON_TESTING_TAG $CREPOS_FILE)
           COMMON_RELEASE=$(grep -c $COMMON_RELEASE_TAG $CREPOS_FILE)
+          sudo pip install shyaml
+          PROMOTED_TAG="current-tripleo"
+          HASHES_URL="https://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/$PROMOTED_TAG/commit.yaml"
+          curl -sLo commit.yaml $HASHES_URL
+          COMMIT_HASH=$(shyaml get-value commits.0.commit_hash < commit.yaml)
+          DISTRO_HASH=$(shyaml get-value commits.0.distro_hash < commit.yaml)
+          FULL_HASH=${COMMIT_HASH}_${DISTRO_HASH:0:8}
+          rm commit.yaml
 
           function create_config(){
               echo "artg_skipped_projects:"
@@ -89,17 +97,17 @@
                   echo "run_tempest: false"
                   echo "test_ping: true"
               fi
-              echo "dlrn_hash_tag: current-tripleo"
+              echo "dlrn_hash_tag: $PROMOTED_TAG"
               echo "docker_registry_namespace: tripleo{{ rdoinfo_release }}"
-              echo "docker_image_tag: current-tripleo"
-              echo "overcloud_image_url: http://images.rdoproject.org/{{ rdoinfo_release }}/rdo_trunk/current-tripleo/overcloud-full.tar"
-              echo "ipa_image_url: http://images.rdoproject.org/{{ rdoinfo_release }}/rdo_trunk/current-tripleo/ironic-python-agent.tar"
+              echo "docker_image_tag: $FULL_HASH"
+              echo "overcloud_image_url: http://images.rdoproject.org/{{ rdoinfo_release }}/rdo_trunk/$PROMOTED_TAG/overcloud-full.tar"
+              echo "ipa_image_url: http://images.rdoproject.org/{{ rdoinfo_release }}/rdo_trunk/$PROMOTED_TAG/ironic-python-agent.tar"
               echo "images:"
               echo "  - name: overcloud-full"
-              echo "    url: http://images.rdoproject.org/{{ rdoinfo_release }}/rdo_trunk/current-tripleo/overcloud-full.tar"
+              echo "    url: http://images.rdoproject.org/{{ rdoinfo_release }}/rdo_trunk/$PROMOTED_TAG/overcloud-full.tar"
               echo "    type: tar"
               echo "  - name: ipa_images"
-              echo "    url: http://images.rdoproject.org/{{ rdoinfo_release }}/rdo_trunk/current-tripleo/ironic-python-agent.tar"
+              echo "    url: http://images.rdoproject.org/{{ rdoinfo_release }}/rdo_trunk/$PROMOTED_TAG/ironic-python-agent.tar"
               echo "    type: tar"
               echo "repo_cmd_before: |"
               echo "  sudo yum remove -y rdo-release centos-release-openstack-* centos-release-ceph-* || true;"
@@ -199,8 +207,14 @@
               echo "  python-tripleoclient"
               echo "  ceph-ansible"
               if [[ ( "{{ rdoinfo_release }}" != "ocata" ) && ("{{ rdoinfo_release }}" != "pike" ) ]];then
-                  echo "update_containers: true"
-                  echo "gating_repo_name: temp-*,gating-repo"
+                  if [[ ( "{{ rdoinfo_build_containers|default(false) | lower }}" == "true" ) ]];then
+                      echo "update_containers: false"
+                      echo "docker_registry_host: docker.io"
+                      echo "standalone_container_prep_updates: false"
+                  else
+                      echo "update_containers: true"
+                      echo "gating_repo_name: temp-*"
+                  fi
               fi
           }
 
@@ -212,7 +226,7 @@
                   STABLE_REPOSITORIES=true
                   TESTING_REPOSITORY=true
               else
-                  REPOS_URL="http://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/current-tripleo/delorean.repo http://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/delorean-deps.repo"
+                  REPOS_URL="http://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/$PROMOTED_TAG/delorean.repo http://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/delorean-deps.repo"
                   STABLE_REPOSITORIES=false
                   TESTING_REPOSITORY=false
                   delorean_current_url=`curl --silent https://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/current/delorean.repo -S  | grep baseurl | cut -d= -f2`
@@ -253,111 +267,53 @@
         path: "{{ workspace }}/not_required"
       register: stop_file
 
-    - name: Build Container images
+    - name: Run build container pre tasks always, as reset_connection don't work with condition
       block:
-       - name: Build Container images
-         shell:
-          cmd: |
-            set -ex
+        - name: Apply repos using tripleo-repos role
+          include_role:
+            name: tripleo-repos
+          vars:
+            override_repos: "{{ buildcontainers_override_repos | default('') }}"
+            tripleo_repos_repository: "{{ ansible_user_dir }}/{{ zuul.projects['opendev.org/openstack/tripleo-repos'].src_dir }}"
+        - name: Install deps using bindep role
+          include_role:
+            name: bindep
+          vars:
+            bindep_dir: "{{ ansible_user_dir }}/{{ zuul.projects['opendev.org/openstack/python-tripleoclient'].src_dir }}"
+        - name: Run build containers pre tasks
+          include_role:
+            name: build-containers
+            tasks_from: pre
 
-            echo ======== BUILD CONTAINERS IMAGES
-            WORKSPACE="{{ ansible_user_dir }}/workspace"
-            RELEASE="{{ rdoinfo_release|default("master") }}"
-
-            # Retrieve role
-            mkdir -p $WORKSPACE/roles
-            pushd $WORKSPACE/roles
-                git clone https://github.com/rdo-infra/ansible-role-rdo-kolla-build rdo-kolla-build
-                pushd rdo-kolla-build
-                    git pull https://review.rdoproject.org/r/rdo-infra/ansible-role-rdo-kolla-build refs/changes/57/18557/3
-                popd
-            popd
-
-            TESTING_TAG="current-tripleo"
-            sudo pip install shyaml
-            HASHES_URL=https://trunk.rdoproject.org/centos7-$RELEASE/$TESTING_TAG/commit.yaml
-            curl -sLo $WORKSPACE/commit.yaml $HASHES_URL
-            COMMIT_HASH=$(shyaml get-value commits.0.commit_hash < $WORKSPACE/commit.yaml)
-            DISTRO_HASH=$(shyaml get-value commits.0.distro_hash < $WORKSPACE/commit.yaml)
-            FULL_HASH=${COMMIT_HASH}_${DISTRO_HASH:0:8}
-            # Delete any leftover configuration ansible
-            rm -f $WORKSPACE/ansible.cfg
-            # devstack gate sets this, but conflicts with anything else
-            unset ANSIBLE_STDOUT_CALLBACK
-            export ANSIBLE_HOST_KEY_CHECKING=False
-            export ANSIBLE_ROLES_PATH="$WORKSPACE/roles"
-
-            # Retain the lack of arch in namespace for x86_64 containers
-            if [ "$CPU_ARCH" = "x86_64" ] || [ "$CPU_ARCH" = "" ]; then
-                CPU_ARCH=""
-            else
-                CPU_ARCH="-$CPU_ARCH"
-            fi
-
-            if [ "{{ rdoinfo_release }}" = "master" ]; then
-                O_RELEASE="train"
-            else
-                O_RELEASE="{{ rdoinfo_release }}"
-            fi
-
-            # Re-construct the expected repository URL
-            ZUUL_REF=$(echo $ZUUL_REF |cut -f4 -d /)
-            job="validate-buildsys-tags"
-            LOG_PATH="$BASE_LOG_PATH/$ZUUL_PIPELINE/$job/$ZUUL_REF"
-            logs="https://logs.rdoproject.org/$LOG_PATH/"
-
-            # NOTE(pabelanger): Override logs for zuulv3 jobs.
-            if [[ -d /home/zuul ]]; then
-                logs={{ buildset_artifacts_url }}
-            fi
-
-            REPO="cloud7-openstack-$O_RELEASE-{{ rdoinfo_phase }}"
-            REPOS_URL="$logs/repos/$REPO/temp-$REPO.repo"
-
-            cat << EOF > $WORKSPACE/playbook.yml
-            ---
-            - name: Build Kolla images
-              hosts: localhost
-              become: yes
-              become_user: root
-              vars:
-                kolla_registry: "docker.io"
-                kolla_namespace: "tripleo${RELEASE}${CPU_ARCH}"
-                kolla_tag: "$FULL_HASH"
-                kolla_base_image: "centos"
-                kolla_base_tag: "7"
-                openstack_release: "$RELEASE"
-                trunk_repository: "https://trunk.rdoproject.org/centos7-$RELEASE/$TESTING_TAG/delorean.repo"
-                extra_rpm_repos: ["$REPOS_URL"]
-              tasks:
-                - include_role:
-                    name: "rdo-kolla-build"
-            EOF
-
-            virtualenv --system-site-packages $WORKSPACE/ansible
-            source $WORKSPACE/ansible/bin/activate
-            pip install ansible==2.5.2
-
-            ansible-playbook $WORKSPACE/playbook.yml -e kolla_threads=16
-
-            echo ======== BUILD CONTAINERS IMAGES COMPLETED
-          chdir: '{{ ansible_user_dir }}/workspace'
-         environment: '{{ zuul | zuul_legacy_vars }}'
-
-      always:
-       - name: Copy kolla logs
-         shell: |
-             export LOG_PATH="{{ workspace }}/logs"
-             mkdir -p $LOG_PATH
-             cp -a /tmp/kolla $LOG_PATH/
-             # Ensure permissions allow artifact uploading
-             sudo chown -R "$(id -u).$(id -g)" $LOG_PATH
-         args:
-           chdir: "{{ workspace }}"
-         environment: "{{ zuul | zuul_legacy_vars }}"
+    - name: Build containers using build-containers role
       when:
         - not stop_file.stat.exists
         - rdoinfo_build_containers|default(false)
+      block:
+        - name: Set repo facts
+          set_fact:
+            buildsys_tag: "cloud7-openstack-{{ rdoinfo_release }}-{{ rdoinfo_phase }}"
+            delorean_repos: "http://172.17.0.1/delorean.repo,http://172.17.0.1/delorean-{{ rdoinfo_release }}-testing.repo"
+        - name: set url
+          set_fact:
+            extra_repo_url: "{{ buildset_artifacts_url | default('') }}/repos/{{ buildsys_tag }}/temp-{{ buildsys_tag }}.repo"
+          when: buildset_artifacts_url is defined
+        - name: install customized buildah
+          become: true
+          package:
+            name: "https://cbs.centos.org/kojifiles/work/tasks/1763/791763/buildah-1.7.1-3.git93747b1.el7.x86_64.rpm"
+            state: present
+        - name: Build Containers
+          include_role:
+            name: build-containers
+          vars:
+            buildcontainers_rpm_setup_config: "{{ delorean_repos }},{{ extra_repo_url | default('') }}"
+        - name: disable and stop docker-distribution
+          systemd:
+            enabled: false
+            state: stopped
+            name: docker-distribution
+          become: true
 
     - name: inject release file into quickstart
       shell:
