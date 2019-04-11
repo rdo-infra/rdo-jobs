@@ -27,7 +27,9 @@
 - job:
     name: rdoinfo-tripleo-master-centos-7-scenario001-standalone
     parent: tripleo-ci-base-standalone-rdo
+    pre-run: playbooks/tripleo-buildcontainers/pre.yaml
     run: playbooks/run-rdoinfo.yaml
+    post-run: playbooks/tripleo-buildcontainers/post.yaml
     vars:
       featureset: '052'
       rdoinfo_release: master
@@ -49,6 +51,13 @@
           - 'tempest.api.identity.v3'
           - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern.test_volume_boot_pattern'
           - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
+    required-projects:
+      - git.openstack.org/openstack/ansible-role-container-registry
+      - git.openstack.org/openstack/kolla
+      - git.openstack.org/openstack/python-tripleoclient
+      - git.openstack.org/openstack/requirements
+      - git.openstack.org/openstack/tripleo-common
+      - git.openstack.org/openstack/tripleo-repos
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset010
