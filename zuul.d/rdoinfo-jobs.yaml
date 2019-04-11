@@ -49,6 +49,13 @@
           - 'tempest.api.identity.v3'
           - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern.test_volume_boot_pattern'
           - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
+    required-projects:
+      - git.openstack.org/openstack/ansible-role-container-registry
+      - git.openstack.org/openstack/kolla
+      - git.openstack.org/openstack/python-tripleoclient
+      - git.openstack.org/openstack/requirements
+      - git.openstack.org/openstack/tripleo-common
+      - git.openstack.org/openstack/tripleo-repos
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset010
@@ -136,6 +143,7 @@
       rdoinfo_phase: testing
       standalone_ceph: true
       branch_override: "stable/stein"
+      rdoinfo_build_containers: true
       featureset_override:
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
@@ -150,6 +158,13 @@
           - 'tempest.api.identity.v3'
           - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern.test_volume_boot_pattern'
           - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
+    required-projects:
+      - git.openstack.org/openstack/ansible-role-container-registry
+      - git.openstack.org/openstack/kolla
+      - git.openstack.org/openstack/python-tripleoclient
+      - git.openstack.org/openstack/requirements
+      - git.openstack.org/openstack/tripleo-common
+      - git.openstack.org/openstack/tripleo-repos
 
 - job:
     name: rdoinfo-tripleo-stein-testing-centos-7-standalone-featureset052
