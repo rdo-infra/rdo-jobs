@@ -1,0 +1,11 @@
+---
+- hosts: primary
+  tasks:
+    - name: Build containers post tasks
+      when:
+        - rdoinfo_build_containers|default(false)
+      block:
+        - name: Run build containers post tasks
+          include_role:
+            name: build-containers
+            tasks_from: post
