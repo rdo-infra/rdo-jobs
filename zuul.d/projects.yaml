@@ -2,11 +2,7 @@
     name: rdo-jobs
     check:
       jobs:
-        - tox-docs:
-            nodeset: container-centos
-        - periodic-tripleo-ci-centos-7-standalone-master:
-            files:
-              - zuul.d/standalone-jobs.yaml
+        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master
     gate:
       jobs:
         - tox-docs:
