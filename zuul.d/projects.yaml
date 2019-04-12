@@ -2,8 +2,9 @@
     name: rdo-jobs
     check:
       jobs:
-        - tox-docs:
-            nodeset: container-centos
+        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master
+        - periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset020-master
+        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master
     gate:
       jobs:
         - tox-docs:
