@@ -26,7 +26,12 @@
       featureset: '052'
       release: master
       featureset_override:
-        test_white_regex: '.*'
+        run_tempest: false
+        tempest_run_concurrency: 2
+        tempest_test_whitelist:
+          - 'api'
+          - 'scenario'
+        use_os_tempest: true
 
 - job:
     name: periodic-tripleo-ci-fedora-28-centos-7-containers-standalone-master
