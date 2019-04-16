@@ -20,6 +20,13 @@
         use_os_tempest: true
 
 - job:
+    name: periodic-tripleo-ci-centos-7-standalone-upgrade-master
+    parent: tripleo-ci-base-standalone-upgrade-periodic
+    vars:
+      featureset: '056'
+      release: master
+
+- job:
     name: periodic-tripleo-ci-centos-7-standalone-full-tempest-master
     parent: periodic-tripleo-ci-centos-7-standalone-master
     vars:
@@ -181,6 +188,15 @@
     vars:
       featureset: '052'
       branch_override: "stable/stein"
+      release: stein
+
+- job:
+    name: periodic-tripleo-ci-centos-7-standalone-upgrade-stein
+    parent: tripleo-ci-base-standalone-upgrade-periodic
+    override-checkout: 'stable/stein'
+    vars:
+      featureset: '056'
+      branch_override: 'stable/stein'
       release: stein
 
 - job:
