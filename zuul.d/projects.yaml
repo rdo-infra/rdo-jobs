@@ -7,6 +7,10 @@
         - periodic-tripleo-ci-centos-7-standalone-master:
             files:
               - zuul.d/standalone-jobs.yaml
+        - periodic-tripleo-ci-centos-7-standalone-upgrade-master:
+            files:
+              - zuul.d/standalone-jobs.yaml
+
     gate:
       jobs:
         - tox-docs:
