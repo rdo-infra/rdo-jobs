@@ -244,6 +244,7 @@
     parent: tripleo-ci-base-ovb-rdo
     timeout: 12600
     branches: "^.*$"
+    voting: false
     vars:
       nodes: 3ctlr_1comp_1supp
       featureset: '039'
