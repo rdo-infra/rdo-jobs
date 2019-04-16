@@ -21,18 +21,10 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-upgrade-master
-    parent: tripleo-ci-base-standalone-periodic
+    parent: tripleo-ci-base-standalone-upgrade-periodic
     vars:
       featureset: '056'
       release: master
-      playbooks:
-        - quickstart.yml
-        - multinode-standalone.yml
-        - multinode-standalone-upgrade.yml
-      tags:
-        - standalone
-      extra_tags:
-        - standalone-upgrade
 
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-full-tempest-master
