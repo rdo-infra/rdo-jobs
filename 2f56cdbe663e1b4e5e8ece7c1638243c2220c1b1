@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b43f26b9_2208df7d",
+        "filename": "zuul.d/standalone-jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2019-04-17T12:34:25Z",
+      "side": 1,
+      "message": "it fails on this one... basically getting a permission denied trying to create /root/DLRN for the task in https://github.com/openstack/tripleo-quickstart-extras/blob/3a64d8cdaa035f1bb4f8cb1bc5e04bbf13703eb7/roles/build-test-packages/tasks/main.yml#L75-L78\n\nfrom https://github.com/openstack/tripleo-quickstart-extras/blob/3a64d8cdaa035f1bb4f8cb1bc5e04bbf13703eb7/playbooks/multinode-standalone-upgrade.yml#L38\n\nany ideas? Is it because I\u0027m including thses playbooks here instead of parenting on the upstream? See \"Test Req\" for info here https://tree.taiga.io/project/tripleo-ci-board/task/990\n\nor will we hit that anyway ... i can try the other way as well so we\u0027ll se...",
+      "range": {
+        "startLine": 40,
+        "startChar": 20,
+        "endLine": 40,
+        "endChar": 39
+      },
+      "revId": "2f56cdbe663e1b4e5e8ece7c1638243c2220c1b1",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
