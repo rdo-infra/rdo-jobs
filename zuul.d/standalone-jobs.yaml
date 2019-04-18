@@ -25,6 +25,15 @@
     vars:
       featureset: '056'
       release: master
+      featureset_override:
+        run_tempest: false
+        tempest_run_concurrency: 2
+        tempest_test_whitelist:
+          - 'tempest.scenario.test_minimum_basic.TestMinimumBasicScenario'
+          - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps'
+          - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern'
+          - '\[.*\bsmoke\b.*\]'
+        use_os_tempest: false
       playbooks:
         - quickstart.yml
         - multinode-standalone.yml
