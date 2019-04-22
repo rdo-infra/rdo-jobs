@@ -86,7 +86,7 @@
     post-run: playbooks/legacy/experimental-tripleo-centos-7-master-containers-build/post.yaml
     timeout: 10800
     required-projects:
-      - openstack-infra/devstack-gate
+      - opendev.org/openstack/devstack-gate
 
 - job:
     name: legacy-experimental-weirdo-dlrn-master-packstack-scenario001
