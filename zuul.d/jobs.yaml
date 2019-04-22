@@ -92,7 +92,7 @@
       - playbooks/legacy/multinode-networking/pre.yaml
       - playbooks/legacy/tripleo-ci/ceph.yaml
     roles:
-      - zuul: openstack-infra/zuul-jobs
+      - zuul: zuul/zuul-jobs
     nodeset: upstream-centos-7-2-node
 
 # NOTE(pabelanger): We parent to legacy-tripleo-ci-periodic-base here because we
@@ -109,7 +109,7 @@
       - playbooks/legacy/multinode-networking/pre.yaml
       - playbooks/legacy/tripleo-ci/ceph.yaml
     roles:
-      - zuul: openstack-infra/zuul-jobs
+      - zuul: zuul/zuul-jobs
     nodeset: upstream-centos-7-2-node
 
 - job:
@@ -122,7 +122,7 @@
       each other.
     pre-run: playbooks/legacy/multinode-networking/pre.yaml
     roles:
-      - zuul: openstack-infra/zuul-jobs
+      - zuul: zuul/zuul-jobs
     nodeset: upstream-centos-7-2-node
 
 - job:

@@ -9,18 +9,18 @@
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
-      - zuul: openstack-infra/tripleo-ci
+      - zuul: openstack/tripleo-ci
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
       featureset: '016'
       nodes: 1ctlr
     required-projects:
-      - openstack-infra/devstack-gate
+      - openstack/devstack-gate
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
-      - openstack/browbeat
+      - x/browbeat
       - rdoinfo
 
 # standalone counterpart for featurset016 multinode job
@@ -56,25 +56,25 @@
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
-      - zuul: openstack-infra/tripleo-ci
+      - zuul: openstack/tripleo-ci
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
       featureset: '010'
       nodes: 1ctlr
     required-projects:
-      - openstack-infra/devstack-gate
+      - openstack/devstack-gate
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
-      - openstack/browbeat
+      - x/browbeat
       - rdoinfo
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-7-standalone-featureset052
     parent: tripleo-ci-base-standalone-rdo
     roles:
-      - zuul: openstack-infra/tripleo-ci
+      - zuul: openstack/tripleo-ci
     run: playbooks/run-rdoinfo.yaml
     vars:
       featureset: '052'
@@ -84,7 +84,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
-      - openstack/browbeat
+      - x/browbeat
       - rdoinfo
 
 - job:
@@ -93,18 +93,18 @@
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
-      - zuul: openstack-infra/tripleo-ci
+      - zuul: openstack/tripleo-ci
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
       featureset: '030'
       nodes: 1ctlr
     required-projects:
-      - openstack-infra/devstack-gate
+      - openstack/devstack-gate
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
-      - openstack/browbeat
+      - x/browbeat
       - rdoinfo
 
 # standalone counterpart for featurset030 multinode job
@@ -155,7 +155,7 @@
     name: rdoinfo-tripleo-stein-testing-centos-7-standalone-featureset052
     parent: tripleo-ci-base-standalone-rdo
     roles:
-      - zuul: openstack-infra/tripleo-ci
+      - zuul: openstack/tripleo-ci
     run: playbooks/run-rdoinfo.yaml
     vars:
       featureset: '052'
@@ -166,7 +166,7 @@
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
-      - openstack/browbeat
+      - x/browbeat
       - rdoinfo
 
 - job:
@@ -175,7 +175,7 @@
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
-      - zuul: openstack-infra/tripleo-ci
+      - zuul: openstack/tripleo-ci
     vars:
       rdoinfo_release: stein
       rdoinfo_phase: testing
@@ -183,11 +183,11 @@
       nodes: 1ctlr
       branch_override: "stable/stein"
     required-projects:
-      - openstack-infra/devstack-gate
+      - openstack/devstack-gate
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
-      - openstack/browbeat
+      - x/browbeat
       - rdoinfo
 
 - job:
@@ -196,7 +196,7 @@
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
-      - zuul: openstack-infra/tripleo-ci
+      - zuul: openstack/tripleo-ci
     vars:
       rdoinfo_release: rocky
       rdoinfo_phase: testing
@@ -204,11 +204,11 @@
       featureset: '016'
       nodes: 1ctlr
     required-projects:
-      - openstack-infra/devstack-gate
+      - openstack/devstack-gate
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
-      - openstack/browbeat
+      - x/browbeat
       - rdoinfo
 
 - job:
@@ -217,7 +217,7 @@
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
-      - zuul: openstack-infra/tripleo-ci
+      - zuul: openstack/tripleo-ci
     vars:
       rdoinfo_release: rocky
       rdoinfo_phase: testing
@@ -225,11 +225,11 @@
       featureset: '030'
       nodes: 1ctlr
     required-projects:
-      - openstack-infra/devstack-gate
+      - openstack/devstack-gate
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
-      - openstack/browbeat
+      - x/browbeat
       - rdoinfo
 
 - job:
@@ -238,7 +238,7 @@
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
-      - zuul: openstack-infra/tripleo-ci
+      - zuul: openstack/tripleo-ci
     vars:
       rdoinfo_release: rocky
       rdoinfo_phase: release
@@ -246,11 +246,11 @@
       featureset: '016'
       nodes: 1ctlr
     required-projects:
-      - openstack-infra/devstack-gate
+      - openstack/devstack-gate
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
-      - openstack/browbeat
+      - x/browbeat
       - rdoinfo
 
 - job:
@@ -259,7 +259,7 @@
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
-      - zuul: openstack-infra/tripleo-ci
+      - zuul: openstack/tripleo-ci
     vars:
       rdoinfo_release: queens
       rdoinfo_phase: testing
@@ -267,11 +267,11 @@
       featureset: '016'
       nodes: 1ctlr
     required-projects:
-      - openstack-infra/devstack-gate
+      - openstack/devstack-gate
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
-      - openstack/browbeat
+      - x/browbeat
       - rdoinfo
 
 - job:
@@ -280,7 +280,7 @@
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
-      - zuul: openstack-infra/tripleo-ci
+      - zuul: openstack/tripleo-ci
     vars:
       rdoinfo_release: queens
       rdoinfo_phase: testing
@@ -288,11 +288,11 @@
       featureset: '030'
       nodes: 1ctlr
     required-projects:
-      - openstack-infra/devstack-gate
+      - openstack/devstack-gate
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
-      - openstack/browbeat
+      - x/browbeat
       - rdoinfo
 
 - job:
@@ -301,7 +301,7 @@
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
-      - zuul: openstack-infra/tripleo-ci
+      - zuul: openstack/tripleo-ci
     vars:
       rdoinfo_release: queens
       rdoinfo_phase: release
@@ -309,11 +309,11 @@
       featureset: '016'
       nodes: 1ctlr
     required-projects:
-      - openstack-infra/devstack-gate
+      - openstack/devstack-gate
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
-      - openstack/browbeat
+      - x/browbeat
       - rdoinfo
 
 - job:
@@ -322,7 +322,7 @@
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
-      - zuul: openstack-infra/tripleo-ci
+      - zuul: openstack/tripleo-ci
     vars:
       rdoinfo_release: pike
       rdoinfo_phase: testing
@@ -330,11 +330,11 @@
       featureset: '006'
       nodes: 1ctlr
     required-projects:
-      - openstack-infra/devstack-gate
+      - openstack/devstack-gate
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
-      - openstack/browbeat
+      - x/browbeat
       - rdoinfo
 
 - job:
@@ -343,7 +343,7 @@
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
-      - zuul: openstack-infra/tripleo-ci
+      - zuul: openstack/tripleo-ci
     vars:
       rdoinfo_release: pike
       rdoinfo_phase: release
@@ -351,11 +351,11 @@
       featureset: '006'
       nodes: 1ctlr
     required-projects:
-      - openstack-infra/devstack-gate
+      - openstack/devstack-gate
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
-      - openstack/browbeat
+      - x/browbeat
       - rdoinfo
 
 - job:
@@ -364,7 +364,7 @@
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
-      - zuul: openstack-infra/tripleo-ci
+      - zuul: openstack/tripleo-ci
     vars:
       rdoinfo_release: ocata
       rdoinfo_phase: testing
@@ -372,11 +372,11 @@
       featureset: '005'
       nodes: 1ctlr
     required-projects:
-      - openstack-infra/devstack-gate
+      - openstack/devstack-gate
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
-      - openstack/browbeat
+      - x/browbeat
       - rdoinfo
 
 - job:
@@ -385,7 +385,7 @@
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
-      - zuul: openstack-infra/tripleo-ci
+      - zuul: openstack/tripleo-ci
     vars:
       rdoinfo_release: ocata
       rdoinfo_phase: release
@@ -393,10 +393,10 @@
       featureset: '005'
       nodes: 1ctlr
     required-projects:
-      - openstack-infra/devstack-gate
+      - openstack/devstack-gate
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
       - openstack/tripleo-upgrade
-      - openstack/browbeat
+      - x/browbeat
       - rdoinfo
 
