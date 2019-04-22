@@ -28,7 +28,7 @@
     branches: master
     required-projects:
       # without options, the branch of the PR is used for the required-projects
-      - name: git.openstack.org/openstack/tripleo-heat-templates
+      - name: opendev.org/openstack/tripleo-heat-templates
       - name: github.com/ceph/ceph-ansible
 
 - job:
@@ -37,7 +37,7 @@
     # this job run only for stable-3.2 PR
     branches: stable-3.2
     required-projects:
-      - name: git.openstack.org/openstack/tripleo-heat-templates
+      - name: opendev.org/openstack/tripleo-heat-templates
         # using override-checkout, we can map ceph-ansible branch to rdo branch
         override-checkout: stable/rocky
       - name: github.com/ceph/ceph-ansible
@@ -48,7 +48,7 @@
     # this job run only for stable-3.2 PR
     branches: stable-3.2
     required-projects:
-      - name: git.openstack.org/openstack/tripleo-heat-templates
+      - name: opendev.org/openstack/tripleo-heat-templates
         # using override-checkout, we can map ceph-ansible branch to rdo branch
         override-checkout: stable/queens
       - name: github.com/ceph/ceph-ansible

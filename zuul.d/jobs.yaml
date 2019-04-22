@@ -37,45 +37,45 @@
     pre-run: playbooks/legacy/pre.yaml
     nodeset: legacy-upstream-centos-7
     required-projects:
-      - git.openstack.org/openstack-dev/devstack
-      - git.openstack.org/openstack-infra/devstack-gate
-      - git.openstack.org/openstack-infra/tripleo-ci
-      - git.openstack.org/openstack/ceilometer
-      - git.openstack.org/openstack/ceilometermiddleware
-      - git.openstack.org/openstack/cinder
-      - git.openstack.org/openstack/django_openstack_auth
-      - git.openstack.org/openstack/glance
-      - git.openstack.org/openstack/glance_store
-      - git.openstack.org/openstack/heat
-      - git.openstack.org/openstack/heat-cfntools
-      - git.openstack.org/openstack/heat-templates
-      - git.openstack.org/openstack/horizon
-      - git.openstack.org/openstack/keystone
-      - git.openstack.org/openstack/keystoneauth
-      - git.openstack.org/openstack/keystonemiddleware
-      - git.openstack.org/openstack/manila
-      - git.openstack.org/openstack/manila-ui
-      - git.openstack.org/openstack/neutron
-      - git.openstack.org/openstack/neutron-fwaas
-      - git.openstack.org/openstack/neutron-lbaas
-      - git.openstack.org/openstack/neutron-vpnaas
-      - git.openstack.org/openstack/nova
-      - git.openstack.org/openstack/placement
-      - git.openstack.org/openstack/octavia
-      - git.openstack.org/openstack/os-apply-config
-      - git.openstack.org/openstack/os-brick
-      - git.openstack.org/openstack/os-client-config
-      - git.openstack.org/openstack/os-collect-config
-      - git.openstack.org/openstack/os-net-config
-      - git.openstack.org/openstack/os-refresh-config
-      - git.openstack.org/openstack/osc-lib
-      - git.openstack.org/openstack/requirements
-      - git.openstack.org/openstack/swift
-      - git.openstack.org/openstack/tempest
-      - git.openstack.org/openstack/tripleo-heat-templates
-      - git.openstack.org/openstack/tripleo-common
-      - git.openstack.org/openstack/tripleo-image-elements
-      - git.openstack.org/openstack/zaqar
+      - opendev.org/openstack/devstack
+      - opendev.org/openstack/devstack-gate
+      - opendev.org/openstack/tripleo-ci
+      - opendev.org/openstack/ceilometer
+      - opendev.org/openstack/ceilometermiddleware
+      - opendev.org/openstack/cinder
+      - opendev.org/openstack/django_openstack_auth
+      - opendev.org/openstack/glance
+      - opendev.org/openstack/glance_store
+      - opendev.org/openstack/heat
+      - opendev.org/openstack/heat-cfntools
+      - opendev.org/openstack/heat-templates
+      - opendev.org/openstack/horizon
+      - opendev.org/openstack/keystone
+      - opendev.org/openstack/keystoneauth
+      - opendev.org/openstack/keystonemiddleware
+      - opendev.org/openstack/manila
+      - opendev.org/openstack/manila-ui
+      - opendev.org/openstack/neutron
+      - opendev.org/openstack/neutron-fwaas
+      - opendev.org/openstack/neutron-lbaas
+      - opendev.org/openstack/neutron-vpnaas
+      - opendev.org/openstack/nova
+      - opendev.org/openstack/placement
+      - opendev.org/openstack/octavia
+      - opendev.org/openstack/os-apply-config
+      - opendev.org/openstack/os-brick
+      - opendev.org/openstack/os-client-config
+      - opendev.org/openstack/os-collect-config
+      - opendev.org/openstack/os-net-config
+      - opendev.org/openstack/os-refresh-config
+      - opendev.org/openstack/osc-lib
+      - opendev.org/openstack/requirements
+      - opendev.org/openstack/swift
+      - opendev.org/openstack/tempest
+      - opendev.org/openstack/tripleo-heat-templates
+      - opendev.org/openstack/tripleo-common
+      - opendev.org/openstack/tripleo-image-elements
+      - opendev.org/openstack/zaqar
 
 # NOTE(pabelanger): We should be consuming openstack-zuul-jobs here, but we have
 # to pull in more nodesets.  We can first test using this.
@@ -155,46 +155,46 @@
     abstract: true
     parent: puppet-openstack-base
     required-projects:
-      - name: git.openstack.org/openstack/puppet-aodh
-      - name: git.openstack.org/openstack/puppet-barbican
-      - name: git.openstack.org/openstack/puppet-ceilometer
-      - name: git.openstack.org/openstack/puppet-ceph
-      - name: git.openstack.org/openstack/puppet-cinder
-      - name: git.openstack.org/openstack/puppet-cloudkitty
-      - name: git.openstack.org/openstack/puppet-congress
-      - name: git.openstack.org/openstack/puppet-designate
-      - name: git.openstack.org/openstack/puppet-ec2api
-      - name: git.openstack.org/openstack/puppet-glance
-      - name: git.openstack.org/openstack/puppet-gnocchi
-      - name: git.openstack.org/openstack/puppet-heat
-      - name: git.openstack.org/openstack/puppet-horizon
-      - name: git.openstack.org/openstack/puppet-ironic
-      - name: git.openstack.org/openstack/puppet-keystone
-      - name: git.openstack.org/openstack/puppet-manila
-      - name: git.openstack.org/openstack/puppet-mistral
-      - name: git.openstack.org/openstack/puppet-monasca
-      - name: git.openstack.org/openstack/puppet-murano
-      - name: git.openstack.org/openstack/puppet-neutron
-      - name: git.openstack.org/openstack/puppet-nova
-      - name: git.openstack.org/openstack/puppet-octavia
-      - name: git.openstack.org/openstack/puppet-openstack-integration
-      - name: git.openstack.org/openstack/puppet-openstack_extras
-      - name: git.openstack.org/openstack/puppet-openstacklib
-      - name: git.openstack.org/openstack/puppet-oslo
-      - name: git.openstack.org/openstack/puppet-ovn
-      - name: git.openstack.org/openstack/puppet-panko
-      - name: git.openstack.org/openstack/puppet-placement
-      - name: git.openstack.org/openstack/puppet-qdr
-      - name: git.openstack.org/openstack/puppet-sahara
-      - name: git.openstack.org/openstack/puppet-swift
-      - name: git.openstack.org/openstack/puppet-tacker
-      - name: git.openstack.org/openstack/puppet-tempest
-      - name: git.openstack.org/openstack/puppet-trove
-      - name: git.openstack.org/openstack/puppet-vitrage
-      - name: git.openstack.org/openstack/puppet-vswitch
-      - name: git.openstack.org/openstack/puppet-watcher
-      - name: git.openstack.org/openstack/puppet-zaqar
-      - name: git.openstack.org/openstack/tempest
+      - name: opendev.org/openstack/puppet-aodh
+      - name: opendev.org/openstack/puppet-barbican
+      - name: opendev.org/openstack/puppet-ceilometer
+      - name: opendev.org/openstack/puppet-ceph
+      - name: opendev.org/openstack/puppet-cinder
+      - name: opendev.org/openstack/puppet-cloudkitty
+      - name: opendev.org/openstack/puppet-congress
+      - name: opendev.org/openstack/puppet-designate
+      - name: opendev.org/openstack/puppet-ec2api
+      - name: opendev.org/openstack/puppet-glance
+      - name: opendev.org/openstack/puppet-gnocchi
+      - name: opendev.org/openstack/puppet-heat
+      - name: opendev.org/openstack/puppet-horizon
+      - name: opendev.org/openstack/puppet-ironic
+      - name: opendev.org/openstack/puppet-keystone
+      - name: opendev.org/openstack/puppet-manila
+      - name: opendev.org/openstack/puppet-mistral
+      - name: opendev.org/openstack/puppet-monasca
+      - name: opendev.org/openstack/puppet-murano
+      - name: opendev.org/openstack/puppet-neutron
+      - name: opendev.org/openstack/puppet-nova
+      - name: opendev.org/openstack/puppet-octavia
+      - name: opendev.org/openstack/puppet-openstack-integration
+      - name: opendev.org/openstack/puppet-openstack_extras
+      - name: opendev.org/openstack/puppet-openstacklib
+      - name: opendev.org/openstack/puppet-oslo
+      - name: opendev.org/openstack/puppet-ovn
+      - name: opendev.org/openstack/puppet-panko
+      - name: opendev.org/openstack/puppet-placement
+      - name: opendev.org/openstack/puppet-qdr
+      - name: opendev.org/openstack/puppet-sahara
+      - name: opendev.org/openstack/puppet-swift
+      - name: opendev.org/openstack/puppet-tacker
+      - name: opendev.org/openstack/puppet-tempest
+      - name: opendev.org/openstack/puppet-trove
+      - name: opendev.org/openstack/puppet-vitrage
+      - name: opendev.org/openstack/puppet-vswitch
+      - name: opendev.org/openstack/puppet-watcher
+      - name: opendev.org/openstack/puppet-zaqar
+      - name: opendev.org/openstack/tempest
 
 - job:
     name: puppet-openstack-integration-run-base
@@ -215,7 +215,7 @@
       - ^LICENSE$
       - ^.gitignore$
     roles:
-      - zuul: git.openstack.org/openstack-infra/zuul-jobs
+      - zuul: opendev.org/zuul/zuul-jobs
 
 - job:
     name: puppet-openstack-integration-5
