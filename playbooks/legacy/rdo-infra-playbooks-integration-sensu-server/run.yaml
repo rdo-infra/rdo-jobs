@@ -42,7 +42,7 @@
           # pipelines prefixed by "openstack-".
           GIT_SOURCE="https://review.rdoproject.org/r"
           if [[ "${ZUUL_PIPELINE}" =~ "openstack-" ]]; then
-              GIT_SOURCE="https://git.openstack.org"
+              GIT_SOURCE="https://opendev.org"
           fi
 
           git config --global http.postBuffer 524288000
