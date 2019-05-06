@@ -73,13 +73,16 @@
         run_tempest: false
         use_os_tempest: true
         tempest_run_concurrency: 1
+        tempest_services:
+          - heat
         tempest_tempest_conf_overrides:
           telemetry.alarm_granularity: '60'
-          auth.tempest_roles: "Member"
+          auth.tempest_roles: '"Member, creator"'
         tempest_test_whitelist:
           - 'tempest.api.identity.v3'
           - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern.test_volume_boot_pattern'
           - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
+          - 'heat_tempest_plugin'
 
 - job:
     name: periodic-tripleo-ci-centos-7-scenario002-standalone-master
