@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a6e2b04f_1f609d3f",
+        "filename": "playbooks/run-rdoinfo.yaml",
+        "patchSetId": 34
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2019-05-07T14:46:08Z",
+      "side": 1,
+      "message": "sure will update.",
+      "parentUuid": "f1ed05a7_dbe0803d",
+      "range": {
+        "startLine": 83,
+        "startChar": 9,
+        "endLine": 83,
+        "endChar": 33
+      },
+      "revId": "4f678ef75fdad1735c664258294fe602f5e567d9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e67284e5_721bd832",
         "filename": "playbooks/run-rdoinfo.yaml",
         "patchSetId": 34
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "628b5428_d4ea4838",
+        "filename": "playbooks/run-rdoinfo.yaml",
+        "patchSetId": 34
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2019-05-07T14:46:08Z",
+      "side": 1,
+      "message": "yes can try switching away from it.",
+      "parentUuid": "e67284e5_721bd832",
+      "range": {
+        "startLine": 292,
+        "startChar": 12,
+        "endLine": 292,
+        "endChar": 22
+      },
+      "revId": "4f678ef75fdad1735c664258294fe602f5e567d9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9bf64c7e_b6d930a4",
         "filename": "playbooks/run-rdoinfo.yaml",
         "patchSetId": 34
@@ -59,6 +107,30 @@
       "writtenOn": "2019-05-07T13:44:10Z",
       "side": 1,
       "message": "This role installs kolla, tripleo-common and tripleoclient from source instead of using RPM. This can be fine for upstream jobs but for validation of repos and packages we should always use packages. Anyway this is currently a design decision in the role and is not configurable. Let\u0027s try to improve that in future.",
+      "range": {
+        "startLine": 317,
+        "startChar": 12,
+        "endLine": 317,
+        "endChar": 34
+      },
+      "revId": "4f678ef75fdad1735c664258294fe602f5e567d9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e22c4d69_9a8612ba",
+        "filename": "playbooks/run-rdoinfo.yaml",
+        "patchSetId": 34
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2019-05-07T14:46:08Z",
+      "side": 1,
+      "message": "okk",
+      "parentUuid": "9bf64c7e_b6d930a4",
       "range": {
         "startLine": 317,
         "startChar": 12,
@@ -105,6 +177,30 @@
       "writtenOn": "2019-05-07T13:44:10Z",
       "side": 1,
       "message": "My understanding was that using buildah to build container images, they are directly available for podman without going through a registry, do we need to push them?",
+      "range": {
+        "startLine": 39,
+        "startChar": 6,
+        "endLine": 39,
+        "endChar": 27
+      },
+      "revId": "4f678ef75fdad1735c664258294fe602f5e567d9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "989a2713_2c39ec56",
+        "filename": "zuul.d/rdoinfo-jobs.yaml",
+        "patchSetId": 34
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2019-05-07T14:46:08Z",
+      "side": 1,
+      "message": "Yes, the tripleo deployment tries to pull from registry.",
+      "parentUuid": "26c4e5b5_91429eba",
       "range": {
         "startLine": 39,
         "startChar": 6,
