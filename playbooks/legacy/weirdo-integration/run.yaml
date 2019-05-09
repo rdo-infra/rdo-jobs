@@ -88,6 +88,11 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
+    - package:
+        name: python2-devel
+        state: present
+      become: true
+
     - shell:
         cmd: |
           # WeIRDO uses ARA for ansible-playbook run visualization
