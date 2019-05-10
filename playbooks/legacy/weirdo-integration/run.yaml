@@ -88,11 +88,6 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - package:
-        name: python2-devel
-        state: present
-      become: true
-
     - shell:
         cmd: |
           # WeIRDO uses ARA for ansible-playbook run visualization
@@ -136,6 +131,9 @@
           localhost log_destination=/var/log/weirdo
           EOF
 
+          if [ -f /etc/fedora-release ]; then
+              export BASEPYTHON=python3
+          fi
           tox -e ansible-playbook -- -vv -b -i hosts playbooks/$project-$scenario.yml \
               -e version=$version \
               -e openstack_release="{{ openstack_release }}" \
