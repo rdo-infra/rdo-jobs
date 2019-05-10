@@ -93,6 +93,12 @@
         state: present
       become: true
 
+    - package:
+        name: python3-devel
+        state: present
+      become: true
+      when: (ansible_os_family == 'RedHat' and ansible_distribution_major_version|int > 7) or (ansible_distribution == 'Fedora')
+
     - shell:
         cmd: |
           # WeIRDO uses ARA for ansible-playbook run visualization
@@ -136,6 +142,9 @@
           localhost log_destination=/var/log/weirdo
           EOF
 
+          if [ -f /etc/fedora-release ]; then
+              export BASEPYTHON=python3
+          fi
           tox -e ansible-playbook -- -vv -b -i hosts playbooks/$project-$scenario.yml \
               -e version=$version \
               -e openstack_release="{{ openstack_release }}" \
