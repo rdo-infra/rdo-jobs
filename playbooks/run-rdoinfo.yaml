@@ -209,8 +209,7 @@
               echo "  ceph-ansible"
               if [[ ( "{{ rdoinfo_release }}" != "ocata" ) && ("{{ rdoinfo_release }}" != "pike" ) ]];then
                   echo "standalone_container_ceph_updates: true"
-                  echo "docker_ceph_tag: v4.0.0-stable-4.0-nautilus-centos-7-x86_64"
-                  echo "gating_repo_name: temp-*,gating-repo,quickstart-centos-ceph-nautilus"
+                  echo "gating_repo_name: temp-*,gating-repo"
                   if [[ ( "{{ rdoinfo_build_containers|default(false) | lower }}" == "true" ) ]];then
                       echo "update_containers: false"
                       echo "docker_registry_host: {{ push_registry | default('127.0.0.1:8787') }}"
