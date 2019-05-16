@@ -8,6 +8,12 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
+    - name: Ensure python2-devel and python3-devel are installed
+      package:
+        - python2-devel
+        - python3-devel
+        state: present
+
     - shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
