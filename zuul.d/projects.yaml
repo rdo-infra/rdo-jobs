@@ -7,6 +7,7 @@
         - periodic-tripleo-ci-centos-7-standalone-master:
             files:
               - zuul.d/standalone-jobs.yaml
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
     gate:
       jobs:
         - tox-docs:
