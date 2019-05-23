@@ -4,9 +4,17 @@
       jobs:
         - tox-docs:
             nodeset: container-centos
-        - periodic-tripleo-ci-centos-7-standalone-master:
-            files:
-              - zuul.d/standalone-jobs.yaml
+#        - ipconflic-test1
+#        - ipconflic-test2
+#        - ipconflic-test3
+#        - ipconflic-test4
+#        - ipconflic-test5
+#        - ipconflic-test6
+#        - ipconflic-test7
+#        - ipconflic-test8
+#        - ipconflic-test8
+#        - ipconflic-test9
+#        - ipconflic-test10
     gate:
       jobs:
         - tox-docs:
