@@ -12,6 +12,38 @@
       featureset: '001'
 
 - job:
+    name: ipconflict-test1
+    parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
+- job:
+    name: ipconflict-test2
+    parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
+- job:
+    name: ipconflict-test3
+    parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
+- job:
+    name: ipconflict-test4
+    parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
+- job:
+    name: ipconflict-test5
+    parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
+- job:
+    name: ipconflict-test6
+    parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
+- job:
+    name: ipconflict-test7
+    parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
+- job:
+    name: ipconflict-test8
+    parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
+- job:
+    name: ipconflict-test9
+    parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
+- job:
+    name: ipconflict-test10
+    parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
+
+
+- job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ovb-master
     parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
     branches: ^master$
