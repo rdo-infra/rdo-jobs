@@ -675,6 +675,24 @@
       - rdo-infra/weirdo
 
 - job:
+    name: legacy-weirdo-integration-rocky-packstack-scenario002
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-integration/run.yaml
+    post-run: playbooks/legacy/weirdo-integration/post.yaml
+    timeout: 5400
+    vars:
+      openstack_release: rocky
+      scenario: scenario002
+    required-projects:
+      - openstack/packstack
+      - rdo-infra/ansible-role-weirdo-common
+      - rdo-infra/ansible-role-weirdo-kolla
+      - rdo-infra/ansible-role-weirdo-logs
+      - rdo-infra/ansible-role-weirdo-packstack
+      - rdo-infra/ansible-role-weirdo-puppet-openstack
+      - rdo-infra/weirdo
+
+- job:
     name: legacy-weirdo-integration-ocata-puppet-scenario002
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
@@ -682,6 +700,23 @@
     timeout: 5400
     vars:
       openstack_release: ocata
+      scenario: scenario002
+    required-projects:
+      - rdo-infra/ansible-role-weirdo-common
+      - rdo-infra/ansible-role-weirdo-kolla
+      - rdo-infra/ansible-role-weirdo-logs
+      - rdo-infra/ansible-role-weirdo-packstack
+      - rdo-infra/ansible-role-weirdo-puppet-openstack
+      - rdo-infra/weirdo
+
+- job:
+    name: legacy-weirdo-integration-rocky-puppet-scenario002
+    parent: legacy-base
+    run: playbooks/legacy/weirdo-integration/run.yaml
+    post-run: playbooks/legacy/weirdo-integration/post.yaml
+    timeout: 5400
+    vars:
+      openstack_release: rocky
       scenario: scenario002
     required-projects:
       - rdo-infra/ansible-role-weirdo-common

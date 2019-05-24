@@ -770,25 +770,25 @@
             files:
               - ^docs/.*$
               - ^.*\.rst$
-        - legacy-weirdo-integration-ocata-packstack-scenario002
         - legacy-weirdo-integration-pike-packstack-scenario002
         - legacy-weirdo-integration-queens-packstack-scenario001
+        - legacy-weirdo-integration-rocky-packstack-scenario002
         - legacy-weirdo-integration-master-packstack-scenario003
-        - legacy-weirdo-integration-ocata-puppet-scenario002
         - legacy-weirdo-integration-pike-puppet-scenario002
         - legacy-weirdo-integration-queens-puppet-scenario001
+        - legacy-weirdo-integration-rocky-puppet-scenario002
         - legacy-weirdo-integration-master-puppet-scenario003
         - legacy-weirdo-integration-master-puppet-scenario004:
             voting: false
     experimental:
       jobs:
-        - legacy-weirdo-integration-ocata-packstack-scenario002
         - legacy-weirdo-integration-pike-packstack-scenario001
         - legacy-weirdo-integration-queens-packstack-scenario003
+        - legacy-weirdo-integration-rocky-packstack-scenario002
         - legacy-weirdo-integration-master-packstack-scenario001
-        - legacy-weirdo-integration-ocata-puppet-scenario002
         - legacy-weirdo-integration-pike-puppet-scenario001
         - legacy-weirdo-integration-queens-puppet-scenario003
+        - legacy-weirdo-integration-rocky-puppet-scenario002
         - legacy-weirdo-integration-master-puppet-scenario001
     gate:
       jobs:
