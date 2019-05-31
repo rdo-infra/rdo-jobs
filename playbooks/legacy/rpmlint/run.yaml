@@ -230,6 +230,9 @@
           addFilter("openstack-heat-common.noarch: W: obsolete-not-provided openstack-heat-api-cloudwatch")
           addFilter("openstack-heat-common.noarch: E: explicit-lib-dependency python2-neutron-lib")
 
+          # Exceptions for neutron-tempest-plugin
+          addFilter("python2-neutron-tests-tempest.noarch: W: self-obsoletion python2-networking-bgpvpn-tests-tempest obsoletes python2-networking-bgpvpn-tests-tempest*")
+
           # Exceptions for telemetry-tempest-plugin
           addFilter("python2-telemetry-tests-tempest.noarch: E: zero-length /usr/lib/python2.7/site-packages/telemetry_tempest_plugin/gnocchi/__init_.py")
           addFilter("\w+.*-tests-tempest.noarch: W: obsolete-not-provided \w+.*-tests")
