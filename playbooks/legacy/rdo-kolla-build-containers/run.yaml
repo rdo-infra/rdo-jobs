@@ -78,7 +78,7 @@
           # Need to inherit system-site-packages for libselinux-python and python-yum
           virtualenv --system-site-packages $WORKSPACE/ansible
           source $WORKSPACE/ansible/bin/activate
-          pip install ansible==2.5.2 ara
+          pip install ansible==2.5.2 'ara<1.0.0'
 
           export ara_location=$(python -c "import os,ara; print(os.path.dirname(ara.__file__))")
           export ANSIBLE_CALLBACK_PLUGINS=$ara_location/plugins/callbacks
