@@ -106,3 +106,24 @@
           'share.capability_snapshot_support': 'False'
           'share.capability_create_share_from_snapshot_support': 'False'
         test_white_regex: ''
+
+- job:
+    name: distgit-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-queens
+    parent: tripleo-ci-base-multinode-periodic
+    run: playbooks/run-rdoinfo.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      rdoinfo_release: queens
+      rdoinfo_phase: testing
+      branch_override: "stable/queens"
+      featureset: '017'
+      nodes: 1ctlr
+    required-projects:
+      - openstack/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - x/browbeat
+      - rdoinfo
