@@ -29,6 +29,8 @@
     parent: tripleo-ci-base-standalone-rdo
     run: playbooks/run-rdoinfo.yaml
     post-run: playbooks/post-rdoinfo.yaml
+    roles:
+      - zuul: opendev.org/openstack/ansible-role-container-registry
     vars:
       featureset: '052'
       rdoinfo_release: master
@@ -146,6 +148,8 @@
     run: playbooks/run-rdoinfo.yaml
     post-run: playbooks/post-rdoinfo.yaml
     override-checkout: "stable/stein"
+    roles:
+      - zuul: opendev.org/openstack/ansible-role-container-registry
     vars:
       featureset: '052'
       rdoinfo_release: stein
