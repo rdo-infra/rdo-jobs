@@ -291,3 +291,14 @@
     parent: publish-rdoproject-artifacts
     run: playbooks/octavia-build-amphora/run.yaml
     post-run: playbooks/octavia-build-amphora/post.yaml
+
+- job:
+    name: tripleo-ci-centos-7-multinode-benchmark-vexxhost
+    parent: tripleo-ci-base-multinode-rdo
+    # pre-run:
+    run: playbooks/benchmark.yaml
+    # post-run:
+    nodeset: upstream-centos-7-vexxhost
+    vars:
+      nodes: 1ctlr
+      featureset: '010'
