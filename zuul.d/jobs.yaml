@@ -384,8 +384,17 @@
       tag: ussuri-uc
 
 - job:
-    name: rpmlint
-    run: playbooks/rpmlint/run.yaml
-    dependencies:
-      - DLRN-rpmbuild
-    branches: ^rpm-master$
+    name: tripleo-ci-centos-7-multinode-benchmark
+    parent: tripleo-ci-base-multinode-rdo
+    # pre-run:
+    run: playbooks/benchmark.yaml
+    # post-run:
+    vars:
+      nodes: 1ctlr
+      featureset: '010'
+
+
+- job:
+    name: tripleo-ci-centos-7-multinode-benchmark-vexxhost
+    parent: tripleo-ci-centos-7-multinode-benchmark
+    nodeset: upstream-centos-7-vexxhost
