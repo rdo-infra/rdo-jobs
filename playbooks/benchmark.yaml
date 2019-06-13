@@ -1,0 +1,56 @@
+---
+- hosts: primary
+  gather_facts: true
+  tasks:
+
+    - include_role:
+        name: common
+
+    - name: Install deps
+      become: true
+      package:
+        name:
+          - gcc
+          - perl
+          - git
+          - wget
+          - bzip2
+        state: present
+
+    - name: Clone bemchmarks
+      git:
+        repo: https://github.com/kdlucas/byte-unixbench.git
+        dest: byte-unixbench
+        version: master
+
+    - name: Run make and benchmark
+      shell: make && ./Run
+      args:
+        chdir: byte-unixbench/UnixBench/
+
+    - name: Copy logs
+      command: cp -r byte-unixbench/UnixBench/results {{ workspace }}/logs
+
+    - name: Run dd
+      shell: |
+        dd if=/dev/zero of=test bs=64k count=16k conv=fdatasync 2>&1 | tee {{ workspace }}/logs/dd.log
+      failed_when: false
+
+    - name: Run nench (https://github.com/n-st/nench)
+      shell: (wget -qO- wget.racing/nench.sh | bash; wget -qO- wget.racing/nench.sh | bash) 2>&1 | tee {{ workspace }}/logs/nench.log
+      failed_when: false
+
+    - name: Install fio
+      become: true
+      package:
+        name: fio
+        state: present
+      failed_when: false
+
+    - name: Run fio
+      shell: |
+        mkdir -p ~/testfio
+        wget https://raw.githubusercontent.com/axboe/fio/master/examples/ssd-test.fio
+        sed -i "s@directory=.*@directory=~/testfio@" ssd-test.fio
+        fio ssd-test.fio 2>&1 | tee {{ workspace }}/logs/fio
+      failed_when: false
