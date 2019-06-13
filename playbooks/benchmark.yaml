@@ -1,0 +1,30 @@
+---
+- hosts: all
+  gather_facts: true
+  tasks:
+
+    - include_role:
+        name: common
+
+    - name: Install deps
+      become: true
+      package:
+        name:
+          - gcc
+          - perl
+          - git
+        state: present
+
+    - name: Clone bemchmarks
+      git:
+        repo: https://github.com/kdlucas/byte-unixbench.git
+        dest: byte-unixbench
+        version: master
+
+    - name: Run make and benchmark
+      command: make && ./Run
+      args:
+        chdir: byte-unixbench/UnixBench/
+
+    - name: Copy logs
+      command: cp -r byte-unixbench/UnixBench/results {{ workspace }}/logs
