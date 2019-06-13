@@ -9,7 +9,7 @@
           else
             export RELEASE=$(echo "{{ zuul.branch }}" | cut -d/ -f 2)
           fi
-          export IMAGE_NAME=CentOS-7-x86_64-GenericCloud-1801-01.qcow2
+          export IMAGE_NAME=CentOS-7-x86_64-GenericCloud.qcow2
           sudo yum -y install libguestfs-tools policycoreutils-python wget
           sudo wget -O /etc/yum.repos.d/delorean.repo https://trunk.rdoproject.org/centos7-${RELEASE}/current/delorean.repo
           sudo wget -O /etc/yum.repos.d/delorean-deps.repo https://trunk.rdoproject.org/centos7-${RELEASE}/delorean-deps.repo
