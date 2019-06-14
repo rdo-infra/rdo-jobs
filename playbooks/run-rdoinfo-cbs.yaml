@@ -1,0 +1,161 @@
+---
+- hosts: primary
+  tasks:
+    - name: Run pre-quickstart role
+      import_role:
+         name: common
+
+    - name: check for correct import
+      debug:
+        var: tripleo_root
+
+    - name: set workspace
+      set_fact:
+        workspace: "{{ ansible_user_dir }}/workspace"
+
+    - name: ensure workspace presence
+      file:
+        path: "{{ workspace }}"
+        state: directory
+
+    - name: Check if job needs to be run or not based on changes
+      shell:
+        cmd: |
+          # This builder, when run from a child job of validate-buildsys-tags
+          # configures the temporary repositories created by it
+          # This allows to install the packages in that repository and test
+          # them.
+          set +e -x
+          # This job requires variables 'rdoinfo_release' and 'rdoinfo_phase' to be defined.
+
+          REQUIRED=0
+          MASTER_RELEASE=train
+          CREPOS_FILE=changed_repos.txt
+
+          if [ -z "{{ rdoinfo_phase|default("") }}" -o -z "{{ rdoinfo_release|default("") }}" ]; then
+              echo "ERROR in job definition"
+              exit 1
+          fi
+
+          if [ "{{ rdoinfo_release }}" = "master" ]; then
+              O_RELEASE=$MASTER_RELEASE
+          else
+              O_RELEASE="{{ rdoinfo_release }}"
+          fi
+
+          # Set log path
+          if [ -z "{{ buildset_artifacts_url|default("") }}" ]; then
+              echo "buildset_artifacts_url is not defined, job needs to be run with parent job:- validate-buildsys-tags"
+              exit 1
+          fi
+          logs={{ buildset_artifacts_url }}
+
+          # If we could not find a working repository, give up
+          curl -o $CREPOS_FILE -sf "$logs/repos/changed_repos.txt" || exit 1
+
+          if grep -q -E "$tag-{{ rdoinfo_phase }}" $CREPOS_FILE; then
+              REQUIRED=1
+          fi
+
+          if [ $REQUIRED -eq 0 ];then
+              echo "INFO: this test is not required"| tee not_required
+              exit 0
+          fi
+
+          PROMOTED_TAG="current-tripleo"
+
+          case {{ rdoinfo_phase }} in
+          testing)
+              REPOS_URL="http://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/$PROMOTED_TAG/delorean.repo http://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/delorean-deps.repo"
+              if [ $(grep -c $O_RELEASE-{{ rdoinfo_phase }} $CREPOS_FILE) -ne 0 ]; then
+                  REPO="cloud7-openstack-$O_RELEASE-{{ rdoinfo_phase }}"
+                  REPOS_URL="$REPOS_URL $logs/repos/$REPO/temp-$REPO.repo"
+              fi
+          ;;
+          release)
+              if [ $(grep -c $O_RELEASE-{{ rdoinfo_phase }} $CREPOS_FILE) -ne 0 ]; then
+                  REPO="cloud7-openstack-$O_RELEASE-{{ rdoinfo_phase }}"
+                  REPOS_URL="$logs/repos/$REPO/temp-$REPO.repo"
+              else
+                  REPOS_URL=""
+              fi
+          ;;
+          esac
+        chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'
+
+    - name: Detect if we created the file to stop quickstart run
+      stat:
+        path: "{{ workspace }}/not_required"
+      register: stop_file
+
+    - name: Build containers using build-containers role
+      when:
+        - not stop_file.stat.exists
+        - rdoinfo_build_containers|default(false)
+      block:
+        - name: Setup CentOS CloudSIG repo
+          become: true
+          package:
+            name: "centos-release-openstack-{{ rdoinfo_release }}"
+            state: present
+        - name: Rename CloudSIG repos name to include delorean in name as build-containers role rely on it
+          become: true
+          shell: |
+            set -ex
+            mv /etc/yum.repos.d/CentOS-OpenStack-{{ rdoinfo_release }}.repo /etc/yum.repos.d/delorean-CentOS-OpenStack-{{ rdoinfo_release }}.repo
+            mv /etc/yum.repos.d/CentOS-Ceph-Nautilus.repo /etc/yum.repos.d/delorean-CentOS-Ceph-Nautilus.repo
+        - name: Install deps using bindep role
+          include_role:
+            name: bindep
+          vars:
+            bindep_dir: "{{ ansible_user_dir }}/{{ zuul.projects['opendev.org/openstack/python-tripleoclient'].src_dir }}"
+        - name: Set repo facts
+          set_fact:
+            buildsys_tag: "cloud7-openstack-{{ rdoinfo_release }}-{{ rdoinfo_phase }}"
+            delorean_repos: "http://172.17.0.1/delorean-CentOS-OpenStack-{{ rdoinfo_release }}.repo,http://172.17.0.1/delorean-CentOS-Ceph-Nautilus.repo"
+        - name: Handle master release buildsys_tags
+          set_fact:
+            buildsys_tag: "cloud7-openstack-train-{{ rdoinfo_phase }}"
+          when: rdoinfo_release == "master"
+        - name: set url
+          set_fact:
+            extra_repo_url: "{{ buildset_artifacts_url | default('') }}/repos/{{ buildsys_tag }}/temp-{{ buildsys_tag }}.repo"
+          when: buildset_artifacts_url is defined
+        - name: Create a repo list
+          set_fact:
+            additional_repos: "{{ extra_repo_url.split() }}"
+            cacheable: true
+          when: buildset_artifacts_url is defined
+          # To use packages included in the gating repo in build-containers role
+        - name: install temp-buildys repo
+          become: true
+          get_url:
+            url: "{{ extra_repo_url }}"
+            dest: "/etc/yum.repos.d/temp-{{ buildsys_tag }}.repo"
+        - name: Run build containers pre tasks
+          include_role:
+            name: build-containers
+            tasks_from: pre
+        - name: Build Containers
+          include_role:
+            name: build-containers
+          vars:
+            buildcontainers_rpm_setup_config: "{{ delorean_repos }},{{ extra_repo_url | default('') }}"
+
+    - name: inject release file into quickstart
+      shell:
+        cmd: |
+            TQ_SRC={{ ansible_user_dir  }}/{{ zuul['projects']['opendev.org/openstack/tripleo-quickstart']['src_dir']  }}
+            sudo cp ${TQ_SRC}/config/release/tripleo-ci/CentOS-7/cloudsig-{{ rdoinfo_release }}.yml ${TQ_SRC}/config/release/tripleo-ci/CentOS-7/{{ rdoinfo_release }}.yml
+        chdir: '{{ ansible_user_dir }}/workspace'
+      when: not stop_file.stat.exists
+
+    - name: Run quickstart
+      include_role:
+         name: run-test
+      vars:
+        release: "{{ rdoinfo_release }}"
+        rdoinfo_additional_repos: "{{ additional_repos |default([]) }}"
+      when: not stop_file.stat.exists
+
