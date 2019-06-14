@@ -143,7 +143,7 @@
 - job:
     name: rdoinfo-tripleo-stein-centos-7-scenario001-standalone
     parent: tripleo-ci-base-standalone-rdo
-    run: playbooks/run-rdoinfo.yaml
+    run: playbooks/run-rdoinfo-cbs.yaml
     post-run: playbooks/post-rdoinfo.yaml
     override-checkout: "stable/stein"
     vars:
@@ -159,6 +159,7 @@
       # This is needed as tag_from_label is not null, and hence it tries to inspect image from registry
       push_containers: true
       buildcontainers_override_repos: current-tripleo
+      buildcontainers_version_hash: stein-testing
       featureset_override:
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
