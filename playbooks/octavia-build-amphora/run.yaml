@@ -13,6 +13,8 @@
           sudo yum -y install libguestfs-tools policycoreutils-python wget
           sudo wget -O /etc/yum.repos.d/delorean.repo https://trunk.rdoproject.org/centos7-${RELEASE}/current/delorean.repo
           sudo wget -O /etc/yum.repos.d/delorean-deps.repo https://trunk.rdoproject.org/centos7-${RELEASE}/delorean-deps.repo
+          # NOTE(jpena): python36-distro, a mock requirement, conflicts with python2-distro
+          sudo yum -y remove python36-distro
           sudo yum -y install openstack-octavia-diskimage-create
           wget https://cloud.centos.org/centos/7/images/$IMAGE_NAME
           sudo systemctl start libvirtd
