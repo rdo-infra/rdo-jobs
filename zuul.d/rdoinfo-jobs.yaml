@@ -345,3 +345,123 @@
       - openstack/tripleo-upgrade
       - x/browbeat
       - rdoinfo
+
+- job:
+    name: distgit-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-queens
+    parent: tripleo-ci-base-multinode-periodic
+    run: playbooks/run-distgit.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      release: queens
+      branch_override: "stable/queens"
+      featureset: '017'
+      nodes: 1ctlr
+    required-projects:
+      - openstack/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - x/browbeat
+      - rdoinfo
+
+- job:
+    name: distgit-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset020-queens
+    parent: tripleo-ci-base-ovb-periodic
+    run: playbooks/run-distgit.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      release: queens
+      branch_override: "stable/queens"
+      featureset: '020'
+      nodes: 1ctlr_2comp
+    required-projects:
+      - openstack/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - x/browbeat
+      - rdoinfo
+
+- job:
+    name: distgit-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-rocky
+    parent: tripleo-ci-base-multinode-periodic
+    run: playbooks/run-distgit.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      release: rocky
+      branch_override: "stable/rocky"
+      featureset: '017'
+      nodes: 1ctlr
+    required-projects:
+      - openstack/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - x/browbeat
+      - rdoinfo
+
+- job:
+    name: distgit-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset020-rocky
+    parent: tripleo-ci-base-ovb-periodic
+    run: playbooks/run-distgit.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      release: rocky
+      branch_override: "stable/rocky"
+      featureset: '020'
+      nodes: 1ctlr_2comp
+    required-projects:
+      - openstack/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - x/browbeat
+      - rdoinfo
+
+- job:
+    name: distgit-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-stein
+    parent: tripleo-ci-base-multinode-periodic
+    run: playbooks/run-distgit.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      release: stein
+      branch_override: "stable/stein"
+      featureset: '017'
+      nodes: 1ctlr
+    required-projects:
+      - openstack/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - x/browbeat
+      - rdoinfo
+
+- job:
+    name: distgit-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset020-stein
+    parent: tripleo-ci-base-ovb-periodic
+    run: playbooks/run-distgit.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      release: stein
+      branch_override: "stable/stein"
+      featureset: '020'
+      nodes: 1ctlr_2comp
+    required-projects:
+      - openstack/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - x/browbeat
+      - rdoinfo
