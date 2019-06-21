@@ -90,10 +90,22 @@
     roles:
       - zuul: openstack/tripleo-ci
     run: playbooks/run-rdoinfo.yaml
+    timeout: 13500
     vars:
       featureset: '052'
       rdoinfo_release: master
       rdoinfo_phase: testing
+      featureset_override:
+        run_tempest: false
+        tempest_run_concurrency: 2
+        tempest_services:
+          - cinder
+          - horizon
+          - neutron
+        tempest_test_whitelist:
+          - 'api'
+          - 'scenario'
+        use_os_tempest: true
     required-projects:
       - openstack/tripleo-quickstart
       - openstack/tripleo-quickstart-extras
@@ -595,3 +607,220 @@
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
+
+- job:
+    name: distgit-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-queens
+    parent: tripleo-ci-base-multinode-periodic
+    run: playbooks/run-distgit.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      release: queens
+      branch_override: "stable/queens"
+      featureset: '017'
+      nodes: 1ctlr
+    required-projects:
+      - openstack/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - x/browbeat
+      - rdoinfo
+
+- job:
+    name: distgit-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset020-queens
+    parent: tripleo-ci-base-ovb-periodic
+    run: playbooks/run-distgit.yaml
+    timeout: 18000
+    override-checkout: "stable/queens"
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      release: queens
+      branch_override: "stable/queens"
+      featureset: '020'
+      nodes: 1ctlr_2comp
+    required-projects:
+      - openstack/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - x/browbeat
+      - rdoinfo
+
+- job:
+    name: distgit-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-rocky
+    parent: tripleo-ci-base-multinode-periodic
+    run: playbooks/run-distgit.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      release: rocky
+      branch_override: "stable/rocky"
+      featureset: '017'
+      nodes: 1ctlr
+    required-projects:
+      - openstack/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - x/browbeat
+      - rdoinfo
+
+- job:
+    name: distgit-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset020-rocky
+    parent: tripleo-ci-base-ovb-periodic
+    run: playbooks/run-distgit.yaml
+    timeout: 18000
+    override-checkout: "stable/rocky"
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      release: rocky
+      branch_override: "stable/rocky"
+      featureset: '020'
+      nodes: 1ctlr_2comp
+    required-projects:
+      - openstack/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - x/browbeat
+      - rdoinfo
+
+- job:
+    name: distgit-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-stein
+    parent: tripleo-ci-base-multinode-periodic
+    run: playbooks/run-distgit.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      release: stein
+      branch_override: "stable/stein"
+      featureset: '017'
+      nodes: 1ctlr
+    required-projects:
+      - openstack/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - x/browbeat
+      - rdoinfo
+
+- job:
+    name: distgit-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset020-stein
+    parent: tripleo-ci-base-ovb-periodic
+    run: playbooks/run-distgit.yaml
+    timeout: 18000
+    override-checkout: "stable/stein"
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      release: stein
+      branch_override: "stable/stein"
+      featureset: '020'
+      nodes: 1ctlr_2comp
+    required-projects:
+      - openstack/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - x/browbeat
+      - rdoinfo
+
+- job:
+    name: distgit-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-train
+    parent: tripleo-ci-base-multinode-periodic
+    run: playbooks/run-distgit.yaml
+    timeout: 10800
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      release: train
+      branch_override: "stable/train"
+      featureset: '017'
+      nodes: 1ctlr
+    required-projects:
+      - openstack/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - x/browbeat
+      - rdoinfo
+
+- job:
+    name: distgit-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset020-train
+    parent: tripleo-ci-base-ovb-periodic
+    run: playbooks/run-distgit.yaml
+    timeout: 18000
+    override-checkout: "stable/train"
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      release: train
+      force_periodic: true
+      branch_override: "stable/train"
+      featureset: '020'
+      nodes: 1ctlr_2comp
+    required-projects:
+      - openstack/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - x/browbeat
+      - rdoinfo
+
+- job:
+    name: distgit-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset021-train
+    parent: tripleo-ci-base-ovb-periodic
+    run: playbooks/run-distgit.yaml
+    timeout: 18000
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      release: train
+      force_periodic: true
+      branch_override: "stable/train"
+      featureset: '021'
+      nodes: 1ctlr_2comp
+    required-projects:
+      - openstack/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - x/browbeat
+      - rdoinfo
+
+- job:
+    name: rdoinfo-tripleo-master-testing-centos-7-standalone-featureset052-train
+    parent: tripleo-ci-base-standalone-rdo
+    roles:
+      - zuul: openstack/tripleo-ci
+    run: playbooks/run-distgit.yaml
+    override-checkout: "stable/train"
+    timeout: 13500
+    vars:
+      force_periodic: true
+      release: train
+      branch_override: "stable/train"
+      featureset: '052'
+      featureset_override:
+        run_tempest: false
+        tempest_run_concurrency: 2
+        tempest_services:
+          - cinder
+          - horizon
+          - neutron
+        tempest_test_whitelist:
+          - 'api'
+          - 'scenario'
+        use_os_tempest: true
+    required-projects:
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - x/browbeat
+      - rdoinfo
