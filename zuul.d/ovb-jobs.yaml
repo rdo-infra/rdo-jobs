@@ -147,6 +147,17 @@
     vars:
       nodes: 3ctlr_1comp
       featureset: '041'
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-ha-utils
+    parent: tripleo-ci-base-ovb-rdo
+    timeout: 14400
+    voting: false
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      featureset_override:
+        validate_ha_overcloud: true
       playbooks:
         - ovb-setup.yml
         - baremetal-full-undercloud.yml
@@ -581,3 +592,20 @@
     vars:
       branch_override: "stable/queens"
       release: queens
+
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-ha-utils
+    parent: tripleo-ci-base-ovb-periodic
+    timeout: 14400
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      featureset_override:
+        validate_ha_overcloud: true
+      playbooks:
+        - ovb-setup.yml
+        - baremetal-full-undercloud.yml
+        - baremetal-full-overcloud-prep.yml
+        - baremetal-full-overcloud.yml
+        - baremetal-full-overcloud-validate.yml
+        - overcloud-validate-ha.yml
