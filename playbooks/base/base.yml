@@ -1,0 +1,7 @@
+- hosts: all
+  tasks:
+    - name: Check if worker can sudo
+      command: yum repolist --verbose
+      become: true
+      changed_when: true
+
