@@ -192,6 +192,18 @@
         nodes: []
 
 - nodeset:
+    name: single-rhel-8-node
+    nodes:
+      - name: primary
+        label: upstream-rhel-8
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
+
+- nodeset:
     name: three-centos-7-nodes
     nodes:
       - name: primary
