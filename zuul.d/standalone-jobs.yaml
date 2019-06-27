@@ -20,6 +20,27 @@
         use_os_tempest: true
 
 - job:
+    name: periodic-tripleo-ci-rhel-8-standalone-master
+    parent: tripleo-ci-base-standalone-periodic
+    nodeset: single-rhel-8-node
+    pre-run: playbooks/base/base.yml
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+    vars:
+      featureset: '052'
+      release: master
+      featureset_override:
+        run_tempest: false
+        tempest_run_concurrency: 2
+        tempest_test_whitelist:
+          - 'tempest.scenario.test_minimum_basic.TestMinimumBasicScenario'
+          - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps'
+          - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern'
+          - '\[.*\bsmoke\b.*\]'
+        use_os_tempest: true
+
+- job:
     name: periodic-tripleo-ci-centos-7-standalone-upgrade-master
     parent: tripleo-ci-base-standalone-upgrade-periodic
     vars:
