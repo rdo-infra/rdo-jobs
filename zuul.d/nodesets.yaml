@@ -131,6 +131,12 @@
         label: upstream-centos-7
 
 - nodeset:
+    name: upstream-rhel-8
+    nodes:
+      - name: upstream-rhel-8
+        label: upstream-rhel-8
+
+- nodeset:
     name: upstream-centos-7-2-node
     nodes:
       - name: primary
@@ -184,6 +190,18 @@
     nodes:
       - name: primary
         label: upstream-centos-7
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: single-rhel-8-node
+    nodes:
+      - name: primary
+        label: upstream-rhel-8
     groups:
       - name: switch
         nodes:
