@@ -212,3 +212,27 @@
         nodes:
           - secondary-1
           - secondary-2
+
+# RHEL-8 nodesets
+- nodeset:
+    name: single-rhel-8-node
+    nodes:
+      - name: primary
+        label: cloud-rhel-8
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: tripleo-ovb-rhel-8-primary
+    nodes:
+      - name: primary
+        label: cloud-rhel-8
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
