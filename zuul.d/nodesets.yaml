@@ -212,3 +212,14 @@
         nodes:
           - secondary-1
           - secondary-2
+
+- nodeset:
+    name: tripleo-ovb-rhel-8-primary
+    nodes:
+      - name: primary
+        label: upstream-rhel-8
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
