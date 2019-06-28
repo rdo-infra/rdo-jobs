@@ -1,0 +1,23 @@
+- hosts: all
+  tasks:
+    - name: install dev tools group
+      become: true
+      package:
+        name: "@Development tools"
+        state: present
+
+    - name: install podman
+      become: true
+      package:
+        name: "podman*"
+        state: present
+
+    # https://github.com/containers/libpod/issues/1182
+    - name: podman workaround
+      become: true
+      shell: |
+        set -x
+        usermod --add-subuids 10000-65536 {{ ansible_user }}
+        usermod --add-subgids 10000-65536 {{ ansible_user }}
+        cat /etc/subuid
+        cat /etc/subgid
