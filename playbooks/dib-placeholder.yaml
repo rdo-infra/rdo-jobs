@@ -1,0 +1,6 @@
+- hosts: all
+  tasks:
+    - name: install dev tools group
+      package:
+        name: "@Development tools"
+        state: present
