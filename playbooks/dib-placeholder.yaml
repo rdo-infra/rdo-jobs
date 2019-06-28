@@ -1,0 +1,19 @@
+- hosts: all
+  tasks:
+    - name: install dev tools group
+      become: true
+      package:
+        name: "@Development tools"
+        state: present
+
+    - name: install podman
+      become: true
+      package:
+        name: "podman*"
+        state: present
+
+    - name: install buildah
+      become: true
+      package:
+        name: "buildah*"
+ 
