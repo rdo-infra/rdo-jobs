@@ -1,0 +1,25 @@
+- hosts: all
+  tasks:
+    - name: install rhui
+      become: true
+      package:
+        name: "http://file.rdu.redhat.com/~apevec/OSP/rdo-rhui-2.1-1.noarch.rpm"
+        state: present
+
+    - name: install dev tools group
+      become: true
+      package:
+        name: "@Development tools"
+        state: present
+
+    - name: install podman
+      become: true
+      package:
+        name: "podman*"
+        state: present
+
+    - name: install buildah
+      become: true
+      package:
+        name: "buildah*"
+ 
