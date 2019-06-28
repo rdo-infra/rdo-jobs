@@ -2,6 +2,15 @@
   roles:
     - role: prepare-workspace
   tasks:
+    - name: remove redhat.repo
+      become: true
+      shell:
+        cmd: |
+          set -x
+          rm -f /etc/yum.repos.d/redhat.repo
+          ls -lha /etc/yum.repos.d/
+          dnf clean all
+
     - name: Check if worker can sudo
       command: sudo -n true
       failed_when: false
@@ -12,3 +21,31 @@
       vars:
         mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
       when: _worker_is_sudoer.rc == 0
+
+    # Ensure that sslverify is set to false for rhui installs ( workaround for now )
+    - name: set sslverify to 0 or false
+      become: true
+      shell:
+        cmd: >
+          set -x
+          dnf config-manager --setopt sslverify=0
+          rhui-custom-deps
+          rhui-rhel-8-for-x86_64-appstream-rhui-rpms
+          rhui-rhel-8-for-x86_64-baseos-rhui-rpms
+          rhui-rhel-8-for-x86_64-highavailability-rhui-rpms
+          --save
+          dnf list --available
+
+    # Ensure that gpg is set to false for rhui installs ( workaround for now )
+    - name: set sslverify to 0 or false
+      become: true
+      shell:
+        cmd: >
+          set -x
+          dnf config-manager --setopt gpgcheck=0
+          rhui-custom-deps
+          rhui-rhel-8-for-x86_64-appstream-rhui-rpms
+          rhui-rhel-8-for-x86_64-baseos-rhui-rpms
+          rhui-rhel-8-for-x86_64-highavailability-rhui-rpms
+          --save
+          dnf list --available
