@@ -12,3 +12,10 @@
       vars:
         mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
       when: _worker_is_sudoer.rc == 0
+
+    - name: Enable virt repo
+      become: true
+      shell:
+        cmd: >
+          set -x
+          dnf module disable virt:rhel
