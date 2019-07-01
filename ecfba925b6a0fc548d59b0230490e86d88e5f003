@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8aa24d48_558f2f8b",
+        "filename": "zuul.d/standalone-jobs.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2019-07-01T07:35:32Z",
+      "side": 1,
+      "message": "i believe this needs to go into host_vars (e.g. see that https://review.rdoproject.org/r/#/c/21295/1/zuul.d/build-containers.yaml) \n\nI think it might help with the ansible selinux error message\n\notherwise it\u0027ll be something you need to make sure is on the image because it happens very early in the run (had the same issue for d/stream see issue 2 @ https://tree.taiga.io/project/tripleo-ci-board/task/988",
+      "range": {
+        "startLine": 27,
+        "startChar": 6,
+        "endLine": 27,
+        "endChar": 32
+      },
+      "revId": "ecfba925b6a0fc548d59b0230490e86d88e5f003",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
