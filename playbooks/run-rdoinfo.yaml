@@ -211,14 +211,9 @@
                   echo "standalone_container_ceph_updates: true"
                   echo "gating_repo_name: temp-*,gating-repo"
                   if [[ ( "{{ rdoinfo_build_containers|default(false) | lower }}" == "true" ) ]];then
+                      echo "update_containers: false"
                       echo "docker_registry_host: {{ push_registry | default('127.0.0.1:8787') }}"
-                      if [[ "{{ rdoinfo_release }}" == "stein" ]]; then
-                          echo "update_containers: true"
-                          echo "standalone_container_prep_updates: true"
-                      else
-                          echo "update_containers: false"
-                          echo "standalone_container_prep_updates: false"
-                      fi
+                      echo "standalone_container_prep_updates: false"
                   else
                       echo "update_containers: true"
                   fi
