@@ -12,6 +12,14 @@
       featureset: '001'
 
 - job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset001
+    parent: tripleo-ci-base-ovb-rdo
+    branches: "^.*$"
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '001'
+
+- job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ovb-master
     parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
     branches: ^master$
