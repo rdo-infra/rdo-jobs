@@ -14,6 +14,67 @@
       release: master
 
 - job:
+    name: distgit-tripleo-master-testing-fedora-28-standalone-featureset052
+    parent: tripleo-ci-base-standalone-rdo
+    nodeset: single-upstream-fedora-28-node
+    roles:
+      - zuul: openstack/tripleo-ci
+    run: playbooks/run-distgit.yaml
+    post-run: playbooks/post-rdoinfo.yaml
+    vars:
+      featureset: '052'
+      release: master
+      rdoinfo_build_containers: true
+      use_buildah: false
+      push_registry_port: 8786
+      push_registry: 127.0.0.1:8786
+      # This is needed as tag_from_label is not null, and hence it tries to inspect image from registry
+      push_containers: true
+      buildcontainers_override_repos: current-tripleo
+      featureset_override:
+        tempest_plugins:
+          - python3-keystone-tests-tempest
+          - python3-neutron-tests-tempest
+    required-projects:
+      - opendev.org/openstack/ansible-role-container-registry
+      - opendev.org/openstack/kolla
+      - opendev.org/openstack/python-tripleoclient
+      - opendev.org/openstack/requirements
+      - opendev.org/openstack/tripleo-common
+      - opendev.org/openstack/tripleo-repos
+
+- job:
+    name: distgit-tripleo-master-testing-fedora-28-multinode-1ctlr-featureset030
+    parent: tripleo-ci-base-multinode-rdo
+    nodeset: two-fedora-28-nodes
+    roles:
+      - zuul: openstack/tripleo-ci
+    run: playbooks/run-distgit.yaml
+    post-run: playbooks/post-rdoinfo.yaml
+    vars:
+      featureset: '030'
+      nodes: 1ctlr
+      release: master
+      rdoinfo_build_containers: true
+      use_buildah: false
+      push_registry_port: 8786
+      push_registry: 127.0.0.1:8786
+      # This is needed as tag_from_label is not null, and hence it tries to inspect image from registry
+      push_containers: true
+      buildcontainers_override_repos: current-tripleo
+      featureset_override:
+        tempest_plugins:
+          - python3-keystone-tests-tempest
+          - python3-neutron-tests-tempest
+    required-projects:
+      - opendev.org/openstack/ansible-role-container-registry
+      - opendev.org/openstack/kolla
+      - opendev.org/openstack/python-tripleoclient
+      - opendev.org/openstack/requirements
+      - opendev.org/openstack/tripleo-common
+      - opendev.org/openstack/tripleo-repos
+
+- job:
     name: distgit-tripleo-master-testing-centos-7-standalone-featureset016
     parent: tripleo-ci-base-standalone-rdo
     run: playbooks/run-distgit.yaml
