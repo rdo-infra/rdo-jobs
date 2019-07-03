@@ -107,7 +107,7 @@
           # Use the latest repository hash
           # If DLRN built multiple packages, there will be multiple repositories.
           # We want the latest repository which contains all of the packages that were just built.
-          repository="${logs}/centos/current"
+          repository="${logs}/fedora/current"
 
           # The rdoinfo-DLRN-check job may create different repos (centos-rpm-master, centos-pike-rdo)
           # when it builds packages for more than one release. In that case, let us try to find the
@@ -189,13 +189,13 @@
               version="{{ openstack_release }}"
           fi
 
-          delorean_deps_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/delorean-deps.repo"
+          delorean_deps_url="https://trunk.rdoproject.org/fedora28-{{ openstack_release }}/delorean-deps.repo"
           if [[ "${ZUUL_PIPELINE}" =~ "experimental" ]]; then
-              delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/current/delorean.repo"
+              delorean_url="https://trunk.rdoproject.org/fedora28-{{ openstack_release }}/current/delorean.repo"
           elif [[ "{{ openstack_release }}" == "master" ]]; then
-              delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/puppet-passed-ci/delorean.repo"
+              delorean_url="https://trunk.rdoproject.org/fedora28-{{ openstack_release }}/puppet-passed-ci/delorean.repo"
           else
-              delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/current-passed-ci/delorean.repo"
+              delorean_url="https://trunk.rdoproject.org/fedora28-{{ openstack_release }}/current-passed-ci/delorean.repo"
           fi
 
           cd weirdo
