@@ -394,6 +394,7 @@
     run: playbooks/legacy/weirdo-dlrn/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn/post.yaml
     timeout: 5400
+    nodeset: rdo-fedora-28
     vars:
       openstack_release: master
       scenario: scenario002
@@ -459,6 +460,7 @@
     run: playbooks/legacy/weirdo-dlrn/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn/post.yaml
     timeout: 5400
+    nodeset: rdo-fedora-28
     vars:
       openstack_release: master
       scenario: scenario002

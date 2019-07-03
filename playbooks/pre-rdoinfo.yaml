@@ -1,0 +1,14 @@
+---
+- hosts: all
+  tasks:
+    - name: Check selinux
+      shell: getenforce
+      register: sestatus
+
+    - name: print selinux status
+      debug:
+        msg: "{{ sestatus.stdout }}"
+
+    - name: disable selinux
+      shell: setenforce 0
+      become: true
