@@ -14,6 +14,17 @@
       release: master
 
 - job:
+    name: distgit-tripleo-master-testing-fedora-28-standalone-featureset052
+    parent: tripleo-ci-base-standalone-rdo
+    nodeset: single-upstream-fedora-28-node
+    roles:
+      - zuul: openstack/tripleo-ci
+    run: playbooks/run-distgit.yaml
+    vars:
+      featureset: '052'
+      release: master
+
+- job:
     name: distgit-tripleo-master-testing-centos-7-standalone-featureset016
     parent: tripleo-ci-base-standalone-rdo
     run: playbooks/run-distgit.yaml

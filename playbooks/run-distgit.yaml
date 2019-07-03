@@ -41,7 +41,7 @@
           # Use the latest repository hash
           # If DLRN built multiple packages, there will be multiple repositories.
           # We want the latest repository which contains all of the packages that were just built.
-          repository="${logs}/centos/current"
+          repository="${logs}/fedora/current"
 
           # The rdoinfo-DLRN-check job may create different repos (centos-rpm-master, centos-pike-rdo)
           # when it builds packages for more than one release. In that case, let us try to find the
@@ -50,7 +50,7 @@
           if [ $? -ne 0 ]; then
             releases="rpm-master stein-rdo rocky-rdo queens-rdo pike-rdo ocata-rdo"
             for release in $releases; do
-                repository="${logs}/centos-${release}/current"
+                repository="${logs}/fedora-${release}/current"
                 curl -o /dev/null -sIf "${repository}" || continue
                 break
             done
@@ -88,25 +88,6 @@
                   echo "    down_url: $repo"
                   ((INDEX++))
               done
-              if [[ ("{{ release }}" == "master" ) || ("{{ release }}" == "stein" ) ]]; then
-                  echo "  - type: generic"
-                  echo "    reponame: quickstart-centos-ceph-nautilus"
-                  echo "    filename: quickstart-centos-ceph-nautilus.repo"
-                  echo "    baseurl: http://mirror.regionone.rdo-cloud.rdoproject.org/centos/7/storage/x86_64/ceph-nautilus"
-              else
-                  echo "  - type: generic"
-                  echo "    reponame: centos-ceph-luminous"
-                  echo "    filename: centos-ceph-luminous.repo"
-                  echo "    baseurl: http://mirror.regionone.rdo-cloud.rdoproject.org/centos/7/storage/x86_64/ceph-luminous/"
-              fi
-              echo "  - type: generic"
-              echo "    reponame: centos-opstools"
-              echo "    filename: centos-opstools.repo"
-              echo "    baseurl: http://mirror.centos.org/centos/7/opstools/x86_64/"
-              echo "  - type: generic"
-              echo "    reponame: quickstart-centos-base"
-              echo "    filename: quickstart-centos-base.repo"
-              echo "    baseurl: http://mirror.regionone.rdo-cloud.rdoproject.org/centos/7/os/x86_64/"
               echo "  - type: generic"
               echo "    reponame: temp-distgit"
               echo "    filename: temp-distgit.repo"
@@ -150,8 +131,8 @@
           }
 
 
-              REPOS_URL="http://trunk.rdoproject.org/centos7-{{ release }}/current-tripleo/delorean.repo http://trunk.rdoproject.org/centos7-{{ release }}/delorean-deps.repo"
-              delorean_current_url=`curl --silent https://trunk.rdoproject.org/centos7-{{ release }}/current/delorean.repo -S  | grep baseurl | cut -d= -f2`
+              REPOS_URL="http://trunk.rdoproject.org/fedora28-{{ release }}/current-tripleo/delorean.repo http://trunk.rdoproject.org/fedora28-{{ release }}/delorean-deps.repo"
+              delorean_current_url=`curl --silent https://trunk.rdoproject.org/fedora28-{{ release }}/current/delorean.repo -S  | grep baseurl | cut -d= -f2`
               create_config | tee -a tripleo.yml
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
@@ -160,7 +141,7 @@
       shell:
         cmd: |
             TQ_SRC={{ ansible_user_dir  }}/{{ zuul['projects']['opendev.org/openstack/tripleo-quickstart']['src_dir']  }}
-            sudo mv tripleo.yml ${TQ_SRC}/config/release/tripleo-ci/CentOS-7/{{ release }}.yml
+            sudo mv tripleo.yml ${TQ_SRC}/config/release/tripleo-ci/Fedora-28/{{ release }}.yml
         chdir: '{{ ansible_user_dir }}/workspace'
 
     - name: Run quickstart
