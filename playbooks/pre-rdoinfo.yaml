@@ -1,0 +1,24 @@
+---
+- hosts: all
+  tasks:
+    - name: Install selinux packages
+      become: true
+      package:
+        name:
+          - python3-libselinux
+          - libselinux-utils
+
+    - name: Check selinux
+      shell: /usr/sbin/getenforce
+      ignore_errors: yes
+      register: sestatus
+
+    - name: print selinux status
+      ignore_errors: yes
+      debug:
+        msg: "{{ sestatus.stdout }}"
+
+    - name: disable selinux
+      ignore_errors: yes
+      shell: /usr/sbin/setenforce 0
+      become: true
