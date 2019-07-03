@@ -4,9 +4,7 @@
       jobs:
         - tox-docs:
             nodeset: container-centos
-        - periodic-tripleo-ci-centos-7-standalone-master:
-            files:
-              - zuul.d/standalone-jobs.yaml
+        - periodic-tripleo-rhel-8-master-buildimage-ironic-python-agent-master
     gate:
       jobs:
         - tox-docs:
