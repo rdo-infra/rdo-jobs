@@ -41,7 +41,7 @@
           # Use the latest repository hash
           # If DLRN built multiple packages, there will be multiple repositories.
           # We want the latest repository which contains all of the packages that were just built.
-          repository="${logs}/centos/current"
+          repository="${logs}/fedora/current"
 
           # The rdoinfo-DLRN-check job may create different repos (centos-rpm-master, centos-pike-rdo)
           # when it builds packages for more than one release. In that case, let us try to find the
@@ -50,7 +50,7 @@
           if [ $? -ne 0 ]; then
             releases="rpm-master stein-rdo rocky-rdo queens-rdo pike-rdo ocata-rdo"
             for release in $releases; do
-                repository="${logs}/centos-${release}/current"
+                repository="${logs}/fedora-${release}/current"
                 curl -o /dev/null -sIf "${repository}" || continue
                 break
             done
@@ -58,12 +58,19 @@
 
           # If we could not find a working repository, give up
           curl -o /dev/null -sIf "${repository}" || exit 1
+          PROMOTED_TAG="current-tripleo"
+          dlrn_baseurl=`curl --silent https://trunk.rdoproject.org/fedora28-{{ release }}/$PROMOTED_TAG/delorean.repo -S  | grep baseurl | cut -d= -f2 | sed -e 's/\/*$//'`
+          # FULL_HASH is needed as currently container build tags images based on it
+          FULL_HASH=${dlrn_baseurl##*/}
 
           function create_config(){
               echo "artg_skipped_projects:"
               echo "  - rdoinfo"
               echo "release: {{ release }}"
+              echo "docker_image_tag: $FULL_HASH"
               echo "dlrn_hash_tag: current-tripleo"
+              echo "dlrn_target: fedora"
+              echo "dlrn_baseurl: "https://trunk.rdoproject.org/fedora28-{{ release }}""
               echo "overcloud_image_url: http://images.rdoproject.org/{{ release }}/rdo_trunk/current-tripleo/overcloud-full.tar"
               echo "ipa_image_url: http://images.rdoproject.org/{{ release }}/rdo_trunk/current-tripleo/ironic-python-agent.tar"
               echo "images:"
@@ -74,11 +81,12 @@
               echo "    url: http://images.rdoproject.org/{{ release }}/rdo_trunk/current-tripleo/ironic-python-agent.tar"
               echo "    type: tar"
               echo "repo_cmd_before: |"
-              echo "  sudo yum remove -y rdo-release centos-release-openstack-* centos-release-ceph-* || true;"
               echo "  sudo rpm -e epel-release || true;"
               echo "  sudo rm -rf /etc/yum.repos.d/delorean*;"
               echo "  sudo rm -rf /etc/yum.repos.d/*.rpmsave;"
-              echo "  sudo yum clean all"
+              echo "  sudo dnf install -y dnf-plugins-core"
+              echo "  sudo dnf clean all"
+              echo "  sudo dnf config-manager --set-disabled '*'"
               echo "repos:"
               INDEX=0
               for repo in $REPOS_URL
@@ -88,25 +96,6 @@
                   echo "    down_url: $repo"
                   ((INDEX++))
               done
-              if [[ ("{{ release }}" == "master" ) || ("{{ release }}" == "stein" ) ]]; then
-                  echo "  - type: generic"
-                  echo "    reponame: quickstart-centos-ceph-nautilus"
-                  echo "    filename: quickstart-centos-ceph-nautilus.repo"
-                  echo "    baseurl: http://mirror.regionone.rdo-cloud.rdoproject.org/centos/7/storage/x86_64/ceph-nautilus"
-              else
-                  echo "  - type: generic"
-                  echo "    reponame: centos-ceph-luminous"
-                  echo "    filename: centos-ceph-luminous.repo"
-                  echo "    baseurl: http://mirror.regionone.rdo-cloud.rdoproject.org/centos/7/storage/x86_64/ceph-luminous/"
-              fi
-              echo "  - type: generic"
-              echo "    reponame: centos-opstools"
-              echo "    filename: centos-opstools.repo"
-              echo "    baseurl: http://mirror.centos.org/centos/7/opstools/x86_64/"
-              echo "  - type: generic"
-              echo "    reponame: quickstart-centos-base"
-              echo "    filename: quickstart-centos-base.repo"
-              echo "    baseurl: http://mirror.regionone.rdo-cloud.rdoproject.org/centos/7/os/x86_64/"
               echo "  - type: generic"
               echo "    reponame: temp-distgit"
               echo "    filename: temp-distgit.repo"
@@ -132,35 +121,92 @@
                   echo "      - puppet-*"
                   echo "      - python*-tripleo*"
                   echo "      - python*-paunch*"
+                  echo "      - tripleo-ansible"
+                  echo "      - ansible-config_template"
               fi
               echo "repo_cmd_after: |"
-              echo "  sudo yum install -y yum-plugin-priorities;"
-              echo "  sudo yum-config-manager --save --setopt centos-ceph-jewel.gpgcheck=0"
-              echo '  {% if not enable_opstools_repo|default(false)|bool %}sudo yum-config-manager --save --setopt centos-opstools.enable=0;'
-              echo '  {%endif %}'
-              echo "  sudo yum clean all;"
-              echo "  sudo yum repolist;"
-              echo "  sudo yum update -y"
+              echo "  sudo dnf install -y yum-plugin-priorities cronie;"
+              echo "  sudo dnf repolist;"
+              echo "  sudo dnf clean metadata;"
+              echo "  sudo dnf update -y"
               echo "undercloud_rpm_dependencies: >-"
-              echo "  python-tripleoclient"
-              echo "  ceph-ansible"
-              echo "update_containers: true"
+              echo "  python3-tripleoclient"
+              echo "  cronie"
+              echo "  rsyslog"
+              echo "ansible_python_interpreter: /usr/bin/python3"
+              echo "update_containers: false"
               echo "standalone_container_ceph_updates: true"
-              echo "gating_repo_name: temp-*,gating-repo"
+              echo "gating_repo_name: temp-*,gating-repo,delorean-current"
+              echo "standalone_container_prep_update_repo: temp-*,delorean-current"
+              echo "docker_registry_host: {{ ansible_all_ipv4_addresses | first }}"
+              echo "standalone_container_prep_updates: false"
           }
 
 
-              REPOS_URL="http://trunk.rdoproject.org/centos7-{{ release }}/current-tripleo/delorean.repo http://trunk.rdoproject.org/centos7-{{ release }}/delorean-deps.repo"
-              delorean_current_url=`curl --silent https://trunk.rdoproject.org/centos7-{{ release }}/current/delorean.repo -S  | grep baseurl | cut -d= -f2`
+              REPOS_URL="http://trunk.rdoproject.org/fedora28-{{ release }}/current-tripleo/delorean.repo http://trunk.rdoproject.org/fedora28-{{ release }}/delorean-deps.repo"
+              delorean_current_url=`curl --silent https://trunk.rdoproject.org/fedora28-{{ release }}/current/delorean.repo -S  | grep baseurl | cut -d= -f2`
               create_config | tee -a tripleo.yml
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
+
+    - name: Build containers using build-containers role
+      when:
+        - rdoinfo_build_containers|default(false)
+      block:
+        - name: Apply repos using tripleo-repos role
+          include_role:
+            name: tripleo-repos
+          vars:
+            override_repos: "{{ buildcontainers_override_repos | default('') }}"
+            tripleo_repos_repository: "{{ ansible_user_dir }}/{{ zuul.projects['opendev.org/openstack/tripleo-repos'].src_dir }}"
+        - name: Install deps using bindep role
+          include_role:
+            name: bindep
+          vars:
+            bindep_dir: "{{ ansible_user_dir }}/{{ zuul.projects['opendev.org/openstack/python-tripleoclient'].src_dir }}"
+        - name: Update priority for delorean repo
+          become: true
+          replace:
+            regexp: "priority=1"
+            replace: "priority=2"
+            path: /etc/yum.repos.d/delorean.repo
+        - name: Set repo facts
+          set_fact:
+            delorean_repos: "http://172.17.0.1/delorean.repo,http://172.17.0.1/delorean-{{ release }}-testing.repo"
+          when: release == "master"
+        - name: set url
+          set_fact:
+            extra_repo_url: "http://172.17.0.1/temp-distgit.repo"
+            zuul_buildset_url: "{{ buildset_artifacts_url | default('') }}/fedora/current"
+          when: buildset_artifacts_url is defined
+          # To use packages included in the gating repo in build-containers role
+        - name: install temp-distgit repo
+          become: true
+          template:
+            src: "temp-distgit.repo.j2"
+            dest: "/etc/yum.repos.d/temp-distgit.repo"
+        - name: Run build containers pre tasks
+          include_role:
+            name: build-containers
+            tasks_from: pre
+        - name: install temp-buildys repo to httpd path
+          become: true
+          template:
+            src: "temp-distgit.repo.j2"
+            dest: "/var/www/html/temp-distgit.repo"
+        - name: Build Containers
+          include_role:
+            name: build-containers
+          vars:
+            buildcontainers_rpm_setup_config: "{{ delorean_repos }},{{ extra_repo_url | default('') }}"
+            push_registry: "{{ ansible_all_ipv4_addresses | first }}"
 
     - name: inject release file into quickstart
       shell:
         cmd: |
             TQ_SRC={{ ansible_user_dir  }}/{{ zuul['projects']['opendev.org/openstack/tripleo-quickstart']['src_dir']  }}
-            sudo mv tripleo.yml ${TQ_SRC}/config/release/tripleo-ci/CentOS-7/{{ release }}.yml
+            sudo mv tripleo.yml ${TQ_SRC}/config/release/tripleo-ci/Fedora-28/{{ release }}.yml
+            sudo setenforce 0
         chdir: '{{ ansible_user_dir }}/workspace'
 
     - name: Run quickstart
