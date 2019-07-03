@@ -4,6 +4,7 @@
       jobs:
         - tox-docs:
             nodeset: container-centos
+        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-stein
         - periodic-tripleo-ci-centos-7-standalone-master:
             files:
               - zuul.d/standalone-jobs.yaml
