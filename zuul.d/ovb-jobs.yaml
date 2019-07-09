@@ -27,6 +27,20 @@
       - opendev.org/openstack/openstack-virtual-baremetal
 
 - job:
+    name: tripleo-ci-rhel-8-ovb-3ctlr_1comp-featureset001
+    parent: tripleo-ci-base-ovb-rdo
+    nodeset: tripleo-ovb-rhel-8-primary
+    required-projects:
+      - opendev.org/openstack/openstack-virtual-baremetal
+    branches: "^.*$"
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+
+- job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-ovb-master
     parent: tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039
     branches: ^master$
@@ -320,6 +334,20 @@
       featureset: '001'
       branch_override: "stable/stein"
       release: stein
+
+- job:
+    name: periodic-tripleo-ci-rhel-8-ovb-3ctlr_1comp-featureset001-master
+    parent: tripleo-ci-base-ovb-periodic
+    nodeset: tripleo-ovb-rhel-8-primary
+    required-projects:
+      - opendev.org/openstack/openstack-virtual-baremetal
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      release: master
 
 # legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload
 - job:
