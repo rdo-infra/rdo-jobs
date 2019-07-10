@@ -291,3 +291,16 @@
     parent: publish-rdoproject-artifacts
     run: playbooks/octavia-build-amphora/run.yaml
     post-run: playbooks/octavia-build-amphora/post.yaml
+
+- job:
+    name: rdo-tox-molecule-rhel8
+    parent: tripleo-tox-molecule
+    voting: false
+    vars:
+      tox_environment:
+        # MOLECULE_OPTS is no really implemented yet but will be done in either
+        # tox, pytest-molecule or molecule itself
+        MOLECULE_OPTS: "-- --limit rhel8"
+        MOLECULE_PLATFORM: rhel8
+        MOLECULE_IMAGE: ubi8/python-36
+        MOLECULE_CONTAINER_REGISTRY_URL: registry.access.redhat.com
