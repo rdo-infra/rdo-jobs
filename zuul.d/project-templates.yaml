@@ -753,3 +753,24 @@
               - manifests/profile/base/neutron/plugins/ml2/opendaylight.pp
               - manifests/profile/base/neutron/plugins/ovs/opendaylight.pp
               - tox.ini
+
+- project-template:
+    name: rdo-tox-molecule
+    description: |
+      Runs tox molecule job on RDO. Should be identical to upstream version
+      named openstack-tox-molecule
+    openstack-check:
+      jobs:
+        - tripleo-tox-molecule
+
+- project-template:
+    name: rdo-tox-molecule-rhel8
+    description: |
+      Runs tox molecule job on RDO but by overriding default platforms and
+      using RHEL platforms, which are not available upstream.
+    openstack-check:
+      jobs:
+        - tripleo-tox-molecule:
+            vars:
+              tox_environment:
+                MOLECULE_OPTS: "-- --limit rhel8"
