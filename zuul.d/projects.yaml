@@ -16,6 +16,10 @@
               - ^test-requirements.txt$
               - ^tox.ini$
               - .*molecule.*
+        - rdo-tox-molecule-rhel8:
+            voting: false
+        - rdo-tox-molecule-rhel8-delegated:
+            voting: false
         - periodic-tripleo-ci-centos-7-standalone-master:
             files:
               - zuul.d/standalone-jobs.yaml
