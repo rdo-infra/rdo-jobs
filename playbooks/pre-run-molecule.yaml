@@ -1,0 +1,15 @@
+# TODO(ssbarnea): Migrate the code here to parent tox-molecule job at
+# https://opendev.org/zuul/zuul-jobs/src/branch/master/playbooks/tox/pre-molecule.yaml
+- hosts: all
+  tasks:
+
+  - name: install packages needed by ansible or molecule
+    when: ansible_os_family == "RedHat" and ansible_lsb.major_release|int >= 8
+    packages:
+      - python3-devel  # compile psutil
+      - python3-selinux  # ansible
+      - gcc  # needed to compile psutil
+
+  - name: install docker
+    include_role:
+      name: install-docker

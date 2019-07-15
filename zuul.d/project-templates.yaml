@@ -771,3 +771,12 @@
     openstack-check:
       jobs:
         - rdo-tox-molecule-rhel8
+
+- project-template:
+    name: rdo-tox-molecule-centos7
+    description: |
+      Runs tox molecule job on RDO but by overriding default platform to
+      use CentOS 7.
+    openstack-check:
+      jobs:
+        - rdo-tox-molecule-centos7
