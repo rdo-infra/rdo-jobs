@@ -297,10 +297,11 @@
     parent: tripleo-tox-molecule
     voting: false
     nodeset: rdo-fedora-stable
+    pre-run: playbooks/pre-run-molecule.yaml
 
 - job:
     name: rdo-tox-molecule-rhel8
-    parent: tripleo-tox-molecule
+    parent: rdo-tox-molecule
     voting: false
     nodeset: rdo-fedora-stable
     vars:
@@ -308,3 +309,13 @@
         MOLECULE_PLATFORM: rhel8
         MOLECULE_IMAGE: ubi8/python-36
         MOLECULE_CONTAINER_REGISTRY_URL: registry.access.redhat.com
+
+- job:
+    name: rdo-tox-molecule-centos7
+    parent: rdo-tox-molecule
+    voting: false
+    nodeset: rdo-fedora-stable
+    vars:
+      tox_environment:
+        MOLECULE_PLATFORM: centos7
+        MOLECULE_IMAGE: centos:7
