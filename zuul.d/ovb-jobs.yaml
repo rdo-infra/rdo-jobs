@@ -243,7 +243,7 @@
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039
     parent: tripleo-ci-base-ovb-rdo
     timeout: 12600
-    branches: "^.*$"
+    branches: "^(?!stable/queens).*$"
     voting: false
     vars:
       nodes: 3ctlr_1comp_1supp
@@ -583,9 +583,3 @@
       branch_override: "stable/rocky"
       release: rocky
 
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-queens
-    parent: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master
-    vars:
-      branch_override: "stable/queens"
-      release: queens
