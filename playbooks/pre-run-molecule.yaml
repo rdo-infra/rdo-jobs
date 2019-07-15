@@ -1,0 +1,57 @@
+# TODO(ssbarnea): Migrate the code here to parent tox-molecule job at
+# https://opendev.org/zuul/zuul-jobs/src/branch/master/playbooks/tox/pre-molecule.yaml
+- hosts: all
+  gather_facts: true
+  tasks:
+
+  # hack to enable rhui-cds resolution (needed for rhel8 containers)
+  - name: inject hostnames into /etc/hosts
+    become: true
+    lineinfile:
+      path: /etc/hosts
+      regexp: 'rhui-cds'
+      line: '38.145.32.241 rhui-cds'
+      owner: root
+      group: root
+      mode: 0644
+
+  - name: validate access to rhui-cds  # noqa 301 303
+    shell: |
+      curl -k -L -I https://rhui-cds
+    args:
+      warn: false
+
+  # TODO(ssbarnea): migrate these to upstream tox-molecule
+
+  # psutil->python-devel
+  # psutil->gcc
+  # ansible->selinux
+  - name: install packages needed by ansible or molecule
+    when:
+      - ansible_os_family == "RedHat"
+      - ansible_distribution_major_version|int >= 8
+    become: true
+    package:
+      name:
+        - python2-devel
+        - python2-libselinux
+        - python3-devel
+        - python3-libselinux
+        - gcc
+        - bind-utils
+
+  - name: install packages needed by ansible or molecule
+    when:
+      - ansible_os_family == "RedHat"
+      - ansible_distribution_major_version|int < 8
+    become: true
+    package:
+      name:
+        - python-devel
+        - libselinux-python
+        - gcc
+        - bind-utils
+
+  - name: install docker
+    include_role:
+      name: install-docker
