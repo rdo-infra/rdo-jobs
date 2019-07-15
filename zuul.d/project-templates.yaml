@@ -771,3 +771,21 @@
     openstack-check:
       jobs:
         - rdo-tox-molecule-rhel8
+
+- project-template:
+    name: rdo-tox-molecule-ubi8
+    description: |
+      Runs tox molecule job on RDO but by overriding default platforms and
+      using UBI8 image which is a subset of RHEL.
+    openstack-check:
+      jobs:
+        - rdo-tox-molecule-ubi8
+
+- project-template:
+    name: rdo-tox-molecule-centos7
+    description: |
+      Runs tox molecule job on RDO but by overriding default platform to
+      use CentOS 7.
+    openstack-check:
+      jobs:
+        - rdo-tox-molecule-centos7
