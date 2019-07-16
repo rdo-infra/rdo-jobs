@@ -22,6 +22,29 @@
       "revId": "8893895fee0a6b27384070d67f92f78d008a2566",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e531bc45_eaffd7f2",
+        "filename": "playbooks/base/pre.yaml",
+        "patchSetId": 40
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 371
+      },
+      "writtenOn": "2019-07-16T13:59:24Z",
+      "side": 1,
+      "message": "This will never work due to the use of \"\u003e\" instead \"|\" as this will becomea single string.\n\nAlso make it use bash strict mode:\nset -exou pipefail\n\nWe do not want to silently miss a failure on one comment.\n\nPlease read http://redsymbol.net/articles/unofficial-bash-strict-mode/",
+      "range": {
+        "startLine": 29,
+        "startChar": 13,
+        "endLine": 37,
+        "endChar": 30
+      },
+      "revId": "8893895fee0a6b27384070d67f92f78d008a2566",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
