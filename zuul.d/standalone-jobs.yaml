@@ -20,6 +20,14 @@
         use_os_tempest: true
 
 - job:
+    name: periodic-tripleo-ci-rhel-8-standalone-master
+    parent: periodic-tripleo-ci-centos-7-standalone-master
+    nodeset: single-rhel-8-node
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+
+- job:
     name: periodic-tripleo-ci-centos-7-standalone-upgrade-master
     parent: tripleo-ci-base-standalone-upgrade-periodic
     vars:
