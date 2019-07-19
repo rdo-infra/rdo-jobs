@@ -64,6 +64,14 @@
             voting: false
             branches: ^rpm-master$
 
+- project-template:
+    name: tripleo-buildimages-jobs
+    check:
+      jobs:
+        - tripleo-rhel-8-master-buildimage-overcloud-full
+        - tripleo-rhel-8-master-buildimage-overcloud-hardened-full
+        - tripleo-rhel-8-master-buildimage-ironic-python-agent
+
 # TripleO CI templates
 - project-template:
     name: tripleo-ovb
