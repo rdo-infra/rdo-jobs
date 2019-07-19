@@ -20,6 +20,10 @@
         use_os_tempest: true
 
 - job:
+    name: periodic-tripleo-ci-rhel-8-standalone-master
+    parent: tripleo-ci-rhel-8-standalone-rdo
+
+- job:
     name: periodic-tripleo-ci-centos-7-standalone-upgrade-master
     parent: tripleo-ci-base-standalone-upgrade-periodic
     vars:
