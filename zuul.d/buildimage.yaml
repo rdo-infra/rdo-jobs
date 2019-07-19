@@ -1,0 +1,33 @@
+- job:
+    name: tripleo-rhel-8-master-buildimage-base
+    abstract: true
+    parent: tripleo-ci-base-singlenode-rdo-build-images
+    nodeset: single-rhel-8-node
+    required-projects:
+      - config
+    vars:
+      tripleo_image_os: rhel8
+      # We are using the rcm-guest for storing the guest for now. It already has rhui repos
+      # installed. See https://tree.taiga.io/project/tripleo-ci-board/task/1167 for more info
+      rhel_image_source: http://38.145.34.141/rcm-guest/images/rhel8/master/rdo_trunk/tripleo-ci-testing/rhel-8.0-guest-rhui.qcow2
+
+
+
+- job:
+    name: tripleo-rhel-8-master-buildimage-overcloud-full
+    parent: periodic-tripleo-rhel-8-master-buildimage-base
+    vars:
+      tripleo_image_type: overcloud-full
+
+- job:
+    name: tripleo-rhel-8-master-buildimage-overcloud-hardened-full
+    parent: tripleo-rhel-8-master-buildimage-base
+    vars:
+      tripleo_image_type: overcloud-hardened-full
+
+- job:
+    name: tripleo-rhel-8-master-buildimage-ironic-python-agent
+    parent: tripleo-rhel-8-master-buildimage-base
+    vars:
+      tripleo_image_type: ironic-python-agent
+
