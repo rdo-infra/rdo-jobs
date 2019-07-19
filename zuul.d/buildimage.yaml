@@ -1,0 +1,21 @@
+- job:
+    name: tripleo-rhel-8-master-buildimage-overcloud-full
+    parent: tripleo-rhel-8-master-buildimage-base
+    voting: false
+    vars:
+      tripleo_image_type: overcloud-full
+
+- job:
+    name: tripleo-rhel-8-master-buildimage-overcloud-hardened-full
+    parent: tripleo-rhel-8-master-buildimage-base
+    voting: false
+    vars:
+      tripleo_image_type: overcloud-hardened-full
+
+- job:
+    name: tripleo-rhel-8-master-buildimage-ironic-python-agent
+    parent: tripleo-rhel-8-master-buildimage-base
+    voting: false
+    vars:
+      tripleo_image_type: ironic-python-agent
+
