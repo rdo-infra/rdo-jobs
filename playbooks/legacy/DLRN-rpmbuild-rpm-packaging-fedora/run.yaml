@@ -123,7 +123,7 @@
           # FIXME(jpena) some packages are moving to use singlespec, which
           # requires an up to date openstack-macros package in the builder,
           # and not just in the mock buildroot.
-          sudo dnf -y install https://buildlogs.centos.org/centos/7/cloud/x86_64/openstack-pike/common/openstack-macros-2018.1.0-0.noarch.rpm
+          sudo dnf -y install https://fedora-rpm-packaging-ci.rdoproject.org/repos/deps/openstack-macros-2019.2.1-0.20190701082914.ce6a105.fc28.noarch.rpm
           pushd DLRN
           # Setup virtualenv with tox and use it
           tox -epy27 --notest
