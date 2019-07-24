@@ -1,0 +1,12 @@
+- hosts: all
+  tasks:
+
+    # to test rhel8 rhui based containers we need to be sure that we can
+    # resolve rhui-cds
+    - name: adds rhui-cds to /etc/hosts
+      become: yes
+      lineinfile:
+        dest: /etc/hosts
+        regexp: '.*rhui-cds$'
+        line: "38.145.32.241 rhui-cds"
+        state: present
