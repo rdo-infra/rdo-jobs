@@ -1,0 +1,13 @@
+---
+tasks:
+    - name: install python3-docker
+      become: true
+      package:
+        name: "python3-docker"
+        state: present
+
+    - name: install python2-docker
+      become: true
+      package:
+        name: "python2-docker"
+        state: present
