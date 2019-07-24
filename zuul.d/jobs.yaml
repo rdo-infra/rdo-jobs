@@ -317,6 +317,8 @@
     parent: tripleo-tox-molecule
     voting: false
     nodeset: rdo-fedora-stable
+    pre-run:
+      - playbooks/rdo-tox-molecule-pre.yaml
 
 - job:
     name: rdo-tox-molecule-rhel8
