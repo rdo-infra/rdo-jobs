@@ -356,3 +356,23 @@
     nodeset: single-upstream-fedora-28-node
     vars:
       featureset: '052'
+
+- job:
+    name: tripleo-ci-rhel-8-standalone-rdo
+    parent: tripleo-ci-base-standalone-rdo
+    nodeset: single-rhel-8-node
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+    vars:
+      featureset: '052'
+      release: master
+      featureset_override:
+        run_tempest: false
+        tempest_run_concurrency: 2
+        tempest_test_whitelist:
+          - 'tempest.scenario.test_minimum_basic.TestMinimumBasicScenario'
+          - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps'
+          - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern'
+          - '\[.*\bsmoke\b.*\]'
+        use_os_tempest: true
