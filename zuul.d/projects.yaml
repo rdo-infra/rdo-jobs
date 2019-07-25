@@ -18,6 +18,19 @@
         - periodic-tripleo-ci-centos-7-standalone-master:
             files:
               - zuul.d/standalone-jobs.yaml
+        - registry-login-rdo-integration-centos-7:
+            files:
+              - playbooks/integration/registry-login.yaml
+              - zuul.d/integration.yaml
+        - registry-login-rdo-integration-redhat-8:
+            files:
+              - playbooks/integration/registry-login.yaml
+              - zuul.d/integration.yaml
+        - ansible-role-container-registry-redhat-8-molecule:
+            files:
+              - playbooks/fucntional/ansible-role-container-registry/*
+              - zuul.d/functional.yaml
+
     gate:
       jobs:
         - tox-docs:

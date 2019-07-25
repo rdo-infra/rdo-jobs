@@ -1,0 +1,13 @@
+# TODO(gcerami): there were some problems in some distribution with the library required
+# to use docker-login ansible module. We need to understand it the python library can be installed
+# and eventually use just docker login command.
+
+- name: Install podman
+  become: true
+  package:
+    name: podman
+    state: present
+  register: container_registry_podman_install
+  when: >
+    (ansible_distribution == "CentOS" and ansible_distribution_major_version|int >= 8)
+    or (ansible_distribution == "RedHat" and ansible_lsb.major_release|int >= 8)
