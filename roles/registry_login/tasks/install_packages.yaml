@@ -1,0 +1,22 @@
+- block:
+    - name: Install podman
+      package:
+        name: podman
+        state: present
+      register: podman_install
+  rescue:
+    - debug:
+        msg: "Warning: Unable to install podman"
+  become: true
+
+- block:
+    - name: Install docker
+      package:
+        name: docker
+        state: present
+      register: docker_install
+  rescue:
+    - debug:
+        msg: "Warning: Unable to install docker"
+  become: true
+
