@@ -1,0 +1,6 @@
+# This is to test integration of the role with what comes before
+# it can be removed or left for later uses
+- job:
+    name: staging-tripleo-ci-base-singlenode-rdo
+    parent: tripleo-ci-base-singlenode-rdo
+    run: roles/registry_login/examples/playbook.yaml

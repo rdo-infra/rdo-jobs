@@ -1,0 +1,19 @@
+
+- block:
+    - name: Login to registry
+      command: podman login {{ registry_host }} -u {{ registry_username }} --password '{{ registry_password }}'
+      no_log: true
+  rescue:
+    - debug:
+        msg: "Warning: Unable to Login with podman"
+  become: true
+
+- block:
+    - name: Login to registry
+      command: docker login {{ registry_host }} -u {{ registry_username }} --password '{{ registry_password }}'
+      no_log: true
+  rescue:
+    - debug:
+        msg: "Warning: Unable to Login with docker"
+  become: true
+

@@ -1,0 +1,99 @@
+- hosts: fake_registry
+  vars:
+    registry_username: test
+    registry_password: test
+  tasks:
+    - name: configure credentials on registry
+      copy:
+        content: |
+            test
+        dest: /etc/docker/registry/config.yml
+
+- hosts: all:!fake_registry
+  vars:
+    docker_login_cache: /root/.docker/config.json
+    podman_login_cache: /var/run/user/0/containers/auth.json
+    docker_socket: /var/run/docker.sock
+    registry_username: test
+    registry_password: test
+    registry_host: fake_registry
+  tasks:
+    - name: Ensure rdo registry secrets are defined
+      debug:
+        msg: "rdo registry secrets are not defined"
+      when: rdo_registry is not defined
+
+    - name: Ensure rdo registry secrets are defined
+      debug:
+        msg: "rdo registry secrets are defined and correctly passed to the playbook"
+      when: rdo_registry is defined
+
+    - block:
+        - name: verify docker login credentials are not present
+          stat:
+            path: "{{ docker_login_cache }}"
+          register: cache_file
+          failed_when: cache_file.stat.exists
+      rescue:
+        - debug:
+            msg: A cache file exists already for docker
+
+    - block:
+        - name: verify podman login credentials were created
+          stat:
+            path: "{{ podman_login_cache }}"
+          register: cache_file
+          failed_when: cache_file.stat.exists
+      rescue:
+        - debug:
+            msg: A cache file exists already for podman
+
+    - include_role:
+        name: registry_login
+        tasks_from: install_packages.yaml
+
+    - include_role:
+        name: registry_login
+        tasks_from: login.yaml
+
+    - block:
+        - name: verify docker login credentials were created
+          stat:
+            path: "{{ docker_login_cache }}"
+          register: cache_file
+          failed_when: not cache_file.stat.exists
+      rescue:
+        - debug:
+            msg: Unable to find docker credential cache
+
+    - block:
+        - name: verify podman login credentials were created
+          stat:
+            path: "{{ podman_login_cache }}"
+          register: cache_file
+          failed_when: not cache_file.stat.exists
+      rescue:
+        - debug:
+            msg: Unable to find podman credential cache
+
+    - block:
+        # TODO: do an operation with docker and podman to ensure the credentials can be used
+        - name: Ensure docker can use credentials
+          debug:
+            msg: "Not implemented"
+      rescue:
+        - debug:
+            msg: "Error while using docker credentials"
+
+    - include_role:
+        name: registry_login
+        tasks_from: cleanup.yaml
+
+    - block:
+        - name: ensure docker is still running after the login
+          stat:
+            path: "{{ docker_socket }}"
+      rescue:
+        - debug:
+            msg: Unable to find docker socket file
+
