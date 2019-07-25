@@ -1,0 +1,33 @@
+---
+# change blocked
+# TODO(gcerami): The login process does not work with dockerhub, as dockerhub requires an
+# auth API call to pass an email address (aven a fake one)
+
+- name: Fail if credentials are not defined or empty
+  fail:
+    msg: "Registry credentials are missing"
+  when: container_registry_logins|default({}) == {}
+
+- import_tasks: install-engine.yml
+
+- name: Use podman for authentication
+  when: >
+    (ansible_distribution == "CentOS" and ansible_distribution_major_version|int >= 8)
+    or (ansible_distribution == "RedHat" and ansible_lsb.major_release|int >= 8)
+  block:
+    - name: Login to registry via podman
+      become: true
+      command: >
+        podman login
+         --username "{{ lookup('dict', item.value).key }}"
+         --password "{{ lookup('dict', item.value).value  }}"
+         --tls-verify=false
+         "{{ item.key }}"
+      loop: "{{ query('dict', container_registry_logins | default({})) }}"
+      register: registry_login_podman
+  rescue:
+    - debug:
+        msg: "Warning: login failed for some credentials while using podman"
+
+- import_tasks: cleanup-engine.yml
+  when: container_registry_cleanup_client

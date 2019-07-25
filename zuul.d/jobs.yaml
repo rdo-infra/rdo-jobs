@@ -297,6 +297,10 @@
     parent: tripleo-tox-molecule
     voting: false
     nodeset: rdo-fedora-stable
+    required-projects:
+      - opendev.org/openstack/ansible-role-container-registry
+    roles:
+      - zuul: opendev.org/openstack/ansible-role-container-registry
 
 - job:
     name: rdo-tox-molecule-rhel8
