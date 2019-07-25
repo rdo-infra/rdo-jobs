@@ -4,6 +4,15 @@
       jobs:
         - tox-docs:
             nodeset: container-centos
+        - rdo-tox-molecule:
+            voting: false
+            files:
+              - ^requirements.txt$
+              - ^roles/.*
+              - ^setup.*$
+              - ^test-requirements.txt$
+              - ^tox.ini$
+              - .*molecule.*
         - periodic-tripleo-ci-centos-7-standalone-master:
             files:
               - zuul.d/standalone-jobs.yaml
