@@ -6,8 +6,10 @@
         cmd: |
             make rpm
         chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/ceph/ceph-ansible'].src_dir }}"
+      changed_when: true
 
     - name: Copy logs to logs directory
+      changed_when: true
       shell:
         cmd: |
             mkdir logs
@@ -17,3 +19,5 @@
             createrepo .
             popd
         chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/ceph/ceph-ansible'].src_dir }}"
+      args:
+        warn: false

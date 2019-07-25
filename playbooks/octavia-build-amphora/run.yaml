@@ -1,7 +1,9 @@
 - hosts: all
   name: Job to periodically build an Octavia amphora
   tasks:
-    - shell:
+    - name: build octavia amphora
+      changed_when: true
+      shell:
         cmd: |
           set -e -x
           if [ "{{ zuul.branch }}" == master ]; then
@@ -18,8 +20,12 @@
           sudo yum -y install openstack-octavia-diskimage-create
           wget https://cloud.centos.org/centos/7/images/$IMAGE_NAME
           sudo systemctl start libvirtd
-          sudo LIBGUESTFS_BACKEND_SETTINGS=force_tcg LIBGUESTFS_BACKEND=direct virt-customize -a $IMAGE_NAME --selinux-relabel --run-command "yum-config-manager --add-repo https://trunk.rdoproject.org/centos7-${RELEASE}/delorean-deps.repo"
-          sudo LIBGUESTFS_BACKEND_SETTINGS=force_tcg LIBGUESTFS_BACKEND=direct virt-customize -a $IMAGE_NAME --selinux-relabel --run-command "yum-config-manager --add-repo https://trunk.rdoproject.org/centos7-${RELEASE}/current-passed-ci/delorean.repo"
+          sudo LIBGUESTFS_BACKEND_SETTINGS=force_tcg LIBGUESTFS_BACKEND=direct \
+              virt-customize -a $IMAGE_NAME --selinux-relabel --run-command \
+              "yum-config-manager --add-repo https://trunk.rdoproject.org/centos7-${RELEASE}/delorean-deps.repo"
+          sudo LIBGUESTFS_BACKEND_SETTINGS=force_tcg LIBGUESTFS_BACKEND=direct \
+              virt-customize -a $IMAGE_NAME --selinux-relabel --run-command \
+              "yum-config-manager --add-repo https://trunk.rdoproject.org/centos7-${RELEASE}/current-passed-ci/delorean.repo"
           sudo DIB_LOCAL_IMAGE=$PWD/$IMAGE_NAME /usr/bin/octavia-diskimage-create.sh -s 3 -p -i centos -o amphora-x64-haproxy-centos.qcow2
           # Create output directory
           mkdir -p images/$RELEASE

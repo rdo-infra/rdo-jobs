@@ -5,6 +5,7 @@
     - name: Check if worker can sudo
       command: sudo -n true
       failed_when: false
+      changed_when: false
       register: _worker_is_sudoer
 
     - import_role:
