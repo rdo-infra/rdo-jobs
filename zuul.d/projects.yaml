@@ -2,8 +2,13 @@
     name: rdo-jobs
     check:
       jobs:
-        - tox-docs:
+        - tox-docs: &tox-docs
             nodeset: container-centos
+            vars:
+              # needed to avoid accidental call of /usr/bin/tox
+              tox_executable: "{{ ansible_python.executable }} -m tox"
+            pre-run:
+              - playbooks/pre-tox.yaml
         - tox-linters
         - rdo-tox-molecule:
             # TODO(ssbarnea): make voting and activate in gate in few days
@@ -20,6 +25,5 @@
               - zuul.d/standalone-jobs.yaml
     gate:
       jobs:
-        - tox-docs:
-            nodeset: container-centos
+        - tox-docs: *tox-docs
         - tox-linters
