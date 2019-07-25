@@ -6,8 +6,10 @@
         path: "{{ ansible_user_dir  }}/workspace/logs/collect_logs.sh"
       register: collect_logs_path
 
-    - name: Copy collect_logs.sh if exists to reuse
+    - name: Copy collect_logs.sh if exists to reuse  # noqa 305
       shell: cp "{{ ansible_user_dir  }}/workspace/logs/collect_logs.sh" "{{ ansible_user_dir  }}/collect_logs.sh"
+      args:
+        warn: false
       when: collect_logs_path.stat.exists
 
     - name: Check zuul-variables.yaml
@@ -15,8 +17,10 @@
         path: "{{ ansible_user_dir  }}/workspace/logs/zuul-variables.yaml"
       register: zuul_variables_path
 
-    - name: Copy zuul-variables.yaml if exists to reuse
+    - name: Copy zuul-variables.yaml if exists to reuse  # noqa 305
       shell: cp "{{ ansible_user_dir  }}/workspace/logs/zuul-variables.yaml" "{{ ansible_user_dir  }}/zuul-variables.yaml"
+      args:
+        warn: false
       when: zuul_variables_path.stat.exists
 
     - name: Build containers post tasks
@@ -28,10 +32,16 @@
             name: build-containers
             tasks_from: post
 
-    - name: Copy collect_logs.sh back to logs directory if exists
+    - name: Copy collect_logs.sh back to logs directory if exists  # noqa 305
       shell: cp "{{ ansible_user_dir  }}/collect_logs.sh" "{{ ansible_user_dir  }}/workspace/logs/collect_logs.sh"
+      args:
+        warn: false
       when: collect_logs_path.stat.exists
+      changed_when: true
 
-    - name: Copy zuul-variables.yaml back to logs directory if exists
+    - name: Copy zuul-variables.yaml back to logs directory if exists  # noqa 305
       shell: cp "{{ ansible_user_dir  }}/zuul-variables.yaml" "{{ ansible_user_dir  }}/workspace/logs/zuul-variables.yaml"
+      args:
+        warn: false
       when: zuul_variables_path.stat.exists
+      changed_when: true

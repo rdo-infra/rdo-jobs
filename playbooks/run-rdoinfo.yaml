@@ -19,6 +19,7 @@
         state: directory
 
     - name: Create release file
+      changed_when: true
       shell:
         cmd: |
           # This builder, when run from a child job of validate-buildsys-tags
@@ -81,7 +82,9 @@
           COMMON_TESTING=$(grep -c $COMMON_TESTING_TAG $CREPOS_FILE)
           COMMON_RELEASE=$(grep -c $COMMON_RELEASE_TAG $CREPOS_FILE)
           PROMOTED_TAG="current-tripleo"
-          dlrn_baseurl=`curl --silent https://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/$PROMOTED_TAG/delorean.repo -S  | grep baseurl | cut -d= -f2 | sed -e 's/\/*$//'`
+          dlrn_baseurl="\
+          `curl --silent https://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/$PROMOTED_TAG/delorean.repo -S | \
+              grep baseurl | cut -d= -f2 | sed -e 's/\/*$//'`"
           # FULL_HASH is needed as currently container build tags images based on it
           FULL_HASH=${dlrn_baseurl##*/}
 
@@ -228,10 +231,12 @@
                   STABLE_REPOSITORIES=true
                   TESTING_REPOSITORY=true
               else
-                  REPOS_URL="http://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/$PROMOTED_TAG/delorean.repo http://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/delorean-deps.repo"
+                  REPOS_URL="http://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/$PROMOTED_TAG/delorean.repo \
+                  http://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/delorean-deps.repo"
                   STABLE_REPOSITORIES=false
                   TESTING_REPOSITORY=false
-                  delorean_current_url=`curl --silent https://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/current/delorean.repo -S  | grep baseurl | cut -d= -f2`
+                  delorean_current_url="\
+                  `curl --silent https://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/current/delorean.repo -S  | grep baseurl | cut -d= -f2`"
               fi
               if [ $(grep -c $O_RELEASE-{{ rdoinfo_phase }} $CREPOS_FILE) -ne 0 ]; then
                   REPO="cloud7-openstack-$O_RELEASE-{{ rdoinfo_phase }}"
