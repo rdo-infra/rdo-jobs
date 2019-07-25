@@ -1,0 +1,71 @@
+- hosts: all
+  vars:
+    container_registry_logins:
+      trunk.registry.rdoproject.org:
+        unused: test
+    tripleo_container_registry_logins: '{{ container_registry_logins }}'
+
+  tasks:
+    - include_role:
+        name: ansible-role-container-registry
+        tasks_from: registry-login.yml
+      when:
+        - ansible_distribution == "CentOS"
+        - ansible_distribution_major_version|int < 8
+
+    - name: Podman testing
+      when:
+        (ansible_distribution == "CentOS" and ansible_distribution_major_version|int >= 8)
+        or (ansible_distribution == "RedHat" and ansible_lsb.major_release|int >= 8)
+      block:
+      - name: Install Podman
+        include_role:
+          name: tripleo-podman
+          tasks_from: tripleo_podman_install.yml
+      - name: Check for podman login
+        include_role:
+          name: tripleo-podman
+          tasks_from: tripleo_podman_login.yml
+      rescue:
+        - debug:
+            msg: "Warning: login failed for some credentials while using podman"
+
+    # We can't use the real credentials in this test, so it's enough that we get
+    # an "unauthorized" response from the registry, meaning that the interaction works.
+    - name: Check result in centos 7
+      when:
+        - ansible_distribution == "CentOS"
+        - ansible_distribution_major_version|int < 8
+      block:
+        - name: Assert role has worked in centos 7
+          assert:
+            that:
+              - registry_login_docker is defined
+              - '"unauthorized" in registry_login_docker.results.0.stdout'
+            success_msg: Role got to the authentication phase and correctly failed
+            fail_msg: Role failed authentication for an Unknown reason.
+
+        - name: Make sure docker daemon is still running
+          become: true
+          stat:
+            path: /var/run/docker.sock
+          register: docker_socket
+
+        - name: assert docker socket still exists
+          assert:
+            that:
+              - docker_socket.stat.exists
+            fail_msg: Docker daemon is missing
+            success_msg: Docker deamon correctly running
+
+
+    - name: Assert role has worked in (CentOS|RedHat) 8
+      when:
+        (ansible_distribution == "CentOS" and ansible_distribution_major_version|int >= 8)
+        or (ansible_distribution == "RedHat" and ansible_lsb.major_release|int >= 8)
+      assert:
+        that:
+          - registry_login_podman is defined
+          - '"invalid username/password" in registry_login_podman.results.0.stdout'
+        success_msg: Role got to the authentication phase and correctly failed
+        fail_msg: Role failed authentication for an Unknown reason.
