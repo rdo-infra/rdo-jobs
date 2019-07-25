@@ -2,12 +2,13 @@
     name: rdo-jobs
     check:
       jobs:
-        - tox-docs:
+        - tox-docs: &tox-docs
             nodeset: container-centos
+            pre-run:
+              - playbooks/pre-tox.yaml
         - periodic-tripleo-ci-centos-7-standalone-master:
             files:
               - zuul.d/standalone-jobs.yaml
     gate:
       jobs:
-        - tox-docs:
-            nodeset: container-centos
+        - tox-docs: *tox-docs

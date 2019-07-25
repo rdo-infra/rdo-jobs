@@ -1,0 +1,36 @@
+---
+# Upgrades system tox to latest version in order to avoid failure to run
+# it with newer configuration files. Tox introduced ability to boostrap a
+# newer version of itself in 3.8 but sadly our distribution are using a much
+# older version.
+#
+# Clasic installation of newer tox using --user does not help here because
+# ~/.local/bin was not added to PATH until fedora29/rhel8/centos8 so
+# someone calling `tox` -> /usr/bin/tox which would throw an import error due
+# to internal changes in tox.
+#
+# When this is detected we are forcefully upgrade tox without --user, mainly
+# fixing it.
+- hosts: all
+  environment:
+    PIP_DISABLE_PIP_VERSION_CHECK: "1"
+    # Avoid 2020-01-01 warnings: https://github.com/pypa/pip/issues/6207
+    PYTHONWARNINGS: ignore:DEPRECATION::pip._internal.cli.base_command
+  tasks:
+
+    - name: Upgrade tox as user
+      shell: |
+        set -eux
+        {{ ansible_python.executable }} -m pip install --user --upgrade tox
+        {{ ansible_python.executable }} -m tox --version
+        tox --version  # <-- if this fails, we will upgrade system tox
+      register: result
+      ignore_errors: true
+
+    - name: Upgrade system tox (forced repair)
+      when: result is failed
+      become: true
+      shell: |
+        set -euox
+        {{ ansible_python.executable }} -m pip install --user --upgrade tox
+        tox --version
