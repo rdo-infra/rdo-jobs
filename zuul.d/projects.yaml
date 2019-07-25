@@ -5,6 +5,11 @@
         - tox-docs: &cfg
             # using fedora to get python3, can remove once we have centos-8
             nodeset: container-fedora
+            vars:
+              # needed to avoid accidental call of /usr/bin/tox
+              tox_executable: "{{ ansible_python.executable }} -m tox"
+            pre-run:
+              - playbooks/pre-tox.yaml
         - tox-linters: *cfg
         - rdo-tox-molecule:
             # TODO(ssbarnea): make voting and activate in gate in few days
