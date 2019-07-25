@@ -1,0 +1,7 @@
+# The main goal for these tasks is to pre login to registry and generate the auth
+# credentials cache for each available method, then clean up any interference
+
+- include_tasks: install_packages.yaml
+- include_tasks: login.yaml
+- include_tasks: cleanup.yaml
+
