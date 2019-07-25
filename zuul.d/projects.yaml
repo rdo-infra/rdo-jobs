@@ -18,6 +18,10 @@
         - periodic-tripleo-ci-centos-7-standalone-master:
             files:
               - zuul.d/standalone-jobs.yaml
+        - registry-login-integration:
+            files:
+              - playbooks/integration/registry-login.yaml
+
     gate:
       jobs:
         - tox-docs:
