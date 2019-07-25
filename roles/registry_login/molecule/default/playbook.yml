@@ -1,0 +1,156 @@
+- name: Ensure role checks for missing information
+  hosts: all:!fake_registry
+  tasks:
+    - name: Baseline for role failure
+      set_fact:
+        role_failed: false
+
+    - name: ensure role fails when credentials missing
+      block:
+        - include_role:
+            name: registry_login
+      rescue:
+        - name: Message in case of expected failure
+          debug:
+            msg: Expected failure for role while credentials are missing
+        - name: Mark role as correctly failed
+          set_fact:
+            role_failed: true
+
+    - name: Fail the run is the task above did not fail
+      fail:
+      when: role_failed == false
+
+- name: Check role behaviour with docker installation
+  hosts: centos7
+  vars:
+    docker_login_cache: /root/.docker/config.json
+    docker_socket: /var/run/docker.sock
+    registry_username: test
+    registry_password: test
+    registry_host: fake_registry
+  tasks:
+    - name: Include login role
+      include_role:
+        name: registry_login
+
+    - name: Check if role removed docker
+      fail:
+        msg: Role did not remove docker when it should have
+      when: remove_docker is not defined
+
+    - name:
+      debug:
+        msg: Role correctly removed docker as it was not present before call
+
+    - name: preinstall docker
+      package:
+        name: docker
+        state: present
+
+    - name: Include login role
+      include_role:
+        name: registry_login
+
+    - name: Check if role removed docker and it shouldn't
+      fail:
+        msg: Role removed docker when it shouldn't have
+      when: remove_docker is defined and remove_docker is changed
+
+    - name: Check if we are correctly removing docker
+      debug:
+        msg: Role correctly left docker as it was installed before
+
+    - name: remove docker
+      package:
+        name: docker
+        state: absent
+
+- hosts: centos7
+  vars:
+    docker_login_cache: /root/.docker/config.json
+    docker_socket: /var/run/docker.sock
+    registry_username: test
+    registry_password: test
+    registry_host: fake_registry
+  tasks:
+    - name: Include login role, no cleanup
+      include_role:
+        name: registry_login
+      vars:
+        cleanup: false
+
+    - block:
+        - name: verify docker login credentials were created
+          stat:
+            path: "{{ docker_login_cache }}"
+          register: cache_file
+          failed_when: not cache_file.stat.exists
+      rescue:
+        - name: Rescue in case there is no credentials file
+          debug:
+            msg: Unable to find docker credential cache
+
+    - block:
+        # TODO: do an operation with docker and podman to ensure the credentials can be used
+        - name: Ensure docker can use credentials
+          debug:
+            msg: "Not implemented"
+      rescue:
+        - debug:
+            msg: "Error while using docker credentials"
+
+    - name: Include cleanup tasks
+      include_role:
+        name: registry_login
+        tasks_from: cleanup.yaml
+
+    - block:
+        - name: ensure docker is still running after the login
+          stat:
+            path: "{{ docker_socket }}"
+      rescue:
+        - name: rescue in case the docker daemon is not running
+          debug:
+            msg: Unable to find docker socket file
+
+
+- hosts: redhat8
+  vars:
+    podman_login_cache: /var/run/user/0/containers/auth.json
+    registry_username: test
+    registry_password: test
+    registry_host: fake_registry
+  tasks:
+    - name: Include login role
+      include_role:
+        name: registry_login
+      vars:
+        cleanup: false
+
+    - block:
+        - name: verify podman login credentials were created
+          stat:
+            path: "{{ podman_login_cache }}"
+          register: cache_file
+          failed_when: not cache_file.stat.exists
+      rescue:
+        - name: rescue when podman credentials are not present
+          debug:
+            msg: Unable to find podman credential cache
+
+    - block:
+        # TODO: do an operation with docker and podman to ensure the credentials can be used
+        - name: Ensure podman can use credentials
+          debug:
+            msg: "Not implemented"
+      rescue:
+        - name: Rescue during check for the podman credentials to work
+          debug:
+            msg: "Error while using podman credentials"
+
+    - name: Include cleanup tasks
+      include_role:
+        name: registry_login
+        tasks_from: cleanup.yaml
+

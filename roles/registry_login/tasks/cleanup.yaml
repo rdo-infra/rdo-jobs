@@ -1,0 +1,30 @@
+- block:
+    - name: Remove podman
+      package:
+        name:
+           - podman
+        state: absent
+      register: remove_docker
+      when:
+        - podman_install is defined
+        - podman_install is changed
+  rescue:
+    - debug:
+        msg: "unable to remove podman"
+  become: true
+
+- block:
+    - name: Remove docker
+      package:
+        name:
+           - docker
+        state: absent
+      register: remove_docker
+      when:
+        - docker_install is defined
+        - docker_install is changed
+  rescue:
+    - debug:
+        msg: "unable to remove docker"
+  become: true
+
