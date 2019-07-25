@@ -1,0 +1,16 @@
+- job:
+    description: Base ansible-role-container-registry job
+    name: ansible-role-container-registry-redhat-8-base
+    nodeset: single-rhel-8
+    parent: base
+    pre-run:
+    - playbooks/functional/ansible-role-container-registry/pre.yml
+    timeout: 1800
+    voting: true
+- job:
+    description: Run molecule testing
+    name: ansible-role-container-registry-redhat-8-molecule
+    parent: ansible-role-container-registry-redhat-8-base
+    run:
+    - playbooks/functional/ansible-role-container-registry/run.yml
+
