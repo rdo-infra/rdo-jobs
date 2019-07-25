@@ -1,0 +1,43 @@
+# The main goal for these tasks is to pre login to registry and generate the auth
+# credentials cache for each available method, then clean up any interference
+#
+- name: Fail when registry username is not defined
+  debug:
+    msg: "registry username is not defined"
+  when: registry_username is not defined
+
+- name: Fail when registry password is not defined
+  debug:
+    msg: "registry password is not defined"
+  when: registry_password is not defined
+
+- name: Fail when rdo registry host is not defined
+  debug:
+    msg: "registry host is not defined"
+  when: registry_host is not defined
+
+- fail:
+    msg: "Basic info are missing"
+  when: >
+    registry_host is not defined
+    or registry_password is not defined
+    or registry_username is not defined
+
+- name: Use docker for authentication
+  block:
+    - include_tasks: install_docker.yaml
+    - include_tasks: login_docker.yaml
+  when: >
+    ansible_distribution == "CentOS" and ansible_distribution_major_version|int < 8
+
+
+- name: Use podman for authentication
+  block:
+    - include_tasks: install_podman.yaml
+    - include_tasks: login_podman.yaml
+  when: >
+    (ansible_distribution == "CentOS" and ansible_distribution_major_version|int >= 8)
+    or (ansible_distribution == "RedHat" and ansible_lsb.major_release|int >= 8)
+
+- include_tasks: cleanup.yaml
+  when: cleanup == true
