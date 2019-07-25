@@ -1,0 +1,9 @@
+- hosts: all
+  vars:
+    registry_username: unused
+    registry_password: {{ rdo_registry.token }}
+    registry_host: trunk.registry.rdoproject.org
+  tasks:
+    - include_role:
+        name: staging/registry_login
+

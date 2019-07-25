@@ -1,0 +1,4 @@
+- job:
+    name: staging-tripleo-ci-base-singlenode-rdo
+    parent: tripleo-ci-base-singlenode-rdo
+	run: roles/registry_login/examples
