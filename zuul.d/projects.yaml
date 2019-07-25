@@ -4,6 +4,8 @@
       jobs:
         - tox-docs:
             nodeset: container-centos
+            vars:
+              tox_upgrade: true
         - periodic-tripleo-ci-centos-7-standalone-master:
             files:
               - zuul.d/standalone-jobs.yaml
@@ -11,3 +13,5 @@
       jobs:
         - tox-docs:
             nodeset: container-centos
+            vars:
+              tox_upgrade: true
