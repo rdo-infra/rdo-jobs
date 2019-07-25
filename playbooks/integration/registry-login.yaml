@@ -1,0 +1,11 @@
+- hosts: all
+  vars:
+    container_registry_logins:
+        trunk.registry.rdoproject.org:
+            unused: "{{ rdo_registry.token }}"
+    no_log_login: false
+  tasks:
+    - include_role:
+        name: ansible-role-container-registry
+        tasks_from: registry-login.yml
+
