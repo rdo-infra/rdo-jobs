@@ -150,11 +150,13 @@
           }
 
 
-              REPOS_URL="http://trunk.rdoproject.org/centos7-{{ release }}/current-tripleo/delorean.repo http://trunk.rdoproject.org/centos7-{{ release }}/delorean-deps.repo"
+              REPOS_URL="http://trunk.rdoproject.org/centos7-{{ release }}/current-tripleo/delorean.repo \
+              http://trunk.rdoproject.org/centos7-{{ release }}/delorean-deps.repo"
               delorean_current_url=`curl --silent https://trunk.rdoproject.org/centos7-{{ release }}/current/delorean.repo -S  | grep baseurl | cut -d= -f2`
               create_config | tee -a tripleo.yml
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
+      changed_when: true
 
     - name: inject release file into quickstart
       shell:
@@ -162,6 +164,7 @@
             TQ_SRC={{ ansible_user_dir  }}/{{ zuul['projects']['opendev.org/openstack/tripleo-quickstart']['src_dir']  }}
             sudo mv tripleo.yml ${TQ_SRC}/config/release/tripleo-ci/CentOS-7/{{ release }}.yml
         chdir: '{{ ansible_user_dir }}/workspace'
+      changed_when: true
 
     - name: Run quickstart
       include_role:

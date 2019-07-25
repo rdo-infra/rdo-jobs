@@ -1,0 +1,9 @@
+exclude_paths:
+    - roles/validate-ui/.travis.yml
+parseable: true
+quiet: false
+skip_list:
+    - ANSIBLE0010  # Package installs should not use latest.
+    - 601  # Due to https://github.com/ansible/ansible-lint/issues/470
+    - 602  # Due to https://github.com/ansible/ansible-lint/issues/457
+verbosity: 1
