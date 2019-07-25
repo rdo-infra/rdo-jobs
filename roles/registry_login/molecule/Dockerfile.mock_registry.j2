@@ -1,0 +1,51 @@
+# Molecule managed
+
+{% if item.registry is defined %}
+FROM {{ item.registry.url }}/{{ item.image }}
+{% else %}
+FROM {{ item.image }}
+{% endif %}
+
+# Required by RHEL8 image which defaults to non root
+USER root
+
+RUN if [ $(command -v apt-get) ]; then apt-get update && apt-get install -y python sudo bash ca-certificates && apt-get clean; \
+    elif [ $(command -v dnf) ]; then dnf makecache && dnf --assumeyes install python3 sudo python3-devel python3-dnf bash {{ item.pkg_extras | default('') }} && dnf clean all; \
+    elif [ $(command -v yum) ]; then yum makecache fast && yum install -y python sudo yum-plugin-ovl python-setuptools bash {{ item.pkg_extras | default('') }} && sed -i 's/plugins=0/plugins=1/g' /etc/yum.conf && yum clean all; \
+    elif [ $(command -v zypper) ]; then zypper refresh && zypper install -y python sudo bash python-xml {{ item.pkg_extras | default('') }} && zypper clean -a; \
+    elif [ $(command -v apk) ]; then apk update && apk add --no-cache python sudo bash ca-certificates {{ item.pkg_extras | default('') }}; \
+    elif [ $(command -v xbps-install) ]; then xbps-install -Syu && xbps-install -y python sudo bash ca-certificates {{ item.pkg_extras | default('') }} && xbps-remove -O; fi
+
+{% for pkg in item.easy_install | default([]) %}
+# install pip for centos where there is no python-pip rpm in default repos
+RUN easy_install {{ pkg }}
+{% endfor %}
+
+# Add credentials configuration
+#
+#
+mkdir auth
+$ docker run \
+  --entrypoint htpasswd \
+  registry:2 -Bbn testuser testpassword > auth/htpasswd
+Stop the registry.
+
+$ docker container stop registry
+Start the registry with basic authentication.
+
+$ docker run -d \
+  -p 5000:5000 \
+  --restart=always \
+  --name registry \
+  -v "$(pwd)"/auth:/auth \
+  -e "REGISTRY_AUTH=htpasswd" \
+  -e "REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm" \
+  -e REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd \
+  -v "$(pwd)"/certs:/certs \
+  -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/domain.crt \
+  -e REGISTRY_HTTP_TLS_KEY=/certs/domain.key \
+  registry:2
+
+
+
+CMD ["sh", "-c", "while true; do sleep 10000; done"]

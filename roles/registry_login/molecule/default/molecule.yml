@@ -1,0 +1,47 @@
+---
+# The MOLECULE_ vars used here are not officialy endorsed by molecule, but we
+# hope a future version will add implicit support for them.
+driver:
+  name: docker
+log: true
+platforms:
+
+  - name: ${MOLECULE_PLATFORM:-centos7}
+    hostname: ${MOLECULE_PLATFORM:-centos7}
+    image: ${MOLECULE_IMAGE:-centos:7}
+    dockerfile: ../Dockerfile.j2
+    easy_install:
+      - pip
+    environment: &env
+      http_proxy: "{{ lookup('env', 'http_proxy') }}"
+      https_proxy: "{{ lookup('env', 'https_proxy') }}"
+    registry:
+      url: ${MOLECULE_CONTAINER_REGISTRY_URL:-docker.io}
+
+  - name: fake_registry
+    hostname: fake_registry
+    dockerfile: ../Dockerfile.j2
+    image: registry:latest
+    registry:
+      url: ${MOLECULE_CONTAINER_REGISTRY_URL:-docker.io}
+    exposed_ports:
+        - 5000/tcp
+    published_ports:
+        - 0.0.0.0:5000:5000/tcp
+
+provisioner:
+  name: ansible
+  env:
+    ANSIBLE_STDOUT_CALLBACK: yaml
+  inventory:
+    host_vars:
+      rhel8:
+        ansible_python_interpreter: "/usr/bin/python3"
+scenario:
+  test_sequence:
+    - destroy
+    - create
+    - converge
+    - destroy
+lint:
+  enabled: false
