@@ -1,0 +1,29 @@
+---
+# Assures we have a version of tox that is future proof.
+#
+# Tox introduced ability to boostrap a newer version of itself when minversion
+# requires it in 3.8.0 but sadly our distributions are using a much older
+# version.
+#
+# This should avoid case where use of newer syntax in tox.ini causes errors,
+# sometimes happening even if the new syntax was present on a different
+# environment than the one being built.
+#
+# Safe to remove once we have the same feature implemented upstream:
+# https://review.rdoproject.org/r/#/c/21594/
+- hosts: all
+  environment:
+    PIP_DISABLE_PIP_VERSION_CHECK: "1"
+    # Avoid 2020-01-01 warnings: https://github.com/pypa/pip/issues/6207
+    PYTHONWARNINGS: ignore:DEPRECATION::pip._internal.cli.base_command
+  tasks:
+
+    - name: Upgrade tox if under 3.8.0
+      shell: |
+        set -euox
+        {{ ansible_python.executable }} -m pip install --user 'tox>=3.8.0'
+        {{ ansible_python.executable }} -m tox --version
+      args:
+        warn: false
+      register: result
+      changed_when: "'Successfully installed' in result"
