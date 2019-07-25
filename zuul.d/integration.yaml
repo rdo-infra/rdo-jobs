@@ -1,0 +1,9 @@
+# This is to test integration of the role with what comes before
+# it can be removed or left for later uses
+- job:
+    name: registry-login-integration
+    parent: tripleo-ci-base-singlenode-rdo
+    run: roles/registry_login/examples/playbook.yaml
+    vars:
+      rdo_registry:
+          token: test
