@@ -1,0 +1,15 @@
+- block:
+    - name: Remove podman
+      package:
+        name:
+           - podman
+        state: absent
+      register: remove_podman
+      when:
+        - container_registry_podman_install is defined
+        - container_registry_podman_install is changed
+  rescue:
+    - debug:
+        msg: "unable to remove podman"
+  become: true
+
