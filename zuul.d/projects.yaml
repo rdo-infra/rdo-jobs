@@ -2,12 +2,16 @@
     name: rdo-jobs
     check:
       jobs:
-        - tox-docs:
+        - tox-docs: &tox-docs
             nodeset: container-centos
+            vars:
+              # needed to avoid accidental call of /usr/bin/tox
+              tox_executable: "{{ ansible_python.executable }} -m tox"
+            pre-run:
+              - playbooks/pre-tox.yaml
         - periodic-tripleo-ci-centos-7-standalone-master:
             files:
               - zuul.d/standalone-jobs.yaml
     gate:
       jobs:
-        - tox-docs:
-            nodeset: container-centos
+        - tox-docs: *tox-docs
