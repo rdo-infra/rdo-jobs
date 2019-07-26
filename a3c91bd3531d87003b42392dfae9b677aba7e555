@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "82da14ce_e78f41d4",
+        "filename": "roles/registry_login/tasks/install_packages.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2019-07-26T10:40:18Z",
+      "side": 1,
+      "message": "Can we put conditional here for both block as on Fedora 28 and Centos7, we have docker but in RHEL-8 on doing yum install docker it install podman-docker which is a symlink over podman.",
+      "range": {
+        "startLine": 1,
+        "startChar": 1,
+        "endLine": 21,
+        "endChar": 14
+      },
+      "revId": "a3c91bd3531d87003b42392dfae9b677aba7e555",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "739ce6d2_edb73bb6",
+        "filename": "roles/registry_login/tasks/login.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2019-07-26T10:40:18Z",
+      "side": 1,
+      "message": "--username since we have used --password as a full arg name and what about --tls-verify arg, we disable it while logging to rdo-registry.",
+      "range": {
+        "startLine": 4,
+        "startChar": 48,
+        "endLine": 4,
+        "endChar": 51
+      },
+      "revId": "a3c91bd3531d87003b42392dfae9b677aba7e555",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
