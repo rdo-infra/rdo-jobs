@@ -2,14 +2,7 @@
     name: rdo-jobs
     check:
       jobs:
-        - tox-docs:
-            nodeset: container-centos
-        - tox-linters:
-            # TODO(ssbarnea): make voting and activate in gate in few days
-            voting: false
-        - periodic-tripleo-ci-centos-7-standalone-master:
-            files:
-              - zuul.d/standalone-jobs.yaml
+        - periodic-tripleo-rhel-8-buildimage-overcloud-hardened-full-master
     gate:
       jobs:
         - tox-docs:
