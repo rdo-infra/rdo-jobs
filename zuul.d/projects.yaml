@@ -4,9 +4,7 @@
       jobs:
         - tox-docs:
             nodeset: container-centos
-        - tox-linters:
-            # TODO(ssbarnea): make voting and activate in gate in few days
-            voting: false
+        - tox-linters
         - rdo-tox-molecule:
             # TODO(ssbarnea): make voting and activate in gate in few days
             voting: false
@@ -24,4 +22,4 @@
       jobs:
         - tox-docs:
             nodeset: container-centos
-
+        - tox-linters
