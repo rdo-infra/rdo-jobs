@@ -139,13 +139,11 @@
       nodes: 1ctlr_1comp_1ceph
       featureset: '024'
 
-# set to voting false until this starts passing again
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053
     parent: tripleo-ci-base-ovb-rdo
     timeout: 14400
     branches: ^master$
-    voting: false
     vars:
       nodes: 3ctlr_1comp
       featureset: '053'
