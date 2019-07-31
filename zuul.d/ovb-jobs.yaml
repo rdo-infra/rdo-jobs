@@ -351,27 +351,8 @@
       release: master
 
 - job:
-    name: periodic-tripleo-ci-fedora-28-ovb-1ctlr_1comp-featureset002-master-upload
-    parent: tripleo-ci-base-ovb-periodic-upload
-    nodeset: tripleo-ovb-fedora-28-primary
-    vars:
-      nodes: 1ctlr_1comp
-      featureset: '002'
-      release: master
-
-- job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-stein-upload
     parent: tripleo-ci-base-ovb-periodic-upload
-    vars:
-      nodes: 1ctlr_1comp
-      featureset: '002'
-      branch_override: "stable/stein"
-      release: stein
-
-- job:
-    name: periodic-tripleo-ci-fedora-28-ovb-1ctlr_1comp-featureset002-stein-upload
-    parent: tripleo-ci-base-ovb-periodic-upload
-    nodeset: tripleo-ovb-fedora-28-primary
     vars:
       nodes: 1ctlr_1comp
       featureset: '002'

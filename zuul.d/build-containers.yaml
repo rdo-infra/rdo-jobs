@@ -6,24 +6,7 @@
     name: tripleo-build-containers-jobs
     openstack-check:
       jobs:
-        - tripleo-build-containers-fedora-28-master
-        - tripleo-build-containers-fedora-28-stein
-
-- job:
-    name: tripleo-build-containers-fedora-28-master
-    parent: tripleo-build-containers-base-with-files
-    nodeset: single-upstream-fedora-28-node
-    voting: false
-
-- job:
-    name: tripleo-build-containers-fedora-28-stein
-    parent: tripleo-build-containers-base-with-files
-    nodeset: single-upstream-fedora-28-node
-    voting: false
-    override-checkout: 'stable/stein'
-    vars:
-      release: stein
-      branch_override: 'stable/stein'
+        - tripleo-build-containers-rhel-8-master
 
 - job:
     name: tripleo-build-containers-rhel-8-master

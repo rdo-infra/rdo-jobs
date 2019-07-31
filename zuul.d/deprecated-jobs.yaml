@@ -1,0 +1,142 @@
+---
+# zuul.d/deprecated-jobs.yaml
+# TripleO deprecated jobs in RDO SF (rdo-jobs).
+# It contains all the deprecated jobs that should be removed from Zuul.
+
+######
+# zuul.d/build-containers.yaml
+# Zuul layout for TripleO Build Containers jobs.
+
+- job:
+    name: tripleo-build-containers-fedora-28-master
+    parent: tripleo-build-containers-base-with-files
+    nodeset: single-upstream-fedora-28-node
+    voting: false
+
+- job:
+    name: tripleo-build-containers-fedora-28-stein
+    parent: tripleo-build-containers-base-with-files
+    nodeset: single-upstream-fedora-28-node
+    voting: false
+    override-checkout: 'stable/stein'
+    vars:
+      release: stein
+      branch_override: 'stable/stein'
+
+######
+# zuul.d/ovb-jobs.yaml
+# Zuul layout for TripleO OVB RDO Cloud related jobs.
+# It contains all the jobs related to OVB testing in RDO Cloud.
+
+- job:
+    name: periodic-tripleo-ci-fedora-28-ovb-1ctlr_1comp-featureset002-master-upload
+    parent: tripleo-ci-base-ovb-periodic-upload
+    nodeset: tripleo-ovb-fedora-28-primary
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '002'
+      release: master
+
+- job:
+    name: periodic-tripleo-ci-fedora-28-ovb-1ctlr_1comp-featureset002-stein-upload
+    parent: tripleo-ci-base-ovb-periodic-upload
+    nodeset: tripleo-ovb-fedora-28-primary
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '002'
+      branch_override: "stable/stein"
+      release: stein
+
+
+######
+# zuul.d/standalone-jobs.yaml
+# Zuul layout for TripleO standalone jobs.
+# It contains all the jobs related to standalone installer testing.
+
+- job:
+    name: periodic-tripleo-ci-fedora-28-centos-7-containers-standalone-master
+    parent: tripleo-ci-base-standalone-periodic
+    nodeset: single-upstream-fedora-28-node
+    vars:
+      featureset: '099'
+      featureset_override:
+        run_tempest: false
+      release: master
+      fedora_centos_mixed_distribution_job: true
+
+- job:
+    name: periodic-tripleo-ci-fedora-28-standalone-master
+    parent: tripleo-ci-base-standalone-periodic
+    nodeset: single-upstream-fedora-28-node
+    vars:
+      featureset: '052'
+      release: master
+
+- job:
+    name: periodic-tripleo-ci-fedora-28-scenario001-standalone-master
+    parent: periodic-tripleo-ci-centos-7-scenario001-standalone-master
+    nodeset: single-upstream-fedora-28-node
+
+- job:
+    name: periodic-tripleo-ci-fedora-28-scenario002-standalone-master
+    parent: periodic-tripleo-ci-centos-7-scenario002-standalone-master
+    nodeset: single-upstream-fedora-28-node
+
+- job:
+    name: periodic-tripleo-ci-fedora-28-scenario003-standalone-master
+    parent: periodic-tripleo-ci-centos-7-scenario003-standalone-master
+    nodeset: single-upstream-fedora-28-node
+
+- job:
+    name: periodic-tripleo-ci-fedora-28-scenario004-standalone-master
+    parent: periodic-tripleo-ci-centos-7-scenario004-standalone-master
+    nodeset: single-upstream-fedora-28-node
+
+- job:
+    name: periodic-tripleo-ci-fedora-28-centos-7-containers-standalone-stein
+    parent: tripleo-ci-base-standalone-periodic
+    nodeset: single-upstream-fedora-28-node
+    vars:
+      featureset: '099'
+      branch_override: "stable/stein"
+      featureset_override:
+        run_tempest: false
+      release: stein
+      fedora_centos_mixed_distribution_job: true
+
+- job:
+    name: periodic-tripleo-ci-fedora-28-standalone-stein
+    parent: tripleo-ci-base-standalone-periodic
+    nodeset: single-upstream-fedora-28-node
+    vars:
+      featureset: '052'
+      branch_override: "stable/stein"
+      release: stein
+
+- job:
+    name: periodic-tripleo-ci-fedora-28-scenario001-standalone-stein
+    parent: periodic-tripleo-ci-centos-7-scenario001-standalone-stein
+    nodeset: single-upstream-fedora-28-node
+
+- job:
+    name: periodic-tripleo-ci-fedora-28-scenario002-standalone-stein
+    parent: periodic-tripleo-ci-centos-7-scenario002-standalone-stein
+    nodeset: single-upstream-fedora-28-node
+
+- job:
+    name: periodic-tripleo-ci-fedora-28-scenario003-standalone-stein
+    parent: periodic-tripleo-ci-centos-7-scenario003-standalone-stein
+    nodeset: single-upstream-fedora-28-node
+
+- job:
+    name: periodic-tripleo-ci-fedora-28-scenario004-standalone-stein
+    parent: periodic-tripleo-ci-centos-7-scenario004-standalone-stein
+    nodeset: single-upstream-fedora-28-node
+
+- job:
+    name: tripleo-ci-fedora-28-standalone-rdo
+    parent: tripleo-ci-base-standalone-rdo
+    nodeset: single-upstream-fedora-28-node
+    vars:
+      featureset: '052'
+
