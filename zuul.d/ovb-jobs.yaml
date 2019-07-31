@@ -338,8 +338,8 @@
       primary:
         ansible_python_interpreter: /usr/bin/python3
     vars:
-      # This needs to be passed to tripleo-quickstart-extras role also
-      to_build: false
+      featureset_override:
+        to_build: false
 
 # legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload
 - job:
