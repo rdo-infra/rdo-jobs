@@ -274,6 +274,7 @@
       nodes: 1ctlr_2comp_1supp
       featureset: '039'
       playbooks:
+        - third_party_clone_keycloak.yml
         - ovb-setup.yml
         - baremetal-full-freeipa.yml
         - baremetal-full-undercloud.yml
