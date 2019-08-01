@@ -771,3 +771,13 @@
     openstack-check:
       jobs:
         - rdo-tox-molecule-rhel8
+
+- project-template:
+    name: tripleo-buildimages-jobs
+    description:
+        3rd party image building job on RHEL
+    openstack-check:
+        jobs:
+          - tripleo-rhel-8-buildimage-overcloud-full
+          - tripleo-rhel-8-buildimage-ironic-python-agent
+
