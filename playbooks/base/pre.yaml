@@ -13,3 +13,10 @@
       vars:
         mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
       when: _worker_is_sudoer.rc == 0
+
+    - name: instaled packages
+      command: rpm -qa
+
+    - name: Repo list
+      command: yum repolist
+      become: True

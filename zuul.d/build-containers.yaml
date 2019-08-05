@@ -26,7 +26,7 @@
       branch_override: 'stable/stein'
 
 - job:
-    name: tripleo-build-containers-rhel-8-master
+    name: rpm-test-job
     parent: tripleo-build-containers-base-with-files
     nodeset: single-rhel-8-node
     voting: true
@@ -35,12 +35,3 @@
         ansible_python_interpreter: /usr/bin/python3
       localhost:
         ansible_python_interpreter: /usr/bin/python3
-    vars:
-      release: master
-      use_buildah: true
-      # Keep string empty, or kolla will try to download delorean repos on its own
-      buildcontainers_rpm_setup_config: ""
-      kolla_base: rhel
-      kolla_base_pull: false
-      kolla_base_image: rhel
-      kolla_base_tag: 8.0-126
