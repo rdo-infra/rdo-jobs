@@ -9,6 +9,22 @@
         - tripleo-build-containers-rhel-8-master
 
 - job:
+    name: tripleo-build-containers-fedora-28-master
+    parent: tripleo-build-containers-base-with-files
+    nodeset: single-upstream-fedora-28-node
+    voting: false
+
+- job:
+    name: tripleo-build-containers-fedora-28-stein
+    parent: tripleo-build-containers-base-with-files
+    nodeset: single-upstream-fedora-28-node
+    voting: false
+    override-checkout: 'stable/stein'
+    vars:
+      release: stein
+      branch_override: 'stable/stein'
+
+- job:
     name: tripleo-build-containers-rhel-8-master
     parent: tripleo-build-containers-base-with-files
     nodeset: single-rhel-8-node
@@ -27,3 +43,14 @@
       kolla_base_pull: false
       kolla_base_image: rhel
       kolla_base_tag: 8.0-126
+
+- job:
+    name: rpm-test-job
+    parent: tripleo-build-containers-base-with-files
+    nodeset: single-rhel-8-node
+    voting: true
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+      localhost:
+        ansible_python_interpreter: /usr/bin/python3
