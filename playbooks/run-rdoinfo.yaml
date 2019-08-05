@@ -173,6 +173,9 @@
                   echo "      - puppet-*"
                   echo "      - python*-tripleo*"
                   echo "      - python*-paunch*"
+                  echo "      - tripleo-ansible"
+                  echo "      - ansible-config_template"
+                  echo "      - paunch-services"
               fi
               echo "repo_cmd_after: |"
               echo "  sudo yum install -y yum-plugin-priorities;"
