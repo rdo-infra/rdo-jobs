@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "83b06f05_cdc1e776",
+        "filename": "roles/registry_login/molecule/default/playbook.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 371
+      },
+      "writtenOn": "2019-08-06T13:31:33Z",
+      "side": 1,
+      "message": "missing newline between tasks, yeah... a perfectionist.",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 19
+      },
+      "revId": "e1202f0d2b029135806e02ecd24f3b80de79984b",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b5840eaf_a10df9d3",
         "filename": "roles/registry_login/tasks/cleanup.yaml",
         "patchSetId": 14
@@ -13,6 +36,30 @@
       "writtenOn": "2019-08-05T21:18:59Z",
       "side": 1,
       "message": "podman_install - double l",
+      "range": {
+        "startLine": 8,
+        "startChar": 42,
+        "endLine": 8,
+        "endChar": 55
+      },
+      "revId": "e1202f0d2b029135806e02ecd24f3b80de79984b",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6d24148c_88884625",
+        "filename": "roles/registry_login/tasks/cleanup.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 371
+      },
+      "writtenOn": "2019-08-06T13:31:33Z",
+      "side": 1,
+      "message": "also contains and, make it two lines for readability.",
+      "parentUuid": "b5840eaf_a10df9d3",
       "range": {
         "startLine": 8,
         "startChar": 42,
@@ -71,6 +118,30 @@
     },
     {
       "key": {
+        "uuid": "918d557d_8c4da6ff",
+        "filename": "roles/registry_login/tasks/main.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 371
+      },
+      "writtenOn": "2019-08-06T13:31:33Z",
+      "side": 1,
+      "message": "in fact is correct way to put a long condition that has OR on it because it too hard (or ugly) to make it a AND conditions.",
+      "parentUuid": "0cdae64a_755d3461",
+      "range": {
+        "startLine": 22,
+        "startChar": 2,
+        "endLine": 22,
+        "endChar": 9
+      },
+      "revId": "e1202f0d2b029135806e02ecd24f3b80de79984b",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0a207ca6_968fbf6a",
         "filename": "roles/registry_login/tasks/main.yaml",
         "patchSetId": 14
@@ -82,6 +153,30 @@
       "writtenOn": "2019-08-05T21:18:59Z",
       "side": 1,
       "message": "just \n\nwhen:\n - ansible_distribution \u003d\u003d \"CentOS\"\n - ansible_distribution_major_version|int \u003c 8",
+      "range": {
+        "startLine": 31,
+        "startChar": 1,
+        "endLine": 32,
+        "endChar": 83
+      },
+      "revId": "e1202f0d2b029135806e02ecd24f3b80de79984b",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "65af99f2_5a09f2c6",
+        "filename": "roles/registry_login/tasks/main.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 371
+      },
+      "writtenOn": "2019-08-06T13:31:33Z",
+      "side": 1,
+      "message": "Indeed, easier to read. Also move the \"when\" before the block\", also easier maintain/read, especially if block grows.",
+      "parentUuid": "0a207ca6_968fbf6a",
       "range": {
         "startLine": 31,
         "startChar": 1,
