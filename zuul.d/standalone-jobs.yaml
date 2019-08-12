@@ -6,7 +6,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-master
     parent: tripleo-ci-base-standalone-periodic
-    vars:
+    vars: &standalone_vars
       featureset: '052'
       release: master
       featureset_override:
@@ -18,14 +18,6 @@
           - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern'
           - '\[.*\bsmoke\b.*\]'
         use_os_tempest: true
-
-- job:
-    name: periodic-tripleo-ci-rhel-8-standalone-master
-    parent: periodic-tripleo-ci-centos-7-standalone-master
-    nodeset: single-rhel-8-node
-    host-vars:
-      primary:
-        ansible_python_interpreter: /usr/bin/python3
 
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-upgrade-master
@@ -55,7 +47,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-scenario001-standalone-master
     parent: tripleo-ci-base-standalone-periodic
-    vars:
+    vars: &scen1_standalone_vars
       featureset: '052'
       release: master
       standalone_ceph: true
@@ -80,7 +72,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-scenario002-standalone-master
     parent: tripleo-ci-base-standalone-periodic
-    vars:
+    vars: &scen2_standalone_vars
       featureset: '052'
       release: master
       featureset_override:
@@ -105,7 +97,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-scenario003-standalone-master
     parent: tripleo-ci-base-standalone-periodic
-    vars:
+    vars: &scen3_standalone_vars
       featureset: '052'
       release: master
       featureset_override:
@@ -128,7 +120,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-scenario004-standalone-master
     parent: tripleo-ci-base-standalone-periodic
-    vars:
+    vars: &scen4_standalone_vars
       featureset: '052'
       release: master
       standalone_ceph: true
@@ -272,6 +264,58 @@
           'share.capability_create_share_from_snapshot_support': 'False'
         test_white_regex: ''
 
+# RHEL8 periodic jobs - parent on centos7 to avoid duplication. cost is
+# carrying nodeset/host-vars. https://tree.taiga.io/project/tripleo-ci-board/us/1228
+
+- job:
+    name: periodic-tripleo-ci-rhel-8-standalone-master
+    parent: periodic-tripleo-ci-centos-7-standalone-master
+    nodeset: single-rhel-8-node
+    branches: ^master$
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+
+- job:
+    name: periodic-tripleo-ci-rhel-8-scenario001-standalone-master
+    parent: periodic-tripleo-ci-centos-7-scenario001-standalone-master
+    nodeset: single-rhel-8-node
+    branches: ^master$
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+
+- job:
+    name: periodic-tripleo-ci-rhel-8-scenario002-standalone-master
+    parent: periodic-tripleo-ci-centos-7-scenario002-standalone-master
+    nodeset: single-rhel-8-node
+    branches: ^master$
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+
+- job:
+    name: periodic-tripleo-ci-rhel-8-scenario003-standalone-master
+    parent: periodic-tripleo-ci-centos-7-scenario003-standalone-master
+    nodeset: single-rhel-8-node
+    branches: ^master$
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+    # disabled voting until pyngus appears: https://bugs.launchpad.net/tripleo/+bug/1840828
+    voting: false
+
+- job:
+    name: periodic-tripleo-ci-rhel-8-scenario004-standalone-master
+    parent: periodic-tripleo-ci-centos-7-scenario004-standalone-master
+    nodeset: single-rhel-8-node
+    branches: ^master$
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+
+# RDO jobs for check pipeline - for scenario standalones yaml anchors let us
+# avoid duplication https://tree.taiga.io/project/tripleo-ci-board/us/1228
 - job:
     name: tripleo-ci-centos-7-standalone-rdo
     parent: tripleo-ci-base-standalone-rdo
@@ -286,15 +330,33 @@
     host-vars:
       primary:
         ansible_python_interpreter: /usr/bin/python3
-    vars:
-      featureset: '052'
-      release: master
-      featureset_override:
-        run_tempest: false
-        tempest_run_concurrency: 2
-        tempest_test_whitelist:
-          - 'tempest.scenario.test_minimum_basic.TestMinimumBasicScenario'
-          - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps'
-          - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern'
-          - '\[.*\bsmoke\b.*\]'
-        use_os_tempest: true
+    vars: *standalone_vars
+
+- job:
+    name: tripleo-ci-rhel-8-scenario001-standalone-rdo
+    parent: tripleo-ci-rhel-8-standalone-rdo
+    branches: ^master$
+    vars: *scen1_standalone_vars
+    voting: false
+
+- job:
+    name: tripleo-ci-rhel-8-scenario002-standalone-rdo
+    parent: tripleo-ci-rhel-8-standalone-rdo
+    branches: ^master$
+    vars: *scen2_standalone_vars
+    voting: false
+
+- job:
+    name: tripleo-ci-rhel-8-scenario003-standalone-rdo
+    parent: tripleo-ci-rhel-8-standalone-rdo
+    branches: ^master$
+    vars: *scen3_standalone_vars
+    # disabled voting until pyngus appears: https://bugs.launchpad.net/tripleo/+bug/1840828
+    voting: false
+
+- job:
+    name: tripleo-ci-rhel-8-scenario004-standalone-rdo
+    parent: tripleo-ci-rhel-8-standalone-rdo
+    branches: ^master$
+    vars: *scen4_standalone_vars
+    voting: false
