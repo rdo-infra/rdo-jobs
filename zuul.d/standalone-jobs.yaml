@@ -20,14 +20,6 @@
         use_os_tempest: true
 
 - job:
-    name: periodic-tripleo-ci-rhel-8-standalone-master
-    parent: periodic-tripleo-ci-centos-7-standalone-master
-    nodeset: single-rhel-8-node
-    host-vars:
-      primary:
-        ansible_python_interpreter: /usr/bin/python3
-
-- job:
     name: periodic-tripleo-ci-centos-7-standalone-upgrade-master
     parent: tripleo-ci-base-standalone-upgrade-periodic
     vars:
@@ -55,7 +47,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-scenario001-standalone-master
     parent: tripleo-ci-base-standalone-periodic
-    vars:
+    vars: &scen1_standalone_vars
       featureset: '052'
       release: master
       standalone_ceph: true
@@ -297,3 +289,52 @@
           - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern'
           - '\[.*\bsmoke\b.*\]'
         use_os_tempest: true
+
+- job:
+    name: tripleo-ci-rhel-8-scenario001-standalone-rdo
+    parent: tripleo-ci-rhel-8-standalone-rdo
+    vars: *scen1_standalone_vars
+
+# RHEL8 jobs
+# parent on centos7 equivalents to avoid duplicating vars. cost is we have to
+# carry the nodeset/host-vars for rhel8 as they can't have a common parent.
+
+- job:
+    name: periodic-tripleo-ci-rhel-8-standalone-master
+    parent: periodic-tripleo-ci-centos-7-standalone-master
+    nodeset: single-rhel-8-node
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+
+- job:
+    name: periodic-tripleo-ci-rhel-8-scenario001-standalone-master
+    parent: periodic-tripleo-ci-centos-7-scenario001-standalone-master
+    nodeset: single-rhel-8-node
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+
+- job:
+    name: periodic-tripleo-ci-rhel-8-scenario002-standalone-master
+    parent: periodic-tripleo-ci-centos-7-scenario002-standalone-master
+    nodeset: single-rhel-8-node
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+
+- job:
+    name: periodic-tripleo-ci-rhel-8-scenario003-standalone-master
+    parent: periodic-tripleo-ci-centos-7-scenario003-standalone-master
+    nodeset: single-rhel-8-node
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+
+- job:
+    name: periodic-tripleo-ci-rhel-8-scenario004-standalone-master
+    parent: periodic-tripleo-ci-centos-7-scenario004-standalone-master
+    nodeset: single-rhel-8-node
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
