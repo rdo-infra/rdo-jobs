@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e6cdb950_823ad9be",
+        "filename": "zuul.d/standalone-jobs.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2019-08-14T09:38:10Z",
+      "side": 1,
+      "message": "12:25 \u003c sshnaidm\u003e marios, hi, I read a story about anchors/parenting, but it\u0027s still not clear to me\n12:30 \u003c marios\u003e sshnaidm: o/ did you read the \"Check\" part in design at https://tree.taiga.io/project/tripleo-ci-board/us/1228\n12:31 \u003c marios\u003e sshnaidm: which part wasn\u0027t clear? \"cannot use parenting because the periodics have an extra parent that the check jobs \n                do not have\" \n12:31 \u003c marios\u003e sshnaidm: that\u0027s the main part ^ \n12:31 \u003c sshnaidm\u003e marios, yeah, I don\u0027t understand why you don\u0027t inherit from centos standalone, like c7 sc001 -\u003e rhel8 sc001, etc\n12:32 \u003c marios\u003e sshnaidm: lets be specific cos maybe i missed something. so here                 https://review.rdoproject.org/r/#/c/21787/5/zuul.d/standalone-jobs.yaml@279 \n                periodic-tripleo-ci-rhel-8-scenario001-standalone-master\n12:32 \u003c marios\u003e sshnaidm: which job should that inherit from? \n12:32 \u003c marios\u003e sshnaidm: sorry wrong example... the issue is the check jobs\n12:33 \u003c marios\u003e sshnaidm: so here: https://review.rdoproject.org/r/#/c/21787/5/zuul.d/standalone-jobs.yaml@328 \n                tripleo-ci-rhel-8-scenario001-standalone-rdo \n12:33 \u003c marios\u003e sshnaidm: which job should that inherit from ( tripleo-ci-rhel-8-scenario001-standalone-rdo )",
+      "range": {
+        "startLine": 329,
+        "startChar": 4,
+        "endLine": 329,
+        "endChar": 10
+      },
+      "revId": "913c2cf17f7976868b9a88d4e597e3525b09be63",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
