@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "35af3a4a_83c0931b",
+        "filename": "zuul.d/standalone-jobs.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2019-08-14T08:23:42Z",
+      "side": 1,
+      "message": "ack",
+      "parentUuid": "1a510e51_eb1ffc22",
+      "range": {
+        "startLine": 268,
+        "startChar": 2,
+        "endLine": 268,
+        "endChar": 39
+      },
+      "revId": "603caecc6f0d56c14ec54c690f3574533ac37a08",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4131ee12_81f303ac",
         "filename": "zuul.d/standalone-jobs.yaml",
         "patchSetId": 4
@@ -36,6 +60,41 @@
       "writtenOn": "2019-08-13T19:21:47Z",
       "side": 1,
       "message": "I don\u0027t understand why it\u0027s done not like periodic job - with just inheritance and host-vars and nodeset settings?",
+      "revId": "603caecc6f0d56c14ec54c690f3574533ac37a08",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "88bf2f1a_c5318edb",
+        "filename": "zuul.d/standalone-jobs.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2019-08-14T08:23:42Z",
+      "side": 1,
+      "message": "o/ thanks for looking.\n\nbecause the check jobs have different parenting than the periodics. I wrote the explanation in design please see https://tree.taiga.io/project/tripleo-ci-board/us/1228 \n\nif you disagree then let\u0027s discuss and I am up for suggestions thanks",
+      "parentUuid": "4131ee12_81f303ac",
+      "revId": "603caecc6f0d56c14ec54c690f3574533ac37a08",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f6b8ff3b_54a3f302",
+        "filename": "zuul.d/standalone-jobs.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2019-08-14T08:23:42Z",
+      "side": 1,
+      "message": "nit add spaces between the jobs here",
       "revId": "603caecc6f0d56c14ec54c690f3574533ac37a08",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
