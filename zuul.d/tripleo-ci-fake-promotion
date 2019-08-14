@@ -1,0 +1,10 @@
+---
+- job:
+    name: tripleo-ci-centos-7-fake-promotion
+    parent: tripleo-ci-base-standalone-rdo
+    run: playbooks/tripleo-ci-fake-promoter.yaml
+    required-projects:
+      - rdo-infra/ci-config
+    roles:
+      - zuul: ci-config/ci-scripts/infra-setup/roles/promoter
+
