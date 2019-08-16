@@ -20,11 +20,10 @@
               - zuul.d/standalone-jobs.yaml
         #      *** D O   N O T   M E R G E !  ***
         # Testing https://review.rdoproject.org/r/21787
-        - tripleo-ci-rhel-8-scenario001-standalone-rdo
-        - tripleo-ci-rhel-8-scenario002-standalone-rdo
-        - tripleo-ci-rhel-8-scenario003-standalone-rdo
-        - tripleo-ci-rhel-8-scenario004-standalone-rdo
-
+        - periodic-tripleo-ci-rhel-8-scenario001-standalone-master
+        - periodic-tripleo-ci-rhel-8-scenario002-standalone-master
+        - periodic-tripleo-ci-rhel-8-scenario003-standalone-master
+        - periodic-tripleo-ci-rhel-8-scenario004-standalone-master
     gate:
       jobs:
         - tox-docs:
