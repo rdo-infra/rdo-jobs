@@ -27,6 +27,26 @@
             files:
               - playbooks/integration/registry-login.yaml
               - zuul.d/integration.yaml
+#      *** D O   N O T   M E R G E !  ***
+        # Testing https://review.rdoproject.org/r/21787
+        - periodic-tripleo-ci-rhel-8-scenario001-standalone-master:
+            vars:
+              force_periodic: true
+        - periodic-tripleo-ci-rhel-8-scenario002-standalone-master:
+            vars:
+              force_periodic: true
+        - periodic-tripleo-ci-rhel-8-scenario003-standalone-master:
+            vars:
+              force_periodic: true
+        - periodic-tripleo-ci-rhel-8-scenario004-standalone-master:
+            vars:
+              force_periodic: true
+        #      *** D O   N O T   M E R G E !  ***
+        # Testing https://review.rdoproject.org/r/21787
+        - tripleo-ci-rhel-8-scenario001-standalone-rdo
+        - tripleo-ci-rhel-8-scenario002-standalone-rdo
+        - tripleo-ci-rhel-8-scenario003-standalone-rdo
+        - tripleo-ci-rhel-8-scenario004-standalone-rdo
 
     gate:
       jobs:
