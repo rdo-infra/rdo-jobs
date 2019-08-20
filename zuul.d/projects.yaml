@@ -2,22 +2,12 @@
     name: rdo-jobs
     check:
       jobs:
+        - tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022
+        - tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
         - tox-docs:
             nodeset: container-centos
         - tox-linters
-        - rdo-tox-molecule:
-            # TODO(ssbarnea): make voting and activate in gate in few days
-            voting: false
-            files:
-              - ^requirements.txt$
-              - ^roles/.*
-              - ^setup.*$
-              - ^test-requirements.txt$
-              - ^tox.ini$
-              - .*molecule.*
-        - periodic-tripleo-ci-centos-7-standalone-master:
-            files:
-              - zuul.d/standalone-jobs.yaml
     gate:
       jobs:
         - tox-docs:
