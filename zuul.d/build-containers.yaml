@@ -12,6 +12,7 @@
     name: tripleo-build-containers-rhel-8-master
     parent: tripleo-build-containers-base-with-files
     nodeset: single-rhel-8-node
+    branches: master
     voting: true
     host-vars:
       primary:
