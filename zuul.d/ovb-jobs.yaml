@@ -30,10 +30,6 @@
     name: tripleo-ci-rhel-8-ovb-3ctlr_1comp-featureset001
     parent: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset001
     nodeset: tripleo-ovb-rhel-8-primary
-    voting: no
-    host-vars:
-      primary:
-        ansible_python_interpreter: /usr/bin/python3
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-ovb-master
