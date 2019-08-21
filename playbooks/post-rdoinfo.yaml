@@ -23,6 +23,17 @@
         warn: false
       when: zuul_variables_path.stat.exists
 
+    - name: Check hostvars-variables.yaml
+      stat:
+        path: "{{ ansible_user_dir  }}/workspace/logs/hostvars-variables.yaml"
+      register: hostvars_variables_path
+
+    - name: Copy hostvars-variables.yaml if exists to reuse  # noqa 305
+      shell: cp "{{ ansible_user_dir  }}/workspace/logs/hostvars-variables.yaml" "{{ ansible_user_dir  }}/hostvars-variables.yaml"
+      args:
+        warn: false
+      when: hostvars_variables_path.stat.exists
+
     - name: Build containers post tasks
       when:
         - rdoinfo_build_containers|default(false)
@@ -44,4 +55,11 @@
       args:
         warn: false
       when: zuul_variables_path.stat.exists
+      changed_when: true
+
+    - name: Copy hostvars-variables.yaml back to logs directory if exists  # noqa 305
+      shell: cp "{{ ansible_user_dir  }}/hostvars-variables.yaml" "{{ ansible_user_dir  }}/workspace/logs/hostvars-variables.yaml"
+      args:
+        warn: false
+      when: hostvars_variables_path.stat.exists
       changed_when: true
