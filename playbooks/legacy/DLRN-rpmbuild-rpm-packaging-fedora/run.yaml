@@ -129,7 +129,7 @@
           tox -epy27 --notest
           . .tox/py27/bin/activate
           # Use latest pymod2pkg from Git, to avoid waiting for new releases
-          pip install --upgrade git+https://github.com/openstack/pymod2pkg
+          pip install --upgrade git+https://opendev.org/openstack/pymod2pkg
           # Prepare config
           if [[ "$ZUUL_BRANCH" =~ stable/ ]]; then    # stable branch
               repo_branch=$(sed "s#stable/##" <<< "$ZUUL_BRANCH")
@@ -145,7 +145,7 @@
               use_version_from_spec="1"
           fi
 
-          repo="http://github.com/openstack/rpm-packaging"
+          repo="http://opendev.org/openstack/rpm-packaging"
           directory="/openstack"
           skip="openstack-macros"
           pkginfo_driver="dlrn.drivers.gitrepo.GitRepoDriver"
@@ -183,7 +183,7 @@
 
           # Find out which packages are being tested
           pushd data/package_info
-          CHANGED_FILES=$(git diff --name-only --diff-filter=ACMT HEAD~1)
+          CHANGED_FILES=$(git diff --name-only --diff-filter=ACMTR HEAD~1)
           PACKAGES_TO_BUILD=""
           for spec in $CHANGED_FILES; do
             filename=$(echo $spec | awk -F/ '{print $NF}')
