@@ -11,12 +11,5 @@
     - import_role:
         name: configure-mirrors
       vars:
-        mirror_fqdn: >-
-          mirror.{{ nodepool.region | lower }}.
-          {%- if nodepool.provider.startswith('vexxhost-nodepool') -%}
-            {#- Vexxhost-nodepool-.* providers share a single mirror -#}
-            vexxhost
-          {%- else -%}
-            {{ nodepool.provider | lower }}
-          {%- endif -%}.rdoproject.org
+        mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
       when: _worker_is_sudoer.rc == 0
