@@ -43,31 +43,6 @@
       nodes: 1ctlr
       featureset: '019'
 
-# legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch
-- job:
-    name: tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^master$
-    voting: false
-    vars:
-      nodes: 1ctlr
-      featureset: '011'
-      extra_tags:
-        - overcloud-upgrade
-
-# legacy-tripleo-ci-centos-7-containers-multinode-upgrades-pike
-- job:
-    name: tripleo-ci-centos-7-containers-multinode-upgrades-pike
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^stable/pike$
-    voting: false
-    vars:
-      nodes: 1ctlr
-      featureset: '011'
-      release: pike
-      extra_tags:
-        - overcloud-upgrade
-
 # legacy-tripleo-ci-centos-7-containers-multinode-upgrades-queens
 - job:
     name: tripleo-ci-centos-7-containers-multinode-upgrades-queens
@@ -181,16 +156,6 @@
       branch_override: "stable/queens"
       release: queens
 
-# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-pike
-- job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-pike
-    parent: tripleo-ci-base-multinode-periodic
-    vars:
-      nodes: 1ctlr
-      featureset: '010'
-      branch_override: "stable/pike"
-      release: pike
-
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-master
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-master
@@ -228,16 +193,6 @@
       featureset: '016'
       branch_override: "stable/queens"
       release: queens
-
-# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-pike
-- job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-pike
-    parent: tripleo-ci-base-multinode-periodic
-    vars:
-      nodes: 1ctlr
-      featureset: '016'
-      branch_override: "stable/pike"
-      release: pike
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-master
 - job:
@@ -277,16 +232,6 @@
       branch_override: "stable/queens"
       release: queens
 
-# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-pike
-- job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-pike
-    parent: tripleo-ci-base-multinode-periodic
-    vars:
-      nodes: 1ctlr
-      featureset: '017'
-      branch_override: "stable/pike"
-      release: pike
-
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-master
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-master
@@ -325,16 +270,6 @@
       branch_override: "stable/queens"
       release: queens
 
-# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-pike
-- job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-pike
-    parent: tripleo-ci-base-multinode-periodic
-    vars:
-      nodes: 1ctlr
-      featureset: '018'
-      branch_override: "stable/pike"
-      release: pike
-
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-master
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-master
@@ -372,16 +307,6 @@
       featureset: '019'
       branch_override: "stable/queens"
       release: queens
-
-# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-pike
-- job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-pike
-    parent: tripleo-ci-base-multinode-periodic
-    vars:
-      nodes: 1ctlr
-      featureset: '019'
-      branch_override: "stable/pike"
-      release: pike
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-master
 - job:

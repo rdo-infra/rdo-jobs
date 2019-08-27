@@ -140,3 +140,149 @@
     vars:
       featureset: '052'
 
+- job:
+    name: tripleo-ci-centos-7-containers-multinode-upgrades-pike-branch
+    parent: tripleo-ci-base-multinode-rdo
+    branches: ^master$
+    voting: false
+    vars:
+      nodes: 1ctlr
+      featureset: '011'
+      extra_tags:
+        - overcloud-upgrade
+
+- job:
+    name: tripleo-ci-centos-7-containers-multinode-upgrades-pike
+    parent: tripleo-ci-base-multinode-rdo
+    branches: ^stable/pike$
+    voting: false
+    vars:
+      nodes: 1ctlr
+      featureset: '011'
+      release: pike
+      extra_tags:
+        - overcloud-upgrade
+
+- job:
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-pike
+    parent: tripleo-ci-base-multinode-periodic
+    vars:
+      nodes: 1ctlr
+      featureset: '010'
+      branch_override: "stable/pike"
+      release: pike
+
+- job:
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-pike
+    parent: tripleo-ci-base-multinode-periodic
+    vars:
+      nodes: 1ctlr
+      featureset: '016'
+      branch_override: "stable/pike"
+      release: pike
+
+- job:
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-pike
+    parent: tripleo-ci-base-multinode-periodic
+    vars:
+      nodes: 1ctlr
+      featureset: '017'
+      branch_override: "stable/pike"
+      release: pike
+
+- job:
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-pike
+    parent: tripleo-ci-base-multinode-periodic
+    vars:
+      nodes: 1ctlr
+      featureset: '018'
+      branch_override: "stable/pike"
+      release: pike
+
+- job:
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-pike
+    parent: tripleo-ci-base-multinode-periodic
+    vars:
+      nodes: 1ctlr
+      featureset: '019'
+      branch_override: "stable/pike"
+      release: pike
+
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-pike
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^master$
+    override-checkout: "stable/pike"
+    timeout: 18000
+    vars:
+      nodes: 1ctlr_2comp
+      featureset: '020'
+      branch_override: "stable/pike"
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike-branch
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^master$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      branch_override: "stable/pike"
+
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike
+    parent: tripleo-ci-base-ovb-periodic
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      branch_override: "stable/pike"
+      release: pike
+
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-pike-upload
+    parent: tripleo-ci-base-ovb-periodic-upload
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '002'
+      branch_override: "stable/pike"
+      release: pike
+
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-pike
+    parent: tripleo-ci-base-ovb-periodic
+    timeout: 18000
+    override-checkout: "stable/pike"
+    vars:
+      nodes: 1ctlr_2comp
+      featureset: '020'
+      branch_override: "stable/pike"
+      release: pike
+
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike
+    parent: tripleo-ci-base-ovb-periodic
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '022'
+      branch_override: "stable/pike"
+      release: pike
+
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-pike
+    parent: tripleo-ci-base-ovb-periodic
+    timeout: 18000
+    override-checkout: "stable/pike"
+    vars:
+      nodes: 1ctlr_2comp
+      featureset: '021'
+      branch_override: "stable/pike"
+      release: pike
+
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike
+    parent: tripleo-ci-base-ovb-periodic
+    timeout: 10800
+    vars:
+      nodes: 1ctlr_1comp_1ceph
+      featureset: '024'
+      branch_override: "stable/pike"
+      release: pike

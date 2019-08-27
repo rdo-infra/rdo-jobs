@@ -52,18 +52,6 @@
       nodes: 3ctlr_1comp
       featureset: '035'
 
-# Job to test changes in tempest-skip-$release
-- job:
-    name: tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-pike
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^master$
-    override-checkout: "stable/pike"
-    timeout: 18000
-    vars:
-      nodes: 1ctlr_2comp
-      featureset: '020'
-      branch_override: "stable/pike"
-
 - job:
     name: tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-queens
     parent: tripleo-ci-base-ovb-rdo
@@ -183,15 +171,6 @@
       featureset: '042'
 
 - job:
-    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike-branch
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^master$
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '001'
-      branch_override: "stable/pike"
-
-- job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens-branch
     parent: tripleo-ci-base-ovb-rdo
     branches: ^master$
@@ -292,16 +271,6 @@
       featureset: '001'
       release: master
 
-# legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-pike
-    parent: tripleo-ci-base-ovb-periodic
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '001'
-      branch_override: "stable/pike"
-      release: pike
-
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens
@@ -370,16 +339,6 @@
       branch_override: "stable/rocky"
       release: rocky
 
-# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-pike-upload
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-pike-upload
-    parent: tripleo-ci-base-ovb-periodic-upload
-    vars:
-      nodes: 1ctlr_1comp
-      featureset: '002'
-      branch_override: "stable/pike"
-      release: pike
-
 # legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload
@@ -411,17 +370,6 @@
       release: queens
 
 - job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-pike
-    parent: tripleo-ci-base-ovb-periodic
-    timeout: 18000
-    override-checkout: "stable/pike"
-    vars:
-      nodes: 1ctlr_2comp
-      featureset: '020'
-      branch_override: "stable/pike"
-      release: pike
-
-- job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-rocky
     parent: tripleo-ci-base-ovb-periodic
     timeout: 18000
@@ -442,16 +390,6 @@
       featureset: '020'
       branch_override: "stable/stein"
       release: stein
-
-# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022-pike
-    parent: tripleo-ci-base-ovb-periodic
-    vars:
-      nodes: 1ctlr_1comp
-      featureset: '022'
-      branch_override: "stable/pike"
-      release: pike
 
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-master
@@ -495,17 +433,6 @@
       branch_override: "stable/queens"
       release: queens
 
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-pike
-    parent: tripleo-ci-base-ovb-periodic
-    timeout: 18000
-    override-checkout: "stable/pike"
-    vars:
-      nodes: 1ctlr_2comp
-      featureset: '021'
-      branch_override: "stable/pike"
-      release: pike
-
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master
@@ -543,17 +470,6 @@
       featureset: '035'
       branch_override: "stable/queens"
       release: queens
-
-# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024-pike
-    parent: tripleo-ci-base-ovb-periodic
-    timeout: 10800
-    vars:
-      nodes: 1ctlr_1comp_1ceph
-      featureset: '024'
-      branch_override: "stable/pike"
-      release: pike
 
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master
