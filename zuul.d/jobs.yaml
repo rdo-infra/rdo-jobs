@@ -236,7 +236,7 @@
 - job:
     name: puppet-openstack-integration-5-scenario001-tempest-fedora-28
     parent: puppet-openstack-integration-5-scenario001
-    nodeset: rdo-fedora-stable
+    nodeset: cloud-fedora-30
     branches: ^master
     voting: false
 
@@ -251,7 +251,7 @@
 - job:
     name: puppet-openstack-integration-5-scenario002-tempest-fedora-28
     parent: puppet-openstack-integration-5-scenario002
-    nodeset: rdo-fedora-stable
+    nodeset: cloud-fedora-30
     branches: ^master
     voting: false
 
@@ -266,7 +266,7 @@
 - job:
     name: puppet-openstack-integration-5-scenario003-tempest-fedora-28
     parent: puppet-openstack-integration-5-scenario003
-    nodeset: rdo-fedora-stable
+    nodeset: cloud-fedora-30
     branches: ^master
     voting: false
 
@@ -282,7 +282,7 @@
 - job:
     name: puppet-openstack-integration-5-scenario004-tempest-fedora-28
     parent: puppet-openstack-integration-5-scenario004
-    nodeset: rdo-fedora-stable
+    nodeset: cloud-fedora-30
     branches: ^master
     voting: false
 
@@ -296,13 +296,13 @@
     name: rdo-tox-molecule
     parent: tripleo-tox-molecule
     voting: false
-    nodeset: rdo-fedora-stable
+    nodeset: cloud-fedora-30
 
 - job:
     name: rdo-tox-molecule-rhel8
     parent: tripleo-tox-molecule
     voting: false
-    nodeset: rdo-fedora-stable
+    nodeset: cloud-fedora-30
     vars:
       tox_environment:
         MOLECULE_PLATFORM: rhel8
