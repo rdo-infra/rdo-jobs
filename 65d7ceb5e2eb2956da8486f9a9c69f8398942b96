@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b86889fc_011d7fc3",
+        "filename": "zuul.d/jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2019-08-29T15:40:10Z",
+      "side": 1,
+      "message": "I think this is a bit of an overkill, and could have undesirable side effects on other jobs, specially considering that ansible 2.8 support for Zuul is pretty recent, and ansible\u0027s history of breaking backwards compatibility.\n\nIf we want to have ansible 2.8 for certain jobs, let\u0027s group them together under a single base job, and have that base job use ansible-version: 2.8",
+      "range": {
+        "startLine": 5,
+        "startChar": 3,
+        "endLine": 5,
+        "endChar": 24
+      },
+      "revId": "65d7ceb5e2eb2956da8486f9a9c69f8398942b96",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
