@@ -1,6 +1,8 @@
 - job:
     name: base
     parent: base-minimal
+    # min version to use (needed mainly to make rhel8 python detection work)
+    ansible-version: 2.8
     description:
       The base job for RDO's installation of Zuul.
 
