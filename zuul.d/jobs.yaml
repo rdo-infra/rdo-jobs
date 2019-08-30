@@ -1,6 +1,10 @@
 - job:
     name: base
     parent: base-minimal
+    # min version to use (needed mainly to make rhel8 python detection work)
+    ansible-version: 2.8
+    # if your jobs rely on code that does need an older version of ansible
+    # you can still override this in them.
     description:
       The base job for RDO's installation of Zuul.
 
@@ -14,26 +18,6 @@
     vars:
       ara_report_type: database
       ara_report_path: ara-report
-
-- job:
-    name: base-rolling
-    parent: base
-    # min version to use (needed mainly to make rhel8 python detection work)
-    ansible-version: 2.8
-    description:
-      Uses latest stable version of Ansible (rolling), as opposed to its parent
-      which uses default ansible defined by Zuul.
-
-      This job is to be used by jobs that need newer versions of Ansible.
-
-      Keep in mind that `rolling` concept may be extended in the future to other
-      job properties, like kind of nodes being used.
-
-      When parenting jobs pick your poison well. Early adopters are likely to
-      go for `base-rolling` and late ones for `base`. It is good to know that
-      you can always override ansible version in your job so you can either
-      fix the broker roles or temporary override version used.
-    abstract: true
 
 - job:
     name: legacy-base
