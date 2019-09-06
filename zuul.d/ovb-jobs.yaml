@@ -262,6 +262,17 @@
         - baremetal-full-overcloud-validate.yml
 # =================  P E R I O D I C   J O B S
 
+# Periodic job temporarly running on vexxhost, remove when we move to vexxhost
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
+    parent: tripleo-ci-base-ovb-periodic
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      release: master
+      cloud_name: vexxhost
+    nodeset: upstream-centos-7-vexxhost
+
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
