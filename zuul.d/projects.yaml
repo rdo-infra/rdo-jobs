@@ -2,24 +2,7 @@
     name: rdo-jobs
     check:
       jobs:
-        - tox-docs: &cfg
-            # using fedora to get python3, can remove once we have centos-8
-            nodeset: container-fedora
-        - tox-linters: *cfg
-        - rdo-tox-molecule:
-            # TODO(ssbarnea): make voting and activate in gate in few days
-            voting: false
-            files:
-              - ^requirements.txt$
-              - ^roles/.*
-              - ^setup.*$
-              - ^test-requirements.txt$
-              - ^tox.ini$
-              - .*molecule.*
-        - periodic-tripleo-ci-centos-7-standalone-master:
-            files:
-              - zuul.d/standalone-jobs.yaml
-    gate:
-      jobs:
-        - tox-docs: *cfg
-        - tox-linters: *cfg
+        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost:
+            vars:
+              force_periodic: true
