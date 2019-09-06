@@ -16,6 +16,24 @@
       "revId": "dbd2c6efd5949a14da708519ceea57a55a8bc837",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ec33dbe1_3049bf33",
+        "filename": "playbooks/pre-tox.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 371
+      },
+      "writtenOn": "2019-09-06T14:57:13Z",
+      "side": 1,
+      "message": "Yeah, this is known and on purpose because installing newer versions as user are likely to break system ones. \n\nBoth tox and pip are known to cause this, so is much safer to upgrade system one to avoid case where installing newer tool as user broke the system cli execution.\n\nWhy is this happening? When outside a venv, python always tries to load modules from user-modules. So when you call \"tox\" from system, it will try to import tox.foo from tox module and it will pick the user tox module which is newer\n\nGuess what, tox.foo may fail to import in newer version due to internal library changes, this happened multiple times with both pip and tox.\n\nThat is one of the reasons why upstream all images have pip installed from source, never as rpm.\n\nIf you look at the code above it is used in such way that this task will fail if tox is broken. Fail fast is much better than seeing a delayed failure.\n\nBefore you ask: why you do not remove tox rpm: because I do not know how is called and because the nodepool image/container could have being already prepared and it maybe has tox already installed correctly.\n\nAlso, the current code will start to do nothing once we get tox\u003e\u003d3.8.0 directly in the distro, which is great.",
+      "parentUuid": "59914a48_a4ceadab",
+      "revId": "dbd2c6efd5949a14da708519ceea57a55a8bc837",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
