@@ -132,7 +132,8 @@
         label: upstream-centos-7-vexxhost
     groups:
       - name: switch
-        nodes: []
+        nodes:
+          - primary
       - name: peers
         nodes: []
 
