@@ -5,28 +5,7 @@
         - tox-docs: &cfg
             # using fedora to get python3, can remove once we have centos-8
             nodeset: container-fedora
-        - tox-linters: *cfg
-        - rdo-tox-molecule:
-            # TODO(ssbarnea): make voting and activate in gate in few days
-            voting: false
-            files:
-              - ^requirements.txt$
-              - ^roles/.*
-              - ^setup.*$
-              - ^test-requirements.txt$
-              - ^tox.ini$
-              - .*molecule.*
-        - periodic-tripleo-ci-centos-7-standalone-master:
-            files:
-              - zuul.d/standalone-jobs.yaml
-        - registry-login-rdo-integration-centos-7:
-            files:
-              - playbooks/integration/registry-login.yaml
-              - zuul.d/integration.yaml
-        - registry-login-rdo-integration-redhat-8:
-            files:
-              - playbooks/integration/registry-login.yaml
-              - zuul.d/integration.yaml
+        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-queens
 
     gate:
       jobs:
