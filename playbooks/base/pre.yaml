@@ -12,4 +12,6 @@
         name: configure-mirrors
       vars:
         mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
-      when: _worker_is_sudoer.rc == 0
+      when:
+        - _worker_is_sudoer.rc == 0
+        - ansible_distribution != "Fedora"
