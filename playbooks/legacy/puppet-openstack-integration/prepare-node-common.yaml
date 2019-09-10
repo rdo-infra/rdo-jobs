@@ -42,19 +42,6 @@
         - centos-release-openstack-*
         - centos-release-ceph-*
 
-    - name: Clean-up system state (Fedora)
-      dnf:
-        name: "{{ item }}"
-        state: absent
-      become: true
-      when:
-        - ansible_os_family == 'RedHat'
-        - ansible_distribution == "Fedora"
-      with_items:
-        - rdo-release
-        - centos-release-openstack-*
-        - centos-release-ceph-*
-
     - name: Install Ruby dependencies (Fedora)
       dnf:
         name: "{{ item }}"
@@ -63,7 +50,13 @@
         - ansible_os_family == 'RedHat'
         - ansible_distribution == "Fedora"
       with_items:
-        - "@Development tools"
+        - gettext
+        - diffstat
+        - doxygen
+        - patch
+        - patchutils
+        - subversion
+        - systemtap
         - libxml2-devel
         - libxslt-devel
         - ruby-devel
