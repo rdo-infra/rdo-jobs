@@ -10,28 +10,12 @@
               tox_executable: "{{ ansible_python.executable }} -m tox"
             pre-run:
               - playbooks/pre-tox.yaml
-        - tox-linters: *cfg
-        - rdo-tox-molecule:
-            # TODO(ssbarnea): make voting and activate in gate in few days
-            voting: false
-            files:
-              - ^requirements.txt$
-              - ^roles/.*
-              - ^setup.*$
-              - ^test-requirements.txt$
-              - ^tox.ini$
-              - .*molecule.*
-        - periodic-tripleo-ci-centos-7-standalone-master:
-            files:
-              - zuul.d/standalone-jobs.yaml
-        - registry-login-rdo-integration-centos-7:
-            files:
-              - playbooks/integration/registry-login.yaml
-              - zuul.d/integration.yaml
-        - registry-login-rdo-integration-redhat-8:
-            files:
-              - playbooks/integration/registry-login.yaml
-              - zuul.d/integration.yaml
+        - periodic-tripleo-ci-centos-7-standalone-upgrade-master:
+            vars:
+              force_periodic: true
+        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master:
+            vars:
+              force_periodic: true
 
     gate:
       jobs:
