@@ -151,6 +151,7 @@
     pre-run: playbooks/legacy/puppet-openstack-integration/prepare-node-common.yaml
     parent: legacy-base
     abstract: true
+    ansible-version: 2.7
     vars:
       use_puppetlabs: false
 
