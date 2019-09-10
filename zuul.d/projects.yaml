@@ -21,17 +21,7 @@
               - ^test-requirements.txt$
               - ^tox.ini$
               - .*molecule.*
-        - periodic-tripleo-ci-centos-7-standalone-master:
-            files:
-              - zuul.d/standalone-jobs.yaml
-        - registry-login-rdo-integration-centos-7:
-            files:
-              - playbooks/integration/registry-login.yaml
-              - zuul.d/integration.yaml
-        - registry-login-rdo-integration-redhat-8:
-            files:
-              - playbooks/integration/registry-login.yaml
-              - zuul.d/integration.yaml
+        - puppet-openstack-integration-5-scenario001-tempest-fedora-28
 
     gate:
       jobs:
