@@ -69,7 +69,7 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
@@ -85,7 +85,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
 
 - project-template:
     name: weirdo-dlrn-master-barbican
@@ -112,7 +112,7 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario002:
@@ -125,7 +125,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
 
 - project-template:
     name: weirdo-dlrn-master-ceilometer
@@ -157,7 +157,7 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
@@ -173,7 +173,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
 
 - project-template:
     name: weirdo-dlrn-master-cinder
@@ -210,7 +210,7 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
@@ -229,7 +229,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
 
 - project-template:
     name: weirdo-dlrn-master-glance
@@ -271,7 +271,7 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
@@ -293,7 +293,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
 
 - project-template:
     name: weirdo-dlrn-master-gnocchi
@@ -325,7 +325,7 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
@@ -343,7 +343,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
 
 - project-template:
     name: weirdo-dlrn-master-heat
@@ -375,7 +375,7 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
@@ -391,7 +391,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
 
 - project-template:
     name: weirdo-dlrn-master-horizon
@@ -418,7 +418,7 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario003:
@@ -431,7 +431,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
 
 - project-template:
     name: weirdo-dlrn-master-keystone
@@ -463,7 +463,7 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
@@ -479,7 +479,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
 
 - project-template:
     name: weirdo-dlrn-master-networking-bgpvpn
@@ -506,7 +506,7 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario004:
@@ -519,7 +519,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
 
 - project-template:
     name: weirdo-dlrn-master-neutron
@@ -556,7 +556,7 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
@@ -575,7 +575,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
 
 - project-template:
     name: weirdo-dlrn-master-nova
@@ -607,7 +607,7 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
@@ -623,7 +623,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
 
 - project-template:
     name: weirdo-dlrn-master-oslo
@@ -660,7 +660,7 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario002:
@@ -679,7 +679,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
 
 - project-template:
     name: weirdo-dlrn-master-watcher
@@ -706,7 +706,7 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario004:
@@ -719,7 +719,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
 
 - project-template:
     name: weirdo-dlrn-master-zaqar
@@ -746,7 +746,7 @@
             nodeset: rdo-fedora-28
             voting: false
         - distgit-cbs-validate:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario002:
@@ -759,7 +759,7 @@
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
-            branches: ^(ocata|pike|queens|rocky|stein)-rdo$
+            branches: ^(?!rpm-master).*$
 
 - project-template:
     name: weirdo-gate-jobs
