@@ -11,9 +11,7 @@
             pre-run:
               - playbooks/pre-tox.yaml
         - tox-linters: *cfg
-        - rdo-tox-molecule:
-            # TODO(ssbarnea): make voting and activate in gate in few days
-            voting: false
+        - rdo-tox-molecule: &molecule
             files:
               - ^requirements.txt$
               - ^roles/.*
@@ -37,3 +35,4 @@
       jobs:
         - tox-docs: *cfg
         - tox-linters: *cfg
+        - rdo-tox-molecule: *molecule
