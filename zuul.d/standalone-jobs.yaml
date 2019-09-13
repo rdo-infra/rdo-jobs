@@ -334,14 +334,12 @@
     parent: tripleo-ci-rhel-8-standalone-rdo
     branches: ^master$
     vars: *scen1_standalone_vars
-    voting: false
 
 - job:
     name: tripleo-ci-rhel-8-scenario002-standalone-rdo
     parent: tripleo-ci-rhel-8-standalone-rdo
     branches: ^master$
     vars: *scen2_standalone_vars
-    voting: false
 
 - job:
     name: tripleo-ci-rhel-8-scenario003-standalone-rdo
