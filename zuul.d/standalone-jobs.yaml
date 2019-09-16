@@ -315,13 +315,13 @@
 # avoid duplication https://tree.taiga.io/project/tripleo-ci-board/us/1228
 - job:
     name: tripleo-ci-centos-7-standalone-rdo
-    parent: tripleo-ci-base-standalone-rdo
+    parent: tripleo-ci-base-standalone-rdo-fake
     vars:
       featureset: '052'
 
 - job:
     name: tripleo-ci-rhel-8-standalone-rdo
-    parent: tripleo-ci-base-standalone-rdo
+    parent: tripleo-ci-base-standalone-rdo-fake
     nodeset: single-rhel-8-node
     branches: ^master$
     host-vars:
