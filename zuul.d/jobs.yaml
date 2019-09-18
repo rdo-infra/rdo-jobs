@@ -300,7 +300,7 @@
     name: rdo-tox-molecule
     parent: tripleo-tox-molecule
     voting: false
-    nodeset: rdo-fedora-stable
+    nodeset: rdo-fedora-28
     pre-run:
       - playbooks/rdo-tox-molecule-pre.yaml
 
