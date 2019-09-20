@@ -10,3 +10,24 @@
         regexp: '.*rhui-cds$'
         line: "38.145.32.241 rhui-cds"
         state: present
+
+    - name: add private-use networks as allowed insecure registries in configuration to docker deamon
+      become: true
+      copy:
+        content: |-
+          {"insecure-registries": ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12"]}
+        dest: /etc/docker/daemon.json
+
+    - name: Restart docker
+      become: true
+      service:
+        name: docker
+        state: restarted
+
+    - name: gather docker info
+      shell: docker info
+      register: docker_info
+
+    - name: show docker info
+      debug:
+        var: docker_info.stdout
