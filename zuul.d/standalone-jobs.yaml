@@ -355,3 +355,27 @@
     branches: ^master$
     vars: *scen4_standalone_vars
     voting: false
+
+- job:
+    name: tripleo-ci-rhel-8-scenario012-standalone-rdo
+    parent: tripleo-ci-rhel-8-standalone-rdo
+    branches: ^master$
+    vars:
+      featureset: '060'
+      standalone_ceph: true
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario012-standalone.yaml'
+        tempest_plugins:
+          - python-ironic-tests-tempest
+        test_white_regex: ''
+        tempest_workers: 1
+        tempest_extra_config:
+          auth.create_isolated_networks: 'False'
+          validation.connect_method: 'fixed'
+          validation.network_for_ssh: 'provisioning'
+          baremetal.use_provision_network: 'True'
+        tempest_whitelist:
+          - 'ironic_tempest_plugin.tests.scenario.test_baremetal_multitenancy.BaremetalMultitenancy.test_baremetal_multitenancy'
+    voting: false
