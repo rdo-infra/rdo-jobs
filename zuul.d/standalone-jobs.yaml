@@ -140,6 +140,60 @@
           - 'manila_tempest_tests.tests.api.test_shares.SharesCephFSTest.test_create_get_delete_share'
         use_os_tempest: true
 
+### stable/train standalone jobs ###
+# per https://review.rdoproject.org/r/#/c/22624/
+# parenting off periodic-tripleo-ci-centos-7-standalone-master
+- job:
+    name: periodic-tripleo-ci-centos-7-standalone-train
+    parent: periodic-tripleo-ci-centos-7-standalone-master
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-7-standalone-upgrade-train
+    parent: periodic-tripleo-ci-centos-7-standalone-upgrade-master
+    override-checkout: 'stable/train'
+    vars:
+      branch_override: 'stable/train'
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-7-standalone-full-tempest-train
+    parent: periodic-tripleo-ci-centos-7-standalone-full-tempest-master
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-7-scenario001-standalone-train
+    parent: periodic-tripleo-ci-centos-7-scenario001-standalone-master
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-7-scenario002-standalone-train
+    parent: periodic-tripleo-ci-centos-7-scenario002-standalone-master
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-7-scenario003-standalone-train
+    parent: periodic-tripleo-ci-centos-7-scenario003-standalone-master
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-7-scenario004-standalone-train
+    parent: periodic-tripleo-ci-centos-7-scenario004-standalone-master
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+### stable/stein standalone jobs ###
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-stein
     parent: tripleo-ci-base-standalone-periodic
@@ -325,6 +379,64 @@
         use_os_tempest: true
     nodeset: single-rhel-8-node
     branches: ^master$
+
+### stable/train standalone periodic RHEL8 jobs ###
+- job:
+    name: periodic-tripleo-ci-rhel-8-standalone-train
+    parent: periodic-tripleo-ci-centos-7-standalone-train
+    nodeset: single-rhel-8-node
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+
+- job:
+    name: periodic-tripleo-ci-rhel-8-scenario001-standalone-train
+    parent: periodic-tripleo-ci-centos-7-scenario001-standalone-train
+    nodeset: single-rhel-8-node
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+
+- job:
+    name: periodic-tripleo-ci-rhel-8-scenario002-standalone-train
+    parent: periodic-tripleo-ci-centos-7-scenario002-standalone-train
+    nodeset: single-rhel-8-node
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+
+- job:
+    name: periodic-tripleo-ci-rhel-8-scenario003-standalone-train
+    parent: periodic-tripleo-ci-centos-7-scenario003-standalone-train
+    nodeset: single-rhel-8-node
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+    # disabled voting until pyngus appears: https://bugs.launchpad.net/tripleo/+bug/1840828
+    voting: false
+
+- job:
+    name: periodic-tripleo-ci-rhel-8-scenario004-standalone-train
+    parent: periodic-tripleo-ci-centos-7-scenario004-standalone-train
+    vars:
+      featureset_override:
+        run_tempest: false
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario004-standalone.yaml'
+        tempest_services:
+          - manila
+        tempest_tempest_conf_overrides:
+          'auth.tempest_roles': 'Member'
+          'share.multitenancy_enabled': 'False'
+          'share.enable_protocols': 'cephfs'
+          'share.capability_snapshot_support': 'False'
+          'share.capability_create_share_from_snapshot_support': 'False'
+        tempest_test_whitelist:
+          - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps.test_network_basic_ops'
+          - 'manila_tempest_tests.tests.api.test_shares.SharesCephFSTest.test_create_get_delete_share'
+        use_os_tempest: true
+    nodeset: single-rhel-8-node
 
 # RDO jobs for check pipeline - for scenario standalones yaml anchors let us
 # avoid duplication https://tree.taiga.io/project/tripleo-ci-board/us/1228
