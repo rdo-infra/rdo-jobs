@@ -312,6 +312,13 @@
       release: stein
 
 - job:
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-train
+    parent: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
     name: periodic-tripleo-ci-rhel-8-ovb-3ctlr_1comp-featureset001-master
     parent: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
     nodeset: tripleo-ovb-rhel-8-primary
@@ -322,6 +329,14 @@
       featureset_override:
         to_build: false
 
+# Note(chkumar): Use RHEL/CentOS parent from master job
+- job:
+    name: periodic-tripleo-ci-rhel-8-ovb-3ctlr_1comp-featureset001-train
+    parent: periodic-tripleo-ci-rhel-8-ovb-3ctlr_1comp-featureset001-master
+    vars:
+      branch_override: "stable/train"
+      release: train
+
 # legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload
@@ -330,6 +345,13 @@
       nodes: 1ctlr_1comp
       featureset: '002'
       release: master
+
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-train-upload
+    parent: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload
+    vars:
+      branch_override: "stable/train"
+      release: train
 
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-stein-upload
@@ -403,6 +425,14 @@
       release: stein
 
 - job:
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-train
+    parent: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-master
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-master
     parent: tripleo-ci-base-ovb-periodic
     timeout: 18000
@@ -410,6 +440,14 @@
       nodes: 1ctlr_2comp
       featureset: '021'
       release: master
+
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-train
+    parent: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-master
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
 
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-stein
@@ -452,6 +490,13 @@
       nodes: 3ctlr_1comp
       featureset: '035'
       release: master
+
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-train
+    parent: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master
+    vars:
+      branch_override: "stable/train"
+      release: train
 
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-stein
@@ -497,6 +542,13 @@
         - baremetal-full-overcloud-prep.yml
         - baremetal-full-overcloud.yml
         - baremetal-full-overcloud-validate.yml
+
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-train
+    parent: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master
+    vars:
+      branch_override: "stable/train"
+      release: train
 
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-stein
