@@ -140,6 +140,154 @@
           - 'manila_tempest_tests.tests.api.test_shares.SharesCephFSTest.test_create_get_delete_share'
         use_os_tempest: true
 
+### stable/train standalone jobs ###
+#  OR  parent off periodic-tripleo-ci-centos-7-standalone-master?
+- job:
+    name: periodic-tripleo-ci-centos-7-standalone-train
+    parent: tripleo-ci-base-standalone-periodic
+    vars:
+      featureset: '052'
+      branch_override: "stable/train"
+      release: train
+      featureset_override:
+        run_tempest: false
+        tempest_run_concurrency: 2
+        tempest_test_whitelist:
+          - 'tempest.scenario.test_minimum_basic.TestMinimumBasicScenario'
+          - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps'
+          - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern'
+          - '\[.*\bsmoke\b.*\]'
+        use_os_tempest: true
+
+- job:
+    name: periodic-tripleo-ci-centos-7-standalone-upgrade-train
+    parent: tripleo-ci-base-standalone-upgrade-periodic
+    override-checkout: 'stable/train'
+    vars:
+      featureset: '056'
+      branch_override: 'stable/train'
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-7-standalone-full-tempest-train
+    parent: periodic-tripleo-ci-centos-7-standalone-train
+    vars:
+      featureset: '052'
+      branch_override: "stable/train"
+      release: train
+      featureset_override:
+        run_tempest: false
+        tempest_run_concurrency: 2
+        tempest_services:
+          - cinder
+          - horizon
+          - neutron
+        tempest_test_whitelist:
+          - 'api'
+          - 'scenario'
+        use_os_tempest: true
+
+- job:
+    name: periodic-tripleo-ci-centos-7-scenario001-standalone-train
+    parent: tripleo-ci-base-standalone-periodic
+    vars:
+      featureset: '052'
+      branch_override: "stable/train"
+      release: train
+      standalone_ceph: true
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario001-standalone.yaml'
+        tempest_services:
+          - aodh
+        run_tempest: false
+        use_os_tempest: true
+        tempest_run_concurrency: 1
+        tempest_tempest_conf_overrides:
+          telemetry.alarm_granularity: '60'
+          auth.tempest_roles: "Member"
+        tempest_test_whitelist:
+          - 'tempest.api.identity.v3'
+          - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern.test_volume_boot_pattern'
+          - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
+
+- job:
+    name: periodic-tripleo-ci-centos-7-scenario002-standalone-train
+    parent: tripleo-ci-base-standalone-periodic
+    vars:
+      featureset: '052'
+      branch_override: "stable/train"
+      release: train
+      featureset_override:
+        run_tempest: false
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario002-standalone.yaml'
+        tempest_services:
+          - barbican
+          - ceilometer
+          - aodh
+        tempest_tempest_conf_overrides:
+          auth.tempest_roles: "'Member, creator'"
+          telemetry.alarm_granularity: '60'
+        tempest_test_whitelist:
+          - 'tempest.api.object_storage.test_object_services.ObjectTest'
+          - 'barbican_tempest_plugin.tests.scenario.test_volume_encryption.VolumeEncryptionTest'
+          - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
+        use_os_tempest: true
+
+- job:
+    name: periodic-tripleo-ci-centos-7-scenario003-standalone-train
+    parent: tripleo-ci-base-standalone-periodic
+    vars:
+      featureset: '052'
+      branch_override: "stable/train"
+      release: train
+      featureset_override:
+        run_tempest: false
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario003-standalone.yaml'
+        tempest_services:
+          - sahara
+          - mistral
+        tempest_tempest_conf_overrides:
+          auth.tempest_roles: "Member"
+        tempest_test_whitelist:
+          - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps.test_network_basic_ops'
+          - 'sahara_tempest_plugin.tests.api.test_data_sources.DataSourceTest'
+          - 'mistral_tempest_tests.tests.api.v2.test_actions.ActionTestsV2'
+        use_os_tempest: true
+
+- job:
+    name: periodic-tripleo-ci-centos-7-scenario004-standalone-train
+    parent: tripleo-ci-base-standalone-periodic
+    vars:
+      featureset: '052'
+      branch_override: "stable/train"
+      release: train
+      standalone_ceph: true
+      featureset_override:
+        run_tempest: false
+        standalone_container_cli: docker
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario004-standalone.yaml'
+        tempest_services:
+          - manila
+        tempest_tempest_conf_overrides:
+          'auth.tempest_roles': 'Member'
+          'share.multitenancy_enabled': 'False'
+          'share.enable_protocols': 'cephfs'
+          'share.capability_snapshot_support': 'False'
+          'share.capability_create_share_from_snapshot_support': 'False'
+        tempest_test_whitelist:
+          - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps.test_network_basic_ops'
+          - 'manila_tempest_tests.tests.api.test_shares.SharesCephFSTest.test_create_get_delete_share'
+        use_os_tempest: true
+
+### stable/stein standalone jobs ###
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-stein
     parent: tripleo-ci-base-standalone-periodic
@@ -325,6 +473,64 @@
         use_os_tempest: true
     nodeset: single-rhel-8-node
     branches: ^master$
+
+### stable/train standalone periodic RHEL8 jobs ###
+- job:
+    name: periodic-tripleo-ci-rhel-8-standalone-train
+    parent: periodic-tripleo-ci-centos-7-standalone-train
+    nodeset: single-rhel-8-node
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+
+- job:
+    name: periodic-tripleo-ci-rhel-8-scenario001-standalone-train
+    parent: periodic-tripleo-ci-centos-7-scenario001-standalone-train
+    nodeset: single-rhel-8-node
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+
+- job:
+    name: periodic-tripleo-ci-rhel-8-scenario002-standalone-train
+    parent: periodic-tripleo-ci-centos-7-scenario002-standalone-train
+    nodeset: single-rhel-8-node
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+
+- job:
+    name: periodic-tripleo-ci-rhel-8-scenario003-standalone-train
+    parent: periodic-tripleo-ci-centos-7-scenario003-standalone-train
+    nodeset: single-rhel-8-node
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+    # disabled voting until pyngus appears: https://bugs.launchpad.net/tripleo/+bug/1840828
+    voting: false
+
+- job:
+    name: periodic-tripleo-ci-rhel-8-scenario004-standalone-train
+    parent: periodic-tripleo-ci-centos-7-scenario004-standalone-train
+    vars:
+      featureset_override:
+        run_tempest: false
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario004-standalone.yaml'
+        tempest_services:
+          - manila
+        tempest_tempest_conf_overrides:
+          'auth.tempest_roles': 'Member'
+          'share.multitenancy_enabled': 'False'
+          'share.enable_protocols': 'cephfs'
+          'share.capability_snapshot_support': 'False'
+          'share.capability_create_share_from_snapshot_support': 'False'
+        tempest_test_whitelist:
+          - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps.test_network_basic_ops'
+          - 'manila_tempest_tests.tests.api.test_shares.SharesCephFSTest.test_create_get_delete_share'
+        use_os_tempest: true
+    nodeset: single-rhel-8-node
 
 # RDO jobs for check pipeline - for scenario standalones yaml anchors let us
 # avoid duplication https://tree.taiga.io/project/tripleo-ci-board/us/1228

@@ -128,6 +128,15 @@
       release: master
 
 - job:
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-train
+    parent: tripleo-ci-base-multinode-periodic
+    vars:
+      nodes: 1ctlr
+      featureset: '010'
+      branch_override: "stable/train"
+      release: train
+
+- job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-stein
     parent: tripleo-ci-base-multinode-periodic
     vars:
@@ -318,6 +327,15 @@
       release: master
 
 - job:
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-train
+    parent: tripleo-ci-base-multinode-periodic
+    vars:
+      nodes: 1ctlr
+      featureset: '030'
+      branch_override: "stable/train"
+      release: train
+
+- job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-stein
     parent: tripleo-ci-base-multinode-periodic
     vars:
@@ -354,6 +372,18 @@
       nodes: 1ctlr
       featureset: '037'
       release: master
+      extra_tags:
+        - overcloud-update
+
+- job:
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-train
+    parent: tripleo-ci-base-multinode-periodic
+    override-checkout: "stable/train"
+    vars:
+      nodes: 1ctlr
+      featureset: '037'
+      branch_override: "stable/train"
+      release: train
       extra_tags:
         - overcloud-update
 

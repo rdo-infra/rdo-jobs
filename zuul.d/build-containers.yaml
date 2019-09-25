@@ -7,6 +7,7 @@
     openstack-check:
       jobs:
         - tripleo-build-containers-rhel-8-master
+        # - tripleo-build-containers-rhel-8-train
 
 - job:
     name: tripleo-build-containers-rhel-8-master
@@ -28,3 +29,13 @@
       kolla_base_pull: false
       kolla_base_image: rhel
       kolla_base_tag: 8.0-126
+
+- job:
+    name: tripleo-build-containers-rhel-8-train
+    parent: tripleo-build-containers-rhel-8-master
+    override-checkout: 'stable/train'
+    vars:
+       release: train
+       branch_override: 'stable/train'
+
+
