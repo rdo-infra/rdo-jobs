@@ -12,6 +12,14 @@
       release: master
 
 - job:
+    name: periodic-tripleo-ci-centos-7-singlenode-featureset027-train
+    parent: tripleo-ci-base-singlenode-periodic
+    vars:
+      featureset: '027'
+      branch_override: "stable/train"
+      release: train
+
+- job:
     name: periodic-tripleo-ci-centos-7-singlenode-featureset027-stein
     parent: tripleo-ci-base-singlenode-periodic
     vars:
@@ -27,6 +35,16 @@
       featureset: '027'
       branch_override: "stable/rocky"
       release: rocky
+
+- job:
+    name: periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-train
+    parent: tripleo-ci-base-singlenode-periodic
+    vars:
+      featureset: '050'
+      branch_override: "stable/train"
+      release: train
+      extra_tags:
+        - overcloud-upgrade
 
 - job:
     name: periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-stein
