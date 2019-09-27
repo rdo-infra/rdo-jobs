@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "445cd99c_98aada72",
+        "filename": "zuul.d/projects.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2019-09-27T10:16:37Z",
+      "side": 1,
+      "message": "It should be \n- periodic-tripleo-ci-rhel-8-scenario004-standalone-master:\n    vars:\n      force_periodic: true\n\notherwise both job periodic-tripleo-ci-rhel-8-scenario004-standalone-master and tripleo-ci-rhel-8-scenario004-standalone-rdo is going to use the current-tripleo repo, we need to test with periodic contents.",
+      "range": {
+        "startLine": 37,
+        "startChar": 10,
+        "endLine": 37,
+        "endChar": 66
+      },
+      "revId": "52777eafcfc7b0107bfaece2d6752416d1ce8496",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
