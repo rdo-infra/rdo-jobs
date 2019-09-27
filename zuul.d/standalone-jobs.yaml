@@ -144,20 +144,10 @@
 #  OR  parent off periodic-tripleo-ci-centos-7-standalone-master?
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-train
-    parent: tripleo-ci-base-standalone-periodic
+    parent: periodic-tripleo-ci-centos-7-standalone-master
     vars:
-      featureset: '052'
       branch_override: "stable/train"
       release: train
-      featureset_override:
-        run_tempest: false
-        tempest_run_concurrency: 2
-        tempest_test_whitelist:
-          - 'tempest.scenario.test_minimum_basic.TestMinimumBasicScenario'
-          - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps'
-          - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern'
-          - '\[.*\bsmoke\b.*\]'
-        use_os_tempest: true
 
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-upgrade-train
