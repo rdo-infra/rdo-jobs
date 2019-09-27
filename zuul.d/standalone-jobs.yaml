@@ -308,6 +308,7 @@
     vars:
       featureset_override: &scenario004_podman
         run_tempest: false
+        standalone_container_cli: podman
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
           - 'ci/environments/scenario004-standalone.yaml'
