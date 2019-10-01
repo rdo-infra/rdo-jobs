@@ -69,10 +69,6 @@
 
           # Clone DLRN
           git clone https://github.com/softwarefactory-project/DLRN --depth 1
-          # Apply patch for keep_tarball when falling back to master
-          pushd DLRN
-          git fetch https://softwarefactory-project.io/r/DLRN refs/changes/80/15280/1 && git cherry-pick FETCH_HEAD
-          popd
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
