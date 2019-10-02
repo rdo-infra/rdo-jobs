@@ -73,7 +73,7 @@
 
     - shell:
         cmd: |
-          sudo yum -y install centos-release-openstack-ocata
+          sudo yum -y install centos-release-openstack-stein
           sudo yum -y install puppet
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
