@@ -364,8 +364,8 @@
         run_tempest: false
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
-          - 'environments/podman.yaml'
           - 'ci/environments/scenario004-standalone.yaml'
+          - 'environments/podman.yaml'
         tempest_services:
           - manila
         tempest_tempest_conf_overrides:
