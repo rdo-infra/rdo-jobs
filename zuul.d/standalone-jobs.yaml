@@ -140,6 +140,21 @@
           - 'manila_tempest_tests.tests.api.test_shares.SharesCephFSTest.test_create_get_delete_share'
         use_os_tempest: true
 
+- job:
+    name: periodic-tripleo-ci-centos-7-scenario010-standalone-master
+    parent: tripleo-ci-base-standalone-periodic
+    vars: &scen10_standalone_vars
+      featureset: '052'
+      release: master
+      standalone_ceph: true
+      featureset_override:
+        run_tempest: false
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'environments/services/octavia.yaml'
+          - 'ci/environments/scenario010-standalone.yaml'
+        use_os_tempest: false
+
 ### stable/train standalone jobs ###
 # per https://review.rdoproject.org/r/#/c/22624/
 # parenting off periodic-tripleo-ci-centos-7-standalone-master
@@ -189,6 +204,13 @@
 - job:
     name: periodic-tripleo-ci-centos-7-scenario004-standalone-train
     parent: periodic-tripleo-ci-centos-7-scenario004-standalone-master
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-7-scenario010-standalone-train
+    parent: periodic-tripleo-ci-centos-7-scenario010-standalone-master
     vars:
       branch_override: "stable/train"
       release: train
@@ -314,6 +336,23 @@
           'share.capability_snapshot_support': 'False'
           'share.capability_create_share_from_snapshot_support': 'False'
         test_white_regex: ''
+
+- job:
+    name: periodic-tripleo-ci-centos-7-scenario010-standalone-stein
+    parent: tripleo-ci-base-standalone-periodic
+    vars:
+      featureset: '052'
+      branch_override: "stable/stein"
+      release: stein
+      standalone_ceph: true
+      featureset_override:
+        standalone_container_cli: docker
+        run_tempest: false
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'environments/services/octavia.yaml'
+          - 'ci/environments/scenario010-standalone.yaml'
+        use_os_tempest: false
 
 # RHEL8 periodic jobs - parent on centos7 to avoid duplication. cost is
 # carrying nodeset/host-vars. https://tree.taiga.io/project/tripleo-ci-board/us/1228
