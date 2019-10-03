@@ -361,6 +361,7 @@
     parent: periodic-tripleo-ci-centos-7-scenario004-standalone-master
     vars:
       featureset_override: &scenario004_podman
+        standalone_container_cli: podman
         run_tempest: false
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
