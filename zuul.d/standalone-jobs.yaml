@@ -353,8 +353,6 @@
     host-vars:
       primary:
         ansible_python_interpreter: /usr/bin/python3
-    # disabled voting until pyngus appears: https://bugs.launchpad.net/tripleo/+bug/1840828
-    voting: false
 
 - job:
     name: periodic-tripleo-ci-rhel-8-scenario004-standalone-master
@@ -444,8 +442,6 @@
     parent: tripleo-ci-rhel-8-standalone-rdo
     branches: ^master$
     vars: *scen3_standalone_vars
-    # disabled voting until pyngus appears: https://bugs.launchpad.net/tripleo/+bug/1840828
-    voting: false
 
 - job:
     name: tripleo-ci-rhel-8-scenario004-standalone-rdo
