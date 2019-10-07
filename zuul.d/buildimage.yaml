@@ -22,3 +22,24 @@
     vars:
       tripleo_image_type: ironic-python-agent
 
+- job:
+    name: tripleo-rhel-8-buildimage-overcloud-full-train
+    parent: tripleo-rhel-8-buildimage-overcloud-full
+    branches: ^stable/train$
+    vars:
+      branch_override: 'stable/train'
+      release: train
+- job:
+    name: tripleo-rhel-8-buildimage-overcloud-hardened-full-train
+    parent: tripleo-rhel-8-buildimage-overcloud-hardened-full
+    branches: ^stable/train$
+    vars:
+      branch_override: 'stable/train'
+      release: train
+- job:
+    name: tripleo-rhel-8-buildimage-ironic-python-agent-train
+    parent: tripleo-rhel-8-buildimage-ironic-python-agent
+    branches: ^stable/train$
+    vars:
+      branch_override: 'stable/train'
+      release: train

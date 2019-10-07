@@ -511,7 +511,7 @@
               - manifests/profile/base/neutron/plugins/ovs/opendaylight.pp
               - tox.ini
         - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-stein-branch:
-            irrelevant-files:
+            irrelevant-files: &fs01_irreevent_files
               - ^.*\.md$
               - ^.*\.rst$
               - ^Puppetfile.*$
@@ -591,6 +591,9 @@
               - manifests/profile/base/neutron/plugins/ml2/opendaylight.pp
               - manifests/profile/base/neutron/plugins/ovs/opendaylight.pp
               - tox.ini
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-train-branch:
+            irrelevant-files:
+              - *fs01_irreevent_files
 
 
 - project-template:
