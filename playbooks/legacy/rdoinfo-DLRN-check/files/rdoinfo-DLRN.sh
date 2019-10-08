@@ -2,7 +2,7 @@
 set -ex
 
 # Simple script to test several DLRN packages
-TAG="${1:-train-uc}"
+TAG="${1:-ussuri-uc}"
 PACKAGES_TO_BUILD="${2:-python-glanceclient}"
 PROJECT_DISTRO_BRANCH="rpm-master"
 
@@ -15,10 +15,10 @@ target="centos"
 baseurl="http://trunk.rdoproject.org/centos7/"
 src="master"
 branch=""
-tag="train-uc"
+tag="ussuri-uc"
 
 # If we are testing a commit on a specific branch, make sure we are using it
-if [[ "${TAG}" != "train-uc" ]]; then
+if [[ "${TAG}" != "ussuri-uc" ]]; then
     branch=$(echo $TAG | awk -F- '{print $1}')
     tag=$TAG
     baseurl="http://trunk.rdoproject.org/${branch}/centos7/"
