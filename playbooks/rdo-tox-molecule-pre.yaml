@@ -10,3 +10,9 @@
         regexp: '.*rhui-cds$'
         line: "38.145.32.241 rhui-cds"
         state: present
+
+    - name: install development tools, in case a package needs then
+      become: yes
+      dnf:
+        name: '@Development tools'
+        state: present
