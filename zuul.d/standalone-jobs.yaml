@@ -30,6 +30,7 @@
     name: periodic-tripleo-ci-centos-7-standalone-full-tempest-master
     parent: periodic-tripleo-ci-centos-7-standalone-master
     vars:
+      timeout: 14400
       featureset: '052'
       release: master
       featureset_override:
