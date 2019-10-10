@@ -299,7 +299,7 @@
 - job:
     name: rdo-tox-molecule
     parent: tripleo-tox-molecule
-    nodeset: rdo-fedora-28
+    nodeset: rdo-fedora-stable
     pre-run:
       - playbooks/rdo-tox-molecule-pre.yaml
 
