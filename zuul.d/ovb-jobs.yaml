@@ -32,6 +32,8 @@
     nodeset: tripleo-ovb-rhel-8-primary
     branches: ^master$
     voting: no
+    vars:
+      nodes: 3ctlr_1comp
     host-vars:
       primary:
         ansible_python_interpreter: /usr/bin/python3

@@ -19,18 +19,7 @@
               - ^test-requirements.txt$
               - ^tox.ini$
               - .*molecule.*
-        - periodic-tripleo-ci-centos-7-standalone-master:
-            files:
-              - zuul.d/standalone-jobs.yaml
-        - registry-login-rdo-integration-centos-7:
-            files:
-              - playbooks/integration/registry-login.yaml
-              - zuul.d/integration.yaml
-        - registry-login-rdo-integration-redhat-8:
-            files:
-              - playbooks/integration/registry-login.yaml
-              - zuul.d/integration.yaml
-
+        - tripleo-ci-rhel-8-ovb-3ctlr_1comp-featureset001
     gate:
       jobs:
         - tox-docs: *cfg
