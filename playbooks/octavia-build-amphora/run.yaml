@@ -37,7 +37,8 @@
             cp /etc/yum.repos.d/delorean.repo /etc/yum.repos.d/delorean-deps.repo $PWD/rdo-repos/
             export DIB_YUM_MINIMAL_EXTRA_REPOS=$PWD/rdo-repos
           fi
-          sudo /usr/bin/octavia-diskimage-create.sh -s 3 -p -i centos -o amphora-x64-haproxy-centos.qcow2
+          sudo --preserve-env=DIB_LOCAL_IMAGE,DIB_YUM_MINIMAL_EXTRA_REPOS \
+              /usr/bin/octavia-diskimage-create.sh -s 3 -p -i centos -o amphora-x64-haproxy-centos.qcow2
           # Create output directory
           mkdir -p images/$RELEASE
           if [ -f amphora-x64-haproxy-centos.qcow2 ]; then
