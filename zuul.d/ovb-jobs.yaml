@@ -221,11 +221,10 @@
     vars:
        branch_override: "stable/train"
 
-# legacy-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
     parent: tripleo-ci-base-ovb-rdo
-    branches: ^master$
+    branches: "^.*$"
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
@@ -235,21 +234,23 @@
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky-vexxhost
     parent: tripleo-ci-base-ovb-rdo
-    branches: ^stable/rocky$
+    branches: ^master$
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
+      branch_override: "stable/rocky"
       cloud_name: vexxhost
     nodeset: upstream-centos-7-vexxhost
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-stein-vexxhost
     parent: tripleo-ci-base-ovb-rdo
-    branches: ^stable/stein$
+    branches: ^master$
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
       cloud_name: vexxhost
+      branch_override: "stable/stein"
     nodeset: upstream-centos-7-vexxhost
 
 - job:
@@ -597,4 +598,3 @@
     vars:
       branch_override: "stable/rocky"
       release: rocky
-
