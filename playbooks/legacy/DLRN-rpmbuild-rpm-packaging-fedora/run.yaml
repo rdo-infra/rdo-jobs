@@ -64,7 +64,7 @@
       shell:
         cmd: |
           set +e
-          sudo dnf -y install createrepo mock redhat-rpm-config rpmdevtools
+          sudo dnf -y install createrepo mock redhat-rpm-config rpmdevtools gcc python2-devel
           sudo usermod -a -G mock zuul
 
           # Clone DLRN
