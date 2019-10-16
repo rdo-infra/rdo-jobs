@@ -302,6 +302,11 @@
     nodeset: rdo-fedora-28
     pre-run:
       - playbooks/rdo-tox-molecule-pre.yaml
+    vars:
+      tox_environment:
+        # assure we skip delegated scenarios as we are supposed to test them
+        # with separated jobs.
+        PYTEST_ADDOPTS: -m "not delegated"
 
 - job:
     name: rdo-tox-molecule-rhel8
