@@ -10,7 +10,15 @@
               tox_executable: "{{ ansible_python.executable }} -m tox"
             pre-run:
               - playbooks/pre-tox.yaml
-        - tox-linters: *cfg
+        - tox-linters:
+            <<: *cfg
+            files:
+              - ^requirements.txt$
+              - ^roles/.*
+              - ^setup.*$
+              - ^test-requirements.txt$
+              - ^tox.ini$
+              - .*molecule.*
         - rdo-tox-molecule: &molecule
             files:
               - ^requirements.txt$
