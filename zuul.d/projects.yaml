@@ -11,6 +11,8 @@
             pre-run:
               - playbooks/pre-tox.yaml
         - tox-linters: *cfg
+            irrelevant-files:
+              - zuul.d/tripleo.yaml
         - rdo-tox-molecule: &molecule
             files:
               - ^requirements.txt$
