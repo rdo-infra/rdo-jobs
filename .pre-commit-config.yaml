@@ -1,7 +1,7 @@
 ---
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks.git
-    rev: v2.2.3
+    rev: v2.3.0
     hooks:
       - id: trailing-whitespace
       - id: mixed-line-ending
@@ -20,7 +20,7 @@ repos:
   #       types: [file, yaml]
   #       entry: yamllint --strict -f parsable
   - repo: https://github.com/ansible/ansible-lint.git
-    rev: v4.1.0a0
+    rev: v4.1.1a0
     hooks:
       - id: ansible-lint
         files: \.(yaml|yml)$
