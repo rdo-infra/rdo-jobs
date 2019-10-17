@@ -29,7 +29,6 @@
           set +e -x
           # This job requires variables 'rdoinfo_release' and 'rdoinfo_phase' to be defined.
 
-          REQUIRED=0
           MASTER_RELEASE=train
           CREPOS_FILE=changed_repos.txt
 
@@ -39,15 +38,9 @@
           fi
 
           if [ "{{ rdoinfo_release }}" = "master" ]; then
-              O_RELEASE=$MASTER_RELEASE
+              RELEASE=$MASTER_RELEASE
           else
-              O_RELEASE="{{ rdoinfo_release }}"
-          fi
-
-          if [[ ( "{{ rdoinfo_release }}" == "ocata" ) || ("{{ rdoinfo_release }}" == "pike" ) ]];then
-              C_RELEASE=common
-          else
-              C_RELEASE=""
+              RELEASE="{{ rdoinfo_release }}"
           fi
 
           # Re-construct the expected repository URL
@@ -64,23 +57,12 @@
           # If we could not find a working repository, give up
           curl -o $CREPOS_FILE -sf "$logs/repos/changed_repos.txt" || exit 1
 
-          for tag in $O_RELEASE $C_RELEASE
-          do
-              if grep -q -E "$tag-{{ rdoinfo_phase }}" $CREPOS_FILE; then
-                  REQUIRED=1
-              fi
-          done
-
-          if [ $REQUIRED -eq 0 ];then
+          if ! grep -q -E "$RELEASE-{{ rdoinfo_phase }}" $CREPOS_FILE; then
               echo "INFO: this test is not required"| tee not_required
               exit 0
           fi
 
 
-          COMMON_TESTING_TAG="cloud7-openstack-common-testing"
-          COMMON_RELEASE_TAG="cloud7-openstack-common-release"
-          COMMON_TESTING=$(grep -c $COMMON_TESTING_TAG $CREPOS_FILE)
-          COMMON_RELEASE=$(grep -c $COMMON_RELEASE_TAG $CREPOS_FILE)
           PROMOTED_TAG="current-tripleo"
           dlrn_baseurl="\
           `curl --silent https://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/$PROMOTED_TAG/delorean.repo -S | \
@@ -117,7 +99,7 @@
               echo "repos:"
               if [ $STABLE_REPOSITORIES != false ]; then
                   echo "  - type: package"
-                  echo "    pkg_name: centos-release-openstack-$O_RELEASE"
+                  echo "    pkg_name: centos-release-openstack-$RELEASE"
                   echo "    custom_cmd: 'sudo yum install -y --enablerepo=extras'"
               elif [[ ("{{ rdoinfo_release }}" == "master" ) || ("{{ rdoinfo_release }}" == "stein" ) ]]; then
                   echo "  - type: generic"
@@ -184,23 +166,23 @@
               echo '  {%endif %}'
               if [ $STABLE_REPOSITORIES != false ]; then
                   echo "  sudo yum-config-manager --save --setopt centos-qemu-ev.gpgcheck=0"
-                  echo "  sudo yum-config-manager --save --setopt centos-openstack-$O_RELEASE.gpgcheck=0"
-                  echo "  sudo yum-config-manager --disable rdo-trunk-$O_RELEASE-tested"
+                  echo "  sudo yum-config-manager --save --setopt centos-openstack-$RELEASE.gpgcheck=0"
+                  echo "  sudo yum-config-manager --disable rdo-trunk-$RELEASE-tested"
                   if [ $TESTING_REPOSITORY = true ]; then
-                      echo "  sudo yum-config-manager --disable centos-openstack-$O_RELEASE"
-                      echo "  sudo yum-config-manager --enable centos-openstack-$O_RELEASE-test"
+                      echo "  sudo yum-config-manager --disable centos-openstack-$RELEASE"
+                      echo "  sudo yum-config-manager --enable centos-openstack-$RELEASE-test"
                   fi
               fi
               echo "  sudo yum clean all;"
               echo "  sudo yum repolist;"
               echo "  sudo yum update -y"
-              if [[ ( "{{ rdoinfo_release }}" == "ocata" ) || ("{{ rdoinfo_release }}" == "pike" ) || ("{{ rdoinfo_release }}" == "queens" ) ]];then
+              if [[ ( "{{ rdoinfo_release }}" == "queens" ) ]];then
                   echo "  # add bootstrap dependencies tripleo/+bug/1785067"
                   echo "  sudo yum install -y openstack-heat-agents"
               fi
               if [ $STABLE_REPOSITORIES != false ]; then
                   echo "overcloud_repo_paths:"
-                  echo "  - \"\$(ls /etc/yum.repos.d/CentOS-OpenStack-$O_RELEASE*)\""
+                  echo "  - \"\$(ls /etc/yum.repos.d/CentOS-OpenStack-$RELEASE*)\""
                   echo "  - \"\$(ls /etc/yum.repos.d/CentOS-QEMU*)\""
                   echo "  - \"\$(ls /etc/yum.repos.d/CentOS-Ceph-*)\""
                   INDEX=0
@@ -213,58 +195,40 @@
               echo "undercloud_rpm_dependencies: >-"
               echo "  python-tripleoclient"
               echo "  ceph-ansible"
-              if [[ ( "{{ rdoinfo_release }}" != "ocata" ) && ("{{ rdoinfo_release }}" != "pike" ) ]];then
-                  echo "standalone_container_ceph_updates: true"
-                  echo "gating_repo_name: temp-*,gating-repo"
-                  if [[ ( "{{ rdoinfo_build_containers|default(false) | lower }}" == "true" ) ]];then
-                      echo "update_containers: false"
-                      echo "docker_registry_host: {{ push_registry | default('127.0.0.1:8787') }}"
-                      echo "standalone_container_prep_updates: false"
-                  else
-                      echo "update_containers: true"
-                  fi
+              echo "standalone_container_ceph_updates: true"
+              echo "gating_repo_name: temp-*,gating-repo"
+              if [[ ( "{{ rdoinfo_build_containers|default(false) | lower }}" == "true" ) ]];then
+                  echo "update_containers: false"
+                  echo "docker_registry_host: {{ push_registry | default('127.0.0.1:8787') }}"
+                  echo "standalone_container_prep_updates: false"
+              else
+                  echo "update_containers: true"
               fi
           }
 
 
           case {{ rdoinfo_phase }} in
           testing)
-              if [[ ( "{{ rdoinfo_release }}" == "ocata" ) || ("{{ rdoinfo_release }}" == "pike" ) ]];then
-                  REPOS_URL=""
-                  STABLE_REPOSITORIES=true
-                  TESTING_REPOSITORY=true
-              else
-                  REPOS_URL="http://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/$PROMOTED_TAG/delorean.repo \
-                  http://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/delorean-deps.repo"
-                  STABLE_REPOSITORIES=false
-                  TESTING_REPOSITORY=false
-                  delorean_current_url="\
-                  `curl --silent https://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/current/delorean.repo -S  | grep baseurl | cut -d= -f2`"
-              fi
-              if [ $(grep -c $O_RELEASE-{{ rdoinfo_phase }} $CREPOS_FILE) -ne 0 ]; then
-                  REPO="cloud7-openstack-$O_RELEASE-{{ rdoinfo_phase }}"
+              REPOS_URL="http://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/$PROMOTED_TAG/delorean.repo \
+              http://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/delorean-deps.repo"
+              STABLE_REPOSITORIES=false
+              TESTING_REPOSITORY=false
+              delorean_current_url="\
+              `curl --silent https://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/current/delorean.repo -S  | grep baseurl | cut -d= -f2`"
+              if [ $(grep -c $RELEASE-{{ rdoinfo_phase }} $CREPOS_FILE) -ne 0 ]; then
+                  REPO="cloud7-openstack-$RELEASE-{{ rdoinfo_phase }}"
                   REPOS_URL="$REPOS_URL $logs/repos/$REPO/temp-$REPO.repo"
-              fi
-              if [[ ( "{{ rdoinfo_release }}" == "ocata" ) || ("{{ rdoinfo_release }}" == "pike" ) ]];then
-                  if [ $COMMON_TESTING -ne 0 ];then
-                      REPOS_URL="$REPOS_URL $logs/repos/$COMMON_TESTING_TAG/temp-$COMMON_TESTING_TAG.repo"
-                  fi
               fi
               create_config | tee -a tripleo.yml
           ;;
           release)
               STABLE_REPOSITORIES=true
               TESTING_REPOSITORY=false
-              if [ $(grep -c $O_RELEASE-{{ rdoinfo_phase }} $CREPOS_FILE) -ne 0 ]; then
-                  REPO="cloud7-openstack-$O_RELEASE-{{ rdoinfo_phase }}"
+              if [ $(grep -c $RELEASE-{{ rdoinfo_phase }} $CREPOS_FILE) -ne 0 ]; then
+                  REPO="cloud7-openstack-$RELEASE-{{ rdoinfo_phase }}"
                   REPOS_URL="$logs/repos/$REPO/temp-$REPO.repo"
               else
                   REPOS_URL=""
-              fi
-              if [[ ( "{{ rdoinfo_release }}" == "ocata" ) || ("{{ rdoinfo_release }}" == "pike" ) ]];then
-                  if [ $COMMON_RELEASE -ne 0 ];then
-                      REPOS_URL="$REPOS_URL $logs/repos/$COMMON_RELEASE_TAG/temp-$COMMON_RELEASE_TAG.repo"
-                  fi
               fi
               create_config | tee -a tripleo.yml
           ;;
