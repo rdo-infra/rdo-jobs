@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "a98d521a_288ca6cd",
+        "filename": "playbooks/run-rdoinfo.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2019-10-17T16:10:42Z",
+      "side": 1,
+      "message": "I assumed that C_RELEASE stands for \"common release\" and O_RELEASE stands for \"original release\". As we remove C_RELEASE, I think there is no need to prepend RELEASE with O_ and removed it.\nI checked if the var O_RELEASE was present in others file, and it\u0027s not.\nBut, as you say, I don\u0027t know if it can interfere with other RELEASE variable coming from somewhere, and if it\u0027s the reason the variable has not been named RELEASE in the first place.",
+      "parentUuid": "e53fa2bf_27a8d84c",
+      "range": {
+        "startLine": 42,
+        "startChar": 14,
+        "endLine": 42,
+        "endChar": 21
+      },
+      "revId": "378ce560ded4c9e1d730c8d2b56e0db155181bf0",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b49f77f6_2464033b",
         "filename": "playbooks/run-rdoinfo.yaml",
         "patchSetId": 2
@@ -59,6 +83,30 @@
       "writtenOn": "2019-10-17T15:38:02Z",
       "side": 1,
       "message": "This could be simplified:\n\nif ! grep -q -E \"$RELEASE-{{ rdoinfo_phase }}\" $CREPOS_FILE; then\n\n    echo \"INFO: this test is not required\"| tee not_required\n    exit 0\nfi",
+      "range": {
+        "startLine": 61,
+        "startChar": 9,
+        "endLine": 68,
+        "endChar": 12
+      },
+      "revId": "378ce560ded4c9e1d730c8d2b56e0db155181bf0",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aecd8f2d_c66c6283",
+        "filename": "playbooks/run-rdoinfo.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2019-10-17T16:10:42Z",
+      "side": 1,
+      "message": "I like it.",
+      "parentUuid": "b49f77f6_2464033b",
       "range": {
         "startLine": 61,
         "startChar": 9,
