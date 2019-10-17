@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "745f7756_56abc0c2",
+        "filename": "playbooks/run-rdoinfo.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2019-10-17T15:38:02Z",
+      "side": 1,
+      "message": "Could be removed, see below",
+      "range": {
+        "startLine": 32,
+        "startChar": 10,
+        "endLine": 32,
+        "endChar": 20
+      },
+      "revId": "378ce560ded4c9e1d730c8d2b56e0db155181bf0",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e53fa2bf_27a8d84c",
+        "filename": "playbooks/run-rdoinfo.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2019-10-17T15:38:02Z",
+      "side": 1,
+      "message": "I\u0027m not totally sure about this change of variable name. I\u0027m not sure if there was a RELEASE variable coming from somewhere (maybe zuul?), but let\u0027s try.",
+      "range": {
+        "startLine": 42,
+        "startChar": 14,
+        "endLine": 42,
+        "endChar": 21
+      },
+      "revId": "378ce560ded4c9e1d730c8d2b56e0db155181bf0",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b49f77f6_2464033b",
+        "filename": "playbooks/run-rdoinfo.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2019-10-17T15:38:02Z",
+      "side": 1,
+      "message": "This could be simplified:\n\nif ! grep -q -E \"$RELEASE-{{ rdoinfo_phase }}\" $CREPOS_FILE; then\n\n    echo \"INFO: this test is not required\"| tee not_required\n    exit 0\nfi",
+      "range": {
+        "startLine": 61,
+        "startChar": 9,
+        "endLine": 68,
+        "endChar": 12
+      },
+      "revId": "378ce560ded4c9e1d730c8d2b56e0db155181bf0",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
