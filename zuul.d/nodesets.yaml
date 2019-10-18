@@ -137,6 +137,17 @@
         nodes: []
 
 - nodeset:
+    name: upstream-centos-7-vexx-nhw
+    nodes:
+      - name: primary
+        label: upstream-centos-7-vexx-nhw
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
+- nodeset:
     name: upstream-centos-7
     nodes:
       - name: upstream-centos-7
