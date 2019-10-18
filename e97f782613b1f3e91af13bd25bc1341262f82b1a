@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8d4bdfaa_c9465b99",
+        "filename": "zuul.d/buildimage.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2019-10-18T11:43:16Z",
+      "side": 1,
+      "message": "wait... why don\u0027t we have these for stein etc?\n[EDIT]: because rhel",
+      "revId": "e97f782613b1f3e91af13bd25bc1341262f82b1a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e0a4698f_f92a6555",
+        "filename": "zuul.d/ovb-jobs.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2019-10-18T11:43:16Z",
+      "side": 1,
+      "message": "why not parent on tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-stein and just override_checkout and branch_override",
+      "range": {
+        "startLine": 90,
+        "startChar": 16,
+        "endLine": 90,
+        "endChar": 34
+      },
+      "revId": "e97f782613b1f3e91af13bd25bc1341262f82b1a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee7b5c9e_7887d235",
+        "filename": "zuul.d/ovb-jobs.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2019-10-18T11:43:16Z",
+      "side": 1,
+      "message": "why parent this differently from the others here... i mean if you want to do that why not parent on tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-stein-branch above it and override branch_override only?\n\nwhy did you pick tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ovb-master",
+      "range": {
+        "startLine": 213,
+        "startChar": 10,
+        "endLine": 213,
+        "endChar": 70
+      },
+      "revId": "e97f782613b1f3e91af13bd25bc1341262f82b1a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb0d0c89_0b119ef4",
+        "filename": "zuul.d/ovb-jobs.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2019-10-18T11:43:16Z",
+      "side": 1,
+      "message": "ack this one makes sense",
+      "revId": "e97f782613b1f3e91af13bd25bc1341262f82b1a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e742f95b_569213a3",
+        "filename": "zuul.d/project-templates.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2019-10-18T11:43:16Z",
+      "side": 1,
+      "message": "if that is copy paste from stein-branch then lets add yaml anchors \u0026 * https://confluence.atlassian.com/bitbucket/yaml-anchors-960154027.html",
+      "revId": "e97f782613b1f3e91af13bd25bc1341262f82b1a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
