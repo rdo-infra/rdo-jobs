@@ -29,7 +29,7 @@
           set +e -x
           # This job requires variables 'rdoinfo_release' and 'rdoinfo_phase' to be defined.
 
-          MASTER_RELEASE=train
+          MASTER_RELEASE=ussuri
           CREPOS_FILE=changed_repos.txt
 
           if [ -z "{{ rdoinfo_phase|default("") }}" -o -z "{{ rdoinfo_release|default("") }}" ]; then
