@@ -29,7 +29,7 @@
           set +e -x
           # This job requires variables 'rdoinfo_release' and 'rdoinfo_phase' to be defined.
 
-          MASTER_RELEASE=train
+          MASTER_RELEASE=ussuri
           CREPOS_FILE=changed_repos.txt
 
           if [ -z "{{ rdoinfo_phase|default("") }}" -o -z "{{ rdoinfo_release|default("") }}" ]; then
@@ -101,7 +101,7 @@
                   echo "  - type: package"
                   echo "    pkg_name: centos-release-openstack-$RELEASE"
                   echo "    custom_cmd: 'sudo yum install -y --enablerepo=extras'"
-              elif [[ ("{{ rdoinfo_release }}" == "master" ) || ("{{ rdoinfo_release }}" == "stein" ) ]]; then
+              elif [[ ("{{ rdoinfo_release }}" == "master" ) || ("{{ rdoinfo_release }}" == "stein" ) || ("{{ rdoinfo_release }}" == "train" ) ]]; then
                   echo "  - type: generic"
                   echo "    reponame: quickstart-centos-ceph-nautilus"
                   echo "    filename: quickstart-centos-ceph-nautilus.repo"
