@@ -48,7 +48,7 @@
           # right one
           curl -o /dev/null -sIf "${repository}"
           if [ $? -ne 0 ]; then
-            releases="rpm-master stein-rdo rocky-rdo queens-rdo pike-rdo ocata-rdo"
+            releases="rpm-master train-rdo stein-rdo rocky-rdo queens-rdo"
             for release in $releases; do
                 repository="${logs}/centos-${release}/current"
                 curl -o /dev/null -sIf "${repository}" || continue
@@ -88,7 +88,7 @@
                   echo "    down_url: $repo"
                   ((INDEX++))
               done
-              if [[ ("{{ release }}" == "master" ) || ("{{ release }}" == "stein" ) ]]; then
+              if [[ ("{{ release }}" == "master" ) || ("{{ release }}" == "stein" ) || ("{{ release }}" == "train" ) ]]; then
                   echo "  - type: generic"
                   echo "    reponame: quickstart-centos-ceph-nautilus"
                   echo "    filename: quickstart-centos-ceph-nautilus.repo"
