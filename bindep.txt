@@ -1,2 +1,6 @@
 python3 [platform:centos-7 platform:fedora]
 python36 [platform:centos-8 platform:redhat-8]
+
+gcc [compile test]
+# g++ [compile test platform:apk platform:dpkg]
+gcc-c++ [compile test platform:rpm]
