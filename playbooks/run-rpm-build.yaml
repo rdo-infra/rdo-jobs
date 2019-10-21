@@ -1,0 +1,33 @@
+---
+- hosts: primary
+  tasks:
+    - name: Run pre-quickstart role
+      import_role:
+         name: common
+
+    - name: check for correct import
+      debug:
+        var: tripleo_root
+
+    - name: set workspace
+      set_fact:
+        workspace: "{{ ansible_user_dir }}/workspace"
+
+    - name: ensure workspace presence
+      file:
+        path: "{{ workspace }}"
+        state: directory
+
+    - name: Add CI packages repository
+      yum_repository:
+        name: "zuul-built"
+        baseurl: "{{ buildset_artifacts_url }}"
+        gpgcheck: "0"
+      become: yes
+
+    - name: Run quickstart
+      include_role:
+         name: run-test
+      vars:
+        release: "{{ release }}"
+
