@@ -3,8 +3,9 @@
     check:
       jobs:
         - tox-docs: &cfg
-            # using fedora to get python3, can remove once we have centos-8
-            nodeset: container-fedora
+            # 1 using fedora to get python3, can remove once we have centos-8
+            # 2 disabled container-fedora as it lacks 'sudo', breaking bindep
+            nodeset: rdo-fedora-28
             vars:
               # needed to avoid accidental call of /usr/bin/tox
               tox_executable: "{{ ansible_python.executable }} -m tox"

@@ -8,6 +8,15 @@
         chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/ceph/ceph-ansible'].src_dir }}"
       changed_when: true
 
+    - name: Setup log path fact
+      include_role:
+        name: set-zuul-log-path-fact
+
+    - name: Define buildset artifacts location
+      zuul_return:
+        data:
+          buildset_artifacts_url: "https://logs.rdoproject.org/{{ zuul_log_path }}/buildset"
+
     - name: Copy logs to logs directory
       changed_when: true
       shell:
