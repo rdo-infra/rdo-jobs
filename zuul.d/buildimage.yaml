@@ -43,3 +43,12 @@
     vars:
       branch_override: 'stable/train'
       release: train
+
+- job:
+    name: tripleo-centos-7-buildimage-overcloud-full
+    parent: tripleo-ci-base-ovb-periodic-upload
+    branches: ^master$
+    voting: false
+    vars:
+      tripleo_image_type: overcloud-full
+      release: master
