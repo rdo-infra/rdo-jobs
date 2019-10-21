@@ -24,7 +24,9 @@ repos:
     hooks:
       - id: ansible-lint
         files: \.(yaml|yml)$
-        entry: ansible-lint --force-color -v
+        # TODO(ssbarnea): make this dynamic so it works even locally
+        # with no side-clone of zuul (additional-dependencies)
+        entry: env ANSIBLE_LIBRARY=../zuul/ansible/library/ ansible-lint --force-color -v
         exclude: playbooks/legacy
   - repo: https://github.com/openstack-dev/bashate.git
     rev: 0.6.0
