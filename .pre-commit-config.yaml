@@ -24,8 +24,15 @@ repos:
     hooks:
       - id: ansible-lint
         files: \.(yaml|yml)$
-        entry: ansible-lint --force-color -v
+        # Helps it find zuul_return module on both zuul and on dev environments,
+        # Based on https://github.com/pre-commit/pre-commit/issues/758
+        entry: >
+          bash -c 'env ANSIBLE_LIBRARY=`python -c "import os, zuul;
+          print(os.path.dirname(zuul.__file__))"`/ansible/base/actiongeneral/
+          ansible-lint --force-color -v "$@"'
         exclude: playbooks/legacy
+        additional_dependencies:
+          - zuul
   - repo: https://github.com/openstack-dev/bashate.git
     rev: 0.6.0
     hooks:
