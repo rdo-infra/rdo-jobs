@@ -43,6 +43,9 @@
     name: weirdo-dlrn-master-aodh
     check:
       jobs:
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
         - rpmlint:
             dependencies:
               - DLRN-rpmbuild
@@ -87,6 +90,9 @@
     name: weirdo-dlrn-master-barbican
     check:
       jobs:
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
         - rpmlint:
             dependencies:
               - DLRN-rpmbuild
@@ -123,6 +129,9 @@
     name: weirdo-dlrn-master-ceilometer
     check:
       jobs:
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
         - rpmlint:
             dependencies:
               - DLRN-rpmbuild
@@ -167,6 +176,9 @@
     name: weirdo-dlrn-master-cinder
     check:
       jobs:
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
         - rpmlint:
             dependencies:
               - DLRN-rpmbuild
@@ -219,6 +231,9 @@
     name: weirdo-dlrn-master-glance
     check:
       jobs:
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
         - rpmlint:
             dependencies:
               - DLRN-rpmbuild
@@ -279,6 +294,9 @@
     name: weirdo-dlrn-master-gnocchi
     check:
       jobs:
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
         - rpmlint:
             dependencies:
               - DLRN-rpmbuild-pinned
@@ -325,6 +343,9 @@
     name: weirdo-dlrn-master-heat
     check:
       jobs:
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
         - rpmlint:
             dependencies:
               - DLRN-rpmbuild
@@ -369,6 +390,9 @@
     name: weirdo-dlrn-master-horizon
     check:
       jobs:
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
         - rpmlint:
             dependencies:
               - DLRN-rpmbuild
@@ -405,6 +429,9 @@
     name: weirdo-dlrn-master-keystone
     check:
       jobs:
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
         - rpmlint:
             dependencies:
               - DLRN-rpmbuild
@@ -449,6 +476,9 @@
     name: weirdo-dlrn-master-networking-bgpvpn
     check:
       jobs:
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
         - rpmlint:
             dependencies:
               - DLRN-rpmbuild
@@ -485,6 +515,9 @@
     name: weirdo-dlrn-master-neutron
     check:
       jobs:
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
         - rpmlint:
             dependencies:
               - DLRN-rpmbuild
@@ -537,6 +570,9 @@
     name: weirdo-dlrn-master-nova
     check:
       jobs:
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
         - rpmlint:
             dependencies:
               - DLRN-rpmbuild
@@ -581,6 +617,9 @@
     name: weirdo-dlrn-master-oslo
     check:
       jobs:
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
         - rpmlint:
             dependencies:
               - DLRN-rpmbuild
@@ -633,6 +672,9 @@
     name: weirdo-dlrn-master-watcher
     check:
       jobs:
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
         - rpmlint:
             dependencies:
               - DLRN-rpmbuild
@@ -669,6 +711,9 @@
     name: weirdo-dlrn-master-zaqar
     check:
       jobs:
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
         - rpmlint:
             dependencies:
               - DLRN-rpmbuild
