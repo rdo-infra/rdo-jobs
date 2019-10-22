@@ -1,0 +1,15 @@
+---
+- hosts: all
+  tasks:
+    - name: install rdopkg
+      yum:
+        name: rdopkg
+        state: present
+
+    - name: run rdopkg reqcheck
+      command: rdopkg reqcheck
+      args:
+        chdir: "{{ zuul.project.src_dir }}"
+      register: reqcheck_output
+      changed_when: False
+
