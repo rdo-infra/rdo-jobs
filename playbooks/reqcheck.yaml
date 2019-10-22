@@ -1,0 +1,28 @@
+---
+- hosts: all
+  tasks:
+    - name: install rdopkg
+      yum:
+        name: rdopkg
+        state: present
+      become: yes
+
+    - name: check rdopkg version
+      command: rdopkg --version
+
+    - name: fetch rdopkg compatible name for project
+      shell: rdopkg findpkg {{ zuul.project.name }} | sed -n "/^name/ s/name. \(.*\)/\1/p"
+      register: findpkg
+
+    - name: clone project with rdopkg
+      command: "rdopkg clone {{ findpkg.stdout }}"
+      args:
+        chdir: "{{ ansible_user_dir }}"
+
+    - name: run rdopkg reqcheck
+      command: rdopkg reqcheck
+      args:
+        chdir: "{{ ansible_user_dir }}/{{ findpkg.stdout }}"
+      register: reqcheck_output
+      changed_when: False
+
