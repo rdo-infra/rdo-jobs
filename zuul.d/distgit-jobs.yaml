@@ -41,6 +41,7 @@
     name: distgit-rpm-tripleo-master-testing-centos-7-standalone-featureset016
     parent: tripleo-ci-base-standalone-rdo
     run: playbooks/run-rpm-build.yaml
+    branches: master
     vars:
       featureset: '052'
       release: master
