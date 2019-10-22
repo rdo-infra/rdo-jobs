@@ -43,6 +43,9 @@
     name: weirdo-dlrn-master-aodh
     check:
       jobs:
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
         - rpmlint:
             dependencies:
               - DLRN-rpmbuild
@@ -87,7 +90,14 @@
     name: weirdo-dlrn-master-barbican
     check:
       jobs:
+<<<<<<< HEAD
         - rpmlint:
+=======
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
+        - legacy-rpmlint:
+>>>>>>> [WIP] Add dependency matching check in the check pipeline
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -123,7 +133,14 @@
     name: weirdo-dlrn-master-ceilometer
     check:
       jobs:
+<<<<<<< HEAD
         - rpmlint:
+=======
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
+        - legacy-rpmlint:
+>>>>>>> [WIP] Add dependency matching check in the check pipeline
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -167,7 +184,14 @@
     name: weirdo-dlrn-master-cinder
     check:
       jobs:
+<<<<<<< HEAD
         - rpmlint:
+=======
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
+        - legacy-rpmlint:
+>>>>>>> [WIP] Add dependency matching check in the check pipeline
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -219,7 +243,14 @@
     name: weirdo-dlrn-master-glance
     check:
       jobs:
+<<<<<<< HEAD
         - rpmlint:
+=======
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
+        - legacy-rpmlint:
+>>>>>>> [WIP] Add dependency matching check in the check pipeline
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -279,7 +310,14 @@
     name: weirdo-dlrn-master-gnocchi
     check:
       jobs:
+<<<<<<< HEAD
         - rpmlint:
+=======
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
+        - legacy-rpmlint:
+>>>>>>> [WIP] Add dependency matching check in the check pipeline
             dependencies:
               - DLRN-rpmbuild-pinned
             branches: ^rpm-master$
@@ -325,7 +363,14 @@
     name: weirdo-dlrn-master-heat
     check:
       jobs:
+<<<<<<< HEAD
         - rpmlint:
+=======
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
+        - legacy-rpmlint:
+>>>>>>> [WIP] Add dependency matching check in the check pipeline
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -369,7 +414,14 @@
     name: weirdo-dlrn-master-horizon
     check:
       jobs:
+<<<<<<< HEAD
         - rpmlint:
+=======
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
+        - legacy-rpmlint:
+>>>>>>> [WIP] Add dependency matching check in the check pipeline
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -405,7 +457,14 @@
     name: weirdo-dlrn-master-keystone
     check:
       jobs:
+<<<<<<< HEAD
         - rpmlint:
+=======
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
+        - legacy-rpmlint:
+>>>>>>> [WIP] Add dependency matching check in the check pipeline
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -449,7 +508,14 @@
     name: weirdo-dlrn-master-networking-bgpvpn
     check:
       jobs:
+<<<<<<< HEAD
         - rpmlint:
+=======
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
+        - legacy-rpmlint:
+>>>>>>> [WIP] Add dependency matching check in the check pipeline
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -485,7 +551,14 @@
     name: weirdo-dlrn-master-neutron
     check:
       jobs:
+<<<<<<< HEAD
         - rpmlint:
+=======
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
+        - legacy-rpmlint:
+>>>>>>> [WIP] Add dependency matching check in the check pipeline
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -537,7 +610,14 @@
     name: weirdo-dlrn-master-nova
     check:
       jobs:
+<<<<<<< HEAD
         - rpmlint:
+=======
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
+        - legacy-rpmlint:
+>>>>>>> [WIP] Add dependency matching check in the check pipeline
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -581,7 +661,14 @@
     name: weirdo-dlrn-master-oslo
     check:
       jobs:
+<<<<<<< HEAD
         - rpmlint:
+=======
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
+        - legacy-rpmlint:
+>>>>>>> [WIP] Add dependency matching check in the check pipeline
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -633,7 +720,14 @@
     name: weirdo-dlrn-master-watcher
     check:
       jobs:
+<<<<<<< HEAD
         - rpmlint:
+=======
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
+        - legacy-rpmlint:
+>>>>>>> [WIP] Add dependency matching check in the check pipeline
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -669,7 +763,14 @@
     name: weirdo-dlrn-master-zaqar
     check:
       jobs:
+<<<<<<< HEAD
         - rpmlint:
+=======
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
+        - legacy-rpmlint:
+>>>>>>> [WIP] Add dependency matching check in the check pipeline
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
