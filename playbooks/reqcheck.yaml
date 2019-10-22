@@ -1,0 +1,43 @@
+---
+- hosts: all
+  tasks:
+    - name: install rdopkg
+      pip:
+        name: rdopkg
+        virtualenv: .venv
+        virtualenv_site_packages: yes
+        extra_args: "--force-reinstall"
+      args:
+        chdir: "{{ ansible_user_dir }}"
+
+    - name: fetch rdopkg compatible name for project
+      shell:
+        cmd: |
+          . .venv/bin/activate
+          rdopkg findpkg {{ zuul.project.name }} | sed -n "/^name/ s/name. \(.*\)/\1/p"
+      register: findpkg
+      args:
+        chdir: "{{ ansible_user_dir }}"
+
+    - name: clone and reqcheck project with rdopkg
+      shell:
+        cmd: |
+          . .venv/bin/activate
+          rdopkg clone {{ findpkg.stdout }}
+          pushd {{ ansible_user_dir }}/{{ findpkg.stdout }}
+          rdopkg reqcheck
+          popd
+      args:
+        chdir: "{{ ansible_user_dir }}"
+      register: reqcheck_output
+
+    - debug:
+        var: reqcheck_output
+
+    - name: remove virtualenv and project dir
+      file:
+        path: "{{ ansible_user_dir }}/{{ item }}"
+        state: absent
+      with_items:
+        - "{{ findpkg.stdout }}"
+        - ".venv"
