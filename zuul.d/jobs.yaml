@@ -292,6 +292,16 @@
         PYTEST_ADDOPTS: -m "not delegated"
 
 - job:
+    name: rdopkg-reqcheck
+    description: |
+      Dependency check with "rdopkg reqcheck"
+    parent: base
+    run: playbooks/reqcheck/run.yaml
+    nodeset: container-fedora
+    required-projects:
+      - rdopkg
+
+- job:
     name: rdo-tox-molecule-rhel8
     parent: tripleo-tox-molecule
     voting: false
