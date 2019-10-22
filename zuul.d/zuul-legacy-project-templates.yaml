@@ -91,6 +91,9 @@
     name: weirdo-dlrn-master-barbican
     check:
       jobs:
+        - rdopkg-reqcheck:
+            voting: false
+            branches: ^rpm-master$
         - legacy-rpmlint:
             dependencies:
               - legacy-DLRN-rpmbuild

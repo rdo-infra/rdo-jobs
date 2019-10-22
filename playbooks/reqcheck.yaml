@@ -1,0 +1,57 @@
+---
+- hosts: all
+  vars:
+  tasks:
+    - name: Ensure python3-devel and virtualenv are installed
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - python3-devel
+        - virtualenv
+      become: yes
+
+    - name: install rdopkg
+      shell:
+        cmd: |
+          set -e
+          # Need to inherit system-site-packages for python-yum
+          virtualenv --system-site-packages {{ ansible_user_dir }}/.venv
+          source {{ ansible_user_dir }}/.venv/bin/activate
+          pip install --force-reinstall rdopkg
+      args:
+        chdir: "{{ ansible_user_dir }}"
+
+    - name: fetch rdopkg compatible name for project
+      shell:
+        cmd: |
+          set -e
+          source {{ ansible_user_dir }}/.venv/bin/activate
+          rdopkg findpkg {{ zuul.project.name }} | sed -n "/^name/ s/name. \(.*\)/\1/p"
+      register: findpkg
+      args:
+        chdir: "{{ ansible_user_dir }}"
+
+    - name: clone and reqcheck project with rdopkg
+      shell:
+        cmd: |
+          set -e
+          source {{ ansible_user_dir }}/.venv/bin/activate
+          rdopkg clone {{ findpkg.stdout }}
+          pushd {{ ansible_user_dir }}/{{ findpkg.stdout }}
+          rdopkg reqcheck
+          popd
+      args:
+        chdir: "{{ ansible_user_dir }}"
+      register: reqcheck_output
+
+    - debug:
+        var: reqcheck_output
+
+    - name: remove virtualenv and project dir
+      file:
+        path: "{{ ansible_user_dir }}/{{ item }}"
+        state: absent
+      with_items:
+        - "{{ findpkg.stdout }}"
+        - ".venv"
