@@ -1,23 +1,15 @@
 ---
 - hosts: all
   tasks:
-    - name: Run make rpm
-      shell:
-        cmd: |
-            make rpm
-        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}"
-      changed_when: true
+    - block:
+        - name: Run make rpm
+          shell:
+            cmd: |
+                make rpm
+            chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}"
+          changed_when: true
 
-    - name: Copy logs to logs directory
-      changed_when: true
-      shell:
-        cmd: |
-            mkdir logs
-            cp *.log logs
-            cp *.rpm logs
-            pushd logs
-            createrepo .
-            popd
-        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}"
-      args:
-        warn: false
+      rescue:
+        - name: Don't block
+          debug:
+            msg: podman rpm build failed

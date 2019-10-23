@@ -1,10 +1,28 @@
 ---
 - hosts: all
   tasks:
-    - name: Copy artefacts
-      synchronize:
-        src: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}/logs/"
-        dest: "{{ zuul.executor.log_root }}/buildset"
-        mode: pull
-        verify_host: true
+    - block:
+        - name: Copy logs to logs directory
+          changed_when: true
+          shell:
+            cmd: |
+                mkdir logs
+                cp *.log logs
+                cp *.rpm logs
+                pushd logs
+                createrepo .
+                popd
+            chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}"
+          args:
+            warn: false
+        - name: Copy artefacts
+          synchronize:
+            src: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}/logs/"
+            dest: "{{ zuul.executor.log_root }}/buildset"
+            mode: pull
+            verify_host: true
+      rescue:
+        - name: Don't block
+          debug:
+            msg: copy of logs failed
 
