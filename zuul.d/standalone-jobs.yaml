@@ -480,7 +480,7 @@
 - job:
     name: tripleo-ci-rhel-8-scenario003-standalone-rdo
     parent: tripleo-ci-rhel-8-standalone-rdo
-    branches: ^master$
+    # branches: ^master$
     vars: *scen3_standalone_vars
 
 - job:
