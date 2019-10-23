@@ -24,8 +24,9 @@
 - job:
     name: tripleo-ceph-integration-master
     parent: tripleo-ceph-integration
-    # branches makes this job run only for master PR
-    branches: master
+    # Master is not the newest one, all the PR is comming from stable-4.0
+    # That's why is wrong
+    branches: stable-4.0
     required-projects:
       # without options, the branch of the PR is used for the required-projects
       - name: opendev.org/openstack/tripleo-heat-templates
