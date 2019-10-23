@@ -1,6 +1,21 @@
 ---
 - hosts: all
   tasks:
+
+    - name: Copy logs to logs directory
+      changed_when: true
+      shell:
+        cmd: |
+            mkdir logs
+            cp *.log logs
+            cp *.rpm logs
+            pushd logs
+            createrepo .
+            popd
+        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}"
+      args:
+        warn: false
+
     - name: Copy artefacts
       synchronize:
         src: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}/logs/"
