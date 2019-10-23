@@ -23,10 +23,17 @@
         name: "zuul-built"
         baseurl: "{{ buildset_artifacts_url }}"
         gpgcheck: "0"
+        description: 'Ceph-ansible rpm built repository'
       become: yes
 
-    - name: Run quickstart
-      include_role:
-         name: run-test
-      vars:
-        release: "{{ release }}"
+    - name: Install ceph-ansible
+      package:
+        name: ceph-ansible
+        state: present
+      become: yes
+
+#     - name: Run quickstart
+      # include_role:
+         # name: run-test
+      # vars:
+#         release: "{{ release }}"
