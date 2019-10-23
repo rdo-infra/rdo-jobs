@@ -24,13 +24,13 @@
 - job:
     name: tripleo-ceph-integration-master
     parent: tripleo-ceph-integration
-    # Master is not the latest branch, all the work comes from stable-X.Y
-    # So we need to set branches here to stable-4.0
-    branches: stable-4.0
     required-projects:
       # without options, the branch of the PR is used for the required-projects
       - name: opendev.org/openstack/tripleo-heat-templates
       - name: github.com/ceph/ceph-ansible
+    vars:
+      dist: "el8"
+      mock_config: "epel-8-x86_64"
 
 - job:
     name: tripleo-ceph-integration-rocky
@@ -55,11 +55,11 @@
       - name: github.com/ceph/ceph-ansible
 
 # RHEL 8 Jobs
+# TODO(arxcruz): remove this job after this patch get merged
 - job:
     name: tripleo-ceph-integration-rhel-8-standalone-featureset016
     parent: tripleo-ci-rhel-8-standalone-rdo
     run: playbooks/run-rpm-build.yaml
-    branches: master
     required-projects:
       # without options, the branch of the PR is used for the required-projects
       - name: opendev.org/openstack/tripleo-heat-templates
@@ -69,17 +69,75 @@
       release: master
       standalone_ceph: true
       featureset_override:
-        standalone_container_cli: docker
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
           - 'ci/environments/scenario001-standalone.yaml'
-        tempest_plugins:
-          - python-telemetry-tests-tempest
-          - python-heat-tests-tempest
-        test_white_regex: ''
-        tempest_workers: 1
-        tempest_extra_config: {'telemetry.alarm_granularity': '60'}
-        tempest_whitelist:
+        tempest_services:
+          - aodh
+        run_tempest: false
+        use_os_tempest: true
+        tempest_run_concurrency: 1
+        tempest_tempest_conf_overrides:
+          telemetry.alarm_granularity: '60'
+          auth.tempest_roles: "Member"
+        tempest_test_whitelist:
           - 'tempest.api.identity.v3'
           - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern.test_volume_boot_pattern'
           - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
+
+- job:
+    name: tripleo-ceph-integration-rhel-8-scenario001-standalone
+    parent: tripleo-ci-rhel-8-standalone-rdo
+    run: playbooks/run-rpm-build.yaml
+    required-projects:
+      # without options, the branch of the PR is used for the required-projects
+      - name: opendev.org/openstack/tripleo-heat-templates
+      - name: github.com/ceph/ceph-ansible
+    vars:
+      featureset: '052'
+      release: master
+      standalone_ceph: true
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario001-standalone.yaml'
+        tempest_services:
+          - aodh
+        run_tempest: false
+        use_os_tempest: false
+        tempest_run_concurrency: 1
+        tempest_tempest_conf_overrides:
+          telemetry.alarm_granularity: '60'
+          auth.tempest_roles: "Member"
+        tempest_test_whitelist:
+          - 'tempest.api.identity.v3'
+          - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern.test_volume_boot_pattern'
+          - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
+
+- job:
+    name: tripleo-ceph-integration-rhel-8-scenario004-standalone
+    parent: tripleo-ci-rhel-8-standalone-rdo
+    run: playbooks/run-rpm-build.yaml
+    required-projects:
+      # without options, the branch of the PR is used for the required-projects
+      - name: opendev.org/openstack/tripleo-heat-templates
+      - name: github.com/ceph/ceph-ansible
+    vars:
+      featureset_override: &scenario004_podman
+        run_tempest: false
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario004-standalone.yaml'
+          - 'environments/podman.yaml'
+        tempest_services:
+          - manila
+        tempest_tempest_conf_overrides:
+          'auth.tempest_roles': 'Member'
+          'share.multitenancy_enabled': 'False'
+          'share.enable_protocols': 'cephfs'
+          'share.capability_snapshot_support': 'False'
+          'share.capability_create_share_from_snapshot_support': 'False'
+        tempest_test_whitelist:
+          - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps.test_network_basic_ops'
+          - 'manila_tempest_tests.tests.api.test_shares.SharesCephFSTest.test_create_get_delete_share'
+        use_os_tempest: false
