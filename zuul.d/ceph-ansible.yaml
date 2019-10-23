@@ -30,6 +30,7 @@
     required-projects:
       # without options, the branch of the PR is used for the required-projects
       - name: opendev.org/openstack/tripleo-heat-templates
+        override-checkout: master
       - name: github.com/ceph/ceph-ansible
 
 - job:
@@ -59,10 +60,11 @@
     name: tripleo-ceph-integration-rhel-8-standalone-featureset016
     parent: tripleo-ci-rhel-8-standalone-rdo
     run: playbooks/run-rpm-build.yaml
-    branches: master
+    branches: stable-4.0
     required-projects:
       # without options, the branch of the PR is used for the required-projects
       - name: opendev.org/openstack/tripleo-heat-templates
+        override-checkout: master
       - name: github.com/ceph/ceph-ansible
     vars:
       featureset: '052'
