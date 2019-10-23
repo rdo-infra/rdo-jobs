@@ -11,9 +11,14 @@
         state: present
       become: true
 
+    - name: Setup to use bootstrap and disable warnings
+      shell: |
+          echo "config_opts['use_bootstrap_container'] = True" >> /etc/mock/site-defaults.cfg
+          echo "config_opts['dnf_warning'] = False" >> /etc/mock/site-defaults.cfg
+      become: true
+
     - name: Add zuul user to mock group
       become: true
       shell:
         cmd: |
           usermod -a -G mock zuul
-      changed_when: true
