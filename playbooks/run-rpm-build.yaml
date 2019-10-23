@@ -23,6 +23,7 @@
         name: "zuul-built"
         baseurl: "{{ buildset_artifacts_url }}"
         gpgcheck: "0"
+        description: 'Ceph-ansible rpm built repository'
       become: yes
 
     - name: Run quickstart
