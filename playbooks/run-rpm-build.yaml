@@ -18,15 +18,17 @@
         path: "{{ workspace }}"
         state: directory
 
-    - name: Add CI packages repository
-      yum_repository:
-        name: "zuul-built"
-        baseurl: "{{ buildset_artifacts_url }}"
-        gpgcheck: "0"
-      become: yes
-
     - name: Run quickstart
       include_role:
          name: run-test
       vars:
         release: "{{ release }}"
+        run_test_role_vars:
+          add_repos:
+            - type: generic
+              filename: ceph-ansible-override.repo
+              reponame: ceph-ansible-override
+              baseurl: "{{ buildset_artifacts_url }}"
+              priority: 1
+              includepkgs:
+                - ceph-ansible
