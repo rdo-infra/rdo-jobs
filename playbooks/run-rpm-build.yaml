@@ -18,12 +18,20 @@
         path: "{{ workspace }}"
         state: directory
 
-    - name: Add CI packages repository
-      yum_repository:
-        name: "zuul-built"
-        baseurl: "{{ buildset_artifacts_url }}"
-        gpgcheck: "0"
+    - name: Add built repo
       become: yes
+      copy:
+        dest: "/etc/yum.repos.d/zuul-build.repo"
+        content: |
+          {% for artifact in zuul.artifacts|default([]) %}{% if artifact.name == 'repo' %}
+          [{{ artifact.project | regex_replace('/', '_') }}-{{ artifact.change }}-{{ artifact.patchset }}]
+          name={{ artifact.project }}-{{ artifact.change }}-{{ artifact.patchset }}
+          enabled=1
+          baseurl={{ artifact.url }}
+          gpgcheck=0
+          priority=10
+
+          {% endif %}{% endfor %}
 
     - name: Run quickstart
       include_role:
