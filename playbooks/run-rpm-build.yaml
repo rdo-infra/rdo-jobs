@@ -18,12 +18,26 @@
         path: "{{ workspace }}"
         state: directory
 
-    - name: Add CI packages repository
-      yum_repository:
-        name: "zuul-built"
-        baseurl: "{{ buildset_artifacts_url }}"
-        gpgcheck: "0"
-      become: yes
+    - name: set_fact for zuul-built repo
+      set_fact:
+        add_repo_list:
+          - type: generic
+            filename: "zuul-build-{{ item.project }}-{{ item.change }}-{{ item.patchset }}.repo"
+            reponame: "{{ item.project }}-{{ item.change }}-{{ item.patchset }}"
+            baseurl: "{{ item.url }}"
+            enabled: 1
+            gpgcheck: 0
+            priority: 10
+            includepkgs:
+              - ceph-ansible
+      with_items: zuul.artifacts
+      register: list_result
+      when: zuul.artifacts is defined
+
+    - name: set_fact for add_repo
+      set_fact:
+        add_repo: "{{ list_result.results | map(attribute='ansible_facts.add_repo_list') | list }}"
+        cacheable: true
 
     - name: Run quickstart
       include_role:
