@@ -8,3 +8,11 @@
         mode: pull
         verify_host: true
 
+    - name: Return repo url
+      zuul_return:
+        data:
+          zuul:
+            artifacts:
+              - name: repo
+                url: buildset
+
