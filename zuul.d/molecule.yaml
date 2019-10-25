@@ -1,0 +1,17 @@
+---
+- job:
+    name: rdo-tox-all-centos-7
+    tox_environment:
+        # this should run "tox" with default set of environments from tox.ini
+        TOXENV: ""
+    parent: tox-linters
+    # branches makes this job run only for master PR
+    branches: master
+    required-projects:
+      # without options, the branch of the PR is used for the required-projects
+      - name: github.com/pycontribs/selinux
+      - name: github.com/pycontribs/pytest-molecule
+    nodeset:
+      nodes:
+        - name: test
+          label: rdo-centos-7
