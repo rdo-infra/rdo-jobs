@@ -52,3 +52,33 @@
         # using override-checkout, we can map ceph-ansible branch to rdo branch
         override-checkout: stable/queens
       - name: github.com/ceph/ceph-ansible
+
+# RHEL 8 Jobs
+- job:
+    name: tripleo-ceph-integration-rhel-8-standalone-featureset016
+    parent: tripleo-ci-rhel-8-standalone-rdo
+    run: playbooks/run-rpm-build.yaml
+    branches: master
+    required-projects:
+      # without options, the branch of the PR is used for the required-projects
+      - name: opendev.org/openstack/tripleo-heat-templates
+      - name: github.com/ceph/ceph-ansible
+    vars:
+      featureset: '052'
+      release: master
+      standalone_ceph: true
+      featureset_override:
+        standalone_container_cli: docker
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario001-standalone.yaml'
+        tempest_plugins:
+          - python-telemetry-tests-tempest
+          - python-heat-tests-tempest
+        test_white_regex: ''
+        tempest_workers: 1
+        tempest_extra_config: {'telemetry.alarm_granularity': '60'}
+        tempest_whitelist:
+          - 'tempest.api.identity.v3'
+          - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern.test_volume_boot_pattern'
+          - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
