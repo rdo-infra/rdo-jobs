@@ -1,6 +1,17 @@
 ---
 - hosts: all
   tasks:
+    - name: Ensure mock environment
+      include_role:
+        name: ensure-mock
+
+    - name: Setup to use bootstrap and disable warnings
+      shell: |
+          echo "config_opts['use_bootstrap_container'] = True" >> /etc/mock/site-defaults.cfg
+          echo "config_opts['dnf_warning'] = False" >> /etc/mock/site-defaults.cfg
+      become: true
+      changed_when: true
+
     - name: Run make rpm
       shell:
         cmd: |
