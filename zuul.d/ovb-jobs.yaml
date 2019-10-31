@@ -560,6 +560,8 @@
       featureset: '035'
       branch_override: "stable/queens"
       release: queens
+      # https://bugs.launchpad.net/tripleo/+bug/1845166/
+      container_registry_docker_disable_iptables: true
 
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master
