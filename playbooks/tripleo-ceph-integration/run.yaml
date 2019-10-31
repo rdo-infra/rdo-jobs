@@ -1,6 +1,10 @@
 ---
 - hosts: all
   tasks:
+    - name: Ensure mock environment
+      include_role:
+        name: ensure-mock
+
     - name: Run make rpm
       shell:
         cmd: |
