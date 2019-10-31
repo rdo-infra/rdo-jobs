@@ -263,7 +263,7 @@
             delorean_repos: "http://172.17.0.1/delorean.repo,http://172.17.0.1/delorean-{{ rdoinfo_release }}-testing.repo"
         - name: Handle master release buildsys_tags
           set_fact:
-            buildsys_tag: "cloud7-openstack-train-{{ rdoinfo_phase }}"
+            buildsys_tag: "cloud7-openstack-ussuri-{{ rdoinfo_phase }}"
           when: rdoinfo_release == "master"
         - name: set url
           set_fact:
