@@ -4,7 +4,8 @@
     name: tripleo-ceph-integration
     # abstract means you can't use it directly, it can only be the parent of a job.
     abstract: true
-    pre-run: playbooks/tripleo-ceph-integration/pre.yaml
+    roles:
+      - zuul: pagure.io/zuul-distro-jobs
     run: playbooks/tripleo-ceph-integration/run.yaml
     post-run: playbooks/tripleo-ceph-integration/post.yaml
     # files makes the job run only if one of the elem is modified by the PR
