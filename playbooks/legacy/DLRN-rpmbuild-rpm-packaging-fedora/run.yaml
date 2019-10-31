@@ -198,7 +198,7 @@
             exit 0
           fi
 
-          timeout --signal=SIGKILL 5400 dlrn --config-file projects.ini --head-only $PACKAGES_TO_BUILD --dev --local --verbose-build --sequential
+          timeout --signal=SIGKILL 10800 dlrn --config-file projects.ini --head-only $PACKAGES_TO_BUILD --dev --local --verbose-build --sequential
           ret=$?
 
           mkdir -p logs
