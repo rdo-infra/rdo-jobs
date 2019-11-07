@@ -34,6 +34,17 @@
         warn: false
       when: hostvars_variables_path.stat.exists
 
+    - name: Check role-vars.yaml
+      stat:
+        path: "{{ ansible_user_dir  }}/workspace/logs/role-vars.yaml"
+      register: role_variables_path
+
+    - name: Copy role-vars.yaml if exists to reuse  # noqa 305
+      shell: cp "{{ ansible_user_dir  }}/workspace/logs/role-vars.yaml" "{{ ansible_user_dir  }}/role-vars.yaml"
+      args:
+        warn: false
+      when: role_variables_path.stat.exists
+
     - name: Build containers post tasks
       when:
         - rdoinfo_build_containers|default(false)
@@ -62,4 +73,11 @@
       args:
         warn: false
       when: hostvars_variables_path.stat.exists
+      changed_when: true
+
+    - name: Copy role-vars.yaml back to logs directory if exists  # noqa 305
+      shell: cp "{{ ansible_user_dir  }}/role-vars.yaml" "{{ ansible_user_dir  }}/workspace/logs/role-vars.yaml"
+      args:
+        warn: false
+      when: role_variables_path.stat.exists
       changed_when: true
