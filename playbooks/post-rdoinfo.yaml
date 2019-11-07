@@ -6,10 +6,11 @@
         path: "{{ ansible_user_dir  }}/workspace/logs/collect_logs.sh"
       register: collect_logs_path
 
-    - name: Copy collect_logs.sh if exists to reuse  # noqa 305
-      shell: cp "{{ ansible_user_dir  }}/workspace/logs/collect_logs.sh" "{{ ansible_user_dir  }}/collect_logs.sh"
-      args:
-        warn: false
+    - name: Copy collect_logs.sh if exists to reuse
+      copy:
+        src: "{{ ansible_user_dir  }}/workspace/logs/collect_logs.sh"
+        dest: "{{ ansible_user_dir  }}/collect_logs.sh"
+        remote_src: true
       when: collect_logs_path.stat.exists
 
     - name: Check zuul-variables.yaml
@@ -17,10 +18,11 @@
         path: "{{ ansible_user_dir  }}/workspace/logs/zuul-variables.yaml"
       register: zuul_variables_path
 
-    - name: Copy zuul-variables.yaml if exists to reuse  # noqa 305
-      shell: cp "{{ ansible_user_dir  }}/workspace/logs/zuul-variables.yaml" "{{ ansible_user_dir  }}/zuul-variables.yaml"
-      args:
-        warn: false
+    - name: Copy zuul-variables.yaml if exists to reuse
+      copy:
+        src: "{{ ansible_user_dir  }}/workspace/logs/zuul-variables.yaml"
+        dest: "{{ ansible_user_dir  }}/zuul-variables.yaml"
+        remote_src: true
       when: zuul_variables_path.stat.exists
 
     - name: Check hostvars-variables.yaml
@@ -28,11 +30,24 @@
         path: "{{ ansible_user_dir  }}/workspace/logs/hostvars-variables.yaml"
       register: hostvars_variables_path
 
-    - name: Copy hostvars-variables.yaml if exists to reuse  # noqa 305
-      shell: cp "{{ ansible_user_dir  }}/workspace/logs/hostvars-variables.yaml" "{{ ansible_user_dir  }}/hostvars-variables.yaml"
-      args:
-        warn: false
+    - name: Copy hostvars-variables.yaml if exists to reuse
+      copy:
+        src: "{{ ansible_user_dir  }}/workspace/logs/hostvars-variables.yaml"
+        dest: "{{ ansible_user_dir  }}/hostvars-variables.yaml"
+        remote_src: true
       when: hostvars_variables_path.stat.exists
+
+    - name: Check role-vars.yaml
+      stat:
+        path: "{{ ansible_user_dir  }}/workspace/logs/role-vars.yaml"
+      register: role_variables_path
+
+    - name: Copy role-vars.yaml if exists to reuse
+      copy:
+        src: "{{ ansible_user_dir  }}/workspace/logs/role-vars.yaml"
+        dest: "{{ ansible_user_dir  }}/role-vars.yaml"
+        remote_src: yes
+      when: role_variables_path.stat.exists
 
     - name: Build containers post tasks
       when:
@@ -43,23 +58,34 @@
             name: build-containers
             tasks_from: post
 
-    - name: Copy collect_logs.sh back to logs directory if exists  # noqa 305
-      shell: cp "{{ ansible_user_dir  }}/collect_logs.sh" "{{ ansible_user_dir  }}/workspace/logs/collect_logs.sh"
-      args:
-        warn: false
+    - name: Copy collect_logs.sh back to logs directory if exists
+      copy:
+        src: "{{ ansible_user_dir  }}/collect_logs.sh"
+        dest: "{{ ansible_user_dir  }}/workspace/logs/collect_logs.sh"
+        remote_src: true
       when: collect_logs_path.stat.exists
       changed_when: true
 
-    - name: Copy zuul-variables.yaml back to logs directory if exists  # noqa 305
-      shell: cp "{{ ansible_user_dir  }}/zuul-variables.yaml" "{{ ansible_user_dir  }}/workspace/logs/zuul-variables.yaml"
-      args:
-        warn: false
+    - name: Copy zuul-variables.yaml back to logs directory if exists
+      copy:
+        src: "{{ ansible_user_dir  }}/zuul-variables.yaml"
+        dest: "{{ ansible_user_dir  }}/workspace/logs/zuul-variables.yaml"
+        remote_src: true
       when: zuul_variables_path.stat.exists
       changed_when: true
 
-    - name: Copy hostvars-variables.yaml back to logs directory if exists  # noqa 305
-      shell: cp "{{ ansible_user_dir  }}/hostvars-variables.yaml" "{{ ansible_user_dir  }}/workspace/logs/hostvars-variables.yaml"
-      args:
-        warn: false
+    - name: Copy hostvars-variables.yaml back to logs directory if exists
+      copy:
+        src: "{{ ansible_user_dir  }}/hostvars-variables.yaml"
+        dest: "{{ ansible_user_dir  }}/workspace/logs/hostvars-variables.yaml"
+        remote_src: true
       when: hostvars_variables_path.stat.exists
+      changed_when: true
+
+    - name: Copy role-vars.yaml back to logs directory if exists
+      copy:
+        src: "{{ ansible_user_dir  }}/role-vars.yaml"
+        dest: "{{ ansible_user_dir  }}/workspace/logs/role-vars.yaml"
+        remote_src: true
+      when: role_variables_path.stat.exists
       changed_when: true
