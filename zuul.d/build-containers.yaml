@@ -36,3 +36,10 @@
     vars:
       branch_override: 'stable/train'
       release: train
+
+- job:
+    name: tripleo-build-containers-rhel-8-train-branch
+    parent: tripleo-build-containers-rhel-8-master
+    override-checkout: stable/train
+    vars:
+      branch_override: stable/train
