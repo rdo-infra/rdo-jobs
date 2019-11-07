@@ -297,6 +297,13 @@
     post-run: playbooks/octavia-build-amphora/post.yaml
 
 - job:
+    name: rdo-tox-linters
+    parent: tox-linters
+    # pre-commit needs newer git version to avoid:
+    # https://github.com/pre-commit/pre-commit/issues/1211
+    nodeset: single-centos-8-node
+
+- job:
     name: rdo-tox-molecule
     parent: tripleo-tox-molecule
     nodeset: rdo-fedora-28
