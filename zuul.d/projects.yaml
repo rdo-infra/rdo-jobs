@@ -3,15 +3,15 @@
     check:
       jobs:
         - tox-docs: &cfg
-            # 1 using fedora to get python3, can remove once we have centos-8
-            # 2 disabled container-fedora as it lacks 'sudo', breaking bindep
-            nodeset: rdo-fedora-28
+            # needed for python3:
+            nodeset: single-centos-8-node
             vars:
               # needed to avoid accidental call of /usr/bin/tox
               tox_executable: "{{ ansible_python.executable }} -m tox"
             pre-run:
               - playbooks/pre-tox.yaml
         - tox-linters: *cfg
+        - rdo-tox-linters: *cfg
         - rdo-tox-molecule: &molecule
             files:
               - ^requirements.txt$
@@ -36,4 +36,5 @@
       jobs:
         - tox-docs: *cfg
         - tox-linters: *cfg
+        - rdo-tox-linters: *cfg
         - rdo-tox-molecule: *molecule
