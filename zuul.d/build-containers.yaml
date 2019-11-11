@@ -44,3 +44,13 @@
     override-checkout: stable/train
     vars:
       branch_override: stable/train
+
+- job:
+    name: tripleo-centos-7-master-nova-containers-build
+    parent: periodic-tripleo-containers-build-push-base
+    nodeset: single-centos-7-node
+    vars:
+       release: master
+       push_containers: false
+       component_ci_service: nova
+
