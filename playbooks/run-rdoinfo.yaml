@@ -299,4 +299,3 @@
       vars:
         release: "{{ rdoinfo_release }}"
       when: not stop_file.stat.exists
-
