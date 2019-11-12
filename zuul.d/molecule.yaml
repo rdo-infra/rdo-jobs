@@ -1,0 +1,15 @@
+- nodeset:
+    name: centos-7
+    nodes:
+      - name: upstream-centos-7
+        label: upstream-centos-7
+
+- job:
+    name: tripleo-ansible-rhel-8-molecule-tripleo-modules
+    parent: tripleo-ansible-centos-7-molecule-tripleo-modules
+    nodeset: single-rhel-8-node
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+      localhost:
+        ansible_python_interpreter: /usr/bin/python3
