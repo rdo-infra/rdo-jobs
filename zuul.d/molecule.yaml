@@ -1,0 +1,4 @@
+- job:
+    name: tripleo-ansible-rhel-8-molecule-tripleo-modules
+    parent: tripleo-ansible-centos-7-molecule-tripleo-modules
+    nodeset: single-rhel-8-node
