@@ -7,6 +7,9 @@
       - legacy-DLRN-rpmbuild
     voting: false
     branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+    required-projects:
+      - DLRN
+      - rdoinfo
 
 - job:
     name: legacy-DLRN-rpmbuild
