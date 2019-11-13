@@ -3,79 +3,28 @@
   name: Autoconverted job legacy-DLRN-rpmbuild-fedora from old job DLRN-rpmbuild-fedora
   tasks:
 
-    - name: Ensure legacy workspace directory
-      file:
-        path: '{{ ansible_user_dir }}/workspace'
-        state: directory
+    - name: Ensure bindep.txt dependencies are installed
+      include_role:
+        name: bindep
+      vars:
+        bindep_dir: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
 
-    - name: cloning
+    - name: Run tools/test-setup.sh if exists
+      include_role:
+        name: test-setup
+      vars:
+        zuul_work_dir: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
+
+    - name: Add zuul user to mock group
+      become: true
       shell:
         cmd: |
-          echo "[DEBUG]: JJB template name: {template-name}"
-
-          # If this is called in a periodic job, these will not be set
-          echo "Use default for ZUUL_BRANCH and ZUUL_REF if needed"
-          export ZUUL_BRANCH=${ZUUL_BRANCH:-master}
-          export ZUUL_REF=${ZUUL_REF:-None}
-
-          # In the post pipeline ZUUL_REF is master but does not behave as we want
-          # So fall back on None
-          [ "$ZUUL_REF" = "master" ] && ZUUL_REF=None
-          echo "Clean workspace"
-          rm -Rf ./*
-
-          echo "Clone $ZUUL_PROJECT"
-          # zuul-cloner is installed as /usr/zuul-env/bin/zuul-cloner
-          # in upstream images
-          export PATH=$PATH:/usr/zuul-env/bin
-
-          # Note (dmsimard): If we are running for a periodic job, there is no
-          # incentive in using Zuul cloner because the jobs are not going to
-          # potentially depend on things from the zuul context (ex: depends-on)
-          # The zuul git namespace (where the job was triggered from) is also
-          # wonky for periodic jobs. A periodic pipeline targetted at an
-          # upstream project would still end up trying to clone from review.rdo.
-          # This should be revisited in Zuul v3 which is supposedly not a
-          # problem
-
-          # We can receive reviews from review.openstack.org.
-          # Builds that are run as third party for review.o.o are in the Zuul
-          # pipelines prefixed by "openstack-".
-          GIT_SOURCE="https://review.rdoproject.org/r"
-          if [[ "${ZUUL_PIPELINE}" =~ "openstack-" ]]; then
-              GIT_SOURCE="https://opendev.org"
-          fi
-
-          git config --global http.postBuffer 524288000
-          git config --global https.postBuffer 524288000
-
-          if [[ "${ZUUL_PIPELINE}" =~ "periodic" ]]; then
-          # Note (trown): we need to make sure we clone this to the same
-          # location as zuul-cloner will so that manual and periodic jobs
-          # can share builders
-              git clone --depth=1 $GIT_SOURCE/$ZUUL_PROJECT $ZUUL_PROJECT
-          else
-              /usr/zuul-env/bin/zuul-cloner -v $GIT_SOURCE $ZUUL_PROJECT
-          fi
-        chdir: '{{ ansible_user_dir }}/workspace'
-      environment: '{{ zuul | zuul_legacy_vars }}'
-
-    - name: clone DLRN
-      shell:
-        cmd: |
-          set +e
-          sudo yum -y install createrepo mock redhat-rpm-config rpmdevtools
-          sudo usermod -a -G mock zuul
-
-          # Clone DLRN
-          git clone https://github.com/softwarefactory-project/DLRN --depth 1
-        chdir: '{{ ansible_user_dir }}/workspace'
-      environment: '{{ zuul | zuul_legacy_vars }}'
+          usermod -a -G mock zuul
 
     - name: write fedora.cfg
       shell:
         cmd: |
-          cat << EOF > DLRN/scripts/fedora.cfg
+          cat << EOF > scripts/fedora.cfg
           config_opts['root'] = 'dlrn-fedora-x86_64'
           config_opts['target_arch'] = 'x86_64'
           config_opts['legal_host_arches'] = ('x86_64',)
@@ -114,39 +63,21 @@
           # repos
           """
           EOF
-        chdir: '{{ ansible_user_dir }}/workspace'
+        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
       environment: '{{ zuul | zuul_legacy_vars }}'
 
     - name: run_tests.sh
       shell:
         cmd: |
-          set +e
-          # This job supports building reviews for both review.rdoproject.org
-          # and review.openstack.org. Builds that are run as third party for
-          # review.o.o are in the Zuul pipelines prefixed by "openstack-".
-
-          # NOTE(pabelanger): We need to export zuul-env path for DLRN test
-          # scripts, this job is now zuulv3 so DLRN should stop using
-          # zuul-cloner.
-          export PATH=$PATH:/usr/zuul-env/bin
           export TAG="{{  tag | default('') }}"
-          pushd DLRN
-          if [[ "$ZUUL_PIPELINE" =~ "openstack-" ]]; then
-              timeout --signal=SIGKILL 3600 ./scripts/run_project_tests.sh http://review.rdoproject.org/r/p/rdoinfo.git
-              ret=$?
+          if [ -z "$TAG" ];then
+              ARGS="fedora https://trunk.rdoproject.org/fedora/"
           else
-              if [ -z "$TAG" ];then
-                  timeout --signal=SIGKILL 3600 ./scripts/run_tests.sh http://review.rdoproject.org/r/p/rdoinfo.git "fedora" "https://trunk.rdoproject.org/fedora/"
-                  ret=$?
-              else
-                  timeout --signal=SIGKILL 3600 ./scripts/run_tests.sh http://review.rdoproject.org/r/p/rdoinfo.git "fedora" "https://trunk.rdoproject.org/fedora/" "$TAG"
-                  ret=$?
-              fi
+              ARGS="fedora https://trunk.rdoproject.org/fedora/ $TAG"
           fi
-          popd
-          # Retrieve logs/repositories/packages
-          mkdir buildset
-          cp -a DLRN/logs/* buildset/
-          exit $ret
-        chdir: '{{ ansible_user_dir }}/workspace'
+          if [[ "{{ zuul.pipeline }}" =~ "openstack-" ]]; then
+              ARGS=""
+          fi
+          ./scripts/run_tests.sh {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdoinfo'].src_dir }} $ARGS
+        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
       environment: "{{ zuul | zuul_legacy_vars | combine({'LANG': 'en_US.UTF-8'}) }}"
