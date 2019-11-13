@@ -155,7 +155,10 @@
           if [ $RC_BUILD -ne 0 ]; then
             ret=$RC_BUILD
           else
-            /usr/bin/mock ${MOCKOPTS} --install $OUTPUT_DIRECTORY/*rpm 2>&1
+            sed -i "s/.*chroot_setup_cmd.*/config_opts['chroot_setup_cmd'] = 'install basesystem rpm-build'/" centos.cfg
+            /usr/bin/mock ${MOCKOPTS} --disablerepo='*-build-deps' clean 2>&1
+            /usr/bin/mock ${MOCKOPTS} --disablerepo='*-build-deps' init 2>&1
+            /usr/bin/mock ${MOCKOPTS} --disablerepo='*-build-deps' --install $OUTPUT_DIRECTORY/*rpm 2>&1
              RC_INSTALL=$?
              if [ $RC_INSTALL -ne 0 ]; then
                  ret=$RC_INSTALL
