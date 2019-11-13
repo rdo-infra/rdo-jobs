@@ -2,28 +2,9 @@
 - hosts: all
   tasks:
 
-    - name: Copy files from {{ ansible_user_dir }}/workspace/ on node
+    - name: Copy DLRN logs
       synchronize:
-        src: '{{ ansible_user_dir }}/workspace/'
-        dest: '{{ zuul.executor.log_root }}'
+        src: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}/logs/"
+        dest: "{{ zuul.executor.log_root }}/buildset"
         mode: pull
-        copy_links: true
         verify_host: true
-        rsync_opts:
-          - --include=/logs/**
-          - --include=*/
-          - --exclude=*
-          - --prune-empty-dirs
-
-    - name: Copy files from {{ ansible_user_dir }}/workspace/ on node
-      synchronize:
-        src: '{{ ansible_user_dir }}/workspace/'
-        dest: '{{ zuul.executor.log_root }}'
-        mode: pull
-        copy_links: true
-        verify_host: true
-        rsync_opts:
-          - --include=/buildset/**
-          - --include=*/
-          - --exclude=*
-          - --prune-empty-dirs
