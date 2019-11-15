@@ -1,14 +1,4 @@
 - job:
-    name: legacy-DLRN-build-tripleo
-    parent: legacy-base
-    run: playbooks/legacy/DLRN-build-tripleo/run.yaml
-    post-run: playbooks/legacy/DLRN-build-tripleo/post.yaml
-    dependencies:
-      - legacy-DLRN-rpmbuild
-    voting: false
-    branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-
-- job:
     name: legacy-DLRN-rpmbuild
     parent: legacy-base
     run: playbooks/legacy/DLRN-rpmbuild/run.yaml
