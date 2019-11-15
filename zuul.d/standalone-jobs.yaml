@@ -46,6 +46,20 @@
         use_os_tempest: true
 
 - job:
+    name: periodic-tripleo-ci-rhel-8-scenario000-standalone-master
+    parent: tripleo-ci-rhel-8-standalone-rdo
+    vars:
+      common_featureset: null  # avoid multinode from parent
+      featureset: '052'
+      featureset_override:
+        run_tempest: false
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario000-standalone.yaml'
+        use_os_tempest: false
+      standalone_ceph: false
+
+- job:
     name: periodic-tripleo-ci-centos-7-scenario001-standalone-master
     parent: tripleo-ci-base-standalone-periodic
     vars: &scen1_standalone_vars
