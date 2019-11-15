@@ -18,7 +18,7 @@
         path: "{{ workspace }}"
         state: directory
 
-    - name: Create release file
+    - name: Detect gating repo url
       shell:
         cmd: |
           # This builder, when run from a child job of validate-buildsys-tags
@@ -58,115 +58,11 @@
 
           # If we could not find a working repository, give up
           curl -o /dev/null -sIf "${repository}" || exit 1
+          echo ${repository}
 
-          function create_config(){
-              echo "artg_skipped_projects:"
-              echo "  - rdoinfo"
-              echo "release: {{ release }}"
-              echo "dlrn_hash_tag: current-tripleo"
-              echo "overcloud_image_url: http://images.rdoproject.org/{{ release }}/rdo_trunk/current-tripleo/overcloud-full.tar"
-              echo "ipa_image_url: http://images.rdoproject.org/{{ release }}/rdo_trunk/current-tripleo/ironic-python-agent.tar"
-              echo "images:"
-              echo "  - name: overcloud-full"
-              echo "    url: http://images.rdoproject.org/{{ release }}/rdo_trunk/current-tripleo/overcloud-full.tar"
-              echo "    type: tar"
-              echo "  - name: ipa_images"
-              echo "    url: http://images.rdoproject.org/{{ release }}/rdo_trunk/current-tripleo/ironic-python-agent.tar"
-              echo "    type: tar"
-              echo "repo_cmd_before: |"
-              echo "  sudo yum remove -y rdo-release centos-release-openstack-* centos-release-ceph-* || true;"
-              echo "  sudo rpm -e epel-release || true;"
-              echo "  sudo rm -rf /etc/yum.repos.d/delorean*;"
-              echo "  sudo rm -rf /etc/yum.repos.d/*.rpmsave;"
-              echo "  sudo yum clean all"
-              echo "repos:"
-              INDEX=0
-              for repo in $REPOS_URL
-              do
-                  echo "  - type: file"
-                  echo "    filename: delorean-$INDEX.repo"
-                  echo "    down_url: $repo"
-                  ((INDEX++))
-              done
-              if [[ ("{{ release }}" == "master" ) || ("{{ release }}" == "stein" ) || ("{{ release }}" == "train" ) ]]; then
-                  echo "  - type: generic"
-                  echo "    reponame: quickstart-centos-ceph-nautilus"
-                  echo "    filename: quickstart-centos-ceph-nautilus.repo"
-                  echo "    baseurl: http://mirror.regionone.rdo-cloud.rdoproject.org/centos/7/storage/x86_64/ceph-nautilus"
-              else
-                  echo "  - type: generic"
-                  echo "    reponame: centos-ceph-luminous"
-                  echo "    filename: centos-ceph-luminous.repo"
-                  echo "    baseurl: http://mirror.regionone.rdo-cloud.rdoproject.org/centos/7/storage/x86_64/ceph-luminous/"
-              fi
-              echo "  - type: generic"
-              echo "    reponame: centos-opstools"
-              echo "    filename: centos-opstools.repo"
-              echo "    baseurl: http://mirror.centos.org/centos/7/opstools/x86_64/"
-              echo "  - type: generic"
-              echo "    reponame: quickstart-centos-base"
-              echo "    filename: quickstart-centos-base.repo"
-              echo "    baseurl: http://mirror.regionone.rdo-cloud.rdoproject.org/centos/7/os/x86_64/"
-              echo "  - type: generic"
-              echo "    reponame: temp-distgit"
-              echo "    filename: temp-distgit.repo"
-              echo "    baseurl: $repository"
-              echo "    priority: 1"
-              if [ ! -z $delorean_current_url ]; then
-                  echo "  - type: generic"
-                  echo "    reponame: delorean-current"
-                  echo "    filename: delorean-current.repo"
-                  echo "    baseurl: ${delorean_current_url}"
-                  echo "    priority: 1"
-                  echo "    includepkgs:"
-                  echo "      - ansible-role-container-registry"
-                  echo "      - ansible-role-tripleo*"
-                  echo "      - ansible-tripleo-ipsec"
-                  echo "      - instack"
-                  echo "      - instack-undercloud"
-                  echo "      - openstack-tripleo-*"
-                  echo "      - os-apply-config"
-                  echo "      - os-collect-config"
-                  echo "      - os-net-config"
-                  echo "      - os-refresh-config"
-                  echo "      - puppet-*"
-                  echo "      - python*-tripleo*"
-                  echo "      - python*-paunch*"
-                  echo "      - tripleo-ansible"
-                  echo "      - ansible-config_template"
-                  echo "      - paunch-services"
-              fi
-              echo "repo_cmd_after: |"
-              echo "  sudo yum install -y yum-plugin-priorities;"
-              echo "  sudo yum-config-manager --save --setopt centos-ceph-jewel.gpgcheck=0"
-              echo '  {% if not enable_opstools_repo|default(false)|bool %}sudo yum-config-manager --save --setopt centos-opstools.enable=0;'
-              echo '  {%endif %}'
-              echo "  sudo yum clean all;"
-              echo "  sudo yum repolist;"
-              echo "  sudo yum update -y"
-              echo "undercloud_rpm_dependencies: >-"
-              echo "  python-tripleoclient"
-              echo "  ceph-ansible"
-              echo "update_containers: true"
-              echo "standalone_container_ceph_updates: true"
-              echo "gating_repo_name: temp-*,gating-repo"
-          }
-
-
-              REPOS_URL="http://trunk.rdoproject.org/centos7-{{ release }}/current-tripleo/delorean.repo \
-              http://trunk.rdoproject.org/centos7-{{ release }}/delorean-deps.repo"
-              delorean_current_url=`curl --silent https://trunk.rdoproject.org/centos7-{{ release }}/current/delorean.repo -S  | grep baseurl | cut -d= -f2`
-              create_config | tee -a tripleo.yml
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
-      changed_when: true
-
-    - name: inject release file into quickstart
-      shell:
-        cmd: |
-            TQ_SRC={{ ansible_user_dir  }}/{{ zuul['projects']['opendev.org/openstack/tripleo-quickstart']['src_dir']  }}
-            sudo mv tripleo.yml ${TQ_SRC}/config/release/tripleo-ci/CentOS-7/{{ release }}.yml
-        chdir: '{{ ansible_user_dir }}/workspace'
+      register: repourl
       changed_when: true
 
     - name: Run quickstart
@@ -174,3 +70,15 @@
          name: run-test
       vars:
         release: "{{ release }}"
+        run_test_role_vars:
+          standalone_container_ceph_updates: true
+          update_containers: true
+          artg_skipped_projects:
+            - rdoinfo
+          gating_repo_name: temp-*,gating-repo
+          add_repos:
+            - type: generic
+              reponame: temp-distgit
+              filename: temp-distgit.repo
+              baseurl: "{{ repourl.stdout_lines[-1] }}"
+              priority: 1
