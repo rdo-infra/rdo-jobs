@@ -47,11 +47,7 @@
             dependencies:
               - legacy-DLRN-rpmbuild
             branches: ^rpm-master$
-        - legacy-DLRN-build-tripleo:
-            dependencies:
-              - legacy-DLRN-rpmbuild
-            voting: false
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-packstack-scenario003:
             dependencies:
               - legacy-DLRN-rpmbuild
@@ -95,11 +91,7 @@
             dependencies:
               - legacy-DLRN-rpmbuild
             branches: ^rpm-master$
-        - legacy-DLRN-build-tripleo:
-            dependencies:
-              - legacy-DLRN-rpmbuild
-            voting: false
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-puppet-scenario002:
             dependencies:
               - legacy-DLRN-rpmbuild
@@ -135,11 +127,7 @@
             dependencies:
               - legacy-DLRN-rpmbuild
             branches: ^rpm-master$
-        - legacy-DLRN-build-tripleo:
-            dependencies:
-              - legacy-DLRN-rpmbuild
-            voting: false
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-packstack-scenario003:
             dependencies:
               - legacy-DLRN-rpmbuild
@@ -183,11 +171,7 @@
             dependencies:
               - legacy-DLRN-rpmbuild
             branches: ^rpm-master$
-        - legacy-DLRN-build-tripleo:
-            dependencies:
-              - legacy-DLRN-rpmbuild
-            voting: false
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-packstack-scenario001:
             dependencies:
               - legacy-DLRN-rpmbuild
@@ -239,11 +223,7 @@
             dependencies:
               - legacy-DLRN-rpmbuild
             branches: ^rpm-master$
-        - legacy-DLRN-build-tripleo:
-            dependencies:
-              - legacy-DLRN-rpmbuild
-            voting: false
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-packstack-scenario001:
             dependencies:
               - legacy-DLRN-rpmbuild
@@ -303,11 +283,7 @@
             dependencies:
               - legacy-DLRN-rpmbuild-pinned
             branches: ^rpm-master$
-        - legacy-DLRN-build-tripleo:
-            dependencies:
-              - legacy-DLRN-rpmbuild-pinned
-            voting: false
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-packstack-scenario003:
             dependencies:
               - legacy-DLRN-rpmbuild-pinned
@@ -353,11 +329,7 @@
             dependencies:
               - legacy-DLRN-rpmbuild
             branches: ^rpm-master$
-        - legacy-DLRN-build-tripleo:
-            dependencies:
-              - legacy-DLRN-rpmbuild
-            voting: false
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-packstack-scenario003:
             dependencies:
               - legacy-DLRN-rpmbuild
@@ -401,11 +373,7 @@
             dependencies:
               - legacy-DLRN-rpmbuild
             branches: ^rpm-master$
-        - legacy-DLRN-build-tripleo:
-            dependencies:
-              - legacy-DLRN-rpmbuild
-            voting: false
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-puppet-scenario003:
             dependencies:
               - legacy-DLRN-rpmbuild
@@ -441,11 +409,7 @@
             dependencies:
               - legacy-DLRN-rpmbuild
             branches: ^rpm-master$
-        - legacy-DLRN-build-tripleo:
-            dependencies:
-              - legacy-DLRN-rpmbuild
-            voting: false
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-packstack-scenario001:
             dependencies:
               - legacy-DLRN-rpmbuild
@@ -489,11 +453,7 @@
             dependencies:
               - legacy-DLRN-rpmbuild
             branches: ^rpm-master$
-        - legacy-DLRN-build-tripleo:
-            dependencies:
-              - legacy-DLRN-rpmbuild
-            voting: false
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-puppet-scenario004:
             dependencies:
               - legacy-DLRN-rpmbuild
@@ -529,11 +489,7 @@
             dependencies:
               - legacy-DLRN-rpmbuild
             branches: ^rpm-master$
-        - legacy-DLRN-build-tripleo:
-            dependencies:
-              - legacy-DLRN-rpmbuild
-            voting: false
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-packstack-scenario001:
             dependencies:
               - legacy-DLRN-rpmbuild
@@ -585,11 +541,7 @@
             dependencies:
               - legacy-DLRN-rpmbuild
             branches: ^rpm-master$
-        - legacy-DLRN-build-tripleo:
-            dependencies:
-              - legacy-DLRN-rpmbuild
-            voting: false
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-packstack-scenario001:
             dependencies:
               - legacy-DLRN-rpmbuild
@@ -633,11 +585,7 @@
             dependencies:
               - legacy-DLRN-rpmbuild
             branches: ^rpm-master$
-        - legacy-DLRN-build-tripleo:
-            dependencies:
-              - legacy-DLRN-rpmbuild
-            voting: false
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-packstack-scenario002:
             dependencies:
               - legacy-DLRN-rpmbuild
@@ -689,11 +637,7 @@
             dependencies:
               - legacy-DLRN-rpmbuild
             branches: ^rpm-master$
-        - legacy-DLRN-build-tripleo:
-            dependencies:
-              - legacy-DLRN-rpmbuild
-            voting: false
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-puppet-scenario004:
             dependencies:
               - legacy-DLRN-rpmbuild
@@ -729,11 +673,7 @@
             dependencies:
               - legacy-DLRN-rpmbuild
             branches: ^rpm-master$
-        - legacy-DLRN-build-tripleo:
-            dependencies:
-              - legacy-DLRN-rpmbuild
-            voting: false
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-puppet-scenario002:
             dependencies:
               - legacy-DLRN-rpmbuild
