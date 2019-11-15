@@ -25,11 +25,7 @@
             dependencies:
               - legacy-DLRN-rpmbuild
             branches: ^rpm-master$
-        - legacy-DLRN-build-tripleo:
-            dependencies:
-              - legacy-DLRN-rpmbuild
-            voting: false
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-build-tripleo
         - legacy-DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - legacy-DLRN-rpmbuild-fedora:
