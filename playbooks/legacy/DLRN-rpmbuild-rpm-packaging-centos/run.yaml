@@ -2,79 +2,23 @@
 - hosts: all
   name: Autoconverted job legacy-DLRN-rpmbuild-rpm-packaging-centos from old job DLRN-rpmbuild-rpm-packaging-centos
   tasks:
+    - name: Install pre-requisites for mock
+      package:
+        name:
+          - createrepo
+          - mock
+          - redhat-rpm-config
+          - rpmdevtools
+          - spectool
+        state: present
+      become: true
 
-    - name: Ensure legacy workspace directory
-      file:
-        path: '{{ ansible_user_dir }}/workspace'
-        state: directory
-
-    - name: cloning
-      shell:
-        cmd: |
-          echo "[DEBUG]: JJB template name: {template-name}"
-
-          # If this is called in a periodic job, these will not be set
-          echo "Use default for ZUUL_BRANCH and ZUUL_REF if needed"
-          export ZUUL_BRANCH=${ZUUL_BRANCH:-master}
-          export ZUUL_REF=${ZUUL_REF:-None}
-
-          # In the post pipeline ZUUL_REF is master but does not behave as we want
-          # So fall back on None
-          [ "$ZUUL_REF" = "master" ] && ZUUL_REF=None
-          echo "Clean workspace"
-          rm -Rf ./*
-
-          echo "Clone $ZUUL_PROJECT"
-          # zuul-cloner is installed as /usr/zuul-env/bin/zuul-cloner
-          # in upstream images
-          export PATH=$PATH:/usr/zuul-env/bin
-
-          # Note (dmsimard): If we are running for a periodic job, there is no
-          # incentive in using Zuul cloner because the jobs are not going to
-          # potentially depend on things from the zuul context (ex: depends-on)
-          # The zuul git namespace (where the job was triggered from) is also
-          # wonky for periodic jobs. A periodic pipeline targetted at an
-          # upstream project would still end up trying to clone from review.rdo.
-          # This should be revisited in Zuul v3 which is supposedly not a
-          # problem
-
-          # We can receive reviews from review.openstack.org.
-          # Builds that are run as third party for review.o.o are in the Zuul
-          # pipelines prefixed by "openstack-".
-          GIT_SOURCE="https://review.rdoproject.org/r"
-          if [[ "${ZUUL_PIPELINE}" =~ "openstack-" ]]; then
-              GIT_SOURCE="https://opendev.org"
-          fi
-
-          git config --global http.postBuffer 524288000
-          git config --global https.postBuffer 524288000
-
-          if [[ "${ZUUL_PIPELINE}" =~ "periodic" ]]; then
-          # Note (trown): we need to make sure we clone this to the same
-          # location as zuul-cloner will so that manual and periodic jobs
-          # can share builders
-              git clone --depth=1 $GIT_SOURCE/$ZUUL_PROJECT $ZUUL_PROJECT
-          else
-              /usr/zuul-env/bin/zuul-cloner -v $GIT_SOURCE $ZUUL_PROJECT
-          fi
-        chdir: '{{ ansible_user_dir }}/workspace'
-      environment: '{{ zuul | zuul_legacy_vars }}'
-
-    - name: cloning dlrn
-      shell:
-        cmd: |
-          set +e
-          sudo yum -y install createrepo mock redhat-rpm-config rpmdevtools
-          sudo usermod -a -G mock zuul
-
-          # Clone DLRN
-          git clone https://github.com/softwarefactory-project/DLRN --depth 1
-          # Apply patch for keep_tarball when falling back to master
-          pushd DLRN
-          git fetch https://softwarefactory-project.io/r/DLRN refs/changes/80/15280/1 && git cherry-pick FETCH_HEAD
-          popd
-        chdir: '{{ ansible_user_dir }}/workspace'
-      environment: '{{ zuul | zuul_legacy_vars }}'
+    - name: Ensure user in mock group
+      user:
+        name: "{{ ansible_user }}"
+        groups: mock
+        append: yes
+      become: true
 
     - name: run DLRN
       shell:
@@ -84,15 +28,14 @@
           # requires an up to date openstack-macros package in the builder,
           # and not just in the mock buildroot.
           sudo yum -y install https://rpm-packaging-ci.rdoproject.org/repos/deps/openstack-macros-2019.1.1-0.20190225070246.ce6a105.el7.noarch.rpm
-          pushd DLRN
           # Setup virtualenv with tox and use it
           tox -epy27 --notest
           . .tox/py27/bin/activate
           # Use latest pymod2pkg from Git, to avoid waiting for new releases
           pip install --upgrade git+https://opendev.org/openstack/pymod2pkg
           # Prepare config
-          if [[ "$ZUUL_BRANCH" =~ stable/ ]]; then    # stable branch
-              repo_branch=$(sed "s#stable/##" <<< "$ZUUL_BRANCH")
+          if [[ "{{ zuul.branch }}" =~ stable/ ]]; then    # stable branch
+              repo_branch=$(sed "s#stable/##" <<< "{{ zuul.branch }}")
               # We only support Ocata and later as stable repos
               if [ "$repo_branch" = "newton" ]; then
                 exit 0
@@ -109,7 +52,7 @@
           directory="/openstack"
           skip="openstack-macros"
           pkginfo_driver="dlrn.drivers.gitrepo.GitRepoDriver"
-          branch="$ZUUL_BRANCH"
+          branch="{{ zuul.branch }}"
           target=centos
 
           # Update the configuration
@@ -127,9 +70,8 @@
           # Prepare directories
           mkdir -p data/repos
 
-          if [ -e /usr/zuul-env/bin/zuul-cloner ]; then
-            /usr/zuul-env/bin/zuul-cloner --workspace data/ https://opendev.org openstack/rpm-packaging --branch $branch
-            mv data/openstack/rpm-packaging data/package_info
+          if [ -d "{{ ansible_user_dir }}/{{ zuul.projects['opendev.org/openstack/rpm-packaging'].src_dir }}" ]; then
+            ln -s "{{ ansible_user_dir }}/{{ zuul.projects['opendev.org/openstack/rpm-packaging'].src_dir }}" data/package_info
           else
             # We are outside the gate, just do a regular git clone
             pushd data/
@@ -165,10 +107,7 @@
           rsync -avzr data/repos logs/centos
           # Clean up mock cache, just in case there is a change for the next run
           mock -r data/dlrn-1.cfg --scrub=all
-
-          popd
-          mkdir buildset
-          cp -a DLRN/logs/* buildset/
           exit $ret
-        chdir: '{{ ansible_user_dir }}/workspace'
-      environment: "{{ zuul | zuul_legacy_vars | combine({'LANG': 'en_US.UTF-8'}) }}"
+        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
+      environment:
+        LANG: 'en_US.UTF-8'

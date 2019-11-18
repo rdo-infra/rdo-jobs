@@ -64,7 +64,6 @@
           """
           EOF
         chdir: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
-      environment: '{{ zuul | zuul_legacy_vars }}'
 
     - name: run_tests.sh
       shell:
@@ -80,4 +79,9 @@
           fi
           ./scripts/run_tests.sh {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdoinfo'].src_dir }} $ARGS
         chdir: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
-      environment: "{{ zuul | zuul_legacy_vars | combine({'LANG': 'en_US.UTF-8'}) }}"
+      environment:
+        ZUUL_PROJECT: "{{ zuul.project.name }}"
+        ZUUL_BRANCH: "{{ zuul.branch }}"
+        ZUUL_PIPELINE: "{{ zuul.pipeline }}"
+        ZUUL_CHANGES: "{% set comma = joiner('^') %} {% for chg in zuul['items'] %}{{ comma() }}{{chg.project.name}}:{{chg.branch}}:{{chg.change_url}}{% endfor %}"
+        LANG: 'en_US.UTF-8'
