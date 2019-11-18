@@ -1,0 +1,26 @@
+- hosts: all
+  name: playbook for puppet-syntax job
+  tasks:
+    - shell:
+        cmd: |
+          if [ -f /usr/bin/yum ]; then
+            sudo yum -y remove facter puppet rdo-release
+            sudo yum -y install libxml2-devel libxslt-devel ruby-devel rsync
+            sudo yum -y groupinstall "Development Tools"
+          else
+            echo 'hum not yum?'
+            exit 1
+          fi
+
+    - shell:
+        cmd: |
+          sudo yum -y install centos-release-openstack-stein
+          sudo yum -y install puppet
+
+    - shell:
+        cmd: |
+          find . -iname *.pp | xargs puppet parser validate --modulepath=`pwd`/modules
+          for f in `find . -iname *.erb` ; do
+            erb -x -T '-' $f | ruby -c
+          done
+        chdir: "{{ ansible_user_dir }}/{{ zuul.project.src_dir }}"
