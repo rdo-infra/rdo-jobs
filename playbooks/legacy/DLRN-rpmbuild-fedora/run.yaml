@@ -60,15 +60,12 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - name: clone DLRN
+    - name: Ensure packages are installed, add zuul user to mock group
       shell:
         cmd: |
           set +e
           sudo yum -y install createrepo mock redhat-rpm-config rpmdevtools
           sudo usermod -a -G mock zuul
-
-          # Clone DLRN
-          git clone https://github.com/softwarefactory-project/DLRN --depth 1
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
@@ -120,33 +117,16 @@
     - name: run_tests.sh
       shell:
         cmd: |
-          set +e
-          # This job supports building reviews for both review.rdoproject.org
-          # and review.openstack.org. Builds that are run as third party for
-          # review.o.o are in the Zuul pipelines prefixed by "openstack-".
-
-          # NOTE(pabelanger): We need to export zuul-env path for DLRN test
-          # scripts, this job is now zuulv3 so DLRN should stop using
-          # zuul-cloner.
-          export PATH=$PATH:/usr/zuul-env/bin
           export TAG="{{  tag | default('') }}"
-          pushd DLRN
-          if [[ "$ZUUL_PIPELINE" =~ "openstack-" ]]; then
-              timeout --signal=SIGKILL 3600 ./scripts/run_project_tests.sh http://review.rdoproject.org/r/p/rdoinfo.git
-              ret=$?
+          if [ -z "$TAG" ];then
+              ARGS="fedora https://trunk.rdoproject.org/fedora/"
           else
-              if [ -z "$TAG" ];then
-                  timeout --signal=SIGKILL 3600 ./scripts/run_tests.sh http://review.rdoproject.org/r/p/rdoinfo.git "fedora" "https://trunk.rdoproject.org/fedora/"
-                  ret=$?
-              else
-                  timeout --signal=SIGKILL 3600 ./scripts/run_tests.sh http://review.rdoproject.org/r/p/rdoinfo.git "fedora" "https://trunk.rdoproject.org/fedora/" "$TAG"
-                  ret=$?
-              fi
+              ARGS="fedora https://trunk.rdoproject.org/fedora/ $TAG"
           fi
-          popd
-          # Retrieve logs/repositories/packages
-          mkdir buildset
-          cp -a DLRN/logs/* buildset/
-          exit $ret
-        chdir: '{{ ansible_user_dir }}/workspace'
+          if [[ "{{ zuul.pipeline }}" =~ "openstack-" ]]; then
+              ARGS=""
+          fi
+
+          ./scripts/run_tests.sh {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdoinfo'].src_dir }} $ARGS
+        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
       environment: "{{ zuul | zuul_legacy_vars | combine({'LANG': 'en_US.UTF-8'}) }}"
