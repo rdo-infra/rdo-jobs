@@ -1,0 +1,34 @@
+- hosts: all
+  name: playbook for puppet-lint job
+  tasks:
+    - include_tasks: setup_packages.yaml
+
+    - name: Run rake lint
+      shell:
+        cmd: |
+          if [ -f Modulefile -o -f metadata.json ]; then
+            if [ -f Modulefile ]; then
+              MODULE=$(awk '/^name/ {print $NF}' Modulefile |tr -d \"\')
+            elif [ -f metadata.json ]; then
+              MODULE=$(python -c 'import json;print json.load(open("metadata.json"))["name"]')
+            fi
+            if [ -z "$MODULE" ]; then
+              echo "Module name not defined in Modulefile or metadata.json"
+            else
+              mkdir -p "$MODULE"
+              rsync -a --exclude="$MODULE" --exclude ".*" . "$MODULE"
+              cd "$MODULE"
+            fi
+          fi
+          if [ -f Gemfile ]; then
+            mkdir .bundled_gems
+            export GEM_HOME=`pwd`/.bundled_gems
+            gem install bundler --version 1.17.3 --no-rdoc --no-ri --verbose
+            gem install rake --version '< 13.0.0'
+            $GEM_HOME/bin/bundle install --without system_tests
+            $GEM_HOME/bin/bundle exec rake lint 2>&1
+          else
+            rake lint 2>&1
+          fi
+        chdir: "{{ ansible_user_dir }}/{{ zuul.project.src_dir }}"
+      changed_when: true
