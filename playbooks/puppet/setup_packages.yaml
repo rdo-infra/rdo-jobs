@@ -1,0 +1,20 @@
+---
+- name: Cleanup packages
+  package:
+    name:
+      - facter
+      - puppet
+      - rdo-release
+    state: absent
+  become: true
+
+- name: Install packages required for job
+  package:
+    name:
+      - libxml2-devel
+      - libxslt-devel
+      - ruby-devel
+      - rsync
+      - "@Development tools"
+    state: present
+  become: true
