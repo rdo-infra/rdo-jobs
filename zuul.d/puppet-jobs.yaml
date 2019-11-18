@@ -1,0 +1,15 @@
+- job:
+    name: puppet-lint
+    parent: base
+    run: playbooks/puppet/lint.yaml
+
+- job:
+    name: puppet-spec
+    parent: base
+    run: playbooks/puppet/spec.yaml
+
+- job:
+    name: puppet-syntax
+    parent: base
+    run: playbooks/puppet/syntax.yaml
+
