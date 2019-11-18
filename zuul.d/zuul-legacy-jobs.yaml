@@ -35,6 +35,7 @@
     post-run: playbooks/legacy/DLRN-rpmbuild-rpm-packaging-centos/post.yaml
     required-projects:
       - openstack/rpm-packaging
+      - DLRN
 
 - job:
     name: legacy-DLRN-rpmbuild-rpm-packaging-fedora
@@ -45,6 +46,7 @@
     nodeset: rdo-fedora-28
     required-projects:
       - openstack/rpm-packaging
+      - DLRN
 
 - job:
     name: legacy-centos-opstools-doc
