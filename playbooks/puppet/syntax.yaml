@@ -1,0 +1,28 @@
+- hosts: all
+  name: playbook for puppet-syntax job
+  tasks:
+    - include_tasks: setup_packages.yaml
+
+    - name: Install centos release stein rpm
+      package:
+        name:
+          - centos-release-openstack-stein
+        state: present
+      become: true
+
+    - name: Install puppet
+      package:
+        name:
+          - puppet
+        state: latest
+      become: true
+
+    - name: Run syntax check
+      shell:
+        cmd: |
+          find . -iname *.pp | xargs puppet parser validate --modulepath=`pwd`/modules
+          for f in `find . -iname *.erb` ; do
+            erb -x -T '-' $f | ruby -c
+          done
+        chdir: "{{ ansible_user_dir }}/{{ zuul.project.src_dir }}"
+      changed_when: true
