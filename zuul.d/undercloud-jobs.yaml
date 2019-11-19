@@ -49,8 +49,6 @@
       featureset: '050'
       branch_override: "stable/stein"
       release: stein
-      extra_tags:
-        - overcloud-upgrade
 
 # legacy-periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-rocky
 - job:
@@ -60,8 +58,6 @@
       featureset: '050'
       branch_override: "stable/rocky"
       release: rocky
-      extra_tags:
-        - overcloud-upgrade
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset050-updates-master
 - job:
@@ -71,4 +67,4 @@
       featureset: '050'
       release: master
       extra_tags:
-        - overcloud-upgrade
+        - undercloud-upgrade
