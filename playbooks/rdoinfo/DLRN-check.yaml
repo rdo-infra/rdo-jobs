@@ -1,0 +1,131 @@
+- hosts: all
+  name: playbook for rdoinfo-DLRN-check
+  tasks:
+    - name: link rdoinfo dir to /tmp/rdoinfo
+      file:
+        src: "{{ ansible_user_dir }}/{{ zuul.projects['rdoinfo'].src_dir }}"
+        dest: /tmp/rdoinfo
+        owner: '{{ ansible_user }}'
+        group: '{{ ansible_user }}'
+        state: link
+
+    - name: Copy rdoinfo-DLRN.sh script
+      copy:
+        src: rdoinfo-DLRN.sh
+        dest: '{{ ansible_user_dir }}/rdoinfo-DLRN.sh'
+        owner: '{{ ansible_user }}'
+        group: '{{ ansible_user }}'
+        mode: 0755
+
+    - name: Ensure bindep.txt dependencies are installed
+      include_role:
+        name: bindep
+      vars:
+        bindep_dir: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
+
+    - name: Ensure user in mock group
+      user:
+        name: "{{ ansible_user }}"
+        groups: mock
+        append: yes
+      become: true
+
+    - name: Build packages for tags being updated
+      shell:
+        cmd: |
+          set +e -x
+          virtualenv --system-site-packages .venv
+          . .venv/bin/activate
+          pip install rdopkg
+
+          CURRENT_MASTER_TAG="ussuri-uc"
+
+          PACKAGES_UPDATED_MASTER=""
+          PACKAGES_UPDATED_QUEENS=""
+          PACKAGES_UPDATED_ROCKY=""
+          PACKAGES_UPDATED_STEIN=""
+          PACKAGES_UPDATED_TRAIN=""
+
+          TAGS_DIFF=$(rdopkg info-tags-diff .)
+
+          while read line; do
+              PKGNAME=$(awk '{print $1}' <<< $line)
+              if [[ -n $(echo "$line" | grep -w $CURRENT_MASTER_TAG) ]]; then
+                  PACKAGES_UPDATED_MASTER="$PACKAGES_UPDATED_MASTER $PKGNAME"
+              fi
+              if [[ -n $(echo "$line" | grep -w train) ]]; then
+                  PACKAGES_UPDATED_TRAIN="$PACKAGES_UPDATED_TRAIN $PKGNAME"
+              fi
+              if [[ -n $(echo "$line" | grep -w stein) ]]; then
+                  PACKAGES_UPDATED_STEIN="$PACKAGES_UPDATED_STEIN $PKGNAME"
+              fi
+              if [[ -n $(echo "$line" | grep -w rocky) ]]; then
+                  PACKAGES_UPDATED_ROCKY="$PACKAGES_UPDATED_ROCKY $PKGNAME"
+              fi
+              if [[ -n $(echo "$line" | grep -w queens) ]]; then
+                  PACKAGES_UPDATED_QUEENS="$PACKAGES_UPDATED_QUEENS $PKGNAME"
+              fi
+          done <<< "${TAGS_DIFF}"
+
+          pushd "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
+          ret=0
+          if [ -n "${PACKAGES_UPDATED_MASTER}" ]; then
+              timeout --signal=SIGKILL 10800  {{ ansible_user_dir }}/rdoinfo-DLRN.sh $CURRENT_MASTER_TAG "${PACKAGES_UPDATED_MASTER}"
+              ret1=$?
+              if [ $ret1 -ne 0 ]; then
+                  ret=$ret1
+              fi
+              # The data/ contents have been archived already, remove to avoid issues with the next branch
+              rm -rf data
+              sudo rm -rf /var/cache/mock/*
+          fi
+          if [ -n "${PACKAGES_UPDATED_TRAIN}" ]; then
+              timeout --signal=SIGKILL 10800 {{ ansible_user_dir }}/rdoinfo-DLRN.sh train "${PACKAGES_UPDATED_TRAIN}"
+              ret1=$?
+              if [ $ret1 -ne 0 ]; then
+                  ret=$ret1
+              fi
+              # The data/ contents have been archived already, remove to avoid issues with the next branch
+              rm -rf data
+              sudo rm -rf /var/cache/mock/*
+          fi
+          if [ -n "${PACKAGES_UPDATED_STEIN}" ]; then
+              timeout --signal=SIGKILL 10800 {{ ansible_user_dir }}/rdoinfo-DLRN.sh stein "${PACKAGES_UPDATED_STEIN}"
+              ret1=$?
+              if [ $ret1 -ne 0 ]; then
+                  ret=$ret1
+              fi
+              # The data/ contents have been archived already, remove to avoid issues with the next branch
+              rm -rf data
+              sudo rm -rf /var/cache/mock/*
+          fi
+          if [ -n "${PACKAGES_UPDATED_ROCKY}" ]; then
+              timeout --signal=SIGKILL 10800 {{ ansible_user_dir }}/rdoinfo-DLRN.sh rocky "${PACKAGES_UPDATED_ROCKY}"
+              ret1=$?
+              if [ $ret1 -ne 0 ]; then
+                  ret=$ret1
+              fi
+              # The data/ contents have been archived already, remove to avoid issues with the next branch
+              rm -rf data
+              sudo rm -rf /var/cache/mock/*
+          fi
+          if [ -n "${PACKAGES_UPDATED_QUEENS}" ]; then
+              timeout --signal=SIGKILL 10800 {{ ansible_user_dir }}/rdoinfo-DLRN.sh queens "${PACKAGES_UPDATED_QUEENS}"
+              ret1=$?
+              if [ $ret1 -ne 0 ]; then
+                  ret=$ret1
+              fi
+              # The data/ contents have been archived already, remove to avoid issues with the next branch
+              rm -rf data
+              sudo rm -rf /var/cache/mock/*
+          fi
+          popd
+
+          # Retrieve logs/repositories/packages
+          mkdir buildset
+          cp -a "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}/logs/*" buildset/
+          exit $ret
+        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['rdoinfo'].src_dir }}"
+      changed_when: true
+      environment:
+        LANG: 'en_US.UTF-8'

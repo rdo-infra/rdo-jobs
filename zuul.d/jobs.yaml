@@ -318,3 +318,12 @@
         MOLECULE_PLATFORM: rhel8
         MOLECULE_IMAGE: ubi8/python-36
         MOLECULE_CONTAINER_REGISTRY_URL: registry.access.redhat.com
+
+- job:
+    name: rdoinfo-DLRN-check
+    run: playbooks/rdoinfo/DLRN-check.yaml
+    post-run: playbooks/rdoinfo/DLRN-check-post.yaml
+    timeout: 10800
+    required-projects:
+      - DLRN
+      - rdoinfo
