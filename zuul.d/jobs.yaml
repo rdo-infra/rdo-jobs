@@ -389,3 +389,12 @@
     dependencies:
       - DLRN-rpmbuild
     branches: ^rpm-master$
+
+- job:
+    name: rdoinfo-DLRN-check
+    run: playbooks/rdoinfo/DLRN-check.yaml
+    post-run: playbooks/rdoinfo/DLRN-check-post.yaml
+    timeout: 10800
+    required-projects:
+      - DLRN
+      - rdoinfo
