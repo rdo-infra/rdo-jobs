@@ -112,6 +112,11 @@
               echo "    filename: temp-distgit.repo"
               echo "    baseurl: $repository"
               echo "    priority: 1"
+              echo "  - type: generic"
+              echo "    reponame: temp-ovs"
+              echo "    filename: temp-ovs.repo"
+              echo "    baseurl: https://logs.rdoproject.org/55/23355/4/check/legacy-validate-buildsys-tags/2c233dd/buildset/repos/cloud7-openstack-ussuri-testing/"
+              echo "    priority: 1"
               if [ ! -z $delorean_current_url ]; then
                   echo "  - type: generic"
                   echo "    reponame: delorean-current"
@@ -135,6 +140,7 @@
                   echo "      - tripleo-ansible"
                   echo "      - ansible-config_template"
                   echo "      - paunch-services"
+                  echo "      - *kolla*"
               fi
               echo "repo_cmd_after: |"
               echo "  sudo yum install -y yum-plugin-priorities;"
