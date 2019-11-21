@@ -5,6 +5,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-master
+    pre-run: playbooks/fix-zuul-worker.yaml
     parent: tripleo-ci-base-standalone-periodic
     vars: &standalone_vars
       featureset: '052'
