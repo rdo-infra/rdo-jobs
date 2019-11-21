@@ -1,0 +1,7 @@
+- hosts: all
+  tasks:
+    - name: Create fake zuul user
+      shell: >
+        grep '^zuul-worker:' /etc/passwd | sed s/zuul-worker/zuul/ | tee -a /etc/passwd;
+        ln -s /home/zuul-worker /home/zuul
+      become: yes
