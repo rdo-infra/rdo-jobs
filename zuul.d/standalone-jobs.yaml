@@ -228,6 +228,14 @@
       release: train
 
 - job:
+    name: periodic-tripleo-ci-centos-7-scenario007-standalone-train
+    parent: periodic-tripleo-ci-centos-7-scenario007-standalone-master
+    voting: false
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
     name: periodic-tripleo-ci-centos-7-scenario010-standalone-train
     parent: periodic-tripleo-ci-centos-7-scenario010-standalone-master
     vars:
