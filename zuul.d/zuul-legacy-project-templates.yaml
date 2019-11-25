@@ -45,22 +45,22 @@
       jobs:
         - legacy-rpmlint:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-packstack-scenario003:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-        - legacy-DLRN-rpmbuild-fedora:
+        - DLRN-rpmbuild-fedora:
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
             voting: false
@@ -70,15 +70,15 @@
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
-        - legacy-DLRN-rpmbuild:
+              - DLRN-rpmbuild
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
@@ -89,17 +89,17 @@
       jobs:
         - legacy-rpmlint:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-puppet-scenario002:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-        - legacy-DLRN-rpmbuild-fedora:
+        - DLRN-rpmbuild-fedora:
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
             voting: false
@@ -109,12 +109,12 @@
       jobs:
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario002:
             dependencies:
-              - legacy-DLRN-rpmbuild
-        - legacy-DLRN-rpmbuild:
+              - DLRN-rpmbuild
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
@@ -125,22 +125,22 @@
       jobs:
         - legacy-rpmlint:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-packstack-scenario003:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-        - legacy-DLRN-rpmbuild-fedora:
+        - DLRN-rpmbuild-fedora:
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
             voting: false
@@ -150,15 +150,15 @@
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
-        - legacy-DLRN-rpmbuild:
+              - DLRN-rpmbuild
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
@@ -169,27 +169,27 @@
       jobs:
         - legacy-rpmlint:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-packstack-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario002:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-        - legacy-DLRN-rpmbuild-fedora:
+        - DLRN-rpmbuild-fedora:
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
             voting: false
@@ -199,18 +199,18 @@
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario002:
             dependencies:
-              - legacy-DLRN-rpmbuild
-        - legacy-DLRN-rpmbuild:
+              - DLRN-rpmbuild
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
@@ -221,32 +221,32 @@
       jobs:
         - legacy-rpmlint:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-packstack-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario002:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario004:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-        - legacy-DLRN-rpmbuild-fedora:
+        - DLRN-rpmbuild-fedora:
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
             voting: false
@@ -256,21 +256,21 @@
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario002:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario004:
             dependencies:
-              - legacy-DLRN-rpmbuild
-        - legacy-DLRN-rpmbuild:
+              - DLRN-rpmbuild
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
@@ -281,22 +281,22 @@
       jobs:
         - legacy-rpmlint:
             dependencies:
-              - legacy-DLRN-rpmbuild-pinned
+              - DLRN-rpmbuild-pinned
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-packstack-scenario003:
             dependencies:
-              - legacy-DLRN-rpmbuild-pinned
+              - DLRN-rpmbuild-pinned
             voting: false
             branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild-pinned
+              - DLRN-rpmbuild-pinned
             voting: false
             branches: ^(rpm-)?master$
-        - legacy-DLRN-rpmbuild-pinned:
+        - DLRN-rpmbuild-pinned:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-        - legacy-DLRN-rpmbuild-fedora-pinned:
+        - DLRN-rpmbuild-fedora-pinned:
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
             voting: false
@@ -306,17 +306,17 @@
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
             dependencies:
-              - legacy-DLRN-rpmbuild-pinned
+              - DLRN-rpmbuild-pinned
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild-pinned
-        - legacy-DLRN-rpmbuild-pinned:
+              - DLRN-rpmbuild-pinned
+        - DLRN-rpmbuild-pinned:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - legacy-DLRN-rpmbuild-pinned:
+        - DLRN-rpmbuild-pinned:
             branches: ^rpm-master$
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
@@ -327,22 +327,22 @@
       jobs:
         - legacy-rpmlint:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-packstack-scenario003:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario003:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-        - legacy-DLRN-rpmbuild-fedora:
+        - DLRN-rpmbuild-fedora:
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
             voting: false
@@ -352,15 +352,15 @@
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario003:
             dependencies:
-              - legacy-DLRN-rpmbuild
-        - legacy-DLRN-rpmbuild:
+              - DLRN-rpmbuild
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
@@ -371,17 +371,17 @@
       jobs:
         - legacy-rpmlint:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-puppet-scenario003:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-        - legacy-DLRN-rpmbuild-fedora:
+        - DLRN-rpmbuild-fedora:
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
             voting: false
@@ -391,12 +391,12 @@
       jobs:
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario003:
             dependencies:
-              - legacy-DLRN-rpmbuild
-        - legacy-DLRN-rpmbuild:
+              - DLRN-rpmbuild
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
@@ -407,22 +407,22 @@
       jobs:
         - legacy-rpmlint:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-packstack-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario003:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-        - legacy-DLRN-rpmbuild-fedora:
+        - DLRN-rpmbuild-fedora:
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
             voting: false
@@ -432,15 +432,15 @@
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario003:
             dependencies:
-              - legacy-DLRN-rpmbuild
-        - legacy-DLRN-rpmbuild:
+              - DLRN-rpmbuild
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
@@ -451,17 +451,17 @@
       jobs:
         - legacy-rpmlint:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-puppet-scenario004:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-        - legacy-DLRN-rpmbuild-fedora:
+        - DLRN-rpmbuild-fedora:
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
             voting: false
@@ -471,12 +471,12 @@
       jobs:
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario004:
             dependencies:
-              - legacy-DLRN-rpmbuild
-        - legacy-DLRN-rpmbuild:
+              - DLRN-rpmbuild
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
@@ -487,27 +487,27 @@
       jobs:
         - legacy-rpmlint:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-packstack-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario003:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-        - legacy-DLRN-rpmbuild-fedora:
+        - DLRN-rpmbuild-fedora:
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
             voting: false
@@ -517,18 +517,18 @@
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario003:
             dependencies:
-              - legacy-DLRN-rpmbuild
-        - legacy-DLRN-rpmbuild:
+              - DLRN-rpmbuild
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
@@ -539,22 +539,22 @@
       jobs:
         - legacy-rpmlint:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-packstack-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-        - legacy-DLRN-rpmbuild-fedora:
+        - DLRN-rpmbuild-fedora:
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
             voting: false
@@ -564,15 +564,15 @@
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
-        - legacy-DLRN-rpmbuild:
+              - DLRN-rpmbuild
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
@@ -583,27 +583,27 @@
       jobs:
         - legacy-rpmlint:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-packstack-scenario002:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario003:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-        - legacy-DLRN-rpmbuild-fedora:
+        - DLRN-rpmbuild-fedora:
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
             voting: false
@@ -613,18 +613,18 @@
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario002:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario003:
             dependencies:
-              - legacy-DLRN-rpmbuild
-        - legacy-DLRN-rpmbuild:
+              - DLRN-rpmbuild
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
@@ -635,17 +635,17 @@
       jobs:
         - legacy-rpmlint:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-puppet-scenario004:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-        - legacy-DLRN-rpmbuild-fedora:
+        - DLRN-rpmbuild-fedora:
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
             voting: false
@@ -655,12 +655,12 @@
       jobs:
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario004:
             dependencies:
-              - legacy-DLRN-rpmbuild
-        - legacy-DLRN-rpmbuild:
+              - DLRN-rpmbuild
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
@@ -671,17 +671,17 @@
       jobs:
         - legacy-rpmlint:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - legacy-weirdo-dlrn-master-puppet-scenario002:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-        - legacy-DLRN-rpmbuild-fedora:
+        - DLRN-rpmbuild-fedora:
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
             voting: false
@@ -691,12 +691,12 @@
       jobs:
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario002:
             dependencies:
-              - legacy-DLRN-rpmbuild
-        - legacy-DLRN-rpmbuild:
+              - DLRN-rpmbuild
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$

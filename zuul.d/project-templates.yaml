@@ -23,12 +23,12 @@
       jobs:
         - legacy-rpmlint:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             branches: ^rpm-master$
         - DLRN-build-tripleo
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-        - legacy-DLRN-rpmbuild-fedora:
+        - DLRN-rpmbuild-fedora:
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
             voting: false
@@ -37,7 +37,7 @@
             branches: ^(?!rpm-master).*$
     gate:
       jobs:
-        - legacy-DLRN-rpmbuild:
+        - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: ^(?!rpm-master).*$
@@ -57,7 +57,7 @@
       jobs:
         - distgit-tripleo-master-testing-centos-7-standalone-featureset052:
             dependencies:
-              - legacy-DLRN-rpmbuild
+              - DLRN-rpmbuild
             voting: false
             branches: ^rpm-master$
 
