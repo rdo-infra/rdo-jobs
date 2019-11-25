@@ -1,0 +1,34 @@
+---
+- hosts: all
+  tasks:
+    - include_tasks: setup_dlrn.yaml
+
+    - name: Ensure mirrors are setup properly
+      changed_when: true
+      shell:
+        cmd: |
+            source /etc/ci/mirror_info.sh
+            sed -e "s|^#baseurl=http://mirror.centos.org/centos|baseurl=$NODEPOOL_CENTOS_MIRROR|;/^mirrorlist=/d" -i scripts/centos.cfg
+        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
+
+    - name: run_tests.sh
+      changed_when: true
+      shell:
+        cmd: |
+          export TAG="{{  tag | default('') }}"
+          if [ -z "$TAG" ];then
+          ARGS="centos https://trunk.rdoproject.org/centos7/"
+          else
+          ARGS="centos https://trunk.rdoproject.org/centos7/ $TAG"
+          fi
+          if [[ "{{ zuul.pipeline }}" =~ "openstack-" ]]; then
+              ARGS=""
+          fi
+          ./scripts/run_tests.sh {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdoinfo'].src_dir }} $ARGS
+        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
+      environment:
+        ZUUL_PROJECT: "{{ zuul.project.name }}"
+        ZUUL_BRANCH: "{{ zuul.branch }}"
+        ZUUL_PIPELINE: "{{ zuul.pipeline }}"
+        ZUUL_CHANGES: "{% set comma = joiner('^') %} {% for chg in zuul['items'] %}{{ comma() }}{{ chg.project.name }}:{{ chg.branch }}:{{ chg.change_url }}{% endfor %}" # noqa 204
+        LANG: 'en_US.UTF-8'
