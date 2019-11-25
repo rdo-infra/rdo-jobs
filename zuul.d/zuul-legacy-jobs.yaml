@@ -98,7 +98,7 @@
       - rdo-infra/ansible-role-weirdo-puppet-openstack
       - rdo-infra/weirdo
     dependencies:
-      - legacy-DLRN-rpmbuild
+      - DLRN-rpmbuild
 
 - job:
     name: legacy-experimental-weirdo-dlrn-master-packstack-scenario002
@@ -118,7 +118,7 @@
       - rdo-infra/ansible-role-weirdo-puppet-openstack
       - rdo-infra/weirdo
     dependencies:
-      - legacy-DLRN-rpmbuild
+      - DLRN-rpmbuild
 
 - job:
     name: legacy-experimental-weirdo-dlrn-master-packstack-scenario003
@@ -138,7 +138,7 @@
       - rdo-infra/ansible-role-weirdo-puppet-openstack
       - rdo-infra/weirdo
     dependencies:
-      - legacy-DLRN-rpmbuild
+      - DLRN-rpmbuild
 
 - job:
     name: legacy-experimental-weirdo-dlrn-master-puppet-scenario001
@@ -157,7 +157,7 @@
       - rdo-infra/ansible-role-weirdo-puppet-openstack
       - rdo-infra/weirdo
     dependencies:
-      - legacy-DLRN-rpmbuild
+      - DLRN-rpmbuild
 
 - job:
     name: legacy-experimental-weirdo-dlrn-master-puppet-scenario002
@@ -176,7 +176,7 @@
       - rdo-infra/ansible-role-weirdo-puppet-openstack
       - rdo-infra/weirdo
     dependencies:
-      - legacy-DLRN-rpmbuild
+      - DLRN-rpmbuild
 
 - job:
     name: legacy-experimental-weirdo-dlrn-master-puppet-scenario003
@@ -195,7 +195,7 @@
       - rdo-infra/ansible-role-weirdo-puppet-openstack
       - rdo-infra/weirdo
     dependencies:
-      - legacy-DLRN-rpmbuild
+      - DLRN-rpmbuild
 
 - job:
     name: legacy-experimental-weirdo-dlrn-master-puppet-scenario004
@@ -214,7 +214,7 @@
       - rdo-infra/ansible-role-weirdo-puppet-openstack
       - rdo-infra/weirdo
     dependencies:
-      - legacy-DLRN-rpmbuild
+      - DLRN-rpmbuild
 
 - job:
     name: legacy-fedora-sinkhole-functional
@@ -331,7 +331,7 @@
     parent: legacy-base
     run: playbooks/legacy/rpmlint/run.yaml
     dependencies:
-      - legacy-DLRN-rpmbuild
+      - DLRN-rpmbuild
     branches: ^rpm-master$
 
 - job:
@@ -378,7 +378,7 @@
       - rdo-infra/ansible-role-weirdo-puppet-openstack
       - rdo-infra/weirdo
     dependencies:
-      - legacy-DLRN-rpmbuild
+      - DLRN-rpmbuild
     voting: false
     branches: ^(rpm-)?master$
 
@@ -400,7 +400,7 @@
       - rdo-infra/ansible-role-weirdo-puppet-openstack
       - rdo-infra/weirdo
     dependencies:
-      - legacy-DLRN-rpmbuild
+      - DLRN-rpmbuild
     voting: false
     branches: ^(rpm-)?master$
 
@@ -422,7 +422,7 @@
       - rdo-infra/ansible-role-weirdo-puppet-openstack
       - rdo-infra/weirdo
     dependencies:
-      - legacy-DLRN-rpmbuild
+      - DLRN-rpmbuild
     voting: false
     branches: ^(rpm-)?master$
 
@@ -443,7 +443,7 @@
       - rdo-infra/ansible-role-weirdo-puppet-openstack
       - rdo-infra/weirdo
     dependencies:
-      - legacy-DLRN-rpmbuild
+      - DLRN-rpmbuild
     voting: false
     branches: ^(rpm-)?master$
 
@@ -464,7 +464,7 @@
       - rdo-infra/ansible-role-weirdo-puppet-openstack
       - rdo-infra/weirdo
     dependencies:
-      - legacy-DLRN-rpmbuild
+      - DLRN-rpmbuild
     voting: false
     branches: ^(rpm-)?master$
 
@@ -485,7 +485,7 @@
       - rdo-infra/ansible-role-weirdo-puppet-openstack
       - rdo-infra/weirdo
     dependencies:
-      - legacy-DLRN-rpmbuild
+      - DLRN-rpmbuild
     voting: false
     branches: ^(rpm-)?master$
 
@@ -506,7 +506,7 @@
       - rdo-infra/ansible-role-weirdo-puppet-openstack
       - rdo-infra/weirdo
     dependencies:
-      - legacy-DLRN-rpmbuild
+      - DLRN-rpmbuild
     voting: false
     branches: ^(rpm-)?master$
 
