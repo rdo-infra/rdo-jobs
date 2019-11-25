@@ -1,0 +1,282 @@
+- hosts: all
+  name: Playbook for rpmlint job
+  tasks:
+    - name: Setup gate repo
+      changed_when: true
+      shell:
+        cmd: |
+          # This builder, when run from a child job of a DLRN based job,
+          # configures the DLRN repository that was uploaded as an artifact
+          # of the parent DLRN-rpmbuild job.
+          # This allows to install the packages in that repository and test
+          # them.
+          set +ex
+
+          logs={{ buildset_artifacts_url }}
+
+          # If we could not find a working repository, give up
+          curl -o /dev/null -sIf "${logs}" || exit 1
+
+          # Use the latest repository hash
+          # If DLRN built multiple packages, there will be multiple repositories.
+          # We want the latest repository which contains all of the packages that were just built.
+          repository="${logs}/centos/current"
+
+          # The rdoinfo-DLRN-check job may create different repos (centos-rpm-master, centos-pike-rdo)
+          # when it builds packages for more than one release. In that case, let us try to find the
+          # right one
+          curl -o /dev/null -sIf "${repository}"
+          if [ $? -ne 0 ]; then
+            releases="rpm-master train-rdo stein-rdo rocky-rdo queens-rdo pike-rdo ocata-rdo"
+            for release in $releases; do
+                repository="${logs}/centos-${release}/current"
+                curl -o /dev/null -sIf "${repository}" || continue
+                break
+            done
+          fi
+
+          # If we could not find a working repository, give up
+          curl -o /dev/null -sIf "${repository}" || exit 1
+
+          # Configure the repository
+          name="delorean-zuul"
+          sudo bash -c "cat << EOF > /etc/yum.repos.d/${name}.repo
+          [${name}]
+          name=${name}
+          baseurl=${repository}
+          enabled=1
+          gpgcheck=0
+          priority=1
+          EOF"
+
+    - name: install needed packages
+      package:
+        name:
+          - rpmlint
+          - sqlite
+          - wget
+      become: true
+
+    - name: Setup and run rpmlint
+      changed_when: true
+      shell:
+        cmd: |
+          # This builder, when run from a child job of a DLRN based
+          # job, download the packages built from DLRN and compare
+          # rpmlint reports from the previously built packages.
+
+          # must be in sync with the previous builder (dlrn-gate-repository)
+          eval $(grep baseurl= < /etc/yum.repos.d/delorean-zuul.repo)
+
+          # download binary packages
+          wget -e robots=off -nd -r --accept .rpm --reject .src.rpm ${baseurl}
+          unset baseurl
+
+          # get the repo data from the previous repository
+          URL=https://trunk.rdoproject.org/centos7/current
+          eval $(curl $URL/delorean.repo|grep baseurl=)
+          wget $baseurl/repodata/repomd.xml
+
+          # extract the name of primary db from repomd.xml
+          db=$(python -c "import xml.etree.ElementTree as et; ns = {'ns0': 'http://linux.duke.edu/metadata/repo'}; \
+            print(et.parse('repomd.xml').getroot().find('ns0:data[@type=\"primary_db\"]/ns0:location', ns).attrib['href'])")
+
+          # download this db to get the name of the rpm files
+          wget $baseurl/$db
+
+          db=$(basename $db .bz2)
+          bunzip2 $db.bz2
+
+          # our rpmlint config
+          cat > $HOME/.rpmlintrc <<EOF
+          from Config import *
+
+          addFilter("no-changelogname-tag")
+          addFilter("no-manual-page-for-binary")
+          addFilter("no-documentation")
+          addFilter("non-readable")
+
+          # vitrage-ui exceptions
+          addFilter("openstack-vitrage-ui.noarch: W: non-conffile-in-etc /etc/openstack-dashboard/enabled/_4140_admin_template_vitrage_panel.py.*")
+
+          # ironic exceptions
+          addFilter("openstack-ironic-common.noarch: E: non-standard-dir-perm /var/log/ironic 0?750L?")
+
+          # Exceptions for nova
+          addFilter("openstack-nova-common.noarch: W: obsolete-not-provided openstack-nova-cert")
+          addFilter("python-novajoin.noarch: W: non-standard-gid")
+          addFilter("python-novajoin.noarch: W: non-standard-uid")
+          addFilter("openstack-nova-compute.noarch: E: explicit-lib-dependency libvirt-client")
+
+          # Exception for tackerclient
+          addFilter("python-tackerclient-doc.noarch: W: file-not-utf8 /usr/share/doc/python-tackerclient-doc-.*/html/objects.inv")
+
+          # Exception for congress
+          addFilter("openstack-congress-common.noarch: E: non-standard-dir-perm /etc/congress/keys 0?750L?")
+
+          # Exception for mistral
+          addFilter("python-mistral.noarch: W: self-obsoletion python-openstack-mistral < 5.0.0-1 obsoletes python-openstack-mistral.*")
+          addFilter("openstack-mistral-common.noarch: E: non-standard-dir-perm /var/lib/mistral 0?750L?")
+
+          # Exception for cloudkitty
+          addFilter("openstack-cloudkitty-common.noarch: E: non-standard-dir-perm /var/log/cloudkitty 0750L?")
+
+          # Exception for puppet-tripleo
+          addFilter("puppet-tripleo.noarch: E: explicit-lib-dependency puppet-openstacklib")
+          addFilter("puppet-tripleo.noarch: E: explicit-lib-dependency puppet-stdlib")
+          addFilter("puppet-tripleo.noarch: E: non-executable-script \
+          /usr/share/openstack-puppet/modules/tripleo/templates/redis/redis-notifications.sh.erb 0644L /bin/bash")
+
+          # Exceptions for glance
+          addFilter("openstack-glance.noarch: E: non-standard-dir-perm /var/log/glance 0?750L?")
+          # The dangling-symlink exclusions are related to files from
+          # python-glance-store and python-os-brick.
+          addFilter("openstack-glance.noarch: \
+          W: dangling-symlink /etc/glance/rootwrap.d/glance_cinder_store.filters /usr/share/glance_store/glance_cinder_store.filters")
+          addFilter("openstack-glance.noarch: W: dangling-symlink /etc/glance/rootwrap.d/os-brick.filters /usr/share/os-brick/rootwrap/os-brick.filters")
+
+          # Exceptions for puppet-ceph
+          addFilter("puppet-ceph.noarch: E: explicit-lib-dependency puppet-openstacklib")
+          addFilter("puppet-ceph.noarch: E: explicit-lib-dependency puppet-stdlib")
+          addFilter("puppet-ceph.noarch: E: non-executable-script /usr/share/openstack-puppet/modules/ceph/setup.py 0644L /usr/bin/env")
+
+          # Exceptions for horizon
+          addFilter("python-django-horizon.noarch: E: non-executable-script \
+          /usr/lib/python2.7/site-packages/openstack_auth/tests/run_tests.py 0644L /usr/bin/env")
+          addFilter("python-django-horizon.noarch: E: zero-length /usr/lib/python2.7/site-packages/openstack_auth/tests/models.py")
+
+          # Exceptions for ceilometer
+          addFilter("openstack-ceilometer-common.noarch: W: obsolete-not-provided openstack-ceilometer-api")
+
+          # Exceptions for kuryr
+          # Following error only-non-binary-in-usr-lib has been fixed in recent rpmlint versions not in CentOS yet.
+          addFilter("openstack-kuryr-kubernetes-cni.noarch: W: only-non-binary-in-usr-lib")
+
+          # Exceptions for heat
+          addFilter("openstack-heat-common.noarch: W: obsolete-not-provided openstack-heat-api-cloudwatch")
+          addFilter("openstack-heat-common.noarch: E: explicit-lib-dependency python2-neutron-lib")
+
+          # Exceptions for neutron-tempest-plugin
+          addFilter("python2-neutron-tests-tempest.noarch: \
+          W: self-obsoletion python2-networking-bgpvpn-tests-tempest obsoletes python2-networking-bgpvpn-tests-tempest*")
+
+          # Exceptions for telemetry-tempest-plugin
+          addFilter("python2-telemetry-tests-tempest.noarch: E: zero-length /usr/lib/python2.7/site-packages/telemetry_tempest_plugin/gnocchi/__init_.py")
+          addFilter("\w+.*-tests-tempest.noarch: W: obsolete-not-provided \w+.*-tests")
+
+          # Exceptions for os-xenapi
+          addFilter("python2-os-xenapi.noarch: E: non-executable-script /usr/lib/python2.7/site-packages/os_xenapi/utils/himn.py 0644L /usr/bin/env")
+          addFilter("python2-os-xenapi.noarch: E: non-executable-script /usr/lib/python2.7/site-packages/os_xenapi/utils/iptables.py 0644L /usr/bin/env")
+          addFilter("python2-os-xenapi.noarch: E: non-executable-script \
+          /usr/lib/python2.7/site-packages/os_xenapi/utils/shell_tools/install_conntrack.sh 0644L /bin/bash")
+          addFilter("python2-os-xenapi.noarch: E: non-executable-script /usr/lib/python2.7/site-packages/os_xenapi/utils/xapi_plugin.py 0644L /usr/bin/env")
+          addFilter("python2-os-xenapi.noarch: E: non-executable-script /usr/lib/python2.7/site-packages/os_xenapi/utils/xenapi_facts.py 0644L /usr/bin/env")
+          addFilter("python2-os-xenapi.noarch: E: non-executable-script /usr/lib/python2.7/site-packages/os_xenapi/utils/consoles.py 0644L /usr/bin/env")
+
+          # Exceptions for openstack-tripleo-heat-templates-compat
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: description-line-too-long \
+          C building Heat Templates to do deployments of OpenStack.  \
+          These templates provide support for the clouds running the previous upstream version of OpenStack.")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script \
+          /usr/share/openstack-tripleo-heat-templates/compat/ci/scripts/freeipa_setup.sh 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script \
+          /usr/share/openstack-tripleo-heat-templates/compat/common/container-puppet.sh 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script \
+          /usr/share/openstack-tripleo-heat-templates/compat/deployed-server/deployed-server-bootstrap-centos.sh 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script \
+          /usr/share/openstack-tripleo-heat-templates/compat/deployed-server/deployed-server-bootstrap-rhel.sh 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: script-without-shebang \
+          /usr/share/openstack-tripleo-heat-templates/compat/deployed-server/deployed-server-bootstrap-centos.sh")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: script-without-shebang \
+          /usr/share/openstack-tripleo-heat-templates/compat/deployed-server/deployed-server-bootstrap-rhel.sh")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script \
+          /usr/share/openstack-tripleo-heat-templates/compat/container_config_scripts/nova_statedir_ownership.py 0644L /usr/bin/env")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script \
+          /usr/share/openstack-tripleo-heat-templates/compat/container_config_scripts/nova_wait_for_api_service.py 0644L /usr/bin/env")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script \
+          /usr/share/openstack-tripleo-heat-templates/compat/container_config_scripts/nova_wait_for_compute_service.py 0644L /usr/bin/env")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script \
+          /usr/share/openstack-tripleo-heat-templates/compat/container_config_scripts/pacemaker_restart_bundle.sh 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script \
+          /usr/share/openstack-tripleo-heat-templates/compat/container_config_scripts/placement_wait_for_service.sh 0644L /usr/bin/env")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script \
+          /usr/share/openstack-tripleo-heat-templates/compat/container_config_scripts/pyshim.sh 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script \
+          /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/post_deploy/clouds_yaml.py 0644L /usr/bin/env")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script \
+          /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/post_deploy/undercloud_ctlplane_network.py 0644L /usr/bin/env")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script \
+          /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/post_deploy/undercloud_post.py 0644L /usr/bin/env")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script \
+          /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/pre_deploy/rhel-registration/scripts/rhel-registration 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script \
+          /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/pre_deploy/rhel-registration/scripts/rhel-unregistration 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script \
+          /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/pre_deploy/undercloud_pre.sh 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script \
+          /usr/share/openstack-tripleo-heat-templates/compat/puppet/deploy-artifacts.sh 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script \
+          /usr/share/openstack-tripleo-heat-templates/compat/validation-scripts/all-nodes.sh 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: script-without-shebang \
+          /usr/share/openstack-tripleo-heat-templates/compat/environments/neutron-plumgrid.yaml")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: script-without-shebang \
+          /usr/share/openstack-tripleo-heat-templates/compat/environments/neutron-sriov.yaml")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: description-line-too-long
+          C building Heat Templates to do deployments of OpenStack.  These templates provide support for the clouds \
+          running the previous upstream version of OpenStack.")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script \
+          /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/pre_deploy/rhel-registration/scripts/rhel-registration 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script \
+          /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/pre_deploy/rhel-registration/scripts/rhel-unregistration 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script \
+          /usr/share/openstack-tripleo-heat-templates/compat/extraconfig/tasks/tripleo_upgrade_node.sh 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script \
+          /usr/share/openstack-tripleo-heat-templates/compat/puppet/deploy-artifacts.sh 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: non-executable-script \
+          /usr/share/openstack-tripleo-heat-templates/compat/validation-scripts/all-nodes.sh 0644L /bin/bash")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: script-without-shebang \
+          /usr/share/openstack-tripleo-heat-templates/compat/environments/neutron-plumgrid.yaml")
+          addFilter("openstack-tripleo-heat-templates-compat.noarch: E: script-without-shebang \
+          /usr/share/openstack-tripleo-heat-templates/compat/environments/neutron-sriov.yaml")
+
+          EOF
+
+          # now download all these packages from the previous repository
+          mkdir -p old
+          for fname in $(ls *.rpm); do
+              name=$(rpm -qp --qf '%{NAME}\n' $fname)
+
+              eval $(sqlite3 -line $db "select rpm_sourcerpm as srpm from packages where name = '$name' and arch != 'src';"|sed 's/ //g')
+              sqlite3 -line $db "select location_href as pkgfile from packages where rpm_sourcerpm = '$srpm' and arch != 'src';"|sed 's/ //g' >> old_pkgs_list
+          done
+
+          cat old_pkgs_list |sort -u|grep -v ^$ > old_packages
+
+          # if there is no previous package, it means that is new
+          # packages so just run rpmlint on the packages and exit
+          if [ $(wc -l old_packages) -eq 0 ];then
+              rpmlint *.rpm | tee rpmlint.new.txt
+              exit 0
+          fi
+
+          cat old_packages|while read line
+          do
+              eval $line
+              curl -o old/$pkgfile $baseurl/$pkgfile
+          done
+
+          # run rpmlint on old and new packages
+          rpmlint *.rpm | sort | tee rpmlint.new.txt
+          rpmlint old/*.rpm | sort | tee rpmlint.old.txt
+
+          # check that we have the same number of packages else we
+          # cannot really compare and we just exit gracefully
+          if [ $(ls *.rpm|wc -l) != $(ls old/*.rpm|wc -l) ]; then
+              exit 0
+          fi
+
+          # compare if we have more reports with the new packages
+          if [ $(wc -l < rpmlint.new.txt) -gt $(wc -l < rpmlint.old.txt) ]; then
+              diff -u rpmlint.old.txt rpmlint.new.txt
+              exit 1
+          fi
