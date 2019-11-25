@@ -330,3 +330,10 @@
     branches: ^(rpm-)|(^(?!common)(\w+)-rdo)$
     required-projects:
       - DLRN
+
+- job:
+    name: rpmlint
+    run: playbooks/rpmlint/run.yaml
+    dependencies:
+      - DLRN-rpmbuild
+    branches: ^rpm-master$
