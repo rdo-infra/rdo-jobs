@@ -382,3 +382,10 @@
     parent: DLRN-rpmbuild-fedora
     vars:
       tag: ussuri-uc
+
+- job:
+    name: rpmlint
+    run: playbooks/rpmlint/run.yaml
+    dependencies:
+      - DLRN-rpmbuild
+    branches: ^rpm-master$
