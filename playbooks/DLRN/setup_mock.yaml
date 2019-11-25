@@ -1,0 +1,19 @@
+---
+- name: Install pre-requisites for mock
+  package:
+    name:
+      - createrepo
+      - mock
+      - redhat-rpm-config
+      - rpmdevtools
+      - spectool
+    state: present
+  become: true
+
+- name: Ensure user in mock group
+  user:
+    name: "{{ ansible_user }}"
+    groups: mock
+    append: yes
+  become: true
+

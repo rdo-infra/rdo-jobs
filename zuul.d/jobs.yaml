@@ -326,8 +326,59 @@
     run: playbooks/DLRN-build-tripleo/run.yaml
     post-run: playbooks/DLRN-build-tripleo/post.yaml
     dependencies:
-      - legacy-DLRN-rpmbuild
+      - DLRN-rpmbuild
     voting: false
     branches: ^(rpm-)|(^(?!common)(\w+)-rdo)$
     required-projects:
       - DLRN
+
+- job:
+    name: DLRN-rpmbuild
+    run: playbooks/DLRN/rpmbuild.yaml
+    post-run: playbooks/DLRN/post.yaml
+    branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+    required-projects:
+      - DLRN
+      - rdoinfo
+
+- job:
+    name: DLRN-rpmbuild-pinned
+    parent: DLRN-rpmbuild
+    vars:
+      tag: 'ussuri-uc'
+
+- job:
+    name: DLRN-rpmbuild-rpm-packaging-centos
+    timeout: 5400
+    run: playbooks/DLRN/rpmbuild-rpm-packaging-centos.yaml
+    post-run: playbooks/DLRN/post.yaml
+    required-projects:
+      - openstack/rpm-packaging
+      - DLRN
+
+- job:
+    name: DLRN-rpmbuild-rpm-packaging-fedora
+    timeout: 10800
+    run: playbooks/DLRN/rpmbuild-rpm-packaging-fedora.yaml
+    post-run: playbooks/DLRN/post.yaml
+    nodeset: rdo-fedora-28
+    required-projects:
+      - openstack/rpm-packaging
+      - DLRN
+
+- job:
+    name: DLRN-rpmbuild-fedora
+    run: playbooks/DLRN/rpmbuild-fedora.yaml
+    post-run: playbooks/DLRN/post.yaml
+    voting: false
+    branches: ^(master)|(rpm-master)$
+    nodeset: rdo-fedora-28
+    required-projects:
+      - rdoinfo
+      - DLRN
+
+- job:
+    name: DLRN-rpmbuild-fedora-pinned
+    parent: DLRN-rpmbuild-fedora
+    vars:
+      tag: ussuri-uc
