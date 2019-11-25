@@ -21,7 +21,7 @@
     name: package-distgit-check-jobs
     check:
       jobs:
-        - legacy-rpmlint:
+        - rpmlint:
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$

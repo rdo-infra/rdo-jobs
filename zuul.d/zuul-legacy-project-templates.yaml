@@ -43,7 +43,7 @@
     name: weirdo-dlrn-master-aodh
     check:
       jobs:
-        - legacy-rpmlint:
+        - rpmlint:
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -87,7 +87,7 @@
     name: weirdo-dlrn-master-barbican
     check:
       jobs:
-        - legacy-rpmlint:
+        - rpmlint:
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -123,7 +123,7 @@
     name: weirdo-dlrn-master-ceilometer
     check:
       jobs:
-        - legacy-rpmlint:
+        - rpmlint:
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -167,7 +167,7 @@
     name: weirdo-dlrn-master-cinder
     check:
       jobs:
-        - legacy-rpmlint:
+        - rpmlint:
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -219,7 +219,7 @@
     name: weirdo-dlrn-master-glance
     check:
       jobs:
-        - legacy-rpmlint:
+        - rpmlint:
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -279,7 +279,7 @@
     name: weirdo-dlrn-master-gnocchi
     check:
       jobs:
-        - legacy-rpmlint:
+        - rpmlint:
             dependencies:
               - DLRN-rpmbuild-pinned
             branches: ^rpm-master$
@@ -325,7 +325,7 @@
     name: weirdo-dlrn-master-heat
     check:
       jobs:
-        - legacy-rpmlint:
+        - rpmlint:
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -369,7 +369,7 @@
     name: weirdo-dlrn-master-horizon
     check:
       jobs:
-        - legacy-rpmlint:
+        - rpmlint:
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -405,7 +405,7 @@
     name: weirdo-dlrn-master-keystone
     check:
       jobs:
-        - legacy-rpmlint:
+        - rpmlint:
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -449,7 +449,7 @@
     name: weirdo-dlrn-master-networking-bgpvpn
     check:
       jobs:
-        - legacy-rpmlint:
+        - rpmlint:
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -485,7 +485,7 @@
     name: weirdo-dlrn-master-neutron
     check:
       jobs:
-        - legacy-rpmlint:
+        - rpmlint:
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -537,7 +537,7 @@
     name: weirdo-dlrn-master-nova
     check:
       jobs:
-        - legacy-rpmlint:
+        - rpmlint:
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -581,7 +581,7 @@
     name: weirdo-dlrn-master-oslo
     check:
       jobs:
-        - legacy-rpmlint:
+        - rpmlint:
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -633,7 +633,7 @@
     name: weirdo-dlrn-master-watcher
     check:
       jobs:
-        - legacy-rpmlint:
+        - rpmlint:
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
@@ -669,7 +669,7 @@
     name: weirdo-dlrn-master-zaqar
     check:
       jobs:
-        - legacy-rpmlint:
+        - rpmlint:
             dependencies:
               - DLRN-rpmbuild
             branches: ^rpm-master$
