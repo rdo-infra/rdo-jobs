@@ -1,0 +1,6 @@
+---
+ - name: Resolve the add_repos variables
+   template:
+     src: templates/add-repos.yaml.j2
+     dest: "{{ ansible_user_dir }}/workspace/logs/add-repo-variables.yaml"
+     mode: 0755
