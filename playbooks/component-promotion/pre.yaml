@@ -1,0 +1,7 @@
+---
+- hosts: all
+  tasks:
+    - name: Define add_repos setting
+      include_role:
+        name: template-repo-vars
+
