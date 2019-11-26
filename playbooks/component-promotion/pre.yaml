@@ -1,0 +1,21 @@
+---
+- hosts: all
+  tasks:
+    - name: Define add_repos setting
+      set_fact:
+        add_repos:
+            - type: generic
+              reponame: component
+              filename: component.repo
+              priority: 1
+              baseurl: https://trunk-staging.rdoproject.org/centos7/component/{{ component_name }}/consistent
+
+    - name: "set add_repos_dump"
+      set_fact:
+        add_repos_dump: "{{ {'add_repos': add_repos} }}"
+
+    - name: Dump add_repos variables on the host to pass it to inner ansible
+      copy:
+        content: "{{ add_repos_dump|to_nice_yaml }}"
+        dest: "{{ ansible_user_dir }}/workspace/logs/add-repo-variables.yaml"
+
