@@ -1,15 +1,17 @@
 ---
 - hosts: all
   tasks:
-    - block:
-        - name: Run make rpm
-          shell:
-            cmd: |
-                make rpm
-            chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}"
-          changed_when: true
 
-      rescue:
-        - name: Don't block
-          debug:
-            msg: podman rpm build failed
+    - name: Build rpms
+      # ideally it should not need become but it installs rpms, without sudo
+      become: true
+      shell:
+        cmd: |
+          make package-install
+        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}"
+      changed_when: true
+      # go build often fails due to networking
+      register: result
+      retries: 3
+      until:
+        - '"fatal: The remote end hung up unexpectedly" not in result.stdout'
