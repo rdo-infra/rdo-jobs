@@ -9,6 +9,7 @@
                 mkdir logs
                 cp *.log logs
                 cp *.rpm logs
+                cp /root/rpmbuild/RPMS/*.rpm logs
                 pushd logs
                 createrepo .
                 popd
