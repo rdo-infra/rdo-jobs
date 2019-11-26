@@ -1,13 +1,54 @@
 ---
 - hosts: all
   tasks:
+
+    # mock comes from epel on centos-8
+    # golang comes from epel on cenots-7
+    - name: Install EPEL
+      become: true
+      package:
+        name: epel-release
+
+    # Mandatory as on nodepool images we may have epel pre-installed but disabled
+    - name: enable required repositories
+      become: true
+      command: |
+        yum-config-manager --enable epel
+      changed_when: true
+
+    - name: enable powertools repository
+      when: ansible_distribution_major_version >= "8"
+      command: |
+        dnf config-manager --set-enabled PowerTools
+      changed_when: true
+
     - name: Install pre-requisites
       package:
         name:
+          - containernetworking-cni
+          - containers-common
           - createrepo
-          - mock
+          - device-mapper-devel
+          - git
+          - glib2-devel
+          - glibc-devel
+          - glibc-static
+          - go
+          - golang   # golang comes from epel on cenots-7
+          # - golang-github-cpuguy83-go-md2man # we build it as there is no rpm!
+          - gpgme-devel  # from powertools on centos-8
+          - iptables
+          - libassuan-devel
+          - libgpg-error-devel
+          - libseccomp-devel
+          - libselinux-devel
+          - make
+          - mock  # mock comes from epel on centos-8
+          - pkgconfig
           - redhat-rpm-config
           - rpmdevtools
+          - runc
+          - systemd-devel
         state: present
       become: true
 
