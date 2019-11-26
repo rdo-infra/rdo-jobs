@@ -47,9 +47,12 @@
         #      branches: master
         #      dependencies:
         #        - tripleo-ceph-integration-master§
-        - podman-package-rhel-8
-        - podman-package-centos-8
-        - podman-package-fedora-30
+        - podman-package-rhel-8: &podman
+            files:
+              - zuul.d/podman.yaml
+              - ./playbooks/podman/.*
+        - podman-package-centos-8: *podman
+        - podman-package-fedora-30: *podman
 
     gate:
       jobs:
