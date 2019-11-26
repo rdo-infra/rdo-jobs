@@ -44,6 +44,9 @@
             <<: *ceph
             # this refers to rdo-jobs@master
             branches: master
+        - podman-package-rhel-8
+        - podman-package-centos-8
+        - podman-package-fedora-30
 
     gate:
       jobs:

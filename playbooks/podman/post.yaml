@@ -2,25 +2,28 @@
 - hosts: all
   tasks:
     - block:
-        - name: Copy logs to logs directory
+        - name: Build repository from all builder rpms
           changed_when: true
           shell:
             cmd: |
-                mkdir logs
-                cp *.log logs
-                cp *.rpm logs
-                pushd logs
+                set -exuo pipefail
+                mkdir -p build/buildset
+                pushd build/buildset
+                cp ~/rpmbuild/RPMS/*/*.rpm .
                 createrepo .
                 popd
             chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}"
           args:
             warn: false
-        - name: Copy artefacts
+
+        - name: Copy repository
+          become: true
           synchronize:
-            src: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}/logs/"
+            src: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}/build/builset"
             dest: "{{ zuul.executor.log_root }}/buildset"
             mode: pull
             verify_host: true
+
       rescue:
         - name: Don't block
           debug:
