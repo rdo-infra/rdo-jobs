@@ -520,3 +520,11 @@
       featureset_override: *scenario004_podman
     nodeset: single-rhel-8-node
     branches: ^master$
+
+# Component promotion jobs
+- job:
+    name: periodic-tripleo-ci-centos-7-standalone-compute-master
+    parent: periodic-tripleo-ci-centos-7-standalone-master
+    pre-run: playbooks/component-promotion/pre.yaml
+    vars:
+      component_name: compute
