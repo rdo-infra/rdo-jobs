@@ -1,6 +1,19 @@
 ---
 - hosts: all
   tasks:
+
+    # mock comes from epel on centos-8
+    # golang comes from epel on cenots-7
+    - name: Install EPEL
+      package:
+        name: epel-release
+
+    # Mandatory as on nodepool images we may have it pre-installed but disabled
+    - name: enable EPEL
+      yum_repository:
+        name: epel
+        enabled: true
+
     - name: Install pre-requisites
       package:
         name:
