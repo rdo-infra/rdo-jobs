@@ -1,15 +1,19 @@
 ---
 - hosts: all
   tasks:
-    - block:
-        - name: Run make rpm
-          shell:
-            cmd: |
-                make rpm
-            chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}"
-          changed_when: true
 
-      rescue:
-        - name: Don't block
-          debug:
-            msg: podman rpm build failed
+    - name: Run contrib/build_rpm.sh
+      shell:
+        cmd: |
+          set -euxo pipefail
+          export GOPATH=$HOME/go
+          go get github.com/cpuguy83/go-md2man
+          # make rpm
+          bash ./contrib/build_rpm.sh
+        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}"
+      changed_when: true
+      # go build often fails due to networking
+      register: result
+      retries: 3
+      until:
+        - '"fatal: The remote end hung up unexpectedly" not in result.stdout'
