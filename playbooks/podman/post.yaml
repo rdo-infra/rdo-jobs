@@ -1,0 +1,26 @@
+---
+- hosts: all
+  tasks:
+
+    - name: Build repository from all builder rpms
+      changed_when: true
+      become: true
+      shell:
+        cmd: |
+            set -exuo pipefail
+            mkdir -p build/buildset
+            pushd build/buildset
+            cp -l ~/rpmbuild/RPMS/*/*.rpm .
+            createrepo .
+            popd
+        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}"
+      args:
+        warn: false
+
+    - name: Copy repository
+      become: true
+      synchronize:
+        src: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}/build/buildset"
+        dest: "{{ zuul.executor.log_root }}/buildset"
+        mode: pull
+        verify_host: true
