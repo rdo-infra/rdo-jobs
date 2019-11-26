@@ -41,7 +41,7 @@
     nodeset: tripleo-ovb-rhel-8-primary
     override-checkout: "stable/train"
     branches: ^master$
-    voting: no
+    voting: false
     vars:
       branch_override: "stable/train"
 
@@ -218,7 +218,7 @@
     parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ovb-master
     branches: ^stable/train$
     vars:
-       branch_override: "stable/train"
+      branch_override: "stable/train"
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost

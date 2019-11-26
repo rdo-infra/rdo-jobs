@@ -17,7 +17,7 @@
       user:
         name: "{{ ansible_user }}"
         groups: mock
-        append: yes
+        append: true
       become: true
 
     - name: run DLRN

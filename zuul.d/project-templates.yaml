@@ -596,7 +596,7 @@
     name: ovb-browbeat
     openstack-check:
       jobs:
-      - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053:
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053:
             irrelevant-files:
               - ^.*\.md$
               - ^.*\.rst$
@@ -697,17 +697,17 @@
 
 - project-template:
     name: tripleo-buildimages-jobs
-    description:
-        3rd party image building job on RHEL
+    description: |
+      3rd party image building job on RHEL
     openstack-check:
-        jobs:
-          - tripleo-rhel-8-buildimage-overcloud-full
-          - tripleo-rhel-8-buildimage-ironic-python-agent
+      jobs:
+        - tripleo-rhel-8-buildimage-overcloud-full
+        - tripleo-rhel-8-buildimage-ironic-python-agent
 
 - project-template:
     name: podman-jobs
-    description:
-        3rd party job to gate podman
+    description: |
+      3rd party job to gate podman
     github-check:
       jobs:
         - tripleo-podman-integration-master

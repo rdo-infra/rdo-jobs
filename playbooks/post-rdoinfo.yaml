@@ -46,7 +46,7 @@
       copy:
         src: "{{ ansible_user_dir  }}/workspace/logs/role-vars.yaml"
         dest: "{{ ansible_user_dir  }}/role-vars.yaml"
-        remote_src: yes
+        remote_src: true
       when: role_variables_path.stat.exists
 
     - name: Build containers post tasks
