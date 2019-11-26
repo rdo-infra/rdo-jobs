@@ -1,0 +1,7 @@
+---
+- hosts: all
+  tasks:
+    - name: set_fact for add_repos
+      set_fact:
+          add_repos: "{{ add_repos|default([]) }}" + "{{ job.add_repos }}"
+
