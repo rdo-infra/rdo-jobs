@@ -130,24 +130,6 @@
     nodeset: upstream-centos-7-2-node
 
 - job:
-    name: legacy-DLRN-rpmbuild-fedora
-    parent: legacy-base
-    run: playbooks/legacy/DLRN-rpmbuild-fedora/run.yaml
-    post-run: playbooks/legacy/DLRN-rpmbuild-fedora/post.yaml
-    voting: false
-    branches: ^(master)|(rpm-master)$
-    nodeset: rdo-fedora-28
-    required-projects:
-      - rdoinfo
-      - DLRN
-
-- job:
-    name: legacy-DLRN-rpmbuild-fedora-pinned
-    parent: legacy-DLRN-rpmbuild-fedora
-    vars:
-      tag: ussuri-uc
-
-- job:
     name: puppet-openstack-base
     pre-run: playbooks/legacy/puppet-openstack-integration/prepare-node-common.yaml
     parent: legacy-base
