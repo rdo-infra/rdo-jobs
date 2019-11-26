@@ -5,7 +5,7 @@
   tasks:
     - name: Run pre-quickstart role
       import_role:
-         name: common
+        name: common
 
     - name: check for correct import
       debug:
@@ -102,7 +102,7 @@
         - name: Set repo facts
           set_fact:
             delorean_repos: "http://172.17.0.1/delorean.repo,http://172.17.0.1/delorean-{{ rdoinfo_release }}-testing.repo"
-          # To use packages included in the gating repo in build-containers role
+        # To use packages included in the gating repo in build-containers role
         - name: install temp-buildys repo
           become: true
           get_url:
@@ -136,7 +136,7 @@
 
     - name: Run quickstart
       include_role:
-         name: run-test
+        name: run-test
       vars:
         release: "{{ rdoinfo_release }}"
         run_test_role_vars: "{{ role_vars | combine(optional_role_vars) }}"

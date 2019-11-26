@@ -30,5 +30,5 @@
         ZUUL_PROJECT: "{{ zuul.project.name }}"
         ZUUL_BRANCH: "{{ zuul.branch }}"
         ZUUL_PIPELINE: "{{ zuul.pipeline }}"
-        ZUUL_CHANGES: "{% set comma = joiner('^') %} {% for chg in zuul['items'] %}{{ comma() }}{{ chg.project.name }}:{{ chg.branch }}:{{ chg.change_url }}{% endfor %}" # noqa 204
+        ZUUL_CHANGES: "{% set comma = joiner('^') %} {% for chg in zuul['items'] %}{{ comma() }}{{ chg.project.name }}:{{ chg.branch }}:{{ chg.change_url }}{% endfor %}"  # noqa 204
         LANG: 'en_US.UTF-8'

@@ -14,7 +14,7 @@
           - python2-devel
           - python3-devel
         state: present
-      become: yes
+      become: true
 
     - shell:
         cmd: |

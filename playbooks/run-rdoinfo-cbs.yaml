@@ -3,7 +3,7 @@
   tasks:
     - name: Run pre-quickstart role
       import_role:
-         name: common
+        name: common
 
     - name: check for correct import
       debug:
@@ -111,7 +111,7 @@
           vars:
             buildcontainers_rpm_setup_config: "{{ delorean_repos }},{{ extra_repo_url | default('') }}"
 
-    - name: get current hash # noqa 303
+    - name: get current hash  # noqa 303
       shell: |
         set -eo pipefail;
         curl --silent https://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/current/delorean.repo -S 2>>~/dlrn_repo_curl_errors.log \
@@ -121,7 +121,7 @@
 
     - name: Run quickstart
       include_role:
-         name: run-test
+        name: run-test
       vars:
         release: "{{ rdoinfo_release }}"
         run_test_role_vars:
