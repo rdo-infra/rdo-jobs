@@ -520,3 +520,25 @@
       featureset_override: *scenario004_podman
     nodeset: single-rhel-8-node
     branches: ^master$
+
+# Component promotion jobs
+- job:
+    name: periodic-tripleo-ci-centos-7-standalone-component-master
+    parent: periodic-tripleo-ci-centos-7-standalone-master
+    abstract: true
+    vars:
+      component: component
+      dlrn_server_url: "trunk-staging.rdoproject.org"
+      add_repos:
+        - type: generic
+          reponame: "{{ component }}"
+          filename: "{{ component }}-component.repo"
+          priority: 1
+          baseurl: "https://{{ dlrn_server_url }}/centos7/component/{{ component }}/consistent"
+          update_container: true
+
+- job:
+    name: periodic-tripleo-ci-centos-7-standalone-compute-master
+    parent: periodic-tripleo-ci-centos-7-standalone-component-master
+    vars:
+      component: compute
