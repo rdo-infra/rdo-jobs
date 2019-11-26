@@ -11,6 +11,19 @@
       - name: container
         label: runc-fedora-29
 
+# Pods nodesets (preffered than old runc ones)
+- nodeset:
+    name: pod-centos-7
+    nodes:
+      - name: test
+        label: pod-centos-7
+
+- nodeset:
+    name: pod-centos-8
+    nodes:
+      - name: test
+        label: pod-centos-8
+
 # Dib centos
 - nodeset:
     name: dib-centos-7

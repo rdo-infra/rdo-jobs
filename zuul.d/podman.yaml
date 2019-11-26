@@ -6,13 +6,13 @@
     pre-run: playbooks/tripleo-podman-integration/pre.yaml
     run: playbooks/tripleo-podman-integration/run.yaml
     post-run: playbooks/tripleo-podman-integration/post.yaml
-    nodeset:
-      nodes:
-        - name: test
-          label: rdo-centos-7
+    nodeset: pod-centos-7
+    #  nodes:
+    #    - name: test
+    #      label: rdo-centos-7
 
 - job:
-    name: tripleo-podman-integration-master
+    name: tripleo-podman-integration-master-centos-7
     parent: tripleo-podman-integration
     # branches makes this job run only for master PR
     branches: master
@@ -20,3 +20,11 @@
       # without options, the branch of the PR is used for the required-projects
       - name: opendev.org/openstack/tripleo-heat-templates
       - name: github.com/containers/libpod
+
+- job:
+    name: tripleo-podman-integration-master-centos-8
+    parent: tripleo-podman-integration-master-centos-7
+    nodeset: pod-centos-8
+    #  nodes:
+    #    - name: test
+    #      label: upstream-centos-8
