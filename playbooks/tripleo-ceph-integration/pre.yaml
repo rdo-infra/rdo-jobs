@@ -1,6 +1,13 @@
 ---
 - hosts: all
   tasks:
+
+    - name: enable EPEL
+      # mock comes from epel on centos-8
+      yum_repository:
+        name: epel
+        enabled: true
+
     - name: Install pre-requisites
       package:
         name:
