@@ -1,15 +1,14 @@
 ---
 - hosts: all
   tasks:
-    - name: Install pre-requisites
-      package:
-        name:
-          - createrepo
-          - mock
-          - redhat-rpm-config
-          - rpmdevtools
-        state: present
+    - name: enable rhui repository
       become: true
+      when:
+        - ansible_distribution_major_version >= "8"
+        - ansible_distribution == "RedHat"
+      command: |
+        dnf config-manager --enable rhui-*
+      changed_when: true
 
     - name: Add zuul user to mock group
       become: true

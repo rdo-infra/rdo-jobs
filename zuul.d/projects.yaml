@@ -44,7 +44,7 @@
             <<: *ceph
             # this refers to rdo-jobs@master
             branches: master
-
+        - tripleo-podman-integration-master-rhel-8: *podman
     gate:
       jobs:
         - tox-docs: *cfg
