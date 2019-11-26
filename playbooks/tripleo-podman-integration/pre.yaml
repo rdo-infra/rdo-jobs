@@ -1,6 +1,15 @@
 ---
 - hosts: all
   tasks:
+    - name: enable rhui repository
+      become: true
+      when:
+        - ansible_distribution_major_version >= "8"
+        - ansible_distribution == "RedHat"
+      command: |
+        dnf config-manager --enable rhui-*
+      changed_when: true
+
     - name: Install pre-requisites
       package:
         name:
