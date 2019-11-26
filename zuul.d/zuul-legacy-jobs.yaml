@@ -1,41 +1,4 @@
 - job:
-    name: legacy-DLRN-rpmbuild
-    parent: legacy-base
-    run: playbooks/legacy/DLRN-rpmbuild/run.yaml
-    post-run: playbooks/legacy/DLRN-rpmbuild/post.yaml
-    branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-    required-projects:
-      - DLRN
-      - rdoinfo
-
-- job:
-    name: legacy-DLRN-rpmbuild-pinned
-    parent: legacy-DLRN-rpmbuild
-    vars:
-      tag: 'ussuri-uc'
-
-- job:
-    name: legacy-DLRN-rpmbuild-rpm-packaging-centos
-    parent: legacy-base
-    timeout: 5400
-    run: playbooks/legacy/DLRN-rpmbuild-rpm-packaging-centos/run.yaml
-    post-run: playbooks/legacy/DLRN-rpmbuild-rpm-packaging-centos/post.yaml
-    required-projects:
-      - openstack/rpm-packaging
-      - DLRN
-
-- job:
-    name: legacy-DLRN-rpmbuild-rpm-packaging-fedora
-    parent: legacy-base
-    timeout: 10800
-    run: playbooks/legacy/DLRN-rpmbuild-rpm-packaging-fedora/run.yaml
-    post-run: playbooks/legacy/DLRN-rpmbuild-rpm-packaging-fedora/post.yaml
-    nodeset: rdo-fedora-28
-    required-projects:
-      - openstack/rpm-packaging
-      - DLRN
-
-- job:
     name: legacy-centos-opstools-doc
     parent: legacy-base
     run: playbooks/legacy/centos-opstools-doc/run.yaml
@@ -236,22 +199,6 @@
     post-run: playbooks/legacy/fedora-stable-repoclosure/post.yaml
     nodeset: rdo-fedora-28
 
-
-- job:
-    name: legacy-puppet-lint
-    parent: legacy-base
-    run: playbooks/legacy/puppet-lint/run.yaml
-
-- job:
-    name: legacy-puppet-spec
-    parent: legacy-base
-    run: playbooks/legacy/puppet-spec/run.yaml
-
-- job:
-    name: legacy-puppet-syntax
-    parent: legacy-base
-    run: playbooks/legacy/puppet-syntax/run.yaml
-
 - job:
     name: legacy-rdo-infra-playbooks-integration-base
     parent: legacy-base
@@ -318,21 +265,6 @@
     parent: legacy-base
     run: playbooks/legacy/rdo-registry-integration/run.yaml
     post-run: playbooks/legacy/rdo-registry-integration/post.yaml
-
-- job:
-    name: legacy-rdoinfo-DLRN-check
-    parent: legacy-base
-    run: playbooks/legacy/rdoinfo-DLRN-check/run.yaml
-    post-run: playbooks/legacy/rdoinfo-DLRN-check/post.yaml
-    timeout: 10800
-
-- job:
-    name: legacy-rpmlint
-    parent: legacy-base
-    run: playbooks/legacy/rpmlint/run.yaml
-    dependencies:
-      - DLRN-rpmbuild
-    branches: ^rpm-master$
 
 - job:
     name: legacy-tox-validate
