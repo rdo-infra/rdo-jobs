@@ -44,6 +44,7 @@
             <<: *ceph
             # this refers to rdo-jobs@master
             branches: master
+        - periodic-tripleo-ci-centos-7-standalone-compute-master
 
     gate:
       jobs:
