@@ -9,10 +9,10 @@
     nodeset:
       nodes:
         - name: test
-          label: rdo-centos-7
+          label: upstream-centos-8
 
 - job:
-    name: tripleo-podman-integration-master
+    name: tripleo-podman-integration-master-centos-8
     parent: tripleo-podman-integration
     # branches makes this job run only for master PR
     branches: master
@@ -20,3 +20,11 @@
       # without options, the branch of the PR is used for the required-projects
       - name: opendev.org/openstack/tripleo-heat-templates
       - name: github.com/containers/libpod
+
+- job:
+    name: tripleo-podman-integration-master-rhel-8
+    parent: tripleo-podman-integration-master-centos-8
+    nodeset:
+      nodes:
+        - name: test
+          label: upstream-rhel-8
