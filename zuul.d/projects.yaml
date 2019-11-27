@@ -31,6 +31,17 @@
             files:
               - playbooks/integration/registry-login.yaml
               - zuul.d/integration.yaml
+        - tripleo-ceph-integration-master: &ceph
+            files:
+              - ./playbooks/tripleo-ceph-integration/.*
+              - zuul.d/ceph-ansible.yaml
+              - ./playbooks/run-rpm-build.yaml
+        - tripleo-ceph-integration-rhel-8-scenario001-standalone-train:
+            <<: *ceph
+            branches: master  # this refers to rdo-jobs@master
+        - tripleo-ceph-integration-rhel-8-scenario004-standalone-train:
+            <<: *ceph
+            branches: master  # this refers to rdo-jobs@master
 
     gate:
       jobs:
