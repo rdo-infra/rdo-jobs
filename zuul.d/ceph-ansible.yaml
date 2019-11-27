@@ -54,6 +54,18 @@
         override-checkout: stable/queens
       - name: github.com/ceph/ceph-ansible
 
+- job:
+    name: tripleo-ceph-integration-train
+    parent: tripleo-ceph-integration
+    branches: stable-4.0
+    required-projects:
+      - name: opendev.org/openstack/tripleo-heat-templates
+        override-checkout: stable/train
+      - name: github.com/ceph/ceph-ansible
+    vars:
+      dist: "el8"
+      mock_config: "epel-8-x86_64"
+
 # RHEL 8 Jobs
 # TODO(arxcruz): remove this job after this patch get merged
 - job:
@@ -140,4 +152,47 @@
         tempest_test_whitelist:
           - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps.test_network_basic_ops'
           - 'manila_tempest_tests.tests.api.test_shares.SharesCephFSTest.test_create_get_delete_share'
+        use_os_tempest: false
+
+- job:
+    name: tripleo-ceph-integration-rhel-8-scenario001-standalone-train
+    parent: tripleo-ci-rhel-8-standalone-rdo
+    run: playbooks/run-rpm-build.yaml
+    branches: ^stable-4.0$
+    required-projects:
+      # without options, the branch of the PR is used for the required-projects
+      - name: opendev.org/openstack/tripleo-heat-templates
+        override-checkout: stable/train
+      - name: github.com/ceph/ceph-ansible
+    vars:
+      featureset: '052'
+      release: train
+      standalone_ceph: true
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario001-standalone.yaml'
+        run_tempest: false
+        use_os_tempest: false
+
+- job:
+    name: tripleo-ceph-integration-rhel-8-scenario004-standalone-train
+    parent: tripleo-ci-rhel-8-standalone-rdo
+    run: playbooks/run-rpm-build.yaml
+    required-projects:
+      # without options, the branch of the PR is used for the required-projects
+      - name: opendev.org/openstack/tripleo-heat-templates
+        override-checkout: stable/train
+      - name: github.com/ceph/ceph-ansible
+    branches: ^stable-4.0$
+    vars:
+      featureset: '052'
+      release: train
+      standalone_ceph: true
+      featureset_override:
+        run_tempest: false
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario004-standalone.yaml'
+          - 'environments/podman.yaml'
         use_os_tempest: false
