@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a19f1e9c_c3e88658",
+        "filename": "playbooks/tripleo-podman-integration/pre.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2019-11-27T09:45:57Z",
+      "side": 1,
+      "message": "The goal for tripleo podman integration was to have a rpm build job running on RHEL-8.\nFor that\n1. We need to enable RHUI repo\n2. There is no need to run make command, Run the following script from https://github.com/containers/libpod/blob/master/contrib/build_rpm.sh\n3. Find the missing packages not available in RHEL-8\n4. for missing packages, open a bug on launchpad/tripleo so that we can add them in RHUI.\n\nI hope it helps.",
+      "range": {
+        "startLine": 5,
+        "startChar": 1,
+        "endLine": 52,
+        "endChar": 25
+      },
+      "revId": "a774963cb414f32e57ee14d8535b1079bf262cde",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
