@@ -31,6 +31,11 @@
             files:
               - playbooks/integration/registry-login.yaml
               - zuul.d/integration.yaml
+        - tripleo-ceph-integration-master:
+            files: &ceph_ansible
+              - ./playbooks/tripleo-ceph-integration/.*
+              - zuul.d/ceph-ansible.yaml
+              - ./playbooks/run-rpm-build.yaml
 
     gate:
       jobs:
