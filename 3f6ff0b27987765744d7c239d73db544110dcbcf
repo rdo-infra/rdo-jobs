@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce948c0b_8e39f837",
+        "filename": "playbooks/reqcheck/run.yaml",
+        "patchSetId": 19
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2019-11-28T14:51:46Z",
+      "side": 1,
+      "message": "Maybe we could just do pip install git+https://softwarefactory-project.io/r/rdopkg ? Actually, it might be better if rdopkg is a required project for the job, so we can use Depends-On in case it is needed.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 14
+      },
+      "revId": "3f6ff0b27987765744d7c239d73db544110dcbcf",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ad651d3_78d5f968",
+        "filename": "playbooks/reqcheck/run.yaml",
+        "patchSetId": 19
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2019-11-28T14:51:46Z",
+      "side": 1,
+      "message": "If we do this, we are not going to get the changes. We should go to the zuul-cloned directory and check there.",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 43
+      },
+      "revId": "3f6ff0b27987765744d7c239d73db544110dcbcf",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
