@@ -431,7 +431,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn/post.yaml
-    timeout: 5400
+    timeout: 10800
     vars:
       openstack_release: master
       scenario: scenario001
