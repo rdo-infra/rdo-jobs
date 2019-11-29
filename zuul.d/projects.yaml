@@ -2,38 +2,52 @@
     name: rdo-jobs
     check:
       jobs:
-        - tox-docs: &cfg
-            # 1 using fedora to get python3, can remove once we have centos-8
-            # 2 disabled container-fedora as it lacks 'sudo', breaking bindep
-            nodeset: rdo-fedora-28
+        - periodic-tripleo-rhel-8-master-containers-build-push:
+            dependencies:
+              - periodic-tripleo-centos-7-master-promote-consistent-to-tripleo-ci-testing
             vars:
-              # needed to avoid accidental call of /usr/bin/tox
-              tox_executable: "{{ ansible_python.executable }} -m tox"
-            pre-run:
-              - playbooks/pre-tox.yaml
-        - tox-linters: *cfg
-        - rdo-tox-molecule: &molecule
-            files:
-              - ^requirements.txt$
-              - ^roles/.*
-              - ^setup.*$
-              - ^test-requirements.txt$
-              - ^tox.ini$
-              - .*molecule.*
-        - periodic-tripleo-ci-centos-7-standalone-master:
-            files:
-              - zuul.d/standalone-jobs.yaml
-        - registry-login-rdo-integration-centos-7:
-            files:
-              - playbooks/integration/registry-login.yaml
-              - zuul.d/integration.yaml
-        - registry-login-rdo-integration-redhat-8:
-            files:
-              - playbooks/integration/registry-login.yaml
-              - zuul.d/integration.yaml
-
-    gate:
-      jobs:
-        - tox-docs: *cfg
-        - tox-linters: *cfg
-        - rdo-tox-molecule: *molecule
+              force_periodic: true
+        - periodic-tripleo-ci-rhel-8-standalone-master:
+            dependencies:
+              - periodic-tripleo-rhel-8-master-containers-build-push
+            vars:
+              force_periodic: true
+        - periodic-tripleo-ci-rhel-8-scenario001-standalone-master:
+            dependencies:
+              - periodic-tripleo-rhel-8-master-containers-build-push
+            vars:
+              force_periodic: true
+        - periodic-tripleo-ci-rhel-8-scenario002-standalone-master:
+            dependencies:
+              - periodic-tripleo-rhel-8-master-containers-build-push
+            vars:
+              force_periodic: true
+        - periodic-tripleo-ci-rhel-8-scenario003-standalone-master:
+            dependencies:
+              - periodic-tripleo-rhel-8-master-containers-build-push
+            vars:
+              force_periodic: true
+        - periodic-tripleo-ci-rhel-8-scenario004-standalone-master:
+            dependencies:
+              - periodic-tripleo-rhel-8-master-containers-build-push
+            vars:
+              force_periodic: true
+        - periodic-tripleo-centos-7-master-promote-consistent-to-tripleo-ci-testing:
+            vars:
+              force_periodic: true
+        - periodic-tripleo-rhel-8-buildimage-overcloud-full-train:
+            dependencies:
+              - periodic-tripleo-centos-7-train-promote-consistent-to-tripleo-ci-testing
+            vars:
+              force_periodic: true
+        - periodic-tripleo-rhel-8-buildimage-ironic-python-agent-train:
+            dependencies:
+              - periodic-tripleo-centos-7-train-promote-consistent-to-tripleo-ci-testing
+            vars:
+              force_periodic: true
+        - periodic-tripleo-ci-rhel-8-ovb-3ctlr_1comp-featureset001-train:
+            dependencies:
+              - periodic-tripleo-rhel-8-buildimage-ironic-python-agent-train
+              - periodic-tripleo-rhel-8-train-containers-build-push
+            vars:
+              force_periodic: true
