@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f0184ffe_8abc16a5",
+        "filename": "zuul.d/ceph-ansible.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 371
+      },
+      "writtenOn": "2019-11-29T08:45:38Z",
+      "side": 1,
+      "message": "The new jobs should be triggered on this repository when we touch this file. This will assure that they work and that we can perform maintenance on them without breaking them.\n\nI did the same for podman integration and jobs were triggered correctly.",
+      "range": {
+        "startLine": 59,
+        "startChar": 9,
+        "endLine": 59,
+        "endChar": 40
+      },
+      "revId": "22a4765004db9184369a6f5e6b1cf6a169036672",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
