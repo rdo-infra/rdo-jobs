@@ -1,0 +1,53 @@
+---
+- hosts: all
+  name: Playbook for reqcheck job
+  tasks:
+
+    - name: Install rdopkg
+      changed_when: true
+      shell:
+        cmd: |
+          set -e
+          # Need to inherit system-site-packages for python-yum
+          virtualenv --system-site-packages {{ ansible_user_dir }}/.venv
+          source {{ ansible_user_dir }}/.venv/bin/activate
+          pushd {{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/rdopkg'].src_dir }}/
+          pip install .
+          popd
+      args:
+        chdir: "{{ ansible_user_dir }}"
+
+    - name: Fetch rdopkg compatible name for project {{ zuul.project.name }}
+      changed_when: true
+      shell:
+        cmd: |
+          set -e
+          source {{ ansible_user_dir }}/.venv/bin/activate
+          rdopkg findpkg {{ zuul.project.name }} | sed -n "/^name/ s/name. \(.*\)/\1/p"
+      register: findpkg
+      args:
+        chdir: "{{ ansible_user_dir }}"
+
+    - name: Get upstream project
+      changed_when: true
+      shell:
+        cmd: |
+          set -e
+          rdopkg info {{ findpkg.stdout }} | sed -n "/^upstream/ s/upstream. \(.*\)/\1/p"
+      register: upstream
+      args:
+        chdir: "{{ ansible_user_dir }}"
+
+    - name: Clone and reqcheck project {{ zuul.project.name }} with rdopkg
+      changed_when: true
+      shell:
+        cmd: |
+          set -e
+          source {{ ansible_user_dir }}/.venv/bin/activate
+          pushd {{ ansible_user_dir }}/{{ zuul.project.src_dir }}
+          git remote add upstream {{ upstream.stdout }}
+          git fetch upstream
+          rdopkg reqcheck --strict
+          popd
+      args:
+        chdir: "{{ ansible_user_dir }}"
