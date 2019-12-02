@@ -24,6 +24,7 @@
 - job:
     name: tripleo-ceph-integration-master
     parent: tripleo-ceph-integration
+    branches: ^(stable-5.0|master).*$
     required-projects:
       # without options, the branch of the PR is used for the required-projects
       - name: opendev.org/openstack/tripleo-heat-templates
@@ -100,6 +101,7 @@
 - job:
     name: tripleo-ceph-integration-rhel-8-scenario001-standalone
     parent: tripleo-ci-rhel-8-standalone-rdo
+    branches: ^(stable-5.0|master).*$
     run: playbooks/run-rpm-build.yaml
     required-projects:
       # without options, the branch of the PR is used for the required-projects
@@ -129,6 +131,7 @@
 - job:
     name: tripleo-ceph-integration-rhel-8-scenario004-standalone
     parent: tripleo-ci-rhel-8-standalone-rdo
+    branches: ^(stable-5.0|master).*$
     run: playbooks/run-rpm-build.yaml
     required-projects:
       # without options, the branch of the PR is used for the required-projects
