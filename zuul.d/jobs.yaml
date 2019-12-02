@@ -334,6 +334,7 @@
     timeout: 5400
     run: playbooks/DLRN/rpmbuild-rpm-packaging-centos.yaml
     post-run: playbooks/DLRN/post.yaml
+    nodeset: rdo-centos-7-vexxhost
     required-projects:
       - openstack/rpm-packaging
       - DLRN
@@ -343,7 +344,7 @@
     timeout: 10800
     run: playbooks/DLRN/rpmbuild-rpm-packaging-fedora.yaml
     post-run: playbooks/DLRN/post.yaml
-    nodeset: rdo-fedora-28
+    nodeset: rdo-fedora-28-vexxhost
     required-projects:
       - openstack/rpm-packaging
       - DLRN
