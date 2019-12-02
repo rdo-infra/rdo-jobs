@@ -36,14 +36,14 @@
               - ./playbooks/tripleo-ceph-integration/.*
               - zuul.d/ceph-ansible.yaml
               - ./playbooks/run-rpm-build.yaml
-        - tripleo-ceph-integration-rhel-8-scenario001-standalone-train:
+        - tripleo-ceph-integration-rhel-8-scenario001-standalone:
             <<: *ceph
-            # this refers to rdo-jobs@master
-            branches: master
-        - tripleo-ceph-integration-rhel-8-scenario004-standalone-train:
+            dependencies:
+              - tripleo-ceph-integration-master
+        - tripleo-ceph-integration-rhel-8-scenario004-standalone:
             <<: *ceph
-            # this refers to rdo-jobs@master
-            branches: master
+            dependencies:
+              - tripleo-ceph-integration-master
 
     gate:
       jobs:
