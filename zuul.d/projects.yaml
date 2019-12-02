@@ -38,12 +38,8 @@
               - ./playbooks/run-rpm-build.yaml
         - tripleo-ceph-integration-rhel-8-scenario001-standalone-train:
             <<: *ceph
-            # this refers to rdo-jobs@master
-            branches: master
         - tripleo-ceph-integration-rhel-8-scenario004-standalone-train:
             <<: *ceph
-            # this refers to rdo-jobs@master
-            branches: master
 
     gate:
       jobs:
