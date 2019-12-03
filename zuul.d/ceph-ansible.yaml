@@ -196,3 +196,17 @@
           - 'ci/environments/scenario004-standalone.yaml'
           - 'environments/podman.yaml'
         use_os_tempest: false
+
+# Periodic ceph-ansible jobs
+- job:
+    name: periodic-tripleo-ceph-ansible-master
+    parent: tripleo-ceph-ansible-master
+
+- job:
+    name: periodic-tripleo-ceph-integration-rhel-8-scenario001-standalone
+    parent: tripleo-ceph-integration-rhel-8-scenario001-standalone
+
+- job:
+    name: periodic-tripleo-ceph-integration-rhel-8-scenario004-standalone
+    parent: tripleo-ceph-integration-rhel-8-scenario004-standalone
+
