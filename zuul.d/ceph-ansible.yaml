@@ -135,3 +135,34 @@
       release: train
       standalone_ceph: true
       featureset_override: *scenario004_podman
+
+# Periodic jobs
+
+- job:
+    name: periodic-tripleo-ceph-integration-master
+    parent: tripleo-ceph-integration-master
+
+- job:
+    name: tripleo-ceph-integration-rhel-8-scenario001-standalone
+    parent: periodic-tripleo-ci-rhel-8-standalone-rdo
+    run: playbooks/run-rpm-build.yaml
+    required-projects:
+      # without options, the branch of the PR is used for the required-projects
+      - name: opendev.org/openstack/tripleo-heat-templates
+      - name: github.com/ceph/ceph-ansible
+    vars:
+      featureset: '052'
+      release: master
+      standalone_ceph: true
+      featureset_override: *scenario001_podman
+
+- job:
+    name: tripleo-ceph-integration-rhel-8-scenario004-standalone
+    parent: periodic-tripleo-ci-rhel-8-standalone-rdo
+    run: playbooks/run-rpm-build.yaml
+    required-projects:
+      # without options, the branch of the PR is used for the required-projects
+      - name: opendev.org/openstack/tripleo-heat-templates
+      - name: github.com/ceph/ceph-ansible
+    vars:
+      featureset_override: *scenario004_podman
