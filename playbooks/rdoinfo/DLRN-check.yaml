@@ -68,6 +68,8 @@
           done <<< "${TAGS_DIFF}"
 
           pushd "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
+          # Create log directory always
+          mkdir -p logs
           ret=0
           if [ -n "${PACKAGES_UPDATED_MASTER}" ]; then
               timeout --signal=SIGKILL 10800  {{ ansible_user_dir }}/rdoinfo-DLRN.sh $CURRENT_MASTER_TAG "${PACKAGES_UPDATED_MASTER}"
