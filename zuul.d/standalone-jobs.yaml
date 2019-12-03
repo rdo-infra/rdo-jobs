@@ -494,6 +494,16 @@
     vars: *standalone_vars
 
 - job:
+    name: periodic-tripleo-ci-rhel-8-standalone-rdo
+    parent: tripleo-ci-base-standalone-periodic
+    nodeset: single-rhel-8-node
+    branches: ^master$
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+    vars: *standalone_vars
+
+- job:
     name: tripleo-ci-rhel-8-scenario001-standalone-rdo
     parent: tripleo-ci-rhel-8-standalone-rdo
     branches: ^master$
