@@ -10,9 +10,6 @@
       nodes:
         - name: test
           label: upstream-centos-8
-    # tempory non-voting until we get all podman changes merged, especially
-    # because zuul does not cherry-pick PR from libpod into rdo-jobs change.
-    voting: false
 
 - job:
     name: podman-package-centos-8
