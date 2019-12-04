@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a2dafa07_b0ff216f",
+        "filename": "playbooks/podman/pre.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 371
+      },
+      "writtenOn": "2019-12-04T19:32:55Z",
+      "side": 1,
+      "message": "In fact, I am not even sure this is needed, I touched the task only because it was failing on fedora node which was\nusing a different user-name. \n\nIt passes on all, so I doubt it need more attention.",
+      "parentUuid": "fa3581d7_1424f418",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 24
+      },
+      "revId": "52589060bc510a5b42e37c2fda16719d4ed68740",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0621494_2c02dd71",
         "filename": "playbooks/podman/run.yaml",
         "patchSetId": 17
@@ -36,6 +60,30 @@
       "writtenOn": "2019-12-04T18:40:06Z",
       "side": 1,
       "message": "why to add zuul user then to mock group?",
+      "range": {
+        "startLine": 7,
+        "startChar": 6,
+        "endLine": 7,
+        "endChar": 18
+      },
+      "revId": "52589060bc510a5b42e37c2fda16719d4ed68740",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ffe8ae2a_06238106",
+        "filename": "playbooks/podman/run.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 371
+      },
+      "writtenOn": "2019-12-04T19:32:55Z",
+      "side": 1,
+      "message": "That is true, probably we can remove mock task in the first place.\n\nThe code inside package-install does a real install with sudo, that is how it was implemented.",
+      "parentUuid": "f0621494_2c02dd71",
       "range": {
         "startLine": 7,
         "startChar": 6,
