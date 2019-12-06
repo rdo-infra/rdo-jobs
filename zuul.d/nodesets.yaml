@@ -167,6 +167,46 @@
           - secondary
 
 - nodeset:
+    name: upstream-centos-7-vexxhost-debug
+    nodes:
+      - name: primary
+        label: upstream-centos-7-vexxhost-debug
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: single-centos-7-node-vexxhost-debug
+    nodes:
+      - name: primary
+        label: upstream-centos-7-vexxhost-debug
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: two-centos-7-nodes-vexxhost-debug
+    nodes:
+      - name: primary
+        label: upstream-centos-7-vexxhost-debug
+      - name: secondary
+        label: upstream-centos-7-vexxhost-debug
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes:
+          - secondary
+      - name: subnodes
+        nodes:
+          - secondary
+- nodeset:
     name: upstream-centos-7
     nodes:
       - name: upstream-centos-7
