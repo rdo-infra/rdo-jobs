@@ -542,3 +542,9 @@
     parent: periodic-tripleo-ci-centos-7-standalone-component-master
     vars:
       component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-7-standalone-keystone-master
+    parent: periodic-tripleo-ci-centos-7-standalone-component-master
+    vars:
+      component: keystone
