@@ -22,6 +22,30 @@
       "revId": "476d22ec561420559c638a5ac952071d7f139b46",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7d147b46_60ff8f2e",
+        "filename": "playbooks/reqcheck/run.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2019-12-09T17:22:11Z",
+      "side": 1,
+      "message": "In the first place I wanted to \"rdopkg clone\" to not have to mimic rdopkg behavior by adding remotes.\nBut at the end, we just need to add upstream remote (no need of gerrit, or patches). Also, it\u0027s time saving, let\u0027s do it. Patch proposed in 28.",
+      "parentUuid": "cc613da5_d06d0b3c",
+      "range": {
+        "startLine": 37,
+        "startChar": 10,
+        "endLine": 41,
+        "endChar": 34
+      },
+      "revId": "476d22ec561420559c638a5ac952071d7f139b46",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
