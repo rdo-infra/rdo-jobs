@@ -528,13 +528,14 @@
     abstract: true
     vars:
       component: component
+      release: master
       dlrn_server_url: "trunk-staging.rdoproject.org"
       add_repos:
         - type: generic
           reponame: "{{ component }}"
           filename: "{{ component }}-component.repo"
           priority: 1
-          baseurl: "https://{{ dlrn_server_url }}/centos7/component/{{ component }}/consistent"
+          baseurl: "https://{{ dlrn_server_url }}/centos7-{{ release }}/component/{{ component }}/tripleo-ci-testing"
           update_container: true
 
 - job:
