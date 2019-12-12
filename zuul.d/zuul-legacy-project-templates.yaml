@@ -253,19 +253,26 @@
               - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
+        - legacy-weirdo-dlrn-master-puppet-scenario001-centos8:
+            # Remove the dependencies attribute below after centos8-master is bootstrapped
+            dependencies: []
         - legacy-weirdo-dlrn-master-puppet-scenario002:
             dependencies:
               - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
+        - legacy-weirdo-dlrn-master-puppet-scenario002-centos8:
+            # Remove the dependencies attribute below after centos8-master is bootstrapped
+            dependencies: []
         - legacy-weirdo-dlrn-master-puppet-scenario004:
             dependencies:
               - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
+        - legacy-weirdo-dlrn-master-puppet-scenario004-centos8:
+            # Remove the dependencies attribute below after centos8-master is bootstrapped
+            dependencies: []
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - DLRN-rpmbuild-fedora:
             branches: ^(master)|(rpm-master)$
             nodeset: rdo-fedora-28
