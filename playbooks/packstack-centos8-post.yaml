@@ -1,0 +1,15 @@
+- hosts: all
+  name: collect logs
+  tasks:
+    - name: Check if logs already exists
+      stat:
+        path: /tmp/logs/diag
+      register: logs
+
+    - name: Collect logs if not already collected
+      shell:
+        cmd: |
+          source /home/zuul/src/opendev.org/x/packstack/tools/copy-logs.sh
+          recover_default_logs
+      become: true
+      when: not logs.stat.exists
