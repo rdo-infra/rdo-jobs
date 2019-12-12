@@ -8,7 +8,7 @@
       shell:
         cmd: |
             BASE="http://{{ mirror_fqdn | default('mirror.centos.org') }}/centos"
-            sed -e "s|^#baseurl=http://mirror.centos.org/centos|baseurl=$BASE|;/^mirrorlist=/d" -i scripts/centos.cfg # noqa 303
+            sed -e "s|^#baseurl=http://mirror.centos.org/centos|baseurl=$BASE|;/^mirrorlist=/d" -i scripts/centos*.cfg # noqa 303
         chdir: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
 
     - name: run_tests.sh
@@ -16,10 +16,18 @@
       shell:
         cmd: |
           export TAG="{{  tag | default('') }}"
-          if [ -z "$TAG" ];then
-          ARGS="centos https://trunk.rdoproject.org/centos7/"
+          export CENTOS_VERS="{{  centos_version | default('centos7') }}"
+          # temporary until centos8-master is bootstrapped
+          if [ ${CENTOS_VERS} = "centos8" ]; then
+             REPO_SERVER="http://38.145.34.66"
           else
-          ARGS="centos https://trunk.rdoproject.org/centos7/ $TAG"
+             REPO_SERVER="https://trunk.rdoproject.org"
+          fi
+          #
+          if [ -z "$TAG" ];then
+          ARGS="centos ${REPO_SERVER}/${CENTOS_VERS}/"
+          else
+          ARGS="centos ${REPO_SERVER}/${CENTOS_VERS}/ $TAG"
           fi
           if [[ "{{ zuul.pipeline }}" =~ "openstack-" ]]; then
               ARGS=""
