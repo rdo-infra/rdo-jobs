@@ -99,6 +99,9 @@
 
 - nodeset:
     name: rdo-fedora-stable
+    description: |
+      Should point to the latest non rawhide release of fedora. It will be
+      changed without warning on new Fedora releases.
     nodes:
       - name: rdo-fedora-stable
         label: rdo-fedora-stable
