@@ -14,6 +14,12 @@
         - meta: end_play
       when: buildset_artifacts_url is not defined
 
+    - set_fact:
+        os_release: "centos-{{ centos_releasever | default('7') }}"
+
+    - set_fact:
+        delorean_repo_base_url: "{{ delorean_repo_base_url | default('https://trunk.rdoproject.org') }}"
+
     - shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
@@ -189,13 +195,13 @@
               version="{{ openstack_release }}"
           fi
 
-          delorean_deps_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/delorean-deps.repo"
+          delorean_deps_url="{{ delorean_repo_base_url }}/{{ os_release }}-{{ openstack_release }}/delorean-deps.repo"
           if [[ "${ZUUL_PIPELINE}" =~ "experimental" ]]; then
-              delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/current/delorean.repo"
+              delorean_url="{{ delorean_repo_base_url }}/{{ os_release }}-{{ openstack_release }}/current/delorean.repo"
           elif [[ "{{ openstack_release }}" == "master" ]]; then
-              delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/puppet-passed-ci/delorean.repo"
+              delorean_url="{{ delorean_repo_base_url }}/{{ os_release }}-{{ openstack_release }}/puppet-passed-ci/delorean.repo"
           else
-              delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/current-passed-ci/delorean.repo"
+              delorean_url="{{ delorean_repo_base_url }}/{{ os_release }}-{{ openstack_release }}/current-passed-ci/delorean.repo"
           fi
 
           cd weirdo
