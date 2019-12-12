@@ -249,6 +249,12 @@
               - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
+        - legacy-weirdo-dlrn-master-puppet-scenario001-c8:
+            dependencies:
+              - DLRN-rpmbuild
+            voting: false
+            branches: ^(rpm-)?master$
+            nodeset: single-centos-8-node
         - legacy-weirdo-dlrn-master-puppet-scenario002:
             dependencies:
               - DLRN-rpmbuild
