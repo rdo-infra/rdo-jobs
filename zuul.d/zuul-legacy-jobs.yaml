@@ -380,6 +380,10 @@
     branches: ^(rpm-)?master$
 
 - job:
+    name: legacy-weirdo-dlrn-master-puppet-scenario001-c8
+    parent: legacy-weirdo-dlrn-master-puppet-scenario001
+
+- job:
     name: legacy-weirdo-dlrn-master-puppet-scenario002
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
