@@ -269,20 +269,26 @@
             branches: (^(?!common)(\w+)-rdo)$
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
+        - legacy-weirdo-dlrn-master-puppet-scenario001-c8:
             dependencies:
               - DLRN-rpmbuild
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario002:
-            dependencies:
-              - DLRN-rpmbuild
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario004:
-            dependencies:
-              - DLRN-rpmbuild
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+            voting: false
+            branches: ^(rpm-)?master$
+            nodeset: single-centos-8-node
+            #- legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
+            #    dependencies:
+            #      - DLRN-rpmbuild
+            #- legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
+            #    dependencies:
+            #      - DLRN-rpmbuild
+            #- legacy-experimental-weirdo-dlrn-master-puppet-scenario002:
+            #    dependencies:
+            #      - DLRN-rpmbuild
+            #- legacy-experimental-weirdo-dlrn-master-puppet-scenario004:
+            #    dependencies:
+            #      - DLRN-rpmbuild
+            #- DLRN-rpmbuild:
+            #    branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
         - DLRN-rpmbuild:
