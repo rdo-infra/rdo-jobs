@@ -235,43 +235,59 @@
     name: weirdo-dlrn-master-glance
     check:
       jobs:
-        - rdopkg-reqcheck:
-            voting: false
-            branches: ^rpm-master$
-        - rpmlint:
-            dependencies:
-              - DLRN-rpmbuild
-            branches: ^rpm-master$
-        - DLRN-build-tripleo
-        - legacy-weirdo-dlrn-master-packstack-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
-        - legacy-weirdo-dlrn-master-puppet-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
-        - legacy-weirdo-dlrn-master-puppet-scenario002:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
-        - legacy-weirdo-dlrn-master-puppet-scenario004:
-            dependencies:
-              - DLRN-rpmbuild
+        #- rdopkg-reqcheck:
+        #    voting: false
+        #    branches: ^rpm-master$
+        #- rpmlint:
+        #    dependencies:
+        #      - DLRN-rpmbuild
+        #    branches: ^rpm-master$
+        #- DLRN-build-tripleo
+        #- legacy-weirdo-dlrn-master-packstack-scenario001:
+        #    dependencies:
+        #      - DLRN-rpmbuild
+        #    voting: false
+        #    branches: ^(rpm-)?master$
+        #- legacy-weirdo-dlrn-master-puppet-scenario001:
+        #    dependencies:
+        #      - DLRN-rpmbuild
+        #    voting: false
+        #    branches: ^(rpm-)?master$
+        - legacy-weirdo-dlrn-master-puppet-scenario001-c8:
+            # Uncomment dependencies below after centos8-master is bootstrapped
+            dependencies: []
+            #  - DLRN-rpmbuild-centos8
             voting: false
             branches: ^(rpm-)?master$
-        - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-        - DLRN-rpmbuild-fedora:
-            branches: ^(master)|(rpm-master)$
-            nodeset: rdo-fedora-28
+            #- legacy-weirdo-dlrn-master-puppet-scenario002:
+            #    dependencies:
+            #      - DLRN-rpmbuild
+            #    voting: false
+            #    branches: ^(rpm-)?master$
+        - legacy-weirdo-dlrn-master-puppet-scenario002-c8:
+            # Uncomment dependencies below after centos8-master is bootstrapped
+            dependencies: []
+            #  - DLRN-rpmbuild-centos8
             voting: false
-        - distgit-cbs-validate:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(rpm-)?master$
+            #- legacy-weirdo-dlrn-master-puppet-scenario004:
+            #    dependencies:
+            #      - DLRN-rpmbuild
+            #    voting: false
+            #    branches: ^(rpm-)?master$
+        - legacy-weirdo-dlrn-master-puppet-scenario004-c8:
+            # Uncomment dependencies below after centos8-master is bootstrapped
+            dependencies: []
+            #  - DLRN-rpmbuild-centos8
+            voting: false
+            branches: ^(rpm-)?master$
+            #- DLRN-rpmbuild-centos8
+            #- DLRN-rpmbuild-fedora:
+            #    branches: ^(master)|(rpm-master)$
+            #    nodeset: rdo-fedora-28
+            #    voting: false
+            #- distgit-cbs-validate:
+            #    branches: (^(?!common)(\w+)-rdo)$
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
