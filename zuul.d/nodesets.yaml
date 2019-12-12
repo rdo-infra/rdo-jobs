@@ -97,6 +97,8 @@
       - name: primary
         label: cloud-fedora-30
 
+# Should point to the latest non rawhide release of Fedora. It will be changed
+# without warning on new Fedora releases as soon we can build and boot a node.
 - nodeset:
     name: rdo-fedora-stable
     nodes:
