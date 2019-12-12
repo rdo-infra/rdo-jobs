@@ -380,6 +380,14 @@
     branches: ^(rpm-)?master$
 
 - job:
+    name: legacy-weirdo-dlrn-master-puppet-scenario001-c8
+    parent: legacy-weirdo-dlrn-master-puppet-scenario001
+    nodeset:
+      nodes:
+        - name: centos8
+          label: upstream-centos-8
+
+- job:
     name: legacy-weirdo-dlrn-master-puppet-scenario002
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
@@ -399,6 +407,14 @@
       - DLRN-rpmbuild
     voting: false
     branches: ^(rpm-)?master$
+
+- job:
+    name: legacy-weirdo-dlrn-master-puppet-scenario002-c8
+    parent: legacy-weirdo-dlrn-master-puppet-scenario002
+    nodeset:
+      nodes:
+        - name: centos8
+          label: upstream-centos-8
 
 - job:
     name: legacy-weirdo-dlrn-master-puppet-scenario003
@@ -422,6 +438,14 @@
     branches: ^(rpm-)?master$
 
 - job:
+    name: legacy-weirdo-dlrn-master-puppet-scenario003-c8
+    parent: legacy-weirdo-dlrn-master-puppet-scenario003
+    nodeset:
+      nodes:
+        - name: centos8
+          label: upstream-centos-8
+
+- job:
     name: legacy-weirdo-dlrn-master-puppet-scenario004
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
@@ -441,6 +465,14 @@
       - DLRN-rpmbuild
     voting: false
     branches: ^(rpm-)?master$
+
+- job:
+    name: legacy-weirdo-dlrn-master-puppet-scenario004-c8
+    parent: legacy-weirdo-dlrn-master-puppet-scenario004
+    nodeset:
+      nodes:
+        - name: centos8
+          label: upstream-centos-8
 
 - job:
     name: legacy-weirdo-docs
