@@ -29,6 +29,8 @@
               - DLRN-rpmbuild
             branches: ^rpm-master$
         - DLRN-build-tripleo
+        - DLRN-rpmbuild-centos8:
+            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - DLRN-rpmbuild-fedora:

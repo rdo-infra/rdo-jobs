@@ -1,4 +1,12 @@
 ---
+- name: Enable epel in CentOS8 systems (for mock installation)
+  shell:
+    cmd: |
+      yum-config-manager --enable --save epel
+  become: true
+  when:
+    ansible_distribution == "CentOS" and ansible_distribution_major_version|int >= 8
+
 - name: Ensure bindep.txt dependencies are installed
   include_role:
     name: bindep
