@@ -371,6 +371,28 @@
       - DLRN
 
 - job:
+    name: DLRN-rpmbuild-centos8
+    parent: DLRN-rpmbuild
+    # Make it voting when it's stable.
+    voting: false
+    # Add rpm-master after centos8-master is bootstrapped
+    branches: ^(master)|(train-rdo)$
+    vars:
+      centos_version: 'centos8'
+    nodeset:
+      nodes:
+        - name: centos8
+          # replace by rdo-centos-8 after https://softwarefactory-project.io/r/#/c/17205/
+          label: upstream-centos-8-rdocloud
+
+- job:
+    name: DLRN-rpmbuild-centos8-pinned
+    parent: DLRN-rpmbuild-centos8
+    vars:
+      tag: 'ussuri-uc'
+      centos_version: 'centos8'
+
+- job:
     name: DLRN-rpmbuild-fedora-pinned
     parent: DLRN-rpmbuild-fedora
     vars:
