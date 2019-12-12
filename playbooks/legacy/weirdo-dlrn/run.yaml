@@ -14,6 +14,12 @@
         - meta: end_play
       when: buildset_artifacts_url is not defined
 
+    - set_fact:
+        os_releasever: "{{ ansible_distribution_major_version }}"
+
+    - set_fact:
+        os_release: "centos{{ os_releasever }}"
+
     - shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
@@ -137,6 +143,8 @@
           EOF"
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
+      # Remove the condition below after centos8-master is bootstrapped
+      when: false
 
     - shell:
         cmd: |
@@ -189,19 +197,23 @@
               version="{{ openstack_release }}"
           fi
 
-          delorean_deps_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/delorean-deps.repo"
-          if [[ "${ZUUL_PIPELINE}" =~ "experimental" ]]; then
-              delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/current/delorean.repo"
+          delorean_deps_url="https://trunk.rdoproject.org/{{ os_release }}-{{ openstack_release }}/delorean-deps.repo"
+          if [[ "{{ os_release }}" == "centos8" ]]; then
+              # Temporary repositories
+              delorean_deps_url="http://38.145.34.66/centos8-master/delorean-deps.repo"
+              delorean_url="http://38.145.34.66/centos8-master/current/delorean.repo"
+          elif [[ "${ZUUL_PIPELINE}" =~ "experimental" ]]; then
+              delorean_url="https://trunk.rdoproject.org/{{ os_release }}-{{ openstack_release }}/current/delorean.repo"
           elif [[ "{{ openstack_release }}" == "master" ]]; then
-              delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/puppet-passed-ci/delorean.repo"
+              delorean_url="https://trunk.rdoproject.org/{{ os_release }}-{{ openstack_release }}/puppet-passed-ci/delorean.repo"
           else
-              delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/current-passed-ci/delorean.repo"
+              delorean_url="https://trunk.rdoproject.org/{{ os_release }}-{{ openstack_release }}/current-passed-ci/delorean.repo"
           fi
 
           cd weirdo
           # Prepare Ansible inventory to use localhost
           cat <<EOF >hosts
-          localhost ansible_connection=local
+          localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python{{ '3' if os_releasever|int >= 8 else '2' }}
           [openstack_nodes]
           localhost log_destination=/var/log/weirdo
           EOF
