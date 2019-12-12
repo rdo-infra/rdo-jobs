@@ -1,0 +1,68 @@
+- job:
+    name: packstack-base
+    parent: base
+    timeout: 7200
+    post-run: playbooks/upload-logs.yaml
+    irrelevant-files:
+      - ^docs/.*$
+      - ^releasenotes/.*$
+    required-projects:
+      - openstack/packstack
+      - openstack/puppet-aodh
+      - openstack/puppet-ceilometer
+      - openstack/puppet-cinder
+      - openstack/puppet-glance
+      - openstack/puppet-gnocchi
+      - openstack/puppet-heat
+      - openstack/puppet-horizon
+      - openstack/puppet-ironic
+      - openstack/puppet-keystone
+      - openstack/puppet-manila
+      - openstack/puppet-neutron
+      - openstack/puppet-nova
+      - openstack/puppet-openstack_extras
+      - openstack/puppet-openstacklib
+      - openstack/puppet-oslo
+      - openstack/puppet-ovn
+      - openstack/puppet-panko
+      - openstack/puppet-placement
+      - openstack/puppet-sahara
+      - openstack/puppet-swift
+      - openstack/puppet-tempest
+      - openstack/puppet-trove
+      - openstack/puppet-vswitch
+
+- job:
+    name: packstack-centos8
+    parent: packstack-base
+    vars:
+      delorean: "http://38.145.34.66/test-el8/delorean.repo"
+      delorean_deps: "http://38.145.34.66/test-el8/delorean-deps.repo"
+      selinux_enforcing: "false"
+    roles:
+      - zuul: opendev.org/openstack/packstack
+    pre-run: playbooks/packstack-centos8-pre.yaml
+    post-run: playbooks/packstack-centos8-post.yaml
+    nodeset:
+      nodes:
+        - name: centos8
+          label: upstream-centos-8
+    run: playbooks/packstack-integration-tempest.yaml
+
+- job:
+    name: packstack-centos8-integration-scenario001
+    parent: packstack-centos8
+    vars:
+      scenario: scenario001
+
+- job:
+    name: packstack-centos8-integration-scenario002
+    parent: packstack-centos8
+    vars:
+      scenario: scenario002
+
+- job:
+    name: packstack-centos8-integration-scenario003
+    parent: packstack-centos8
+    vars:
+      scenario: scenario003
