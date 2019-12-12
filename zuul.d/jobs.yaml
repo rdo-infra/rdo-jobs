@@ -371,6 +371,29 @@
       - DLRN
 
 - job:
+    name: DLRN-rpmbuild-centos8
+    run: playbooks/DLRN/rpmbuild-centos8.yaml
+    post-run: playbooks/DLRN/post.yaml
+    # Make it voting when it's stable.
+    voting: false
+    # if we merge before master boostrap, remove rpm-master branch
+    branches: ^(master)|(train-rdo)|(rpm-master)$
+    nodeset:
+      nodes:
+        - name: centos8
+          # replace by rdo-centos-8 after https://softwarefactory-project.io/r/#/c/17205/
+          label: upstream-centos-8-rdocloud
+    required-projects:
+      - rdoinfo
+      - DLRN
+
+- job:
+    name: DLRN-rpmbuild-centos8-pinned
+    parent: DLRN-rpmbuild-centos8
+    vars:
+      tag: 'ussuri-uc'
+
+- job:
     name: DLRN-rpmbuild-fedora-pinned
     parent: DLRN-rpmbuild-fedora
     vars:
