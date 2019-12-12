@@ -380,6 +380,17 @@
     branches: ^(rpm-)?master$
 
 - job:
+    name: legacy-weirdo-dlrn-master-puppet-scenario001-centos8
+    parent: legacy-weirdo-dlrn-master-puppet-scenario001
+    dependencies:
+      - DLRN-rpmbuild-centos8
+    nodeset:
+      nodes:
+        - name: centos8
+          # replace by rdo-centos-8 after https://softwarefactory-project.io/r/#/c/17205/
+          label: upstream-centos-8-rdocloud
+
+- job:
     name: legacy-weirdo-dlrn-master-puppet-scenario002
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
@@ -399,6 +410,17 @@
       - DLRN-rpmbuild
     voting: false
     branches: ^(rpm-)?master$
+
+- job:
+    name: legacy-weirdo-dlrn-master-puppet-scenario002-centos8
+    parent: legacy-weirdo-dlrn-master-puppet-scenario002
+    dependencies:
+      - DLRN-rpmbuild-centos8
+    nodeset:
+      nodes:
+        - name: centos8
+          # replace by rdo-centos-8 after https://softwarefactory-project.io/r/#/c/17205/
+          label: upstream-centos-8-rdocloud
 
 - job:
     name: legacy-weirdo-dlrn-master-puppet-scenario003
@@ -422,6 +444,17 @@
     branches: ^(rpm-)?master$
 
 - job:
+    name: legacy-weirdo-dlrn-master-puppet-scenario003-centos8
+    parent: legacy-weirdo-dlrn-master-puppet-scenario003
+    dependencies:
+      - DLRN-rpmbuild-centos8
+    nodeset:
+      nodes:
+        - name: centos8
+          # replace by rdo-centos-8 after https://softwarefactory-project.io/r/#/c/17205/
+          label: upstream-centos-8-rdocloud
+
+- job:
     name: legacy-weirdo-dlrn-master-puppet-scenario004
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
@@ -441,6 +474,17 @@
       - DLRN-rpmbuild
     voting: false
     branches: ^(rpm-)?master$
+
+- job:
+    name: legacy-weirdo-dlrn-master-puppet-scenario004-centos8
+    parent: legacy-weirdo-dlrn-master-puppet-scenario004
+    dependencies:
+      - DLRN-rpmbuild-centos8
+    nodeset:
+      nodes:
+        - name: centos8
+          # replace by rdo-centos-8 after https://softwarefactory-project.io/r/#/c/17205/
+          label: upstream-centos-8-rdocloud
 
 - job:
     name: legacy-weirdo-docs
