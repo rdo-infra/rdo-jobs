@@ -391,3 +391,18 @@
     required-projects:
       - DLRN
       - rdoinfo
+    # Only for testing
+    vars:
+      centos_version: centos8
+    nodes:
+      - name: centos8
+        label: upstream-centos-8-rdocloud
+
+- job:
+    name: rdoinfo-DLRN-check-centos8
+    parent: rdoinfo-DLRN-check
+    vars:
+      centos_version: centos8
+    nodes:
+      - name: centos8
+        label: upstream-centos-8-rdocloud

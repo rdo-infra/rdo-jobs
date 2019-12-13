@@ -4,6 +4,7 @@ set -ex
 # Simple script to test several DLRN packages
 TAG="${1:-ussuri-uc}"
 PACKAGES_TO_BUILD="${2:-python-glanceclient}"
+CENTOS_VERSION="${3:-centos7}"
 PROJECT_DISTRO_BRANCH="rpm-master"
 
 # Setup virtualenv with tox and use it
@@ -11,8 +12,12 @@ tox -epy27 --notest
 . .tox/py27/bin/activate
 
 # Prepare config
+if [ "$CENTOS_VERSION" = "centos7" ];then
 target="centos"
-baseurl="http://trunk.rdoproject.org/centos7/"
+else
+target="centos8"
+fi
+baseurl="http://trunk.rdoproject.org/${CENTOS_VERSION}/"
 src="master"
 branch=""
 tag="ussuri-uc"
@@ -21,7 +26,7 @@ tag="ussuri-uc"
 if [[ "${TAG}" != "ussuri-uc" ]]; then
     branch=$(echo $TAG | awk -F- '{print $1}')
     tag=$TAG
-    baseurl="http://trunk.rdoproject.org/${branch}/centos7/"
+    baseurl="http://trunk.rdoproject.org/${branch}/${CENTOS_VERSION}/"
     src="stable/${branch}"
     PROJECT_DISTRO_BRANCH="${TAG}-rdo"
 fi
