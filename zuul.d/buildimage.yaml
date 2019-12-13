@@ -5,6 +5,18 @@
     voting: true
     vars:
       tripleo_image_type: overcloud-full
+      tripleo_image_os: rhel8
+      rhel_image_source: http://38.145.34.141/rcm-guest/images/rhel_base/rhel-8.0-base/rhel-8.0-guest-rhui.qcow2
+
+- job:
+    name: tripleo-rhel-8.1-buildimage-overcloud-full
+    parent: tripleo-rhel-8-master-buildimage-base
+    branches: ^master$
+    voting: true
+    vars:
+      tripleo_image_type: overcloud-full
+      tripleo_image_os: rhel8
+      rhel_image_source: http://38.145.34.141/rcm-guest/images/rhel_base/rhel-8.1-base/rhel-8.1-x86_64-kvm.qcow2
 
 - job:
     name: tripleo-rhel-8-buildimage-overcloud-hardened-full
