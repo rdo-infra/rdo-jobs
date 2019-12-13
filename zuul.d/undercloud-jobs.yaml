@@ -68,3 +68,25 @@
       release: master
       extra_tags:
         - undercloud-upgrade
+
+# tripleo-ci-centos-7-undercloud-upgrades
+# prior to stein and containerized underclouds, test the undercloud upgrade
+- job:
+    name: periodic-tripleo-ci-centos-7-undercloud-upgrades-queens
+    parent: tripleo-ci-base-singlenode-periodic
+    vars:
+      featureset: '047'
+      release: queens
+      extra_tags:
+        - undercloud-upgrade
+
+# tripleo-ci-centos-7-undercloud-upgrades
+# prior to stein and containerized underclouds, test the undercloud upgrade
+- job:
+    name: periodic-tripleo-ci-centos-7-undercloud-upgrades-rocky
+    parent: tripleo-ci-base-singlenode-periodic
+    vars:
+      featureset: '047'
+      release: rocky
+      extra_tags:
+        - undercloud-upgrade
