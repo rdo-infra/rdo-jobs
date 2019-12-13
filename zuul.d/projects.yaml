@@ -53,6 +53,10 @@
               - ./playbooks/podman/.*
         - podman-package-centos-8: *podman
         - podman-package-fedora-30: *podman
+        - molecule-libvirt-centos-8:
+            files:
+              - zuul.d/pycontribs.yaml
+              - playbooks/libvirt/.*
 
     gate:
       jobs:

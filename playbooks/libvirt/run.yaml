@@ -1,0 +1,12 @@
+---
+- hosts: all
+  tasks:
+
+    - name: Run tox
+      become: true
+      command:
+        cmd: tox
+        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/pycontribs/molecule-libvirt'].src_dir }}"
+      args:
+        warn: false
+      changed_when: true

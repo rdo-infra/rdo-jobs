@@ -1,0 +1,30 @@
+---
+- hosts: all
+  tasks:
+    - name: Ensure EPEL on CentOS
+      become: true
+      shell: yum-config-manager --enable epel || yum install epel-release
+      args:
+        warn: false
+      changed_when: true
+      when:
+        - ansible_distribution == "CentOS"
+
+    - name: Enable RHUI repository
+      become: true
+      when:
+        - ansible_distribution_major_version >= "8"
+        - ansible_distribution == "RedHat"
+      shell: |
+        set -euox pipefail
+        dnf config-manager --enable rhui-*
+        dnf makecache
+        dnf repolist
+      changed_when: true
+
+    - name: Install pre-requisites
+      become: true
+      package:
+        name:
+          - /usr/bin/tox
+        state: present
