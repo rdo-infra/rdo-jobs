@@ -1,0 +1,16 @@
+---
+- job:
+    name: molecule-libvirt-centos-8
+    parent: tox-py36
+    pre-run: playbooks/libvirt/pre.yaml
+    run: playbooks/libvirt/run.yaml
+    post-run: playbooks/libvirt/post.yaml
+    nodeset:
+      nodes:
+        - name: test
+          label: upstream-centos-8
+    # branches makes this job run only for master PR
+    branches: master
+    required-projects:
+      # without options, the branch of the PR is used for the required-projects
+      - name: github.com/pycontribs/molecule-libvirt
