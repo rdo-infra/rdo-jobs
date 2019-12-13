@@ -1,0 +1,20 @@
+---
+- job:
+    name: molecule-libvirt-centos-8
+    parent: tox-py36
+    pre-run: playbooks/libvirt/pre.yaml
+    run: playbooks/libvirt/run.yaml
+    nodeset: single-centos-8-node
+    branches: master
+    required-projects:
+      - name: github.com/pycontribs/molecule-libvirt
+
+- job:
+    name: molecule-libvirt-fedora-30
+    parent: tox-py36
+    pre-run: playbooks/libvirt/pre.yaml
+    run: playbooks/libvirt/run.yaml
+    nodeset: single-fedora-30-node
+    branches: master
+    required-projects:
+      - name: github.com/pycontribs/molecule-libvirt
