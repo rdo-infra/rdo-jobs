@@ -150,4 +150,6 @@
                 - python*-tripleo*
                 - python*-paunch*
                 - paunch-services
+                - tripleo-ansible
+                - ansible-config_template
       when: not stop_file.stat.exists
