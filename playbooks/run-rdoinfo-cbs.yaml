@@ -78,6 +78,9 @@
             sed -i 's/gpgcheck.*/gpgcheck=0/' /etc/yum.repos.d/CentOS-OpenStack-{{ rdoinfo_release }}.repo
             mv /etc/yum.repos.d/CentOS-OpenStack-{{ rdoinfo_release }}.repo /etc/yum.repos.d/delorean-CentOS-OpenStack-{{ rdoinfo_release }}.repo
             mv /etc/yum.repos.d/CentOS-Ceph-Nautilus.repo /etc/yum.repos.d/delorean-CentOS-Ceph-Nautilus.repo
+            # Need to include delorean-current repo while building container
+            curl -o /etc/yum.repos.d/delorean-current.repo https://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/current/delorean.repo
+            echo "includepkgs=ansible-role-container-registry,ansible-role-tripleo*,ansible-tripleo-ipsec,instack,instack-undercloud,openstack-tripleo-*,os-apply-config,os-collect-config,os-net-config,os-refresh-config,puppet-*,python*-tripleo*,python*-paunch*,paunch-services,tripleo-ansible,ansible-config_template " >> /etc/yum.repos.d/delorean-current.repo
         - name: Install deps using bindep role
           include_role:
             name: bindep
@@ -86,7 +89,7 @@
         - name: Set repo facts
           set_fact:
             buildsys_tag: "cloud7-openstack-{{ rdoinfo_release }}-{{ rdoinfo_phase }}"
-            delorean_repos: "http://172.17.0.1/delorean-CentOS-OpenStack-{{ rdoinfo_release }}.repo,http://172.17.0.1/delorean-CentOS-Ceph-Nautilus.repo"
+            delorean_repos: "http://172.17.0.1/delorean-CentOS-OpenStack-{{ rdoinfo_release }}.repo,http://172.17.0.1/delorean-CentOS-Ceph-Nautilus.repo,http://172.17.0.1/delorean-current.repo"
         - name: Handle master release buildsys_tags
           set_fact:
             buildsys_tag: "cloud7-openstack-ussuri-{{ rdoinfo_phase }}"
@@ -150,4 +153,6 @@
                 - python*-tripleo*
                 - python*-paunch*
                 - paunch-services
+                - tripleo-ansible
+                - ansible-config_template
       when: not stop_file.stat.exists
