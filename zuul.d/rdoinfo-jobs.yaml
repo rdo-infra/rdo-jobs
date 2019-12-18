@@ -188,6 +188,7 @@
     timeout: 10800
     roles:
       - zuul: openstack/tripleo-ci
+    override-checkout: "stable/train"
     vars:
       rdoinfo_release: train
       rdoinfo_phase: testing
@@ -208,6 +209,7 @@
     roles:
       - zuul: openstack/tripleo-ci
     run: playbooks/run-rdoinfo.yaml
+    override-checkout: "stable/train"
     vars:
       featureset: '052'
       rdoinfo_release: train
@@ -227,6 +229,7 @@
     timeout: 10800
     roles:
       - zuul: openstack/tripleo-ci
+    override-checkout: "stable/train"
     vars:
       rdoinfo_release: train
       rdoinfo_phase: testing
@@ -372,6 +375,7 @@
     roles:
       - zuul: openstack/tripleo-ci
     run: playbooks/run-rdoinfo.yaml
+    override-checkout: "stable/stein"
     vars:
       featureset: '052'
       rdoinfo_release: stein
@@ -391,6 +395,7 @@
     timeout: 10800
     roles:
       - zuul: openstack/tripleo-ci
+    override-checkout: "stable/stein"
     vars:
       rdoinfo_release: stein
       rdoinfo_phase: testing
@@ -412,6 +417,7 @@
     timeout: 10800
     roles:
       - zuul: openstack/tripleo-ci
+    override-checkout: "stable/rocky"
     vars:
       rdoinfo_release: rocky
       rdoinfo_phase: testing
@@ -433,6 +439,7 @@
     timeout: 10800
     roles:
       - zuul: openstack/tripleo-ci
+    override-checkout: "stable/rocky"
     vars:
       rdoinfo_release: rocky
       rdoinfo_phase: testing
@@ -454,6 +461,7 @@
     timeout: 10800
     roles:
       - zuul: openstack/tripleo-ci
+    override-checkout: "stable/rocky"
     vars:
       rdoinfo_release: rocky
       rdoinfo_phase: release
@@ -475,6 +483,7 @@
     timeout: 10800
     roles:
       - zuul: openstack/tripleo-ci
+    override-checkout: "stable/queens"
     vars:
       rdoinfo_release: queens
       rdoinfo_phase: testing
@@ -496,6 +505,7 @@
     timeout: 10800
     roles:
       - zuul: openstack/tripleo-ci
+    override-checkout: "stable/queens"
     vars:
       rdoinfo_release: queens
       rdoinfo_phase: testing
@@ -517,6 +527,7 @@
     timeout: 10800
     roles:
       - zuul: openstack/tripleo-ci
+    override-checkout: "stable/queens"
     vars:
       rdoinfo_release: queens
       rdoinfo_phase: release
