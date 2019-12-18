@@ -17,29 +17,18 @@
       args:
         chdir: "{{ ansible_user_dir }}"
 
-    - name: Fetch rdopkg compatible name for project {{ zuul.project.name }}
-      changed_when: true
-      shell:
-        cmd: |
-          set -e
-          source {{ ansible_user_dir }}/.venv/bin/activate
-          rdopkg findpkg {{ zuul.project.name }} | sed -n "/^name/ s/name. \(.*\)/\1/p"
-      register: findpkg
-      args:
-        chdir: "{{ ansible_user_dir }}"
-
     - name: Get upstream project
       changed_when: true
       shell:
         cmd: |
           set -e
           source {{ ansible_user_dir }}/.venv/bin/activate
-          rdopkg info {{ findpkg.stdout }} | sed -n "/^upstream/ s/upstream. \(.*\)/\1/p"
+          rdopkg findpkg {{ zuul.project.name }} | sed -n "/^upstream/ s/upstream. \(.*\)/\1/p"
       register: upstream
       args:
         chdir: "{{ ansible_user_dir }}"
 
-    - name: Clone and reqcheck project {{ zuul.project.name }} with rdopkg
+    - name: Fetch upstream and reqcheck project {{ zuul.project.name }} with rdopkg
       changed_when: true
       shell:
         cmd: |
