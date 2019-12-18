@@ -34,7 +34,7 @@
         cmd: |
           set -e
           source {{ ansible_user_dir }}/.venv/bin/activate
-          rdopkg info {{ findpkg.stdout }} | sed -n "/^upstream/ s/upstream. \(.*\)/\1/p"
+          rdopkg info '^{{ findpkg.stdout }}$' | sed -n "/^upstream/ s/upstream. \(.*\)/\1/p"
       register: upstream
       args:
         chdir: "{{ ansible_user_dir }}"
