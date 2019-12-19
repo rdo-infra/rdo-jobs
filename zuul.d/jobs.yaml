@@ -375,8 +375,7 @@
     parent: DLRN-rpmbuild
     # Make it voting when it's stable.
     voting: false
-    # Add rpm-master after centos8-master is bootstrapped
-    branches: ^(master)|(train-rdo)$
+    branches: ^(master)|(rpm-master)|(train-rdo)$
     vars:
       centos_version: 'centos8'
     nodeset:
