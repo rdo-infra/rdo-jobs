@@ -53,6 +53,7 @@
               - ./playbooks/podman/.*
         - podman-package-centos-8: *podman
         - podman-package-fedora-30: *podman
+        - tripleo-ansible-rhel-8-molecule-tripleo-modules
 
     gate:
       jobs:
