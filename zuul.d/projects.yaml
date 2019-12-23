@@ -60,6 +60,7 @@
               - playbooks/podman/.*
             dependencies:
               - podman-package-rhel-8
+        - tripleo-ansible-rhel-8-molecule-tripleo-modules
 
     gate:
       jobs:
