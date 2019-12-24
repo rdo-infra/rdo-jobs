@@ -6,6 +6,12 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
+    - set_fact:
+        centos_releasever: "{{ ansible_distribution_major_version }}"
+
+    - set_fact:
+        centos_release: "centos{{ centos_releasever }}"
+
     - shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
@@ -114,24 +120,24 @@
           scenario="{{ scenario }}"
 
           if [[ "${ZUUL_PIPELINE}" =~ "experimental" ]]; then
-              delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/current/delorean.repo"
+              delorean_url="https://trunk.rdoproject.org/{{ centos_release }}-{{ openstack_release }}/current/delorean.repo"
           elif [[ "{{ openstack_release }}" == "master" ]]; then
-              delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/puppet-passed-ci/delorean.repo"
+              delorean_url="https://trunk.rdoproject.org/{{ centos_release }}-{{ openstack_release }}/puppet-passed-ci/delorean.repo"
           else
-              delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/current-passed-ci/delorean.repo"
+              delorean_url="https://trunk.rdoproject.org/{{ centos_release }}-{{ openstack_release }}/current-passed-ci/delorean.repo"
           fi
 
           if [ -f /etc/fedora-release ]; then
               delorean_deps_url="https://trunk.rdoproject.org/fedora/delorean-deps.repo"
               delorean_url="https://trunk.rdoproject.org/fedora/puppet-passed-ci/delorean.repo"
           else
-              delorean_deps_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/delorean-deps.repo"
+              delorean_deps_url="https://trunk.rdoproject.org/{{ centos_release }}-{{ openstack_release }}/delorean-deps.repo"
           fi
 
           cd weirdo
           # Prepare Ansible inventory to use localhost
           cat <<EOF >hosts
-          localhost ansible_connection=local
+          localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python{{ '3' if centos_releasever|int >= 8 else '2' }}
           [openstack_nodes]
           localhost log_destination=/var/log/weirdo
           EOF
