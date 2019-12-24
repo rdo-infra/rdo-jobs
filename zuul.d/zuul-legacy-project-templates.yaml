@@ -56,6 +56,7 @@
               - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
+        - legacy-weirdo-dlrn-master-packstack-scenario003-centos8
         - legacy-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
               - DLRN-rpmbuild
@@ -76,6 +77,7 @@
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
             dependencies:
               - DLRN-rpmbuild
+        - legacy-experimental-weirdo-dlrn-master-packstack-scenario003-centos8
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
               - DLRN-rpmbuild
@@ -150,6 +152,7 @@
               - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
+        - legacy-weirdo-dlrn-master-packstack-scenario003-centos8
         - legacy-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
               - DLRN-rpmbuild
@@ -170,6 +173,7 @@
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
             dependencies:
               - DLRN-rpmbuild
+        - legacy-experimental-weirdo-dlrn-master-packstack-scenario003-centos8
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
               - DLRN-rpmbuild
@@ -201,6 +205,7 @@
               - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
+        - legacy-weirdo-dlrn-master-packstack-scenario001-centos8
         - legacy-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
               - DLRN-rpmbuild
@@ -227,6 +232,7 @@
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
             dependencies:
               - DLRN-rpmbuild
+        - legacy-experimental-weirdo-dlrn-master-packstack-scenario001-centos8
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
               - DLRN-rpmbuild
@@ -262,6 +268,7 @@
               - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
+        - legacy-weirdo-dlrn-master-packstack-scenario001-centos8
         - legacy-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
               - DLRN-rpmbuild
@@ -294,6 +301,7 @@
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
             dependencies:
               - DLRN-rpmbuild
+        - legacy-experimental-weirdo-dlrn-master-packstack-scenario001-centos8
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
               - DLRN-rpmbuild
@@ -333,12 +341,17 @@
               - DLRN-rpmbuild-pinned
             voting: false
             branches: ^(rpm-)?master$
+        - legacy-weirdo-dlrn-master-packstack-scenario003-centos8:
+            dependencies:
+              - DLRN-rpmbuild-centos8-pinned
         - legacy-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
               - DLRN-rpmbuild-pinned
             voting: false
             branches: ^(rpm-)?master$
-        - legacy-weirdo-dlrn-master-puppet-scenario001-centos8
+        - legacy-weirdo-dlrn-master-puppet-scenario001-centos8:
+            dependencies:
+              - DLRN-rpmbuild-centos8-pinned
         - DLRN-rpmbuild-centos8-pinned
         - DLRN-rpmbuild-pinned:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
@@ -353,9 +366,16 @@
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
             dependencies:
               - DLRN-rpmbuild-pinned
+        - legacy-experimental-weirdo-dlrn-master-packstack-scenario003-centos8:
+            dependencies:
+              - DLRN-rpmbuild-centos8-pinned
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
               - DLRN-rpmbuild-pinned
+        - legacy-experimental-weirdo-dlrn-master-puppet-scenario001-centos8:
+            dependencies:
+              - DLRN-rpmbuild-centos8-pinned
+        - DLRN-rpmbuild-centos8-pinned
         - DLRN-rpmbuild-pinned:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
@@ -384,6 +404,7 @@
               - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
+        - legacy-weirdo-dlrn-master-packstack-scenario003-centos8
         - legacy-weirdo-dlrn-master-puppet-scenario003:
             dependencies:
               - DLRN-rpmbuild
@@ -404,6 +425,7 @@
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
             dependencies:
               - DLRN-rpmbuild
+        - legacy-experimental-weirdo-dlrn-master-packstack-scenario003-centos8
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario003:
             dependencies:
               - DLRN-rpmbuild
@@ -478,6 +500,7 @@
               - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
+        - legacy-weirdo-dlrn-master-packstack-scenario001-centos8
         - legacy-weirdo-dlrn-master-puppet-scenario003:
             dependencies:
               - DLRN-rpmbuild
@@ -498,6 +521,7 @@
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
             dependencies:
               - DLRN-rpmbuild
+        - legacy-experimental-weirdo-dlrn-master-packstack-scenario001-centos8
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario003:
             dependencies:
               - DLRN-rpmbuild
@@ -572,6 +596,7 @@
               - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
+        - legacy-weirdo-dlrn-master-packstack-scenario001-centos8
         - legacy-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
               - DLRN-rpmbuild
@@ -598,6 +623,7 @@
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
             dependencies:
               - DLRN-rpmbuild
+        - legacy-experimental-weirdo-dlrn-master-packstack-scenario001-centos8
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
               - DLRN-rpmbuild
@@ -633,6 +659,7 @@
               - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
+        - legacy-weirdo-dlrn-master-packstack-scenario001-centos8
         - legacy-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
               - DLRN-rpmbuild
@@ -653,6 +680,7 @@
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
             dependencies:
               - DLRN-rpmbuild
+        - legacy-experimental-weirdo-dlrn-master-packstack-scenario001-centos8
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
               - DLRN-rpmbuild
@@ -684,6 +712,7 @@
               - DLRN-rpmbuild
             voting: false
             branches: ^(rpm-)?master$
+        - legacy-weirdo-dlrn-master-packstack-scenario002-centos8
         - legacy-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
               - DLRN-rpmbuild
@@ -710,6 +739,7 @@
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario002:
             dependencies:
               - DLRN-rpmbuild
+        - legacy-experimental-weirdo-dlrn-master-packstack-scenario002-centos8
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
             dependencies:
               - DLRN-rpmbuild

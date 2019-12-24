@@ -64,6 +64,12 @@
       - DLRN-rpmbuild
 
 - job:
+    name: legacy-experimental-weirdo-dlrn-master-packstack-scenario001-centos8
+    parent: legacy-experimental-weirdo-dlrn-master-packstack-scenario001
+    dependencies:
+      - DLRN-rpmbuild-centos8
+
+- job:
     name: legacy-experimental-weirdo-dlrn-master-packstack-scenario002
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
@@ -84,6 +90,12 @@
       - DLRN-rpmbuild
 
 - job:
+    name: legacy-experimental-weirdo-dlrn-master-packstack-scenario002-centos8
+    parent: legacy-experimental-weirdo-dlrn-master-packstack-scenario002
+    dependencies:
+      - DLRN-rpmbuild-centos8
+
+- job:
     name: legacy-experimental-weirdo-dlrn-master-packstack-scenario003
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
@@ -102,6 +114,12 @@
       - rdo-infra/weirdo
     dependencies:
       - DLRN-rpmbuild
+
+- job:
+    name: legacy-experimental-weirdo-dlrn-master-packstack-scenario003-centos8
+    parent: legacy-experimental-weirdo-dlrn-master-packstack-scenario003
+    dependencies:
+      - DLRN-rpmbuild-centos8
 
 - job:
     name: legacy-experimental-weirdo-dlrn-master-puppet-scenario001
@@ -355,6 +373,12 @@
     branches: ^(rpm-)?master$
 
 - job:
+    name: legacy-weirdo-dlrn-master-packstack-scenario001-centos8
+    parent: legacy-weirdo-dlrn-master-packstack-scenario001
+    dependencies:
+      - DLRN-rpmbuild-centos8
+
+- job:
     name: legacy-weirdo-dlrn-master-packstack-scenario002
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
@@ -377,6 +401,12 @@
     branches: ^(rpm-)?master$
 
 - job:
+    name: legacy-weirdo-dlrn-master-packstack-scenario002-centos8
+    parent: legacy-weirdo-dlrn-master-packstack-scenario002
+    dependencies:
+      - DLRN-rpmbuild-centos8
+
+- job:
     name: legacy-weirdo-dlrn-master-packstack-scenario003
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
@@ -397,6 +427,12 @@
       - DLRN-rpmbuild
     voting: false
     branches: ^(rpm-)?master$
+
+- job:
+    name: legacy-weirdo-dlrn-master-packstack-scenario003-centos8
+    parent: legacy-weirdo-dlrn-master-packstack-scenario003
+    dependencies:
+      - DLRN-rpmbuild-centos8
 
 - job:
     name: legacy-weirdo-dlrn-master-puppet-scenario001
