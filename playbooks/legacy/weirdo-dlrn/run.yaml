@@ -14,6 +14,12 @@
         - meta: end_play
       when: buildset_artifacts_url is not defined
 
+    - set_fact:
+        centos_releasever: "{{ ansible_distribution_major_version | default('7') }}"
+
+    - set_fact:
+        centos_release: "centos{{ centos_releasever }}"
+
     - shell:
         cmd: |
           echo "[DEBUG]: JJB template name: {template-name}"
@@ -74,6 +80,7 @@
           # them.
           set +ex
 
+          export CENTOS_RELEASE="{{ centos_release }}"
           # Re-construct the expected repository URL
           if [[ "${ZUUL_BRANCH}" =~ stable/ ]]; then
               # If the branch is stable/something, we have an additional /
@@ -85,6 +92,10 @@
           # This builder can be shared across different DLRN based jobs.
           # Try and find the right one
           jobs="DLRN-rpmbuild rdoinfo-DLRN-check"
+          if [ ${CENTOS_RELEASE} = "centos8" ]; then
+              jobs="DLRN-rpmbuild-centos8 rdoinfo-DLRN-check-centos8"
+          fi
+
           for job in $jobs;
           do
             # Note, LOG_PATH is expected since we reconstruct it inside
@@ -108,6 +119,9 @@
           # If DLRN built multiple packages, there will be multiple repositories.
           # We want the latest repository which contains all of the packages that were just built.
           repository="${logs}/centos/current"
+          if [ ${CENTOS_RELEASE} = "centos8" ]; then
+            repository="${logs}/centos8/current"
+          fi
 
           # The rdoinfo-DLRN-check job may create different repos (centos-rpm-master, centos-pike-rdo)
           # when it builds packages for more than one release. In that case, let us try to find the
@@ -189,19 +203,19 @@
               version="{{ openstack_release }}"
           fi
 
-          delorean_deps_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/delorean-deps.repo"
+          delorean_deps_url="https://trunk.rdoproject.org/{{ centos_release }}-{{ openstack_release }}/delorean-deps.repo"
           if [[ "${ZUUL_PIPELINE}" =~ "experimental" ]]; then
-              delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/current/delorean.repo"
+              delorean_url="https://trunk.rdoproject.org/{{ centos_release }}-{{ openstack_release }}/current/delorean.repo"
           elif [[ "{{ openstack_release }}" == "master" ]]; then
-              delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/puppet-passed-ci/delorean.repo"
+              delorean_url="https://trunk.rdoproject.org/{{ centos_release }}-{{ openstack_release }}/puppet-passed-ci/delorean.repo"
           else
-              delorean_url="https://trunk.rdoproject.org/centos7-{{ openstack_release }}/current-passed-ci/delorean.repo"
+              delorean_url="https://trunk.rdoproject.org/{{ centos_release }}-{{ openstack_release }}/current-passed-ci/delorean.repo"
           fi
 
           cd weirdo
           # Prepare Ansible inventory to use localhost
           cat <<EOF >hosts
-          localhost ansible_connection=local
+          localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python{{ '3' if centos_releasever|int >= 8 else '2' }}
           [openstack_nodes]
           localhost log_destination=/var/log/weirdo
           EOF
