@@ -64,6 +64,16 @@
       - DLRN-rpmbuild
 
 - job:
+    name: legacy-experimental-weirdo-dlrn-master-packstack-scenario001-centos8
+    parent: legacy-experimental-weirdo-dlrn-master-packstack-scenario001
+    dependencies:
+      - DLRN-rpmbuild-centos8
+    nodeset:
+      nodes:
+        - name: centos8
+          label: rdo-centos-8
+
+- job:
     name: legacy-experimental-weirdo-dlrn-master-packstack-scenario002
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
@@ -82,6 +92,16 @@
       - rdo-infra/weirdo
     dependencies:
       - DLRN-rpmbuild
+
+- job:
+    name: legacy-experimental-weirdo-dlrn-master-packstack-scenario002-centos8
+    parent: legacy-experimental-weirdo-dlrn-master-packstack-scenario002
+    dependencies:
+      - DLRN-rpmbuild-centos8
+    nodeset:
+      nodes:
+        - name: centos8
+          label: rdo-centos-8
 
 - job:
     name: legacy-experimental-weirdo-dlrn-master-packstack-scenario003
@@ -104,6 +124,16 @@
       - DLRN-rpmbuild
 
 - job:
+    name: legacy-experimental-weirdo-dlrn-master-packstack-scenario003-centos8
+    parent: legacy-experimental-weirdo-dlrn-master-packstack-scenario003
+    dependencies:
+      - DLRN-rpmbuild-centos8
+    nodeset:
+      nodes:
+        - name: centos8
+          label: rdo-centos-8
+
+- job:
     name: legacy-experimental-weirdo-dlrn-master-puppet-scenario001
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
@@ -121,6 +151,16 @@
       - rdo-infra/weirdo
     dependencies:
       - DLRN-rpmbuild
+
+- job:
+    name: legacy-experimental-weirdo-dlrn-master-puppet-scenario001-centos8
+    parent: legacy-experimental-weirdo-dlrn-master-puppet-scenario001
+    dependencies:
+      - DLRN-rpmbuild-centos8
+    nodeset:
+      nodes:
+        - name: centos8
+          label: rdo-centos-8
 
 - job:
     name: legacy-experimental-weirdo-dlrn-master-puppet-scenario002
@@ -142,6 +182,16 @@
       - DLRN-rpmbuild
 
 - job:
+    name: legacy-experimental-weirdo-dlrn-master-puppet-scenario002-centos8
+    parent: legacy-experimental-weirdo-dlrn-master-puppet-scenario002
+    dependencies:
+      - DLRN-rpmbuild-centos8
+    nodeset:
+      nodes:
+        - name: centos8
+          label: rdo-centos-8
+
+- job:
     name: legacy-experimental-weirdo-dlrn-master-puppet-scenario003
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
@@ -161,6 +211,16 @@
       - DLRN-rpmbuild
 
 - job:
+    name: legacy-experimental-weirdo-dlrn-master-puppet-scenario003-centos8
+    parent: legacy-experimental-weirdo-dlrn-master-puppet-scenario003
+    dependencies:
+      - DLRN-rpmbuild-centos8
+    nodeset:
+      nodes:
+        - name: centos8
+          label: rdo-centos-8
+
+- job:
     name: legacy-experimental-weirdo-dlrn-master-puppet-scenario004
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
@@ -178,6 +238,16 @@
       - rdo-infra/weirdo
     dependencies:
       - DLRN-rpmbuild
+
+- job:
+    name: legacy-experimental-weirdo-dlrn-master-puppet-scenario004-centos8
+    parent: legacy-experimental-weirdo-dlrn-master-puppet-scenario004
+    dependencies:
+      - DLRN-rpmbuild-centos8
+    nodeset:
+      nodes:
+        - name: centos8
+          label: rdo-centos-8
 
 - job:
     name: legacy-fedora-sinkhole-functional
@@ -315,6 +385,16 @@
     branches: ^(rpm-)?master$
 
 - job:
+    name: legacy-weirdo-dlrn-master-packstack-scenario001-centos8
+    parent: legacy-weirdo-dlrn-master-packstack-scenario001
+    dependencies:
+      - DLRN-rpmbuild-centos8
+    nodeset:
+      nodes:
+        - name: centos8
+          label: rdo-centos-8
+
+- job:
     name: legacy-weirdo-dlrn-master-packstack-scenario002
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
@@ -335,6 +415,16 @@
       - DLRN-rpmbuild
     voting: false
     branches: ^(rpm-)?master$
+
+- job:
+    name: legacy-weirdo-dlrn-master-packstack-scenario002-centos8
+    parent: legacy-weirdo-dlrn-master-packstack-scenario002
+    dependencies:
+      - DLRN-rpmbuild-centos8
+    nodeset:
+      nodes:
+        - name: centos8
+          label: rdo-centos-8
 
 - job:
     name: legacy-weirdo-dlrn-master-packstack-scenario003
@@ -359,6 +449,16 @@
     branches: ^(rpm-)?master$
 
 - job:
+    name: legacy-weirdo-dlrn-master-packstack-scenario003-centos8
+    parent: legacy-weirdo-dlrn-master-packstack-scenario003
+    dependencies:
+      - DLRN-rpmbuild-centos8
+    nodeset:
+      nodes:
+        - name: centos8
+          label: rdo-centos-8
+
+- job:
     name: legacy-weirdo-dlrn-master-puppet-scenario001
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
@@ -378,6 +478,16 @@
       - DLRN-rpmbuild
     voting: false
     branches: ^(rpm-)?master$
+
+- job:
+    name: legacy-weirdo-dlrn-master-puppet-scenario001-centos8
+    parent: legacy-weirdo-dlrn-master-puppet-scenario001
+    dependencies:
+      - DLRN-rpmbuild-centos8
+    nodeset:
+      nodes:
+        - name: centos8
+          label: rdo-centos-8
 
 - job:
     name: legacy-weirdo-dlrn-master-puppet-scenario002
@@ -401,6 +511,16 @@
     branches: ^(rpm-)?master$
 
 - job:
+    name: legacy-weirdo-dlrn-master-puppet-scenario002-centos8
+    parent: legacy-weirdo-dlrn-master-puppet-scenario002
+    dependencies:
+      - DLRN-rpmbuild-centos8
+    nodeset:
+      nodes:
+        - name: centos8
+          label: rdo-centos-8
+
+- job:
     name: legacy-weirdo-dlrn-master-puppet-scenario003
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
@@ -422,6 +542,16 @@
     branches: ^(rpm-)?master$
 
 - job:
+    name: legacy-weirdo-dlrn-master-puppet-scenario003-centos8
+    parent: legacy-weirdo-dlrn-master-puppet-scenario003
+    dependencies:
+      - DLRN-rpmbuild-centos8
+    nodeset:
+      nodes:
+        - name: centos8
+          label: rdo-centos-8
+
+- job:
     name: legacy-weirdo-dlrn-master-puppet-scenario004
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
@@ -441,6 +571,16 @@
       - DLRN-rpmbuild
     voting: false
     branches: ^(rpm-)?master$
+
+- job:
+    name: legacy-weirdo-dlrn-master-puppet-scenario004-centos8
+    parent: legacy-weirdo-dlrn-master-puppet-scenario004
+    dependencies:
+      - DLRN-rpmbuild-centos8
+    nodeset:
+      nodes:
+        - name: centos8
+          label: rdo-centos-8
 
 - job:
     name: legacy-weirdo-docs
@@ -476,6 +616,14 @@
       - rdo-infra/weirdo
 
 - job:
+    name: legacy-weirdo-integration-master-packstack-scenario001-centos8
+    parent: legacy-weirdo-integration-master-packstack-scenario001
+    nodeset:
+      nodes:
+        - name: centos8
+          label: rdo-centos-8
+
+- job:
     name: legacy-weirdo-integration-master-packstack-scenario003
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
@@ -492,6 +640,14 @@
       - rdo-infra/ansible-role-weirdo-packstack
       - rdo-infra/ansible-role-weirdo-puppet-openstack
       - rdo-infra/weirdo
+
+- job:
+    name: legacy-weirdo-integration-master-packstack-scenario003-centos8
+    parent: legacy-weirdo-integration-master-packstack-scenario003
+    nodeset:
+      nodes:
+        - name: centos8
+          label: rdo-centos-8
 
 - job:
     name: legacy-weirdo-integration-master-packstack-scenario-py3
@@ -530,6 +686,14 @@
       - rdo-infra/weirdo
 
 - job:
+    name: legacy-weirdo-integration-master-puppet-scenario001-centos8
+    parent: legacy-weirdo-integration-master-puppet-scenario001
+    nodeset:
+      nodes:
+        - name: centos8
+          label: rdo-centos-8
+
+- job:
     name: legacy-weirdo-integration-master-puppet-scenario003
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
@@ -547,6 +711,14 @@
       - rdo-infra/weirdo
 
 - job:
+    name: legacy-weirdo-integration-master-puppet-scenario003-centos8
+    parent: legacy-weirdo-integration-master-puppet-scenario003
+    nodeset:
+      nodes:
+        - name: centos8
+          label: rdo-centos-8
+
+- job:
     name: legacy-weirdo-integration-master-puppet-scenario004
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
@@ -562,6 +734,14 @@
       - rdo-infra/ansible-role-weirdo-packstack
       - rdo-infra/ansible-role-weirdo-puppet-openstack
       - rdo-infra/weirdo
+
+- job:
+    name: legacy-weirdo-integration-master-puppet-scenario004-centos8
+    parent: legacy-weirdo-integration-master-puppet-scenario004
+    nodeset:
+      nodes:
+        - name: centos8
+          label: rdo-centos-8
 
 - job:
     name: legacy-weirdo-integration-master-puppet-scenario-py3
