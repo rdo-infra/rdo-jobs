@@ -524,7 +524,7 @@
     name: rdoinfo-tripleo-queens-release-centos-7-multinode-1ctlr-featureset016
     parent: tripleo-ci-base-multinode-rdo
     run: playbooks/run-rdoinfo.yaml
-    timeout: 10800
+    timeout: 18000
     roles:
       - zuul: openstack/tripleo-ci
     override-checkout: "stable/queens"
@@ -541,3 +541,61 @@
       - openstack/tripleo-upgrade
       - x/browbeat
       - rdoinfo
+
+- job:
+    name: distgit-test-tripleo-ci-centos-7-multinode-1ctlr-featureset020-base
+    parent: tripleo-ci-base-ovb-rdo
+    run: playbooks/run-distgit.yaml
+    timeout: 18000
+    roles:
+      - zuul: openstack-infra/tripleo-ci
+    vars:
+      featureset: '020'
+      nodes: 1ctlr_2comp
+      featureset_override:
+        tempest_test_whitelist:
+          - 'tempest.api.volume.*'
+          - 'tempest.scenario.test_volume_.*'
+          - 'cinder_tempest_plugin.*'
+    required-projects:
+      - openstack/cinder-tempest-plugin
+      - openstack/devstack-gate
+      - openstack/tripleo-quickstart
+      - openstack/tripleo-quickstart-extras
+      - openstack/tripleo-upgrade
+      - x/browbeat
+      - rdoinfo
+
+- job:
+    name: distgit-test-tripleo-ci-centos-7-multinode-1ctlr-featureset020-queens
+    parent: distgit-test-tripleo-ci-centos-7-multinode-1ctlr-featureset020-base
+    vars:
+      release: queens
+      branch_override: "stable/queens"
+
+- job:
+    name: distgit-test-tripleo-ci-centos-7-multinode-1ctlr-featureset020-rocky
+    parent: distgit-test-tripleo-ci-centos-7-multinode-1ctlr-featureset020-base
+    vars:
+      release: rocky
+      branch_override: "stable/rocky"
+
+- job:
+    name: distgit-test-tripleo-ci-centos-7-multinode-1ctlr-featureset020-stein
+    parent: distgit-test-tripleo-ci-centos-7-multinode-1ctlr-featureset020-base
+    vars:
+      release: stein
+      branch_override: "stable/stein"
+
+- job:
+    name: distgit-test-tripleo-ci-centos-7-multinode-1ctlr-featureset020-train
+    parent: distgit-test-tripleo-ci-centos-7-multinode-1ctlr-featureset020-base
+    vars:
+      release: train
+      branch_override: "stable/train"
+
+- job:
+    name: distgit-test-tripleo-ci-centos-7-multinode-1ctlr-featureset020-master
+    parent: distgit-test-tripleo-ci-centos-7-multinode-1ctlr-featureset020-base
+    vars:
+      release: master
