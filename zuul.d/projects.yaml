@@ -53,6 +53,9 @@
               - ./playbooks/podman/.*
         - podman-package-centos-8: *podman
         - podman-package-fedora-30: *podman
+        - tripleo-podman-integration-scenario001:
+            <<: *podman
+            dependencies: podman-package-fedora-30
 
     gate:
       jobs:
