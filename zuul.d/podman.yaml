@@ -36,3 +36,18 @@
       nodes:
         - name: test
           label: cloud-fedora-30
+
+- job:
+    name: tripleo-podman-integration-scenario001
+    parent: periodic-tripleo-ci-rhel-8-standalone-rdo
+    run: playbooks/podman/run-podman-repo-override.yaml
+    required-projects:
+      - name: github.com/containers/libpod
+    vars:
+      featureset: '052'
+      release: master
+      standalone_ceph: true
+      featureset_override: &scenario001_podman
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario001-standalone.yaml'
