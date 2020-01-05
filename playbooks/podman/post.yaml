@@ -9,3 +9,5 @@
         dest: "{{ zuul.executor.log_root }}/buildset"
         mode: pull
         verify_host: true
+        # to avoid a POST_FAILURE and have a standard FAILURE instead.
+        rsync_opts: --ignore-missing-args
