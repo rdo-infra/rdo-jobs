@@ -50,7 +50,9 @@
         - podman-package-rhel-8: &podman
             files:
               - zuul.d/podman.yaml
-              - ./playbooks/podman/.*
+              - playbooks/podman/.*
+            # until we fix https://github.com/containers/libpod/issues/4665
+            voting: false
         - podman-package-centos-8: *podman
         - podman-package-fedora-30: *podman
 
