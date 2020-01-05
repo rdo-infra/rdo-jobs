@@ -6,8 +6,12 @@
       # ideally it should not need become but it installs rpms with sudo
       become: true
       shell:
+        # running podman info is essential to avoid a bug like:
+        # https://github.com/containers/libpod/issues/4665
         cmd: |
+          set -euxo pipefail
           make package-install
+          podman info
         chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}"
       changed_when: true
       # go build often fails due to networking
