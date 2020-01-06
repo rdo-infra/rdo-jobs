@@ -2,15 +2,7 @@
 - hosts: all
   tasks:
 
-    - name: Assure build/builset folder exists
-      # Needed here to avoid a post failure when make package-install fails
-      become: true
-      file:
-        path: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}/build/buildset"
-        state: directory
-        recurse: true
-
-    - name: Build and install rpms
+    - name: Build install and validate rpms
       # ideally it should not need become but it installs rpms with sudo
       become: true
       shell:
@@ -19,8 +11,6 @@
         cmd: |
           set -euo pipefail
           make package-install
-          podman version
-          podman info  --log-level debug
         chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}"
       changed_when: true
       # go build often fails due to networking
@@ -28,17 +18,3 @@
       retries: 3
       until:
         - '"fatal: The remote end hung up unexpectedly" not in result.stdout'
-
-    - name: Build repository from all builder rpms
-      changed_when: true
-      become: true
-      shell:
-        cmd: |
-            set -exuo pipefail
-            pushd build/buildset
-            cp -l ~/rpmbuild/RPMS/*/*.rpm .
-            createrepo .
-            popd
-        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}"
-      args:
-        warn: false
