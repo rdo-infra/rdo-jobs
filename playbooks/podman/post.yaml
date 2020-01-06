@@ -2,6 +2,15 @@
 - hosts: all
   tasks:
 
+    - name: Assure build/builset folder exists
+      # Needed here to avoid a post-failure when make package-install fails,
+      # but we do not want to ignore a failure to copy the files when they exits
+      become: true
+      file:
+        path: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}/build/buildset"
+        state: directory
+        recurse: true
+
     - name: Copy repository
       become: true
       synchronize:
