@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8e8e568a_2f851f79",
+        "filename": "playbooks/podman/run.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 371
+      },
+      "writtenOn": "2020-01-06T09:31:09Z",
+      "side": 1,
+      "message": "Much better with, makes it clear and easier to debug.",
+      "parentUuid": "24a68024_1bcda5de",
+      "range": {
+        "startLine": 20,
+        "startChar": 15,
+        "endLine": 20,
+        "endChar": 18
+      },
+      "revId": "f4057e45fadceaa72946e1ef574b8f47288aa5fe",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a03e0e84_38754e35",
         "filename": "playbooks/podman/run.yaml",
         "patchSetId": 8
@@ -36,6 +60,30 @@
       "writtenOn": "2020-01-06T03:37:44Z",
       "side": 1,
       "message": "I\u0027d add \"podman --version\" before to ensure we run a right podman",
+      "range": {
+        "startLine": 22,
+        "startChar": 10,
+        "endLine": 22,
+        "endChar": 21
+      },
+      "revId": "f4057e45fadceaa72946e1ef574b8f47288aa5fe",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd269891_e792f504",
+        "filename": "playbooks/podman/run.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 371
+      },
+      "writtenOn": "2020-01-06T09:31:09Z",
+      "side": 1,
+      "message": "podman info also contains the version information so it would be redundant but on the other hand when it fails it displays nothing so I will add a version too.",
+      "parentUuid": "a03e0e84_38754e35",
       "range": {
         "startLine": 22,
         "startChar": 10,
