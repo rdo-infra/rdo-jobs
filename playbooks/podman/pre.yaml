@@ -13,6 +13,22 @@
         dnf repolist
       changed_when: true
 
+    - name: Enable EPEL for Centos-7
+      when:
+        - ansible_distribution_major_version == "7"
+        - ansible_distribution == "CentOS"
+      block:
+
+        - name: Enable EPEL
+          become: true
+          package:
+            name: epel-release
+
+        # CI images may have epel-release pre-installed but disabled!
+        - name: Enable EPEL
+          become: true
+          cmd: yum-config-manager --enable epel
+
     - name: Install pre-requisites
       become: true
       package:

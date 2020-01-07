@@ -22,6 +22,14 @@
       - name: github.com/containers/libpod
 
 - job:
+    name: podman-package-centos-7
+    parent: podman-package-centos-8
+    nodeset:
+      nodes:
+        - name: test
+          label: upstream-centos-7
+
+- job:
     name: podman-package-rhel-8
     parent: podman-package-centos-8
     nodeset:
