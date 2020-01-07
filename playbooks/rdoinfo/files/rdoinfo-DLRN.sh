@@ -19,6 +19,7 @@ baseurl="http://trunk.rdoproject.org/${CENTOS_VERSION}/"
 src="master"
 branch=""
 tag="ussuri-uc"
+components="false"
 
 # Setup virtualenv with tox and use it
 tox -e${PYTHON_VERSION} --notest
@@ -33,11 +34,17 @@ if [[ "${TAG}" != "ussuri-uc" ]]; then
     PROJECT_DISTRO_BRANCH="${TAG}-rdo"
 fi
 
+# Enable components for all centos8 builders for releases != train
+if [ "$CENTOS_VERSION" = "centos8" ] && [[ "${TAG}" != "train" ]]; then
+    components="true"
+fi
+
 # Update the configuration
 sed -i "s%target=.*%target=${target}%" projects.ini
 sed -i "s%source=.*%source=${src}%" projects.ini
 sed -i "s%baseurl=.*%baseurl=${baseurl}%" projects.ini
 sed -i "s%tags=.*%tags=${tag}%" projects.ini
+sed -i "s%use_components=.*%use_components=${components}%" projects.ini
 
 PACKAGE_LINE=""
 # Prepare directories
