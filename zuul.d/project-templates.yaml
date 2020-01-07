@@ -716,6 +716,7 @@
     # `go get github.com/cpuguy83/go-md2man` fails due to old git.
     github-check:
       jobs:
+        - podman-package-centos-7
         - podman-package-centos-8
         - podman-package-fedora-30
         - podman-package-rhel-8
