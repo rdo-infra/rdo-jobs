@@ -35,6 +35,7 @@
       shell:
         cmd: |
             set -exuo pipefail
+            mkdir -p build/buildset
             pushd build/buildset
             cp -l ~/rpmbuild/RPMS/*/*.rpm .
             createrepo .
