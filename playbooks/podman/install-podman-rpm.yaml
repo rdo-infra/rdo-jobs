@@ -1,0 +1,38 @@
+---
+- hosts: primary
+  tasks:
+    - name: Run pre-quickstart role
+      import_role:
+        name: common
+
+    - name: check for correct import
+      debug:
+        var: tripleo_root
+
+    - name: set workspace
+      set_fact:
+        workspace: "{{ ansible_user_dir }}/workspace"
+
+    - name: ensure workspace presence
+      file:
+        path: "{{ workspace }}"
+        state: directory
+
+    - name: Run quickstart
+      include_role:
+        name: run-test
+      vars:
+        release: "{{ release }}"
+        run_test_role_vars:
+          add_repos:
+            - type: generic
+              filename: podman-override.repo
+              reponame: podman-override
+              baseurl: "{{ buildset_artifacts_url }}"
+              priority: 1
+              module_hotfixes: True
+              includepkgs:
+                - podman
+          undercloud_rpm_dependencies: >-
+            python3-tripleoclient
+            podman
