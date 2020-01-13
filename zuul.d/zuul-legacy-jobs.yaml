@@ -48,7 +48,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: master
       scenario: scenario001
@@ -80,7 +80,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: master
       scenario: scenario002
@@ -112,7 +112,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: master
       scenario: scenario003
@@ -144,7 +144,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: master
       scenario: scenario001
@@ -173,7 +173,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: master
       scenario: scenario002
@@ -202,7 +202,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: master
       scenario: scenario003
@@ -231,7 +231,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: master
       scenario: scenario004
@@ -373,7 +373,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: master
       scenario: scenario001
@@ -407,7 +407,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: master
       scenario: scenario002
@@ -441,7 +441,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: master
       scenario: scenario003
@@ -475,7 +475,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: master
       scenario: scenario001
@@ -506,7 +506,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: master
       scenario: scenario002
@@ -537,7 +537,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: master
       scenario: scenario003
@@ -568,7 +568,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
     post-run: playbooks/legacy/weirdo-dlrn/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: master
       scenario: scenario004
@@ -614,7 +614,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: master
       scenario: scenario001
@@ -642,7 +642,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: master
       scenario: scenario003
@@ -670,7 +670,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
-    timeout: 5400
+    timeout: 7200
     voting: false
     vars:
       openstack_release: master
@@ -689,7 +689,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: master
       scenario: scenario001
@@ -714,7 +714,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: master
       scenario: scenario001
@@ -739,7 +739,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: master
       scenario: scenario004
@@ -764,7 +764,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
-    timeout: 5400
+    timeout: 7200
     voting: false
     vars:
       openstack_release: master
@@ -783,7 +783,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: ocata
       scenario: scenario002
@@ -801,7 +801,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: rocky
       scenario: scenario002
@@ -819,7 +819,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: ocata
       scenario: scenario002
@@ -836,7 +836,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: rocky
       scenario: scenario002
@@ -853,7 +853,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: pike
       scenario: scenario001
@@ -871,7 +871,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: pike
       scenario: scenario002
@@ -889,7 +889,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: pike
       scenario: scenario001
@@ -906,7 +906,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: pike
       scenario: scenario002
@@ -923,7 +923,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: queens
       scenario: scenario001
@@ -941,7 +941,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: queens
       scenario: scenario003
@@ -959,7 +959,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: queens
       scenario: scenario001
@@ -976,7 +976,7 @@
     parent: legacy-base
     run: playbooks/legacy/weirdo-integration/run.yaml
     post-run: playbooks/legacy/weirdo-integration/post.yaml
-    timeout: 5400
+    timeout: 7200
     vars:
       openstack_release: queens
       scenario: scenario003
