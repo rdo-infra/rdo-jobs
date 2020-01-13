@@ -57,6 +57,9 @@
         - podman-package-centos-8: *podman
         - podman-package-fedora-30: *podman
         - tripleo-podman-integration-rhel-8-scenario000-standalone:
+            files:
+              - zuul.d/podman.yaml
+              - playbooks/podman/.*
             dependencies:
               - podman-package-rhel-8
 
