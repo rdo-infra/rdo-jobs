@@ -105,6 +105,7 @@
       - name: opendev.org/openstack/tripleo-heat-templates
       - name: github.com/ceph/ceph-ansible
     vars:
+      standalone_ceph: true
       featureset_override: &scenario004_podman
         run_tempest: false
         standalone_environment_files:
