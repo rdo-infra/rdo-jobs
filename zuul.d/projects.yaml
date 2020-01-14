@@ -36,17 +36,16 @@
               - ./playbooks/tripleo-ceph-integration/.*
               - zuul.d/ceph-ansible.yaml
               - ./playbooks/run-rpm-build.yaml
-        # TODO(arxcruz): Uncoment once rhel-8 jobs get fixed
-        #  - tripleo-ceph-integration-rhel-8-scenario001-standalone:
-        #      <<: *ceph
-        #      dependencies:
-        #        - tripleo-ceph-integration-master
-        #  - tripleo-ceph-integration-rhel-8-scenario004-standalone:
-        #      <<: *ceph
-        #      # this refers to rdo-jobs@master
-        #      branches: master
-        #      dependencies:
-        #        - tripleo-ceph-integration-master§
+        - tripleo-ceph-integration-rhel-8-scenario001-standalone:
+             <<: *ceph
+             dependencies:
+               - tripleo-ceph-integration-master
+        - tripleo-ceph-integration-rhel-8-scenario004-standalone:
+             <<: *ceph
+             # this refers to rdo-jobs@master
+             branches: master
+             dependencies:
+               - tripleo-ceph-integration-master
         - podman-package-rhel-8: &podman
             files:
               - zuul.d/podman.yaml
