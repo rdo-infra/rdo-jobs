@@ -32,11 +32,6 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
-        - DLRN-rpmbuild-fedora:
-            branches: ^(master)|(rpm-master)$
-            nodeset: rdo-fedora-28
-            voting: false
-            timeout: 2400
         - distgit-cbs-validate:
             branches: ^(?!rpm-master).*$
     gate:

@@ -360,17 +360,6 @@
       - DLRN
 
 - job:
-    name: DLRN-rpmbuild-fedora
-    run: playbooks/DLRN/rpmbuild-fedora.yaml
-    post-run: playbooks/DLRN/post.yaml
-    voting: false
-    branches: ^(master)|(rpm-master)$
-    nodeset: rdo-fedora-28
-    required-projects:
-      - rdoinfo
-      - DLRN
-
-- job:
     name: DLRN-rpmbuild-centos8
     parent: DLRN-rpmbuild
     # Make it voting when it's stable.
@@ -389,12 +378,6 @@
     vars:
       tag: 'ussuri-uc'
       centos_version: 'centos8'
-
-- job:
-    name: DLRN-rpmbuild-fedora-pinned
-    parent: DLRN-rpmbuild-fedora
-    vars:
-      tag: ussuri-uc
 
 - job:
     name: rpmlint
