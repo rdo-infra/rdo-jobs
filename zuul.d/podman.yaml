@@ -49,7 +49,8 @@
 
 - job:
     name: tripleo-podman-integration-rhel-8-scenario000-standalone
-    parent: tripleo-ci-rhel-8-standalone-rdo
+    parent: tripleo-ci-base-standalone-periodic
+    nodeset: single-rhel-8-node
     branches: ^master$
     run: playbooks/podman/install-podman-rpm.yaml
     required-projects:
