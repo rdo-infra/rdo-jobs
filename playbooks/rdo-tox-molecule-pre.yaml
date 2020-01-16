@@ -10,3 +10,11 @@
         regexp: '.*rhui-cds$'
         line: "38.145.32.241 rhui-cds"
         state: present
+
+    - name: Workaround for yum --nobest with docker-ce
+      when:
+        - ansible_distribution == "CentOS"
+        - ansible_distribution_major_version == "8"
+      become: true
+      yum:
+        name: https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
