@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f1cceeb7_fae56d5d",
+        "filename": "bindep.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 371
+      },
+      "writtenOn": "2020-01-16T15:57:33Z",
+      "side": 1,
+      "message": "It will break any recent OS. This package is called python3-devel on new platforms. Try something like: \n\npython3-devel [compile test !platform:centos-7 platform:rpm]",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 40
+      },
+      "revId": "7302abacfff1edc7d9e3af0b4a67751fa4283055",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
