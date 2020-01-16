@@ -14,12 +14,13 @@
         - tox-linters: *cfg
         - rdo-tox-molecule: &molecule
             files:
-              - ^requirements.txt$
-              - ^roles/.*
-              - ^setup.*$
-              - ^test-requirements.txt$
-              - ^tox.ini$
               - .*molecule.*
+              - bindep.txt
+              - requirements.txt$
+              - roles/.*
+              - setup.*$
+              - test-requirements.txt
+              - tox.ini
         - periodic-tripleo-ci-centos-7-standalone-master:
             files:
               - zuul.d/standalone-jobs.yaml
