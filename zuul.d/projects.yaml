@@ -20,6 +20,7 @@
               - ^test-requirements.txt$
               - ^tox.ini$
               - .*molecule.*
+              - ^bindep.txt$
         - periodic-tripleo-ci-centos-7-standalone-master:
             files:
               - zuul.d/standalone-jobs.yaml
