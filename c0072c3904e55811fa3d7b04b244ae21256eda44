@@ -22,6 +22,30 @@
       "revId": "c0072c3904e55811fa3d7b04b244ae21256eda44",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9e14a6eb_712dd396",
+        "filename": "playbooks/rdo-tox-molecule-pre.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 371
+      },
+      "writtenOn": "2020-01-17T14:46:56Z",
+      "side": 1,
+      "message": "Anyway this code here will be removed because this task runs too late anyway, it needs to be in install-docker.\n\nRegarding podman: not a chance for the moment. Why: podman is considerably less reliable than docker when used with molecule. Is not that we do not, in fact next step is to also enable podman in the same jobs (as they can coexist).\n\nWe will use podman for scenarios where it works and docker for others. What needs to be remembered here is that while we can switch one to another changing one word, it does not mean it will work.\n\nPodman is on the agenda, not need to worry.",
+      "parentUuid": "35eac6c5_034cbe6c",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 118
+      },
+      "revId": "c0072c3904e55811fa3d7b04b244ae21256eda44",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
