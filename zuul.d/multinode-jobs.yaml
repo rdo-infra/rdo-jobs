@@ -7,6 +7,8 @@
     name: tripleo-ci-centos-7-multinode-1ctlr-featureset010
     parent: tripleo-ci-base-multinode-rdo
     branches: ^master$
+    # bump 3.5 hours https://tree.taiga.io/project/tripleo-ci-board/task/1383
+    timeout: 12600
     vars:
       nodes: 1ctlr
       featureset: '010'
