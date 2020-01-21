@@ -294,6 +294,16 @@
         - baremetal-full-overcloud-prep.yml
         - baremetal-full-overcloud.yml
         - baremetal-full-overcloud-validate.yml
+
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1cellctlr_1comp-featureset063
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ".*"
+    timeout: 12600
+    vars:
+      nodes: 1ctlr_1cellctlr_1comp
+      featureset: '063'
+
 # =================  P E R I O D I C   J O B S
 
 # Periodic job temporarly running on vexxhost, remove when we move to vexxhost
