@@ -283,6 +283,8 @@
     name: rdo-tox-molecule
     parent: tripleo-tox-molecule
     nodeset: centos-8
+    # default tox based job timeout of 1800 is far too low for functional testing
+    timeout: 7200
     pre-run:
       - playbooks/rdo-tox-molecule-pre.yaml
     vars:
