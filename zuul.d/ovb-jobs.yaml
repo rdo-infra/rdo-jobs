@@ -31,9 +31,9 @@
     parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
     nodeset: tripleo-ovb-rhel-8-primary
     branches: ^master$
-    host-vars:
-      primary:
-        ansible_python_interpreter: /usr/bin/python3
+    vars:
+      featureset_override:
+        to_build: false
 
 - job:
     name: tripleo-ci-rhel-8-ovb-3ctlr_1comp-featureset001-train
@@ -366,9 +366,6 @@
     name: periodic-tripleo-ci-rhel-8-ovb-3ctlr_1comp-featureset001-master
     parent: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
     nodeset: tripleo-ovb-rhel-8-primary
-    host-vars:
-      primary:
-        ansible_python_interpreter: /usr/bin/python3
     vars:
       featureset_override:
         to_build: false
