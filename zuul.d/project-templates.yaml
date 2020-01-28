@@ -144,6 +144,44 @@
               - manifests/profile/base/neutron/plugins/ml2/opendaylight.pp
               - manifests/profile/base/neutron/plugins/ovs/opendaylight.pp
               - tox.ini
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035:
+            voting: false
+            irrelevant-files:
+              - ^.*\.md$
+              - ^.*\.rst$
+              - ^coe/kubernetes.*$
+              - ^coe/openshift.*$
+              - ^doc/.*$
+              - ^docker/services/.*ovn.*$
+              - ^docker/services/aodh.*$
+              - ^docker/services/barbican.*$
+              - ^docker/services/ceilometer.*$
+              - ^docker/services/ceph.*$
+              - ^docker/services/cinder.*$
+              - ^docker/services/congress.*$
+              - ^docker/services/ec2-api.*$
+              - ^docker/services/gnocchi.*$
+              - ^docker/services/logging.*$
+              - ^docker/services/manila.*$
+              - ^docker/services/metrics.*$
+              - ^docker/services/monitoring.*$
+              - ^docker/services/panko.*$
+              - ^docker/services/sahara.*$
+              - ^docker/services/tacker.*$
+              - ^environments/.*opendaylight.*$
+              - ^environments/kubernetes.*$
+              - ^environments/openshift.*$
+              - ^etc/.*$
+              - ^releasenotes/.*$
+              - ^setup.*$
+              - ^spec/.*$
+              - ^test-requirements.txt$
+              - ci/environments/scenario.*$
+              - ci/pingtests/scenario.*$
+              - manifests/profile/base/neutron/opendaylight.pp
+              - manifests/profile/base/neutron/plugins/ml2/opendaylight.pp
+              - manifests/profile/base/neutron/plugins/ovs/opendaylight.pp
+              - tox.ini
 
 - project-template:
     name: ovb-experimental
