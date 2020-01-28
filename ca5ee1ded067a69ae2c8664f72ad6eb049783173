@@ -16,6 +16,24 @@
       "revId": "ca5ee1ded067a69ae2c8664f72ad6eb049783173",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b1129f40_90429d44",
+        "filename": "zuul.d/standalone-jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2020-01-28T10:46:58Z",
+      "side": 1,
+      "message": "12:45 \u003c chkumar|rover\u003e marios, fs020 is main, I was taking a look at this one, as both jobs are same as sometimes false positive \n                       results were coming so thought giving a try\n12:46 \u003c marios\u003e chkumar|rover: hmm so you mean as well as fs10/fs1 for *.api? \n12:46 \u003c marios\u003e chkumar|rover: in this case, not sure, since it would mean big increase in the runtime for it... we might have some \n                pushback for that\n12:46 \u003c marios\u003e chkumar|rover: since standalone is meant to be faster test",
+      "parentUuid": "4965c560_2bdf3425",
+      "revId": "ca5ee1ded067a69ae2c8664f72ad6eb049783173",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
