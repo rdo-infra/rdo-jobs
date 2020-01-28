@@ -57,6 +57,7 @@
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035
     parent: tripleo-ci-base-ovb-rdo
     branches: ^(?!stable/(newton|ocata|pike)).*$
+    nodeset: upstream-centos-7-vexxhost
     vars:
       nodes: 3ctlr_1comp
       featureset: '035'
