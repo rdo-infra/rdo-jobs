@@ -9,6 +9,13 @@
     vars: &standalone_vars
       featureset: '052'
       release: master
+      featureset_override:
+        tempest_services:
+          - cinder
+          - horizon
+          - neutron
+        tempest_test_whitelist:
+          - 'api'
 
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-upgrade-master
@@ -32,7 +39,6 @@
           - horizon
           - neutron
         tempest_test_whitelist:
-          - 'api'
           - 'scenario'
         use_os_tempest: true
 
