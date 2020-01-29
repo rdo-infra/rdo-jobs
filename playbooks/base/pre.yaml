@@ -1,7 +1,16 @@
 - hosts: all
-  roles:
-    - role: prepare-workspace
   tasks:
+    - block:
+        - include_role: name=prepare-workspace
+      when: "ansible_connection != 'kubectl'"
+    - block:
+        - include_role: name=prepare-workspace-openshift
+      run_once: true
+      when: "ansible_connection == 'kubectl'"
+
+    - import_role: name=ensure-output-dirs
+      when: ansible_user_dir is defined
+
     - name: Check if worker can sudo
       command: sudo -n true
       failed_when: false
