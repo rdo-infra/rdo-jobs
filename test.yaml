@@ -1,0 +1,9 @@
+- hosts: all
+  tasks:
+    - command: ls -la
+      args:
+        chdir: "{{ zuul.project.src_dir }}"
+    - copy:
+        content: <h1>hello rdo</h1>
+        dest: "{{ zuul.executor.log_root }}/test.html"
+      delegate_to: localhost
