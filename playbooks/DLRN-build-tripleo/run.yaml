@@ -62,7 +62,8 @@
           echo >> /tmp/delorean-current.repo
           echo "includepkgs=ansible-role-container-registry,ansible-role-tripleo*,ansible-tripleo-ipsec,diskimage-builder,\
           instack,instack-undercloud,os-apply-config,os-collect-config,os-net-config,os-refresh-config,openstack-tripleo-*,\
-          python*-tripleo*,puppet-*,python*-paunch*" >> /tmp/delorean-current.repo
+          python*-tripleo*,puppet-*,python*-paunch*,paunch-services,tripleo-ansible,\
+          ansible-config_template" >> /tmp/delorean-current.repo
           cat /tmp/delorean-current.repo >> centos.cfg
           echo >> centos.cfg
           # current-tripleo
