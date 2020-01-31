@@ -45,6 +45,23 @@
         - name: test
           label: cloud-fedora-30
 
+# Train related podman jobs
+
+- job:
+    name: podman-package-rhel-8-train
+    parent: podman-package-rhel-8
+    branches: master
+    vars:
+      branch_override: stable/train
+      release: train
+    required-projects:
+      # without options, the branch of the PR is used for the required-projects
+      - name: opendev.org/openstack/tripleo-heat-templates
+        override-checkout: stable/train
+      - name: github.com/containers/libpod
+        override-checkout: v1.6
+
+
 # Podman TripleO integration Jobs
 
 ## Keystone based standalone deployment
