@@ -60,6 +60,7 @@
               - playbooks/podman/.*
             dependencies:
               - podman-package-rhel-8
+        - tripleo-build-containers-jobs
 
     gate:
       jobs:
