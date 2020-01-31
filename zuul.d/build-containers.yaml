@@ -6,6 +6,7 @@
     name: tripleo-build-containers-jobs
     openstack-check:
       jobs:
+        - tripleo-build-containers-centos-8-master
         - tripleo-build-containers-rhel-8-master
         - tripleo-build-containers-rhel-8-train
 
@@ -44,3 +45,28 @@
     override-checkout: stable/train
     vars:
       branch_override: stable/train
+
+- job:
+    name: tripleo-build-containers-centos-8-master
+    parent: tripleo-build-containers-base-with-files
+    nodeset: single-centos-8-node
+    branches: master
+    required-projects:
+      - opendev.org/openstack/kolla
+      - opendev.org/openstack/python-tripleoclient
+      - opendev.org/openstack/tripleo-common
+      - opendev.org/openstack/tripleo-repos
+    voting: false
+    vars:
+      release: master
+      use_buildah: true
+      # Keep string empty, or kolla will try to download delorean repos on its own
+      buildcontainers_rpm_setup_config: ""
+      kolla_base: centos
+      kolla_base_pull: false
+      kolla_base_image: centos
+      kolla_base_tag: 8
+      push_containers: false
+      push_containers_podman: false
+    files:
+      - zuul.d/build-containers.yaml
