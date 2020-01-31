@@ -4,8 +4,13 @@
 # It contains all the jobs related to standalone installer testing.
 
 - job:
-    name: periodic-tripleo-ci-centos-7-standalone-master
+    name: tripleo-ci-base-standalone-periodic-logsgzip
     parent: tripleo-ci-base-standalone-periodic
+    pre-run: playbooks/logsgzip.yaml
+
+- job:
+    name: periodic-tripleo-ci-centos-7-standalone-master
+    parent: tripleo-ci-base-standalone-periodic-logsgzip
     vars: &standalone_vars
       featureset: '052'
       release: master
