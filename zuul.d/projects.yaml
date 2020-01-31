@@ -60,6 +60,9 @@
               - playbooks/podman/.*
             dependencies:
               - podman-package-rhel-8
+        - tripleo-build-containers-centos-8-master:
+            files:
+              - zuul.d/build-containers.yaml
 
     gate:
       jobs:
