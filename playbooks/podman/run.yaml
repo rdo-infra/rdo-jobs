@@ -18,7 +18,11 @@
         # https://github.com/containers/libpod/issues/4665
         cmd: |
           set -euo pipefail
-          make package-install
+          {% if release == 'train' %}
+            bash contrib/build_rpm.sh
+          {% else %}
+            make package-install
+          {% endif %}
           podman version
           podman info  --log-level debug
         chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}"
