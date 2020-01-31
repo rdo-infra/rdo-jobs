@@ -18,3 +18,16 @@
     mode: u=rwX,g=rX,o=rX
     recurse: true
   become: true
+
+- name: Check if hostvars-variables file is present
+  stat:
+    path: "{{ ansible_user_dir  }}/workspace/logs/hostvars-variables.yaml"
+  register: hostvars_variables_path
+
+- name: inject artcl_gzip var to hostvars
+  lineinfile:
+    dest: "{{ ansible_user_dir  }}/workspace/logs/hostvars-variables.yaml"
+    line: "artcl_gzip: true"
+    state: present
+    insertafter: EOF
+  when: hostvars_variables_path.stat.exists
