@@ -48,7 +48,7 @@
           ZUUL_REF=$(echo $ZUUL_REF |cut -f4 -d /)
           job="validate-buildsys-tags"
           LOG_PATH="$BASE_LOG_PATH/$ZUUL_PIPELINE/$job/$ZUUL_REF"
-          logs="https://logs.rdoproject.org/$LOG_PATH/"
+          logs="https://logserver.rdoproject.org/$LOG_PATH/"
 
           # NOTE(pabelanger): Override logs for zuulv3 jobs.
           if [[ -d /home/zuul ]]; then

@@ -6,4 +6,4 @@
   delegate_to: localhost
   zuul_return:
     data:
-      rdo_artifact_path: "https://logs.rdoproject.org/{{ zuul_log_path }}/"
+      rdo_artifact_path: "https://logserver.rdoproject.org/{{ zuul_log_path }}/"
