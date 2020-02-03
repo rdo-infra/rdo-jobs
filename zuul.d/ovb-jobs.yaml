@@ -4,26 +4,8 @@
 # It contains all the jobs related to OVB testing in RDO Cloud.
 
 - job:
-    name: tripleo-ci-base-ovb-periodic-logsgzip
-    parent: tripleo-ci-base-ovb-periodic
-    abstract: true
-    pre-run: playbooks/logsgzip.yaml
-
-- job:
-    name: tripleo-ci-base-ovb-rdo-logsgzip
-    parent: tripleo-ci-base-ovb-rdo
-    abstract: true
-    pre-run: playbooks/logsgzip.yaml
-
-- job:
-    name: tripleo-ci-base-ovb-periodic-logsgzip-upload
-    parent: tripleo-ci-base-ovb-periodic-upload
-    abstract: true
-    pre-run: playbooks/logsgzip.yaml
-
-- job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     branches: "^.*$"
     vars:
       nodes: 3ctlr_1comp
@@ -31,7 +13,7 @@
 
 - job:
     name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset001
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     branches: "^.*$"
     vars:
       nodes: 1ctlr_1comp
@@ -73,7 +55,7 @@
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     branches: ^(?!stable/(newton|ocata|pike)).*$
     nodeset: upstream-centos-7-vexxhost
     vars:
@@ -83,7 +65,7 @@
 
 - job:
     name: tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-queens
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     branches: ^master$
     override-checkout: "stable/queens"
     timeout: 18000
@@ -94,7 +76,7 @@
 
 - job:
     name: tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-rocky
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     branches: ^master$
     override-checkout: "stable/rocky"
     timeout: 18000
@@ -105,7 +87,7 @@
 
 - job:
     name: tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-stein
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     branches: ^master$
     override-checkout: "stable/stein"
     timeout: 18000
@@ -124,7 +106,7 @@
 # Job for testing featureset002 changes
 - job:
     name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     branches: "^.*$"
     vars:
       nodes: 1ctlr_1comp
@@ -132,7 +114,7 @@
 
 - job:
     name: tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     timeout: 18000
     branches: ".*"
     vars:
@@ -141,7 +123,7 @@
 
 - job:
     name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     branches: ^stable/pike$
     vars:
       nodes: 1ctlr_1comp
@@ -149,7 +131,7 @@
 
 - job:
     name: tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     branches: ".*"
     timeout: 18000
     vars:
@@ -158,7 +140,7 @@
 
 - job:
     name: tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     branches: ^stable/pike$
     vars:
       nodes: 1ctlr_1comp_1ceph
@@ -167,7 +149,7 @@
 # set to voting false until this starts passing again
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset053
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     timeout: 14400
     branches: ^master$
     voting: false
@@ -184,7 +166,7 @@
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset041
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     timeout: 14400
     vars:
       nodes: 3ctlr_1comp
@@ -199,7 +181,7 @@
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     branches: ^(?!stable/(newton|ocata|pike)).*$
     timeout: 10800
     vars:
@@ -208,7 +190,7 @@
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens-branch
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     branches: ^master$
     vars:
       nodes: 3ctlr_1comp
@@ -217,7 +199,7 @@
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky-branch
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     branches: ^master$
     vars:
       nodes: 3ctlr_1comp
@@ -226,7 +208,7 @@
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-stein-branch
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     branches: ^master$
     vars:
       nodes: 3ctlr_1comp
@@ -242,7 +224,7 @@
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     branches: "^.*$"
     vars:
       nodes: 3ctlr_1comp
@@ -252,7 +234,7 @@
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky-vexxhost
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     branches: ^master$
     vars:
       nodes: 3ctlr_1comp
@@ -263,7 +245,7 @@
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-stein-vexxhost
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     branches: ^master$
     vars:
       nodes: 3ctlr_1comp
@@ -274,7 +256,7 @@
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-train-vexxhost
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     branches: ^stable/train$
     vars:
       nodes: 3ctlr_1comp
@@ -284,7 +266,7 @@
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     timeout: 12600
     branches: "^(?!stable/queens).*$"
     voting: false
@@ -301,7 +283,7 @@
 
 - job:
     name: tripleo-ci-centos-7-ovb-1ctlr_2comp_1supp-featureset039
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     timeout: 12600
     branches: "^.*$"
     vars:
@@ -317,7 +299,7 @@
 
 - job:
     name: tripleo-ci-centos-7-ovb-1ctlr_1cellctrl_1comp-featureset063
-    parent: tripleo-ci-base-ovb-rdo-logsgzip
+    parent: tripleo-ci-base-ovb-rdo
     branches: ".*"
     timeout: 12600
     vars:
@@ -329,7 +311,7 @@
 # Periodic job temporarly running on vexxhost, remove when we move to vexxhost
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
-    parent: tripleo-ci-base-ovb-periodic-logsgzip
+    parent: tripleo-ci-base-ovb-periodic
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
@@ -340,7 +322,7 @@
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
-    parent: tripleo-ci-base-ovb-periodic-logsgzip
+    parent: tripleo-ci-base-ovb-periodic
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
@@ -349,7 +331,7 @@
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens
-    parent: tripleo-ci-base-ovb-periodic-logsgzip
+    parent: tripleo-ci-base-ovb-periodic
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
@@ -359,7 +341,7 @@
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky
-    parent: tripleo-ci-base-ovb-periodic-logsgzip
+    parent: tripleo-ci-base-ovb-periodic
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
@@ -368,7 +350,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-stein
-    parent: tripleo-ci-base-ovb-periodic-logsgzip
+    parent: tripleo-ci-base-ovb-periodic
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
@@ -401,7 +383,7 @@
 # legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload
-    parent: tripleo-ci-base-ovb-periodic-logsgzip-upload
+    parent: tripleo-ci-base-ovb-periodic-upload
     vars:
       nodes: 1ctlr_1comp
       featureset: '002'
@@ -416,7 +398,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-stein-upload
-    parent: tripleo-ci-base-ovb-periodic-logsgzip-upload
+    parent: tripleo-ci-base-ovb-periodic-upload
     vars:
       nodes: 1ctlr_1comp
       featureset: '002'
@@ -426,7 +408,7 @@
 # legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-rocky-upload
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-rocky-upload
-    parent: tripleo-ci-base-ovb-periodic-logsgzip-upload
+    parent: tripleo-ci-base-ovb-periodic-upload
     vars:
       nodes: 1ctlr_1comp
       featureset: '002'
@@ -436,7 +418,7 @@
 # legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload
-    parent: tripleo-ci-base-ovb-periodic-logsgzip-upload
+    parent: tripleo-ci-base-ovb-periodic-upload
     vars:
       nodes: 1ctlr_1comp
       featureset: '002'
@@ -445,7 +427,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-master
-    parent: tripleo-ci-base-ovb-periodic-logsgzip
+    parent: tripleo-ci-base-ovb-periodic
     timeout: 18000
     vars:
       nodes: 1ctlr_2comp
@@ -454,7 +436,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-queens
-    parent: tripleo-ci-base-ovb-periodic-logsgzip
+    parent: tripleo-ci-base-ovb-periodic
     override-checkout: "stable/queens"
     timeout: 18000
     vars:
@@ -465,7 +447,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-rocky
-    parent: tripleo-ci-base-ovb-periodic-logsgzip
+    parent: tripleo-ci-base-ovb-periodic
     timeout: 18000
     override-checkout: "stable/rocky"
     vars:
@@ -476,7 +458,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-stein
-    parent: tripleo-ci-base-ovb-periodic-logsgzip
+    parent: tripleo-ci-base-ovb-periodic
     timeout: 18000
     override-checkout: "stable/stein"
     vars:
@@ -495,7 +477,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-master
-    parent: tripleo-ci-base-ovb-periodic-logsgzip
+    parent: tripleo-ci-base-ovb-periodic
     timeout: 18000
     vars:
       nodes: 1ctlr_2comp
@@ -512,7 +494,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-stein
-    parent: tripleo-ci-base-ovb-periodic-logsgzip
+    parent: tripleo-ci-base-ovb-periodic
     timeout: 18000
     override-checkout: "stable/stein"
     vars:
@@ -523,7 +505,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-rocky
-    parent: tripleo-ci-base-ovb-periodic-logsgzip
+    parent: tripleo-ci-base-ovb-periodic
     timeout: 18000
     override-checkout: "stable/rocky"
     vars:
@@ -534,7 +516,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-queens
-    parent: tripleo-ci-base-ovb-periodic-logsgzip
+    parent: tripleo-ci-base-ovb-periodic
     timeout: 18000
     override-checkout: "stable/queens"
     vars:
@@ -546,7 +528,7 @@
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master
-    parent: tripleo-ci-base-ovb-periodic-logsgzip
+    parent: tripleo-ci-base-ovb-periodic
     vars:
       nodes: 3ctlr_1comp
       featureset: '035'
@@ -561,7 +543,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-stein
-    parent: tripleo-ci-base-ovb-periodic-logsgzip
+    parent: tripleo-ci-base-ovb-periodic
     vars:
       nodes: 3ctlr_1comp
       featureset: '035'
@@ -571,7 +553,7 @@
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-rocky
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-rocky
-    parent: tripleo-ci-base-ovb-periodic-logsgzip
+    parent: tripleo-ci-base-ovb-periodic
     vars:
       nodes: 3ctlr_1comp
       featureset: '035'
@@ -581,7 +563,7 @@
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens
-    parent: tripleo-ci-base-ovb-periodic-logsgzip
+    parent: tripleo-ci-base-ovb-periodic
     vars:
       nodes: 3ctlr_1comp
       featureset: '035'
@@ -590,7 +572,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master
-    parent: tripleo-ci-base-ovb-periodic-logsgzip
+    parent: tripleo-ci-base-ovb-periodic
     timeout: 12600
     vars:
       nodes: 3ctlr_1comp_1supp
