@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "36a99064_d114a517",
+        "filename": "zuul.d/build-containers.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 502
+      },
+      "writtenOn": "2020-02-03T17:51:51Z",
+      "side": 1,
+      "message": "ack thx",
+      "parentUuid": "66df29a9_b9ffa755",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 59,
+        "endChar": 38
+      },
+      "revId": "ebaeea0c5091249509817a598cbde7070a864573",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f24c2d92_b8fc7a5b",
         "filename": "zuul.d/build-containers.yaml",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2020-01-31T17:49:10Z",
       "side": 1,
       "message": "this should conflict with centos7 images when same hashes are built for both centos7 and centos8. Can u please check this point for both train and master else it might have issues later.",
+      "range": {
+        "startLine": 65,
+        "startChar": 6,
+        "endLine": 65,
+        "endChar": 24
+      },
+      "revId": "ebaeea0c5091249509817a598cbde7070a864573",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "725f84e5_f9168179",
+        "filename": "zuul.d/build-containers.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 502
+      },
+      "writtenOn": "2020-02-03T17:51:51Z",
+      "side": 1,
+      "message": "this is check job and won\u0027t be pushing. For periodic one, we need to avoid name collision.",
+      "parentUuid": "f24c2d92_b8fc7a5b",
       "range": {
         "startLine": 65,
         "startChar": 6,
