@@ -101,7 +101,7 @@
             # Note, LOG_PATH is expected since we reconstruct it inside
             # zuul_functions.py
             LOG_PATH="${BASE_LOG_PATH}/${ZUUL_PIPELINE}/${job}/${ZUUL_REF}"
-            logs="https://logs.rdoproject.org/${LOG_PATH}"
+            logs="https://logserver.rdoproject.org/${LOG_PATH}"
 
             curl -o /dev/null -sIf "${logs}" || continue
             break

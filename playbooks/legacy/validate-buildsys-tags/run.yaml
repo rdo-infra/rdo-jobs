@@ -73,7 +73,7 @@
           pushd {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}/buildsys-tags
           # define logs variable with the URL wher logs will be pushed
           if [ -d /home/zuul ]; then
-              export logs="https://logs.rdoproject.org/{{ zuul_log_path }}/buildset"
+              export logs="https://logserver.rdoproject.org/{{ zuul_log_path }}/buildset"
           fi
           bash ./create_temporary_repos.sh $WORKSPACE/rdoinfo $WORKSPACE/logs
           bash ./validate_updates.sh $WORKSPACE/logs
