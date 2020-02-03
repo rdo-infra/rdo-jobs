@@ -312,6 +312,9 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
     parent: tripleo-ci-base-ovb-periodic
+    # Bumping to 5hours for fs1 to run *api* tempest see
+    # https://tree.taiga.io/project/tripleo-ci-board/task/1383
+    timeout: 18000
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
@@ -323,6 +326,9 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
     parent: tripleo-ci-base-ovb-periodic
+    # Bumping to 5hours for fs1 to run *api* tempest see
+    # https://tree.taiga.io/project/tripleo-ci-board/task/1383
+    timeout: 18000
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
@@ -332,6 +338,9 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens
     parent: tripleo-ci-base-ovb-periodic
+    # Bumping to 5hours for fs1 to run *api* tempest see
+    # https://tree.taiga.io/project/tripleo-ci-board/task/1383
+    timeout: 18000
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
@@ -342,6 +351,9 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky
     parent: tripleo-ci-base-ovb-periodic
+    # Bumping to 5hours for fs1 to run *api* tempest see
+    # https://tree.taiga.io/project/tripleo-ci-board/task/1383
+    timeout: 18000
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
@@ -351,6 +363,9 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-stein
     parent: tripleo-ci-base-ovb-periodic
+    # Bumping to 5hours for fs1 to run *api* tempest see
+    # https://tree.taiga.io/project/tripleo-ci-board/task/1383
+    timeout: 18000
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
