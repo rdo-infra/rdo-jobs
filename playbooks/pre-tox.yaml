@@ -27,3 +27,11 @@
         warn: false
       register: result
       changed_when: "'Successfully installed' in result.stdout"
+
+    - name: Enable EPEL for Centos-8
+      become: true
+      package:
+        name: epel-release
+      when:
+        - ansible_distribution_major_version == "8"
+        - ansible_distribution == "CentOS"
