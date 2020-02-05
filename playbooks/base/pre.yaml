@@ -15,3 +15,14 @@
       when:
         - _worker_is_sudoer.rc == 0
         - ansible_distribution != "Fedora" or (ansible_distribution == "Fedora" and ansible_distribution_major_version|int > 28)
+
+    - name: Install and enable EPEL for Centos-8
+      become: true
+      shell: |
+        set -euox pipefail
+        yum -y install epel-release yum-utils
+        yum-config-manager --enable epel
+      changed_when: true
+      when:
+        - ansible_distribution_major_version == "8"
+        - ansible_distribution == "CentOS"
