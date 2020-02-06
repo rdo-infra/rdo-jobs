@@ -559,3 +559,18 @@
     parent: periodic-tripleo-ci-centos-7-standalone-component-master
     vars:
       component: keystone
+
+- job:
+    name: periodic-tripleo-ci-centos-7-standalone-master-ipa
+    parent: tripleo-ci-base-standalone-periodic
+    nodeset: upstream-centos-7-2-node
+    roles:
+      - zuul: openstack/tripleo-quickstart-extras
+      - zuul: opendev.org/openstack/tripleo-ansible
+    vars:
+      featureset: '052'
+      release: master
+      playbooks:
+        - quickstart.yml
+        - multinode-standalone-ipa.yml
+        - multinode-standalone.yml
