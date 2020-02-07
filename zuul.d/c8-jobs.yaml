@@ -1,0 +1,11 @@
+---
+- job:
+    name: tripleo-c8-testing-on-rhel8-standalone-master
+    parent: periodic-tripleo-ci-rhel-8-standalone-master
+    run: playbooks/repofun/install-c8-deps.yaml
+
+- job:
+    name: tripleo-c8-testing-on-rhel8-standalone-train
+    parent: periodic-tripleo-ci-rhel-8-standalone-train
+    run: playbooks/repofun/install-c8-deps.yaml
+
