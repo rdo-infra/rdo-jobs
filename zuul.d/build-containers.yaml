@@ -44,3 +44,26 @@
     override-checkout: stable/train
     vars:
       branch_override: stable/train
+
+- job:
+    name: tripleo-build-containers-centos-8-master
+    parent: tripleo-build-containers-base-with-files
+    nodeset: single-centos-8-node
+    branches: master
+    required-projects:
+      - opendev.org/openstack/kolla
+      - opendev.org/openstack/python-tripleoclient
+      - opendev.org/openstack/tripleo-common
+      - opendev.org/openstack/tripleo-repos
+    voting: false
+    vars:
+      release: master
+      use_buildah: true
+      kolla_base: centos
+      kolla_base_pull: true
+      kolla_base_image: centos
+      kolla_base_tag: 8
+      push_containers: false
+      push_containers_podman: false
+    files:
+      - zuul.d/build-containers.yaml
