@@ -343,3 +343,55 @@
           - primary
       - name: peers
         nodes: []
+
+- nodeset:
+    name: upstream-rhel-8-vexxhost
+    nodes:
+      - name: primary
+        label: upstream-rhel-8-vexxhost
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: single-rhel-8-node-vexxhost
+    nodes:
+      - name: primary
+        label: upstream-rhel-8-vexxhost
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: tripleo-ovb-rhel-8-primary-vexxhost
+    nodes:
+      - name: primary
+        label: upstream-rhel-8-vexxhost
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: two-rhel-8-nodes-vexxhost
+    nodes:
+      - name: primary
+        label: upstream-rhel-8-vexxhost
+      - name: secondary
+        label: upstream-rhel-8-vexxhost
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes:
+          - secondary
+      - name: subnodes
+        nodes:
+          - secondary
