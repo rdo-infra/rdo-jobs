@@ -57,6 +57,9 @@
           # requires an up to date openstack-macros package in the builder,
           # and not just in the mock buildroot.
           sudo dnf -y install https://fedora-rpm-packaging-ci.rdoproject.org/repos/deps/openstack-macros-2019.2.1-0.20190701082914.ce6a105.fc28.noarch.rpm
+          # FIXME(jpena) test workaround for virtualenv >= 20
+          sudo pip install --upgrade six
+          sudo pip3 install --upgrade six
           # Setup virtualenv with tox and use it
           tox -epy27 --notest
           . .tox/py27/bin/activate
