@@ -2,6 +2,18 @@
   roles:
     - role: prepare-workspace
   tasks:
+    - name: Temporary fix for /root for virtualenv 20
+      command: chmod o+rx /root
+      become: yes
+      tags:
+        - skip_ansible_lint
+    - name: Temporary fix for /root/local for virtualenv 20
+      command: chmod -R o+rX /root/.local
+      become: yes
+      ignore_errors: true
+      tags:
+        - skip_ansible_lint
+
     - name: Check if worker can sudo
       command: sudo -n true
       failed_when: false
