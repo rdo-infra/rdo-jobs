@@ -21,6 +21,7 @@
     - name: Upgrade tox if under 3.8.0
       shell: |
         set -euox
+        {{ ansible_python.executable }} -m pip install --user --upgrade 'virtualenv'
         {{ ansible_python.executable }} -m pip install --user 'tox>=3.8.0'
         {{ ansible_python.executable }} -m tox --version
       args:
