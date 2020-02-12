@@ -1,0 +1,35 @@
+# These jobs aim to validate that these nodesets are fit to be consumed by
+# our jobs.
+#
+# TODO: run periodis on them
+# TODO: run them when we build images to avoid regressions
+- job:
+    name: nodeset-validator-base
+    abstract: true
+    parent: tox
+    vars:
+      tox_envlist: linters
+      tox_extra_args: --notest
+    pre-run: playbooks/nodeset-validator-pre.yml
+    files:
+      - zuul.d/nodeset.*
+      - tools/test-setup.sh
+    attempts: 1
+
+- job:
+    name: nodeset-validator-rdo-centos-8
+    parent: nodeset-validator-base
+    nodeset: rdo-centos-8
+
+- job:
+    name: nodeset-validator-rdo-centos-7
+    parent: nodeset-validator-base
+    nodeset: rdo-centos-7
+    # python3-virtualenv is missing, causing an error (minor)
+    voting: false
+
+- project:
+    check:
+      jobs:
+        - nodeset-validator-rdo-centos-7
+        - nodeset-validator-rdo-centos-8
