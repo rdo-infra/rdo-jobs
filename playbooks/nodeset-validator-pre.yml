@@ -1,0 +1,27 @@
+- hosts: all
+  gather_facts: false
+  tasks:
+
+    - name: gather needed facts
+      when: ansible_distribution is not defined
+      setup:
+        gather_subset: distribution,pkg_mgr
+
+    - name: py2 sanity checks
+      when: ansible_distribution_major_version|int < 8
+      shell: |
+          python2.7 --version
+          python2.7 -m pip --version
+          python2.7 -m virtualenv --version
+      changed_when: false
+
+    - name: py3 sanity checks
+      # TODO: remove this skip once we enable py3 on centos-7 images
+      when: ansible_distribution_major_version|int >= 8
+      shell: |
+          python3 --version
+          python3 -m pip --version
+          python3 -m venv --version
+      # virtualenv not tested because it comes from EPEL and because venv is
+      # prefered to be used instead, which is also compatible.
+      changed_when: false
