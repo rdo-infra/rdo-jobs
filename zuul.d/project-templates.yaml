@@ -551,8 +551,6 @@
     name: podman-jobs
     description: |
       3rd party job to gate podman
-    # We do not test CentOS 7 because it needs newer version of git, as building
-    # `go get github.com/cpuguy83/go-md2man` fails due to old git.
     github-check:
       jobs:
         - podman-package-centos-7
@@ -562,4 +560,3 @@
         - tripleo-podman-integration-centos-8-scenario000-standalone:
             dependencies:
               - podman-package-centos-8
-            voting: false
