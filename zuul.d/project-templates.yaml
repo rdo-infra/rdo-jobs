@@ -751,7 +751,10 @@
         - podman-package-centos-7
         - podman-package-centos-8
         - podman-package-fedora-30
-        - podman-package-rhel-8
+        - podman-package-rhel-8:
+            # This job is currently always failing because of:
+            # Error: Unable to find a match: device-mapper-devel glibc-static go-compilers-golang-compiler gpgme-devel libassuan-devel
+            voting: false
         - tripleo-podman-integration-rhel-8-scenario000-standalone:
             dependencies:
               - podman-package-rhel-8
