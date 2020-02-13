@@ -8,6 +8,13 @@
       changed_when: false
       register: _worker_is_sudoer
 
+    - name: install cbs and yum
+      shell: |
+        sudo dnf install yum;
+        sudo dnf install epel-release;
+        sudo dnf install https://download.copr.fedorainfracloud.org/results/ykarel/ykarel-centos-stream/centos-stream-x86_64/01239149-python-centos/python-centos-0.1.1-2.el8.noarch.rpm  https://download.copr.fedorainfracloud.org/results/ykarel/ykarel-centos-stream/centos-stream-x86_64/01239164-centos-packager/centos-packager-0.5.5-2.el8.noarch.rpm
+      when: ansible_distribution == "RedHat" and ansible_distribution_major_version|int > 7
+
     - import_role:
         name: configure-mirrors
       vars:
