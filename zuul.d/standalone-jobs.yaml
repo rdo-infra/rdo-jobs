@@ -531,31 +531,45 @@
     nodeset: single-rhel-8-node
     branches: ^master$
 
+# Centos 8
+## Open question - how to build our parenting strategy here
+## centos 8 parented off centos 7?
+## clean definitions
+
+# Adding temp centos 8 base job here for component parenting
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-master
+    parent: tripleo-ci-base-standalone-periodic
+    nodeset: single-centos-8-node
+    vars: &standalone_vars
+      featureset: '052'
+      release: master
+
 # Component promotion jobs
 - job:
-    name: periodic-tripleo-ci-centos-7-standalone-component-master
-    parent: periodic-tripleo-ci-centos-7-standalone-master
+    name: periodic-tripleo-ci-centos-8-standalone-component-master
+    parent: periodic-tripleo-ci-centos-8-standalone-master
     abstract: true
     vars:
       component: component
       release: master
-      dlrn_server_url: "trunk-staging.rdoproject.org"
+      dlrn_server_url: "trunk.rdoproject.org"
       add_repos:
         - type: generic
           reponame: "{{ component }}"
           filename: "{{ component }}-component.repo"
           priority: 1
-          baseurl: "https://{{ dlrn_server_url }}/centos7-{{ release }}/component/{{ component }}/tripleo-ci-testing"
+          baseurl: "https://{{ dlrn_server_url }}/centos8-{{ release }}/component/{{ component }}/component-ci-testing"
           update_container: true
 
 - job:
-    name: periodic-tripleo-ci-centos-7-standalone-compute-master
-    parent: periodic-tripleo-ci-centos-7-standalone-component-master
+    name: periodic-tripleo-ci-centos-8-standalone-compute-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
     vars:
       component: compute
 
 - job:
-    name: periodic-tripleo-ci-centos-7-standalone-keystone-master
-    parent: periodic-tripleo-ci-centos-7-standalone-component-master
+    name: periodic-tripleo-ci-centos-8-standalone-keystone-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
     vars:
       component: keystone
