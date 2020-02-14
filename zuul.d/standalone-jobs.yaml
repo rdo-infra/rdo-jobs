@@ -558,10 +558,64 @@
           update_container: true
 
 - job:
+    name: periodic-tripleo-ci-centos-8-standalone-baremetal-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: baremetal
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-cinder-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: cinder
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-clients-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: clients
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-cloudops-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-common-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: common
+
+- job:
     name: periodic-tripleo-ci-centos-8-standalone-compute-master
     parent: periodic-tripleo-ci-centos-8-standalone-component-master
     vars:
       component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-glance-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: glance
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-manila-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: manila
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-network-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-octavia-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: octavia
 
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-security-master
@@ -569,31 +623,26 @@
     vars:
       component: security
 
-# Deprecated jobs - to be removed after https://review.rdoproject.org/r/#/c/24512/ merges
 - job:
-    name: periodic-tripleo-ci-centos-7-standalone-component-master
-    parent: periodic-tripleo-ci-centos-7-standalone-master
-    abstract: true
+    name: periodic-tripleo-ci-centos-8-standalone-swift-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
     vars:
-      component: component
-      release: master
-      dlrn_server_url: "trunk-staging.rdoproject.org"
-      add_repos:
-        - type: generic
-          reponame: "{{ component }}"
-          filename: "{{ component }}-component.repo"
-          priority: 1
-          baseurl: "https://{{ dlrn_server_url }}/centos7-{{ release }}/component/{{ component }}/tripleo-ci-testing"
-          update_container: true
+      component: swift
 
 - job:
-    name: periodic-tripleo-ci-centos-7-standalone-compute-master
-    parent: periodic-tripleo-ci-centos-7-standalone-component-master
+    name: periodic-tripleo-ci-centos-8-standalone-tempest-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
     vars:
-      component: compute
+      component: tempest
 
 - job:
-    name: periodic-tripleo-ci-centos-7-standalone-keystone-master
-    parent: periodic-tripleo-ci-centos-7-standalone-component-master
+    name: periodic-tripleo-ci-centos-8-standalone-tripleo-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
     vars:
-      component: keystone
+      component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-ui-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: ui
