@@ -34,12 +34,16 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate:
             branches: ^(?!rpm-master).*$
+        - distgit-cbs-validate-centos8:
+            branches: ^(?!rpm-master)|(^(?!common|queens|rocky|stein)(\w+)-rdo)$
     gate:
       jobs:
         - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: ^(?!rpm-master).*$
+        - distgit-cbs-final-build-centos8:
+            branches: ^(?!rpm-master)|(^(?!common|queens|rocky|stein)(\w+)-rdo)$
 
 - project-template:
     name: puppet-openstack-integration-python3-jobs
