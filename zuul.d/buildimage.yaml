@@ -22,6 +22,28 @@
     vars:
       tripleo_image_type: ironic-python-agent
 
+# CentOS 8 Image Build Jobs
+
+- job:
+    name: tripleo-centos-8-buildimage-overcloud-full
+    parent: tripleo-rhel-8-buildimage-overcloud-full
+    branches: ^master$
+    nodeset: single-centos-8-node
+
+- job:
+    name: tripleo-centos-8-buildimage-overcloud-hardened-full
+    parent: tripleo-rhel-8-buildimage-overcloud-hardened-full
+    branches: ^master$
+    nodeset: single-centos-8-node
+
+- job:
+    name: tripleo-centos-8-buildimage-ironic-python-agent
+    parent: tripleo-rhel-8-buildimage-ironic-python-agent
+    branches: ^master$
+    nodeset: single-centos-8-node
+
+# RHEL 8 Stable Train jobs
+
 - job:
     name: tripleo-rhel-8-buildimage-overcloud-full-train
     parent: tripleo-rhel-8-buildimage-overcloud-full
