@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "65dcef51_1d77d19c",
+        "filename": "zuul.d/standalone-jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2020-02-19T06:48:37Z",
+      "side": 1,
+      "message": "just by looking all these jobs looks same, just difference with component name and component var, out of curiosity i checked logs for already running keystone and compute component job, only difference i found was different containers are build on those job, but the deploy job looked same and were not using the build container.\n\nmay be i looked wrongly or the issue is already known, but i noticed this while looking at this review so thought of clearing it.",
+      "revId": "f540fdf64c1ff123eee572483fe47c1e75282724",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
