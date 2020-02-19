@@ -1,4 +1,14 @@
 ---
+- name: Install EPEL on CentOS 8
+  package:
+    name:
+      - epel
+    state: present
+  become: true
+  when:
+    - ansible_distribution == "CentOS"
+    - ansible_distribution_major_version == '8'
+
 - name: Install pre-requisites for mock
   package:
     name:
