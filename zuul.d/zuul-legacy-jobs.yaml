@@ -70,10 +70,7 @@
       selinux_enforcing: "false"
     dependencies:
       - DLRN-rpmbuild-centos8
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
 
 - job:
     name: legacy-experimental-weirdo-dlrn-master-packstack-scenario002
@@ -102,10 +99,7 @@
       selinux_enforcing: "false"
     dependencies:
       - DLRN-rpmbuild-centos8
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
 
 - job:
     name: legacy-experimental-weirdo-dlrn-master-packstack-scenario003
@@ -134,10 +128,7 @@
       selinux_enforcing: "false"
     dependencies:
       - DLRN-rpmbuild-centos8
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
 
 - job:
     name: legacy-experimental-weirdo-dlrn-master-puppet-scenario001
@@ -163,10 +154,7 @@
     parent: legacy-experimental-weirdo-dlrn-master-puppet-scenario001
     dependencies:
       - DLRN-rpmbuild-centos8
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
 
 - job:
     name: legacy-experimental-weirdo-dlrn-master-puppet-scenario002
@@ -192,10 +180,7 @@
     parent: legacy-experimental-weirdo-dlrn-master-puppet-scenario002
     dependencies:
       - DLRN-rpmbuild-centos8
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
 
 - job:
     name: legacy-experimental-weirdo-dlrn-master-puppet-scenario003
@@ -221,10 +206,7 @@
     parent: legacy-experimental-weirdo-dlrn-master-puppet-scenario003
     dependencies:
       - DLRN-rpmbuild-centos8
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
 
 - job:
     name: legacy-experimental-weirdo-dlrn-master-puppet-scenario004
@@ -250,10 +232,7 @@
     parent: legacy-experimental-weirdo-dlrn-master-puppet-scenario004
     dependencies:
       - DLRN-rpmbuild-centos8
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
 
 - job:
     name: legacy-fedora-sinkhole-functional
@@ -397,10 +376,7 @@
       selinux_enforcing: "false"
     dependencies:
       - DLRN-rpmbuild-centos8
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
 
 - job:
     name: legacy-weirdo-dlrn-master-packstack-scenario002
@@ -431,10 +407,7 @@
       selinux_enforcing: "false"
     dependencies:
       - DLRN-rpmbuild-centos8
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
 
 - job:
     name: legacy-weirdo-dlrn-master-packstack-scenario003
@@ -465,10 +438,7 @@
       selinux_enforcing: "false"
     dependencies:
       - DLRN-rpmbuild-centos8
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
 
 - job:
     name: legacy-weirdo-dlrn-master-puppet-scenario001
@@ -496,10 +466,7 @@
     parent: legacy-weirdo-dlrn-master-puppet-scenario001
     dependencies:
       - DLRN-rpmbuild-centos8
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
 
 - job:
     name: legacy-weirdo-dlrn-master-puppet-scenario002
@@ -527,10 +494,7 @@
     parent: legacy-weirdo-dlrn-master-puppet-scenario002
     dependencies:
       - DLRN-rpmbuild-centos8
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
 
 - job:
     name: legacy-weirdo-dlrn-master-puppet-scenario003
@@ -558,10 +522,7 @@
     parent: legacy-weirdo-dlrn-master-puppet-scenario003
     dependencies:
       - DLRN-rpmbuild-centos8
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
 
 - job:
     name: legacy-weirdo-dlrn-master-puppet-scenario004
@@ -589,10 +550,7 @@
     parent: legacy-weirdo-dlrn-master-puppet-scenario004
     dependencies:
       - DLRN-rpmbuild-centos8
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
 
 - job:
     name: legacy-weirdo-docs
@@ -632,10 +590,7 @@
     parent: legacy-weirdo-integration-master-packstack-scenario001
     vars:
       selinux_enforcing: "false"
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
 
 - job:
     name: legacy-weirdo-integration-master-packstack-scenario003
@@ -660,10 +615,7 @@
     parent: legacy-weirdo-integration-master-packstack-scenario003
     vars:
       selinux_enforcing: "false"
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
 
 - job:
     name: legacy-weirdo-integration-master-packstack-scenario-py3
@@ -704,10 +656,7 @@
 - job:
     name: legacy-weirdo-integration-master-puppet-scenario001-centos8
     parent: legacy-weirdo-integration-master-puppet-scenario001
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
 
 - job:
     name: legacy-weirdo-integration-master-puppet-scenario003
@@ -729,10 +678,7 @@
 - job:
     name: legacy-weirdo-integration-master-puppet-scenario003-centos8
     parent: legacy-weirdo-integration-master-puppet-scenario003
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
 
 - job:
     name: legacy-weirdo-integration-master-puppet-scenario004
@@ -754,10 +700,7 @@
 - job:
     name: legacy-weirdo-integration-master-puppet-scenario004-centos8
     parent: legacy-weirdo-integration-master-puppet-scenario004
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
 
 - job:
     name: legacy-weirdo-integration-master-puppet-scenario-py3
