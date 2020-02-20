@@ -335,7 +335,9 @@
             dependencies:
               - DLRN-rpmbuild-pinned
             branches: ^rpm-master$
-        - DLRN-build-tripleo
+        - DLRN-build-tripleo:
+            dependencies:
+              - DLRN-rpmbuild-pinned
         - legacy-weirdo-dlrn-master-packstack-scenario003:
             dependencies:
               - DLRN-rpmbuild-pinned
