@@ -1,6 +1,7 @@
 - job:
     name: base
-    parent: base-minimal
+    # NOTE(jpena): DO NOT MERGE THIS!!!
+    parent: base-minimal-test
     # min version to use (needed mainly to make rhel8 python detection work)
     ansible-version: 2.8
     # if your jobs rely on code that does need an older version of ansible
@@ -380,10 +381,7 @@
     branches: ^(master)|(rpm-master)|(train-rdo)$
     vars:
       centos_version: 'centos8'
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
 
 - job:
     name: DLRN-rpmbuild-centos8-pinned
@@ -413,7 +411,4 @@
     parent: rdoinfo-DLRN-check
     vars:
       centos_version: centos8
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
