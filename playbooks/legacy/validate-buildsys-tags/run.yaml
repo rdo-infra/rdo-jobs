@@ -62,11 +62,31 @@
       include_role:
         name: set-zuul-log-path-fact
 
+    # TODO(ykarel) remove once centos-packager is in official centos8 repos
+    - name: Temporary install centos-packager from copr
+      shell:
+        cmd: |
+          YUM="{{ ansible_pkg_mgr }}"
+          sudo $YUM install -y epel-release;
+          sudo $YUM config-manager --enable epel;
+          sudo $YUM install -y https://download.copr.fedorainfracloud.org/results/ykarel/ykarel-centos-stream/centos-stream-x86_64/01239149-python-centos/python-centos-0.1.1-2.el8.noarch.rpm;  # noqa 204
+          sudo $YUM install -y https://download.copr.fedorainfracloud.org/results/ykarel/ykarel-centos-stream/centos-stream-x86_64/01239164-centos-packager/centos-packager-0.5.5-2.el8.noarch.rpm;  # noqa 204
+          sudo $YUM config-manager --disable epel;
+      changed_when: true
+      when: ansible_distribution_major_version|int > 7
+
     - shell:
         cmd: |
           set -e -x
           # Install requirements
-          sudo yum install -y createrepo mock git centos-packager yum-utils
+          YUM="{{ ansible_pkg_mgr }}"
+          sudo $YUM install -y createrepo mock git centos-packager {{ ansible_pkg_mgr }}-utils dnf
+          sudo $YUM install -y epel-release;
+          {% if ansible_distribution_major_version|int < 8 %}
+            sudo $YUM-config-manager --enable epel;
+            sudo $YUM update -y mock
+            sudo $YUM-config-manager --disable epel;
+          {% endif %}
           virtualenv  --system-site-packages .venv
           . .venv/bin/activate
           pip install ruamel.yaml rdopkg
