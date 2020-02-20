@@ -391,10 +391,7 @@
     branches: ^(master)|(rpm-master)|(train-rdo)$
     vars:
       centos_version: 'centos8'
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
 
 - job:
     name: DLRN-rpmbuild-centos8-pinned
@@ -424,7 +421,4 @@
     parent: rdoinfo-DLRN-check
     vars:
       centos_version: centos8
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
