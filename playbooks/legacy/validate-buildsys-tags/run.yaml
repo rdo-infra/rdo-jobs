@@ -66,7 +66,13 @@
         cmd: |
           set -e -x
           # Install requirements
-          sudo yum install -y createrepo mock git centos-packager yum-utils
+          YUM="{{ ansible_pkg_mgr }}"
+          sudo $YUM install -y createrepo mock git centos-packager $YUM-utils dnf
+          sudo $YUM install -y epel-release;
+          sudo $YUM-config-manager --enable epel;
+          # replace below with sudo $YUM update -y mock once mock-2.0 exist in c8 or epel repo
+          sudo $YUM install -y https://kojipkgs.fedoraproject.org//packages/mock/2.0/2.el7/noarch/mock-2.0-2.el7.noarch.rpm
+          sudo $YUM-config-manager --disable epel;
           virtualenv  --system-site-packages .venv
           . .venv/bin/activate
           pip install ruamel.yaml rdopkg
@@ -76,8 +82,8 @@
               export logs="https://logserver.rdoproject.org/{{ zuul_log_path }}/buildset"
           fi
           bash ./create_temporary_repos.sh $WORKSPACE/rdoinfo $WORKSPACE/logs
+          ln -s $WORKSPACE/logs $WORKSPACE/buildset
           bash ./validate_updates.sh $WORKSPACE/logs
           popd
-          ln -s logs buildset
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
