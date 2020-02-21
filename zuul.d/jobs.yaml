@@ -295,6 +295,14 @@
         PYTEST_ADDOPTS: -m "not delegated"
 
 - job:
+    name: rdo-tox-molecule-delegated-centos-8
+    parent: rdo-tox-molecule
+    nodeset: centos-8
+    vars:
+      tox_environment:
+        PYTEST_ADDOPTS: -m "delegated"
+
+- job:
     name: rdopkg-reqcheck
     description: |
       Dependency check with "rdopkg reqcheck"
