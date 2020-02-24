@@ -34,6 +34,8 @@
       featureset: '027'
       branch_override: "stable/rocky"
       release: rocky
+      cloud_name: vexxhost
+    nodeset: upstream-centos-7-vexxhost
 
 - job:
     name: periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-train
@@ -58,6 +60,8 @@
       featureset: '050'
       branch_override: "stable/rocky"
       release: rocky
+      cloud_name: vexxhost
+    nodeset: upstream-centos-7-vexxhost
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset050-updates-master
 - job:
