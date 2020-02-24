@@ -10,5 +10,17 @@
               - ^tox.ini$
         - rdo-tox-molecule-delegated-centos-8:
             <<: *molecule
+        - rdo-tox-py27: &py
+            files:
+              - ^zuul.d/jobs.yaml$
+              - ^requirements.txt
+              - ^test-requirements.txt
+              - ^setup.cfg
+              - ^setup.py
+              - ^tox.ini
+              - .*\.py
+        - rdo-tox-py36: *py
+        - rdo-tox-py37: *py
+        - rdo-tox-linters: *py
     gate:
       jobs: *jobs

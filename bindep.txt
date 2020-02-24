@@ -11,3 +11,7 @@ python3-libselinux [platform:fedora]
 python3-netifaces [test !platform:centos-7 platform:rpm]
 python36 [test !platform:centos-7 !platform:fedora-28]
 bzip2 [compile test platform:rpm platform:centos-8]
+
+# pre-commit -> fb-re2 -> re2 -> re2.h
+# cannot install it here beause it coames from EPEL on centos-8
+# re2-devel [platform:centos-8]
