@@ -540,6 +540,48 @@
     nodeset: single-rhel-8-node
     branches: ^master$
 
+# CentOS-8 Periodic Jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-master
+    parent: periodic-tripleo-ci-rhel-8-scenario001-standalone-master
+    nodeset: single-centos-8-node
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-master
+    parent: periodic-tripleo-ci-rhel-8-scenario002-standalone-master
+    nodeset: single-centos-8-node
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario003-standalone-master
+    parent: periodic-tripleo-ci-rhel-8-scenario003-standalone-master
+    nodeset: single-centos-8-node
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-master
+    parent: periodic-tripleo-ci-rhel-8-scenario004-standalone-master
+    nodeset: single-centos-8-node
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-master
+    parent: tripleo-ci-base-standalone-periodic
+    nodeset: single-centos-8-node
+    timeout: 13500
+    vars:
+      featureset: '052'
+      release: master
+      featureset_override:
+        run_tempest: false
+        tempest_run_concurrency: 2
+        tempest_services:
+          - cinder
+          - horizon
+          - neutron
+        tempest_test_whitelist:
+          - 'api'
+          - 'scenario'
+        use_os_tempest: true
+
 # Component promotion jobs
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-component-master
