@@ -308,6 +308,19 @@
 
 # =================  P E R I O D I C   J O B S
 
+# Periodic CentOS-8 Jobs
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master
+    parent: tripleo-ci-base-ovb-periodic
+    nodeset: single-centos-8-node
+    # Bumping to 5hours for fs1 to run *api* tempest see
+    # https://tree.taiga.io/project/tripleo-ci-board/task/1383
+    timeout: 18000
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      release: master
+
 # Periodic job temporarly running on vexxhost, remove when we move to vexxhost
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
