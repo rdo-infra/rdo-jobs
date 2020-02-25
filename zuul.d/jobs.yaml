@@ -375,8 +375,6 @@
 - job:
     name: DLRN-rpmbuild-centos8
     parent: DLRN-rpmbuild
-    # Make it voting when it's stable.
-    voting: false
     branches: ^(master)|(rpm-master)|(train-rdo)$
     vars:
       centos_version: 'centos8'
