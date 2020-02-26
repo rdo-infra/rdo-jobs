@@ -288,6 +288,17 @@
           - secondary
 
 - nodeset:
+    name: tripleo-ovb-centos-8-primary
+    nodes:
+      - name: primary
+        label: tripleo-ovb-centos-8
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
+- nodeset:
     name: single-rhel-8-node
     nodes:
       - name: primary
