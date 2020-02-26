@@ -3,6 +3,16 @@
 # Zuul layout for TripleO RDO Cloud related undercloud jobs.
 # It contains all the jobs related to undercloud testing.
 
+# CentOS -8
+
+- job:
+    name: periodic-tripleo-ci-centos-8-singlenode-featureset027-master
+    parent: tripleo-ci-base-singlenode-periodic
+    nodeset: single-centos-8-node
+    vars:
+      featureset: '027'
+      release: master
+
 # legacy-periodic-tripleo-ci-centos-7-singlenode-featureset027-master
 - job:
     name: periodic-tripleo-ci-centos-7-singlenode-featureset027-master
