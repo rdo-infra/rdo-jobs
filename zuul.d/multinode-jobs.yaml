@@ -12,6 +12,14 @@
       featureset: '010'
 
 - job:
+    name: tripleo-ci-centos-8-multinode-1ctlr-featureset010
+    parent: tripleo-ci-base-multinode-rdo-centos-8
+    branches: ^master$
+    vars:
+      nodes: 1ctlr
+      featureset: '010'
+
+- job:
     name: tripleo-ci-centos-7-multinode-1ctlr-featureset016
     parent: tripleo-ci-base-multinode-rdo
     branches: ^master$
