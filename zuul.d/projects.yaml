@@ -2,19 +2,7 @@
     name: rdo-jobs
     check:
       jobs:
-        - periodic-tripleo-ci-centos-8-scenario001-standalone-master:
-            vars:
-              force_periodic: true
-              promote_source: tripleo-ci-testing
-        - periodic-tripleo-ci-centos-8-scenario002-standalone-master:
-            vars:
-              force_periodic: true
-              promote_source: tripleo-ci-testing
-        - periodic-tripleo-ci-centos-8-scenario003-standalone-master:
-            vars:
-              force_periodic: true
-              promote_source: tripleo-ci-testing
-        - periodic-tripleo-ci-centos-8-scenario004-standalone-master:
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-master:
             vars:
               force_periodic: true
               promote_source: tripleo-ci-testing

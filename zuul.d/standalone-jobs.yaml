@@ -567,7 +567,7 @@
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-master
     parent: tripleo-ci-base-standalone-periodic
     nodeset: single-centos-8-node
-    timeout: 13500
+    timeout: 18000
     vars:
       featureset: '052'
       release: master
