@@ -1,14 +1,7 @@
 - project:
     check:
-      jobs: &jobs
-        - rdo-tox-molecule: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-        - rdo-tox-molecule-delegated-centos-8:
-            <<: *molecule
-    gate:
-      jobs: *jobs
+      jobs:
+         -  periodic-tripleo-ci-centos-8-scenario004-standalone-master:
+              vars:
+                promote_source: tripleo-ci-testing
+                force_periodic: true
