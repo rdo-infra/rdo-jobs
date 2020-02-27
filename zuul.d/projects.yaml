@@ -20,9 +20,6 @@
               - setup.*$
               - test-requirements.txt
               - tox.ini
-        - periodic-tripleo-ci-centos-7-standalone-master:
-            files:
-              - zuul.d/standalone-jobs.yaml
         - registry-login-rdo-integration-centos-7:
             files:
               - playbooks/integration/registry-login.yaml
