@@ -44,6 +44,8 @@
           - 'api'
           - 'scenario'
         use_os_tempest: true
+        standalone_environment_files:
+          - 'ci/environments/neutron_sec_group_quota.yaml'
 
 - job:
     name: periodic-tripleo-ci-centos-7-scenario001-standalone-master
