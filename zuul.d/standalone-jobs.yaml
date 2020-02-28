@@ -12,14 +12,6 @@
       release: master
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-master
-    parent: tripleo-ci-base-standalone-periodic
-    nodeset: single-centos-8-node
-    vars:
-      featureset: '052'
-      release: master
-
-- job:
     name: periodic-tripleo-ci-centos-7-standalone-upgrade-master
     parent: tripleo-ci-base-standalone-upgrade-periodic
     vars:
