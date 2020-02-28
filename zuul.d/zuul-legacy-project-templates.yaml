@@ -68,8 +68,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-validate-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-validate-centos8
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
@@ -89,8 +88,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-final-build-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-final-build-centos8
 
 - project-template:
     name: weirdo-dlrn-master-barbican
@@ -115,8 +113,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-validate-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-validate-centos8
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario002:
@@ -132,8 +129,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-final-build-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-final-build-centos8
 
 - project-template:
     name: weirdo-dlrn-master-ceilometer
@@ -164,8 +160,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-validate-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-validate-centos8
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
@@ -185,8 +180,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-final-build-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-final-build-centos8
 
 - project-template:
     name: weirdo-dlrn-master-cinder
@@ -223,8 +217,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-validate-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-validate-centos8
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
@@ -248,8 +241,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-final-build-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-final-build-centos8
 
 - project-template:
     name: weirdo-dlrn-master-glance
@@ -292,8 +284,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-validate-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-validate-centos8
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
@@ -321,8 +312,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-final-build-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-final-build-centos8
 
 - project-template:
     name: weirdo-dlrn-master-gnocchi
@@ -359,8 +349,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-validate-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-validate-centos8
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
@@ -386,8 +375,7 @@
             branches: ^(master|stable/pike)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-final-build-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-final-build-centos8
 
 - project-template:
     name: weirdo-dlrn-master-heat
@@ -418,8 +406,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-validate-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-validate-centos8
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
@@ -439,8 +426,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-final-build-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-final-build-centos8
 
 - project-template:
     name: weirdo-dlrn-master-horizon
@@ -465,8 +451,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-validate-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-validate-centos8
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario003:
@@ -482,8 +467,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-final-build-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-final-build-centos8
 
 - project-template:
     name: weirdo-dlrn-master-keystone
@@ -514,8 +498,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-validate-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-validate-centos8
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
@@ -535,8 +518,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-final-build-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-final-build-centos8
 
 - project-template:
     name: weirdo-dlrn-master-networking-bgpvpn
@@ -561,8 +543,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-validate-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-validate-centos8
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario004:
@@ -578,8 +559,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-final-build-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-final-build-centos8
 
 - project-template:
     name: weirdo-dlrn-master-neutron
@@ -616,8 +596,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-validate-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-validate-centos8
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
@@ -641,8 +620,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-final-build-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-final-build-centos8
 
 - project-template:
     name: weirdo-dlrn-master-nova
@@ -673,8 +651,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-validate-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-validate-centos8
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
@@ -694,8 +671,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-final-build-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-final-build-centos8
 
 - project-template:
     name: weirdo-dlrn-master-oslo
@@ -732,8 +708,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-validate-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-validate-centos8
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario002:
@@ -757,8 +732,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-final-build-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-final-build-centos8
 
 - project-template:
     name: weirdo-dlrn-master-watcher
@@ -783,8 +757,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-validate-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-validate-centos8
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario004:
@@ -800,8 +773,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-final-build-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-final-build-centos8
 
 - project-template:
     name: weirdo-dlrn-master-zaqar
@@ -826,8 +798,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-validate-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-validate-centos8
     experimental:
       jobs:
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario002:
@@ -843,8 +814,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
-        - distgit-cbs-final-build-centos8:
-            branches: ^(?!rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo)$
+        - distgit-cbs-final-build-centos8
 
 - project-template:
     name: weirdo-gate-jobs
