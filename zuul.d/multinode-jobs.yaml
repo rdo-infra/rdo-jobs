@@ -342,6 +342,14 @@
       release: master
 
 - job:
+    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset030-master
+    parent: tripleo-ci-base-multinode-periodic-centos-8
+    vars:
+      nodes: 1ctlr
+      featureset: '030'
+      release: master
+
+- job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-train
     parent: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-master
     vars:
