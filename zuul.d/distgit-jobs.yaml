@@ -135,3 +135,28 @@
           'share.capability_snapshot_support': 'False'
           'share.capability_create_share_from_snapshot_support': 'False'
         test_white_regex: ''
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-featureset052
+    parent: distgit-tripleo-master-testing-centos-7-standalone-featureset052
+    nodeset: single-centos-8-node
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-featureset016
+    parent: distgit-tripleo-master-testing-centos-7-standalone-featureset016
+    nodeset: single-centos-8-node
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-featureset017
+    parent: distgit-tripleo-master-testing-centos-7-standalone-featureset017
+    nodeset: single-centos-8-node
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-featureset018
+    parent: distgit-tripleo-master-testing-centos-7-standalone-featureset018
+    nodeset: single-centos-8-node
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-featureset019
+    parent: distgit-tripleo-master-testing-centos-7-standalone-featureset019
+    nodeset: single-centos-8-node
