@@ -1,11 +1,5 @@
 # Container nodesets
 - nodeset:
-    name: container-centos
-    nodes:
-      - name: container
-        label: runc-centos-7
-
-- nodeset:
     name: container-fedora
     nodes:
       - name: container
@@ -17,43 +11,6 @@
     nodes:
       - name: dib-centos-7
         label: dib-centos-7
-
-# Devstack nodeset
-- nodeset:
-    name: openstack-single-node
-    nodes:
-      - name: controller
-        label: upstream-centos-7
-
-- nodeset:
-    name: openstack-two-node
-    nodes:
-      - name: controller
-        label: upstream-centos-7
-      - name: compute1
-        label: upstream-centos-7
-    groups:
-      # Node where tests are executed and test results collected
-      - name: tempest
-        nodes:
-          - controller
-      # Nodes running the compute service
-      - name: compute
-        nodes:
-          - controller
-          - compute1
-      # Nodes that are not the controller
-      - name: subnode
-        nodes:
-          - compute1
-      # Switch node for multinode networking setup
-      - name: switch
-        nodes:
-          - controller
-      # Peer nodes for multinode networking setup
-      - name: peers
-        nodes:
-          - compute1
 
 - nodeset:
     name: legacy-upstream-centos-7
@@ -127,12 +84,6 @@
         nodes: []
 
 - nodeset:
-    name: tripleo-ovb-fedora-28
-    nodes:
-      - name: tripleo-ovb-fedora-28
-        label: tripleo-ovb-fedora-28
-
-- nodeset:
     name: tripleo-ovb-fedora-28-primary
     nodes:
       - name: primary
@@ -185,12 +136,6 @@
           - secondary
 
 - nodeset:
-    name: upstream-centos-7
-    nodes:
-      - name: upstream-centos-7
-        label: upstream-centos-7
-
-- nodeset:
     name: upstream-rhel-8
     nodes:
       - name: upstream-rhel-8
@@ -225,13 +170,6 @@
       - name: subnodes
         nodes:
           - secondary
-
-- nodeset:
-    name: single-fedora-28-node
-    nodes:
-      # NOTE(aschultz) this deviates from the upstream (openstack) node set
-      - name: primary
-        label: rdo-fedora-28
 
 - nodeset:
     name: single-centos-7-node
@@ -297,28 +235,6 @@
           - primary
       - name: peers
         nodes: []
-
-- nodeset:
-    name: three-centos-7-nodes
-    nodes:
-      - name: primary
-        label: upstream-centos-7
-      - name: secondary-1
-        label: upstream-centos-7
-      - name: secondary-2
-        label: upstream-centos-7
-    groups:
-      - name: switch
-        nodes:
-          - primary
-      - name: peers
-        nodes:
-          - secondary-1
-          - secondary-2
-      - name: subnodes
-        nodes:
-          - secondary-1
-          - secondary-2
 
 - nodeset:
     name: tripleo-ovb-rhel-8-primary
