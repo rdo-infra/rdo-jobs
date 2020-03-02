@@ -83,8 +83,9 @@
           # Create log directory always
           mkdir -p logs
           ret=0
+          TIMEOUT="{{ zuul.timeout | default('10800') }}"
           if [ -n "${PACKAGES_UPDATED_MASTER}" ]; then
-              timeout --signal=SIGKILL 10800  {{ ansible_user_dir }}/rdoinfo-DLRN.sh $CURRENT_MASTER_TAG "${PACKAGES_UPDATED_MASTER}" "${CENTOS_VERS}"
+              timeout --signal=SIGKILL $TIMEOUT  {{ ansible_user_dir }}/rdoinfo-DLRN.sh $CURRENT_MASTER_TAG "${PACKAGES_UPDATED_MASTER}" "${CENTOS_VERS}"
               ret1=$?
               if [ $ret1 -ne 0 ]; then
                   ret=$ret1
@@ -94,7 +95,7 @@
               sudo rm -rf /var/cache/mock/*
           fi
           if [ -n "${PACKAGES_UPDATED_TRAIN}" ]; then
-              timeout --signal=SIGKILL 10800 {{ ansible_user_dir }}/rdoinfo-DLRN.sh train "${PACKAGES_UPDATED_TRAIN}" "${CENTOS_VERS}"
+              timeout --signal=SIGKILL $TIMEOUT {{ ansible_user_dir }}/rdoinfo-DLRN.sh train "${PACKAGES_UPDATED_TRAIN}" "${CENTOS_VERS}"
               ret1=$?
               if [ $ret1 -ne 0 ]; then
                   ret=$ret1
@@ -104,7 +105,7 @@
               sudo rm -rf /var/cache/mock/*
           fi
           if [ -n "${PACKAGES_UPDATED_STEIN}" ]; then
-              timeout --signal=SIGKILL 10800 {{ ansible_user_dir }}/rdoinfo-DLRN.sh stein "${PACKAGES_UPDATED_STEIN}" "${CENTOS_VERS}"
+              timeout --signal=SIGKILL $TIMEOUT {{ ansible_user_dir }}/rdoinfo-DLRN.sh stein "${PACKAGES_UPDATED_STEIN}" "${CENTOS_VERS}"
               ret1=$?
               if [ $ret1 -ne 0 ]; then
                   ret=$ret1
@@ -114,7 +115,7 @@
               sudo rm -rf /var/cache/mock/*
           fi
           if [ -n "${PACKAGES_UPDATED_ROCKY}" ]; then
-              timeout --signal=SIGKILL 10800 {{ ansible_user_dir }}/rdoinfo-DLRN.sh rocky "${PACKAGES_UPDATED_ROCKY}" "${CENTOS_VERS}"
+              timeout --signal=SIGKILL $TIMEOUT {{ ansible_user_dir }}/rdoinfo-DLRN.sh rocky "${PACKAGES_UPDATED_ROCKY}" "${CENTOS_VERS}"
               ret1=$?
               if [ $ret1 -ne 0 ]; then
                   ret=$ret1
@@ -124,7 +125,7 @@
               sudo rm -rf /var/cache/mock/*
           fi
           if [ -n "${PACKAGES_UPDATED_QUEENS}" ]; then
-              timeout --signal=SIGKILL 10800 {{ ansible_user_dir }}/rdoinfo-DLRN.sh queens "${PACKAGES_UPDATED_QUEENS}" "${CENTOS_VERS}"
+              timeout --signal=SIGKILL $TIMEOUT {{ ansible_user_dir }}/rdoinfo-DLRN.sh queens "${PACKAGES_UPDATED_QUEENS}" "${CENTOS_VERS}"
               ret1=$?
               if [ $ret1 -ne 0 ]; then
                   ret=$ret1

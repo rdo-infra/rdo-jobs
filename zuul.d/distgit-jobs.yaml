@@ -135,3 +135,51 @@
           'share.capability_snapshot_support': 'False'
           'share.capability_create_share_from_snapshot_support': 'False'
         test_white_regex: ''
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-featureset052
+    parent: distgit-tripleo-master-testing-centos-7-standalone-featureset052
+    nodeset: single-centos-8-node
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-featureset016
+    parent: distgit-tripleo-master-testing-centos-7-standalone-featureset016
+    nodeset: single-centos-8-node
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-featureset017
+    parent: distgit-tripleo-master-testing-centos-7-standalone-featureset017
+    nodeset: single-centos-8-node
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-featureset018
+    parent: distgit-tripleo-master-testing-centos-7-standalone-featureset018
+    nodeset: single-centos-8-node
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-featureset019
+    parent: distgit-tripleo-master-testing-centos-7-standalone-featureset019
+    nodeset: single-centos-8-node
+    vars:
+      run_tempest: false
+      featureset: '052'
+      release: master
+      standalone_ceph: true
+      featureset_override:
+        standalone_container_cli: podman
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario004-standalone.yaml'
+          - 'environments/podman.yaml'
+        tempest_services:
+          - manila
+        tempest_tempest_conf_overrides:
+          'auth.tempest_roles': 'Member'
+          'share.multitenancy_enabled': 'False'
+          'share.enable_protocols': 'cephfs'
+          'share.capability_snapshot_support': 'False'
+          'share.capability_create_share_from_snapshot_support': 'False'
+        tempest_test_whitelist:
+          - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps.test_network_basic_ops'
+          - 'manila_tempest_tests.tests.api.test_shares.SharesCephFSTest.test_create_get_delete_share'
+        use_os_tempest: true
