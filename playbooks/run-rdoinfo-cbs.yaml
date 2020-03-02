@@ -121,6 +121,7 @@
         release: "{{ rdoinfo_release }}"
         run_test_role_vars:
           docker_registry_namespace: "tripleo{{ rdoinfo_release }}"
+          container_prep_additional_repos: temp-*
           add_repos:
             - type: file
               filename: delorean-0.repo
