@@ -114,45 +114,15 @@
           vars:
             buildcontainers_rpm_setup_config: "{{ delorean_repos }},{{ extra_repo_url | default('') }}"
 
-    - name: get current hash  # noqa 303
-      shell: |
-        set -eo pipefail;
-        curl --silent https://trunk.rdoproject.org/centos7-{{ rdoinfo_release }}/current/delorean.repo -S 2>>~/dlrn_repo_curl_errors.log \
-        | grep baseurl | cut -d= -f2
-      register: current_hash
-      when: not stop_file.stat.exists
-
     - name: Run quickstart
       include_role:
         name: run-test
       vars:
         release: "{{ rdoinfo_release }}"
         run_test_role_vars:
+          docker_registry_namespace: "tripleo{{ rdoinfo_release }}"
           add_repos:
             - type: file
               filename: delorean-0.repo
               down_url: "{{ extra_repo_url }}"
-            # This is needed as https://review.opendev.org/#/c/655482/ is not tagged released yet
-            - type: generic
-              reponame: delorean-current
-              filename: delorean-current.repo
-              baseurl: "{{ current_hash.stdout }}"
-              priority: 10
-              includepkgs:
-                - ansible-role-container-registry
-                - ansible-role-tripleo*
-                - ansible-tripleo-ipsec
-                - instack
-                - instack-undercloud
-                - openstack-tripleo-*
-                - os-apply-config
-                - os-collect-config
-                - os-net-config
-                - os-refresh-config
-                - puppet-*
-                - python*-tripleo*
-                - python*-paunch*
-                - paunch-services
-                - tripleo-ansible
-                - ansible-config_template
       when: not stop_file.stat.exists
