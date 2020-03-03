@@ -662,7 +662,7 @@
     name: periodic-tripleo-ci-centos-8-standalone-component-master
     parent: periodic-tripleo-ci-centos-8-standalone-master
     abstract: true
-    vars:
+    vars: &component_vars
       component: component
       release: master
       dlrn_server_url: "trunk.rdoproject.org"
@@ -764,3 +764,122 @@
     parent: periodic-tripleo-ci-centos-8-standalone-component-master
     vars:
       component: ui
+
+## Component scenario jobs
+
+# scenario001-standalone-component
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-component-master
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-master
+    abstract: true
+    vars: *component_vars
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-cinder-master
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-component-master
+    vars:
+      component: cinder
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-cloudops-master
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-component-master
+    vars:
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-common-master
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-glance-master
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-component-master
+    vars:
+      component: glance
+
+# scenario002-standalone-component
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-component-master
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-master
+    abstract: true
+    vars: *component_vars
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-cloudops-master
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-component-master
+    vars:
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-common-master
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-glance-master
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-component-master
+    vars:
+      component: glance
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-swift-master
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-component-master
+    vars:
+      component: swift
+
+# scenario003-standalone-component
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario003-standalone-component-master
+    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-master
+    abstract: true
+    vars: *component_vars
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario003-standalone-common-master
+    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario003-standalone-glance-master
+    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-component-master
+    vars:
+      component: glance
+
+# scenario004-standalone-component
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-component-master
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-master
+    abstract: true
+    vars: *component_vars
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-master
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-component-master
+    vars:
+      component: cinder
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-common-master
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-glance-master
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-component-master
+    vars:
+      component: glance
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-manila-master
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-component-master
+    vars:
+      component: manila
+
+# TO ADD: scenario007-standalone-component
+# TO ADD: scenario010-standalone-component
+# TO ADD: scenario012-standalone-component
+# TO ADD: standalone-full-tempest-component
