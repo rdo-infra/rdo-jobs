@@ -629,34 +629,6 @@
         ansible_python_interpreter: /usr/bin/python3
     vars: *standalone_vars
 
-- job:
-    name: tripleo-ci-rhel-8-scenario001-standalone-rdo
-    parent: tripleo-ci-rhel-8-standalone-rdo
-    branches: ^master$
-    vars: *scen1_standalone_vars
-
-- job:
-    name: tripleo-ci-rhel-8-scenario002-standalone-rdo
-    parent: tripleo-ci-rhel-8-standalone-rdo
-    branches: ^master$
-    vars: *scen2_standalone_vars
-
-- job:
-    name: tripleo-ci-rhel-8-scenario003-standalone-rdo
-    parent: tripleo-ci-rhel-8-standalone-rdo
-    branches: ^master$
-    vars: *scen3_standalone_vars
-
-- job:
-    name: tripleo-ci-rhel-8-scenario004-standalone-rdo
-    parent: tripleo-ci-rhel-8-standalone-rdo
-    vars:
-      featureset: '052'
-      standalone_ceph: true
-      featureset_override: *scenario004_podman
-    nodeset: single-rhel-8-node
-    branches: ^master$
-
 # Component promotion jobs
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-component-master
