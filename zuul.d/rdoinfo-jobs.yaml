@@ -305,6 +305,7 @@
       push_containers: true
       buildcontainers_override_repos: current-tripleo
       buildcontainers_version_hash: cloudsig-stein
+      buildcontainers_venv: false
       featureset_override:
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
@@ -347,6 +348,7 @@
       push_containers: true
       buildcontainers_override_repos: current-tripleo
       buildcontainers_version_hash: cloudsig-train
+      buildcontainers_venv: false
       featureset_override:
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
