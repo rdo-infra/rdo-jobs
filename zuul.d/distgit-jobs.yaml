@@ -106,3 +106,57 @@
           'share.capability_snapshot_support': 'False'
           'share.capability_create_share_from_snapshot_support': 'False'
         test_white_regex: ''
+
+##################################
+#        CENTOS-8 JOBS           #
+##################################
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone
+    parent: periodic-tripleo-ci-centos-8-standalone-master
+    run: playbooks/run-distgit.yaml
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario001
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-master
+    run: playbooks/run-distgit.yaml
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario002
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-master
+    run: playbooks/run-distgit.yaml
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario003
+    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-master
+    run: playbooks/run-distgit.yaml
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario004
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-master
+    run: playbooks/run-distgit.yaml
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-full-temepst
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-master
+    run: playbooks/run-distgit.yaml
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario007
+    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-master
+    run: playbooks/run-distgit.yaml
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario010
+    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-master
+    run: playbooks/run-distgit.yaml
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-singlenode-featureset027
+    parent: periodic-tripleo-ci-centos-8-singlenode-featureset027-master
+    run: playbooks/run-distgit.yaml
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-multinode-1ctlr-featureset010
+    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-master
+    run: playbooks/run-distgit.yaml
