@@ -420,6 +420,7 @@
 - job:
     name: rdoinfo-DLRN-check-centos8
     parent: rdoinfo-DLRN-check
+    timeout: 18000
     vars:
       centos_version: centos8
     nodeset:
