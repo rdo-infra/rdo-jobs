@@ -44,15 +44,6 @@
         - distgit-cbs-final-build-centos8
 
 - project-template:
-    name: puppet-openstack-integration-python3-jobs
-    openstack-check-rdo:
-      jobs:
-        - puppet-openstack-integration-5-scenario001-tempest-fedora-28
-        - puppet-openstack-integration-5-scenario002-tempest-fedora-28
-        - puppet-openstack-integration-5-scenario003-tempest-fedora-28
-        - puppet-openstack-integration-5-scenario004-tempest-fedora-28
-
-- project-template:
     name: package-distgit-tripleo-check-jobs
     check:
       jobs:

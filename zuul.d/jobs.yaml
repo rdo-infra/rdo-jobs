@@ -221,26 +221,12 @@
       ceph: luminous
 
 - job:
-    name: puppet-openstack-integration-5-scenario001-tempest-fedora-28
-    parent: puppet-openstack-integration-5-scenario001
-    nodeset: rdo-fedora-stable
-    branches: ^master
-    voting: false
-
-- job:
     name: puppet-openstack-integration-5-scenario002
     parent: puppet-openstack-integration-5
     abstract: true
     vars:
       scenario: scenario002
       puppet: 5
-
-- job:
-    name: puppet-openstack-integration-5-scenario002-tempest-fedora-28
-    parent: puppet-openstack-integration-5-scenario002
-    nodeset: rdo-fedora-stable
-    branches: ^master
-    voting: false
 
 - job:
     name: puppet-openstack-integration-5-scenario003
@@ -251,13 +237,6 @@
       puppet: 5
 
 - job:
-    name: puppet-openstack-integration-5-scenario003-tempest-fedora-28
-    parent: puppet-openstack-integration-5-scenario003
-    nodeset: rdo-fedora-stable
-    branches: ^master
-    voting: false
-
-- job:
     name: puppet-openstack-integration-5-scenario004
     parent: puppet-openstack-integration-5
     abstract: true
@@ -265,13 +244,6 @@
       scenario: scenario004
       puppet: 5
       ceph: luminous
-
-- job:
-    name: puppet-openstack-integration-5-scenario004-tempest-fedora-28
-    parent: puppet-openstack-integration-5-scenario004
-    nodeset: rdo-fedora-stable
-    branches: ^master
-    voting: false
 
 - job:
     name: octavia-build-amphora
