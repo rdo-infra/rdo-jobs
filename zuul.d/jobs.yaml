@@ -180,29 +180,54 @@
         MOLECULE_CONTAINER_REGISTRY_URL: registry.access.redhat.com
 
 - job:
-    name: DLRN-build-tripleo
+    name: DLRN-build-tripleo-base
     parent: base
     run: playbooks/DLRN-build-tripleo/run.yaml
     post-run: playbooks/DLRN-build-tripleo/post.yaml
-    dependencies:
-      - DLRN-rpmbuild
     voting: false
-    branches: ^(rpm-)|(^(?!common)(\w+)-rdo)$
     required-projects:
       - DLRN
 
 - job:
-    name: DLRN-rpmbuild
+    name: DLRN-build-tripleo
+    parent: DLRN-build-tripleo-base
+    branches: ^(queens-rdo)|(rocky-rdo)|(stein-rdo)|(train-rdo)$
+    dependencies:
+      - DLRN-rpmbuild
+
+- job:
+    name: DLRN-build-tripleo-centos8
+    parent: DLRN-build-tripleo-base
+    branches: ^(rpm-master)$
+    dependencies:
+      - DLRN-rpmbuild-centos8
+    vars:
+      centos_version: 'centos8'
+    nodeset: rdo-centos-8
+
+- job:
+    name: DLRN-rpmbuild-base
     run: playbooks/DLRN/rpmbuild.yaml
     post-run: playbooks/DLRN/post.yaml
-    branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     required-projects:
       - DLRN
       - rdoinfo
 
 - job:
+    name: DLRN-rpmbuild
+    parent: DLRN-rpmbuild-base
+    branches: ^(queens-rdo)|(rocky-rdo)|(stein-rdo)|(train-rdo)$
+
+- job:
+    name: DLRN-rpmbuild-nv
+    parent: DLRN-rpmbuild-base
+    voting: false
+    branches: ^rpm-master$
+
+- job:
     name: DLRN-rpmbuild-pinned
     parent: DLRN-rpmbuild
+    voting: false
     vars:
       tag: 'ussuri-uc'
 
@@ -239,10 +264,8 @@
 
 - job:
     name: DLRN-rpmbuild-centos8
-    parent: DLRN-rpmbuild
-    # Make it voting when it's stable.
-    voting: false
-    branches: ^(master)|(rpm-master)|(train-rdo)$
+    parent: DLRN-rpmbuild-base
+    branches: ^(rpm-master)|(train-rdo)$
     vars:
       centos_version: 'centos8'
     nodeset: rdo-centos-8
@@ -269,6 +292,11 @@
     required-projects:
       - DLRN
       - rdoinfo
+
+- job:
+    name: rdoinfo-DLRN-check-nv
+    parent: rdoinfo-DLRN-check
+    voting: false
 
 - job:
     name: rdoinfo-DLRN-check-centos8
