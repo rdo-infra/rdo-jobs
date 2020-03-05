@@ -183,7 +183,7 @@
       release: master
       featureset_override:
         run_tempest: false
-        tempest_run_concurrency: 2
+        tempest_run_concurrency: 4
         tempest_services:
           - cinder
           - horizon
@@ -955,3 +955,22 @@
     parent: periodic-tripleo-ci-centos-8-scenario010-standalone-component-master
     vars:
       component: octavia
+
+# standalone-full-tempest-component
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-component-master
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-master
+    abstract: true
+    vars: *component_vars
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-compute-master
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-component-master
+    vars:
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-tempest-master
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-component-master
+    vars:
+      component: tempest
