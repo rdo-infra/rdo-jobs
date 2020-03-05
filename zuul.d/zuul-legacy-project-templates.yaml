@@ -48,44 +48,27 @@
             branches: ^rpm-master$
         - rpmlint:
             dependencies:
-              - DLRN-rpmbuild
+              - DLRN-rpmbuild-centos8
             branches: ^rpm-master$
         - DLRN-build-tripleo
-        - legacy-weirdo-dlrn-master-packstack-scenario003:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
+        - DLRN-build-tripleo-centos8
         - legacy-weirdo-dlrn-master-packstack-scenario003-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario001-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-nv
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario003-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario001-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build-centos8
@@ -99,34 +82,25 @@
             branches: ^rpm-master$
         - rpmlint:
             dependencies:
-              - DLRN-rpmbuild
+              - DLRN-rpmbuild-centos8
             branches: ^rpm-master$
         - DLRN-build-tripleo
-        - legacy-weirdo-dlrn-master-puppet-scenario002:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
+        - DLRN-build-tripleo-centos8
         - legacy-weirdo-dlrn-master-puppet-scenario002-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-nv
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario002:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario002-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build-centos8
@@ -140,44 +114,27 @@
             branches: ^rpm-master$
         - rpmlint:
             dependencies:
-              - DLRN-rpmbuild
+              - DLRN-rpmbuild-centos8
             branches: ^rpm-master$
         - DLRN-build-tripleo
-        - legacy-weirdo-dlrn-master-packstack-scenario003:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
+        - DLRN-build-tripleo-centos8
         - legacy-weirdo-dlrn-master-packstack-scenario003-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario001-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-nv
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario003-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario001-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build-centos8
@@ -191,54 +148,29 @@
             branches: ^rpm-master$
         - rpmlint:
             dependencies:
-              - DLRN-rpmbuild
+              - DLRN-rpmbuild-centos8
             branches: ^rpm-master$
         - DLRN-build-tripleo
-        - legacy-weirdo-dlrn-master-packstack-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
+        - DLRN-build-tripleo-centos8
         - legacy-weirdo-dlrn-master-packstack-scenario001-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario001-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario002:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario002-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-nv
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario001-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario002:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario002-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build-centos8
@@ -252,64 +184,31 @@
             branches: ^rpm-master$
         - rpmlint:
             dependencies:
-              - DLRN-rpmbuild
+              - DLRN-rpmbuild-centos8
             branches: ^rpm-master$
         - DLRN-build-tripleo
-        - legacy-weirdo-dlrn-master-packstack-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
+        - DLRN-build-tripleo-centos8
         - legacy-weirdo-dlrn-master-packstack-scenario001-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario001-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario002:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario002-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario004:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario004-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-nv
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario001-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario002:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario002-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario004:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario004-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build-centos8
@@ -328,25 +227,15 @@
         - DLRN-build-tripleo:
             dependencies:
               - DLRN-rpmbuild-pinned
-        - legacy-weirdo-dlrn-master-packstack-scenario003:
-            dependencies:
-              - DLRN-rpmbuild-pinned
-            voting: false
-            branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-packstack-scenario003-centos8:
             dependencies:
               - DLRN-rpmbuild-centos8-pinned
-        - legacy-weirdo-dlrn-master-puppet-scenario001:
-            dependencies:
-              - DLRN-rpmbuild-pinned
-            voting: false
-            branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario001-centos8:
             dependencies:
               - DLRN-rpmbuild-centos8-pinned
         - DLRN-rpmbuild-centos8-pinned
         - DLRN-rpmbuild-pinned:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+            branches: ^(master|stable/pike)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate-centos8
@@ -369,8 +258,7 @@
             branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - DLRN-rpmbuild-pinned:
-            branches: ^rpm-master$
+        - DLRN-rpmbuild-centos8-pinned
         - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
@@ -386,44 +274,27 @@
             branches: ^rpm-master$
         - rpmlint:
             dependencies:
-              - DLRN-rpmbuild
+              - DLRN-rpmbuild-centos8
             branches: ^rpm-master$
         - DLRN-build-tripleo
-        - legacy-weirdo-dlrn-master-packstack-scenario003:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
+        - DLRN-build-tripleo-centos8
         - legacy-weirdo-dlrn-master-packstack-scenario003-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario003:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario003-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-nv
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario003-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario003:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario003-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build-centos8
@@ -437,34 +308,25 @@
             branches: ^rpm-master$
         - rpmlint:
             dependencies:
-              - DLRN-rpmbuild
+              - DLRN-rpmbuild-centos8
             branches: ^rpm-master$
         - DLRN-build-tripleo
-        - legacy-weirdo-dlrn-master-puppet-scenario003:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
+        - DLRN-build-tripleo-centos8
         - legacy-weirdo-dlrn-master-puppet-scenario003-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-nv
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario003:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario003-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build-centos8
@@ -478,44 +340,27 @@
             branches: ^rpm-master$
         - rpmlint:
             dependencies:
-              - DLRN-rpmbuild
+              - DLRN-rpmbuild-centos8
             branches: ^rpm-master$
         - DLRN-build-tripleo
-        - legacy-weirdo-dlrn-master-packstack-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
+        - DLRN-build-tripleo-centos8
         - legacy-weirdo-dlrn-master-packstack-scenario001-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario003:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario003-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-nv
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario003:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario003-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build-centos8
@@ -529,34 +374,25 @@
             branches: ^rpm-master$
         - rpmlint:
             dependencies:
-              - DLRN-rpmbuild
+              - DLRN-rpmbuild-centos8
             branches: ^rpm-master$
         - DLRN-build-tripleo
-        - legacy-weirdo-dlrn-master-puppet-scenario004:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
+        - DLRN-build-tripleo-centos8
         - legacy-weirdo-dlrn-master-puppet-scenario004-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-nv
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario004:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario004-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build-centos8
@@ -570,54 +406,29 @@
             branches: ^rpm-master$
         - rpmlint:
             dependencies:
-              - DLRN-rpmbuild
+              - DLRN-rpmbuild-centos8
             branches: ^rpm-master$
         - DLRN-build-tripleo
-        - legacy-weirdo-dlrn-master-packstack-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
+        - DLRN-build-tripleo-centos8
         - legacy-weirdo-dlrn-master-packstack-scenario001-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario001-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario003:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario003-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-nv
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario001-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario003:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario003-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build-centos8
@@ -631,44 +442,27 @@
             branches: ^rpm-master$
         - rpmlint:
             dependencies:
-              - DLRN-rpmbuild
+              - DLRN-rpmbuild-centos8
             branches: ^rpm-master$
         - DLRN-build-tripleo
-        - legacy-weirdo-dlrn-master-packstack-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
+        - DLRN-build-tripleo-centos8
         - legacy-weirdo-dlrn-master-packstack-scenario001-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario001-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-nv
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-packstack-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario001-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario001-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build-centos8
@@ -682,54 +476,29 @@
             branches: ^rpm-master$
         - rpmlint:
             dependencies:
-              - DLRN-rpmbuild
+              - DLRN-rpmbuild-centos8
             branches: ^rpm-master$
         - DLRN-build-tripleo
-        - legacy-weirdo-dlrn-master-packstack-scenario002:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
+        - DLRN-build-tripleo-centos8
         - legacy-weirdo-dlrn-master-packstack-scenario002-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario001-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario003:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
         - legacy-weirdo-dlrn-master-puppet-scenario003-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-nv
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-packstack-scenario002:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-packstack-scenario002-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario001-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario003:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario003-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build-centos8
@@ -743,34 +512,25 @@
             branches: ^rpm-master$
         - rpmlint:
             dependencies:
-              - DLRN-rpmbuild
+              - DLRN-rpmbuild-centos8
             branches: ^rpm-master$
         - DLRN-build-tripleo
-        - legacy-weirdo-dlrn-master-puppet-scenario004:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
+        - DLRN-build-tripleo-centos8
         - legacy-weirdo-dlrn-master-puppet-scenario004-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-nv
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario004:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario004-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build-centos8
@@ -784,34 +544,25 @@
             branches: ^rpm-master$
         - rpmlint:
             dependencies:
-              - DLRN-rpmbuild
+              - DLRN-rpmbuild-centos8
             branches: ^rpm-master$
         - DLRN-build-tripleo
-        - legacy-weirdo-dlrn-master-puppet-scenario002:
-            dependencies:
-              - DLRN-rpmbuild
-            voting: false
-            branches: ^(rpm-)?master$
+        - DLRN-build-tripleo-centos8
         - legacy-weirdo-dlrn-master-puppet-scenario002-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-nv
         - distgit-cbs-validate:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario002:
-            dependencies:
-              - DLRN-rpmbuild
         - legacy-experimental-weirdo-dlrn-master-puppet-scenario002-centos8
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     gate:
       jobs:
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: (^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build-centos8
