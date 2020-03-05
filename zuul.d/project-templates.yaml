@@ -26,19 +26,20 @@
             branches: ^rpm-master$
         - rpmlint:
             dependencies:
-              - DLRN-rpmbuild
+              - DLRN-rpmbuild-centos8
             branches: ^rpm-master$
         - DLRN-build-tripleo
+        - DLRN-build-tripleo-centos8
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-nv
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate:
             branches: ^(?!rpm-master).*$
         - distgit-cbs-validate-centos8
     gate:
       jobs:
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: ^(?!rpm-master).*$
         - distgit-cbs-final-build-centos8
@@ -58,7 +59,7 @@
       jobs:
         - distgit-tripleo-master-testing-centos-7-standalone-featureset052:
             dependencies:
-              - DLRN-rpmbuild
+              - DLRN-rpmbuild-nv
             voting: false
             branches: ^rpm-master$
 
