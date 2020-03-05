@@ -331,22 +331,39 @@
     dependencies:
       - DLRN-rpmbuild
     voting: false
-    branches: ^(rpm-)|(^(?!common)(\w+)-rdo)$
+    branches: ^(queens-rdo)|(rocky-rdo)|(stein-rdo)|(train-rdo)$
     required-projects:
       - DLRN
+
+- job:
+    name: DLRN-build-tripleo-centos8
+    parent: DLRN-build-tripleo
+    branches: ^(rpm-master)$
+    dependencies:
+      - DLRN-rpmbuild-centos8
+    vars:
+      centos_version: 'centos8'
+    nodeset: rdo-centos-8
 
 - job:
     name: DLRN-rpmbuild
     run: playbooks/DLRN/rpmbuild.yaml
     post-run: playbooks/DLRN/post.yaml
-    branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+    branches: ^(queens-rdo)|(rocky-rdo)|(stein-rdo)|(train-rdo)$
     required-projects:
       - DLRN
       - rdoinfo
 
 - job:
+    name: DLRN-rpmbuild-nv
+    parent: DLRN-rpmbuild
+    voting: false
+    branches: ^rpm-master$
+
+- job:
     name: DLRN-rpmbuild-pinned
     parent: DLRN-rpmbuild
+    voting: false
     vars:
       tag: 'ussuri-uc'
 
@@ -384,9 +401,7 @@
 - job:
     name: DLRN-rpmbuild-centos8
     parent: DLRN-rpmbuild
-    # Make it voting when it's stable.
-    voting: false
-    branches: ^(master)|(rpm-master)|(train-rdo)$
+    branches: ^(rpm-master)|(train-rdo)$
     vars:
       centos_version: 'centos8'
     nodeset: rdo-centos-8
@@ -413,6 +428,11 @@
     required-projects:
       - DLRN
       - rdoinfo
+
+- job:
+    name: rdoinfo-DLRN-check-nv
+    parent: rdoinfo-DLRN-check
+    voting: false
 
 - job:
     name: rdoinfo-DLRN-check-centos8
