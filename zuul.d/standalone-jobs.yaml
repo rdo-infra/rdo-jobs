@@ -917,3 +917,41 @@
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-component-master
     vars:
       component: manila
+
+# scenario007-standalone-component
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario007-standalone-component-master
+    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-master
+    abstract: true
+    vars: *component_vars
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario007-standalone-network-master
+    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-component-master
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario007-standalone-octavia-master
+    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-component-master
+    vars:
+      component: octavia
+
+# scenario010-standalone-component
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-standalone-component-master
+    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-master
+    abstract: true
+    vars: *component_vars
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-standalone-network-master
+    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-component-master
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-master
+    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-component-master
+    vars:
+      component: octavia
