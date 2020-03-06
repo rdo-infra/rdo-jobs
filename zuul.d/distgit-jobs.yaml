@@ -106,3 +106,17 @@
           'share.capability_snapshot_support': 'False'
           'share.capability_create_share_from_snapshot_support': 'False'
         test_white_regex: ''
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-ovb-3ctlr_1comp-featureset001-master
+    parent: tripleo-ci-base-ovb-periodic-centos-8
+    run: playbooks/run-distgit.yaml
+    # Bumping to 5hours for fs1 to run *api* tempest see
+    # https://tree.taiga.io/project/tripleo-ci-board/task/1383
+    timeout: 18000
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      release: master
+      featureset_override:
+        to_build: false
