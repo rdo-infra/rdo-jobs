@@ -177,7 +177,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-master
     parent: periodic-tripleo-ci-centos-8-standalone-master
-    timeout: 13500
+    timeout: 14400
     vars:
       featureset: '052'
       release: master
