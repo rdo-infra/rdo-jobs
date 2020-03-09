@@ -106,3 +106,182 @@
           'share.capability_snapshot_support': 'False'
           'share.capability_create_share_from_snapshot_support': 'False'
         test_white_regex: ''
+
+##################################
+#        CENTOS-8 JOBS           #
+##################################
+
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone
+    parent: tripleo-ci-centos-8-standalone
+    run: playbooks/run-distgit.yaml
+    vars:
+      release: master
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario001
+    parent: tripleo-ci-centos-8-scenario001-standalone
+    run: playbooks/run-distgit.yaml
+    vars:
+      release: master
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario002
+    parent: tripleo-ci-centos-8-scenario002-standalone
+    run: playbooks/run-distgit.yaml
+    vars:
+      release: master
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario003
+    parent: tripleo-ci-centos-8-scenario003-standalone
+    run: playbooks/run-distgit.yaml
+    vars:
+      release: master
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario004
+    parent: tripleo-ci-centos-8-scenario004-standalone
+    run: playbooks/run-distgit.yaml
+    vars:
+      release: master
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-full-temepst
+    parent: distgit-tripleo-master-testing-centos-8-standalone
+    timeout: 13500
+    vars:
+      featureset_override:
+        run_tempest: false
+        tempest_run_concurrency: 4
+        tempest_services:
+          - cinder
+          - horizon
+          - neutron
+        tempest_test_whitelist:
+          - 'api'
+          - 'scenario'
+        use_os_tempest: true
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario007
+    parent: tripleo-ci-centos-8-scenario007-standalone
+    run: playbooks/run-distgit.yaml
+    vars:
+      release: master
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario010
+    parent: tripleo-ci-centos-8-scenario010-standalone
+    run: playbooks/run-distgit.yaml
+    vars:
+      release: master
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario010-ovn-provider-standalone
+    parent: tripleo-ci-centos-8-scenario010-ovn-provider-standalone
+    run: playbooks/run-distgit.yaml
+    vars:
+      release: master
+
+# Undercloud Job
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-undercloud-containers
+    parent: tripleo-ci-centos-8-undercloud-containers
+    run: playbooks/run-distgit.yaml
+    vars:
+      release: master
+
+# Multinode Container job
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-multinode-1ctlr-featureset010
+    parent: tripleo-ci-base-multinode-rdo-centos-8
+    run: playbooks/run-distgit.yaml
+    voting: false
+    branches: ^master$
+    vars:
+      nodes: 1ctlr
+      featureset: '010'
+      release: master
+
+# OVB fs01 job
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-ovb-3ctlr_1comp-featureset001
+    parent: tripleo-ci-base-ovb-rdo-centos-8
+    run: playbooks/run-distgit.yaml
+    timeout: 18000
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      release: master
+      featureset_override:
+        to_build: false
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-ovb-1ctlr_2comp-featureset020
+    parent: tripleo-ci-base-ovb-rdo-centos-8
+    timeout: 18000
+    run: playbooks/run-distgit.yaml
+    vars:
+      nodes: 1ctlr_2comp
+      featureset: '020'
+      release: master
+      featureset_override:
+        to_build: false
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-ovb-3ctlr_1comp-featureset001-vexxhost
+    parent: tripleo-ci-base-ovb-rdo-centos-8
+    run: playbooks/run-distgit.yaml
+    timeout: 18000
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      release: master
+      featureset_override:
+        to_build: false
+      cloud_name: vexxhost
+    nodeset: upstream-centos-8-vexxhost
+
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-ovb-1ctlr_2comp-featureset020-vexxhost
+    parent: tripleo-ci-base-ovb-rdo-centos-8
+    run: playbooks/run-distgit.yaml
+    timeout: 18000
+    vars:
+      nodes: 1ctlr_2comp
+      featureset: '020'
+      release: master
+      featureset_override:
+        to_build: false
+      cloud_name: vexxhost
+    nodeset: upstream-centos-8-vexxhost
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-ovb-3ctlr_1comp-featureset035
+    parent: tripleo-ci-base-ovb-rdo-centos-8
+    run: playbooks/run-distgit.yaml
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '035'
+      release: master
+      featureset_override:
+        to_build: false
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-ovb-3ctlr_1comp-featureset035-vexxhost
+    parent: tripleo-ci-base-ovb-rdo-centos-8
+    run: playbooks/run-distgit.yaml
+    nodeset: upstream-centos-8-vexxhost
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '035'
+      release: master
+      featureset_override:
+        to_build: false
+      cloud_name: vexxhost
