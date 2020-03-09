@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f16b3106_1a525ef5",
+        "filename": "zuul.d/distgit-jobs.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2020-03-09T17:41:11Z",
+      "side": 1,
+      "message": "looks like the discussion was left pending that day on IRC, can u update here wrt plan and reasoning here so can followup on wednesday and move forward with this:-\n\n\u003crlandy\u003e chandankumar: wrt parenting in https://review.rdoproject.org/r/#/c/25659/5/zuul.d/distgit-jobs.yaml - what hash do you want them to run?\n\u003crlandy\u003e tripleo-ci-testing or current-tripleo?\n\u003cchandankumar\u003e rlandy, current-tripleo\n\u003cchandankumar\u003e since periodic is runned in check it will auto go to check\n\u003cchandankumar\u003e *current-tripleo\n\u003crlandy\u003e should be ok - because no force_promote\n\u003cchandankumar\u003e rlandy, the main goal is to avoid periodic related call\n\u003cchandankumar\u003e like podman registry login\n\u003crlandy\u003e parenting is good then\n\u003cchandankumar\u003e ykarel, ^^\n\u003cykarel\u003e rlandy, chandankumar, those jobs do too many things, which are not relevant for distgit jobs\n\u003cykarel\u003e like dlrn prep, registry login, dlrn reporting\n\u003cykarel\u003e etc\n\u003cykarel\u003e couple of more things they do\n\u003crlandy\u003e chandankumar: you could make non-periodic versions\n\u003crlandy\u003e that would kick the dlnr reporting\n\u003cchandankumar\u003e rlandy, then we need to do repeatition\n\u003cchandankumar\u003e I cannot use upstream toci base as it is meant for upstream ci\n\u003cchandankumar\u003e rlandy, https://review.rdoproject.org/r/#/c/25659/1/zuul.d/distgit-jobs.yaml then I need to follow this version\n\u003cchandankumar\u003e rlandy, what can i modify here?\n\u003crlandy\u003e chandankumar: sec - back on images server\n\u003cchandankumar\u003e ok\n\u003cykarel\u003e chandankumar, any issue in using scneario jobs directly as parent and modify nodeset and adding additional required vars like https://github.com/openstack/tripleo-ci/blob/master/zuul.d/standalone-jobs.yaml#L677",
+      "range": {
+        "startLine": 327,
+        "startChar": 12,
+        "endLine": 327,
+        "endChar": 49
+      },
+      "revId": "a880d14e1daa54f40d27ec6553f0da93da3835cd",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
