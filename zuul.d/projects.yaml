@@ -33,6 +33,10 @@
               - ./playbooks/tripleo-ceph-integration/.*
               - zuul.d/ceph-ansible.yaml
               - ./playbooks/run-rpm-build.yaml
+        - tripleo-centos-8-ceph-integration-master:
+            files:
+              - ./playbooks/tripleo-ceph-integration/.*
+              - zuul.d/ceph-ansible.yaml
         - tripleo-ceph-integration-rhel-8-scenario001-standalone:
             files: *ceph
             dependencies:
@@ -41,6 +45,14 @@
             files: *ceph
             dependencies:
               - tripleo-ceph-integration-master
+       - tripleo-ceph-integration-centos-8-scenario001-standalone:
+            files:
+            dependencies:
+              - tripleo-centos-8-ceph-integration-master
+        - tripleo-ceph-integration-centos-8-scenario004-standalone:
+            files:
+            dependencies:
+              - tripleo-centos-8-ceph-integration-master
         - podman-package-rhel-8: &podman
             files:
               - zuul.d/podman.yaml
