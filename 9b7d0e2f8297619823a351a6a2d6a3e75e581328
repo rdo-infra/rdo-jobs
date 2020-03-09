@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad66d667_8f8369f2",
+        "filename": "playbooks/tripleo-ceph-integration/pre.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2020-03-09T09:46:35Z",
+      "side": 1,
+      "message": "I think we need to enable the epel repo \ndnf config-manager --enable epel\n\nand also we need to make sure this task is only called for CentOS-8 only.\nand add another task to disable epel repo after we install pre-requisites",
+      "revId": "9b7d0e2f8297619823a351a6a2d6a3e75e581328",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
