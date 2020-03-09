@@ -16,10 +16,7 @@
     #   - plugins/.*
     #   - library/.*
     #   - group_vars/.*
-    nodeset:
-      nodes:
-        - name: test
-          label: rdo-centos-7
+    nodeset: upstream-centos-7
 
 - job:
     name: tripleo-ceph-integration-master
@@ -69,6 +66,93 @@
     vars:
       dist: "el8"
       mock_config: "epel-8-x86_64"
+
+# CentOS 8 jobs
+
+- job:
+    # This is an abstract job to share common bits for each centos-8 ooo-ceph integration jobs
+    name: tripleo-centos-8-ceph-integration
+    # abstract means you can't use it directly, it can only be the parent of a job.
+    abstract: true
+    pre-run: playbooks/tripleo-ceph-integration/pre.yaml
+    run: playbooks/tripleo-ceph-integration/run.yaml
+    post-run: playbooks/tripleo-ceph-integration/post.yaml
+    # files makes the job run only if one of the elem is modified by the PR
+    # files:
+    #   Until job is working as expected, use a test file trigger
+    #   - test-ci
+    #   When the job is working, only run it when those files are modified
+    #   - roles/.*
+    #   - plugins/.*
+    #   - library/.*
+    #   - group_vars/.*
+    nodeset: upstream-centos-8
+
+- job:
+    name: tripleo-centos-8-ceph-integration-master
+    parent: tripleo-centos-8-ceph-integration
+    # stein/train/ussuri will be using stable-4.0
+    # branches: ^(stable-5.0|master).*$
+    branches: ^(stable-4.0|master).*$
+    required-projects:
+      # without options, the branch of the PR is used for the required-projects
+      - name: opendev.org/openstack/tripleo-heat-templates
+      - name: github.com/ceph/ceph-ansible
+        override-checkout: stable-4.0
+
+# Base job for ceph
+
+- job:
+    name: tripleo-ceph-integration-centos-8-scenarios-standalone
+    parent: tripleo-ci-base-standalone-rdo-centos-8
+    run: playbooks/run-rpm-build.yaml
+    required-projects:
+      - name: opendev.org/openstack/tripleo-heat-templates
+      - name: github.com/ceph/ceph-ansible
+    vars:
+      featureset: '052'
+      standalone_ceph: true
+
+# Scenarios
+
+- job:
+    name: tripleo-ceph-integration-centos-8-scenario001-standalone
+    parent: tripleo-ceph-integration-centos-8-scenarios-standalone
+    # stein/train/ussuri will be using stable-4.0
+    # branches: ^(stable-5.0|master).*$
+    branches: ^(stable-4.0|master).*$
+    required-projects:
+      - name: opendev.org/openstack/tripleo-heat-templates
+      - name: github.com/ceph/ceph-ansible
+        override-checkout: stable-4.0
+    vars:
+      release: master
+      featureset_override: &scenario001
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario001-standalone.yaml'
+          - 'environments/podman.yaml'
+        run_tempest: false
+        use_os_tempest: false
+
+- job:
+    name: tripleo-ceph-integration-centos-8-scenario004-standalone
+    parent: tripleo-ceph-integration-centos-8-scenarios-standalone
+    # stein/train/ussuri will be using stable-4.0
+    # branches: ^(stable-5.0|master).*$
+    branches: ^(stable-4.0|master).*$
+    required-projects:
+      - name: opendev.org/openstack/tripleo-heat-templates
+      - name: github.com/ceph/ceph-ansible
+        override-checkout: stable-4.0
+    vars:
+      featureset_override: &scenario004
+        run_tempest: false
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario004-standalone.yaml'
+          - 'environments/podman.yaml'
+        use_os_tempest: false
 
 # RHEL 8 Jobs
 
@@ -177,3 +261,37 @@
     parent: periodic-tripleo-ceph-integration-rhel-8-scenarios-standalone
     vars:
       featureset_override: *scenario004_podman
+
+# CentOS 8 Periodic jobs
+
+- job:
+    name: periodic-tripleo-centos-8-ceph-integration-master
+    parent: tripleo-centos-8-ceph-integration-master
+
+# CentOS 8 Base periodic job
+
+- job:
+    name: periodic-tripleo-ceph-integration-centos-8-scenarios-standalone
+    parent: tripleo-ci-base-standalone-periodic-centos-8
+    run: playbooks/run-rpm-build.yaml
+    required-projects:
+      - name: opendev.org/openstack/tripleo-heat-templates
+      - name: github.com/ceph/ceph-ansible
+    vars:
+      featureset: '052'
+      standalone_ceph: true
+
+# Scenarios
+
+- job:
+    name: periodic-tripleo-ceph-integration-centos-8-scenario001-standalone
+    parent: periodic-tripleo-ceph-integration-centos-8-scenarios-standalone
+    vars:
+      release: master
+      featureset_override: *scenario001
+
+- job:
+    name: periodic-tripleo-ceph-integration-centos-8-scenario004-standalone
+    parent: periodic-tripleo-ceph-integration-centos-8-scenarios-standalone
+    vars:
+      featureset_override: *scenario004
