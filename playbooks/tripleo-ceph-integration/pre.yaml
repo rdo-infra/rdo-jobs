@@ -1,6 +1,19 @@
 ---
 - hosts: all
   tasks:
+    - name: Install epel-release
+      when:
+        - ansible_distribution_major_version == "8"
+        - ansible_distribution == "CentOS"
+      shell:
+        cmd: |
+          sudo dnf -y install epel-release
+          sudo dnf config-manager --enable epel
+          sudo dnf -y install mock
+          sudo dnf config-manager --disable epel
+      become: true
+      changed_when: true
+
     - name: Install pre-requisites
       package:
         name:

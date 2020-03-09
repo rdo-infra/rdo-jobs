@@ -4,11 +4,23 @@
     - name: Run make rpm
       shell:
         cmd: |
-            export DIST="{{ dist | default('el7') }}"
-            export MOCK_CONFIG="{{ mock_config | default('epel-7-x86_64') }}"
+            export DIST="{{ dist | default('el8') }}"
+            export MOCK_CONFIG="{{ mock_config | default('epel-8-x86_64') }}"
             make rpm
         chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/ceph/ceph-ansible'].src_dir }}"
       changed_when: true
+
+#    - name: Run make rpm for CentOS-8
+#      when:
+#        - ansible_distribution == "CentOS"
+#        - ansible_distribution_major_version == '8'
+#      shell:
+#        cmd: |
+#            export DIST="{{ dist | default('el8') }}"
+#            export MOCK_CONFIG="{{ mock_config | default('epel-8-x86_64') }}"
+#            make rpm
+#        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/ceph/ceph-ansible'].src_dir }}"
+#      changed_when: true
 
     - name: Setup log path fact
       include_role:
