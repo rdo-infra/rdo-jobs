@@ -1,11 +1,28 @@
 ---
 - hosts: all
   tasks:
-    - name: Run make rpm
+    - name: Run make rpm for RHEL-8
+      when:
+        - ansible_distribution_major_version|int <= 8
+        - ansible_distribution == "RedHat"
       shell:
         cmd: |
             export DIST="{{ dist | default('el7') }}"
             export MOCK_CONFIG="{{ mock_config | default('epel-7-x86_64') }}"
+            make rpm
+        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/ceph/ceph-ansible'].src_dir }}"
+      changed_when: true
+
+    - name: Run make rpm for CentOS-8
+      when:
+        - ansible_distribution_major_version|int >= 8
+        - ansible_distribution == "CentOS"
+      shell:
+        cmd: |
+            # TODO(bhagyashris): Once
+            # https://github.com/ceph/ceph-ansible/pull/5163
+            # gets merged, will remove this workaround.
+            sed -i -e "s|epel-7|epel-8|g" Makefile
             make rpm
         chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/ceph/ceph-ansible'].src_dir }}"
       changed_when: true
