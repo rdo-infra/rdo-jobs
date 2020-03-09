@@ -1,6 +1,13 @@
 ---
 - hosts: all
   tasks:
+    - name: Install epel-release
+      shell:
+        cmd: |
+            sudo dnf -y install epel-release
+            sudo dnf config-manager --enable epel
+      become: true
+
     - name: Install pre-requisites
       package:
         name:
