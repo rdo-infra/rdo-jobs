@@ -20,42 +20,18 @@
               - setup.*$
               - test-requirements.txt
               - tox.ini
-        - registry-login-rdo-integration-centos-7:
-            files:
-              - playbooks/integration/registry-login.yaml
-              - zuul.d/integration.yaml
-        - registry-login-rdo-integration-redhat-8:
-            files:
-              - playbooks/integration/registry-login.yaml
-              - zuul.d/integration.yaml
-        - tripleo-ceph-integration-master:
+        - tripleo-centos-8-ceph-integration-master:
             files: &ceph
               - ./playbooks/tripleo-ceph-integration/.*
               - zuul.d/ceph-ansible.yaml
-              - ./playbooks/run-rpm-build.yaml
-        - tripleo-ceph-integration-rhel-8-scenario001-standalone:
+       - tripleo-ceph-integration-centos-8-scenario001-standalone:
             files: *ceph
             dependencies:
-              - tripleo-ceph-integration-master
-        - tripleo-ceph-integration-rhel-8-scenario004-standalone:
+              - tripleo-centos-8-ceph-integration-master
+        - tripleo-ceph-integration-centos-8-scenario004-standalone:
             files: *ceph
             dependencies:
-              - tripleo-ceph-integration-master
-        - podman-package-rhel-8: &podman
-            files:
-              - zuul.d/podman.yaml
-              - playbooks/podman/.*
-            # until we fix https://github.com/containers/libpod/issues/4665
-            voting: false
-        - podman-package-centos-7: *podman
-        - podman-package-centos-8: *podman
-        - podman-package-fedora-30: *podman
-        - tripleo-podman-integration-centos-8-scenario000-standalone:
-            files:
-              - zuul.d/podman.yaml
-              - playbooks/podman/.*
-            dependencies:
-              - podman-package-centos-8
+              - tripleo-centos-8-ceph-integration-master
 
     gate:
       jobs:
