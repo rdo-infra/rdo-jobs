@@ -709,6 +709,15 @@
     vars: *standalone_vars
 
 - job:
+    name: tripleo-ci-centos-8-standalone-rdo
+    parent: tripleo-ci-base-standalone-rdo-centos-8
+    nodeset: single-centos-8-node
+    host-vars:
+      primary:
+        ansible_python_interpreter: /usr/bin/python3
+    vars: *standalone_vars
+
+- job:
     name: periodic-tripleo-ci-rhel-8-standalone-rdo
     parent: tripleo-ci-base-standalone-periodic
     nodeset: single-rhel-8-node
