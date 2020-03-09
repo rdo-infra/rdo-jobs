@@ -637,3 +637,22 @@
     vars:
       branch_override: "stable/train"
       release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-master
+    parent: tripleo-ci-base-ovb-periodic-centos-8
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '035'
+      release: master
+
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-master-vexxhost
+    parent: tripleo-ci-base-ovb-periodic-centos-8
+    nodeset: upstream-centos-8-vexxhost
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '035'
+      release: master
+      cloud_name: vexxhost
