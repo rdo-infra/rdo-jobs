@@ -6,7 +6,15 @@
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
     parent: tripleo-ci-base-ovb-rdo
-    branches: "^.*$"
+    branches: ^(stable/(newton|ocata|pike|queens|rocky|stein|train)).*$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+
+- job:
+    name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
+    parent: tripleo-ci-base-ovb-notebroker-centos-8
+    branches: ^(?!stable/(newton|ocata|pike|queens|rocky|stein|train)).*$
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
@@ -14,7 +22,15 @@
 - job:
     name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset001
     parent: tripleo-ci-base-ovb-rdo
-    branches: "^.*$"
+    branches: ^(stable/(newton|ocata|pike|queens|rocky|stein|train)).*$
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '001'
+
+- job:
+    name: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset001
+    parent: tripleo-ci-base-ovb-notebroker-centos-8
+    branches: ^(?!stable/(newton|ocata|pike|queens|rocky|stein|train)).*$
     vars:
       nodes: 1ctlr_1comp
       featureset: '001'
@@ -637,3 +653,35 @@
     vars:
       branch_override: "stable/train"
       release: train
+
+##################################################################
+#################### CENTOS-8 PERIODIC JOBS ######################
+##################################################################
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master-vexxhost
+    parent: tripleo-ci-base-ovb-periodic-centos-8
+    # Bumping to 5hours for fs1 to run *api* tempest see
+    # https://tree.taiga.io/project/tripleo-ci-board/task/1383
+    timeout: 18000
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      release: master
+      cloud_name: vexxhost
+      featureset_override:
+        to_build: false
+    nodeset: upstream-centos-8-vexxhost
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master
+    parent: tripleo-ci-base-ovb-periodic-centos-8
+    # Bumping to 5hours for fs1 to run *api* tempest see
+    # https://tree.taiga.io/project/tripleo-ci-board/task/1383
+    timeout: 18000
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      release: master
+      featureset_override:
+        to_build: false
