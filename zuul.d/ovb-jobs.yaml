@@ -325,7 +325,7 @@
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039
     parent: tripleo-ci-base-ovb-rdo
     timeout: 12600
-    branches: "^(?!stable/queens).*$"
+    branches: ^(stable/(rocky|stein|train)).*$
     voting: false
     vars:
       nodes: 3ctlr_1comp_1supp
@@ -363,7 +363,27 @@
       nodes: 1ctlr_1cellctrl_1comp
       featureset: '063'
 
-# =================  P E R I O D I C   J O B S
+# =================  C E N T O S  8  C H E C K  J O B S
+
+- job:
+    name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039
+    parent: tripleo-ci-base-ovb-rdo-centos-8
+    timeout: 12600
+    branches: ^(?!stable/(newton|ocata|pike|queens|rocky|stein|train)).*$
+    voting: false
+    vars: &fs39_vars
+      nodes: 3ctlr_1comp_1supp
+      featureset: '039'
+      playbooks:
+        - ovb-setup.yml
+        - baremetal-full-freeipa.yml
+        - baremetal-full-undercloud.yml
+        - baremetal-full-overcloud-prep.yml
+        - baremetal-full-overcloud.yml
+        - baremetal-full-overcloud-validate.yml
+
+
+# =================  C E N T O S  7  P E R I O D I C   J O B S
 
 # Periodic job temporarly running on vexxhost, remove when we move to vexxhost
 - job:
@@ -778,3 +798,11 @@
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
     vars:
       component: baremetal
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-master
+    parent: tripleo-ci-base-ovb-periodic-centos-8
+    timeout: 12600
+    vars:
+      <<: *fs39_vars
+      release: master
