@@ -5,7 +5,7 @@
 
 # CentOS-8 jobs
 - job:
-    name: periodic-tripleo-ci-centos-8-singlenode-featureset027-master
+    name: periodic-tripleo-ci-centos-8-undercloud-containers-master
     parent: tripleo-ci-base-singlenode-periodic-centos-8
     vars:
       featureset: '027'
@@ -21,7 +21,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-singlenode-featureset027-train
-    parent: periodic-tripleo-ci-centos-7-singlenode-featureset027-master
+    parent: tripleo-ci-base-singlenode-periodic
     vars:
       branch_override: "stable/train"
       release: train
