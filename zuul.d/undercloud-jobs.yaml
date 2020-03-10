@@ -5,7 +5,7 @@
 
 # CentOS-8 jobs
 - job:
-    name: periodic-tripleo-ci-centos-8-singlenode-featureset027-master
+    name: tripleo-ci-centos-7-undercloud-containers
     parent: tripleo-ci-base-singlenode-periodic-centos-8
     vars:
       featureset: '027'
