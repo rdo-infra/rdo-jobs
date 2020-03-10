@@ -130,150 +130,6 @@
     nodeset: upstream-centos-7-2-node
 
 - job:
-    name: puppet-openstack-base
-    pre-run: playbooks/legacy/puppet-openstack-integration/prepare-node-common.yaml
-    parent: legacy-base
-    abstract: true
-    vars:
-      use_puppetlabs: false
-
-- job:
-    name: puppet-openstack-integration-base
-    abstract: true
-    parent: puppet-openstack-base
-    required-projects:
-      - name: opendev.org/openstack/puppet-aodh
-      - name: opendev.org/openstack/puppet-barbican
-      - name: opendev.org/openstack/puppet-ceilometer
-      - name: opendev.org/openstack/puppet-ceph
-      - name: opendev.org/openstack/puppet-cinder
-      - name: opendev.org/openstack/puppet-cloudkitty
-      - name: opendev.org/openstack/puppet-congress
-      - name: opendev.org/openstack/puppet-designate
-      - name: opendev.org/openstack/puppet-ec2api
-      - name: opendev.org/openstack/puppet-glance
-      - name: opendev.org/openstack/puppet-gnocchi
-      - name: opendev.org/openstack/puppet-heat
-      - name: opendev.org/openstack/puppet-horizon
-      - name: opendev.org/openstack/puppet-ironic
-      - name: opendev.org/openstack/puppet-keystone
-      - name: opendev.org/openstack/puppet-manila
-      - name: opendev.org/openstack/puppet-mistral
-      - name: opendev.org/openstack/puppet-monasca
-      - name: opendev.org/openstack/puppet-murano
-      - name: opendev.org/openstack/puppet-neutron
-      - name: opendev.org/openstack/puppet-nova
-      - name: opendev.org/openstack/puppet-octavia
-      - name: opendev.org/openstack/puppet-openstack-integration
-      - name: opendev.org/openstack/puppet-openstack_extras
-      - name: opendev.org/openstack/puppet-openstacklib
-      - name: opendev.org/openstack/puppet-oslo
-      - name: opendev.org/openstack/puppet-ovn
-      - name: opendev.org/openstack/puppet-panko
-      - name: opendev.org/openstack/puppet-placement
-      - name: opendev.org/openstack/puppet-qdr
-      - name: opendev.org/openstack/puppet-sahara
-      - name: opendev.org/openstack/puppet-swift
-      - name: opendev.org/openstack/puppet-tacker
-      - name: opendev.org/openstack/puppet-tempest
-      - name: opendev.org/openstack/puppet-trove
-      - name: opendev.org/openstack/puppet-vitrage
-      - name: opendev.org/openstack/puppet-vswitch
-      - name: opendev.org/openstack/puppet-watcher
-      - name: opendev.org/openstack/puppet-zaqar
-      - name: opendev.org/openstack/tempest
-
-- job:
-    name: puppet-openstack-integration-run-base
-    parent: puppet-openstack-integration-base
-    abstract: true
-    pre-run: playbooks/legacy/puppet-openstack-integration/prepare-node-integration.yaml
-    run: playbooks/legacy/puppet-openstack-integration/run-integration-tests.yaml
-    post-run: playbooks/legacy/puppet-openstack-integration/upload-logs.yaml
-    timeout: 9000
-    irrelevant-files:
-      - ^.*\.md$
-      - ^doc/.*$
-      - ^metadata.json$
-      - ^releasenotes/.*$
-      - ^spec/.*$
-      - ^requirements.txt$
-      - ^test-requirements.txt$
-      - ^LICENSE$
-      - ^.gitignore$
-    roles:
-      - zuul: opendev.org/zuul/zuul-jobs
-
-- job:
-    name: puppet-openstack-integration-5
-    parent: puppet-openstack-integration-run-base
-    abstract: true
-    vars:
-      puppet: 5
-
-- job:
-    name: puppet-openstack-integration-5-scenario001
-    parent: puppet-openstack-integration-5
-    abstract: true
-    vars:
-      scenario: scenario001
-      puppet: 5
-      ceph: luminous
-
-- job:
-    name: puppet-openstack-integration-5-scenario001-tempest-fedora-28
-    parent: puppet-openstack-integration-5-scenario001
-    nodeset: rdo-fedora-stable
-    branches: ^master
-    voting: false
-
-- job:
-    name: puppet-openstack-integration-5-scenario002
-    parent: puppet-openstack-integration-5
-    abstract: true
-    vars:
-      scenario: scenario002
-      puppet: 5
-
-- job:
-    name: puppet-openstack-integration-5-scenario002-tempest-fedora-28
-    parent: puppet-openstack-integration-5-scenario002
-    nodeset: rdo-fedora-stable
-    branches: ^master
-    voting: false
-
-- job:
-    name: puppet-openstack-integration-5-scenario003
-    parent: puppet-openstack-integration-5
-    abstract: true
-    vars:
-      scenario: scenario003
-      puppet: 5
-
-- job:
-    name: puppet-openstack-integration-5-scenario003-tempest-fedora-28
-    parent: puppet-openstack-integration-5-scenario003
-    nodeset: rdo-fedora-stable
-    branches: ^master
-    voting: false
-
-- job:
-    name: puppet-openstack-integration-5-scenario004
-    parent: puppet-openstack-integration-5
-    abstract: true
-    vars:
-      scenario: scenario004
-      puppet: 5
-      ceph: luminous
-
-- job:
-    name: puppet-openstack-integration-5-scenario004-tempest-fedora-28
-    parent: puppet-openstack-integration-5-scenario004
-    nodeset: rdo-fedora-stable
-    branches: ^master
-    voting: false
-
-- job:
     name: octavia-build-amphora
     parent: publish-rdoproject-artifacts
     run: playbooks/octavia-build-amphora/run.yaml
@@ -324,29 +180,54 @@
         MOLECULE_CONTAINER_REGISTRY_URL: registry.access.redhat.com
 
 - job:
-    name: DLRN-build-tripleo
+    name: DLRN-build-tripleo-base
     parent: base
     run: playbooks/DLRN-build-tripleo/run.yaml
     post-run: playbooks/DLRN-build-tripleo/post.yaml
-    dependencies:
-      - DLRN-rpmbuild
     voting: false
-    branches: ^(rpm-)|(^(?!common)(\w+)-rdo)$
     required-projects:
       - DLRN
 
 - job:
-    name: DLRN-rpmbuild
+    name: DLRN-build-tripleo
+    parent: DLRN-build-tripleo-base
+    branches: ^(queens-rdo)|(rocky-rdo)|(stein-rdo)|(train-rdo)$
+    dependencies:
+      - DLRN-rpmbuild
+
+- job:
+    name: DLRN-build-tripleo-centos8
+    parent: DLRN-build-tripleo-base
+    branches: ^(rpm-master)$
+    dependencies:
+      - DLRN-rpmbuild-centos8
+    vars:
+      centos_version: 'centos8'
+    nodeset: rdo-centos-8
+
+- job:
+    name: DLRN-rpmbuild-base
     run: playbooks/DLRN/rpmbuild.yaml
     post-run: playbooks/DLRN/post.yaml
-    branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
     required-projects:
       - DLRN
       - rdoinfo
 
 - job:
+    name: DLRN-rpmbuild
+    parent: DLRN-rpmbuild-base
+    branches: ^(queens-rdo)|(rocky-rdo)|(stein-rdo)|(train-rdo)$
+
+- job:
+    name: DLRN-rpmbuild-nv
+    parent: DLRN-rpmbuild-base
+    voting: false
+    branches: ^rpm-master$
+
+- job:
     name: DLRN-rpmbuild-pinned
     parent: DLRN-rpmbuild
+    voting: false
     vars:
       tag: 'ussuri-uc'
 
@@ -356,16 +237,6 @@
     run: playbooks/DLRN/rpmbuild-rpm-packaging-centos.yaml
     post-run: playbooks/DLRN/post.yaml
     nodeset: rdo-centos-7-vexxhost
-    required-projects:
-      - openstack/rpm-packaging
-      - DLRN
-
-- job:
-    name: DLRN-rpmbuild-rpm-packaging-fedora
-    timeout: 10800
-    run: playbooks/DLRN/rpmbuild-rpm-packaging-fedora.yaml
-    post-run: playbooks/DLRN/post.yaml
-    nodeset: rdo-fedora-28-vexxhost
     required-projects:
       - openstack/rpm-packaging
       - DLRN
@@ -393,16 +264,11 @@
 
 - job:
     name: DLRN-rpmbuild-centos8
-    parent: DLRN-rpmbuild
-    # Make it voting when it's stable.
-    voting: false
-    branches: ^(master)|(rpm-master)|(train-rdo)$
+    parent: DLRN-rpmbuild-base
+    branches: ^(rpm-master)|(train-rdo)$
     vars:
       centos_version: 'centos8'
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8
 
 - job:
     name: DLRN-rpmbuild-centos8-pinned
@@ -428,11 +294,14 @@
       - rdoinfo
 
 - job:
+    name: rdoinfo-DLRN-check-nv
+    parent: rdoinfo-DLRN-check
+    voting: false
+
+- job:
     name: rdoinfo-DLRN-check-centos8
     parent: rdoinfo-DLRN-check
+    timeout: 18000
     vars:
       centos_version: centos8
-    nodeset:
-      nodes:
-        - name: centos8
-          label: rdo-centos-8
+    nodeset: rdo-centos-8

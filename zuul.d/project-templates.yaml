@@ -26,31 +26,23 @@
             branches: ^rpm-master$
         - rpmlint:
             dependencies:
-              - DLRN-rpmbuild
+              - DLRN-rpmbuild-centos8
             branches: ^rpm-master$
         - DLRN-build-tripleo
+        - DLRN-build-tripleo-centos8
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-nv
         - DLRN-rpmbuild-centos8
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate:
             branches: ^(?!rpm-master).*$
         - distgit-cbs-validate-centos8
     gate:
       jobs:
-        - DLRN-rpmbuild:
-            branches: ^(master|stable/pike)|(rpm-)|(^(?!common)(\w+)-rdo)$
+        - DLRN-rpmbuild
+        - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: ^(?!rpm-master).*$
         - distgit-cbs-final-build-centos8
-
-- project-template:
-    name: puppet-openstack-integration-python3-jobs
-    openstack-check-rdo:
-      jobs:
-        - puppet-openstack-integration-5-scenario001-tempest-fedora-28
-        - puppet-openstack-integration-5-scenario002-tempest-fedora-28
-        - puppet-openstack-integration-5-scenario003-tempest-fedora-28
-        - puppet-openstack-integration-5-scenario004-tempest-fedora-28
 
 - project-template:
     name: package-distgit-tripleo-check-jobs
@@ -58,7 +50,7 @@
       jobs:
         - distgit-tripleo-master-testing-centos-7-standalone-featureset052:
             dependencies:
-              - DLRN-rpmbuild
+              - DLRN-rpmbuild-nv
             voting: false
             branches: ^rpm-master$
 
@@ -75,7 +67,6 @@
               - ^coe/kubernetes.*$
               - ^coe/openshift.*$
               - ^doc/.*$
-              - ^docker/services/.*ovn.*$
               - ^docker/services/aodh.*$
               - ^docker/services/barbican.*$
               - ^docker/services/ceilometer.*$
@@ -107,19 +98,12 @@
               - ^manifests/profile/base/manila.*$
               - ^manifests/profile/base/metrics.*$
               - ^manifests/profile/base/monitoring.*$
-              - ^manifests/profile/base/neutron/agents/ovn.*$
-              - ^manifests/profile/base/neutron/opendaylight/.*$
-              - ^manifests/profile/base/neutron/ovn.*$
-              - ^manifests/profile/base/neutron/plugins/ml2/ovn.*$
               - ^manifests/profile/base/nova/ec2.*$
               - ^manifests/profile/base/panko.*$
               - ^manifests/profile/base/sahara.*$
               - ^manifests/profile/base/tacker.*$
-              - ^manifests/profile/pacemaker/manila.*$
-              - ^manifests/profile/pacemaker/ovn.*$
               - ^metadata.json$
               - ^puppet/services/.*opendaylight.*$
-              - ^puppet/services/.*ovn.*$
               - ^puppet/services/aodh.*$
               - ^puppet/services/barbican.*$
               - ^puppet/services/ceilometer.*$
@@ -154,7 +138,7 @@
         - tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039
         - tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021
         - tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020
-        - tripleo-ci-centos-7-multinode-1ctlr-featureset010
+        - tripleo-ci-centos-8-multinode-1ctlr-featureset010
         - tripleo-ci-rhel-8-ovb-3ctlr_1comp-featureset001
 
 - project-template:

@@ -22,19 +22,13 @@
     name: rdo-centos-7
     nodes:
       - name: rdo-centos-7
-        label: rdo-centos-7
+        label: rdo-centos-7-vexxhost
 
 - nodeset:
     name: rdo-centos-8
     nodes:
       - name: rdo-centos-8
-        label: rdo-centos-8
-
-- nodeset:
-    name: rdo-fedora-28
-    nodes:
-      - name: rdo-fedora-28
-        label: rdo-fedora-28
+        label: rdo-centos-8-vexxhost
 
 - nodeset:
     name: rdo-centos-7-vexxhost
@@ -47,12 +41,6 @@
     nodes:
       - name: rdo-centos-8
         label: rdo-centos-8-vexxhost
-
-- nodeset:
-    name: rdo-fedora-28-vexxhost
-    nodes:
-      - name: rdo-fedora-28
-        label: rdo-fedora-28-vexxhost
 
 - nodeset:
     name: single-fedora-29-node

@@ -12,6 +12,15 @@
       featureset: '010'
 
 - job:
+    name: tripleo-ci-centos-8-multinode-1ctlr-featureset010
+    parent: tripleo-ci-base-multinode-rdo-centos-8
+    voting: false
+    branches: ^master$
+    vars:
+      nodes: 1ctlr
+      featureset: '010'
+
+- job:
     name: tripleo-ci-centos-7-multinode-1ctlr-featureset016
     parent: tripleo-ci-base-multinode-rdo
     branches: ^master$
@@ -122,6 +131,14 @@
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-master
     parent: tripleo-ci-base-multinode-periodic
+    vars:
+      nodes: 1ctlr
+      featureset: '010'
+      release: master
+
+- job:
+    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-master
+    parent: tripleo-ci-base-multinode-periodic-centos-8
     vars:
       nodes: 1ctlr
       featureset: '010'
@@ -416,3 +433,58 @@
       release: queens
       extra_tags:
         - overcloud-update
+
+## Component promotion jobs
+
+# centos-8-multinode-1ctlr-featureset010-component
+- job:
+    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-component-master
+    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-master
+    abstract: true
+    vars: &component_vars
+      component: component
+      release: master
+      dlrn_server_url: "trunk.rdoproject.org"
+      promote_source: component-ci-testing
+      add_repos:
+        - type: generic
+          reponame: "{{ component }}"
+          filename: "{{ component }}-component.repo"
+          priority: 1
+          baseurl: "https://{{ dlrn_server_url }}/centos8-{{ release }}/component/{{ component }}/component-ci-testing"
+          update_container: true
+- job:
+    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-clients-master
+    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-component-master
+    vars:
+      component: clients
+
+- job:
+    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-common-master
+    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-master
+    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-component-master
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-octavia-master
+    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-component-master
+    vars:
+      component: octavia
+
+- job:
+    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-security-master
+    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-component-master
+    vars:
+      component: security
+
+- job:
+    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-tripleo-master
+    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-component-master
+    vars:
+      component: tripleo

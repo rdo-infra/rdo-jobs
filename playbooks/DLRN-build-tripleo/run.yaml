@@ -2,6 +2,25 @@
 - hosts: all
   name: DLRN-build-tripleo run playbook
   tasks:
+    - name: Install EPEL on CentOS 8
+      package:
+        name:
+          - epel-release
+        state: present
+      become: true
+      when:
+        - ansible_distribution == "CentOS"
+        - ansible_distribution_major_version == '8'
+
+    - name: Enable EPEL on CentOS8 systems
+      shell:
+        cmd: |
+          yum-config-manager --enable --save epel
+      become: true
+      when:
+        - ansible_distribution == "CentOS"
+        - ansible_distribution_major_version == '8'
+
     - name: Install pre-requisites for mock
       package:
         name:
@@ -11,6 +30,15 @@
           - rpmdevtools
         state: present
       become: true
+
+    - name: Disable EPEL on CentOS8 systems
+      shell:
+        cmd: |
+          yum-config-manager --disable --save epel
+      become: true
+      when:
+        - ansible_distribution == "CentOS"
+        - ansible_distribution_major_version == '8'
 
     - name: Ensure user in mock group
       user:
@@ -35,10 +63,18 @@
           # If we could not find a working repository, give up
           curl -o /dev/null -sIf "${logs}" || exit 1
 
+          CENTOS_VERS="{{ centos_version | default('centos7') }}"
           # Use the latest repository hash
           # If DLRN built multiple packages, there will be multiple repositories.
           # We want the latest repository which contains all of the packages that were just built.
-          repository="${logs}/centos/current"
+
+          if [ "$CENTOS_VERS" = "centos7" ]; then
+            repository="${logs}/centos/current"
+            mock_cfg=centos.cfg
+          else
+            repository="${logs}/centos8/current"
+            mock_cfg=centos8.cfg
+          fi
 
           # Fetch all src.rpm files, we will rebuild them here
           wget -e robots=off -nd -r --accept .src.rpm $repository
@@ -49,47 +85,54 @@
           else
               branch="master"
           fi
-          baseurl="https://trunk.rdoproject.org/centos7-${branch}/"
+          baseurl="https://trunk.rdoproject.org/${CENTOS_VERS}-${branch}/"
 
           # Fetch base mock configuration, we will update it to match TripleO requirements
-          cp "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}/scripts/centos.cfg" .
+          cp "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}/scripts/${mock_cfg}" .
           # Remove the last line, then add all required repos
-          sed -i '$ d' centos.cfg
+          sed -i '$ d' ${mock_cfg}
           # current
-          curl -o /tmp/delorean-current.repo  ${baseurl}/current/delorean.repo
-          sed -i 's/priority=.*/priority=10/' /tmp/delorean-current.repo
-          sed -i 's/\[delorean\]/\[delorean-current\]/' /tmp/delorean-current.repo
-          echo >> /tmp/delorean-current.repo
-          echo "includepkgs=ansible-role-container-registry,ansible-role-tripleo*,ansible-tripleo-ipsec,diskimage-builder,\
+          if [ "$CENTOS_VERS" = "centos7" ]||[ "$CENTOS_VERS" = "centos8" -a "{{ zuul.branch }}" = "train-rdo" ]; then
+            curl -o /tmp/delorean-current.repo  ${baseurl}/current/delorean.repo
+            sed -i 's/priority=.*/priority=10/' /tmp/delorean-current.repo
+            sed -i 's/\[delorean\]/\[delorean-current\]/' /tmp/delorean-current.repo
+            echo >> /tmp/delorean-current.repo
+            echo "includepkgs=ansible-role-container-registry,ansible-role-tripleo*,ansible-tripleo-ipsec,diskimage-builder,\
           instack,instack-undercloud,os-apply-config,os-collect-config,os-net-config,os-refresh-config,openstack-tripleo-*,\
           python*-tripleo*,puppet-*,python*-paunch*,paunch-services,tripleo-ansible,\
           ansible-config_template" >> /tmp/delorean-current.repo
-          cat /tmp/delorean-current.repo >> centos.cfg
-          echo >> centos.cfg
+          else
+            curl -o /tmp/delorean-current.repo  ${baseurl}/component/tripleo/current/delorean.repo
+            sed -i 's/priority=.*/priority=10/' /tmp/delorean-current.repo
+            sed -i 's/\[delorean-component-tripleo\]/\[delorean-current\]/' /tmp/delorean-current.repo
+          fi
+          cat /tmp/delorean-current.repo >> ${mock_cfg}
+          echo >> ${mock_cfg}
           # current-tripleo
           curl -o /tmp/delorean-current-tripleo.repo  ${baseurl}/current-tripleo/delorean.repo
           sed -i 's/priority=.*/priority=20/' /tmp/delorean-current-tripleo.repo
           sed -i 's/\[delorean\]/\[delorean-current-tripleo\]/' /tmp/delorean-current-tripleo.repo
-          cat /tmp/delorean-current-tripleo.repo >> centos.cfg
-          echo >> centos.cfg
+          cat /tmp/delorean-current-tripleo.repo >> ${mock_cfg}
+          echo >> ${mock_cfg}
           # deps
-          curl ${baseurl}/delorean-deps.repo >> centos.cfg
-          echo >> centos.cfg
-          echo '"""' >> centos.cfg
+          curl ${baseurl}/delorean-deps.repo >> ${mock_cfg}
+          echo >> ${mock_cfg}
+          echo '"""' >> ${mock_cfg}
           # Build package
           OUTPUT_DIRECTORY="$PWD/build"
           mkdir $OUTPUT_DIRECTORY
-          MOCKOPTS="-v -r centos.cfg --resultdir $OUTPUT_DIRECTORY"
+          MOCKOPTS="-v -r ${mock_cfg} --resultdir $OUTPUT_DIRECTORY"
           ret=0
           /usr/bin/mock ${MOCKOPTS} --rebuild *.src.rpm 2>&1
           RC_BUILD=$?
           if [ $RC_BUILD -ne 0 ]; then
             ret=$RC_BUILD
           else
-            sed -i "s/.*chroot_setup_cmd.*/config_opts['chroot_setup_cmd'] = 'install basesystem rpm-build'/" centos.cfg
+            sed -i "s/.*chroot_setup_cmd.*/config_opts['chroot_setup_cmd'] = 'install basesystem rpm-build'/" ${mock_cfg}
+            sed -i '/^python3/ d' ${mock_cfg}
             /usr/bin/mock ${MOCKOPTS} --disablerepo='*-build-deps' clean 2>&1
             /usr/bin/mock ${MOCKOPTS} --disablerepo='*-build-deps' init 2>&1
-            /usr/bin/mock ${MOCKOPTS} --disablerepo='*-build-deps' --install $OUTPUT_DIRECTORY/*rpm 2>&1
+            /usr/bin/mock ${MOCKOPTS} --disablerepo='*-build-deps' --install $OUTPUT_DIRECTORY/*[!src].rpm 2>&1
              RC_INSTALL=$?
              if [ $RC_INSTALL -ne 0 ]; then
                  ret=$RC_INSTALL
