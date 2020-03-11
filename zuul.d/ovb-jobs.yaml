@@ -725,3 +725,33 @@
       release: master
       featureset_override:
         to_build: false
+
+##################################################################
+############### CENTOS-8 COMPONENT PROMOTION JOBS ################
+##################################################################
+
+# tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master
+    abstract: true
+    vars: &component_vars
+      component: component
+      release: master
+      featureset_override:
+        to_build: false
+      dlrn_server_url: "trunk.rdoproject.org"
+      promote_source: component-ci-testing
+      add_repos:
+        - type: generic
+          reponame: "{{ component }}"
+          filename: "{{ component }}-component.repo"
+          priority: 1
+          baseurl: "https://{{ dlrn_server_url }}/centos8-{{ release }}/component/{{ component }}/component-ci-testing"
+          update_container: true
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-baremetal-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+    vars:
+      component: baremetal
