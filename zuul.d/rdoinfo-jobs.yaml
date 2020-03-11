@@ -543,3 +543,55 @@
       - openstack/tripleo-upgrade
       - x/browbeat
       - rdoinfo
+
+- job:
+    name: rdoinfo-tripleo-master-testing-centos-8-standalone
+    parent: tripleo-ci-centos-8-standalone
+    run: playbooks/run-rdoinfo.yaml
+    nodeset: single-centos-8-node
+    vars:
+      rdoinfo_release: master
+      rdoinfo_phase: testing
+
+# Container build + updates will likely not work now due to docker-distribution removal
+- job:
+    name: rdoinfo-tripleo-master-testing-centos-8-scenario001-standalone
+    parent: tripleo-ci-centos-8-scenario001-standalone
+    run: playbooks/run-rdoinfo.yaml
+    post-run: playbooks/post-rdoinfo.yaml
+    nodeset: single-centos-8-node
+    vars:
+      rdoinfo_release: master
+      rdoinfo_phase: testing
+      rdoinfo_build_containers: true
+      use_buildah: true
+      push_registry_port: 8786
+      push_registry: 127.0.0.1:8786
+      # This is needed as tag_from_label is not null, and hence it tries to inspect image from registry
+      push_containers: true
+      buildcontainers_override_repos: current-tripleo
+    required-projects:
+      - opendev.org/openstack/ansible-role-container-registry
+      - opendev.org/openstack/kolla
+      - opendev.org/openstack/python-tripleoclient
+      - opendev.org/openstack/requirements
+      - opendev.org/openstack/tripleo-common
+      - opendev.org/openstack/tripleo-repos
+
+- job:
+    name: rdoinfo-tripleo-master-testing-centos-8-scenario007-standalone
+    parent: tripleo-ci-centos-8-scenario007-standalone
+    run: playbooks/run-rdoinfo.yaml
+    nodeset: single-centos-8-node
+    vars:
+      rdoinfo_release: master
+      rdoinfo_phase: testing
+
+- job:
+    name: rdoinfo-tripleo-master-testing-centos-8-containers-multinode
+    parent: tripleo-ci-centos-8-containers-multinode
+    run: playbooks/run-rdoinfo.yaml
+    nodeset: two-centos-8-nodes
+    vars:
+      rdoinfo_release: master
+      rdoinfo_phase: testing
