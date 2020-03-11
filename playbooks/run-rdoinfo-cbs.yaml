@@ -88,11 +88,11 @@
             bindep_dir: "{{ ansible_user_dir }}/{{ zuul.projects['opendev.org/openstack/python-tripleoclient'].src_dir }}"
         - name: Set repo facts
           set_fact:
-            buildsys_tag: "cloud7-openstack-{{ rdoinfo_release }}-{{ rdoinfo_phase }}"
+            buildsys_tag: "cloud{{ ansible_distribution_major_version }}-openstack-{{ rdoinfo_release }}-{{ rdoinfo_phase }}"
             delorean_repos: "http://172.17.0.1/delorean-CentOS-OpenStack-{{ rdoinfo_release }}.repo,http://172.17.0.1/delorean-CentOS-Ceph-Nautilus.repo,http://172.17.0.1/delorean-current.repo"  # noqa 204
         - name: Handle master release buildsys_tags
           set_fact:
-            buildsys_tag: "cloud7-openstack-ussuri-{{ rdoinfo_phase }}"
+            buildsys_tag: "cloud{{ ansible_distribution_major_version }}-openstack-ussuri-{{ rdoinfo_phase }}"
           when: rdoinfo_release == "master"
         - name: set url
           set_fact:
