@@ -1,0 +1,14 @@
+- hosts: all
+  tasks:
+    - name: Check umask
+      shell: umask
+      register: umask
+
+    - debug: msg="{{ umask.stdout }}"
+
+    - name: Check umask with become
+      become: true
+      shell: umask
+      register: umask_become
+
+    - debug: msg="{{ umask_become.stdout }}"
