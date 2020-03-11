@@ -6,7 +6,7 @@
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
     parent: tripleo-ci-base-ovb-rdo
-    branches: "^.*$"
+    branches: "^(?stable/train).*$"
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
@@ -14,7 +14,7 @@
 - job:
     name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset001
     parent: tripleo-ci-base-ovb-rdo
-    branches: "^.*$"
+    branches: "^(?stable/train).*$"
     vars:
       nodes: 1ctlr_1comp
       featureset: '001'
@@ -637,3 +637,43 @@
     vars:
       branch_override: "stable/train"
       release: train
+
+########################################################
+################## CENTOS-8 JOBS #######################
+########################################################
+
+- job:
+    name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
+    parent: tripleo-ci-base-ovb-rdo-centos-8
+    branches: "^(?!stable/(newton|ocata|pike|queens|rocky|stein|train)).*$"
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+
+- job:
+    name: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset001
+    parent: tripleo-ci-base-ovb-rdo-centos-8
+    branches: "^(?!stable/(newton|ocata|pike|queens|rocky|stein|train)).*$"
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '001'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master-vexxhost
+    parent: tripleo-ci-base-ovb-periodic-centos-8
+    timeout: 18000
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      release: master
+      cloud_name: vexxhost
+    nodeset: upstream-centos-8-vexxhost
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master
+    parent: tripleo-ci-base-ovb-periodic-centos-8
+    timeout: 18000
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      release: master
