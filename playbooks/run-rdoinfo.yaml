@@ -77,7 +77,7 @@
       block:
         - name: Set buildsys tag fact
           set_fact:
-            buildsys_tag: "cloud7-openstack-{{ master_release if rdoinfo_release == 'master' else rdoinfo_release }}-{{ rdoinfo_phase }}"
+            buildsys_tag: "cloud{{ ansible_distribution_major_version }}-openstack-{{ master_release if rdoinfo_release == 'master' else rdoinfo_release }}-{{ rdoinfo_phase }}"
         - name: set url
           set_fact:
             extra_repo_url: "{{ buildset_artifacts_url | default('') }}/repos/{{ buildsys_tag }}/temp-{{ buildsys_tag }}.repo"
@@ -99,9 +99,12 @@
             name: bindep
           vars:
             bindep_dir: "{{ ansible_user_dir }}/{{ zuul.projects['opendev.org/openstack/python-tripleoclient'].src_dir }}"
+        - name: Set ip addr
+          set_fact:
+            ipv4_addr: "{{ ansible_default_ipv4.address }}"
         - name: Set repo facts
           set_fact:
-            delorean_repos: "http://172.17.0.1/delorean.repo,http://172.17.0.1/delorean-{{ rdoinfo_release }}-testing.repo"
+            delorean_repos: "http://{{ ipv4_addr }}/delorean.repo,http://{{ ipv4_addr }}/delorean-{{ rdoinfo_release }}-testing.repo"
         # To use packages included in the gating repo in build-containers role
         - name: install temp-buildys repo
           become: true
@@ -125,7 +128,7 @@
             - type: file
               filename: delorean-0.repo
               down_url: "{{ extra_repo_url }}"
-          gating_repo_name: temp-*,gating-repo
+          container_prep_additional_repos: temp-*
           update_containers: "{{ false if rdoinfo_build_containers|default(false)|bool else true }}"
           standalone_container_prep_updates: "{{ false if rdoinfo_build_containers|default(false)|bool else true }}"
           artg_skipped_projects:
