@@ -447,6 +447,18 @@
       extra_tags:
         - overcloud-update
 
+ - job:
+     name: periodic-tripleo-ci-centos-8-containers-undercloud-minion-master
+     parent: tripleo-ci-base-multinode-periodic-centos-8
+     vars:
+       nodes: 1minion
+       featureset: '061'
+       playbooks:
+         - multinode-minion.yml
+       extra_tags:
+         - undercloud-minion-setup
+         - undercloud-minion-deploy
+
 ## Component promotion jobs
 
 # centos-8-multinode-1ctlr-featureset010-component
