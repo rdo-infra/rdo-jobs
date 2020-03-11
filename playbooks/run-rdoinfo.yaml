@@ -125,7 +125,7 @@
             - type: file
               filename: delorean-0.repo
               down_url: "{{ extra_repo_url }}"
-          gating_repo_name: temp-*,gating-repo
+          container_prep_additional_repos: temp-*
           update_containers: "{{ false if rdoinfo_build_containers|default(false)|bool else true }}"
           standalone_container_prep_updates: "{{ false if rdoinfo_build_containers|default(false)|bool else true }}"
           artg_skipped_projects:
