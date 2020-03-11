@@ -44,6 +44,46 @@
       release: rocky
 
 - job:
+    name: periodic-tripleo-ci-centos-8-undercloud-containers-master
+    parent: tripleo-ci-base-singlenode-periodic-centos-8
+    vars:
+      featureset: '027'
+      release: master
+
+# legacy-periodic-tripleo-ci-centos-7-undercloud-containers-master
+- job:
+    name: periodic-tripleo-ci-centos-7-undercloud-containers-master
+    parent: tripleo-ci-base-singlenode-periodic
+    vars:
+      featureset: '027'
+      release: master
+
+- job:
+    name: periodic-tripleo-ci-centos-7-undercloud-containers-train
+    parent: periodic-tripleo-ci-centos-7-undercloud-containers-master
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-7-undercloud-containers-stein
+    parent: tripleo-ci-base-singlenode-periodic
+    vars:
+      featureset: '027'
+      branch_override: "stable/stein"
+      release: stein
+
+# legacy-periodic-tripleo-ci-centos-7-undercloud-containers-rocky
+- job:
+    name: periodic-tripleo-ci-centos-7-undercloud-containers-rocky
+    parent: tripleo-ci-base-singlenode-periodic
+    vars:
+      featureset: '027'
+      branch_override: "stable/rocky"
+      release: rocky
+
+
+- job:
     name: periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-train
     parent: periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-master
     vars:
