@@ -82,7 +82,7 @@
           wget $baseurl/repodata/repomd.xml
 
           # extract the name of primary db from repomd.xml
-          db=$(python -c "import xml.etree.ElementTree as et; ns = {'ns0': 'http://linux.duke.edu/metadata/repo'}; \
+          db=$(python3 -c "import xml.etree.ElementTree as et; ns = {'ns0': 'http://linux.duke.edu/metadata/repo'}; \
             print(et.parse('repomd.xml').getroot().find('ns0:data[@type=\"primary_db\"]/ns0:location', ns).attrib['href'])")
 
           # download this db to get the name of the rpm files
