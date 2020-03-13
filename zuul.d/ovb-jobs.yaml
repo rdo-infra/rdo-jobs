@@ -47,6 +47,13 @@
       - opendev.org/openstack/openstack-virtual-baremetal
 
 - job:
+    name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-ovb-master
+    parent: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
+    branches: ^master$
+    required-projects:
+      - opendev.org/openstack/openstack-virtual-baremetal
+
+- job:
     name: tripleo-ci-rhel-8-ovb-3ctlr_1comp-featureset001
     parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
     nodeset: tripleo-ovb-rhel-8-primary
@@ -261,6 +268,13 @@
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-train-branch
     parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ovb-master
+    branches: ^stable/train$
+    vars:
+      branch_override: "stable/train"
+
+- job:
+    name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-train-branch
+    parent: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-ovb-master
     branches: ^stable/train$
     vars:
       branch_override: "stable/train"
