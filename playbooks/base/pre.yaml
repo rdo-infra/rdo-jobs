@@ -15,6 +15,7 @@
       when:
         - _worker_is_sudoer.rc == 0
         - ansible_distribution != "Fedora" or (ansible_distribution == "Fedora" and ansible_distribution_major_version|int > 28)
+        - kolla_base_tag is not defined or (kolla_base_tag is defined and kolla_base_tag|int != 8)
 
     - import_role:
         name: configure-mirrors
