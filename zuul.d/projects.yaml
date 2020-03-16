@@ -2,63 +2,15 @@
     name: rdo-jobs
     check:
       jobs:
-        - tox-docs: &cfg
-            nodeset: rdo-centos-8
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-master:
             vars:
-              # needed to avoid accidental call of /usr/bin/tox
-              tox_executable: "{{ ansible_python.executable }} -m tox"
-            pre-run:
-              - playbooks/rdo-tox-epel.yaml
-              - playbooks/pre-tox.yaml
-        - tox-linters: *cfg
-        - rdo-tox-molecule: &molecule
-            files:
-              - .*molecule.*
-              - bindep.txt
-              - requirements.txt$
-              - roles/.*
-              - setup.*$
-              - test-requirements.txt
-              - tox.ini
-        - registry-login-rdo-integration-centos-7:
-            files:
-              - playbooks/integration/registry-login.yaml
-              - zuul.d/integration.yaml
-        - registry-login-rdo-integration-redhat-8:
-            files:
-              - playbooks/integration/registry-login.yaml
-              - zuul.d/integration.yaml
-        - tripleo-ceph-integration-master:
-            files: &ceph
-              - ./playbooks/tripleo-ceph-integration/.*
-              - zuul.d/ceph-ansible.yaml
-              - ./playbooks/run-rpm-build.yaml
-        - tripleo-ceph-integration-rhel-8-scenario001-standalone:
-            files: *ceph
-            dependencies:
-              - tripleo-ceph-integration-master
-        - tripleo-ceph-integration-rhel-8-scenario004-standalone:
-            files: *ceph
-            dependencies:
-              - tripleo-ceph-integration-master
-        - podman-package-rhel-8: &podman
-            files:
-              - zuul.d/podman.yaml
-              - playbooks/podman/.*
-            # until we fix https://github.com/containers/libpod/issues/4665
-            voting: false
-        - podman-package-centos-7: *podman
-        - podman-package-centos-8: *podman
-        - podman-package-fedora-30: *podman
-        - tripleo-podman-integration-rhel-8-scenario000-standalone:
-            files:
-              - zuul.d/podman.yaml
-              - playbooks/podman/.*
-            dependencies:
-              - podman-package-rhel-8
-
-    gate:
-      jobs:
-        - tox-docs: *cfg
-        - tox-linters: *cfg
-        - rdo-tox-molecule: *molecule
+              force_periodic: true
+              promote_source: tripleo-ci-testing
+        - periodic-tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-master:
+            vars:
+              force_periodic: true
+              promote_source: tripleo-ci-testing
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master:
+            vars:
+              force_periodc: true
+              promote_source: tripleo-ci-testing
