@@ -354,6 +354,31 @@
         tempest_whitelist:
           - octavia_tempest_plugin.tests.scenario.v2.test_traffic_ops.TrafficOperationsScenarioTest.test_basic_traffic
 
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario012-standalone-master
+    voting: false
+    parent: tripleo-ci-base-standalone-periodic-centos-8
+    vars:
+      featureset: '060'
+      standalone_ceph: true
+      release: master
+      featureset_override:
+        validate_services: false
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario012-standalone.yaml'
+        tempest_plugins:
+          - python-ironic-tests-tempest
+        test_white_regex: ''
+        tempest_workers: 1
+        tempest_extra_config:
+          auth.create_isolated_networks: 'False'
+          validation.connect_method: 'fixed'
+          validation.network_for_ssh: 'provisioning'
+          baremetal.use_provision_network: 'True'
+        tempest_whitelist:
+          - 'ironic_tempest_plugin.tests.scenario.test_baremetal_multitenancy.BaremetalMultitenancy.test_baremetal_multitenancy'
+
 ### stable/train standalone jobs ###
 # per https://review.rdoproject.org/r/#/c/22624/
 # parenting off periodic-tripleo-ci-centos-7-standalone-master
