@@ -3,13 +3,13 @@
     name: container-centos
     nodes:
       - name: container
-        label: runc-centos-7
+        label: pod-centos-8
 
 - nodeset:
     name: container-fedora
     nodes:
       - name: container
-        label: runc-fedora-29
+        label: pod-fedora-31
 
 # Dib centos
 - nodeset:
