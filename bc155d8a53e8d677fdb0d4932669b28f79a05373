@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "670251f1_365805a4",
+        "filename": "zuul.d/distgit-jobs.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2020-03-16T08:20:50Z",
+      "side": 1,
+      "message": "better to sync timeout with periodic full tempest as it\u0027s increased with https://review.rdoproject.org/r/#/c/25788/",
+      "revId": "bc155d8a53e8d677fdb0d4932669b28f79a05373",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8255d478_9549d072",
+        "filename": "zuul.d/distgit-jobs.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2020-03-16T08:20:50Z",
+      "side": 1,
+      "message": "can cleanup branches to allow running in distgit.",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 197,
+        "endChar": 22
+      },
+      "revId": "bc155d8a53e8d677fdb0d4932669b28f79a05373",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d4d261c8_ba20e510",
+        "filename": "zuul.d/distgit-jobs.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2020-03-16T08:20:50Z",
+      "side": 1,
+      "message": "i think we can keep only 1 cloud jobs for distgit, all base jobs should move to vexxhost anytime soon, so can remove -vexxhost jobs from here.",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 256,
+        "endChar": 39
+      },
+      "revId": "bc155d8a53e8d677fdb0d4932669b28f79a05373",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
