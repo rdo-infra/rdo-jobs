@@ -58,6 +58,7 @@
         name:
           - rpmlint
           - sqlite
+          - yum-utils
           - wget
       become: true
 
@@ -73,23 +74,38 @@
           eval $(grep baseurl= < /etc/yum.repos.d/delorean-zuul.repo)
 
           # download binary packages
-          wget -e robots=off -nd -r --accept .rpm --reject .src.rpm ${baseurl}
+          wget -e robots=off -nd -r --accept .rpm ${baseurl}
           unset baseurl
 
-          # get the repo data from the previous repository
-          URL=https://trunk.rdoproject.org/centos7/current
-          eval $(curl $URL/delorean.repo|grep baseurl=)
-          wget $baseurl/repodata/repomd.xml
+          PKG_NAME=$(rpm -q --qf %{name} -p *.src.rpm)
+          rm -f *.src.rpm
 
-          # extract the name of primary db from repomd.xml
-          db=$(python3 -c "import xml.etree.ElementTree as et; ns = {'ns0': 'http://linux.duke.edu/metadata/repo'}; \
-            print(et.parse('repomd.xml').getroot().find('ns0:data[@type=\"primary_db\"]/ns0:location', ns).attrib['href'])")
+          # get the packages for the same srpm from previous repository
+          URL=https://trunk.rdoproject.org/centos8/current
+          component_repos=$(curl -s -S $URL/delorean.repo|grep ^baseurl| sed 's/baseurl=//g')
 
-          # download this db to get the name of the rpm files
-          wget $baseurl/$db
+          mkdir -p old
+          pushd old
+          for i in $component_repos
+          do
+            sudo dnf clean all
+            IN_COMPONENT=$(sudo repoquery -q --repofrompath=dlrn,$i --disablerepo="*" --enablerepo=dlrn -s|sed 's/^\(.*\)-\([^-]\{1,\}\)-\([^-]\{1,\}\)$/\1/'|\
+            grep -c ^$PKG_NAME$)
+            if [ $IN_COMPONENT -ne 0 ]; then
+              PKG_IN_REPO=$i
+            fi
+          done
 
-          db=$(basename $db .bz2)
-          bunzip2 $db.bz2
+          for pkg in $(sudo repoquery --repofrompath=dlrn,$PKG_IN_REPO --disablerepo="*" --enablerepo=dlrn -q --qf "%{name}%%{sourcerpm}")
+          do
+            SRPM=$(echo $pkg | awk -F '%' '{print $2}' |sed 's/^\(.*\)-\([^-]\{1,\}\)-\([^-]\{1,\}\)$/\1/')
+            if [ $SRPM == $PKG_NAME ];then
+              RPM_D=$(echo $pkg | awk -F '%' '{print $1}')
+              yumdownloader --repofrompath=dlrn,$PKG_IN_REPO --disablerepo="*" $RPM_D
+            fi
+          done
+
+          popd
 
           # our rpmlint config
           cat > $HOME/.rpmlintrc <<EOF
@@ -245,29 +261,13 @@
 
           EOF
 
-          # now download all these packages from the previous repository
-          mkdir -p old
-          for fname in $(ls *.rpm); do
-              name=$(rpm -qp --qf '%{NAME}\n' $fname)
-
-              eval $(sqlite3 -line $db "select rpm_sourcerpm as srpm from packages where name = '$name' and arch != 'src';"|sed 's/ //g')
-              sqlite3 -line $db "select location_href as pkgfile from packages where rpm_sourcerpm = '$srpm' and arch != 'src';"|sed 's/ //g' >> old_pkgs_list
-          done
-
-          cat old_pkgs_list |sort -u|grep -v ^$ > old_packages
 
           # if there is no previous package, it means that is new
           # packages so just run rpmlint on the packages and exit
-          if [ $(wc -l old_packages) -eq 0 ];then
+          if [ $(find old -name "*.rpm"| wc -l) -eq 0 ];then
               rpmlint *.rpm | tee rpmlint.new.txt
               exit 0
           fi
-
-          cat old_packages|while read line
-          do
-              eval $line
-              curl -o old/$pkgfile $baseurl/$pkgfile
-          done
 
           # run rpmlint on old and new packages
           rpmlint *.rpm | sort | tee rpmlint.new.txt
