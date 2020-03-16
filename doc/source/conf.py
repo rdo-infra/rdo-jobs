@@ -12,9 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import os
-import sys
-
 # -- General configuration ----------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
@@ -37,7 +34,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'rdo-jobs'
-copyright = u'2018, RDO contributors'
+copyright = u'2020, RDO contributors'
 
 # If true, '()' will be appended to :func: etc. cross-reference text.
 add_function_parentheses = True
@@ -71,4 +68,4 @@ latex_documents = [
 ]
 
 # Example configuration for intersphinx: refer to the Python standard library.
-#intersphinx_mapping = {'http://docs.python.org/': None}
+# intersphinx_mapping = {'http://docs.python.org/': None}
