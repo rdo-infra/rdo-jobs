@@ -322,7 +322,7 @@
       standalone_ceph: true
       tempest_workers: 1
       featureset_override:
-        run_tempest: false
+        run_tempest: true
         validate_services: false
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
