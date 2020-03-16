@@ -56,6 +56,18 @@
               - playbooks/podman/.*
             dependencies:
               - podman-package-rhel-8
+        - tripleo-podman-integration-centos-8-scenario000-standalone:
+            files:
+              - zuul.d/podman.yaml
+              - playbooks/podman/.*
+            dependencies:
+              - podman-package-centos-8
+        - tripleo-podman-integration-centos-8-standalone:
+            files:
+              - zuul.d/podman.yaml
+              - playbooks/podman/.*
+            dependencies:
+              - podman-package-centos-8
 
     gate:
       jobs:
