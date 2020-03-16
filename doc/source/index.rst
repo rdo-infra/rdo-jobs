@@ -5,6 +5,7 @@
    :maxdepth: 2
 
    jobs
+   cleanup
 
 Indices and tables
 ==================
