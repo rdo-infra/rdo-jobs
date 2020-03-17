@@ -519,6 +519,17 @@
               - tox.ini
 
 - project-template:
+    name: rdo-tox-linters-jobs
+    description: |
+      Runs tox -e validate job on RDO.
+    openstack-check:
+      jobs:
+        - rdo-tox-linters
+    gate:
+      jobs:
+        - rdo-tox-linters
+
+- project-template:
     name: rdo-tox-molecule
     description: |
       Runs tox molecule job on RDO. Should be identical to upstream version
@@ -535,6 +546,17 @@
     openstack-check:
       jobs:
         - rdo-tox-molecule-rhel8
+
+- project-template:
+    name: rdo-tox-validate-jobs
+    description: |
+      Runs tox -e validate job on RDO.
+    openstack-check:
+      jobs:
+        - rdo-tox-validate
+    gate:
+      jobs:
+        - rdo-tox-validate
 
 - project-template:
     name: tripleo-buildimages-jobs

@@ -136,6 +136,15 @@
     post-run: playbooks/octavia-build-amphora/post.yaml
 
 - job:
+    name: rdo-tox-linters
+    description: >
+      Similar to tox-linters but running on our platform and with our own
+      customizations, if needed.
+    parent: tox
+    vars:
+      tox_envlist: linters
+
+- job:
     name: rdo-tox-molecule
     parent: tripleo-tox-molecule
     nodeset: centos-8
@@ -157,6 +166,12 @@
     vars:
       tox_environment:
         PYTEST_ADDOPTS: -m "delegated"
+
+- job:
+    name: rdo-tox-validate
+    parent: tox
+    vars:
+      tox_envlist: validate
 
 - job:
     name: rdopkg-reqcheck
