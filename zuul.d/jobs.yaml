@@ -185,6 +185,7 @@
     run: playbooks/DLRN-build-tripleo/run.yaml
     post-run: playbooks/DLRN-build-tripleo/post.yaml
     voting: false
+    nodeset: rdo-centos-7
     required-projects:
       - DLRN
 
@@ -209,6 +210,7 @@
     name: DLRN-rpmbuild-base
     run: playbooks/DLRN/rpmbuild.yaml
     post-run: playbooks/DLRN/post.yaml
+    nodeset: rdo-centos-7
     required-projects:
       - DLRN
       - rdoinfo
@@ -290,6 +292,7 @@
     run: playbooks/rdoinfo/DLRN-check.yaml
     post-run: playbooks/rdoinfo/DLRN-check-post.yaml
     timeout: 10800
+    nodeset: rdo-centos-7
     required-projects:
       - DLRN
       - rdoinfo
