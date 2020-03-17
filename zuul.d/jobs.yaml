@@ -136,6 +136,16 @@
     post-run: playbooks/octavia-build-amphora/post.yaml
 
 - job:
+    name: octavia-build-amphora-centos8
+    parent: octavia-build-amphora
+    nodeset: rdo-centos-8
+
+- job:
+    name: octavia-build-amphora-centos7
+    parent: octavia-build-amphora
+    nodeset: rdo-centos-7
+
+- job:
     name: rdo-tox-molecule
     parent: tripleo-tox-molecule
     nodeset: rdo-centos-8
