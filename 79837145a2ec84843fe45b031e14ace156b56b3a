@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3b634f9e_a8489bb0",
+        "filename": "playbooks/tripleo-ceph-integration/run.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2020-03-17T10:41:31Z",
+      "side": 1,
+      "message": "It will not work as https://github.com/ceph/ceph-ansible/blob/stable-4.0/Makefile#L83 MOCK_CONFIG is hardcoded, It needs to be synced with https://github.com/ceph/ceph-ansible/blob/master/Makefile by sending a pull request on ceph-ansible github repo and add the pr as a depends-on in this review",
+      "range": {
+        "startLine": 7,
+        "startChar": 12,
+        "endLine": 7,
+        "endChar": 53
+      },
+      "revId": "79837145a2ec84843fe45b031e14ace156b56b3a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
