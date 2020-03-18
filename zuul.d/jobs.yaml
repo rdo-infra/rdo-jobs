@@ -138,7 +138,7 @@
 - job:
     name: rdo-tox-molecule
     parent: tripleo-tox-molecule
-    nodeset: centos-8
+    nodeset: rdo-centos-8
     # default tox based job timeout of 1800 is far too low for functional testing on some
     # repositories.
     timeout: 3600
@@ -153,7 +153,7 @@
 - job:
     name: rdo-tox-molecule-delegated-centos-8
     parent: rdo-tox-molecule
-    nodeset: centos-8
+    nodeset: rdo-centos-8
     vars:
       tox_environment:
         PYTEST_ADDOPTS: -m "delegated"
