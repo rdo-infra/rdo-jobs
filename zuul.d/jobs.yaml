@@ -254,17 +254,6 @@
       - DLRN
 
 - job:
-    name: DLRN-rpmbuild-rpm-packaging-centos-8-nv
-    voting: false
-    timeout: 10800
-    run: playbooks/DLRN/rpmbuild-rpm-packaging-centos-8.yaml
-    post-run: playbooks/DLRN/post.yaml
-    nodeset: rdo-centos-8-vexxhost
-    required-projects:
-      - openstack/rpm-packaging
-      - DLRN
-
-- job:
     name: DLRN-rpmbuild-centos8
     parent: DLRN-rpmbuild-base
     branches: ^(rpm-master)|(train-rdo)$
