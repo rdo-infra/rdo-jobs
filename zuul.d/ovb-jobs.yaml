@@ -292,48 +292,6 @@
     timeout: 18000
 
 - job:
-    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
-    parent: tripleo-ci-base-ovb-rdo
-    branches: "^.*$"
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '001'
-      cloud_name: vexxhost
-    nodeset: upstream-centos-7-vexxhost
-
-- job:
-    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky-vexxhost
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^master$
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '001'
-      branch_override: "stable/rocky"
-      cloud_name: vexxhost
-    nodeset: upstream-centos-7-vexxhost
-
-- job:
-    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-stein-vexxhost
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^master$
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '001'
-      cloud_name: vexxhost
-      branch_override: "stable/stein"
-    nodeset: upstream-centos-7-vexxhost
-
-- job:
-    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-train-vexxhost
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^stable/train$
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '001'
-      cloud_name: vexxhost
-    nodeset: upstream-centos-7-vexxhost
-
-- job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039
     parent: tripleo-ci-base-ovb-rdo
     timeout: 12600
@@ -396,21 +354,6 @@
 
 
 # =================  C E N T O S  7  P E R I O D I C   J O B S
-
-# Periodic job temporarly running on vexxhost, remove when we move to vexxhost
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
-    parent: tripleo-ci-base-ovb-periodic
-    # Bumping to 5hours for fs1 to run *api* tempest see
-    # https://tree.taiga.io/project/tripleo-ci-board/task/1383
-    timeout: 18000
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '001'
-      release: master
-      cloud_name: vexxhost
-    nodeset: upstream-centos-7-vexxhost
-
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
@@ -730,21 +673,6 @@
 ##################################################################
 #################### CENTOS-8 PERIODIC JOBS ######################
 ##################################################################
-
-- job:
-    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master-vexxhost
-    parent: tripleo-ci-base-ovb-periodic-centos-8
-    # Bumping to 5hours for fs1 to run *api* tempest see
-    # https://tree.taiga.io/project/tripleo-ci-board/task/1383
-    timeout: 18000
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '001'
-      release: master
-      cloud_name: vexxhost
-      featureset_override:
-        to_build: false
-    nodeset: upstream-centos-8-vexxhost
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master
