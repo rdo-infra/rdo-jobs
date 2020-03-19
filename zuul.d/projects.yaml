@@ -11,15 +11,16 @@
               - playbooks/rdo-tox-epel.yaml
               - playbooks/pre-tox.yaml
         - tox-linters: *cfg
-        - rdo-tox-molecule: &molecule
+        - rdo-tox-molecule-delegated-centos-8:
             files:
               - .*molecule.*
-              - bindep.txt
-              - requirements.txt$
-              - roles/.*
-              - setup.*$
-              - test-requirements.txt
-              - tox.ini
+              - ^roles
+              - ^requirements.txt
+              - ^test-requirements.txt
+              - ^tox.ini$
+            vars:
+              tox_environment:
+                PYTEST_REQPASS: 1
         - registry-login-rdo-integration-centos-7:
             files:
               - playbooks/integration/registry-login.yaml
@@ -61,4 +62,3 @@
       jobs:
         - tox-docs: *cfg
         - tox-linters: *cfg
-        - rdo-tox-molecule: *molecule
