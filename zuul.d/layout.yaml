@@ -8,7 +8,13 @@
               - ^requirements.txt
               - ^test-requirements.txt
               - ^tox.ini$
+            vars:
+              tox_environment:
+                PYTEST_REQPASS: 1
         - rdo-tox-molecule-delegated-centos-8:
             <<: *molecule
+            vars:
+              tox_environment:
+                PYTEST_REQPASS: 1
     gate:
       jobs: *jobs
