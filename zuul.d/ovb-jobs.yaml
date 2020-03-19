@@ -284,12 +284,16 @@
     parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
     nodeset: upstream-centos-7-vexxhost
     timeout: 18000
+    vars:
+      cloud_name: vexxhost
 
 - job:
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-vexxhost
     parent: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
-    nodeset: upstream-centos-7-vexxhost
+    nodeset: upstream-centos-8-vexxhost
     timeout: 18000
+    vars:
+      cloud_name: vexxhost
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039
