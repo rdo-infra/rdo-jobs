@@ -11,15 +11,17 @@
               - playbooks/rdo-tox-epel.yaml
               - playbooks/pre-tox.yaml
         - tox-linters: *cfg
-        - rdo-tox-molecule: &molecule
+        - rdo-tox-molecule-delegated-centos-8: &molecule
             files:
               - .*molecule.*
-              - bindep.txt
-              - requirements.txt$
-              - roles/.*
-              - setup.*$
-              - test-requirements.txt
-              - tox.ini
+              - ^bindep.txt$
+              - ^requirements.txt
+              - ^roles
+              - ^test-requirements.txt
+              - ^tox.ini$
+            vars:
+              tox_environment:
+                PYTEST_REQPASS: 1
         - tripleo-centos-8-ceph-integration-master:
             files: &ceph
               - ./playbooks/tripleo-ceph-integration/.*
@@ -52,4 +54,4 @@
       jobs:
         - tox-docs: *cfg
         - tox-linters: *cfg
-        - rdo-tox-molecule: *molecule
+        - rdo-tox-molecule-delegated-centos-8: *molecule
