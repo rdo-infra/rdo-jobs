@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "70dd4d47_3508fa9d",
+        "filename": "playbooks/tripleo-ceph-integration/pre.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2020-03-19T05:45:53Z",
+      "side": 1,
+      "message": "It should be ansible_distribution_major_version is version(8, \u0027\u003e\u003d\u0027)",
+      "range": {
+        "startLine": 6,
+        "startChar": 10,
+        "endLine": 6,
+        "endChar": 51
+      },
+      "revId": "d1f959bbc181064c8d8f0aa94c5b2a179a069855",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c1e19c0f_f4eaac43",
+        "filename": "playbooks/tripleo-ceph-integration/pre.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2020-03-19T05:45:53Z",
+      "side": 1,
+      "message": "It needs to be removed",
+      "range": {
+        "startLine": 21,
+        "startChar": 10,
+        "endLine": 21,
+        "endChar": 16
+      },
+      "revId": "d1f959bbc181064c8d8f0aa94c5b2a179a069855",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e541f01d_3286f840",
+        "filename": "playbooks/tripleo-ceph-integration/run.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2020-03-19T05:45:53Z",
+      "side": 1,
+      "message": "It is no longer needed for centos-8",
+      "range": {
+        "startLine": 7,
+        "startChar": 12,
+        "endLine": 8,
+        "endChar": 77
+      },
+      "revId": "d1f959bbc181064c8d8f0aa94c5b2a179a069855",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c795c9e1_48e26182",
+        "filename": "zuul.d/ceph-ansible.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2020-03-19T05:45:53Z",
+      "side": 1,
+      "message": "It is also not needed",
+      "range": {
+        "startLine": 108,
+        "startChar": 3,
+        "endLine": 110,
+        "endChar": 34
+      },
+      "revId": "d1f959bbc181064c8d8f0aa94c5b2a179a069855",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
