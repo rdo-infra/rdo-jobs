@@ -146,14 +146,17 @@
     name: vexxhost-experimental
     openstack-experimental:
       jobs:
-        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
-        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-stein-vexxhost
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-vexxhost
+        - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-vexxhost
 
 - project-template:
     name: vexxhost-check
     openstack-check:
       jobs:
-        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost:
+        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-vexxhost:
+            voting: false
+            irrelevant-files: *fs001_irrelevant_files
+        - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-vexxhost:
             voting: false
             irrelevant-files: *fs001_irrelevant_files
 

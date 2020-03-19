@@ -280,6 +280,18 @@
       branch_override: "stable/train"
 
 - job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-vexxhost
+    parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
+    nodeset: upstream-centos-7-vexxhost
+    timeout: 18000
+
+- job:
+    name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-vexxhost
+    parent: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
+    nodeset: upstream-centos-7-vexxhost
+    timeout: 18000
+
+- job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master-vexxhost
     parent: tripleo-ci-base-ovb-rdo
     branches: "^.*$"
