@@ -194,6 +194,42 @@
         use_os_tempest: true
 
 - job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-master
+    parent: periodic-tripleo-ci-centos-8-standalone-master
+    timeout: 14400
+    vars:
+      featureset: '052'
+      release: master
+      featureset_override:
+        run_tempest: false
+        tempest_run_concurrency: 4
+        tempest_services:
+          - cinder
+          - horizon
+          - neutron
+        tempest_test_whitelist:
+          - 'api'
+        use_os_tempest: true
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-master
+    parent: periodic-tripleo-ci-centos-8-standalone-master
+    timeout: 14400
+    vars:
+      featureset: '052'
+      release: master
+      featureset_override:
+        run_tempest: false
+        tempest_run_concurrency: 4
+        tempest_services:
+          - cinder
+          - horizon
+          - neutron
+        tempest_test_whitelist:
+          - 'scenario'
+        use_os_tempest: true
+
+- job:
     name: periodic-tripleo-ci-centos-8-scenario001-standalone-master
     parent: tripleo-ci-base-standalone-periodic-centos-8
     vars:
@@ -1023,4 +1059,4 @@
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-tempest-master
     parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-component-master
     vars:
-      component: tempest
+     component: tempest
