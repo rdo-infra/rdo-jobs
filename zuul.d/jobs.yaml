@@ -145,6 +145,7 @@
     pre-run:
       - playbooks/rdo-tox-molecule-pre.yaml
     vars:
+      tox_envlist: molecule_delegated
       tox_environment:
         # assure we skip delegated scenarios as we are supposed to test them
         # with separated jobs.
