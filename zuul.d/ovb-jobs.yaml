@@ -355,7 +355,9 @@
         - baremetal-full-overcloud-prep.yml
         - baremetal-full-overcloud.yml
         - baremetal-full-overcloud-validate.yml
-
+      featureset_override:
+        use_os_tempest: true
+        run_tempest: false
 
 # =================  C E N T O S  7  P E R I O D I C   J O B S
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
