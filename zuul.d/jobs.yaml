@@ -246,7 +246,7 @@
     timeout: 5400
     run: playbooks/DLRN/rpmbuild-rpm-packaging-centos.yaml
     post-run: playbooks/DLRN/post.yaml
-    nodeset: rdo-centos-7-vexxhost
+    nodeset: rdo-centos-7
     required-projects:
       - openstack/rpm-packaging
       - DLRN
@@ -256,7 +256,7 @@
     timeout: 10800
     run: playbooks/DLRN/rpmbuild-rpm-packaging-centos-8.yaml
     post-run: playbooks/DLRN/post.yaml
-    nodeset: rdo-centos-8-vexxhost
+    nodeset: rdo-centos-8
     required-projects:
       - openstack/rpm-packaging
       - DLRN
