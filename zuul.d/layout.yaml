@@ -1,0 +1,15 @@
+- project:
+    check:
+      jobs: &jobs
+      # THis job actually contains no test, so disabling until it's populated
+      #- rdo-tox-molecule:
+      #    <<: *molecule
+        - rdo-tox-molecule-delegated-centos-8: &molecule
+            files:
+              - .*molecule.*
+              - ^roles
+              - ^requirements.txt
+              - ^test-requirements.txt
+              - ^tox.ini$
+    gate:
+      jobs: *jobs
