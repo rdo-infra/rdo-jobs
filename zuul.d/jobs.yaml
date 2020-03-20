@@ -155,6 +155,7 @@
     parent: rdo-tox-molecule
     nodeset: rdo-centos-8
     vars:
+      tox_envlist: molecule_delegated
       tox_environment:
         PYTEST_ADDOPTS: -m "delegated"
 
