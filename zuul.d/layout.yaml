@@ -10,5 +10,7 @@
               - ^tox.ini$
         - rdo-tox-molecule-delegated-centos-8:
             <<: *molecule
+        - rdo-tox-molecule-delegated-centos-7:
+            <<: *molecule
     gate:
       jobs: *jobs

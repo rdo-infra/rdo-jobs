@@ -154,6 +154,7 @@
     name: rdo-tox-molecule-delegated-centos-7
     parent: rdo-tox-molecule
     nodeset: rdo-centos-7
+    run: playbooks/tox/run.yml
     vars:
       tox_environment:
         PYTEST_ADDOPTS: -m "delegated"
@@ -162,6 +163,7 @@
     name: rdo-tox-molecule-delegated-centos-8
     parent: rdo-tox-molecule
     nodeset: rdo-centos-8
+    run: playbooks/tox/run.yml
     vars:
       tox_environment:
         PYTEST_ADDOPTS: -m "delegated"
