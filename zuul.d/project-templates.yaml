@@ -542,11 +542,10 @@
 - project-template:
     name: tripleo-buildimages-jobs
     description: |
-      3rd party image building job on RHEL
+      3rd party image building job
     openstack-check:
       jobs:
-        - tripleo-rhel-8-buildimage-overcloud-full
-        - tripleo-rhel-8-buildimage-ironic-python-agent
+        - tripleo-centos-8-buildimage-overcloud-full
 
 - project-template:
     name: podman-jobs
