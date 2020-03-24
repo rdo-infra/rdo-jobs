@@ -3,14 +3,6 @@
   vars:
     master_release: ussuri
   tasks:
-    - name: Execute mirror info role
-      import_role:
-        name: mirror-info-fork
-      vars:
-        mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
-      when:
-        - ansible_distribution != "Fedora" or (ansible_distribution == "Fedora" and ansible_distribution_major_version|int > 28)
-
     - name: Run pre-quickstart role
       import_role:
         name: common
@@ -110,6 +102,7 @@
         - name: Set ip addr
           set_fact:
             ipv4_addr: "{{ ansible_default_ipv4.address }}"
+            ipv4_prefix: "{{ ansible_default_ipv4.prefix | default('24') }}"
         - name: Set repo facts
           set_fact:
             delorean_repos: "http://{{ ipv4_addr }}/delorean.repo,http://{{ ipv4_addr }}/delorean-{{ rdoinfo_release }}-testing.repo"
@@ -128,6 +121,34 @@
             name: build-containers
           vars:
             buildcontainers_rpm_setup_config: "{{ delorean_repos }},{{ extra_repo_url | default('') }}"
+            push_registry: "{{ ipv4_addr }}:8787"
+        - name: Add ip to insecure registry
+          become: true
+          when:
+            - ansible_distribution == "CentOS"
+            - ansible_distribution_major_version == '8'
+          ini_file:
+            path: /etc/containers/registries.conf
+            section: 'registries.insecure'
+            option: registries
+            value:
+              - "{{ ipv4_addr }}:8787"
+        - name: Push build containers
+          changed_when: true
+          when:
+            - ansible_distribution == "CentOS"
+            - ansible_distribution_major_version == '8'
+          shell:
+            chdir: '{{ ansible_user_dir }}/workspace'
+            cmd: |
+                set +e -x
+                TAG=$(md5sum /etc/yum.repos.d/delorean.repo | awk '{print $1}')
+                IMAGE_LIST=$(sudo buildah images|grep $TAG|awk  '{print $1}'|tac)
+                # python3-urllib3-1.25.7 not work with old six from base
+                # fails with InvalidURL: Failed to parse: https://127.0.0.1:8787/v2/
+                # AttributeError: module 'urllib3.packages.six' has no attribute 'ensure_text'
+                sudo dnf update -y python3-six
+                for image in $IMAGE_LIST; do sudo openstack tripleo container image push --registry-url "{{ ipv4_addr }}:8787" --local $image:$TAG;done
 
     - name: set role variables
       set_fact:
@@ -139,11 +160,27 @@
           container_prep_additional_repos: temp-*
           update_containers: "{{ false if rdoinfo_build_containers|default(false)|bool else true }}"
           standalone_container_prep_updates: "{{ false if rdoinfo_build_containers|default(false)|bool else true }}"
+          # Run updates always
+          # standalone_container_prep_updates: true
+          # update_containers: true
           artg_skipped_projects:
             - rdoinfo
         optional_role_vars:
-          docker_registry_host: "{{ push_registry|default('127.0.0.1:8787') if rdoinfo_build_containers|default(false)|bool else omit }}"
+          docker_registry_host: "{{ ipv4_addr + ':8787' if rdoinfo_build_containers|default(false)|bool else omit }}"
+          local_docker_registry_host: "{{ ipv4_addr if rdoinfo_build_containers|default(false)|bool else omit }}"
+          standalone_ip: "{{ ipv4_addr if rdoinfo_build_containers|default(false)|bool else omit }}"
+          standalone_cidr: "{{ ipv4_prefix if rdoinfo_build_containers|default(false)|bool else omit }}"
+          standalone_network_prefix: "{{ ipv4_prefix if rdoinfo_build_containers|default(false)|bool else omit }}"
+          tripleo_deploy_local_ip: "{{ ipv4_addr + '/' + ipv4_prefix if rdoinfo_build_containers|default(false)|bool else omit }}"
       when: not stop_file.stat.exists
+
+    - name: Execute mirror info role
+      import_role:
+        name: mirror-info-fork
+      vars:
+        mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
+      when:
+        - ansible_distribution != "Fedora" or (ansible_distribution == "Fedora" and ansible_distribution_major_version|int > 28)
 
     - name: Run quickstart
       include_role:
