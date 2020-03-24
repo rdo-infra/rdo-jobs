@@ -45,6 +45,7 @@
     override-checkout: stable/train
     vars:
       branch_override: stable/train
+      release: train
 
 - job:
     name: tripleo-build-containers-centos-8-master
