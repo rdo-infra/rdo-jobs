@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "258ffd37_b29963ff",
+        "filename": "playbooks/tripleo-ceph-integration/run.yaml",
+        "patchSetId": 28
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2020-03-24T07:48:14Z",
+      "side": 1,
+      "message": "I would make more easier like this: sed -i -e \"s|epel-7|epel-8|g\" Makefile\n\nNote sudo is not needed here.\nAlso please add\n# TODO(\u003cyour name\u003e): Once https://github.com/ceph/ceph-ansible/pull/5163 gets merged, will remove this workaround.",
+      "range": {
+        "startLine": 22,
+        "startChar": 12,
+        "endLine": 22,
+        "endChar": 55
+      },
+      "revId": "ada5aace8f641a26894b1145b2abf7a68d687970",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
