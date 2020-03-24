@@ -11,10 +11,9 @@
         - tripleo-build-containers-centos-8-master
 
 - job:
-    name: tripleo-build-containers-rhel-8-master
+    name: tripleo-build-containers-rhel-8-base
     parent: tripleo-build-containers-base-with-files
     nodeset: single-rhel-8-node
-    branches: master
     voting: true
     host-vars:
       primary:
@@ -32,8 +31,13 @@
       kolla_base_tag: 8.0-126
 
 - job:
+    name: tripleo-build-containers-rhel-8-master
+    parent: tripleo-build-containers-rhel-8-base
+    branches: master
+
+- job:
     name: tripleo-build-containers-rhel-8-train
-    parent: tripleo-build-containers-rhel-8-master
+    parent: tripleo-build-containers-rhel-8-base
     branches: ^stable/train$
     vars:
       branch_override: 'stable/train'
@@ -41,17 +45,17 @@
 
 - job:
     name: tripleo-build-containers-rhel-8-train-branch
-    parent: tripleo-build-containers-rhel-8-master
+    parent: tripleo-build-containers-rhel-8-base
+    branches: master
     override-checkout: stable/train
     vars:
       branch_override: stable/train
       release: train
 
 - job:
-    name: tripleo-build-containers-centos-8-master
+    name: tripleo-build-containers-centos-8-base
     parent: tripleo-build-containers-base-with-files
     nodeset: single-centos-8-node
-    branches: master
     required-projects:
       - opendev.org/openstack/kolla
       - opendev.org/openstack/python-tripleoclient
@@ -68,3 +72,8 @@
       kolla_base_tag: 8
       push_containers: false
       push_containers_podman: false
+
+- job:
+    name: tripleo-build-containers-centos-8-master
+    parent: tripleo-build-containers-centos-8-base
+    branches: master
