@@ -267,9 +267,11 @@
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-train-branch
-    parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ovb-master
-    branches: ^stable/train$
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^master$
     vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
       branch_override: "stable/train"
 
 - job:
