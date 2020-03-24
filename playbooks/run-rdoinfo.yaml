@@ -120,6 +120,18 @@
             name: build-containers
           vars:
             buildcontainers_rpm_setup_config: "{{ delorean_repos }},{{ extra_repo_url | default('') }}"
+        - name: Push build containers
+          changed_when: true
+          when:
+            - ansible_distribution == "CentOS"
+            - ansible_distribution_major_version == '8'
+          shell:
+            chdir: '{{ ansible_user_dir }}/workspace'
+            cmd: |
+                set +e -x
+                TAG=$(md5sum /etc/yum.repos.d/delorean.repo | awk '{print $1}')
+                IMAGE_LIST=$(sudo buildah images|grep $TAG|awk  '{print $1}'|tac)
+                for image in $IMAGE_LIST; do sudo openstack tripleo container image push --registry-url "{{ push_registry|default('127.0.0.1:8787') }}" --local $image:$TAG;done
 
     - name: set role variables
       set_fact:
