@@ -61,6 +61,7 @@
       - opendev.org/openstack/kolla
       - opendev.org/openstack/python-tripleoclient
       - opendev.org/openstack/requirements
+      - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/tripleo-common
       - opendev.org/openstack/tripleo-repos
 
@@ -178,6 +179,7 @@
       - opendev.org/openstack/kolla
       - opendev.org/openstack/python-tripleoclient
       - opendev.org/openstack/requirements
+      - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/tripleo-common
       - opendev.org/openstack/tripleo-repos
 
@@ -282,6 +284,7 @@
       - opendev.org/openstack/kolla
       - opendev.org/openstack/python-tripleoclient
       - opendev.org/openstack/requirements
+      - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/tripleo-common
       - opendev.org/openstack/tripleo-repos
 
@@ -325,6 +328,7 @@
       - opendev.org/openstack/kolla
       - opendev.org/openstack/python-tripleoclient
       - opendev.org/openstack/requirements
+      - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/tripleo-common
       - opendev.org/openstack/tripleo-repos
 
@@ -368,6 +372,7 @@
       - opendev.org/openstack/kolla
       - opendev.org/openstack/python-tripleoclient
       - opendev.org/openstack/requirements
+      - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/tripleo-common
       - opendev.org/openstack/tripleo-repos
 
@@ -552,31 +557,33 @@
       rdoinfo_release: master
       rdoinfo_phase: testing
 
-# Container build needs some work as docker-distribution removal from centos8
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-scenario001-standalone
     parent: tripleo-ci-centos-8-scenario001-standalone
     run: playbooks/run-rdoinfo.yaml
     post-run: playbooks/post-rdoinfo.yaml
+    roles:
+      - zuul: opendev.org/openstack/tripleo-ansible
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
-      # change to true once ready
-      rdoinfo_build_containers: false
+      rdoinfo_build_containers: true
       use_buildah: true
       kolla_base_pull: true
       kolla_base_tag: 8
       kolla_base_image: centos
-      push_registry_port: 8786
-      push_registry: 127.0.0.1:8786
-      # This is needed as tag_from_label is not null, and hence it tries to inspect image from registry
-      push_containers: true
+      push_registry_port: 8787
+      push_registry: 127.0.0.1:8787
+      # push in centos8 needs to be handled differently
+      push_containers: false
       buildcontainers_override_repos: current-tripleo
+      buildcontainers_venv: false
     required-projects:
       - opendev.org/openstack/ansible-role-container-registry
       - opendev.org/openstack/kolla
       - opendev.org/openstack/python-tripleoclient
       - opendev.org/openstack/requirements
+      - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/tripleo-common
       - opendev.org/openstack/tripleo-repos
 
