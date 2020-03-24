@@ -2,6 +2,7 @@
   pip:
     name: PyYAML
     virtualenv: "{{ virtualenv }}"
+    state: present
   become: true
 
 - name: Install zuul-cloner shim

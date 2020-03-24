@@ -16,10 +16,7 @@
     #   - plugins/.*
     #   - library/.*
     #   - group_vars/.*
-    nodeset:
-      nodes:
-        - name: test
-          label: rdo-centos-7
+    nodeset: centos-7
 
 - job:
     name: tripleo-ceph-integration-master
