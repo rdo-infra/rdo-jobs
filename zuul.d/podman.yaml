@@ -6,10 +6,7 @@
     pre-run: playbooks/podman/pre.yaml
     run: playbooks/podman/run.yaml
     post-run: playbooks/podman/post.yaml
-    nodeset:
-      nodes:
-        - name: test
-          label: cloud-centos-8
+    nodeset: centos-8
 
 - job:
     name: podman-package-centos-8
@@ -24,26 +21,17 @@
 - job:
     name: podman-package-centos-7
     parent: podman-package-centos-8
-    nodeset:
-      nodes:
-        - name: test
-          label: upstream-centos-7
+    nodeset: upstream-centos-7
 
 - job:
     name: podman-package-rhel-8
     parent: podman-package-centos-8
-    nodeset:
-      nodes:
-        - name: test
-          label: upstream-rhel-8
+    nodeset: upstream-rhel-8
 
 - job:
     name: podman-package-fedora-30
     parent: podman-package-centos-8
-    nodeset:
-      nodes:
-        - name: test
-          label: cloud-fedora-30
+    nodeset: cloud-fedora-30
 
 # Podman TripleO integration Jobs
 
