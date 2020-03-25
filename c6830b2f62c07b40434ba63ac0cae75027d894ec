@@ -63,6 +63,30 @@
       "revId": "c6830b2f62c07b40434ba63ac0cae75027d894ec",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "77a4dd9f_c4032062",
+        "filename": "zuul.d/standalone-jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2020-03-25T10:17:25Z",
+      "side": 1,
+      "message": "tested it with testproject at https://review.rdoproject.org/r/26078\n\nresults are good\n\n        * https://logserver.rdoproject.org/78/26078/1/check/periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-master/53c1def/logs/undercloud/home/zuul/tempest/etc/profile.yaml.txt.gz\n\noverrides:\n    auth.tempest_roles: Member\n    image.image_path: http://images.rdoproject.org/cirros/cirros-0.4.0-x86_64-disk.img\n    share.capability_create_share_from_snapshot_support: \u0027False\u0027\n    share.capability_snapshot_support: \u0027False\u0027\n    share.enable_protocols: cephfs\n    share.multitenancy_enabled: \u0027False\u0027\n\n\nhowever as discussed just now in irc chkumar/sshnaidm we\u0027ll drop these all together  from the featureset and default them in tempestconf https://bugs.launchpad.net/tripleo/+bug/1868938/comments/3",
+      "parentUuid": "39aafc32_706aae1c",
+      "range": {
+        "startLine": 288,
+        "startChar": 10,
+        "endLine": 288,
+        "endChar": 96
+      },
+      "revId": "c6830b2f62c07b40434ba63ac0cae75027d894ec",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
