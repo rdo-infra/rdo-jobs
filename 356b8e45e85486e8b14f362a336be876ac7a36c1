@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f1553c2e_08c0ae78",
+        "filename": "zuul.d/nodesets-jobs.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2020-03-25T09:32:58Z",
+      "side": 1,
+      "message": "My only concern with this is that we are hitting retry_limit, which means we are trying to run this job several times... Is there a way we could fix this?",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 17
+      },
+      "revId": "356b8e45e85486e8b14f362a336be876ac7a36c1",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bc648870_603bc557",
+        "filename": "zuul.d/nodesets-jobs.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2020-03-25T09:32:58Z",
+      "side": 1,
+      "message": "Could we make this a periodic job instead? Since it is meant to check that nodesets are working fine for basic Python stuff, it makes more sense to run it once a day than on every rdo-jobs change.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 10
+      },
+      "revId": "356b8e45e85486e8b14f362a336be876ac7a36c1",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
