@@ -546,6 +546,8 @@
     openstack-check:
       jobs:
         - tripleo-buildimage-overcloud-full-centos-8
+        - tripleo-rhel-8-buildimage-overcloud-full-train
+        - tripleo-rhel-8-buildimage-ironic-python-agent-train
 
 - project-template:
     name: podman-jobs
