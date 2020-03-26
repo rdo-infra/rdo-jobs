@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "33217f50_7536ef9a",
+        "filename": "zuul.d/nodesets-jobs.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 371
+      },
+      "writtenOn": "2020-03-26T13:20:13Z",
+      "side": 1,
+      "message": "I removed it because is broken anyway. I want to merge this asap and we can improve later.",
+      "parentUuid": "c78f6266_d2ab42cb",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 30
+      },
+      "revId": "356b8e45e85486e8b14f362a336be876ac7a36c1",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bc648870_603bc557",
         "filename": "zuul.d/nodesets-jobs.yaml",
         "patchSetId": 14
@@ -131,6 +155,30 @@
       "side": 1,
       "message": "+1 same feeling, didn\u0027t get how these jobs will help running in all patches considering issues are outside of rdo-jobs. if these are just to check validity why not making it periodic or on demand jobs like experimental.",
       "parentUuid": "bc648870_603bc557",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 10
+      },
+      "revId": "356b8e45e85486e8b14f362a336be876ac7a36c1",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "19f5ee2b_c822b48f",
+        "filename": "zuul.d/nodesets-jobs.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 371
+      },
+      "writtenOn": "2020-03-26T13:20:13Z",
+      "side": 1,
+      "message": "I will make periodic after. First I want to be sure that when someone is touching this file, we trigger them. This will prove very useful when switching nodeset labels.",
+      "parentUuid": "a40adc0f_1f1edaf3",
       "range": {
         "startLine": 36,
         "startChar": 0,
