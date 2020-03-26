@@ -20,16 +20,14 @@
               - setup.*$
               - test-requirements.txt
               - tox.ini
-        - tripleo-centos-8-ceph-integration-master:
-            files: &ceph
+        - tripleo-centos-8-ceph-integration-master: &ceph
+            files:
               - ./playbooks/tripleo-ceph-integration/.*
               - zuul.d/ceph-ansible.yaml
-        - tripleo-ceph-integration-centos-8-scenario001-standalone:
-            files: *ceph
+        - tripleo-ceph-integration-centos-8-scenario001-standalone: *ceph
             dependencies:
               - tripleo-centos-8-ceph-integration-master
-        - tripleo-ceph-integration-centos-8-scenario004-standalone:
-            files: *ceph
+        - tripleo-ceph-integration-centos-8-scenario004-standalone: *ceph
             dependencies:
               - tripleo-centos-8-ceph-integration-master
         - podman-package-rhel-8: &podman
