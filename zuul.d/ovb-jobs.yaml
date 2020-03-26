@@ -725,6 +725,16 @@
       featureset_override:
         to_build: false
 
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-master
+    parent: tripleo-ci-base-ovb-periodic-centos-8
+    timeout: 12600
+    vars:
+      <<: *fs39_vars
+      release: master
+      featureset_override:
+        to_build: false
+
 ##################################################################
 ############### CENTOS-8 COMPONENT PROMOTION JOBS ################
 ##################################################################
@@ -761,11 +771,3 @@
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
     vars:
       component: tripleo
-
-- job:
-    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-master
-    parent: tripleo-ci-base-ovb-periodic-centos-8
-    timeout: 12600
-    vars:
-      <<: *fs39_vars
-      release: master
