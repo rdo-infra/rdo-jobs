@@ -762,6 +762,7 @@
     vars:
       component: tripleo
 
+
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-master
     parent: tripleo-ci-base-ovb-periodic-centos-8
@@ -769,3 +770,5 @@
     vars:
       <<: *fs39_vars
       release: master
+      featureset_override:
+        to_build: false
