@@ -32,6 +32,7 @@
 - job:
     name: tripleo-build-containers-rhel-8-master
     parent: tripleo-build-containers-rhel-8-base
+    voting: false
     branches: master
 
 - job:
