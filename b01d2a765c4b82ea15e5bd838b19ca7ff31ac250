@@ -22,6 +22,30 @@
       "revId": "b01d2a765c4b82ea15e5bd838b19ca7ff31ac250",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "79007297_9167fd66",
+        "filename": "tox.ini",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 371
+      },
+      "writtenOn": "2020-03-27T08:29:59Z",
+      "side": 1,
+      "message": "I do not see any compelling reasons to do so. I am more inclined to use setup.cfg to store them in the future.\n\nIn fact the list can be reduced to 2-3 entries as others are already indirect dependencies.\n\nAnyway, the most important argument would be: that change has nothing to do with this particular change. We can discuss how to store reqs as is a more complex issue that you see now (ci-config a good example with 5-6 reqs files spread all around).",
+      "parentUuid": "9ebe7546_a87c5817",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 18
+      },
+      "revId": "b01d2a765c4b82ea15e5bd838b19ca7ff31ac250",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
