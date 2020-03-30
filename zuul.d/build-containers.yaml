@@ -77,3 +77,14 @@
     name: tripleo-build-containers-centos-8-master
     parent: tripleo-build-containers-centos-8-base
     branches: master
+
+- job:
+    name: tripleo-build-containers-centos-8-train
+    parent: tripleo-build-containers-centos-8-base
+    branches: master
+    voting: false
+    override-checkout: stable/train
+    vars:
+      branch_override: stable/train
+      release: train
+      registry_namespace: tripleotraincentos8
