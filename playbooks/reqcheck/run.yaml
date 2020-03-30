@@ -37,7 +37,7 @@
           pushd {{ ansible_user_dir }}/{{ zuul.project.src_dir }}
           git remote add upstream {{ upstream.stdout }}
           git fetch upstream
-          rdopkg reqcheck --strict
+          rdopkg reqcheck --strict --override {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}/reqcheck-override-file.yml
           popd
       args:
         chdir: "{{ ansible_user_dir }}"
