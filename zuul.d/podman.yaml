@@ -33,6 +33,14 @@
     parent: podman-package-centos-8
     nodeset: single-fedora-30-node
 
+# Stable branches job
+- job:
+    name: podman-package-centos-8-stable
+    parent: podman-package
+    required-projects:
+      - name: github.com/containers/libpod
+        override-checkout: v1.6
+
 # Podman TripleO integration Jobs
 
 ## Keystone based standalone deployment
