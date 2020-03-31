@@ -1,11 +1,39 @@
 ---
 - hosts: all
+  vars:
+    logs: "{{ ansible_user_dir }}/logs"
   tasks:
 
-    - name: Copy repository
+    - name: Ensure logs directory exists
+      file:
+        path: "{{ logs }}"
+        state: directory
+
+    - name: Copy build files
+      become: true
+      shell: >-
+        cp -r {{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}/build/buildset {{ logs }}/
+      ignore_errors: true
+      changed_when: true
+
+    - name: Create rpm list
+      become: true
+      shell: >-
+        $(command -v yum || command -v dnf) list installed > {{ logs }}/rpms-list.txt
+      ignore_errors: true
+      changed_when: true
+
+    - name: Chown all logs to user
+      shell: >-
+        chown -R {{ ansible_user }}: {{ logs }}/
+      become: true
+      changed_when: true
+
+    - name: Copy all logs
       become: true
       synchronize:
-        src: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}/build/buildset/"
-        dest: "{{ zuul.executor.log_root }}/buildset"
+        src: "{{ logs }}/"
+        dest: "{{ zuul.executor.log_root }}/logs"
         mode: pull
         verify_host: true
+      ignore_errors: true
