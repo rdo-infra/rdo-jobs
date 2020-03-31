@@ -9,16 +9,6 @@
       register: _worker_is_sudoer
 
     - import_role:
-        name: mirror-info-fork
-      vars:
-        mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
-      when:
-        - _worker_is_sudoer.rc == 0
-        - ansible_distribution != "Fedora" or (ansible_distribution == "Fedora" and ansible_distribution_major_version|int > 28)
-        - kolla_base_tag is not defined
-        - build_override_repos is not defined or (build_override_repos is defined and build_override_repos != 'tripleo-ci-testing')
-
-    - import_role:
         name: configure-mirrors
       vars:
         mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
