@@ -3,6 +3,14 @@
   vars:
     master_release: ussuri
   tasks:
+    - name: Execute mirror info role
+      import_role:
+        name: mirror-info-fork
+      vars:
+        mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
+      when:
+        - ansible_distribution != "Fedora" or (ansible_distribution == "Fedora" and ansible_distribution_major_version|int > 28)
+
     - name: Run pre-quickstart role
       import_role:
         name: common
