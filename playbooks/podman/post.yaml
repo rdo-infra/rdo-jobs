@@ -9,3 +9,10 @@
         dest: "{{ zuul.executor.log_root }}/buildset"
         mode: pull
         verify_host: true
+      ignore_errors: true
+
+    - name: Create a package list
+      become: true
+      shell: >-
+        $(command -v yum || command -v dnf) list installed > {{ zuul.executor.log_root }}/rpms-list.txt
+      ignore_errors: true
