@@ -24,7 +24,7 @@
                 PYTEST_REQPASS: 1
         - tripleo-centos-8-ceph-integration-master:
             files: &ceph
-              - ./playbooks/tripleo-ceph-integration/.*
+              - ^playbooks/tripleo-ceph-integration.*$
               - zuul.d/ceph-ansible.yaml
         - tripleo-ceph-integration-centos-8-scenario001-standalone:
             files: *ceph
