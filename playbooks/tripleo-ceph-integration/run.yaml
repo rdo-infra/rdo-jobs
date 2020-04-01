@@ -19,10 +19,6 @@
         - ansible_distribution == "CentOS"
       shell:
         cmd: |
-            # TODO(bhagyashris): Once
-            # https://github.com/ceph/ceph-ansible/pull/5163
-            # gets merged, will remove this workaround.
-            sed -i -e "s|epel-7|epel-8|g" Makefile
             make rpm
         chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/ceph/ceph-ansible'].src_dir }}"
       changed_when: true
