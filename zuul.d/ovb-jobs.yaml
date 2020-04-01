@@ -771,3 +771,9 @@
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
     vars:
       component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+    vars:
+      component: clients
