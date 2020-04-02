@@ -175,6 +175,18 @@
       release: master
 
 - job:
+    name: periodic-tripleo-ci-centos-8-standalone-network-tempest-master
+    parent: tripleo-ci-base-standalone-periodic-centos-8
+    vars:
+      featureset: '052'
+      release: master
+      featureset_override:
+        run_tempest: false
+        tempest_test_whitelist:
+          - 'network'
+        use_os_tempest: true
+
+- job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-master
     parent: periodic-tripleo-ci-centos-8-standalone-master
     timeout: 14400
@@ -1069,10 +1081,22 @@
     vars: *component_vars
 
 - job:
+    name: periodic-tripleo-ci-centos-8-standalone-network-tempest-component-master
+    parent: periodic-tripleo-ci-centos-8-standalone-network-tempest-master
+    abstract: true
+    vars: *component_vars
+
+- job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-component-master
     parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-master
     abstract: true
     vars: *component_vars
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-network-tempest-network-master
+    parent: periodic-tripleo-ci-centos-8-standalone-network-tempest-component-master
+    vars:
+      component: network
 
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-compute-master
