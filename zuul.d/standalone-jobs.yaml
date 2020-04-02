@@ -38,6 +38,42 @@
         use_os_tempest: true
 
 - job:
+    name: periodic-tripleo-ci-centos-7-standalone-full-tempest-api-master
+    parent: periodic-tripleo-ci-centos-7-standalone-master
+    timeout: 13500
+    vars:
+      featureset: '052'
+      release: master
+      featureset_override:
+        run_tempest: false
+        tempest_run_concurrency: 2
+        tempest_services:
+          - cinder
+          - horizon
+          - neutron
+        tempest_test_whitelist:
+          - 'api'
+        use_os_tempest: true
+
+- job:
+    name: periodic-tripleo-ci-centos-7-standalone-full-tempest-scenario-master
+    parent: periodic-tripleo-ci-centos-7-standalone-master
+    timeout: 13500
+    vars:
+      featureset: '052'
+      release: master
+      featureset_override:
+        run_tempest: false
+        tempest_run_concurrency: 2
+        tempest_services:
+          - cinder
+          - horizon
+          - neutron
+        tempest_test_whitelist:
+          - 'scenario'
+        use_os_tempest: true
+
+- job:
     name: periodic-tripleo-ci-centos-7-scenario001-standalone-master
     parent: tripleo-ci-base-standalone-periodic
     vars: &scen1_standalone_vars
@@ -436,6 +472,20 @@
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-full-tempest-train
     parent: periodic-tripleo-ci-centos-7-standalone-full-tempest-master
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-7-standalone-full-tempest-api-train
+    parent: periodic-tripleo-ci-centos-7-standalone-full-tempest-api-master
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-7-standalone-full-tempest-scenario-train
+    parent: periodic-tripleo-ci-centos-7-standalone-full-tempest-scenario-master
     vars:
       branch_override: "stable/train"
       release: train
