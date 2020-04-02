@@ -2,6 +2,11 @@
 - hosts: all
   tasks:
 
+    - name: Check if buildset dir exist
+      stat:
+        path: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}/build/buildset/"
+      register: _buildset_dir
+
     - name: Copy repository
       become: true
       synchronize:
@@ -9,3 +14,4 @@
         dest: "{{ zuul.executor.log_root }}/buildset"
         mode: pull
         verify_host: true
+      when: _buildset_dir.stat.exists
