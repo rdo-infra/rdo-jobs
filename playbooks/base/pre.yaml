@@ -1,7 +1,9 @@
 - hosts: all
-  roles:
-    - role: prepare-workspace
   tasks:
+    - include_role:
+        name: prepare-workspace
+      when: "ansible_connection != 'kubectl'"
+
     - name: Check if worker can sudo
       command: sudo -n true
       failed_when: false
@@ -11,7 +13,7 @@
     - import_role:
         name: configure-mirrors
       vars:
-        mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
+        mirror_fqdn: "mirror.regionone.rdo-cloud.rdoproject.org"
       when:
         - _worker_is_sudoer.rc == 0
         - ansible_distribution != "Fedora" or (ansible_distribution == "Fedora" and ansible_distribution_major_version|int > 28)
