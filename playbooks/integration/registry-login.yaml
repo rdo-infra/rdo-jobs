@@ -20,11 +20,11 @@
       block:
         - name: Install Podman
           include_role:
-            name: tripleo-podman
+            name: tripleo_podman
             tasks_from: tripleo_podman_install.yml
         - name: Check for podman login
           include_role:
-            name: tripleo-podman
+            name: tripleo_podman
             tasks_from: tripleo_podman_login.yml
       rescue:
         - debug:
