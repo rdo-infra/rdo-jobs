@@ -1,6 +1,6 @@
 - job:
     name: base
-    parent: base-minimal
+    parent: base-minimal-test
     # min version to use (needed mainly to make rhel8 python detection work)
     ansible-version: 2.8
     # if your jobs rely on code that does need an older version of ansible
@@ -18,6 +18,10 @@
     vars:
       ara_report_type: database
       ara_report_path: ara-report
+    nodeset:
+      nodes:
+        - name: container
+          label: pod-fedora-31
 
 - job:
     name: legacy-base
