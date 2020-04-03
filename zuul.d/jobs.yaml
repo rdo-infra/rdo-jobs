@@ -18,6 +18,10 @@
     vars:
       ara_report_type: database
       ara_report_path: ara-report
+    nodeset:
+      nodes:
+        - name: container
+          label: pod-fedora-31
 
 - job:
     name: legacy-base
