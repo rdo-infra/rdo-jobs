@@ -1,7 +1,9 @@
 - hosts: all
-  roles:
-    - role: prepare-workspace
   tasks:
+    - include_role:
+        name: prepare-workspace
+      when: "ansible_connection != 'kubectl'"
+
     - name: Check if worker can sudo
       command: sudo -n true
       failed_when: false
