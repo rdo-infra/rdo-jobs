@@ -64,7 +64,7 @@
       shell:
         cmd: |
           set -e
-          sudo yum -y install rpmlint
+          sudo dnf -y install rpmlint
           pushd $ZUUL_PROJECT
           base=`basename $ZUUL_PROJECT`
           if [ -f "$base.spec" ]; then
