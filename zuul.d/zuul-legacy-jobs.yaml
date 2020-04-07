@@ -1,18 +1,45 @@
 - job:
     name: legacy-centos-opstools-doc
     parent: legacy-base
-    run: playbooks/legacy/centos-opstools-doc/run.yaml
+    run: playbooks/legacy/centos7-opstools-doc/run.yaml
+
+- job:
+    name: legacy-centos7-opstools-doc
+    parent: legacy-base
+    run: playbooks/legacy/centos7-opstools-doc/run.yaml
 
 - job:
     name: legacy-centos-opstools-rpmbuild
     parent: legacy-base
-    run: playbooks/legacy/centos-opstools-rpmbuild/run.yaml
-    post-run: playbooks/legacy/centos-opstools-rpmbuild/post.yaml
+    run: playbooks/legacy/centos7-opstools-rpmbuild/run.yaml
+    post-run: playbooks/legacy/centos7-opstools-rpmbuild/post.yaml
 
 - job:
     name: legacy-centos-opstools-rpmlint
     parent: legacy-base
-    run: playbooks/legacy/centos-opstools-rpmlint/run.yaml
+    run: playbooks/legacy/centos7-opstools-rpmlint/run.yaml
+
+- job:
+    name: legacy-centos7-opstools-rpmbuild
+    parent: legacy-base
+    run: playbooks/legacy/centos7-opstools-rpmbuild/run.yaml
+    post-run: playbooks/legacy/centos7-opstools-rpmbuild/post.yaml
+
+- job:
+    name: legacy-centos7-opstools-rpmlint
+    parent: legacy-base
+    run: playbooks/legacy/centos7-opstools-rpmlint/run.yaml
+
+- job:
+    name: legacy-centos8-opstools-rpmbuild
+    parent: legacy-base
+    run: playbooks/legacy/centos-opstools-rpmbuild/run.yaml
+    post-run: playbooks/legacy/centos8-opstools-rpmbuild/post.yaml
+
+- job:
+    name: legacy-centos8-opstools-rpmlint
+    parent: legacy-base
+    run: playbooks/legacy/centos8-opstools-rpmlint/run.yaml
 
 - job:
     name: legacy-centos-sinkhole-functional
