@@ -60,52 +60,34 @@
         chdir: '{{ ansible_user_dir }}/workspace'
       environment: '{{ zuul | zuul_legacy_vars }}'
 
-    - name: yum update
+    - name: dnf update
       shell:
         cmd: |
           set -e
           mkdir $WORKSPACE/logs
-          sudo yum -y install rpm-build rpmdevtools centos-release-opstools centos-release-openstack-queens
-          sudo yum -y groupinstall "Development Tools"
+          sudo dnf -y install rpm-build rpmdevtools centos-release-opstools
+          sudo dnf -y groupinstall "Development Tools"
           cat << EOF | sudo tee /etc/yum.repos.d/opstools-build.repo
-          [centos-opstools-perfmon-testing]
-          name=CentOS-7 - OpsTools Performance monitoring - testing repo
-          baseurl=http://cbs.centos.org/repos/opstools7-perfmon-common-testing/\$basearch/os
+          [centos-opstools-collectd-5-testing]
+          name=CentOS-8 - OpsTools collectd-5 - testing repo
+          baseurl=https://buildlogs.centos.org/centos/\$releasever/opstools/\$basearch/collectd-5
           gpgcheck=0
           enabled=1
 
-          [centos-opstools-sensu-testing]
-          name=CentOS-7 - OpsTools availability monitoring - testing repo
-          baseurl=http://cbs.centos.org/repos/opstools7-sensu-common-testing/\$basearch/os
+          [centos-messaging-qpid-proton-testing]
+          name=CentOS-8 - Messaging QPID proton - testing repo
+          baseurl=https://buildlogs.centos.org/centos/\$releasever/messaging/\$basearch/qpid-proton
           gpgcheck=0
           enabled=1
 
-          [centos-opstools-sensu-027-testing]
-          name=CentOS-7 - OpsTools availability monitoring - sensu 0.27 testing repo
-          baseurl=http://cbs.centos.org/repos/opstools7-sensu-027-testing/\$basearch/os
-          gpgcheck=0
-          enabled=1
-
-          [centos-opstools-sensu-110-testing]
-          name=CentOS-7 - OpsTools availability monitoring - sensu 1.1.x testing repo
-          baseurl=http://cbs.centos.org/repos/opstools7-sensu-110-testing/\$basearch/os
-          gpgcheck=0
-          enabled=1
-
-          [centos-opstools-common-testing]
-          name=CentOS-7 - OpsTools common testing
-          baseurl=http://cbs.centos.org/repos/opstools7-common-testing/\$basearch/os
-          gpgcheck=0
-          enabled=1
-
-          [centos-opstools-fluent-testing]
-          name=CentOS-7 - OpsTools fluentd testing
-          baseurl=http://cbs.centos.org/repos/opstools7-fluentd-012-testing/\$basearch/os
+          [centos-cloud]
+          name=CentOS-8 - OpenStack Train testing repository
+          baseurl=https://buildlogs.centos.org/centos/\$releasever/cloud/\$basearch/openstack-train/
           gpgcheck=0
           enabled=1
           EOF
 
-          sudo yum -y update
+          sudo dnf -y update
           pushd $ZUUL_PROJECT
           base=`basename $ZUUL_PROJECT`
           if [ -f "$base.spec" ]; then
