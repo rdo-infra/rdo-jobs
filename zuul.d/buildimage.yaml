@@ -40,3 +40,19 @@
     vars:
       branch_override: 'stable/train'
       release: train
+
+- job:
+    name: periodic-tripleo-centos-8-buildimage-overcloud-full-train
+    parent: periodic-tripleo-centos-8-buildimage-overcloud-full-master
+    override-checkout: 'stable/train'
+    vars:
+       release: train
+       branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-centos-8-buildimage-ironic-python-agent-train
+    parent: periodic-tripleo-centos-8-buildimage-ironic-python-agent-master
+    override-checkout: 'stable/train'
+    vars:
+       release: train
+       branch_override: 'stable/train'
