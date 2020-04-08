@@ -231,12 +231,6 @@
     branches: ^(queens-rdo)|(rocky-rdo)|(stein-rdo)|(train-rdo)$
 
 - job:
-    name: DLRN-rpmbuild-nv
-    parent: DLRN-rpmbuild-base
-    voting: false
-    branches: ^rpm-master$
-
-- job:
     name: DLRN-rpmbuild-pinned
     parent: DLRN-rpmbuild
     voting: false
