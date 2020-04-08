@@ -259,6 +259,8 @@
           addFilter("openstack-tripleo-heat-templates-compat.noarch: E: script-without-shebang \
           /usr/share/openstack-tripleo-heat-templates/compat/environments/neutron-sriov.yaml")
 
+          # Exceptions for openstack-neutron
+          addFilter("openstack-neutron-ovn-migration-tool.noarch: E: non-executable-script /usr/share/ansible/neutron-ovn-migration/playbooks/.*")
           EOF
 
 
