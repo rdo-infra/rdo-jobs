@@ -5,6 +5,7 @@
     # openstack-infra specific.
     - role: mirror-info-fork
       mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
+      when: ansible_connection != 'kubectl'
     - role: fetch-zuul-cloner-fork
       destination: "/usr/zuul-env/bin/zuul-cloner"
       repo_src_dir: "/home/zuul/src"
