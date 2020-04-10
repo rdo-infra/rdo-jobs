@@ -15,3 +15,4 @@
       when:
         - _worker_is_sudoer.rc == 0
         - ansible_distribution != "Fedora" or (ansible_distribution == "Fedora" and ansible_distribution_major_version|int > 28)
+        - ansible_connection != 'kubectl'
