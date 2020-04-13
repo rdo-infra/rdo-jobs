@@ -63,6 +63,18 @@
       - name: github.com/ceph/ceph-ansible
         override-checkout: stable-4.0
 
+- job:
+    name: tripleo-centos-8-ceph-ansible-integration-master
+    parent: tripleo-centos-8-ceph-integration
+    required-projects:
+      - name: opendev.org/openstack/tripleo-heat-templates
+      - name: github.com/ceph/ceph-ansible
+        override-checkout: stable-4.0
+      - name: github.com/ansible/ansible
+        override-checkout: stable-2.9
+    vars:
+      build_ansible_rpm: true
+
 # Base job for ceph
 
 - job:
@@ -89,7 +101,7 @@
       - name: github.com/ceph/ceph-ansible
         override-checkout: stable-4.0
     vars:
-      release: master
+      release_name: master
       featureset_override: &scenario001
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
@@ -117,6 +129,36 @@
           - 'environments/podman.yaml'
         use_os_tempest: false
 
+# Centos 8 ceph-ansible jobs
+
+- job:
+    name: tripleo-ceph-ansible-integration-centos-8-scenario001-standalone
+    parent: tripleo-ceph-integration-centos-8-scenarios-standalone
+    branches: ^(stable-4.0|master).*$
+    required-projects:
+      - name: opendev.org/openstack/tripleo-heat-templates
+      - name: github.com/ceph/ceph-ansible
+        override-checkout: stable-4.0
+      - name: github.com/ansible/ansible
+        override-checkout: stable-2.9
+    vars:
+      release_name: master
+      featureset_override: *scenario001
+
+- job:
+    name: tripleo-ceph-ansible-integration-centos-8-scenario004-standalone
+    parent: tripleo-ceph-integration-centos-8-scenarios-standalone
+    branches: ^(stable-4.0|master).*$
+    required-projects:
+      - name: opendev.org/openstack/tripleo-heat-templates
+      - name: github.com/ceph/ceph-ansible
+        override-checkout: stable-4.0
+      - name: github.com/ansible/ansible
+        override-checkout: stable-2.9
+    vars:
+      release_name: master
+      featureset_override: *scenario004
+
 # CentOS 8 Periodic jobs
 
 - job:
@@ -142,12 +184,44 @@
     name: periodic-tripleo-ceph-integration-centos-8-scenario001-standalone
     parent: periodic-tripleo-ceph-integration-centos-8-scenarios-standalone
     vars:
-      release: master
+      release_name: master
       featureset_override: *scenario001
 
 - job:
     name: periodic-tripleo-ceph-integration-centos-8-scenario004-standalone
     parent: periodic-tripleo-ceph-integration-centos-8-scenarios-standalone
     vars:
-      release: master
+      release_name: master
+      featureset_override: *scenario004
+
+# Periodic version of ceph-ansible C8 master jobs
+
+- job:
+    name: periodic-tripleo-ceph-ansible-integration-centos-8-scenarios-standalone
+    abstract: true
+    parent: tripleo-ci-base-standalone-periodic-centos-8
+    required-projects:
+      - name: opendev.org/openstack/tripleo-heat-templates
+        override-checkout: master
+      - name: github.com/ceph/ceph-ansible
+        override-checkout: stable-4.0
+      - name: github.com/ansible/ansible
+        override-checkout: stable-2.9
+    vars:
+      featureset: '052'
+      standalone_ceph: true
+      build_ansible_rpm: true
+
+- job:
+    name: periodic-tripleo-ceph-ansible-integration-centos-8-scenario001-standalone
+    parent: periodic-tripleo-ceph-ansible-integration-centos-8-scenarios-standalone
+    vars:
+      release_name: master
+      featureset_override: *scenario001
+
+- job:
+    name: periodic-tripleo-ceph-ansible-integration-centos-8-scenario004-standalone
+    parent: periodic-tripleo-ceph-ansible-integration-centos-8-scenarios-standalone
+    vars:
+      release_name: master
       featureset_override: *scenario004
