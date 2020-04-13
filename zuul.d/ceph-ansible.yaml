@@ -100,6 +100,18 @@
       - name: github.com/ceph/ceph-ansible
         override-checkout: stable-4.0
 
+- job:
+    name: tripleo-centos-8-ceph-ansible-integration-master
+    parent: tripleo-centos-8-ceph-integration
+    required-projects:
+      - name: opendev.org/openstack/tripleo-heat-templates
+      - name: github.com/ceph/ceph-ansible
+        override-checkout: stable-4.0
+      - name: github.com/ansible/ansible
+        override-checkout: stable-2.9
+    vars:
+      build_ansible_rpm: true
+
 # Base job for ceph
 
 - job:
@@ -147,6 +159,45 @@
         override-checkout: stable-4.0
     vars:
       featureset_override: &scenario004
+        run_tempest: false
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario004-standalone.yaml'
+          - 'environments/podman.yaml'
+        use_os_tempest: false
+
+- job:
+    name: tripleo-ceph-ansible-integration-centos-8-scenario001-standalone
+    parent: tripleo-ceph-integration-centos-8-scenarios-standalone
+    required-projects:
+      - name: opendev.org/openstack/tripleo-heat-templates
+      - name: github.com/ceph/ceph-ansible
+        override-checkout: stable-4.0
+      - name: github.com/ansible/ansible
+        override-checkout: stable-2.9
+    vars:
+      build_ansible_rpm: true
+      release: master
+      featureset_override: &scenario001_ansible
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario001-standalone.yaml'
+          - 'environments/podman.yaml'
+        run_tempest: false
+        use_os_tempest: false
+
+- job:
+    name: tripleo-ceph-ansible-integration-centos-8-scenario004-standalone
+    parent: tripleo-ceph-integration-centos-8-scenarios-standalone
+    required-projects:
+      - name: opendev.org/openstack/tripleo-heat-templates
+      - name: github.com/ceph/ceph-ansible
+        override-checkout: stable-4.0
+      - name: github.com/ansible/ansible
+        override-checkout: stable-2.9
+    vars:
+      build_ansible_rpm: true
+      featureset_override: &scenario004_ansible
         run_tempest: false
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
