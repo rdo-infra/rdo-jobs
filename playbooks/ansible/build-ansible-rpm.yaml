@@ -1,0 +1,34 @@
+---
+- name: Install pre-requisites
+  package:
+    name:
+      - make
+      - python3-devel
+      - which
+      - rpmdevtools
+      - python3-cryptography
+      - python3-docutils
+      - python3-jinja2
+      - python3-mock
+      - python3-pytest
+      - python3-pytest-mock
+      - python3-pytest-xdist
+      - python3-requests
+      - python3-six
+      - python3-systemd
+    state: present
+  become: true
+- name: Install pip packages
+  pip:
+    name:
+      - packaging
+      - straight.plugin
+    state: present
+  become: true
+
+- name: Run make rpm
+  shell:
+    cmd: |
+      make rpm
+  chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/ansible/ansible'].src_dir }}"
+  changed_when: true
