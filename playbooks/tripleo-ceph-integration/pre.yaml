@@ -1,6 +1,24 @@
 ---
 - hosts: all
   tasks:
+    - name: Install python3 packaging
+      shell:
+        cmd: |
+          cd /etc/yum.repos.d
+          sudo dnf -y install wget
+          wget https://trunk.rdoproject.org/centos8-master/delorean-deps.repo
+          sudo yum repolist
+          sudo dnf config-manager --enable PowerTools
+          sudo dnf -y install python3-packaging
+          sudo dnf -y install python3-pytest-mock
+          sudo dnf -y install python3-pytest-xdist
+          wget http://mirror.centos.org/centos/8/BaseOS/x86_64/os/Packages/python3-ply-3.9-7.el8.noarch.rpm
+          rpm -i python3-ply-3.9-7.el8.noarch.rpm
+          wget http://mirror.centos.org/centos/8/AppStream/x86_64/os/Packages/platform-python-coverage-4.5.1-7.el8.x86_64.rpm
+          rpm -i platform-python-coverage-4.5.1-7.el8.x86_64.rpm
+      become: true
+      changed_when: true
+
     - name: Install epel-release
       when:
         - ansible_distribution_major_version|int >= 8
