@@ -22,7 +22,7 @@
       include_role:
         name: run-test
       vars:
-        release: "{{ release }}"
+        release: "{{ release_name|default('master') }}"
         run_test_role_vars:
           add_repos:
             - type: generic
@@ -32,6 +32,8 @@
               priority: 1
               includepkgs:
                 - ceph-ansible
+                - ansible
           undercloud_rpm_dependencies: >-
-            python3-tripleoclient
+            python*-tripleoclient
             ceph-ansible
+            ansible
