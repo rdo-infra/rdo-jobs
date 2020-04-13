@@ -32,6 +32,8 @@
               priority: 1
               includepkgs:
                 - ceph-ansible
+                - ansible
           undercloud_rpm_dependencies: >-
-            python3-tripleoclient
+            python*-tripleoclient
             ceph-ansible
+            ansible
