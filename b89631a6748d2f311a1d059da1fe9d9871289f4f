@@ -22,6 +22,52 @@
       "revId": "b89631a6748d2f311a1d059da1fe9d9871289f4f",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "120d212a_1e40dc4b",
+        "filename": "zuul.d/ceph-ansible.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2020-04-13T19:53:23Z",
+      "side": 1,
+      "message": "- name: github.com/ceph/ceph-ansible\n        override-checkout: stable-4.0",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 42
+      },
+      "revId": "b89631a6748d2f311a1d059da1fe9d9871289f4f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e8d6df66_6823510a",
+        "filename": "zuul.d/projects.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2020-04-13T19:53:23Z",
+      "side": 1,
+      "message": "it is not needed right now. once we have new jobs then we do dependencies with tripleo-centos-8-ceph-ansible-integration-master",
+      "range": {
+        "startLine": 30,
+        "startChar": 11,
+        "endLine": 32,
+        "endChar": 56
+      },
+      "revId": "b89631a6748d2f311a1d059da1fe9d9871289f4f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
