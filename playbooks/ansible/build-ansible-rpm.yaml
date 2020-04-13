@@ -1,0 +1,48 @@
+---
+- name: Install pre-requisites
+  # This task installs the dependencies
+  # packages to build ansible rpm
+  package:
+    name:
+      - make
+      - python3-devel
+      - python3-pyyaml
+      - which
+      - rpmdevtools
+      - python3-cryptography
+      - python3-docutils
+      - python3-jinja2
+      - python3-mock
+      - python3-pytest
+      - python3-pytest-mock
+      - python3-pytest-xdist
+      - python3-requests
+      - python3-six
+      - python3-systemd
+      - python3-ply
+      - platform-python-coverage
+    state: present
+  become: true
+
+- name: Install pip packages
+  pip:
+    name:
+      - packaging
+      - straight.plugin
+    state: present
+  become: true
+
+- name: Change python version
+  # This task changes python version to 3
+  # to avoid some error while building ansible rpm
+  lineinfile:
+    path: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/ansible/ansible'].src_dir }}/Makefile"
+    regexp: "^PYTHON=python"
+    line: "PYTHON=python3"
+
+- name: Run make rpm
+  shell:
+    cmd: |
+        make rpm
+    chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/ansible/ansible'].src_dir }}"
+  changed_when: true
