@@ -1,6 +1,14 @@
 ---
 - hosts: all
   tasks:
+    - name: Install python3 packaging
+      shell:
+        cmd: |
+          sudo dnf config-manager --enable PowerTools
+          sudo dnf -y install python3-packaging
+      become: true
+      changed_when: true
+
     - name: Install epel-release
       when:
         - ansible_distribution_major_version|int >= 8
