@@ -23,6 +23,10 @@
         chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/ceph/ceph-ansible'].src_dir }}"
       changed_when: true
 
+    - name: Build rpm for ansible stable-2.9
+      when: build_ansible_rpm | bool
+      include: ^playbooks/ansible/make-rpm-for-ansible-stable-2.9.yaml
+
     - name: Setup log path fact
       include_role:
         name: set-zuul-log-path-fact
