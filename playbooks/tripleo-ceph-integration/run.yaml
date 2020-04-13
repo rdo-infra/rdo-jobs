@@ -23,6 +23,12 @@
         chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/ceph/ceph-ansible'].src_dir }}"
       changed_when: true
 
+    - name: Build rpm for ansible
+      when:
+        - build_ansible_rpm is defined
+        - build_ansible_rpm | bool
+      import_tasks: ../ansible/build-ansible-rpm.yaml
+
     - name: Setup log path fact
       include_role:
         name: set-zuul-log-path-fact
@@ -39,6 +45,7 @@
             mkdir logs
             cp *.log logs
             cp *.rpm logs
+            if [ -d "{{ ansible_user_dir }}/{{ zuul.projects['github.com/ansible/ansible'].src_dir }}/rpm-build/*.rpm" ]; then cp {{ ansible_user_dir }}/{{ zuul.projects['github.com/ansible/ansible'].src_dir }}/rpm-build/*.rpm logs fi
             pushd logs
             createrepo .
             popd
