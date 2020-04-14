@@ -569,8 +569,8 @@
         - legacy-weirdo-integration-pike-puppet-scenario002
         - legacy-weirdo-integration-queens-puppet-scenario001
         - legacy-weirdo-integration-rocky-puppet-scenario002
-        - legacy-weirdo-integration-master-puppet-scenario003
-        - legacy-weirdo-integration-master-puppet-scenario004:
+        - legacy-weirdo-integration-master-puppet-scenario003-centos8
+        - legacy-weirdo-integration-master-puppet-scenario004-centos8:
             voting: false
     experimental:
       jobs:
@@ -581,7 +581,7 @@
         - legacy-weirdo-integration-pike-puppet-scenario001
         - legacy-weirdo-integration-queens-puppet-scenario003
         - legacy-weirdo-integration-rocky-puppet-scenario002
-        - legacy-weirdo-integration-master-puppet-scenario001
+        - legacy-weirdo-integration-master-puppet-scenario001-centos8
     gate:
       jobs:
         - legacy-weirdo-ansible-lint
