@@ -22,6 +22,23 @@
       "revId": "c284c8829ea80af9366071aded641a717079bbd2",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5db22354_2d7aac42",
+        "filename": "playbooks/tripleo-ceph-integration/pre.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2020-04-14T11:06:38Z",
+      "side": 1,
+      "message": "{% if build_ansible_rpm is defined %}\nsudo dnf -y install python3-pytest-mock python3-pytest-xdist\n{% endif %}",
+      "revId": "c284c8829ea80af9366071aded641a717079bbd2",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
