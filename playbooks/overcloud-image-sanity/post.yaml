@@ -1,0 +1,14 @@
+- hosts: all
+  tasks:
+    - name: Copy required files on node
+      synchronize:
+        src: '{{ ansible_user_dir }}/workspace/*.txt'
+        dest: '{{ zuul.executor.work_root }}/artifacts/'
+        mode: pull
+        copy_links: true
+        verify_host: true
+        rsync_opts:
+          - --include=/**
+          - --include=*/
+          - --exclude=*
+          - --prune-empty-dirs
