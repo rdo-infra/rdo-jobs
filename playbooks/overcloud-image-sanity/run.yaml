@@ -1,0 +1,59 @@
+- hosts: all
+  name: Job to sanitize overcloud built images
+  tasks:
+    - name: Install libguestfs packages
+      package:
+        name:
+          - libvirt
+          - libvirt-daemon
+          - qemu-kvm-common
+          - qemu-kvm
+          - libvirt-daemon-kvm
+          - libvirt-daemon-driver-network
+          - libvirt-daemon-driver-qemu
+          - libguestfs-tools
+          - libguestfs-tools-c
+          - wget
+        state: present
+      become: true
+
+
+    - name: Start libvirtd service
+      service:
+        name: libvirtd
+        state: started
+        enabled: true
+      become: true
+
+    - name: Download overcloud image
+      shell: |
+        wget http://images.rdoproject.org/centos8/master/rdo_trunk/tripleo-ci-testing/overcloud-full.tar
+      args:
+        chdir: "{{ ansible_user_dir }}"
+
+    - name: Convert overcloud image tar to qcow2
+      shell: |
+        tar xf overcloud-full.tar
+      args:
+        chdir: "{{ ansible_user_dir }}"
+
+    - name: Get rpm list on overcloud images
+      shell: |
+        export LIBGUESTFS_BACKEND=direct
+        virt-customize -v -a overcloud-full.qcow2 --run-command 'rpm -qa > /tmp/rpm_qa.txt'
+      args:
+        chdir: "{{ ansible_user_dir }}"
+
+    - name: Get rpm -V on overcloud images
+      shell: |
+        export LIBGUESTFS_BACKEND=direct
+        virt-customize -v -a overcloud-full.qcow2 --run-command 'rpm -Va > /tmp/rpm_va.txt'
+      args:
+        chdir: "{{ ansible_user_dir }}"
+
+    - name: Copy required logs to workspace
+      shell: |
+        export LIBGUESTFS_BACKEND=direct
+        virt-copy-out -a overcloud-full.qcow2 /tmp/rpm*.txt {{ ansible_user_dir }}
+      args:
+        chdir: "{{ ansible_user_dir }}"
