@@ -40,3 +40,18 @@
     vars:
       branch_override: 'stable/train'
       release: train
+
+- job:
+    # This is an abstract job
+    name: periodic-tripleo-ci-overcloud-image-sanity-base
+    abstract: true
+    run: playbooks/overcloud-image-sanity/run.yaml
+    post-run: playbooks/overcloud-image-sanity/post.yaml
+    nodeset: single-rhel-8-node
+
+- job:
+    name: periodic-tripleo-ci-centos-8-overcloud-image-sanity-master
+    parent: periodic-tripleo-ci-overcloud-image-sanity-base
+    vars:
+      release: master
+      distro: centos8
