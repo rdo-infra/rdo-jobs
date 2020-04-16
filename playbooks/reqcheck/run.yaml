@@ -33,6 +33,7 @@
       shell:
         cmd: |
           set -e
+          set -x
           source {{ ansible_user_dir }}/.venv/bin/activate
           pushd {{ ansible_user_dir }}/{{ zuul.project.src_dir }}
           git remote add upstream {{ upstream.stdout }}
