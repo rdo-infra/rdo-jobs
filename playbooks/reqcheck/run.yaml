@@ -28,10 +28,11 @@
       args:
         chdir: "{{ ansible_user_dir }}"
 
-    - name: Fetch upstream and reqcheck project {{ zuul.project.name }} with rdopkg
-      changed_when: true
+    - name: Fetch upstream and reqcheck project {{ zuul.project.name }} with rdopkg - verbose
+      # changed_when: true
       shell:
         cmd: |
+          set -x
           set -e
           source {{ ansible_user_dir }}/.venv/bin/activate
           pushd {{ ansible_user_dir }}/{{ zuul.project.src_dir }}
