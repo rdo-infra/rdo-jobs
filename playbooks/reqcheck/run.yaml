@@ -28,16 +28,39 @@
       args:
         chdir: "{{ ansible_user_dir }}"
 
-    - name: Fetch upstream and reqcheck project {{ zuul.project.name }} with rdopkg
+    - name: Fetch upstream and reqcheck project {{ zuul.project.name }} with rdopkg - part 1
       changed_when: true
       shell:
         cmd: |
+          set -x
+          set -e
+          source {{ ansible_user_dir }}/.venv/bin/activate
+          pushd {{ ansible_user_dir }}/{{ zuul.project.src_dir }}
+      args:
+        chdir: "{{ ansible_user_dir }}"
+
+    - name: Fetch upstream and reqcheck project {{ zuul.project.name }} with rdopkg - part 2
+      changed_when: true
+      shell:
+        cmd: |
+          set -x
           set -e
           source {{ ansible_user_dir }}/.venv/bin/activate
           pushd {{ ansible_user_dir }}/{{ zuul.project.src_dir }}
           git remote add upstream {{ upstream.stdout }}
           git fetch upstream
-          rdopkg reqcheck --strict
+      args:
+        chdir: "{{ ansible_user_dir }}"
+
+    - name: Fetch upstream and reqcheck project {{ zuul.project.name }} with rdopkg - part 3
+      changed_when: true
+      shell:
+        cmd: |
+          set -x
+          set -e
+          source {{ ansible_user_dir }}/.venv/bin/activate | tee -a {{ zuul.executor.log_root }}/cmd-output.txt
+          pushd {{ ansible_user_dir }}/{{ zuul.project.src_dir }} | tee -a {{ zuul.executor.log_root }}/cmd-outaput.txt
+          rdopkg reqcheck --strict | tee -a {{ zuul.executor.log_root }}/cmd-output.txt
           popd
       args:
         chdir: "{{ ansible_user_dir }}"
