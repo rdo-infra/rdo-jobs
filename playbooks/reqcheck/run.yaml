@@ -28,16 +28,25 @@
       args:
         chdir: "{{ ansible_user_dir }}"
 
-    - name: Fetch upstream and reqcheck project {{ zuul.project.name }} with rdopkg
+    - name: Fetch upstream and reqcheck project {{ zuul.project.name }} with rdopkg - verbose
       changed_when: true
       shell:
         cmd: |
+          set -x
           set -e
-          source {{ ansible_user_dir }}/.venv/bin/activate
-          pushd {{ ansible_user_dir }}/{{ zuul.project.src_dir }}
-          git remote add upstream {{ upstream.stdout }}
-          git fetch upstream
-          rdopkg reqcheck --strict
+          source {{ ansible_user_dir }}/.venv/bin/activate | tee -a {{ ansible_user_dir }}/cmd-output
+          pushd {{ ansible_user_dir }}/{{ zuul.project.src_dir }} | tee -a {{ ansible_user_dir }}/cmd-output
+          git remote add upstream {{ upstream.stdout }} | tee -a {{ ansible_user_dir }}/cmd-output
+          git fetch upstream | tee -a {{ ansible_user_dir }}/cmd-output
+          rdopkg reqcheck --strict | tee -a {{ ansible_user_dir }}/cmd-output
           popd
       args:
         chdir: "{{ ansible_user_dir }}"
+
+    - name: Read cmd-output
+      shell: cat {{ ansible_user_dir }}/cmd-output
+      register: cmd_output
+
+    - name: Fail on cmd-output
+      fail:
+        msg: "{{ cmd_output }}"
