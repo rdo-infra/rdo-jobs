@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d27d7d81_58ff1118",
+        "filename": "playbooks/tripleo-ceph-integration/pre.yaml",
+        "patchSetId": 31
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2020-04-16T05:46:08Z",
+      "side": 1,
+      "message": "Split this into two tasks.\n1. Enable the repo\n2. Installing the packages\nand move these two tasks in ansible playbook as it is for ansible.",
+      "range": {
+        "startLine": 4,
+        "startChar": 3,
+        "endLine": 16,
+        "endChar": 24
+      },
+      "revId": "6d19d1105a109eceb27f2b0ff44ee4ccd0fa35a5",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ceef012a_4dbe1dcf",
+        "filename": "zuul.d/ceph-ansible.yaml",
+        "patchSetId": 31
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2020-04-16T05:46:08Z",
+      "side": 1,
+      "message": "It is not needed, as we are using all these packages from tripleo-centos-8-ceph-ansible-integration-master",
+      "range": {
+        "startLine": 172,
+        "startChar": 3,
+        "endLine": 177,
+        "endChar": 37
+      },
+      "revId": "6d19d1105a109eceb27f2b0ff44ee4ccd0fa35a5",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0c5f4b8b_c044e207",
+        "filename": "zuul.d/ceph-ansible.yaml",
+        "patchSetId": 31
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2020-04-16T05:46:08Z",
+      "side": 1,
+      "message": "It is not needed here, as ansible playbook is not used here",
+      "range": {
+        "startLine": 179,
+        "startChar": 6,
+        "endLine": 179,
+        "endChar": 29
+      },
+      "revId": "6d19d1105a109eceb27f2b0ff44ee4ccd0fa35a5",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "09bb5758_579b7dc9",
+        "filename": "zuul.d/ceph-ansible.yaml",
+        "patchSetId": 31
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2020-04-16T05:46:08Z",
+      "side": 1,
+      "message": "replace it with *\u0026scenario001 and do the same for sc4 job",
+      "range": {
+        "startLine": 181,
+        "startChar": 27,
+        "endLine": 187,
+        "endChar": 29
+      },
+      "revId": "6d19d1105a109eceb27f2b0ff44ee4ccd0fa35a5",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
