@@ -67,15 +67,15 @@
           set -e -x
           # Install requirements
           YUM="{{ ansible_pkg_mgr }}"
-          sudo $YUM install -y createrepo mock git centos-packager $YUM-utils dnf
-          sudo $YUM install -y epel-release;
-          sudo $YUM-config-manager --enable epel;
-          # replace below with sudo $YUM update -y mock once mock-2.0 exist in c8 or epel repo
-          sudo $YUM install -y https://kojipkgs.fedoraproject.org//packages/mock/2.0/2.el7/noarch/mock-2.0-2.el7.noarch.rpm
-          sudo $YUM-config-manager --disable epel;
+          sudo $YUM install -y epel-release yum-utils;
+          sudo yum-config-manager --enable epel;
+          sudo $YUM install -y https://download.copr.fedorainfracloud.org/results/ykarel/ykarel-centos-stream/centos-stream-x86_64/01239149-python-centos/python-centos-0.1.1-2.el8.noarch.rpm;  # noqa 204
+          sudo $YUM install -y https://download.copr.fedorainfracloud.org/results/ykarel/ykarel-centos-stream/centos-stream-x86_64/01239164-centos-packager/centos-packager-0.5.5-2.el8.noarch.rpm;  # noqa 204
+          sudo $YUM install -y createrepo mock git yum
+          sudo yum-config-manager --disable epel;
           virtualenv  --system-site-packages .venv
           . .venv/bin/activate
-          pip install ruamel.yaml rdopkg
+          pip-3 install ruamel.yaml rdopkg
           pushd {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}/buildsys-tags
           # define logs variable with the URL wher logs will be pushed
           if [ -d /home/zuul ]; then
