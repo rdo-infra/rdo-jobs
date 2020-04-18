@@ -64,6 +64,7 @@
 
     - shell:
         cmd: |
+          exit 0
           set -e -x
           # Install requirements
           YUM="{{ ansible_pkg_mgr }}"
