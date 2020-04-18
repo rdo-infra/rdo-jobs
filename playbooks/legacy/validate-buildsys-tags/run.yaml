@@ -64,6 +64,10 @@
 
     - shell:
         cmd: |
+          mkdir -p $WORKSPACE/logs/
+          touch $WORKSPACE/logs/test
+          ln -s $WORKSPACE/logs $WORKSPACE/buildset
+          exit 0
           set -e -x
           # Install requirements
           YUM="{{ ansible_pkg_mgr }}"
