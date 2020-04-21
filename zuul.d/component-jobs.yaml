@@ -1,0 +1,226 @@
+---
+- job:
+    name: periodic-tripleo-centos-8-master-component-baremetal-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: baremetal
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-cinder-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: cinder
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-clients-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: clients
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-cloudops-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: cloudops
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-common-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: common
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-compute-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: compute
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-glance-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: glance
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-manila-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: manila
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: network
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: octavia
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-security-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: security
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-swift-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: swift
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-tripleo-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: tripleo
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-tempest-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: tempest
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-ui-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: ui
+      dlrn_server_url: "trunk.rdoproject.org"
+
+# component pipeline promote-to-promoted-components definitions
+- job:
+    name: periodic-tripleo-centos-8-master-component-baremetal-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: baremetal
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-cinder-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: cinder
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-clients-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: clients
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-cloudops-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-common-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: common
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-compute-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: compute
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-glance-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: glance
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-manila-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: manila
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-network-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: network
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-octavia-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: octavia
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-security-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: security
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-swift-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: swift
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-tempest-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: tempest
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-tripleo-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: tripleo
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-ui-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: ui
