@@ -57,7 +57,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
@@ -69,7 +69,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -89,7 +89,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
@@ -100,7 +100,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -121,7 +121,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
@@ -133,7 +133,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -155,7 +155,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
@@ -168,7 +168,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -191,7 +191,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
@@ -205,7 +205,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -232,7 +232,7 @@
         - DLRN-rpmbuild-pinned:
             branches: ^(master|stable/pike)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-validate:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
@@ -257,7 +257,7 @@
         - DLRN-rpmbuild:
             branches: ^(master|stable/pike)|(^(?!common)(\w+)-rdo)$
         - distgit-cbs-final-build:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -278,7 +278,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
@@ -290,7 +290,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -310,7 +310,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
@@ -321,7 +321,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -342,7 +342,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
@@ -354,7 +354,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -374,7 +374,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
@@ -385,7 +385,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -407,7 +407,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
@@ -420,7 +420,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -441,7 +441,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
@@ -453,7 +453,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -475,7 +475,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
@@ -488,7 +488,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -508,7 +508,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
@@ -519,7 +519,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -539,7 +539,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
@@ -550,7 +550,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: (^(?!common)(\w+)-rdo)$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
