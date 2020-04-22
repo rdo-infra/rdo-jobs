@@ -1,4 +1,10 @@
 ---
+# component jobs
+
+## promote-consistent-to-component-ci-testing
+
+### master
+
 - job:
     name: periodic-tripleo-centos-8-master-component-baremetal-promote-consistent-to-component-ci-testing
     parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
@@ -119,7 +125,102 @@
       component: ui
       dlrn_server_url: "trunk.rdoproject.org"
 
-# component pipeline promote-to-promoted-components definitions
+### ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-ussuri-component-baremetal-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-baremetal-promote-consistent-to-component-ci-testing
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-ussuri-component-cinder-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-cinder-promote-consistent-to-component-ci-testing
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-ussuri-component-clients-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-clients-promote-consistent-to-component-ci-testing
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-ussuri-component-cloudops-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-cloudops-promote-consistent-to-component-ci-testing
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-ussuri-component-common-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-common-promote-consistent-to-component-ci-testing
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-ussuri-component-compute-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-compute-promote-consistent-to-component-ci-testing
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-ussuri-component-glance-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-glance-promote-consistent-to-component-ci-testing
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-ussuri-component-manila-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-manila-promote-consistent-to-component-ci-testing
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-ussuri-component-network-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-ussuri-component-octavia-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-ussuri-component-security-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-security-promote-consistent-to-component-ci-testing
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-ussuri-component-swift-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-swift-promote-consistent-to-component-ci-testing
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-ussuri-component-tripleo-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-tripleo-promote-consistent-to-component-ci-testing
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-ussuri-component-tempest-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-tempest-promote-consistent-to-component-ci-testing
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-ussuri-component-ui-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-ui-promote-consistent-to-component-ci-testing
+    vars:
+      release: ussuri
+
+## promote-to-promoted-components
+
+### master
+
 - job:
     name: periodic-tripleo-centos-8-master-component-baremetal-promote-to-promoted-components
     parent: tripleo-ci-base-component-promote-to-promoted-components
@@ -224,3 +325,95 @@
     vars:
       release: master
       component: ui
+
+### ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-ussuri-component-baremetal-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-ussuri-component-baremetal-promote-to-promoted-components
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-cinder-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-ussuri-component-cinder-promote-to-promoted-components
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-clients-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-ussuri-component-clients-promote-to-promoted-components
+    vars:
+      release: master
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-cloudops-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-ussuri-component-cloudops-promote-to-promoted-components
+    vars:
+      release: master
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-common-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-ussuri-component-common-promote-to-promoted-components
+    vars:
+      release: master
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-compute-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-ussuri-component-compute-promote-to-promoted-components
+    vars:
+      release: master
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-glance-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-ussuri-component-glance-promote-to-promoted-components
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-manila-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-ussuri-component-manila-promote-to-promoted-components
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-network-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-ussuri-component-network-promote-to-promoted-components
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-octavia-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-ussuri-component-octavia-promote-to-promoted-components
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-security-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-ussuri-component-security-promote-to-promoted-components
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-swift-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-ussuri-component-swift-promote-to-promoted-components
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-tempest-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-ussuri-component-tempest-promote-to-promoted-components
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-tripleo-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-ussuri-component-tripleo-promote-to-promoted-components
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-ui-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-ussuri-component-ui-promote-to-promoted-components
+    vars:
+      release: ussuri
