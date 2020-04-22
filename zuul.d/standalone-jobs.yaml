@@ -410,6 +410,7 @@
         validate_services: false
         tempest_extra_config:
           load_balancer.provider: 'ovn'
+          load_balancer.enabled_provider_drivers: 'ovn'
           load_balancer.member_role: '"Member"'
           load_balancer.test_with_ipv6: false
           load_balancer.test_reuse_connection: false
