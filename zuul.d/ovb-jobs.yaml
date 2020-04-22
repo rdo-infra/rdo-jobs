@@ -355,7 +355,6 @@
 - job:
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039
     parent: tripleo-ci-base-ovb-rdo-centos-8
-    timeout: 12600
     branches: ^(?!stable/(newton|ocata|pike|queens|rocky|stein|train)).*$
     voting: false
     vars: &fs39_vars
@@ -728,7 +727,6 @@
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-master
     parent: tripleo-ci-base-ovb-periodic-centos-8
-    timeout: 12600
     vars:
       <<: *fs39_vars
       release: master
