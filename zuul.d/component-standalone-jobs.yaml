@@ -1,0 +1,569 @@
+---
+# standalone
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-component-master
+    parent: periodic-tripleo-ci-centos-8-standalone-master
+    abstract: true
+    vars: &component_vars
+      component: component
+      release: master
+      dlrn_server_url: "trunk.rdoproject.org"
+      promote_source: component-ci-testing
+      add_repos:
+        - type: generic
+          reponame: "{{ component }}"
+          filename: "{{ component }}-component.repo"
+          priority: 1
+          baseurl: "https://{{ dlrn_server_url }}/centos8-{{ release }}/component/{{ component }}/component-ci-testing"
+          update_container: true
+
+## master
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-baremetal-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: baremetal
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-cinder-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: cinder
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-clients-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: clients
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-cloudops-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-common-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-compute-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-glance-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: glance
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-manila-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: manila
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-network-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-octavia-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: octavia
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-security-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: security
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-swift-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: swift
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-tempest-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: tempest
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-tripleo-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-ui-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: ui
+
+## ussuri
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-baremetal-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-baremetal-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-cinder-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-cinder-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-clients-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-clients-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-cloudops-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-cloudops-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-common-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-common-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-compute-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-compute-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-glance-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-glance-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-manila-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-manila-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-network-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-network-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-octavia-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-octavia-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-security-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-security-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-swift-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-swift-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-tempest-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-tempest-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-tripleo-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-tripleo-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-ui-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-ui-master
+    vars:
+      release: ussuri
+
+# scenario001-standalone-component
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-component-master
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-master
+    abstract: true
+    vars: *component_vars
+
+## master
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-cinder-master
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-component-master
+    vars:
+      component: cinder
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-cloudops-master
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-component-master
+    vars:
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-common-master
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-glance-master
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-component-master
+    vars:
+      component: glance
+
+## ussuri
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-cinder-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-cinder-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-cloudops-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-cloudops-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-common-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-common-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-glance-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-glance-master
+    vars:
+      release: ussuri
+
+# scenario002-standalone-component
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-component-master
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-master
+    abstract: true
+    vars: *component_vars
+
+## master
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-cloudops-master
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-component-master
+    vars:
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-common-master
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-glance-master
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-component-master
+    vars:
+      component: glance
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-swift-master
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-component-master
+    vars:
+      component: swift
+
+## ussuri
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-cloudops-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-cloudops-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-common-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-common-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-glance-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-glance-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-swift-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-swift-master
+    vars:
+      release: ussuri
+
+# scenario003-standalone-component
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario003-standalone-component-master
+    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-master
+    abstract: true
+    vars: *component_vars
+
+## master
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario003-standalone-common-master
+    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario003-standalone-glance-master
+    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-component-master
+    vars:
+      component: glance
+
+## ussuri
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario003-standalone-common-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-common-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario003-standalone-glance-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-glance-master
+    vars:
+      release: ussuri
+
+# scenario004-standalone-component
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-component-master
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-master
+    abstract: true
+    vars: *component_vars
+
+## master
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-master
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-component-master
+    vars:
+      component: cinder
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-common-master
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-glance-master
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-component-master
+    vars:
+      component: glance
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-manila-master
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-component-master
+    vars:
+      component: manila
+
+## ussuri
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-common-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-common-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-glance-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-glance-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-manila-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-manila-master
+    vars:
+      release: ussuri
+
+# scenario007-standalone-component
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario007-standalone-component-master
+    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-master
+    abstract: true
+    vars: *component_vars
+
+## master
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario007-standalone-network-master
+    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-component-master
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario007-standalone-octavia-master
+    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-component-master
+    vars:
+      component: octavia
+
+## ussuri
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario007-standalone-network-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-network-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario007-standalone-octavia-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-octavia-master
+    vars:
+      release: ussuri
+
+# scenario010-standalone-component
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-standalone-component-master
+    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-master
+    abstract: true
+    vars: *component_vars
+
+## master
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-standalone-network-master
+    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-component-master
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-master
+    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-component-master
+    vars:
+      component: octavia
+
+## ussuri
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-standalone-network-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-network-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-master
+    vars:
+      release: ussuri
+
+# standalone-full-tempest-component
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-component-master
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-master
+    abstract: true
+    vars: *component_vars
+
+## master
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-compute-master
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-component-master
+    vars:
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-tempest-master
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-component-master
+    vars:
+      component: tempest
+
+## ussuri
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-compute-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-compute-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-tempest-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-tempest-master
+    vars:
+      release: ussuri
+
+# standalone-full-tempest-api-component
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-component-master
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-master
+    abstract: true
+    vars: *component_vars
+
+## master
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-compute-master
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-component-master
+    vars:
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-tempest-master
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-component-master
+    vars:
+      component: tempest
+
+## ussuri
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-compute-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-compute-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-tempest-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-tempest-master
+    vars:
+      release: ussuri
+
+# standalone-full-tempest-scenario-component
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-component-master
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-master
+    abstract: true
+    vars: *component_vars
+
+## master
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-master
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-component-master
+    vars:
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-tempest-master
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-component-master
+    vars:
+      component: tempest
+
+## ussuri
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-tempest-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-tempest-master
+    vars:
+      release: ussuri
