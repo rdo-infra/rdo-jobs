@@ -33,14 +33,14 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-validate:
-            branches: ^(?!rpm-master).*$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
     gate:
       jobs:
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: ^(?!rpm-master).*$
+            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
