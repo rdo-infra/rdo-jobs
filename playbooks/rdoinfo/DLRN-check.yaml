@@ -60,8 +60,10 @@
 
           while read line; do
               PKGNAME=$(awk '{print $1}' <<< $line)
-              if [[ -n $(echo "$line" | grep -w $CURRENT_MASTER_TAG) ]]; then
-                  PACKAGES_UPDATED_MASTER="$PACKAGES_UPDATED_MASTER $PKGNAME"
+              if [ "${CENTOS_VERS}" = "centos8" ]; then
+                  if [[ -n $(echo "$line" | grep -w $CURRENT_MASTER_TAG) ]]; then
+                      PACKAGES_UPDATED_MASTER="$PACKAGES_UPDATED_MASTER $PKGNAME"
+                  fi
               fi
               if [[ -n $(echo "$line" | grep -w train) ]]; then
                   PACKAGES_UPDATED_TRAIN="$PACKAGES_UPDATED_TRAIN $PKGNAME"
