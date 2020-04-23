@@ -209,7 +209,7 @@
 - job:
     name: DLRN-build-tripleo-centos8
     parent: DLRN-build-tripleo-base
-    branches: ^(rpm-master)$
+    branches: ^((rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo))$
     dependencies:
       - DLRN-rpmbuild-centos8
     vars:
@@ -260,7 +260,7 @@
 - job:
     name: DLRN-rpmbuild-centos8
     parent: DLRN-rpmbuild-base
-    branches: ^(rpm-master)|(train-rdo)$
+    branches: ^((rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo))$
     vars:
       centos_version: 'centos8'
     nodeset: rdo-centos-8
