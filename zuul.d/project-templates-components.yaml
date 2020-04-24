@@ -390,3 +390,74 @@
         - periodic-tripleo-centos-8-ussuri-component-tripleo-promote-to-promoted-components
         - periodic-tripleo-centos-8-ussuri-component-tempest-promote-to-promoted-components
         - periodic-tripleo-centos-8-ussuri-component-ui-promote-to-promoted-components
+
+# TODO(rfolco): Replace component-pipeline-ussuri-testing w/
+# component-pipeline-ussuri on config's tripleo.yaml and
+# remove component-pipeline-ussuri-testing template below
+
+# Temporary template until we can run a full component pipeline
+# We don't have containers so excluded "validation" jobs would fail
+- project-template:
+    name: component-pipeline-ussuri-testing
+    openstack-component-baremetal:
+      jobs:
+        - periodic-tripleo-centos-8-ussuri-component-baremetal-promote-consistent-to-component-ci-testing
+    openstack-component-cinder:
+      jobs:
+        - periodic-tripleo-centos-8-ussuri-component-cinder-promote-consistent-to-component-ci-testing
+    openstack-component-clients:
+      jobs:
+        - periodic-tripleo-centos-8-ussuri-component-clients-promote-consistent-to-component-ci-testing
+    openstack-component-cloudops:
+      jobs:
+        - periodic-tripleo-centos-8-ussuri-component-cloudops-promote-consistent-to-component-ci-testing
+    openstack-component-common:
+      jobs:
+        - periodic-tripleo-centos-8-ussuri-component-common-promote-consistent-to-component-ci-testing
+    openstack-component-compute:
+      jobs:
+        - periodic-tripleo-centos-8-ussuri-component-compute-promote-consistent-to-component-ci-testing
+    openstack-component-glance:
+      jobs:
+        - periodic-tripleo-centos-8-ussuri-component-glance-promote-consistent-to-component-ci-testing
+    openstack-component-manila:
+      jobs:
+        - periodic-tripleo-centos-8-ussuri-component-manila-promote-consistent-to-component-ci-testing
+    openstack-component-network:
+      jobs:
+        - periodic-tripleo-centos-8-ussuri-component-network-promote-consistent-to-component-ci-testing
+    openstack-component-octavia:
+      jobs:
+        - periodic-tripleo-centos-8-ussuri-component-octavia-promote-consistent-to-component-ci-testing
+    openstack-component-security:
+      jobs:
+        - periodic-tripleo-centos-8-ussuri-component-security-promote-consistent-to-component-ci-testing
+    openstack-component-swift:
+      jobs:
+        - periodic-tripleo-centos-8-ussuri-component-swift-promote-consistent-to-component-ci-testing
+    openstack-component-tripleo:
+      jobs:
+        - periodic-tripleo-centos-8-ussuri-component-tripleo-promote-consistent-to-component-ci-testing
+    openstack-component-tempest:
+      jobs:
+        - periodic-tripleo-centos-8-ussuri-component-tempest-promote-consistent-to-component-ci-testing
+    openstack-component-ui:
+      jobs:
+        - periodic-tripleo-centos-8-ussuri-component-ui-promote-consistent-to-component-ci-testing
+    openstack-promote-component:
+      jobs:
+        - periodic-tripleo-centos-8-ussuri-component-baremetal-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-cinder-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-clients-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-cloudops-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-common-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-compute-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-glance-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-manila-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-network-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-octavia-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-security-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-swift-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-tripleo-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-tempest-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-ui-promote-to-promoted-components
