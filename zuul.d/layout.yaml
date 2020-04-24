@@ -1,12 +1,10 @@
+- job:
+    name: periodic-tripleo-centos-8-buildimage-overcloud-full-master-test
+    parent: periodic-tripleo-centos-8-buildimage-overcloud-full-master
+
 - project:
     check:
-      jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+      jobs:
+        - periodic-tripleo-centos-8-buildimage-overcloud-full-master-test:
+            vars:
+              force_periodic: true
