@@ -131,6 +131,9 @@
           # Exception for tackerclient
           addFilter("python-tackerclient-doc.noarch: W: file-not-utf8 /usr/share/doc/python-tackerclient-doc-.*/html/objects.inv")
 
+          # Exception for openstackclient
+          addFilter("python-openstackclient-doc.noarch: W: file-not-utf8 /usr/share/doc/python-openstackclient-doc/html/objects.inv")
+
           # Exception for congress
           addFilter("openstack-congress-common.noarch: E: non-standard-dir-perm /etc/congress/keys 0?750L?")
 
