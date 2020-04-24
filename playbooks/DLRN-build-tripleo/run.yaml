@@ -109,11 +109,15 @@
           cat /tmp/delorean-current.repo >> ${mock_cfg}
           echo >> ${mock_cfg}
           # current-tripleo
-          curl -o /tmp/delorean-current-tripleo.repo  ${baseurl}/current-tripleo/delorean.repo
-          sed -i 's/priority=.*/priority=20/' /tmp/delorean-current-tripleo.repo
-          sed -i 's/\[delorean\]/\[delorean-current-tripleo\]/' /tmp/delorean-current-tripleo.repo
-          cat /tmp/delorean-current-tripleo.repo >> ${mock_cfg}
-          echo >> ${mock_cfg}
+          curl --fail -o /tmp/delorean-current-tripleo.repo  ${baseurl}/current-tripleo/delorean.repo
+          if [ -f /tmp/delorean-current-tripleo.repo ]; then
+              sed -i 's/priority=.*/priority=20/' /tmp/delorean-current-tripleo.repo
+              sed -i 's/\[delorean\]/\[delorean-current-tripleo\]/' /tmp/delorean-current-tripleo.repo
+              cat /tmp/delorean-current-tripleo.repo >> ${mock_cfg}
+              echo >> ${mock_cfg}
+          else
+              echo "WARNING! Could not fetch ${baseurl}/current-tripleo/delorean.repo"
+          fi
           # deps
           curl ${baseurl}/delorean-deps.repo >> ${mock_cfg}
           echo >> ${mock_cfg}
