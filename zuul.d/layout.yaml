@@ -1,12 +1,14 @@
+- job:
+    name: periodic-tripleo-centos-8-buildimage-overcloud-full-master-test
+    parent: tripleo-ci-base-singlenode-rdo-build-images-centos-8
+    post-run: playbooks/post.yaml
+    vars:
+      tripleo_image_os: centos8
+      tripleo_image_source: http://images-vexxhost.rdoproject.org/CentOS-8-GenericCloud-8.1.1911-20200113.3.x86_64.qcow2
+      tripleo_image_type: overcloud-full
+      release: master
+
 - project:
     check:
-      jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+      jobs:
+        - periodic-tripleo-centos-8-buildimage-overcloud-full-master-test
