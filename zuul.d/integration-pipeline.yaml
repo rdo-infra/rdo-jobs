@@ -1,0 +1,85 @@
+---
+# ussuri integration pipeline
+- project-template:
+    name: integration-pipeline-ussuri
+    # TODO(rfolco): Switch to openstack-periodic-latest-released
+    # when time comes. This is a mini-pipeline for ussuri to
+    # build containers/images required to run any job in component
+    # or integration pipelines. Get one green run and add full pipeline.
+    openstack-periodic-master:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-ussuri:
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-containers-build-push
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-ussuri:
+            vars:
+              cloud_name: vexxhost
+            nodeset: single-centos-8-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-containers-build-push
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-ussuri
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-ussuri
+        - periodic-tripleo-centos-8-ussuri-containers-build-push:
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-promote-promoted-components-to-tripleo-ci-testing
+        - periodic-tripleo-centos-8-buildimage-overcloud-full-master:
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-promote-promoted-components-to-tripleo-ci-testing
+        - periodic-tripleo-centos-8-buildimage-ironic-python-agent-ussuri:
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-promote-promoted-components-to-tripleo-ci-testing
+        - periodic-tripleo-centos-8-ussuri-promote-promoted-components-to-tripleo-ci-testing
+
+# ussuri integration jobs
+- job:
+    name: periodic-tripleo-centos-8-ussuri-promote-promoted-components-to-tripleo-ci-testing
+    parent: periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-centos-8-ussuri-containers-build-push
+    parent: periodic-tripleo-centos-8-master-containers-build-push
+    # override-checkout: 'stable/ussuri'
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      registry_namespace: tripleoussuri
+      # TODO(rfolco): rpm_setup_config override can be removed when
+      # [delorean-master-testing] becomes delorean-ussuri-testing in
+      # https://trunk.rdoproject.org/centos8-ussuri/delorean-deps.repo
+      buildcontainers_rpm_setup_config: "http://172.17.0.1/delorean.repo,http://172.17.0.1/delorean-master-testing.repo"
+
+- job:
+    name: periodic-tripleo-centos-8-buildimage-overcloud-full-ussuri
+    parent: periodic-tripleo-centos-8-buildimage-overcloud-full-master
+    # override-checkout: 'stable/ussuri'
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+
+- job:
+    name: periodic-tripleo-centos-8-buildimage-ironic-python-agent-ussuri
+    parent: periodic-tripleo-centos-8-buildimage-ironic-python-agent-master
+    # override-checkout: 'stable/ussuri'
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-master
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-ussuri
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
