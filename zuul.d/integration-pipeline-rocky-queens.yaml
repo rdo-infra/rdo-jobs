@@ -1,0 +1,149 @@
+---
+# rocky / queens integration pipeline
+- project-template:
+    name: integration-pipeline-rocky-queens
+    openstack-periodic-wednesday-weekend:
+      jobs:
+        ##### stable/rocky on vexxhost #####
+        - periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-rocky-upload:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-rocky-containers-build-push
+        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-rocky:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-rocky-containers-build-push
+        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-rocky:
+            nodeset: two-centos-7-nodes-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-rocky-containers-build-push
+        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-rocky:
+            nodeset: two-centos-7-nodes-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-rocky-containers-build-push
+        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-rocky:
+            nodeset: two-centos-7-nodes-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-rocky-containers-build-push
+        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-rocky:
+            nodeset: two-centos-7-nodes-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-rocky-containers-build-push
+        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-rocky:
+            nodeset: two-centos-7-nodes-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-rocky-containers-build-push
+        - periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-rocky:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-rocky-containers-build-push
+        - periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-rocky:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-rocky-containers-build-push
+        - periodic-tripleo-ci-centos-7-undercloud-containers-rocky:
+            nodeset: single-centos-7-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-rocky-containers-build-push
+        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-rocky:
+            nodeset: two-centos-7-nodes-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-rocky-containers-build-push
+        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-rocky:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-rocky-containers-build-push
+        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-rocky:
+            nodeset: two-centos-7-nodes-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-rocky-containers-build-push
+        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-rocky:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-rocky-containers-build-push
+        - periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-rocky:
+            nodeset: single-centos-7-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-rocky-containers-build-push
+        - periodic-tripleo-centos-7-rocky-containers-build-push:
+            dependencies:
+              - periodic-tripleo-centos-7-rocky-promote-consistent-to-tripleo-ci-testing
+        - periodic-tripleo-centos-7-rocky-promote-consistent-to-tripleo-ci-testing:
+            nodeset: upstream-centos-7-vexxhost
+
+        ##### stable/queens #####
+        - periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-queens-containers-build
+        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-queens-containers-build
+        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-queens:
+            nodeset: two-centos-7-nodes-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-queens-containers-build
+        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-queens:
+            nodeset: two-centos-7-nodes-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-queens-containers-build
+        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-queens:
+            nodeset: two-centos-7-nodes-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-queens-containers-build
+        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-queens:
+            nodeset: two-centos-7-nodes-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-queens-containers-build
+        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-queens:
+            nodeset: two-centos-7-nodes-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-queens-containers-build
+        - periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-queens:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-queens-containers-build
+        - periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-queens:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-queens-containers-build
+        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-queens:
+            nodeset: two-centos-7-nodes-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-queens-containers-build
+        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-queens:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-queens-containers-build
+        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-queens:
+            nodeset: two-centos-7-nodes-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-queens-containers-build
+        - periodic-tripleo-centos-7-queens-containers-build:
+            dependencies:
+              - periodic-tripleo-centos-7-queens-promote-consistent-to-tripleo-ci-testing
+        - periodic-tripleo-centos-7-queens-promote-consistent-to-tripleo-ci-testing:
+            nodeset: upstream-centos-7-vexxhost
