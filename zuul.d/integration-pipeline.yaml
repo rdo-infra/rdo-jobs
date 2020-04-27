@@ -2,29 +2,114 @@
 # ussuri integration pipeline
 - project-template:
     name: integration-pipeline-ussuri
-    # TODO(rfolco): Switch to openstack-periodic-latest-released
-    # when time comes. This is a mini-pipeline for ussuri to
-    # build containers/images required to run any job in component
-    # or integration pipelines. Get one green run and add full pipeline.
-    openstack-periodic-master:
+    openstack-periodic-latest-released:
       jobs:
-        - periodic-tripleo-ci-centos-8-standalone-ussuri:
-            nodeset: single-centos-8-node-vexxhost
-            dependencies:
-              - periodic-tripleo-centos-8-ussuri-containers-build-push
-        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-ussuri:
+        ## ovb
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-ussuri:
             vars:
               cloud_name: vexxhost
-            nodeset: single-centos-8-vexxhost
+            nodeset: single-centos-8-node-vexxhost
             dependencies:
               - periodic-tripleo-centos-8-ussuri-containers-build-push
               - periodic-tripleo-centos-8-buildimage-overcloud-full-ussuri
               - periodic-tripleo-centos-8-buildimage-ironic-python-agent-ussuri
+        - periodic-tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-ussuri:
+            vars:
+              cloud_name: vexxhost
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-containers-build-push
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-ussuri
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-ussuri
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-ussuri:
+            vars:
+              cloud_name: vexxhost
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-containers-build-push
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-ussuri
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-ussuri
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-ussuri:
+            vars:
+              cloud_name: vexxhost
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-containers-build-push
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-ussuri
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-ussuri
+        ## multinode
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset030-ussuri:
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-containers-build-push
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-ussuri:
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-ussuri:
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-containers-build-push
+        ## undercloud
+        - periodic-tripleo-ci-centos-8-undercloud-containers-ussuri:
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-containers-build-push
+        - periodic-tripleo-ci-centos-8-containers-undercloud-minion-ussuri:
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-containers-build-push
+        ## standalone
+        - periodic-tripleo-ci-centos-8-standalone-ussuri:
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario001-standalone-ussuri:
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario002-standalone-ussuri:
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario003-standalone-ussuri:
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario004-standalone-ussuri:
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario007-standalone-ussuri:
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario010-standalone-ussuri:
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario012-standalone-ussuri:
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-containers-build-push
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-api-ussuri:
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-containers-build-push
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-ussuri:
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-ussuri:
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-containers-build-push
+        ## containers/images
         - periodic-tripleo-centos-8-ussuri-containers-build-push:
             nodeset: single-centos-8-node-vexxhost
             dependencies:
               - periodic-tripleo-centos-8-ussuri-promote-promoted-components-to-tripleo-ci-testing
-        - periodic-tripleo-centos-8-buildimage-overcloud-full-master:
+        - periodic-tripleo-centos-8-buildimage-overcloud-full-ussuri:
             nodeset: single-centos-8-node-vexxhost
             dependencies:
               - periodic-tripleo-centos-8-ussuri-promote-promoted-components-to-tripleo-ci-testing
@@ -32,15 +117,18 @@
             nodeset: single-centos-8-node-vexxhost
             dependencies:
               - periodic-tripleo-centos-8-ussuri-promote-promoted-components-to-tripleo-ci-testing
+        ## promote to tripleo-ci-testing
         - periodic-tripleo-centos-8-ussuri-promote-promoted-components-to-tripleo-ci-testing
 
 # ussuri integration jobs
+## promote to tripleo-ci-testing
 - job:
     name: periodic-tripleo-centos-8-ussuri-promote-promoted-components-to-tripleo-ci-testing
     parent: periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing
     vars:
       release: ussuri
 
+## containers/images
 - job:
     name: periodic-tripleo-centos-8-ussuri-containers-build-push
     parent: periodic-tripleo-centos-8-master-containers-build-push
@@ -66,6 +154,7 @@
       release: ussuri
       branch_override: 'stable/ussuri'
 
+## standalone
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-ussuri
     parent: periodic-tripleo-ci-centos-8-standalone-master
@@ -74,8 +163,137 @@
       release: ussuri
 
 - job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-master
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-master
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario003-standalone-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-master
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-master
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario007-standalone-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-master
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-standalone-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-master
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario012-standalone-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario012-standalone-master
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-master
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-master
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-master
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+## multinode
+- job:
+    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-ussuri
+    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-master
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset030-ussuri
+    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset030-master
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-master
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+## ovb
+- job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-ussuri
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-ussuri
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-master
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-ussuri
+    parent: periodic-tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-master
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-ussuri
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-master
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+## undercloud
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-undercloud-minion-ussuri
+    parent: periodic-tripleo-ci-centos-8-containers-undercloud-minion-master
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-containers-ussuri
+    parent: periodic-tripleo-ci-centos-8-undercloud-containers-master
     vars:
       branch_override: "stable/ussuri"
       release: ussuri
