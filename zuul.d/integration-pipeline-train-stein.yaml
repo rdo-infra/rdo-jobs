@@ -1,0 +1,201 @@
+---
+# train / stein integration pipeline
+- project-template:
+    name: integration-pipeline-train-stein
+    openstack-periodic-24h:
+      jobs:
+        ##### stable/train #####
+        - periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-train-upload:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
+        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-train:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
+        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-train:
+            nodeset: two-centos-7-nodes-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
+        - periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-train:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
+        - periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-train:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
+        - periodic-tripleo-ci-centos-7-undercloud-containers-train:
+            nodeset: single-centos-7-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
+        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-train:
+            nodeset: two-centos-7-nodes-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
+        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-train:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
+        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-train:
+            nodeset: two-centos-7-nodes-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
+        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-train:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
+        - periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-train:
+            nodeset: single-centos-7-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
+        - periodic-tripleo-ci-centos-7-ovb-1ctlr_1cellctrl_1comp-featureset063-train:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
+        - periodic-tripleo-ci-centos-7-standalone-train:
+            nodeset: single-centos-7-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
+        - periodic-tripleo-ci-centos-7-standalone-full-tempest-api-train:
+            nodeset: single-centos-7-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
+        - periodic-tripleo-ci-centos-7-standalone-full-tempest-scenario-train:
+            nodeset: single-centos-7-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
+        - periodic-tripleo-ci-centos-7-scenario001-standalone-train:
+            nodeset: single-centos-7-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
+        - periodic-tripleo-ci-centos-7-scenario002-standalone-train:
+            nodeset: single-centos-7-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
+        - periodic-tripleo-ci-centos-7-scenario003-standalone-train:
+            nodeset: single-centos-7-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
+        - periodic-tripleo-ci-centos-7-scenario004-standalone-train:
+            nodeset: single-centos-7-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
+        - periodic-tripleo-ci-centos-7-scenario007-standalone-train:
+            nodeset: single-centos-7-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
+        - periodic-tripleo-ci-centos-7-scenario010-standalone-train:
+            nodeset: single-centos-7-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
+        - periodic-tripleo-ci-centos-7-standalone-upgrade-train:
+            nodeset: single-centos-7-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
+        - periodic-tripleo-centos-7-train-containers-build-push:
+            dependencies:
+              - periodic-tripleo-centos-7-train-promote-consistent-to-tripleo-ci-testing
+        - periodic-tripleo-centos-7-train-promote-consistent-to-tripleo-ci-testing:
+            nodeset: upstream-centos-7-vexxhost
+
+        ##### stable/stein #####
+        - periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-stein-upload:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-stein-containers-build-push
+        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-stein:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-stein-containers-build-push
+        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-stein:
+            nodeset: two-centos-7-nodes-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-stein-containers-build-push
+        - periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-stein:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-stein-containers-build-push
+        - periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-stein:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-stein-containers-build-push
+        - periodic-tripleo-ci-centos-7-undercloud-containers-stein:
+            nodeset: single-centos-7-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-stein-containers-build-push
+        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-stein:
+            nodeset: two-centos-7-nodes-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-stein-containers-build-push
+        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-stein:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-stein-containers-build-push
+        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-stein:
+            nodeset: two-centos-7-nodes-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-stein-containers-build-push
+        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-stein:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-7-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-stein-containers-build-push
+        - periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-stein:
+            nodeset: single-centos-7-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-stein-containers-build-push
+        - periodic-tripleo-ci-centos-7-standalone-stein:
+            nodeset: single-centos-7-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-stein-containers-build-push
+        - periodic-tripleo-ci-centos-7-scenario001-standalone-stein:
+            nodeset: single-centos-7-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-stein-containers-build-push
+        - periodic-tripleo-ci-centos-7-scenario002-standalone-stein:
+            nodeset: single-centos-7-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-stein-containers-build-push
+        - periodic-tripleo-ci-centos-7-scenario003-standalone-stein:
+            nodeset: single-centos-7-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-stein-containers-build-push
+        - periodic-tripleo-ci-centos-7-scenario004-standalone-stein:
+            nodeset: single-centos-7-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-stein-containers-build-push
+        - periodic-tripleo-ci-centos-7-standalone-upgrade-stein:
+            nodeset: single-centos-7-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-stein-containers-build-push
+        - periodic-tripleo-centos-7-stein-containers-build-push:
+            dependencies:
+              - periodic-tripleo-centos-7-stein-promote-consistent-to-tripleo-ci-testing
+        - periodic-tripleo-centos-7-stein-promote-consistent-to-tripleo-ci-testing:
+            nodeset: upstream-centos-7-vexxhost
