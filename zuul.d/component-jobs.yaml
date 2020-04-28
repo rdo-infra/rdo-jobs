@@ -456,6 +456,18 @@
     vars:
       component: clients
 
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-component-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-master
+    abstract: true
+    vars: *component_vars_ovb
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-component-master
+    vars:
+      component: security
+
 ### ussuri
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-baremetal-ussuri
@@ -472,6 +484,12 @@
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-ussuri
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-master
+    vars:
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-ussuri
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-master
     vars:
       release: ussuri
 
