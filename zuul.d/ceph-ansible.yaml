@@ -154,6 +154,52 @@
           - 'environments/podman.yaml'
         use_os_tempest: false
 
+# Base job for ceph on train
+
+- job:
+    name: tripleo-ceph-integration-centos-7-scenarios-standalone-train
+    parent: tripleo-ci-base-standalone-rdo
+    run: playbooks/run-rpm-build.yaml
+    required-projects:
+      - name: opendev.org/openstack/tripleo-heat-templates
+        override-checkout: stable/train
+      - name: github.com/ceph/ceph-ansible
+        override-checkout: stable-4.0
+    vars:
+      featureset: '052'
+      standalone_ceph: true
+
+# Scenarios for train
+
+- job:
+    name: tripleo-ceph-integration-centos-7-scenario001-standalone-train
+    parent: tripleo-ceph-integration-centos-7-scenarios-standalone-train
+    # stein/train/ussuri will be using stable-4.0
+    # branches: ^(stable-5.0|master).*$
+    branches: ^(stable-4.0|master).*$
+    required-projects:
+      - name: opendev.org/openstack/tripleo-heat-templates
+        override-checkout: stable/train
+      - name: github.com/ceph/ceph-ansible
+        override-checkout: stable-4.0
+    vars:
+      release: master
+      featureset_override: *scenario001
+
+- job:
+    name: tripleo-ceph-integration-centos-7-scenario004-standalone-train
+    parent: tripleo-ceph-integration-centos-7-scenarios-standalone-train
+    # stein/train/ussuri will be using stable-4.0
+    # branches: ^(stable-5.0|master).*$
+    branches: ^(stable-4.0|master).*$
+    required-projects:
+      - name: opendev.org/openstack/tripleo-heat-templates
+        override-checkout: stable/train
+      - name: github.com/ceph/ceph-ansible
+        override-checkout: stable-4.0
+    vars:
+      featureset_override: *scenario004
+
 # RHEL 8 Jobs
 
 # Base job for ceph
