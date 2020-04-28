@@ -34,6 +34,16 @@
             files: *ceph
             dependencies:
               - tripleo-centos-8-ceph-integration-master
+        - tripleo-ceph-integration-train:
+            files: *ceph
+        - tripleo-ceph-integration-centos-7-scenario001-standalone-train:
+            files: *ceph
+              dependencies:
+                - tripleo-ceph-integration-train
+        - tripleo-ceph-integration-centos-7-scenario004-standalone-train:
+            files: *ceph
+              dependencies:
+                - tripleo-ceph-integration-train
         - podman-package-rhel-8: &podman
             files:
               - zuul.d/podman.yaml
