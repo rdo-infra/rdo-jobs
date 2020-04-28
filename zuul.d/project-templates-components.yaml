@@ -140,6 +140,9 @@
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-security-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-security-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-security-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-security-promote-consistent-to-component-ci-testing
     openstack-component-swift:
       jobs:
@@ -334,6 +337,9 @@
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-security-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-security-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-security-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-security-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-ussuri-component-security-promote-consistent-to-component-ci-testing
