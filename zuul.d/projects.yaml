@@ -2,56 +2,113 @@
     name: rdo-jobs
     check:
       jobs:
-        - tox-docs: &cfg
-            nodeset: rdo-centos-8
+        - periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+        - periodic-tripleo-centos-8-buildimage-overcloud-full-train:
             vars:
-              # needed to avoid accidental call of /usr/bin/tox
-              tox_executable: "{{ ansible_python.executable }} -m tox"
-            pre-run:
-              - playbooks/rdo-tox-epel.yaml
-              - playbooks/pre-tox.yaml
-        - tox-linters: *cfg
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^bindep.txt$
-              - ^requirements.txt
-              - ^roles
-              - ^test-requirements.txt
-              - ^tox.ini$
+              force_periodic: true
+              promote_source: tripleo-ci-testing
+            dependencies:
+              - periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+        - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train:
             vars:
-              tox_environment:
-                PYTEST_REQPASS: 1
-        - tripleo-centos-8-ceph-integration-master:
-            files: &ceph
-              - ^playbooks/tripleo-ceph-integration.*$
-              - zuul.d/ceph-ansible.yaml
-        - tripleo-ceph-integration-centos-8-scenario001-standalone:
-            files: *ceph
+              force_periodic: true
+              promote_source: tripleo-ci-testing
             dependencies:
-              - tripleo-centos-8-ceph-integration-master
-        - tripleo-ceph-integration-centos-8-scenario004-standalone:
-            files: *ceph
+              - periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+        - periodic-tripleo-centos-8-train-containers-build-push:
+            vars:
+              force_periodic: true
+              promote_source: tripleo-ci-testing
+              registry_namespace: tripleotraincentos8
             dependencies:
-              - tripleo-centos-8-ceph-integration-master
-        - podman-package-rhel-8: &podman
-            files:
-              - zuul.d/podman.yaml
-              - playbooks/podman/.*
-            # until we fix https://github.com/containers/libpod/issues/4665
-            voting: false
-        - podman-package-centos-7: *podman
-        - podman-package-centos-8: *podman
-        - podman-package-fedora-31: *podman
-        - tripleo-podman-integration-centos-8-scenario000-standalone:
-            files:
-              - zuul.d/podman.yaml
-              - playbooks/podman/.*
+              - periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-train:
+            vars:
+              force_periodic: true
+              promote_source: tripleo-ci-testing
             dependencies:
-              - podman-package-centos-8
-
-    gate:
-      jobs:
-        - tox-docs: *cfg
-        - tox-linters: *cfg
-        - rdo-tox-molecule-delegated-centos-8: *molecule
+              - periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-train
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train
+              - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-api-train:
+            vars:
+              force_periodic: true
+              promote_source: tripleo-ci-testing
+            dependencies:
+              - periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-train
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train
+              - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-train:
+            vars:
+              force_periodic: true
+              promote_source: tripleo-ci-testing
+            dependencies:
+              - periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-train
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train
+              - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario001-standalone-train:
+            vars:
+              force_periodic: true
+              promote_source: tripleo-ci-testing
+            dependencies:
+              - periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-train
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train
+              - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario002-standalone-train:
+            vars:
+              force_periodic: true
+              promote_source: tripleo-ci-testing
+            dependencies:
+              - periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-train
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train
+              - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario003-standalone-train:
+            vars:
+              force_periodic: true
+              promote_source: tripleo-ci-testing
+            dependencies:
+              - periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-train
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train
+              - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario004-standalone-train:
+            vars:
+              force_periodic: true
+              promote_source: tripleo-ci-testing
+            dependencies:
+              - periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-train
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train
+              - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario007-standalone-train:
+            vars:
+              force_periodic: true
+              promote_source: tripleo-ci-testing
+            dependencies:
+              - periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-train
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train
+              - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario010-standalone-train:
+            vars:
+              force_periodic: true
+              promote_source: tripleo-ci-testing
+            dependencies:
+              - periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-train
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train
+              - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-train:
+            vars:
+              force_periodic: true
+              promote_source: tripleo-ci-testing
+            dependencies:
+              - periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-train
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train
+              - periodic-tripleo-centos-8-train-containers-build-push
