@@ -369,6 +369,23 @@
         - baremetal-full-overcloud.yml
         - baremetal-full-overcloud-validate.yml
 
+- job:
+    name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset029
+    parent: tripleo-ci-base-ovb-rdo-centos-8
+    timeout: 12600
+    branches: ^(?!stable/(newton|ocata|pike|queens|rocky|stein|train)).*$
+    voting: false
+    vars: &fs29_vars
+      nodes: 3ctlr_1comp_1supp
+      featureset: '029'
+      playbooks:
+        - ovb-setup.yml
+        - baremetal-full-freeipa.yml
+        - baremetal-full-undercloud.yml
+        - baremetal-full-overcloud-prep.yml
+        - baremetal-full-overcloud.yml
+        - baremetal-full-overcloud-validate.yml
+
 
 # =================  C E N T O S  7  P E R I O D I C   J O B S
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
@@ -721,6 +738,16 @@
     vars:
       nodes: 3ctlr_1comp
       featureset: '035'
+      release: master
+      featureset_override:
+        to_build: false
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset029-master
+    parent: tripleo-ci-base-ovb-periodic-centos-8
+    timeout: 12600
+    vars:
+      <<: *fs29_vars
       release: master
       featureset_override:
         to_build: false
