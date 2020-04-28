@@ -733,3 +733,12 @@
         to_build: false
 
 ## ovb component jobs: zuul.d/component-jobs.yaml
+
+## OVB centos-8 periodic job
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-train
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train

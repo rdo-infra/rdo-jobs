@@ -1,0 +1,9 @@
+---
+- job:
+    name: periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+    parent: periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing
+    vars:
+      release: train
+      distro: centos8
+      promote_source: consistent
+      promote_target: tripleo-ci-testing
