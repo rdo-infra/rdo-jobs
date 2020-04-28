@@ -1,0 +1,8 @@
+---
+- job:
+    name: periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+    parent: tripleo-ci-base-promote-hash
+    vars:
+      release: train
+      promote_source: consistent
+      promote_target: tripleo-ci-testing
