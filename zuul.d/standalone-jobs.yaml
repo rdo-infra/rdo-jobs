@@ -230,6 +230,23 @@
         use_os_tempest: true
 
 - job:
+    name: periodic-tripleo-ci-centos-8-standalone-skipped-tempest-master
+    parent: periodic-tripleo-ci-centos-8-standalone-master
+    timeout: 13500
+    vars:
+      featureset: '052'
+      release: master
+      featureset_override:
+        run_tempest: false
+        tempest_run_concurrency: 2
+        tempest_services:
+          - cinder
+          - horizon
+          - neutron
+        tempest_run_skipped: true
+        use_os_tempest: true
+
+- job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-master
     parent: periodic-tripleo-ci-centos-8-standalone-master
     timeout: 14400
