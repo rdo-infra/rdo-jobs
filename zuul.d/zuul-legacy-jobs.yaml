@@ -249,30 +249,6 @@
       - rdo-infra/rdo-infra-playbooks
 
 - job:
-    name: legacy-rdo-infra-playbooks-integration-sensu-client
-    parent: legacy-base
-    run: playbooks/legacy/rdo-infra-playbooks-integration-sensu-client/run.yaml
-    post-run: playbooks/legacy/rdo-infra-playbooks-integration-sensu-client/post.yaml
-    required-projects:
-      - centos-opstools/opstools-ansible
-      - centos-opstools/sensu
-      - rdo-infra/ansible-role-rdo-base
-      - rdo-infra/ansible-role-rdo-bot
-      - rdo-infra/rdo-infra-playbooks
-
-- job:
-    name: legacy-rdo-infra-playbooks-integration-sensu-server
-    parent: legacy-base
-    run: playbooks/legacy/rdo-infra-playbooks-integration-sensu-server/run.yaml
-    post-run: playbooks/legacy/rdo-infra-playbooks-integration-sensu-server/post.yaml
-    required-projects:
-      - centos-opstools/opstools-ansible
-      - centos-opstools/sensu
-      - rdo-infra/ansible-role-rdo-base
-      - rdo-infra/ansible-role-rdo-bot
-      - rdo-infra/rdo-infra-playbooks
-
-- job:
     name: legacy-rdo-kolla-build-containers
     parent: legacy-base
     run: playbooks/legacy/rdo-kolla-build-containers/run.yaml
