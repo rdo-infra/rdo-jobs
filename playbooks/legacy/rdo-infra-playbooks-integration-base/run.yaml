@@ -126,21 +126,6 @@
               cico:
                 hosts:
                   localhost:
-              monitoring:
-                hosts:
-                  localhost:
-              # TODO: Fix this
-              # rabbit_hosts is expected by opstools-ansible
-              rabbit_hosts:
-                children:
-                  monitoring
-              monitoring_clients:
-                children:
-                  standard:
-                  review:
-                  dlrn:
-                  cico:
-                  monitoring:
           EOF
 
           pushd rdo-infra-playbooks
@@ -153,12 +138,10 @@
             fi
             ansible-playbook -i $ANSIBLE_HOSTS playbooks/base.yml \
               -e "rdobot_nickname=not_rdobot" \
-              -e "sensu_rabbitmq_server=localhost" \
               -e "deploy_telegraf=true"
             echo "Re-running for idempotency"
             ansible-playbook -i $ANSIBLE_HOSTS playbooks/base.yml \
               -e "rdobot_nickname=not_rdobot" \
-              -e "sensu_rabbitmq_server=localhost" \
               -e "deploy_telegraf=true"
           popd
         chdir: '{{ ansible_user_dir }}/workspace'
