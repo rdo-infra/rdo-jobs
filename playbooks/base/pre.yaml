@@ -15,10 +15,3 @@
       when:
         - _worker_is_sudoer.rc == 0
         - ansible_distribution != "Fedora" or (ansible_distribution == "Fedora" and ansible_distribution_major_version|int > 28)
-
-    # until https://github.com/pypa/virtualenv/issues/1810 is fixed and is in nodepool images
-    - name: install virtualenv < 20.0.19 in CentOS 7
-      command: sudo pip install 'virtualenv<20.0.19'
-      when:
-        - _worker_is_sudoer.rc == 0
-        - ansible_distribution == "CentOS" and ansible_distribution_major_version|int == 7
