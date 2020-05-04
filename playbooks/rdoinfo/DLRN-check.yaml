@@ -58,13 +58,14 @@
 
           export CENTOS_VERS="{{  centos_version | default('centos7') }}"
 
-          CURRENT_MASTER_TAG="ussuri-uc"
+          CURRENT_MASTER_TAG="victoria-uc"
 
           PACKAGES_UPDATED_MASTER=""
           PACKAGES_UPDATED_QUEENS=""
           PACKAGES_UPDATED_ROCKY=""
           PACKAGES_UPDATED_STEIN=""
           PACKAGES_UPDATED_TRAIN=""
+          PACKAGES_UPDATED_USSURI=""
 
           TAGS_DIFF=$(rdopkg info-tags-diff .)
 
@@ -73,6 +74,9 @@
               if [ "${CENTOS_VERS}" = "centos8" ]; then
                   if [[ -n $(echo "$line" | grep -w $CURRENT_MASTER_TAG) ]]; then
                       PACKAGES_UPDATED_MASTER="$PACKAGES_UPDATED_MASTER $PKGNAME"
+                  fi
+                  if [[ -n $(echo "$line" | grep -w ussuri) ]]; then
+                      PACKAGES_UPDATED_USSURI="$PACKAGES_UPDATED_USSURI $PKGNAME"
                   fi
               fi
               if [[ -n $(echo "$line" | grep -w train) ]]; then
@@ -98,6 +102,16 @@
           TIMEOUT="{{ zuul.timeout | default('10800') }}"
           if [ -n "${PACKAGES_UPDATED_MASTER}" ]; then
               timeout --signal=SIGKILL $TIMEOUT  {{ ansible_user_dir }}/rdoinfo-DLRN.sh $CURRENT_MASTER_TAG "${PACKAGES_UPDATED_MASTER}" "${CENTOS_VERS}"
+              ret1=$?
+              if [ $ret1 -ne 0 ]; then
+                  ret=$ret1
+              fi
+              # The data/ contents have been archived already, remove to avoid issues with the next branch
+              rm -rf data
+              sudo rm -rf /var/cache/mock/*
+          fi
+          if [ -n "${PACKAGES_UPDATED_USSURI}" ]; then
+              timeout --signal=SIGKILL $TIMEOUT  {{ ansible_user_dir }}/rdoinfo-DLRN.sh ussuri "${PACKAGES_UPDATED_USSURI}" "${CENTOS_VERS}"
               ret1=$?
               if [ $ret1 -ne 0 ]; then
                   ret=$ret1
