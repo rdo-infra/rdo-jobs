@@ -237,7 +237,7 @@
     parent: DLRN-rpmbuild
     voting: false
     vars:
-      tag: 'ussuri-uc'
+      tag: 'victoria-uc'
 
 - job:
     name: DLRN-rpmbuild-rpm-packaging-centos
@@ -271,7 +271,7 @@
     name: DLRN-rpmbuild-centos8-pinned
     parent: DLRN-rpmbuild-centos8
     vars:
-      tag: 'ussuri-uc'
+      tag: 'victoria-uc'
       centos_version: 'centos8'
 
 - job:
