@@ -1,7 +1,7 @@
 ---
 - hosts: primary
   vars:
-    master_release: ussuri
+    master_release: victoria
   tasks:
     - name: Execute mirror info role
       import_role:
