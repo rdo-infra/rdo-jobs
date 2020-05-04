@@ -326,3 +326,21 @@
       - name: subnodes
         nodes:
           - secondary
+
+- nodeset:
+    name: two-centos-8-nodes-vexxhost
+    nodes:
+      - name: primary
+        label: upstream-centos-8-vexxhost
+      - name: secondary
+        label: upstream-centos-8-vexxhost
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes:
+          - secondary
+      - name: subnodes
+        nodes:
+          - secondary
