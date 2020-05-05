@@ -5,6 +5,14 @@
       - name: container
         label: runc-fedora-29
 
+# FIXME: remove that nodeset after merging:
+# https://review.rdoproject.org/r/#/c/25913/
+- nodeset:
+    name: fedora-latest
+    nodes:
+      - name: fedora-node
+        label: cloud-fedora-31
+
 # Dib centos
 - nodeset:
     name: dib-centos-7
