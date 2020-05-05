@@ -168,13 +168,15 @@
       tox_environment:
         PYTEST_ADDOPTS: -m "delegated"
 
+# FIXME: switch back from single-fedora-31-node to container-fedora after
+# merging: https://review.rdoproject.org/r/#/c/25913/
 - job:
     name: rdopkg-reqcheck
     description: |
       Dependency check with "rdopkg reqcheck"
     parent: base
     run: playbooks/reqcheck/run.yaml
-    nodeset: container-fedora
+    nodeset: single-fedora-31-node
     required-projects:
       - rdopkg
 
