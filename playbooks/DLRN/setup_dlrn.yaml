@@ -1,11 +1,16 @@
 ---
-- name: Enable epel in CentOS8 systems (for mock installation)
-  shell:
-    cmd: |
-      yum-config-manager --enable --save epel
+- name: Setup build deps repo for mock
+  yum_repository:
+    name: delorean-master-build-deps
+    description: dlrn-master-build-deps
+    file: delorean-master-build-deps
+    baseurl: https://trunk.rdoproject.org/centos8-master/build-deps/latest/
+    gpgcheck: no
+    enabled: yes
   become: true
   when:
-    ansible_distribution == "CentOS" and ansible_distribution_major_version|int >= 8
+    - ansible_distribution == "CentOS"
+    - ansible_distribution_major_version == '8'
 
 - name: Ensure bindep.txt dependencies are installed
   include_role:
@@ -18,6 +23,15 @@
     name: test-setup
   vars:
     zuul_work_dir: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
+
+- name: Remove build-deps repo
+  yum_repository:
+    name: delorean-master-build-deps
+    state: absent
+  become: true
+  when:
+    - ansible_distribution == "CentOS"
+    - ansible_distribution_major_version == '8'
 
 - name: Ensure user in mock group
   user:
