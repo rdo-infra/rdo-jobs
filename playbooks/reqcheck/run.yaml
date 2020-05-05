@@ -9,7 +9,8 @@
         cmd: |
           set -e
           # Need to inherit system-site-packages for python-yum
-          virtualenv --system-site-packages {{ ansible_user_dir }}/.venv
+          sudo dnf install -y python3-virtualenv
+          virtualenv-3 --system-site-packages {{ ansible_user_dir }}/.venv
           source {{ ansible_user_dir }}/.venv/bin/activate
           pushd {{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/rdopkg'].src_dir }}/
           pip install .
