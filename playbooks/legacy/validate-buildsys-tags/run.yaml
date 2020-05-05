@@ -77,6 +77,9 @@
           # Install requirements
           YUM="{{ ansible_pkg_mgr }}"
           sudo $YUM install -y mock;
+          # python3-urllib3-1.25.7 not work with old six from base, so need to update six
+          # cbs command fails with Failed to parse: https://cbs.centos.org/kojihub/
+          sudo $YUM update -y python3-six;
           sudo $YUM install -y epel-release wget yum-utils;
           sudo yum-config-manager --enable epel;
           sudo $YUM install -y https://download.copr.fedorainfracloud.org/results/ykarel/ykarel-centos-stream/centos-stream-x86_64/01239149-python-centos/python-centos-0.1.1-2.el8.noarch.rpm;  # noqa 204
