@@ -420,6 +420,8 @@
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master
     abstract: true
     vars: &component_vars_ovb
+      cloud_name: vexxhost
+      nodeset: upstream-centos-8-vexxhost
       component: component
       release: master
       featureset_override:
@@ -479,6 +481,7 @@
     parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-master
     abstract: true
     vars: &component_vars_multinode
+      nodeset: two-centos-8-nodes-vexxhost
       component: component
       release: master
       dlrn_server_url: "trunk.rdoproject.org"
@@ -571,6 +574,7 @@
     parent: periodic-tripleo-ci-centos-8-standalone-master
     abstract: true
     vars: &component_vars_standalone
+      nodeset: single-centos-8-node-vexxhost
       component: component
       release: master
       dlrn_server_url: "trunk.rdoproject.org"
