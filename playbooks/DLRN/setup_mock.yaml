@@ -1,18 +1,12 @@
 ---
-- name: Install EPEL on CentOS 8
-  package:
-    name:
-      - epel-release
-    state: present
-  become: true
-  when:
-    - ansible_distribution == "CentOS"
-    - ansible_distribution_major_version == '8'
-
-- name: Enable EPEL on CentOS8 systems
-  shell:
-    cmd: |
-      yum-config-manager --enable --save epel
+- name: Setup build deps repo for mock
+  yum_repository:
+    name: delorean-ussuri-build-deps
+    description: dlrn-ussuri-build-deps
+    file: delorean-ussuri-build-deps
+    baseurl: https://trunk.rdoproject.org/centos8-ussuri/build-deps/latest/
+    gpgcheck: no
+    enabled: yes
   become: true
   when:
     - ansible_distribution == "CentOS"
@@ -28,6 +22,15 @@
       - spectool
     state: present
   become: true
+
+- name: Remove build-deps repo
+  yum_repository:
+    name: delorean-ussuri-build-deps
+    state: absent
+  become: true
+  when:
+    - ansible_distribution == "CentOS"
+    - ansible_distribution_major_version == '8'
 
 - name: Ensure user in mock group
   user:
