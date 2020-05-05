@@ -144,12 +144,50 @@
 
 # Job for testing featureset002 changes
 - job:
+    name: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-upload
+    parent: tripleo-ci-base-ovb-rdo-centos-8
+    branches: "^.*$"
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '002'
+
+- job:
     name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload
     parent: tripleo-ci-base-ovb-rdo
     branches: "^.*$"
     vars:
       nodes: 1ctlr_1comp
       featureset: '002'
+
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload-train
+    parent: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload-stein
+    parent: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload
+    override-checkout: "stable/stein"
+    vars:
+      branch_override: "stable/stein"
+
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload-rocky
+    parent: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload
+    override-checkout: "stable/rocky"
+    vars:
+      branch_override: "stable/rocky"
+
+
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload-queens
+    parent: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload
+    override-checkout: "stable/queens"
+    vars:
+      branch_override: "stable/queens"
+
 
 - job:
     name: tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020
