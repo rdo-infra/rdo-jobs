@@ -2,20 +2,10 @@
 - hosts: all
   name: DLRN-build-tripleo run playbook
   tasks:
-    - name: Install EPEL on CentOS 8
-      package:
-        name:
-          - epel-release
-        state: present
-      become: true
-      when:
-        - ansible_distribution == "CentOS"
-        - ansible_distribution_major_version == '8'
-
-    - name: Enable EPEL on CentOS8 systems
-      shell:
-        cmd: |
-          yum-config-manager --enable --save epel
+    - name: Setup deps repo for mock
+      get_url:
+        url: https://trunk.rdoproject.org/centos8-master/delorean-deps.repo
+        dest: /etc/yum.repos.d/delorean-deps.repo
       become: true
       when:
         - ansible_distribution == "CentOS"
@@ -31,10 +21,10 @@
         state: present
       become: true
 
-    - name: Disable EPEL on CentOS8 systems
-      shell:
-        cmd: |
-          yum-config-manager --disable --save epel
+    - name: Remove deps repo
+      file:
+        path: /etc/yum.repos.d/delorean-deps.repo
+        state: absent
       become: true
       when:
         - ansible_distribution == "CentOS"
