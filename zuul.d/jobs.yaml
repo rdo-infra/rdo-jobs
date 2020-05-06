@@ -184,7 +184,7 @@
     name: rdo-tox-molecule-rhel8
     parent: tripleo-tox-molecule
     voting: false
-    nodeset: rdo-fedora-stable
+    nodeset: rdo-centos-8
     vars:
       tox_environment:
         MOLECULE_PLATFORM: rhel8
