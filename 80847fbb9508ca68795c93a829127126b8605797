@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "544cd061_ed994c9d",
+        "filename": "playbooks/ansible/build-ansible-rpm.yaml",
+        "patchSetId": 40
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 670
+      },
+      "writtenOn": "2020-05-06T11:36:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "376e8f4f_ff35648c",
+      "range": {
+        "startLine": 8,
+        "startChar": 19,
+        "endLine": 8,
+        "endChar": 23
+      },
+      "revId": "80847fbb9508ca68795c93a829127126b8605797",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f23ad03f_5eba0f9a",
         "filename": "playbooks/ansible/build-ansible-rpm.yaml",
         "patchSetId": 40
@@ -36,6 +60,24 @@
       "writtenOn": "2020-05-04T08:10:48Z",
       "side": 1,
       "message": "hmm i see it is hard coded there https://github.com/ansible/ansible/blob/bbdf77a59f50306b34161efc148b572ab257a537/Makefile#L35 :/\n\nthis is ok/no strong pushback but wondering if there is a better way using update-alternatives https://linux.die.net/man/8/update-alternatives",
+      "revId": "80847fbb9508ca68795c93a829127126b8605797",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a88af384_f844a74f",
+        "filename": "playbooks/ansible/build-ansible-rpm.yaml",
+        "patchSetId": 40
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 670
+      },
+      "writtenOn": "2020-05-06T11:36:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f23ad03f_5eba0f9a",
       "revId": "80847fbb9508ca68795c93a829127126b8605797",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
