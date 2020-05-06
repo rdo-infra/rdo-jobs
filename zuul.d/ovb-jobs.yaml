@@ -482,6 +482,14 @@
 
 # legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload
 - job:
+    name: periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-master-upload
+    parent: tripleo-ci-base-ovb-periodic-upload-centos8
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '002'
+      release: master
+
+- job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload
     parent: tripleo-ci-base-ovb-periodic-upload
     vars:
