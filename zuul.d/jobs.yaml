@@ -181,17 +181,6 @@
       - rdopkg
 
 - job:
-    name: rdo-tox-molecule-rhel8
-    parent: tripleo-tox-molecule
-    voting: false
-    nodeset: rdo-fedora-stable
-    vars:
-      tox_environment:
-        MOLECULE_PLATFORM: rhel8
-        MOLECULE_IMAGE: ubi8/python-36
-        MOLECULE_CONTAINER_REGISTRY_URL: registry.access.redhat.com
-
-- job:
     name: DLRN-build-tripleo-base
     parent: base
     run: playbooks/DLRN-build-tripleo/run.yaml
