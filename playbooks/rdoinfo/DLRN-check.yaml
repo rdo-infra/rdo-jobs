@@ -48,6 +48,16 @@
         append: true
       become: true
 
+    - name: Set up mock configuration
+      shell:
+        cmd: |
+          cat << EOF | tee /etc/mock/site-defaults.cfg
+          config_opts['use_bootstrap'] = False
+          config_opts['dnf_warning'] = False
+          EOF
+      become: true
+      changed_when: true
+
     - name: Build packages for tags being updated
       shell:
         cmd: |
