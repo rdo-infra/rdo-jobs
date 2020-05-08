@@ -4,6 +4,16 @@
   tasks:
     - include_tasks: setup_mock.yaml
 
+    - name: Set up mock configuration
+      shell:
+        cmd: |
+          cat << EOF | tee /etc/mock/site-defaults.cfg
+          config_opts['use_bootstrap'] = False
+          config_opts['dnf_warning'] = False
+          EOF
+      become: true
+      changed_when: true
+
     - name: run DLRN
       changed_when: true
       shell:
