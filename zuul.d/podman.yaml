@@ -29,9 +29,9 @@
     nodeset: upstream-rhel-8
 
 - job:
-    name: podman-package-fedora-30
+    name: podman-package-fedora-stable
     parent: podman-package-centos-8
-    nodeset: single-fedora-30-node
+    nodeset:  rdo-fedora-stable
 
 # Podman TripleO integration Jobs
 
