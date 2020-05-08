@@ -31,6 +31,15 @@
           become: true
           command: yum-config-manager --enable epel
 
+    - name: Enable CentOS release stream for Centos-8
+      become: true
+      package:
+        name: centos-release-stream
+        state: present
+      when:
+        - ansible_distribution_major_version == "8"
+        - ansible_distribution == "CentOS"
+
     - name: Install pre-requisites
       become: true
       package:
