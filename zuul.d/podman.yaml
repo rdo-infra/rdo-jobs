@@ -79,6 +79,7 @@
     name: tripleo-podman-integration-centos-8-scenario000-standalone
     parent: tripleo-ci-base-standalone-periodic-centos-8
     branches: ^master$
+    voting: false
     run: playbooks/podman/install-podman-rpm.yaml
     required-projects:
       - name: github.com/containers/libpod
