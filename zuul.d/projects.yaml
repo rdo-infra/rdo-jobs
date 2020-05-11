@@ -43,6 +43,7 @@
         - podman-package-centos-7: *podman
         - podman-package-centos-8: *podman
         - podman-package-fedora-30: *podman
+        - podman-package-fedora-31: *podman
         - tripleo-podman-integration-centos-8-scenario000-standalone:
             files:
               - zuul.d/podman.yaml
