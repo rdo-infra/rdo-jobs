@@ -33,6 +33,11 @@
     parent: podman-package-centos-8
     nodeset: single-fedora-30-node
 
+- job:
+    name: podman-package-fedora-31
+    parent: podman-package-centos-8
+    nodeset: single-fedora-31-node
+
 # Podman TripleO integration Jobs
 
 ## Keystone based standalone deployment
@@ -42,6 +47,7 @@
     parent: tripleo-ci-base-standalone-periodic
     nodeset: single-rhel-8-node
     branches: ^master$
+    voting: false
     run: playbooks/podman/install-podman-rpm.yaml
     required-projects:
       - name: github.com/containers/libpod
