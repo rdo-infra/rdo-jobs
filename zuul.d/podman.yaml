@@ -29,11 +29,6 @@
     nodeset: upstream-rhel-8
 
 - job:
-    name: podman-package-fedora-30
-    parent: podman-package-centos-8
-    nodeset: single-fedora-30-node
-
-- job:
     name: podman-package-fedora-31
     parent: podman-package-centos-8
     nodeset: single-fedora-31-node
