@@ -1,22 +1,37 @@
 - hosts: all
   name: Job to periodically build an Octavia amphora
   tasks:
+    - name: Gather CentOS version
+      set_fact:
+        centos_releasever: "{{ ansible_distribution_major_version }}"
+        centos_release: "centos{{ centos_releasever }}"
+
     - name: build octavia amphora
       changed_when: true
       shell:
         cmd: |
           set -e -x
+          export CENTOS_VERSION="{{ centos_release }}"
           if [ "{{ zuul.branch }}" == master ]; then
             export RELEASE=master
           else
             export RELEASE=$(echo "{{ zuul.branch }}" | cut -d/ -f 2)
           fi
-          sudo yum -y install libguestfs-tools policycoreutils-python wget
-          sudo wget -O /etc/yum.repos.d/delorean.repo https://trunk.rdoproject.org/centos7-${RELEASE}/current/delorean.repo
-          sudo wget -O /etc/yum.repos.d/delorean-deps.repo https://trunk.rdoproject.org/centos7-${RELEASE}/delorean-deps.repo
-          # NOTE(jpena): python36-distro, a mock requirement, conflicts with python2-distro
-          sudo yum -y remove python36-distro
-          sudo yum -y install openstack-octavia-diskimage-create
+          if [ "${CENTOS_VERSION}" == "centos7" ]; then
+              sudo yum -y install libguestfs-tools policycoreutils-python wget
+          else
+              sudo dnf -y install libguestfs-tools python3-policycoreutils wget
+          fi
+          sudo wget -O /etc/yum.repos.d/delorean.repo https://trunk.rdoproject.org/${CENTOS_VERSION}-${RELEASE}/current/delorean.repo
+          sudo wget -O /etc/yum.repos.d/delorean-deps.repo https://trunk.rdoproject.org/${CENTOS_VERSION}-${RELEASE}/delorean-deps.repo
+
+          if [ "${CENTOS_VERSION}" == "centos7" ]; then
+            # NOTE(jpena): python36-distro, a mock requirement, conflicts with python2-distro
+            sudo yum -y remove python36-distro
+            sudo yum -y install openstack-octavia-diskimage-create
+          else
+            sudo dnf -y install openstack-octavia-diskimage-create
+          fi
           # NOTE(cgoncalves): Starting from Train release, CentOS amphora
           # images are built using the centos-minimal DIB element. This element
           # builds the base system in a chroot, whereas the centos DIB element
@@ -37,8 +52,13 @@
             cp /etc/yum.repos.d/delorean.repo /etc/yum.repos.d/delorean-deps.repo $PWD/rdo-repos/
             export DIB_YUM_MINIMAL_EXTRA_REPOS=$PWD/rdo-repos
           fi
-          sudo --preserve-env=DIB_LOCAL_IMAGE,DIB_YUM_MINIMAL_EXTRA_REPOS \
-              /usr/bin/octavia-diskimage-create.sh -s 3 -p -i centos -o amphora-x64-haproxy-centos.qcow2
+          if [ "${CENTOS_VERSION}" == "centos7" ]; then
+            sudo --preserve-env=DIB_LOCAL_IMAGE,DIB_YUM_MINIMAL_EXTRA_REPOS \
+                  /usr/bin/octavia-diskimage-create.sh -s 3 -p -i centos -o amphora-x64-haproxy-centos.qcow2
+          else
+            sudo --preserve-env=DIB_LOCAL_IMAGE,DIB_YUM_MINIMAL_EXTRA_REPOS \
+                  /usr/bin/octavia-diskimage-create.sh -s 3 -d 8 -p -i centos -o amphora-x64-haproxy-centos.qcow2
+          fi
           # Create output directory
           mkdir -p images/$RELEASE
           if [ -f amphora-x64-haproxy-centos.qcow2 ]; then
