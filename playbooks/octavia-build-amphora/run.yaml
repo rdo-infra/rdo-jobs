@@ -18,7 +18,7 @@
           if [ "{{ centos_release }}" == "7" ]; then
               sudo yum -y install libguestfs-tools policycoreutils-python wget
           else
-              sudo dnf -y install libguestfs-tools python3-policycoreutils wget
+              sudo dnf -y install libguestfs-tools python3-policycoreutils wget yum yum-utils policycoreutils-python-utils
           fi
           sudo wget -O /etc/yum.repos.d/delorean.repo https://trunk.rdoproject.org/centos{{ centos_release }}-${RELEASE}/current/delorean.repo
           sudo wget -O /etc/yum.repos.d/delorean-deps.repo https://trunk.rdoproject.org/centos{{ centos_release }}-${RELEASE}/delorean-deps.repo
