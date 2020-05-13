@@ -40,6 +40,22 @@
         - ansible_distribution_major_version == "8"
         - ansible_distribution == "CentOS"
 
+    - name: Workaround for missing btrfs/ioctl.h
+      when:
+        - ansible_distribution_major_version == "8"
+        - ansible_distribution == "CentOS"
+      become: true
+      shell:
+        cmd: |
+          set -ex
+          rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+          yum install -y https://www.elrepo.org/elrepo-release-8.el8.elrepo.noarch.rpm
+          yum-config-manager --enable elrepo-testing
+          yum install -y btrfs-progs-devel
+      # WARNING: Before asking about pure ansible approach, feel free to update the PR yourself
+      # NOTE: This code should not be part of the CI/CD job definition, it
+      # should be taken care by libpod Makefile.
+
     - name: Install pre-requisites
       become: true
       package:
