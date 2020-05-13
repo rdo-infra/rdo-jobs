@@ -530,15 +530,6 @@
         - rdo-tox-molecule
 
 - project-template:
-    name: rdo-tox-molecule-rhel8
-    description: |
-      Runs tox molecule job on RDO but by overriding default platforms and
-      using RHEL platforms, which are not available upstream.
-    openstack-check:
-      jobs:
-        - rdo-tox-molecule-rhel8
-
-- project-template:
     name: tripleo-buildimages-jobs
     description: |
       3rd party image building job
