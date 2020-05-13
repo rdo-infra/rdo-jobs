@@ -443,6 +443,82 @@
 ### stable/train standalone jobs ###
 # per https://review.rdoproject.org/r/#/c/22624/
 # parenting off periodic-tripleo-ci-centos-7-standalone-master
+
+########## C E N T O S 8 TRAIN #############################
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train
+    parent: periodic-tripleo-ci-centos-8-standalone-master
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-train
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-master
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-train
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-master
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-train
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-master
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-train
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-master
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario003-standalone-train
+    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-master
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-train
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-master
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario007-standalone-train
+    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-master
+    override-checkout: "stable/train"
+    voting: false
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-standalone-train
+    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-master
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+########## C E N T O S 7 TRAIN #############################
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-train
     parent: periodic-tripleo-ci-centos-7-standalone-master

@@ -113,6 +113,58 @@
         - periodic-tripleo-centos-7-train-promote-consistent-to-tripleo-ci-testing:
             nodeset: upstream-centos-7-vexxhost
 
+        ##### stable/train centos-8 #####
+        - periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+        - periodic-tripleo-centos-8-buildimage-overcloud-full-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+        - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+        - periodic-tripleo-centos-8-train-containers-build-push:
+            dependencies:
+              - periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-api-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario001-standalone-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario002-standalone-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario003-standalone-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario004-standalone-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario007-standalone-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario010-standalone-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-train:
+            dependencies:
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-train
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train
+              - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-train:
+            dependencies:
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-train
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train
+              - periodic-tripleo-centos-8-train-containers-build-push
+
         ##### stable/stein #####
         - periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-stein-upload:
             vars:

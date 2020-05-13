@@ -405,6 +405,15 @@
         - baremetal-full-overcloud.yml
         - baremetal-full-overcloud-validate.yml
 
+- job:
+    name: tripleo-ci-centos-8-ovb-1ctlr_1cellctrl_1comp-featureset063
+    parent: tripleo-ci-base-ovb-rdo-centos-8
+    branches: ^(?!stable/(newton|ocata|pike|queens|rocky|stein|train)).*$
+    timeout: 12600
+    vars:
+      nodes: 1ctlr_1cellctrl_1comp
+      featureset: '063'
+
 
 # =================  C E N T O S  7  P E R I O D I C   J O B S
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
@@ -779,4 +788,38 @@
       featureset_override:
         to_build: false
 
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-1ctlr_1cellctrl_1comp-featureset063-master
+    parent: tripleo-ci-base-ovb-rdo-centos-8
+    timeout: 12600
+    vars:
+      nodes: 1ctlr_1cellctrl_1comp
+      featureset: '063'
+      release: master
+
 ## ovb component jobs: zuul.d/component-jobs.yaml
+
+########## C E N T O S 8 TRAIN ####################
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-train
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-train
+    parent: periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-master
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-train
+    parent: periodic-tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-master
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
