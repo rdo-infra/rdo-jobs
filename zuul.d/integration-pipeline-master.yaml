@@ -28,6 +28,9 @@
               - periodic-tripleo-centos-8-master-containers-build-push
               - periodic-tripleo-centos-8-buildimage-overcloud-full-master
               - periodic-tripleo-centos-8-buildimage-ironic-python-agent-master
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset037-updates-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-containers-build-push
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-master:
             dependencies:
               - periodic-tripleo-centos-8-master-containers-build-push
