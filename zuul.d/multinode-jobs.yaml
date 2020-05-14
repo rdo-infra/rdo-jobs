@@ -385,6 +385,14 @@
       branch_override: "stable/queens"
       release: queens
 
+- job:
+    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset037-updates-train
+    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset037-updates-ussuri
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
+
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master
