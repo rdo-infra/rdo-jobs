@@ -7,6 +7,7 @@
     run: playbooks/podman/run.yaml
     post-run: playbooks/podman/post.yaml
     nodeset: centos-8
+    ansible-version: 2.9
 
 - job:
     name: podman-package-centos-8
