@@ -1,5 +1,8 @@
 ---
 - hosts: all
+  # Avoid confusing POST_FAILURE when job already failed in `run`, as we want
+  # to run as much of `post` as possible.
+  ignore_errors: not (zuul_success | bool)
   vars:
     logs: "{{ ansible_user_dir }}/logs"
   tasks:
