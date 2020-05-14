@@ -173,6 +173,10 @@
         - periodic-tripleo-ci-centos-8-singlenode-featureset050-upgrades-train:
             dependencies:
               - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset037-updates-train:
+            nodeset: two-centos-7-nodes-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
 
         ##### stable/stein #####
         - periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-stein-upload:
