@@ -76,3 +76,33 @@
       release: master
       extra_tags:
         - undercloud-upgrade
+
+################ C E N T O S 8 T R A I N #############################################
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-containers-train
+    parent: periodic-tripleo-ci-centos-8-undercloud-containers-master
+    nodeset: single-centos-8-node-vexxhost
+    override-checkout: 'stable/train'
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-singlenode-featureset050-upgrades-master
+    parent: tripleo-ci-base-singlenode-periodic-centos-8
+    nodeset: single-centos-8-node-vexxhost
+    voting: false
+    vars:
+      featureset: '050'
+      release: master
+      extra_tags:
+        - undercloud-upgrade
+
+- job:
+    name: periodic-tripleo-ci-centos-8-singlenode-featureset050-upgrades-train
+    parent: periodic-tripleo-ci-centos-8-singlenode-featureset050-upgrades-master
+    nodeset: single-centos-8-node-vexxhost
+    override-checkout: 'stable/train'
+    vars:
+      branch_override: "stable/train"
+      release: train

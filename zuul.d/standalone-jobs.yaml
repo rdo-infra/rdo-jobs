@@ -440,6 +440,15 @@
           - 'environments/low-memory-usage.yaml'
           - 'ci/environments/scenario012-standalone.yaml'
 
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-upgrade-master
+    parent: tripleo-ci-base-standalone-upgrade-periodic-centos-8
+    voting: false
+    vars:
+      featureset: '056'
+      release: master
+
+
 ### stable/train standalone jobs ###
 # per https://review.rdoproject.org/r/#/c/22624/
 # parenting off periodic-tripleo-ci-centos-7-standalone-master
@@ -516,6 +525,14 @@
     override-checkout: "stable/train"
     vars:
       branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-upgrade-train
+    parent: periodic-tripleo-ci-centos-8-standalone-upgrade-master
+    override-checkout: 'stable/train'
+    vars:
+      branch_override: 'stable/train'
       release: train
 
 ########## C E N T O S 7 TRAIN #############################
