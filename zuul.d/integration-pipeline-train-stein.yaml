@@ -2,7 +2,7 @@
 # train / stein integration pipeline
 - project-template:
     name: integration-pipeline-train-stein
-    openstack-periodic-24h:
+    openstack-periodic-24hr:
       jobs:
         ##### stable/train #####
         - periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-train-upload:
