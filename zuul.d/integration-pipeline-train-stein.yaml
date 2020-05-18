@@ -225,6 +225,10 @@
             nodeset: two-centos-7-nodes-vexxhost
             dependencies:
               - periodic-tripleo-centos-7-stein-containers-build-push
+        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset038-stein:
+            nodeset: two-centos-7-nodes-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-stein-containers-build-push
         - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-stein:
             vars:
               cloud_name: vexxhost
