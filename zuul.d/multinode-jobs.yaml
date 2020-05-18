@@ -470,6 +470,26 @@
         - overcloud-update
 
 - job:
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset038-queens
+    parent: tripleo-ci-base-multinode-periodic
+    override-checkout: "stable/queens"
+    vars:
+      nodes: 1ctlr
+      featureset: '038'
+      branch_override: "stable/queens"
+      release: queens
+
+- job:
+    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset038-rocky
+    parent: tripleo-ci-base-multinode-periodic
+    override-checkout: "stable/rocky"
+    vars:
+      nodes: 1ctlr
+      featureset: '038'
+      branch_override: "stable/rocky"
+      release: queens
+
+- job:
     name: periodic-tripleo-ci-centos-8-containers-undercloud-minion-master
     parent: tripleo-ci-base-multinode-periodic-centos-8
     vars:
