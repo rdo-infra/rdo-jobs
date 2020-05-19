@@ -826,7 +826,7 @@
 
 ########## C E N T O S 8 USSURI Check  ####################
 - job:
-    name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-ussuri
+    name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-ussuri-branch
     parent: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
     nodeset: tripleo-ovb-rhel-8-primary
     # override-checkout: "stable/ussuri"
@@ -855,7 +855,7 @@
       release: ussuri
 
 - job:
-    name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-ussuri
+    name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-ussuri-branch
     parent: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039
     branches: ^master$
     # override-checkout: "stable/ussuri"
