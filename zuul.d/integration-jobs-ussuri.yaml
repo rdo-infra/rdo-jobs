@@ -138,7 +138,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-ussuri
     parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-master
-    nodeset: single-centos-8-node-vexxhost
+    nodeset: two-centos-8-nodes-vexxhost
     vars:
       branch_override: "stable/ussuri"
       release: ussuri
