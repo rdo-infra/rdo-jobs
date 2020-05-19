@@ -10,6 +10,8 @@
     vars:
       nodes: 1ctlr
       featureset: '010'
+      playbooks:
+        - multinode.yml
 
 - job:
     name: tripleo-ci-centos-8-multinode-1ctlr-featureset010
@@ -19,6 +21,8 @@
     vars:
       nodes: 1ctlr
       featureset: '010'
+      playbooks:
+        - multinode.yml
 
 - job:
     name: tripleo-ci-centos-7-multinode-1ctlr-featureset016
@@ -135,6 +139,8 @@
       nodes: 1ctlr
       featureset: '010'
       release: master
+      playbooks:
+        - multinode.yml
 
 - job:
     name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-master
@@ -143,6 +149,8 @@
       nodes: 1ctlr
       featureset: '010'
       release: master
+      playbooks:
+        - multinode.yml
 
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-train
@@ -159,6 +167,8 @@
       featureset: '010'
       branch_override: "stable/stein"
       release: stein
+      playbooks:
+        - multinode.yml
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-rocky
 - job:
@@ -169,6 +179,8 @@
       featureset: '010'
       branch_override: "stable/rocky"
       release: rocky
+      playbooks:
+        - multinode.yml
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-queens
 - job:
@@ -179,6 +191,8 @@
       featureset: '010'
       branch_override: "stable/queens"
       release: queens
+      playbooks:
+        - multinode.yml
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-master
 - job:
