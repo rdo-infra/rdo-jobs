@@ -823,3 +823,50 @@
     vars:
       branch_override: "stable/train"
       release: train
+
+########## C E N T O S 8 USSURI Check  ####################
+- job:
+    name: tripleo-ci-rhel-8-ovb-3ctlr_1comp-featureset001-ussuri
+    parent: tripleo-ci-rhel-8-ovb-3ctlr_1comp-featureset001
+    nodeset: tripleo-ovb-rhel-8-primary
+    # override-checkout: "stable/ussuri"
+    branches: ^master$
+    voting: false
+    vars:
+      branch_override: "stable/ussuri"
+
+- job:
+    name: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-ussuri
+    parent: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-upload
+    branches: ^master$
+    # override-checkout: "stable/ussuri"
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-ussuri
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-master
+    branches: ^master$
+    # override-checkout: "stable/ussuri"
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-ussuri
+    parent: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039
+    branches: ^master$
+    # override-checkout: "stable/ussuri"
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-ussuri
+    parent: tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020
+    branches: ^master$
+    # override-checkout: "stable/ussuri"
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
