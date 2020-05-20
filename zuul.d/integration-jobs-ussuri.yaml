@@ -111,6 +111,14 @@
       release: ussuri
 
 - job:
+    name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master
+    override-checkout: 'stable/ussuri'
+    vars:
+      branch_override: 'stable/ussuri'
+      release: ussuri
+
+- job:
     name: periodic-tripleo-ci-centos-8-scenario012-standalone-ussuri
     parent: periodic-tripleo-ci-centos-8-scenario012-standalone-master
     nodeset: single-centos-8-node-vexxhost
