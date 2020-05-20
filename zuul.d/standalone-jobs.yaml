@@ -402,6 +402,39 @@
         use_os_tempest: false
 
 - job:
+    name: periodic-tripleo-ci-centos-8-scenario011-standalone-master
+    parent: tripleo-ci-base-standalone-periodic-centos-8
+    nodeset: single-centos-8-node-vexxhost
+    vars:
+      tags:
+        - build
+        - standalone
+        - octavia
+      # using featureset062 is tech debt and should be addressed at a future sprint
+      featureset: '062'
+      release: master
+      standalone_ceph: true
+      featureset_override:
+        validate_services: false
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario011-standalone.yaml'
+        tempest_tempest_conf_overrides:
+          load_balancer.provider: 'ovn'
+          load_balancer.member_role: '"Member"'
+          load_balancer.test_with_ipv6: false
+          load_balancer.test_reuse_connection: false
+          load_balancer.load_balancing_algorithm: 'SOURCE_IP_PORT'
+          load_balancer.test_flavors: false
+          loadbalancer-feature-enabled.health_monitor_enabled: false
+          loadbalancer-feature-enabled.pool_algorithms_enabled: false
+          loadbalancer-feature-enabled.l7_protocol_enabled: false
+          loadbalancer-feature-enabled.l4_protocol: 'TCP'
+          loadbalancer-feature-enabled.session_persistence_enabled: false
+        tempest_test_whitelist:
+          - octavia_tempest_plugin.tests.scenario.v2.test_traffic_ops.TrafficOperationsScenarioTest.test_basic_traffic
+
+- job:
     name: periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-master
     parent: periodic-tripleo-ci-centos-8-scenario010-standalone-master
     vars:
