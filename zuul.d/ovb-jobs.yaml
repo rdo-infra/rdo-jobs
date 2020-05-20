@@ -828,7 +828,7 @@
 - job:
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-ussuri-branch
     parent: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
-    nodeset: tripleo-ovb-rhel-8-primary
+    nodeset: tripleo-ovb-centos-8-primary
     # override-checkout: "stable/ussuri"
     branches: ^master$
     voting: false
