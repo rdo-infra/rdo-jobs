@@ -402,6 +402,28 @@
         use_os_tempest: false
 
 - job:
+    name: periodic-tripleo-ci-centos-8-scenario011-standalone-master
+    parent: tripleo-ci-base-standalone-periodic-centos-8
+    nodeset: single-centos-8-node-vexxhost
+    vars:
+      tags:
+        - build
+        - standalone
+        - octavia
+      # using featureset062 is tech debt and should be addressed at a future sprint
+      featureset: '062'
+      release: master
+      standalone_ceph: true
+      tempest_workers: 1
+      featureset_override:
+        run_tempest: true
+        validate_services: false
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario011-standalone.yaml'
+        use_os_tempest: false
+
+- job:
     name: periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-master
     parent: periodic-tripleo-ci-centos-8-scenario010-standalone-master
     vars:
