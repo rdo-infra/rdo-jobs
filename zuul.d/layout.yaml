@@ -1,12 +1,11 @@
 - project:
     check:
-      jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
+      jobs:
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-ussuri:
+            nodeset: tripleo-ovb-centos-8-primary
+            vars:
+              cloud_name: rdocloud
+              force_periodic: true
+
     gate:
-      jobs: *jobs
+      jobs: []
