@@ -38,15 +38,6 @@
     run: playbooks/legacy/config-update/run.yaml
 
 - job:
-    name: legacy-experimental-tripleo-centos-7-master-containers-build
-    parent: legacy-dsvm-base
-    run: playbooks/legacy/experimental-tripleo-centos-7-master-containers-build/run.yaml
-    post-run: playbooks/legacy/experimental-tripleo-centos-7-master-containers-build/post.yaml
-    timeout: 10800
-    required-projects:
-      - opendev.org/openstack/devstack-gate
-
-- job:
     name: legacy-experimental-weirdo-dlrn-master-packstack-scenario001
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
