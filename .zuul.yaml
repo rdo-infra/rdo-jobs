@@ -1,0 +1,8 @@
+- project:
+    check:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-master:
+            vars:
+              force_periodic: true
+        - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-ussuri
+        - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-component-master
