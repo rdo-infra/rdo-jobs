@@ -270,6 +270,17 @@
         nodes: []
 
 - nodeset:
+    name: tripleo-ovb-centos-8-primary-vexxhost
+    nodes:
+      - name: primary
+        label: upstream-centos-8-vexxhost
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
+- nodeset:
     name: upstream-rhel-8-vexxhost
     nodes:
       - name: primary
