@@ -1155,3 +1155,24 @@
     parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-tempest-master
     vars:
       release: ussuri
+
+#standalone-on-multinode-ipa
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-component-master
+    parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-master
+    abstract: true
+    vars: *component_vars_standalone
+
+## master
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-master
+    parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-component-master
+    vars:
+      component: tripleo
+
+## ussuri
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-master
+    vars:
+      release: ussuri

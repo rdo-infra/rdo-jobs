@@ -448,6 +448,32 @@
       featureset: '056'
       release: master
 
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-master
+    parent: tripleo-ci-base-standalone-periodic-centos-8
+    nodeset: two-centos-8-nodes
+    required-projects:
+      - opendev.org/x/tripleo-ipa
+      - opendev.org/openstack/tripleo-ansible
+    roles:
+      - zuul: opendev.org/x/tripleo-ipa
+      - zuul: opendev.org/openstack/tripleo-ansible
+    vars:
+      featureset: '052'
+      enable_tls: true
+      playbooks:
+        - quickstart.yml
+        - multinode-standalone-ipa.yml
+        - multinode-standalone.yml
+      featureset_override:
+        standalone_environment_files:
+          - environments/ssl/tls-everywhere-endpoints-dns.yaml
+          - environments/services/haproxy-public-tls-certmonger.yaml
+          - environments/ssl/enable-internal-tls.yaml
+          - ci/environments/standalone-ipa.yaml
+        tempest_tempest_conf_overrides:
+          service-clients.http_timeout: '120'
+
 
 ### stable/train standalone jobs ###
 # per https://review.rdoproject.org/r/#/c/22624/
