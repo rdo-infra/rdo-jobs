@@ -638,6 +638,48 @@
       - opendev.org/openstack/tripleo-repos
 
 - job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario001-train
+    parent: tripleo-ci-centos-8-scenario001-standalone
+    run: playbooks/run-distgit.yaml
+    vars:
+      release: train
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario002-train
+    parent: tripleo-ci-centos-8-scenario002-standalone
+    run: playbooks/run-distgit.yaml
+    vars:
+      release: train
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario003-train
+    parent: tripleo-ci-centos-8-scenario003-standalone
+    run: playbooks/run-distgit.yaml
+    vars:
+      release: train
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario004-train
+    parent: tripleo-ci-centos-8-scenario004-standalone
+    run: playbooks/run-distgit.yaml
+    vars:
+      release: train
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario007-train
+    parent: tripleo-ci-centos-8-scenario007-standalone
+    run: playbooks/run-distgit.yaml
+    vars:
+      release: train
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario010-train
+    parent: tripleo-ci-centos-8-scenario010-standalone
+    run: playbooks/run-distgit.yaml
+    vars:
+      release: train
+
+- job:
     name: rdoinfo-tripleo-master-testing-centos-8-scenario007-standalone
     parent: tripleo-ci-centos-8-scenario007-standalone
     run: playbooks/run-rdoinfo.yaml
