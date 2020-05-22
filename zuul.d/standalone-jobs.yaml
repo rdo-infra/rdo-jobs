@@ -808,6 +808,8 @@
           - 'environments/services/octavia.yaml'
           - 'ci/environments/scenario010-standalone.yaml'
         use_os_tempest: false
+        tempest_test_whitelist:
+          - '^octavia_tempest_plugin.*smoke'
 
 # RDO jobs for check pipeline - for scenario standalones yaml anchors let us
 # avoid duplication https://tree.taiga.io/project/tripleo-ci-board/us/1228
