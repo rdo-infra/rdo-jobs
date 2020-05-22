@@ -655,6 +655,8 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-train
     parent: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master
+    # timeouts seen on fs035 train
+    timeout: 18000
     vars:
       branch_override: "stable/train"
       release: train
