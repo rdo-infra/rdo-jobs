@@ -740,6 +740,186 @@
       rdoinfo_phase: testing
 
 - job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario001-ussuri
+    parent: tripleo-ci-centos-8-scenario001-standalone
+    override-checkout: "stable/ussuri"
+    run: playbooks/run-distgit.yaml
+    vars:
+      branch_override: "stable/ussuri"
+      force_periodic: true
+      release: ussuri
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario002-ussuri
+    parent: tripleo-ci-centos-8-scenario002-standalone
+    override-checkout: "stable/ussuri"
+    run: playbooks/run-distgit.yaml
+    vars:
+      branch_override: "stable/ussuri"
+      force_periodic: true
+      release: ussuri
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario003-ussuri
+    parent: tripleo-ci-centos-8-scenario003-standalone
+    override-checkout: "stable/ussuri"
+    run: playbooks/run-distgit.yaml
+    vars:
+      branch_override: "stable/ussuri"
+      force_periodic: true
+      release: ussuri
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario004-ussuri
+    parent: tripleo-ci-centos-8-scenario004-standalone
+    override-checkout: "stable/ussuri"
+    run: playbooks/run-distgit.yaml
+    vars:
+      branch_override: "stable/ussuri"
+      force_periodic: true
+      release: ussuri
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario007-ussuri
+    parent: tripleo-ci-centos-8-scenario007-standalone
+    override-checkout: "stable/ussuri"
+    run: playbooks/run-distgit.yaml
+    vars:
+      branch_override: "stable/ussuri"
+      force_periodic: true
+      release: ussuri
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario010-ussuri
+    parent: tripleo-ci-centos-8-scenario010-standalone
+    override-checkout: "stable/ussuri"
+    run: playbooks/run-distgit.yaml
+    vars:
+      branch_override: "stable/ussuri"
+      force_periodic: true
+      release: ussuri
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario001-train
+    parent: tripleo-ci-centos-8-scenario001-standalone
+    override-checkout: "stable/train"
+    run: playbooks/run-distgit.yaml
+    vars:
+      branch_override: "stable/train"
+      force_periodic: true
+      release: train
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario002-train
+    parent: tripleo-ci-centos-8-scenario002-standalone
+    override-checkout: "stable/train"
+    run: playbooks/run-distgit.yaml
+    vars:
+      branch_override: "stable/train"
+      force_periodic: true
+      release: train
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario003-train
+    parent: tripleo-ci-centos-8-scenario003-standalone
+    override-checkout: "stable/train"
+    run: playbooks/run-distgit.yaml
+    vars:
+      branch_override: "stable/train"
+      force_periodic: true
+      release: train
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario004-train
+    parent: tripleo-ci-centos-8-scenario004-standalone
+    override-checkout: "stable/train"
+    run: playbooks/run-distgit.yaml
+    vars:
+      branch_override: "stable/train"
+      force_periodic: true
+      release: train
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario007-train
+    parent: tripleo-ci-centos-8-scenario007-standalone
+    override-checkout: "stable/train"
+    run: playbooks/run-distgit.yaml
+    vars:
+      branch_override: "stable/train"
+      force_periodic: true
+      release: train
+
+- job:
+    name: distgit-tripleo-master-testing-centos-8-standalone-scenario010-train
+    parent: tripleo-ci-centos-8-scenario010-standalone
+    override-checkout: "stable/train"
+    run: playbooks/run-distgit.yaml
+    vars:
+      branch_override: "stable/train"
+      force_periodic: true
+      release: train
+
+- job:
+    name: distgit-tripleo-master-testing-centos-7-standalone-scenario001-train
+    parent: periodic-tripleo-ci-centos-7-scenario001-standalone-train
+    override-checkout: "stable/train"
+    run: playbooks/run-distgit.yaml
+    vars:
+      branch_override: "stable/train"
+      force_periodic: true
+      release: train
+
+- job:
+    name: distgit-tripleo-master-testing-centos-7-standalone-scenario002-train
+    parent: periodic-tripleo-ci-centos-7-scenario002-standalone-train
+    override-checkout: "stable/train"
+    run: playbooks/run-distgit.yaml
+    vars:
+      branch_override: "stable/train"
+      force_periodic: true
+      release: train
+
+- job:
+    name: distgit-tripleo-master-testing-centos-7-standalone-scenario003-train
+    parent: periodic-tripleo-ci-centos-7-scenario003-standalone-train
+    override-checkout: "stable/train"
+    run: playbooks/run-distgit.yaml
+    vars:
+      branch_override: "stable/train"
+      force_periodic: true
+      release: train
+
+- job:
+    name: distgit-tripleo-master-testing-centos-7-standalone-scenario004-train
+    parent: periodic-tripleo-ci-centos-7-scenario004-standalone-train
+    override-checkout: "stable/train"
+    run: playbooks/run-distgit.yaml
+    vars:
+      branch_override: "stable/train"
+      force_periodic: true
+      release: train
+
+- job:
+    name: distgit-tripleo-master-testing-centos-7-standalone-scenario007-train
+    parent: periodic-tripleo-ci-centos-7-scenario007-standalone-train
+    override-checkout: "stable/train"
+    run: playbooks/run-distgit.yaml
+    vars:
+      branch_override: "stable/train"
+      force_periodic: true
+      release: train
+
+- job:
+    name: distgit-tripleo-master-testing-centos-7-standalone-scenario010-train
+    parent: periodic-tripleo-ci-centos-7-scenario010-standalone-train
+    override-checkout: "stable/train"
+    run: playbooks/run-distgit.yaml
+    vars:
+      branch_override: "stable/train"
+      force_periodic: true
+      release: train
+
+- job:
     name: rdoinfo-tripleo-master-testing-centos-8-scenario007-standalone
     parent: tripleo-ci-centos-8-scenario007-standalone
     nodeset: single-centos-8-node-vexxhost
