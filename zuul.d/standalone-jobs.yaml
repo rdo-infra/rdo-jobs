@@ -762,6 +762,26 @@
           'share.capability_create_share_from_snapshot_support': 'False'
         test_white_regex: ''
 
+- job:
+    name: periodic-tripleo-ci-centos-7-scenario010-standalone-stein
+    parent: tripleo-ci-base-standalone-periodic
+    override-checkout: "stable/stein"
+    vars:
+      featureset: '052'
+      branch_override: "stable/stein"
+      release: stein
+      standalone_ceph: true
+      featureset_override:
+        standalone_container_cli: docker
+        run_tempest: false
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'environments/services/octavia.yaml'
+          - 'ci/environments/scenario010-standalone.yaml'
+        use_os_tempest: false
+        tempest_test_whitelist:
+          - '^octavia_tempest_plugin.*smoke'
+
 # RDO jobs for check pipeline - for scenario standalones yaml anchors let us
 # avoid duplication https://tree.taiga.io/project/tripleo-ci-board/us/1228
 - job:
