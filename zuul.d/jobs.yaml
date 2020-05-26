@@ -262,11 +262,6 @@
       - rdoinfo
 
 - job:
-    name: rdoinfo-DLRN-check-nv
-    parent: rdoinfo-DLRN-check
-    voting: false
-
-- job:
     name: rdoinfo-DLRN-check-centos8
     parent: rdoinfo-DLRN-check
     timeout: 18000
