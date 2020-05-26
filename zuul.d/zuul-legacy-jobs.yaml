@@ -23,21 +23,6 @@
     run: playbooks/legacy/centos-sinkhole-functional/run.yaml
 
 - job:
-    name: legacy-config-check
-    parent: legacy-base
-    run: playbooks/legacy/config-check/run.yaml
-
-- job:
-    name: legacy-config-sanity-check
-    parent: legacy-base
-    run: playbooks/legacy/config-sanity-check/run.yaml
-
-- job:
-    name: legacy-config-update
-    parent: legacy-base
-    run: playbooks/legacy/config-update/run.yaml
-
-- job:
     name: legacy-experimental-weirdo-dlrn-master-packstack-scenario001
     parent: legacy-base
     run: playbooks/legacy/weirdo-dlrn/run.yaml
