@@ -20,6 +20,9 @@
               - periodic-tripleo-centos-8-ussuri-containers-build-push
               - periodic-tripleo-centos-8-buildimage-overcloud-full-ussuri
               - periodic-tripleo-centos-8-buildimage-ironic-python-agent-ussuri
+        - periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-containers-build-push
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-containers-build-push
