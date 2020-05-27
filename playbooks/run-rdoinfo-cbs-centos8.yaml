@@ -80,17 +80,12 @@
         - name: Setup CentOS CloudSIG repo
           become: true
           package:
-            # FIXME name: "centos-release-openstack-{{ rdoinfo_release }}"
-            name: "centos-release-openstack-train"
+            name: "centos-release-openstack-{{ rdoinfo_release }}"
             state: present
         - name: Rename CloudSIG repos name to include delorean in name as build-containers role rely on it
           become: true
           shell: |
             set -ex
-            ####FIXME####
-            sed -i 's/train/ussuri/g' /etc/yum.repos.d/CentOS-OpenStack-train.repo
-            mv /etc/yum.repos.d/CentOS-OpenStack-train.repo /etc/yum.repos.d/CentOS-OpenStack-ussuri.repo
-            ####FIXME####
             # due to https://review.opendev.org/#/c/692513/
             sed -i 's/gpgcheck.*/gpgcheck=0/' /etc/yum.repos.d/CentOS-OpenStack-{{ rdoinfo_release }}.repo
             sed -i 's/gpgcheck.*/gpgcheck=0/' /etc/yum.repos.d/advanced-virtualization.repo
@@ -100,11 +95,6 @@
             mv /etc/yum.repos.d/ceph-nautilus.repo /etc/yum.repos.d/delorean-ceph.repo
             mv /etc/yum.repos.d/advanced-virtualization.repo /etc/yum.repos.d/delorean-advirt.repo
             mv /etc/yum.repos.d/CentOS-Messaging-rabbitmq.repo /etc/yum.repos.d/delorean-messaging.repo
-            # Need to include delorean-current repo while building container
-            curl -o /etc/yum.repos.d/delorean-current-tripleo.repo https://trunk.rdoproject.org/centos8-{{ rdoinfo_release }}/component/tripleo/current/delorean.repo # noqa 204
-            echo "includepkgs=ansible-role-container-registry,ansible-pacemaker,ansible-role-tripleo*,ansible-role*,ansible-tripleo-ipsec,instack,instack-undercloud,openstack-tripleo-*,os-apply-config,os-collect-config,os-net-config,os-refresh-config,python*-tripleo*,python*-paunch*,paunch-services,tripleo-ansible,ansible-config_template,openstack-kolla,python3-kolla,openstack-heat-agents,python3-heat-agent*,puppet-pacemaker,puppet-tripleo  " >> /etc/yum.repos.d/delorean-current-tripleo.repo # noqa 204
-            curl -o /etc/yum.repos.d/delorean-current-security.repo https://trunk.rdoproject.org/centos8-{{ rdoinfo_release }}/component/security/current/delorean.repo # noqa 204
-            echo "includepkgs=ansible-tripleo-ipa " >> /etc/yum.repos.d/delorean-current-security.repo # noqa 204
         - name: Install deps using bindep role
           include_role:
             name: bindep
@@ -117,7 +107,7 @@
         - name: Set repo facts
           set_fact:
             buildsys_tag: "cloud{{ ansible_distribution_major_version }}-openstack-{{ rdoinfo_release }}-{{ rdoinfo_phase }}"
-            delorean_repos: "http://{{ ipv4_addr }}/delorean-CentOS-OpenStack-{{ rdoinfo_release }}.repo,http://{{ ipv4_addr }}/delorean-current-security.repo,http://{{ ipv4_addr }}/delorean-current-tripleo.repo,http://{{ ipv4_addr }}/delorean-messaging.repo,http://{{ ipv4_addr }}/delorean-advirt.repo,http://{{ ipv4_addr }}/delorean-ceph.repo"  # noqa 204
+            delorean_repos: "http://{{ ipv4_addr }}/delorean-CentOS-OpenStack-{{ rdoinfo_release }}.repo,http://{{ ipv4_addr }}/delorean-messaging.repo,http://{{ ipv4_addr }}/delorean-advirt.repo,http://{{ ipv4_addr }}/delorean-ceph.repo"  # noqa 204
         - name: Handle master release buildsys_tags
           set_fact:
             buildsys_tag: "cloud{{ ansible_distribution_major_version }}-openstack-ussuri-{{ rdoinfo_phase }}"
