@@ -1,0 +1,72 @@
+- hosts: all
+  tasks:
+    - set_fact:
+        centos_releasever: "{{ ansible_distribution_major_version }}"
+
+    - set_fact:
+        centos_release: "centos{{ centos_releasever }}"
+
+    - shell:
+        cmd: |
+        export WBASE="{{ ansible_user_dir }}/{{ projects['review.rdoproject.org/rdo-infra/weirdo'].src_dir }}";
+        {% for project in ["common", "logs", "kolla", "packstack", "puppet-openstack"] %}
+          ln -s "{{ ansible_user_dir }}/{{ projects['review.rdoproject.org/rdo-infra/ansible-role-weirdo-' + project].src_dir }}" $WBASE/playbooks/roles/{{ project }};  # noqa 204
+        {% endfor %}
+
+    - package:
+        name: python2-devel
+        state: present
+      become: true
+
+    - shell:
+        cmd: |
+          # WeIRDO uses ARA for ansible-playbook run visualization
+          export WORKSPACE="{{ ansible_user_dir }}/workspace"
+          mkdir -p $WORKSPACE
+          export ARA_DATABASE="sqlite:///$WORKSPACE/ara.sqlite"
+
+          # Backwards compat for project and openstack_release
+          # (dmsimard) TODO: Clean this up ASAP
+          if [[ "{{ zuul.job }}" == *"puppet"* ]]; then
+              project="puppet-openstack"
+          else
+              project="packstack"
+          fi
+
+          if [[ "{{ openstack_release }}" != "master" ]]; then
+              version="stable/{{ openstack_release }}"
+          else
+              version="{{ openstack_release }}"
+          fi
+          scenario="{{ scenario }}"
+
+          if [[ "{{ zuul.pipeline }}" =~ "experimental" ]]; then
+              delorean_url="https://trunk.rdoproject.org/{{ centos_release }}-{{ openstack_release }}/current/delorean.repo"
+          elif [[ "{{ openstack_release }}" == "master" ]]; then
+              delorean_url="https://trunk.rdoproject.org/{{ centos_release }}-{{ openstack_release }}/puppet-passed-ci/delorean.repo"
+          else
+              delorean_url="https://trunk.rdoproject.org/{{ centos_release }}-{{ openstack_release }}/current-passed-ci/delorean.repo"
+          fi
+
+          if [ -f /etc/fedora-release ]; then
+              delorean_deps_url="https://trunk.rdoproject.org/fedora/delorean-deps.repo"
+              delorean_url="https://trunk.rdoproject.org/fedora/puppet-passed-ci/delorean.repo"
+          else
+              delorean_deps_url="https://trunk.rdoproject.org/{{ centos_release }}-{{ openstack_release }}/delorean-deps.repo"
+          fi
+
+          cd "{{ ansible_user_dir }}/{{ projects['review.rdoproject.org/rdo-infra/weirdo'].src_dir }}"
+          # Prepare Ansible inventory to use localhost
+          cat <<EOF >hosts
+          localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python{{ '3' if centos_releasever|int >= 8 else '2' }}
+          [openstack_nodes]
+          localhost log_destination=/var/log/weirdo
+          EOF
+
+          tox -e ansible-playbook -- -vv -b -i hosts playbooks/$project-$scenario.yml \
+              -e version=$version \
+              -e openstack_release="{{ openstack_release }}" \
+              -e selinux_enforcing="{{ selinux_enforcing | default('true') }}" \
+              -e delorean_url=$delorean_url \
+              -e delorean_deps_url=$delorean_deps_url \
+              -e enable_puppet_modules_rpm=true
