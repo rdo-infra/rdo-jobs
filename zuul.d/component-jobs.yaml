@@ -471,20 +471,23 @@
 ### ussuri
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-baremetal-ussuri
-    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-baremetal-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
     vars:
+      component: baremetal
       release: ussuri
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-ussuri
-    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
     vars:
+      component: tripleo
       release: ussuri
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-ussuri
-    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-master
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-ussuri
     vars:
+      component: clients
       release: ussuri
 
 - job:
