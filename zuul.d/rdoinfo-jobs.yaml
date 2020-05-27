@@ -333,7 +333,7 @@
       - opendev.org/openstack/tripleo-repos
 
 - job:
-    name: rdoinfo-tripleo-ussuri-release-centos-7-scenario001-standalone
+    name: rdoinfo-tripleo-ussuri-release-centos-8-scenario001-standalone
     parent: tripleo-ci-base-standalone-rdo-centos-8
     run: playbooks/run-rdoinfo-cbs-centos8.yaml
     post-run: playbooks/post-rdoinfo.yaml
