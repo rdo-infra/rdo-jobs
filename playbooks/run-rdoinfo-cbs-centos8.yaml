@@ -205,6 +205,14 @@
           standalone_cidr: "{{ ipv4_prefix }}"
           standalone_network_prefix: "{{ ipv4_prefix }}"
           tripleo_deploy_local_ip: "{{ ipv4_addr + '/' + ipv4_prefix }}"
+          repo_cmd_after: |
+            sudo rpm -e epel-release || true;
+            sudo dnf remove -y rdo-release || true;
+            sudo rm -rf /etc/yum.repos.d/*.rpmsave;
+            sudo dnf repolist;
+            sudo dnf clean metadata;
+            # OpenVswitch workaround
+            sudo dnf update -y --exclude *openvswitch*;
           add_repos:
             - type: file
               filename: delorean-0.repo
