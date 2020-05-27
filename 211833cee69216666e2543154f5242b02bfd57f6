@@ -99,6 +99,24 @@
       "revId": "211833cee69216666e2543154f5242b02bfd57f6",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2a3b19cd_7603f638",
+        "filename": "playbooks/DLRN-build-tripleo/run.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2020-05-27T07:50:49Z",
+      "side": 1,
+      "message": "I think that the desired behavior is to output warning and fail the job if current-tripleo repo does not exist. The whole point of this job is testing the build against current-tripleo and if it doesn\u0027t exist we can create it as Yatin mentioned.",
+      "parentUuid": "13a408fc_6d851d42",
+      "revId": "211833cee69216666e2543154f5242b02bfd57f6",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
