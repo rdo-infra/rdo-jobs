@@ -560,35 +560,31 @@
     name: weirdo-gate-jobs
     check:
       jobs:
-        - legacy-weirdo-ansible-lint
-        - legacy-weirdo-docs:
+        - weirdo-ansible-lint
+        - weirdo-docs:
             files:
               - ^docs/.*$
               - ^.*\.rst$
-        - legacy-weirdo-integration-pike-packstack-scenario002
-        - legacy-weirdo-integration-queens-packstack-scenario001
-        - legacy-weirdo-integration-rocky-packstack-scenario002
-        - legacy-weirdo-integration-master-packstack-scenario003
-        - legacy-weirdo-integration-pike-puppet-scenario002
-        - legacy-weirdo-integration-queens-puppet-scenario001
-        - legacy-weirdo-integration-rocky-puppet-scenario002
-        - legacy-weirdo-integration-master-puppet-scenario003
-        - legacy-weirdo-integration-master-puppet-scenario004:
+        - weirdo-integration-queens-packstack-scenario001
+        - weirdo-integration-rocky-packstack-scenario002
+        - weirdo-integration-master-packstack-scenario003-centos8
+        - weirdo-integration-queens-puppet-scenario001
+        - weirdo-integration-rocky-puppet-scenario002
+        - weirdo-integration-master-puppet-scenario003-centos8
+        - weirdo-integration-master-puppet-scenario004-centos8:
             voting: false
     experimental:
       jobs:
-        - legacy-weirdo-integration-pike-packstack-scenario001
-        - legacy-weirdo-integration-queens-packstack-scenario003
-        - legacy-weirdo-integration-rocky-packstack-scenario002
-        - legacy-weirdo-integration-master-packstack-scenario001
-        - legacy-weirdo-integration-pike-puppet-scenario001
-        - legacy-weirdo-integration-queens-puppet-scenario003
-        - legacy-weirdo-integration-rocky-puppet-scenario002
-        - legacy-weirdo-integration-master-puppet-scenario001
+        - weirdo-integration-queens-packstack-scenario003
+        - weirdo-integration-rocky-packstack-scenario002
+        - weirdo-integration-master-packstack-scenario001-centos8
+        - weirdo-integration-queens-puppet-scenario003
+        - weirdo-integration-rocky-puppet-scenario002
+        - weirdo-integration-master-puppet-scenario001-centos8
     gate:
       jobs:
-        - legacy-weirdo-ansible-lint
-        - legacy-weirdo-docs:
+        - weirdo-ansible-lint
+        - weirdo-docs:
             files:
               - ^docs/.*$
               - ^.*\.rst$
