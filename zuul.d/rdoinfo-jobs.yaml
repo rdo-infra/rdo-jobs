@@ -335,6 +335,7 @@
 - job:
     name: rdoinfo-tripleo-ussuri-release-centos-8-scenario001-standalone
     parent: tripleo-ci-base-standalone-rdo-centos-8
+    nodeset: single-centos-8-node-vexxhost
     run: playbooks/run-rdoinfo-cbs-centos8.yaml
     post-run: playbooks/post-rdoinfo.yaml
     roles:
