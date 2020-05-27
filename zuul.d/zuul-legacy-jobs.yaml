@@ -492,9 +492,10 @@
 
 - job:
     name: legacy-weirdo-integration-master-packstack-scenario001
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-integration/run.yaml
-    post-run: playbooks/legacy/weirdo-integration/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/integration/run.yaml
+    post-run: playbooks/weirdo/integration/post.yaml
     timeout: 7200
     vars:
       openstack_release: master
@@ -517,9 +518,10 @@
 
 - job:
     name: legacy-weirdo-integration-master-packstack-scenario003
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-integration/run.yaml
-    post-run: playbooks/legacy/weirdo-integration/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/integration/run.yaml
+    post-run: playbooks/weirdo/integration/post.yaml
     timeout: 7200
     vars:
       openstack_release: master
@@ -542,9 +544,10 @@
 
 - job:
     name: legacy-weirdo-integration-master-packstack-scenario-py3
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-integration/run.yaml
-    post-run: playbooks/legacy/weirdo-integration/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/integration/run.yaml
+    post-run: playbooks/weirdo/integration/post.yaml
     timeout: 7200
     voting: false
     vars:
@@ -561,9 +564,10 @@
 
 - job:
     name: legacy-weirdo-integration-master-puppet-scenario001
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-integration/run.yaml
-    post-run: playbooks/legacy/weirdo-integration/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/integration/run.yaml
+    post-run: playbooks/weirdo/integration/post.yaml
     timeout: 7200
     vars:
       openstack_release: master
@@ -583,9 +587,10 @@
 
 - job:
     name: legacy-weirdo-integration-master-puppet-scenario003
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-integration/run.yaml
-    post-run: playbooks/legacy/weirdo-integration/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/integration/run.yaml
+    post-run: playbooks/weirdo/integration/post.yaml
     timeout: 7200
     vars:
       openstack_release: master
@@ -605,9 +610,10 @@
 
 - job:
     name: legacy-weirdo-integration-master-puppet-scenario004
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-integration/run.yaml
-    post-run: playbooks/legacy/weirdo-integration/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/integration/run.yaml
+    post-run: playbooks/weirdo/integration/post.yaml
     timeout: 7200
     vars:
       openstack_release: master
@@ -627,9 +633,10 @@
 
 - job:
     name: legacy-weirdo-integration-ocata-packstack-scenario002
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-integration/run.yaml
-    post-run: playbooks/legacy/weirdo-integration/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/integration/run.yaml
+    post-run: playbooks/weirdo/integration/post.yaml
     timeout: 7200
     vars:
       openstack_release: ocata
@@ -645,9 +652,10 @@
 
 - job:
     name: legacy-weirdo-integration-rocky-packstack-scenario002
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-integration/run.yaml
-    post-run: playbooks/legacy/weirdo-integration/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/integration/run.yaml
+    post-run: playbooks/weirdo/integration/post.yaml
     timeout: 7200
     vars:
       openstack_release: rocky
@@ -663,9 +671,10 @@
 
 - job:
     name: legacy-weirdo-integration-ocata-puppet-scenario002
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-integration/run.yaml
-    post-run: playbooks/legacy/weirdo-integration/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/integration/run.yaml
+    post-run: playbooks/weirdo/integration/post.yaml
     timeout: 7200
     vars:
       openstack_release: ocata
@@ -680,9 +689,10 @@
 
 - job:
     name: legacy-weirdo-integration-rocky-puppet-scenario002
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-integration/run.yaml
-    post-run: playbooks/legacy/weirdo-integration/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/integration/run.yaml
+    post-run: playbooks/weirdo/integration/post.yaml
     timeout: 7200
     vars:
       openstack_release: rocky
@@ -697,9 +707,10 @@
 
 - job:
     name: legacy-weirdo-integration-pike-packstack-scenario001
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-integration/run.yaml
-    post-run: playbooks/legacy/weirdo-integration/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/integration/run.yaml
+    post-run: playbooks/weirdo/integration/post.yaml
     timeout: 7200
     vars:
       openstack_release: pike
@@ -715,9 +726,10 @@
 
 - job:
     name: legacy-weirdo-integration-pike-packstack-scenario002
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-integration/run.yaml
-    post-run: playbooks/legacy/weirdo-integration/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/integration/run.yaml
+    post-run: playbooks/weirdo/integration/post.yaml
     timeout: 7200
     vars:
       openstack_release: pike
@@ -733,9 +745,10 @@
 
 - job:
     name: legacy-weirdo-integration-pike-puppet-scenario001
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-integration/run.yaml
-    post-run: playbooks/legacy/weirdo-integration/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/integration/run.yaml
+    post-run: playbooks/weirdo/integration/post.yaml
     timeout: 7200
     vars:
       openstack_release: pike
@@ -750,9 +763,10 @@
 
 - job:
     name: legacy-weirdo-integration-pike-puppet-scenario002
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-integration/run.yaml
-    post-run: playbooks/legacy/weirdo-integration/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/integration/run.yaml
+    post-run: playbooks/weirdo/integration/post.yaml
     timeout: 7200
     vars:
       openstack_release: pike
@@ -767,9 +781,10 @@
 
 - job:
     name: legacy-weirdo-integration-queens-packstack-scenario001
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-integration/run.yaml
-    post-run: playbooks/legacy/weirdo-integration/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/integration/run.yaml
+    post-run: playbooks/weirdo/integration/post.yaml
     timeout: 7200
     vars:
       openstack_release: queens
@@ -785,9 +800,10 @@
 
 - job:
     name: legacy-weirdo-integration-queens-packstack-scenario003
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-integration/run.yaml
-    post-run: playbooks/legacy/weirdo-integration/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/integration/run.yaml
+    post-run: playbooks/weirdo/integration/post.yaml
     timeout: 7200
     vars:
       openstack_release: queens
@@ -803,9 +819,10 @@
 
 - job:
     name: legacy-weirdo-integration-queens-puppet-scenario001
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-integration/run.yaml
-    post-run: playbooks/legacy/weirdo-integration/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/integration/run.yaml
+    post-run: playbooks/weirdo/integration/post.yaml
     timeout: 7200
     vars:
       openstack_release: queens
@@ -820,9 +837,10 @@
 
 - job:
     name: legacy-weirdo-integration-queens-puppet-scenario003
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-integration/run.yaml
-    post-run: playbooks/legacy/weirdo-integration/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/integration/run.yaml
+    post-run: playbooks/weirdo/integration/post.yaml
     timeout: 7200
     vars:
       openstack_release: queens
