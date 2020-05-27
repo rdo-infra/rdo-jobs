@@ -471,27 +471,35 @@
 ### ussuri
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-baremetal-ussuri
-    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-baremetal-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
     vars:
+      component: baremetal
       release: ussuri
+      branch_override: 'stable/ussuri'
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-ussuri
-    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
     vars:
+      component: tripleo
       release: ussuri
+      branch_override: 'stable/ussuri'
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-ussuri
-    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-master
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-ussuri
     vars:
+      component: clients
       release: ussuri
+      branch_override: 'stable/ussuri'
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-ussuri
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-master
     vars:
+      component: security
       release: ussuri
+      branch_override: 'stable/ussuri'
 
 ## multinode component jobs
 - job:
@@ -579,12 +587,14 @@
     parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-security-master
     vars:
       release: ussuri
+      branch_override: 'stable/ussuri'
 
 - job:
     name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-tripleo-ussuri
     parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-tripleo-master
     vars:
       release: ussuri
+      branch_override: 'stable/ussuri'
 
 # standalone
 - job:
