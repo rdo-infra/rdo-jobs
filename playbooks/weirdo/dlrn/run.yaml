@@ -1,0 +1,128 @@
+- hosts: all
+  tasks:
+    - block:
+        - name: Do not run weirdo if there are no new packages to test in parent job
+          debug:
+            msg: "No new packages detected, skiping weirdo execution"
+
+        - meta: end_play
+      when: buildset_artifacts_url is not defined
+
+    - name: set centos_releasever fact
+      set_fact:
+        centos_releasever: "{{ ansible_distribution_major_version | default('7') }}"
+
+    - name: set centos_release fact
+      set_fact:
+        centos_release: "centos{{ centos_releasever }}"
+
+    - name: Setup testing repository
+      shell:
+        cmd: |
+          # This builder, when run from a child job of a DLRN based job,
+          # configures the DLRN repository that was uploaded as an artifact
+          # of the parent DLRN-rpmbuild job.
+          # This allows to install the packages in that repository and test
+          # them.
+          set +ex
+
+          export CENTOS_RELEASE="{{ centos_release }}"
+          logs={{ buildset_artifacts_url }}
+
+          # If we could not find a working repository, give up
+          curl -o /dev/null -sIf "${logs}" || exit 1
+
+          # Use the latest repository hash
+          # If DLRN built multiple packages, there will be multiple repositories.
+          # We want the latest repository which contains all of the packages that were just built.
+          repository="${logs}/centos/current"
+          if [ ${CENTOS_RELEASE} = "centos8" ]; then
+            repository="${logs}/centos8/current"
+          fi
+
+          # The rdoinfo-DLRN-check job may create different repos (centos-rpm-master, centos-pike-rdo)
+          # when it builds packages for more than one release. In that case, let us try to find the
+          # right one
+          curl -o /dev/null -sIf "${repository}"
+          if [ $? -ne 0 ]; then
+            releases="rpm-master train-rdo stein-rdo rocky-rdo queens-rdo pike-rdo ocata-rdo"
+            for release in $releases; do
+                repository="${logs}/centos-${release}/current"
+                curl -o /dev/null -sIf "${repository}" || continue
+                break
+            done
+          fi
+
+          # If we could not find a working repository, give up
+          curl -o /dev/null -sIf "${repository}" || exit 1
+
+          # Configure the repository
+          name="delorean-zuul-repo"
+          sudo bash -c "cat << EOF > /etc/yum.repos.d/${name}.repo
+          [${name}]
+          name=${name}
+          baseurl=${repository}
+          enabled=1
+          gpgcheck=0
+          priority=1
+          EOF"
+      changed_when: true
+
+    - name: Setup weirdo roles
+      shell:
+        cmd: |
+          export WBASE="{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/weirdo'].src_dir }}";
+          mkdir -p $WBASE/playbooks/roles
+          {% for project in ["common", "logs", "kolla", "packstack", "puppet-openstack"] %}
+            ln -s "{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/ansible-role-weirdo-' + project].src_dir }}" $WBASE/playbooks/roles/{{ project }};  # noqa 204
+          {% endfor %}
+      changed_when: true
+
+    - name: Run weirdo scenario
+      shell:
+        cmd: |
+          # WeIRDO uses ARA for ansible-playbook run visualization
+          export WORKSPACE="{{ ansible_user_dir }}/workspace"
+          mkdir -p $WORKSPACE
+          export ARA_DATABASE="sqlite:///$WORKSPACE/ara.sqlite"
+
+          # Backwards compat for project and openstack_release
+          # (dmsimard) TODO: Clean this up ASAP
+          if [[ "{{ zuul.job }}" == *"puppet"* ]]; then
+              project="puppet-openstack"
+          else
+              project="packstack"
+          fi
+          scenario="{{ scenario }}"
+
+          if [[ "{{ openstack_release }}" != "master" ]]; then
+              version="stable/{{ openstack_release }}"
+          else
+              version="{{ openstack_release }}"
+          fi
+
+          delorean_deps_url="https://trunk.rdoproject.org/{{ centos_release }}-{{ openstack_release }}/delorean-deps.repo"
+          if [[ "{{ zuul.pipeline }}" =~ "experimental" ]]; then
+              delorean_url="https://trunk.rdoproject.org/{{ centos_release }}-{{ openstack_release }}/current/delorean.repo"
+          elif [[ "{{ openstack_release }}" == "master" ]]; then
+              delorean_url="https://trunk.rdoproject.org/{{ centos_release }}-{{ openstack_release }}/puppet-passed-ci/delorean.repo"
+          else
+              delorean_url="https://trunk.rdoproject.org/{{ centos_release }}-{{ openstack_release }}/current-passed-ci/delorean.repo"
+          fi
+
+          cd "{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/weirdo'].src_dir }}"
+          # Prepare Ansible inventory to use localhost
+          cat <<EOF >hosts
+          localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python{{ '3' if centos_releasever|int >= 8 else '2' }}
+          [openstack_nodes]
+          localhost log_destination=/var/log/weirdo
+          EOF
+
+          tox -e ansible-playbook -- -vv -b -i hosts playbooks/$project-$scenario.yml \
+              -e version=$version \
+              -e openstack_release="{{ openstack_release }}" \
+              -e selinux_enforcing="{{ selinux_enforcing | default('true') }}" \
+              -e delorean_url=$delorean_url \
+              -e delorean_deps_url=$delorean_deps_url \
+              -e enable_puppet_modules_rpm=true
+      changed_when: true

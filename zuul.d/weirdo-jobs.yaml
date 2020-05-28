@@ -126,3 +126,75 @@
     vars:
       openstack_release: queens
       scenario: scenario003
+
+- job:
+    name: weirdo-dlrn-base
+    parent: base
+    run: playbooks/weirdo/dlrn/run.yaml
+    post-run: playbooks/weirdo/dlrn/post.yaml
+    timeout: 7200
+    voting: false
+    nodeset: rdo-centos-8
+    branches: ^(rpm-)?master$
+    required-projects:
+      - openstack/packstack
+      - rdo-infra/ansible-role-weirdo-common
+      - rdo-infra/ansible-role-weirdo-kolla
+      - rdo-infra/ansible-role-weirdo-logs
+      - rdo-infra/ansible-role-weirdo-packstack
+      - rdo-infra/ansible-role-weirdo-puppet-openstack
+      - rdo-infra/weirdo
+    dependencies:
+      - DLRN-rpmbuild-centos8
+
+- job:
+    name: weirdo-dlrn-master-packstack-scenario001-centos8
+    parent: weirdo-dlrn-base
+    vars:
+      openstack_release: master
+      scenario: scenario001
+      selinux_enforcing: "false"
+
+- job:
+    name: weirdo-dlrn-master-packstack-scenario002-centos8
+    parent: weirdo-dlrn-base
+    vars:
+      openstack_release: master
+      scenario: scenario002
+      selinux_enforcing: "false"
+
+- job:
+    name: weirdo-dlrn-master-packstack-scenario003-centos8
+    parent: weirdo-dlrn-base
+    vars:
+      openstack_release: master
+      scenario: scenario003
+      selinux_enforcing: "false"
+
+- job:
+    name: weirdo-dlrn-master-puppet-scenario001-centos8
+    parent: weirdo-dlrn-base
+    vars:
+      openstack_release: master
+      scenario: scenario001
+
+- job:
+    name: weirdo-dlrn-master-puppet-scenario002-centos8
+    parent: weirdo-dlrn-base
+    vars:
+      openstack_release: master
+      scenario: scenario002
+
+- job:
+    name: weirdo-dlrn-master-puppet-scenario003-centos8
+    parent: weirdo-dlrn-base
+    vars:
+      openstack_release: master
+      scenario: scenario003
+
+- job:
+    name: weirdo-dlrn-master-puppet-scenario004-centos8
+    parent: weirdo-dlrn-base
+    vars:
+      openstack_release: master
+      scenario: scenario004

@@ -1,0 +1,30 @@
+- hosts: all
+  tasks:
+    - name: Prepare logs
+      shell:
+        cmd: |
+          export WORKSPACE="{{ ansible_user_dir }}/workspace"
+          export WBASE="{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/weirdo'].src_dir }}"
+          # WeIRDO uses ARA for ansible-playbook run visualization
+          export ARA_DATABASE="sqlite:///$WORKSPACE/ara-sqlite"
+
+          # Generate ARA playbook analysis (do not fail job if generation fails)
+          sudo -E ${WBASE}/.tox/ansible-playbook/bin/ara generate html /var/log/weirdo/ara || true
+
+          mkdir logs
+          sudo cp -a /var/log/weirdo/* logs/
+          # Copy database (experimental)
+          sudo mkdir logs/ara-database
+          sudo cp $WORKSPACE/ara.sqlite logs/ara-database/ansible.sqlite
+
+          # Ensure permissions allow artifact uploading
+          sudo chown -R "$(id -u).$(id -g)" logs
+        executable: /bin/bash
+      changed_when: true
+
+    - name: Copy Weirdo logs
+      synchronize:
+        src: '{{ ansible_user_dir }}/logs/'
+        dest: '{{ zuul.executor.log_root }}/logs'
+        mode: pull
+        verify_host: true
