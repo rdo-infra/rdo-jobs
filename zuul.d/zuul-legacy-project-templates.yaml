@@ -52,8 +52,8 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
-        - legacy-weirdo-dlrn-master-packstack-scenario003-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario001-centos8
+        - weirdo-dlrn-master-packstack-scenario003-centos8
+        - weirdo-dlrn-master-puppet-scenario001-centos8
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
@@ -61,8 +61,8 @@
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-packstack-scenario003-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario001-centos8
+        - weirdo-dlrn-master-packstack-scenario003-centos8
+        - weirdo-dlrn-master-puppet-scenario001-centos8
         - DLRN-rpmbuild-centos8
     gate:
       jobs:
@@ -85,7 +85,7 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario002-centos8
+        - weirdo-dlrn-master-puppet-scenario002-centos8
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
@@ -93,7 +93,7 @@
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario002-centos8
+        - weirdo-dlrn-master-puppet-scenario002-centos8
         - DLRN-rpmbuild-centos8
     gate:
       jobs:
@@ -116,8 +116,8 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
-        - legacy-weirdo-dlrn-master-packstack-scenario003-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario001-centos8
+        - weirdo-dlrn-master-packstack-scenario003-centos8
+        - weirdo-dlrn-master-puppet-scenario001-centos8
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
@@ -125,8 +125,8 @@
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-packstack-scenario003-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario001-centos8
+        - weirdo-dlrn-master-packstack-scenario003-centos8
+        - weirdo-dlrn-master-puppet-scenario001-centos8
         - DLRN-rpmbuild-centos8
     gate:
       jobs:
@@ -149,9 +149,9 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
-        - legacy-weirdo-dlrn-master-packstack-scenario001-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario001-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario002-centos8
+        - weirdo-dlrn-master-packstack-scenario001-centos8
+        - weirdo-dlrn-master-puppet-scenario001-centos8
+        - weirdo-dlrn-master-puppet-scenario002-centos8
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
@@ -159,9 +159,9 @@
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-packstack-scenario001-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario001-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario002-centos8
+        - weirdo-dlrn-master-packstack-scenario001-centos8
+        - weirdo-dlrn-master-puppet-scenario001-centos8
+        - weirdo-dlrn-master-puppet-scenario002-centos8
         - DLRN-rpmbuild-centos8
     gate:
       jobs:
@@ -184,10 +184,10 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
-        - legacy-weirdo-dlrn-master-packstack-scenario001-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario001-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario002-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario004-centos8
+        - weirdo-dlrn-master-packstack-scenario001-centos8
+        - weirdo-dlrn-master-puppet-scenario001-centos8
+        - weirdo-dlrn-master-puppet-scenario002-centos8
+        - weirdo-dlrn-master-puppet-scenario004-centos8
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
@@ -195,10 +195,10 @@
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-packstack-scenario001-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario001-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario002-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario004-centos8
+        - weirdo-dlrn-master-packstack-scenario001-centos8
+        - weirdo-dlrn-master-puppet-scenario001-centos8
+        - weirdo-dlrn-master-puppet-scenario002-centos8
+        - weirdo-dlrn-master-puppet-scenario004-centos8
         - DLRN-rpmbuild-centos8
     gate:
       jobs:
@@ -225,10 +225,10 @@
         - DLRN-build-tripleo-centos8:
             dependencies:
               - DLRN-rpmbuild-centos8-pinned
-        - legacy-weirdo-dlrn-master-packstack-scenario003-centos8:
+        - weirdo-dlrn-master-packstack-scenario003-centos8:
             dependencies:
               - DLRN-rpmbuild-centos8-pinned
-        - legacy-weirdo-dlrn-master-puppet-scenario001-centos8:
+        - weirdo-dlrn-master-puppet-scenario001-centos8:
             dependencies:
               - DLRN-rpmbuild-centos8-pinned
         - DLRN-rpmbuild-centos8-pinned
@@ -239,16 +239,10 @@
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-packstack-scenario003:
-            dependencies:
-              - DLRN-rpmbuild-pinned
-        - legacy-experimental-weirdo-dlrn-master-packstack-scenario003-centos8:
+        - weirdo-dlrn-master-packstack-scenario003-centos8:
             dependencies:
               - DLRN-rpmbuild-centos8-pinned
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario001:
-            dependencies:
-              - DLRN-rpmbuild-pinned
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario001-centos8:
+        - weirdo-dlrn-master-puppet-scenario001-centos8:
             dependencies:
               - DLRN-rpmbuild-centos8-pinned
         - DLRN-rpmbuild-centos8-pinned
@@ -276,8 +270,8 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
-        - legacy-weirdo-dlrn-master-packstack-scenario003-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario003-centos8
+        - weirdo-dlrn-master-packstack-scenario003-centos8
+        - weirdo-dlrn-master-puppet-scenario003-centos8
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
@@ -285,8 +279,8 @@
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-packstack-scenario003-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario003-centos8
+        - weirdo-dlrn-master-packstack-scenario003-centos8
+        - weirdo-dlrn-master-puppet-scenario003-centos8
         - DLRN-rpmbuild-centos8
     gate:
       jobs:
@@ -309,7 +303,7 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario003-centos8
+        - weirdo-dlrn-master-puppet-scenario003-centos8
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
@@ -317,7 +311,7 @@
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario003-centos8
+        - weirdo-dlrn-master-puppet-scenario003-centos8
         - DLRN-rpmbuild-centos8
     gate:
       jobs:
@@ -340,8 +334,8 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
-        - legacy-weirdo-dlrn-master-packstack-scenario001-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario003-centos8
+        - weirdo-dlrn-master-packstack-scenario001-centos8
+        - weirdo-dlrn-master-puppet-scenario003-centos8
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
@@ -349,8 +343,8 @@
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-packstack-scenario001-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario003-centos8
+        - weirdo-dlrn-master-packstack-scenario001-centos8
+        - weirdo-dlrn-master-puppet-scenario003-centos8
         - DLRN-rpmbuild-centos8
     gate:
       jobs:
@@ -373,7 +367,7 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario004-centos8
+        - weirdo-dlrn-master-puppet-scenario004-centos8
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
@@ -381,7 +375,7 @@
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario004-centos8
+        - weirdo-dlrn-master-puppet-scenario004-centos8
         - DLRN-rpmbuild-centos8
     gate:
       jobs:
@@ -404,9 +398,9 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
-        - legacy-weirdo-dlrn-master-packstack-scenario001-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario001-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario003-centos8
+        - weirdo-dlrn-master-packstack-scenario001-centos8
+        - weirdo-dlrn-master-puppet-scenario001-centos8
+        - weirdo-dlrn-master-puppet-scenario003-centos8
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
@@ -414,9 +408,9 @@
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-packstack-scenario001-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario001-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario003-centos8
+        - weirdo-dlrn-master-packstack-scenario001-centos8
+        - weirdo-dlrn-master-puppet-scenario001-centos8
+        - weirdo-dlrn-master-puppet-scenario003-centos8
         - DLRN-rpmbuild-centos8
     gate:
       jobs:
@@ -439,8 +433,8 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
-        - legacy-weirdo-dlrn-master-packstack-scenario001-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario001-centos8
+        - weirdo-dlrn-master-packstack-scenario001-centos8
+        - weirdo-dlrn-master-puppet-scenario001-centos8
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
@@ -448,8 +442,8 @@
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-packstack-scenario001-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario001-centos8
+        - weirdo-dlrn-master-packstack-scenario001-centos8
+        - weirdo-dlrn-master-puppet-scenario001-centos8
         - DLRN-rpmbuild-centos8
     gate:
       jobs:
@@ -472,9 +466,9 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
-        - legacy-weirdo-dlrn-master-packstack-scenario002-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario001-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario003-centos8
+        - weirdo-dlrn-master-packstack-scenario002-centos8
+        - weirdo-dlrn-master-puppet-scenario001-centos8
+        - weirdo-dlrn-master-puppet-scenario003-centos8
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
@@ -482,9 +476,9 @@
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-packstack-scenario002-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario001-centos8
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario003-centos8
+        - weirdo-dlrn-master-packstack-scenario002-centos8
+        - weirdo-dlrn-master-puppet-scenario001-centos8
+        - weirdo-dlrn-master-puppet-scenario003-centos8
         - DLRN-rpmbuild-centos8
     gate:
       jobs:
@@ -507,7 +501,7 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario004-centos8
+        - weirdo-dlrn-master-puppet-scenario004-centos8
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
@@ -515,7 +509,7 @@
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario004-centos8
+        - weirdo-dlrn-master-puppet-scenario004-centos8
         - DLRN-rpmbuild-centos8
     gate:
       jobs:
@@ -538,7 +532,7 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
-        - legacy-weirdo-dlrn-master-puppet-scenario002-centos8
+        - weirdo-dlrn-master-puppet-scenario002-centos8
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
@@ -546,7 +540,7 @@
         - distgit-cbs-validate-centos8
     experimental:
       jobs:
-        - legacy-experimental-weirdo-dlrn-master-puppet-scenario002-centos8
+        - weirdo-dlrn-master-puppet-scenario002-centos8
         - DLRN-rpmbuild-centos8
     gate:
       jobs:

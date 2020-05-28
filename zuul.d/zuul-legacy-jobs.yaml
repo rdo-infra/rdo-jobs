@@ -24,9 +24,10 @@
 
 - job:
     name: legacy-experimental-weirdo-dlrn-master-packstack-scenario001
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-dlrn/run.yaml
-    post-run: playbooks/legacy/weirdo-dlrn/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/dlrn/run.yaml
+    post-run: playbooks/weirdo/dlrn/post.yaml
     timeout: 7200
     vars:
       openstack_release: master
@@ -53,9 +54,10 @@
 
 - job:
     name: legacy-experimental-weirdo-dlrn-master-packstack-scenario002
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-dlrn/run.yaml
-    post-run: playbooks/legacy/weirdo-dlrn/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/dlrn/run.yaml
+    post-run: playbooks/weirdo/dlrn/post.yaml
     timeout: 7200
     vars:
       openstack_release: master
@@ -82,9 +84,10 @@
 
 - job:
     name: legacy-experimental-weirdo-dlrn-master-packstack-scenario003
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-dlrn/run.yaml
-    post-run: playbooks/legacy/weirdo-dlrn/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/dlrn/run.yaml
+    post-run: playbooks/weirdo/dlrn/post.yaml
     timeout: 7200
     vars:
       openstack_release: master
@@ -111,9 +114,10 @@
 
 - job:
     name: legacy-experimental-weirdo-dlrn-master-puppet-scenario001
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-dlrn/run.yaml
-    post-run: playbooks/legacy/weirdo-dlrn/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/dlrn/run.yaml
+    post-run: playbooks/weirdo/dlrn/post.yaml
     timeout: 7200
     vars:
       openstack_release: master
@@ -137,9 +141,10 @@
 
 - job:
     name: legacy-experimental-weirdo-dlrn-master-puppet-scenario002
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-dlrn/run.yaml
-    post-run: playbooks/legacy/weirdo-dlrn/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/dlrn/run.yaml
+    post-run: playbooks/weirdo/dlrn/post.yaml
     timeout: 7200
     vars:
       openstack_release: master
@@ -163,9 +168,10 @@
 
 - job:
     name: legacy-experimental-weirdo-dlrn-master-puppet-scenario003
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-dlrn/run.yaml
-    post-run: playbooks/legacy/weirdo-dlrn/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/dlrn/run.yaml
+    post-run: playbooks/weirdo/dlrn/post.yaml
     timeout: 7200
     vars:
       openstack_release: master
@@ -189,9 +195,10 @@
 
 - job:
     name: legacy-experimental-weirdo-dlrn-master-puppet-scenario004
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-dlrn/run.yaml
-    post-run: playbooks/legacy/weirdo-dlrn/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/dlrn/run.yaml
+    post-run: playbooks/weirdo/dlrn/post.yaml
     timeout: 7200
     vars:
       openstack_release: master
@@ -260,9 +267,10 @@
 
 - job:
     name: legacy-weirdo-dlrn-master-packstack-scenario001
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-dlrn/run.yaml
-    post-run: playbooks/legacy/weirdo-dlrn/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/dlrn/run.yaml
+    post-run: playbooks/weirdo/dlrn/post.yaml
     timeout: 7200
     vars:
       openstack_release: master
@@ -291,9 +299,10 @@
 
 - job:
     name: legacy-weirdo-dlrn-master-packstack-scenario002
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-dlrn/run.yaml
-    post-run: playbooks/legacy/weirdo-dlrn/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/dlrn/run.yaml
+    post-run: playbooks/weirdo/dlrn/post.yaml
     timeout: 7200
     vars:
       openstack_release: master
@@ -322,9 +331,10 @@
 
 - job:
     name: legacy-weirdo-dlrn-master-packstack-scenario003
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-dlrn/run.yaml
-    post-run: playbooks/legacy/weirdo-dlrn/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/dlrn/run.yaml
+    post-run: playbooks/weirdo/dlrn/post.yaml
     timeout: 7200
     vars:
       openstack_release: master
@@ -353,9 +363,10 @@
 
 - job:
     name: legacy-weirdo-dlrn-master-puppet-scenario001
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-dlrn/run.yaml
-    post-run: playbooks/legacy/weirdo-dlrn/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/dlrn/run.yaml
+    post-run: playbooks/weirdo/dlrn/post.yaml
     timeout: 7200
     vars:
       openstack_release: master
@@ -381,9 +392,10 @@
 
 - job:
     name: legacy-weirdo-dlrn-master-puppet-scenario002
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-dlrn/run.yaml
-    post-run: playbooks/legacy/weirdo-dlrn/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/dlrn/run.yaml
+    post-run: playbooks/weirdo/dlrn/post.yaml
     timeout: 7200
     vars:
       openstack_release: master
@@ -409,9 +421,10 @@
 
 - job:
     name: legacy-weirdo-dlrn-master-puppet-scenario003
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-dlrn/run.yaml
-    post-run: playbooks/legacy/weirdo-dlrn/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/dlrn/run.yaml
+    post-run: playbooks/weirdo/dlrn/post.yaml
     timeout: 7200
     vars:
       openstack_release: master
@@ -437,9 +450,10 @@
 
 - job:
     name: legacy-weirdo-dlrn-master-puppet-scenario004
-    parent: legacy-base
-    run: playbooks/legacy/weirdo-dlrn/run.yaml
-    post-run: playbooks/legacy/weirdo-dlrn/post.yaml
+    parent: base
+    nodeset: rdo-centos-7
+    run: playbooks/weirdo/dlrn/run.yaml
+    post-run: playbooks/weirdo/dlrn/post.yaml
     timeout: 7200
     vars:
       openstack_release: master
