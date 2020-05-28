@@ -196,3 +196,13 @@
     vars:
       centos_version: centos8
     nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags
+    parent: base
+    run: playbooks/validate-buildsys-tags/run.yaml
+    post-run: playbooks/validate-buildsys-tags/post.yaml
+    nodeset: rdo-centos-8
+    required-projects:
+      - review.rdoproject.org/gating_scripts
+    timeout: 10800

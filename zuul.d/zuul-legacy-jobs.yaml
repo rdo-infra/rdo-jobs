@@ -257,9 +257,9 @@
 
 - job:
     name: legacy-validate-buildsys-tags
-    parent: legacy-base
-    run: playbooks/legacy/validate-buildsys-tags/run.yaml
-    post-run: playbooks/legacy/validate-buildsys-tags/post.yaml
+    parent: base
+    run: playbooks/validate-buildsys-tags/run.yaml
+    post-run: playbooks/validate-buildsys-tags/post.yaml
     nodeset: rdo-centos-8
     required-projects:
       - review.rdoproject.org/gating_scripts
