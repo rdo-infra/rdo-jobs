@@ -852,6 +852,8 @@
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-master
     branches: ^master$
     override-checkout: "stable/ussuri"
+    # timeouts seen on fs035 ussuri
+    timeout: 18000
     vars:
       branch_override: "stable/ussuri"
       release: ussuri
