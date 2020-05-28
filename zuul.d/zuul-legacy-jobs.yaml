@@ -251,11 +251,6 @@
     post-run: playbooks/legacy/rdo-registry-integration/post.yaml
 
 - job:
-    name: legacy-tox-validate
-    parent: legacy-base
-    run: playbooks/legacy/tox-validate/run.yaml
-
-- job:
     name: legacy-validate-buildsys-tags
     parent: base
     run: playbooks/validate-buildsys-tags/run.yaml

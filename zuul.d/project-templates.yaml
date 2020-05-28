@@ -12,10 +12,10 @@
     name: package-check-jobs
     check:
       jobs:
-        - legacy-tox-validate
+        - tox-py36
     gate:
       jobs:
-        - legacy-tox-validate
+        - tox-py36
 
 - project-template:
     name: package-distgit-check-jobs
