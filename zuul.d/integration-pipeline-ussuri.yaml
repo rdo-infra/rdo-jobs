@@ -82,6 +82,12 @@
         - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-containers-build-push
+        - periodic-tripleo-ci-centos-8-standalone-upgrade-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario013-standalone-upgrade-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-train-containers-build-push
         ## containers/images
         - periodic-tripleo-centos-8-ussuri-containers-build-push:
             dependencies:
