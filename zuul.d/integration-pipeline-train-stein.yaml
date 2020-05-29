@@ -107,6 +107,10 @@
             nodeset: single-centos-7-node-vexxhost
             dependencies:
               - periodic-tripleo-centos-7-train-containers-build-push
+        - periodic-tripleo-ci-centos-7-scenario013-standalone-upgrade-train:
+            nodeset: single-centos-7-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-7-train-containers-build-push
         - periodic-tripleo-centos-7-train-containers-build-push:
             dependencies:
               - periodic-tripleo-centos-7-train-promote-consistent-to-tripleo-ci-testing
@@ -152,6 +156,9 @@
             dependencies:
               - periodic-tripleo-centos-8-train-containers-build-push
         - periodic-tripleo-ci-centos-8-standalone-upgrade-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario013-standalone-upgrade-train:
             dependencies:
               - periodic-tripleo-centos-8-train-containers-build-push
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-train:
