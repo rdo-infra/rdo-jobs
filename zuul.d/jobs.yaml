@@ -206,3 +206,33 @@
     required-projects:
       - review.rdoproject.org/gating_scripts
     timeout: 10800
+
+- job:
+    name: weirdo-validate-buildsys-tags-base
+    parent: base
+    run: playbooks/rdoinfo/weirdo-buildsys-tags.yaml
+    timeout: 16200
+    required-projects:
+      - name: rdo-infra/weirdo
+    dependencies:
+      - validate-buildsys-tags
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-victoria-testing-puppet-scenario001-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: victoria
+      rdoinfo_phase: testing
+      scenario: scenario001
+    nodeset: rdo-centos-8
+
+
+- job:
+    name: validate-buildsys-tags-ussuri-testing-packstack-scenario002-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: ussuri
+      rdoinfo_phase: testing
+      scenario: scenario002
+    nodeset: rdo-centos-8
