@@ -555,3 +555,73 @@
             dependencies:
               - podman-package-centos-8
             voting: false
+
+- project-template:
+    name: weirdo-validate-buildsys-tags-jobs
+    description: |
+      Jobs to gate buildsys-tags in rdoinfo
+    check:
+      jobs:
+        - validate-buildsys-tags-stein-testing-puppet-scenario001-centos7
+        - validate-buildsys-tags-stein-testing-puppet-scenario002-centos7
+        - validate-buildsys-tags-stein-testing-puppet-scenario003-centos7
+        - validate-buildsys-tags-stein-testing-puppet-scenario004-centos7
+        - validate-buildsys-tags-stein-testing-packstack-scenario001-centos7
+        - validate-buildsys-tags-stein-testing-packstack-scenario002-centos7
+        - validate-buildsys-tags-stein-testing-packstack-scenario003-centos7
+        - validate-buildsys-tags-stein-release-puppet-scenario001-centos7
+        - validate-buildsys-tags-stein-release-puppet-scenario002-centos7
+        - validate-buildsys-tags-stein-release-puppet-scenario003-centos7
+        - validate-buildsys-tags-stein-release-puppet-scenario004-centos7
+        - validate-buildsys-tags-stein-release-packstack-scenario001-centos7
+        - validate-buildsys-tags-stein-release-packstack-scenario002-centos7
+        - validate-buildsys-tags-stein-release-packstack-scenario003-centos7
+        - validate-buildsys-tags-train-testing-puppet-scenario001-centos7
+        - validate-buildsys-tags-train-testing-puppet-scenario002-centos7
+        - validate-buildsys-tags-train-testing-puppet-scenario003-centos7
+        - validate-buildsys-tags-train-testing-puppet-scenario004-centos7
+        - validate-buildsys-tags-train-testing-packstack-scenario001-centos7
+        - validate-buildsys-tags-train-testing-packstack-scenario002-centos7
+        - validate-buildsys-tags-train-testing-packstack-scenario003-centos7
+        - validate-buildsys-tags-train-release-puppet-scenario001-centos7
+        - validate-buildsys-tags-train-release-puppet-scenario002-centos7
+        - validate-buildsys-tags-train-release-puppet-scenario003-centos7
+        - validate-buildsys-tags-train-release-puppet-scenario004-centos7
+        - validate-buildsys-tags-train-release-packstack-scenario001-centos7
+        - validate-buildsys-tags-train-release-packstack-scenario002-centos7
+        - validate-buildsys-tags-train-release-packstack-scenario003-centos7
+        - validate-buildsys-tags-train-testing-puppet-scenario001-centos8
+        - validate-buildsys-tags-train-testing-puppet-scenario002-centos8
+        - validate-buildsys-tags-train-testing-puppet-scenario003-centos8
+        - validate-buildsys-tags-train-testing-puppet-scenario004-centos8
+        - validate-buildsys-tags-train-testing-packstack-scenario001-centos8
+        - validate-buildsys-tags-train-testing-packstack-scenario002-centos8
+        - validate-buildsys-tags-train-testing-packstack-scenario003-centos8
+        - validate-buildsys-tags-train-release-puppet-scenario001-centos8
+        - validate-buildsys-tags-train-release-puppet-scenario002-centos8
+        - validate-buildsys-tags-train-release-puppet-scenario003-centos8
+        - validate-buildsys-tags-train-release-puppet-scenario004-centos8
+        - validate-buildsys-tags-train-release-packstack-scenario001-centos8
+        - validate-buildsys-tags-train-release-packstack-scenario002-centos8
+        - validate-buildsys-tags-train-release-packstack-scenario003-centos8
+        - validate-buildsys-tags-ussuri-testing-puppet-scenario001-centos8
+        - validate-buildsys-tags-ussuri-testing-puppet-scenario002-centos8
+        - validate-buildsys-tags-ussuri-testing-puppet-scenario003-centos8
+        - validate-buildsys-tags-ussuri-testing-puppet-scenario004-centos8
+        - validate-buildsys-tags-ussuri-testing-packstack-scenario001-centos8
+        - validate-buildsys-tags-ussuri-testing-packstack-scenario002-centos8
+        - validate-buildsys-tags-ussuri-testing-packstack-scenario003-centos8
+        - validate-buildsys-tags-ussuri-release-puppet-scenario001-centos8
+        - validate-buildsys-tags-ussuri-release-puppet-scenario002-centos8
+        - validate-buildsys-tags-ussuri-release-puppet-scenario003-centos8
+        - validate-buildsys-tags-ussuri-release-puppet-scenario004-centos8
+        - validate-buildsys-tags-ussuri-release-packstack-scenario001-centos8
+        - validate-buildsys-tags-ussuri-release-packstack-scenario002-centos8
+        - validate-buildsys-tags-ussuri-release-packstack-scenario003-centos8
+        - validate-buildsys-tags-victoria-testing-puppet-scenario001-centos8
+        - validate-buildsys-tags-victoria-testing-puppet-scenario002-centos8
+        - validate-buildsys-tags-victoria-testing-puppet-scenario003-centos8
+        - validate-buildsys-tags-victoria-testing-puppet-scenario004-centos8
+        - validate-buildsys-tags-victoria-testing-packstack-scenario001-centos8
+        - validate-buildsys-tags-victoria-testing-packstack-scenario002-centos8
+        - validate-buildsys-tags-victoria-testing-packstack-scenario003-centos8
