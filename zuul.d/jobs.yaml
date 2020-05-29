@@ -206,3 +206,584 @@
     required-projects:
       - review.rdoproject.org/gating_scripts
     timeout: 10800
+
+- job:
+    name: weirdo-validate-buildsys-tags-base
+    parent: base
+    run: playbooks/rdoinfo/weirdo-buildsys-tags.yaml
+    post-run: playbooks/weirdo/integration/post.yaml
+    timeout: 7200
+    required-projects:
+      - name: rdo-infra/weirdo
+    vars:
+      selinux_enforcing: "false"
+    dependencies:
+      - validate-buildsys-tags
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-victoria-testing-puppet-scenario001-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: victoria
+      rdoinfo_phase: testing
+      scenario: scenario001
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-victoria-testing-puppet-scenario002-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: victoria
+      rdoinfo_phase: testing
+      scenario: scenario002
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-victoria-testing-puppet-scenario003-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: victoria
+      rdoinfo_phase: testing
+      scenario: scenario003
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-victoria-testing-puppet-scenario004-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: victoria
+      rdoinfo_phase: testing
+      scenario: scenario004
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-victoria-testing-packstack-scenario001-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: victoria
+      rdoinfo_phase: testing
+      scenario: scenario001
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-victoria-testing-packstack-scenario002-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: victoria
+      rdoinfo_phase: testing
+      scenario: scenario002
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-victoria-testing-packstack-scenario003-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: victoria
+      rdoinfo_phase: testing
+      scenario: scenario003
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-ussuri-testing-puppet-scenario001-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: ussuri
+      rdoinfo_phase: testing
+      scenario: scenario001
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-ussuri-testing-puppet-scenario002-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: ussuri
+      rdoinfo_phase: testing
+      scenario: scenario002
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-ussuri-testing-puppet-scenario003-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: ussuri
+      rdoinfo_phase: testing
+      scenario: scenario003
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-ussuri-testing-puppet-scenario004-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: ussuri
+      rdoinfo_phase: testing
+      scenario: scenario004
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-ussuri-testing-packstack-scenario001-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: ussuri
+      rdoinfo_phase: testing
+      scenario: scenario001
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-ussuri-testing-packstack-scenario002-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: ussuri
+      rdoinfo_phase: testing
+      scenario: scenario002
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-ussuri-testing-packstack-scenario003-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: ussuri
+      rdoinfo_phase: testing
+      scenario: scenario003
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-ussuri-release-puppet-scenario001-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: ussuri
+      rdoinfo_phase: release
+      scenario: scenario001
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-ussuri-release-puppet-scenario002-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: ussuri
+      rdoinfo_phase: release
+      scenario: scenario002
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-ussuri-release-puppet-scenario003-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: ussuri
+      rdoinfo_phase: release
+      scenario: scenario003
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-ussuri-release-puppet-scenario004-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: ussuri
+      rdoinfo_phase: release
+      scenario: scenario004
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-ussuri-release-packstack-scenario001-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: ussuri
+      rdoinfo_phase: release
+      scenario: scenario001
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-ussuri-release-packstack-scenario002-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: ussuri
+      rdoinfo_phase: release
+      scenario: scenario002
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-ussuri-release-packstack-scenario003-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: ussuri
+      rdoinfo_phase: release
+      scenario: scenario003
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-train-testing-puppet-scenario001-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: testing
+      scenario: scenario001
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-train-testing-puppet-scenario002-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: testing
+      scenario: scenario002
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-train-testing-puppet-scenario003-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: testing
+      scenario: scenario003
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-train-testing-puppet-scenario004-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: testing
+      scenario: scenario004
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-train-testing-packstack-scenario001-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: testing
+      scenario: scenario001
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-train-testing-packstack-scenario002-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: testing
+      scenario: scenario002
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-train-testing-packstack-scenario003-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: testing
+      scenario: scenario003
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-train-release-puppet-scenario001-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: release
+      scenario: scenario001
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-train-release-puppet-scenario002-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: release
+      scenario: scenario002
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-train-release-puppet-scenario003-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: release
+      scenario: scenario003
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-train-release-puppet-scenario004-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: release
+      scenario: scenario004
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-train-release-packstack-scenario001-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: release
+      scenario: scenario001
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-train-release-packstack-scenario002-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: release
+      scenario: scenario002
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-train-release-packstack-scenario003-centos8
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: release
+      scenario: scenario003
+    nodeset: rdo-centos-8
+
+- job:
+    name: validate-buildsys-tags-train-testing-puppet-scenario001-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: testing
+      scenario: scenario001
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-train-testing-puppet-scenario002-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: testing
+      scenario: scenario002
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-train-testing-puppet-scenario003-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: testing
+      scenario: scenario003
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-train-testing-puppet-scenario004-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: testing
+      scenario: scenario004
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-train-testing-packstack-scenario001-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: testing
+      scenario: scenario001
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-train-testing-packstack-scenario002-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: testing
+      scenario: scenario002
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-train-testing-packstack-scenario003-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: testing
+      scenario: scenario003
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-train-release-puppet-scenario001-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: release
+      scenario: scenario001
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-train-release-puppet-scenario002-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: release
+      scenario: scenario002
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-train-release-puppet-scenario003-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: release
+      scenario: scenario003
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-train-release-puppet-scenario004-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: release
+      scenario: scenario004
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-train-release-packstack-scenario001-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: release
+      scenario: scenario001
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-train-release-packstack-scenario002-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: release
+      scenario: scenario002
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-train-release-packstack-scenario003-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: release
+      scenario: scenario003
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-stein-testing-puppet-scenario001-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: stein
+      rdoinfo_phase: testing
+      scenario: scenario001
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-stein-testing-puppet-scenario002-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: stein
+      rdoinfo_phase: testing
+      scenario: scenario002
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-stein-testing-puppet-scenario003-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: stein
+      rdoinfo_phase: testing
+      scenario: scenario003
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-stein-testing-puppet-scenario004-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: stein
+      rdoinfo_phase: testing
+      scenario: scenario004
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-stein-testing-packstack-scenario001-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: stein
+      rdoinfo_phase: testing
+      scenario: scenario001
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-stein-testing-packstack-scenario002-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: stein
+      rdoinfo_phase: testing
+      scenario: scenario002
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-stein-testing-packstack-scenario003-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: stein
+      rdoinfo_phase: testing
+      scenario: scenario003
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-stein-release-puppet-scenario001-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: stein
+      rdoinfo_phase: release
+      scenario: scenario001
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-stein-release-puppet-scenario002-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: stein
+      rdoinfo_phase: release
+      scenario: scenario002
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-stein-release-puppet-scenario003-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: stein
+      rdoinfo_phase: release
+      scenario: scenario003
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-stein-release-puppet-scenario004-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: stein
+      rdoinfo_phase: release
+      scenario: scenario004
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-stein-release-packstack-scenario001-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: stein
+      rdoinfo_phase: release
+      scenario: scenario001
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-stein-release-packstack-scenario002-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: stein
+      rdoinfo_phase: release
+      scenario: scenario002
+    nodeset: rdo-centos-7
+
+- job:
+    name: validate-buildsys-tags-stein-release-packstack-scenario003-centos7
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: stein
+      rdoinfo_phase: release
+      scenario: scenario003
+    nodeset: rdo-centos-7

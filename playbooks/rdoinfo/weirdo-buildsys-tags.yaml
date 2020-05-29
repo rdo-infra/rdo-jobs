@@ -1,0 +1,137 @@
+- hosts: all
+  tasks:
+
+    - name: Create workspace directory
+      file:
+        path: '{{ ansible_user_dir }}/workspace'
+        state: directory
+
+    - block:
+        - name: Do not run weirdo if there are no new packages to test in parent job
+          debug:
+            msg: "No new packages detected, skiping weirdo execution"
+
+        - meta: end_play
+      when: buildset_artifacts_url is not defined
+
+    - name: Create centos_releasever fact
+      set_fact:
+        centos_releasever: "{{ ansible_distribution_major_version | default('7') }}"
+
+    - name: Create centos_release fact
+      set_fact:
+        centos_release: "centos{{ centos_releasever }}"
+
+    - name: Check if job needs to be run or not based on changes
+      shell:
+        cmd: |
+          # This builder, when run from a child job of validate-buildsys-tags
+          # configures the temporary repositories created by it
+          # This allows to install the packages in that repository and test
+          # them.
+          set +e -x
+          # This job requires variables 'rdoinfo_release' and 'rdoinfo_phase' to be defined.
+
+          REQUIRED=0
+          CREPOS_FILE=changed_repos.txt
+
+          if [ -z "{{ rdoinfo_phase|default("") }}" -o -z "{{ rdoinfo_release|default("") }}" ]; then
+              echo "ERROR in job definition: rdoinfo_phase or rdoinfo_release are not defined"
+              exit 1
+          fi
+
+          # Set log path
+          logs={{ buildset_artifacts_url }}
+
+          # If we could not find a working repository, give up
+          curl -o $CREPOS_FILE -sf "$logs/repos/changed_repos.txt" || exit 1
+
+          if ! grep -q -E "{{ rdoinfo_release }}-{{ rdoinfo_phase }}" $CREPOS_FILE; then
+              echo "INFO: this test is not required"| tee not_required
+              exit 0
+          fi
+
+        chdir: "{{ ansible_user_dir }}/workspace"
+      changed_when: true
+
+    - name: Detect if we created the file to stop quickstart run
+      stat:
+        path: "{{ ansible_user_dir }}/workspace/not_required"
+      register: stop_file
+
+    - name: Run weirdo for the desired project and scenario
+      shell:
+        cmd: |
+          set -e -x
+
+          MASTER="victoria"
+          RELEASE="{{ rdoinfo_release }}"
+          PHASE="{{ rdoinfo_phase }}"
+          DIST_VER="{{ centos_releasever }}"
+          REPO="cloud${DIST_VER}-openstack-$RELEASE-$PHASE"
+
+          # Find out if it is puppet or packstack and scenario
+          if [[ "{{ zuul.job }}" == *"puppet"* ]]; then
+              project="puppet-openstack"
+          else
+              project="packstack"
+          fi
+          scenario="{{ scenario }}"
+
+          # Set version related variables
+          if [ $RELEASE = $MASTER ]; then
+            VERSION="master"
+            O_RELEASE="master"
+          else
+            VERSION="stable/$RELEASE"
+            O_RELEASE="$RELEASE"
+          fi
+
+          # Temporary repo URL
+          logs={{ buildset_artifacts_url }}
+          TEMP_REPO_URL="${logs}/repos/$REPO/temp-$REPO.repo"
+
+          # Release RPM name is different for el7 and el8
+          if [ ${DIST_VER} -eq 8 ]; then
+              export RELEASE_RPM="rdo-release-${RELEASE}.el8.rpm"
+          else
+              export RELEASE_RPM="rdo-release-${RELEASE}.rpm"
+          fi
+
+
+          # Prepare Ansible inventory to use localhost
+          pushd {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/weirdo'].src_dir }}
+          cat <<EOF >hosts
+          localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python{{ '3' if centos_releasever|int >= 8 else '2' }}
+          [openstack_nodes]
+          localhost log_destination=/var/log/weirdo
+          EOF
+
+          case $PHASE in
+          testing)
+              if [ $RELEASE = $MASTER ]; then
+                  REPOS_URL="http://trunk.rdoproject.org/centos8-master/puppet-passed-ci/delorean.repo,https://trunk.rdoproject.org/centos8-master/delorean-deps.repo,$TEMP_REPO_URL" # noqa 204
+                  ADDITIONAL_OPTS=""
+              else
+                  REPOS_URL="$TEMP_REPO_URL"
+                  ADDITIONAL_OPTS="-e stable_repositories=https://rdoproject.org/repos/openstack-${RELEASE}/${RELEASE_RPM} -e testing_repository=true"
+              fi
+
+          ;;
+          release)
+              REPOS_URL="$TEMP_REPO_URL"
+              ADDITIONAL_OPTS="-e stable_repositories=https://rdoproject.org/repos/openstack-${RELEASE}/${RELEASE_RPM} -e testing_repository=false"
+          ;;
+          esac
+
+          tox -e ansible-playbook -- -vv -b -i hosts playbooks/$project-$scenario.yml \
+              -e version=$VERSION \
+              -e openstack_release=$O_RELEASE \
+              -e selinux_enforcing="{{ selinux_enforcing | default('true') }}" \
+              -e tempest_from_source=false \
+              -e enable_puppet_modules_rpm=true \
+              -e trunk_repositories=$REPOS_URL \
+              $ADDITIONAL_OPTS
+
+      changed_when: true
+      when: not stop_file.stat.exists
