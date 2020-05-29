@@ -466,6 +466,26 @@
       release: master
 
 - job:
+    name: periodic-tripleo-ci-centos-8-scenario013-standalone-upgrade-master
+    parent: periodic-tripleo-ci-centos-8-standalone-upgrade-master
+    voting: false
+    branches: ^master$
+    vars: &scen13_standalone_upgrade_vars
+      tags:
+        - build
+        - standalone
+        - octavia
+      featureset: '062'
+      release: master
+      tempest_workers: 1
+      featureset_override:
+        standalone_upgrade: true
+        validate_services: false
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario013-standalone.yaml'
+
+- job:
     name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-master
     parent: tripleo-ci-base-standalone-periodic-centos-8
     nodeset: two-centos-8-nodes-vexxhost
@@ -579,6 +599,14 @@
       branch_override: 'stable/train'
       release: train
 
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario013-standalone-upgrade-train
+    parent: periodic-tripleo-ci-centos-8-standalone-upgrade-train
+    voting: false
+    vars: *scen13_standalone_upgrade_vars
+      branch_override: 'stable/train'
+      release: train
+
 ########## C E N T O S 7 TRAIN #############################
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-train
@@ -592,6 +620,14 @@
     parent: periodic-tripleo-ci-centos-7-standalone-upgrade-master
     override-checkout: 'stable/train'
     vars:
+      branch_override: 'stable/train'
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-7-scenario013-standalone-upgrade-train
+    parent: periodic-tripleo-ci-centos-7-standalone-upgrade-train
+    voting: false
+    vars: *scen13_standalone_upgrade_vars
       branch_override: 'stable/train'
       release: train
 
@@ -674,6 +710,14 @@
     override-checkout: 'stable/stein'
     vars:
       featureset: '056'
+      branch_override: 'stable/stein'
+      release: stein
+
+- job:
+    name: periodic-tripleo-ci-centos-7-scenario013-standalone-upgrade-stein
+    parent: periodic-tripleo-ci-centos-7-standalone-upgrade-stein
+    voting: false
+    vars: *scen13_standalone_upgrade_vars
       branch_override: 'stable/stein'
       release: stein
 
