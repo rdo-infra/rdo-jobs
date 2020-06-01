@@ -1,0 +1,24 @@
+---
+- hosts: all
+  name: centos-opstools-doc playbook
+  tasks:
+    - name: Install required packages
+      package:
+        name:
+          - rubygems
+        state: present
+      become: true
+
+    - name: install asciidoctor
+      shell:
+        cmd: |
+          set +e
+          WORKSPACE="{{ ansible_user_dir }}/workspace"
+          mkdir -p $WORKSPACE/logs
+
+          gem install asciidoctor
+
+          pushd {{ ansible_user_dir }}/{{ zuul.project.src_dir }}
+          ~/bin/asciidoctor -v -b html5 *.txt -D $WORKSPACE/logs
+          popd
+      changed_when: true

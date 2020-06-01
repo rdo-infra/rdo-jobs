@@ -1,20 +1,20 @@
 - job:
     name: legacy-centos-opstools-doc
-    parent: legacy-base
-    run: playbooks/legacy/centos-opstools-doc/run.yaml
+    parent: base
+    run: playbooks/centos-opstools/doc/run.yaml
     nodeset: rdo-centos-8
 
 - job:
     name: legacy-centos-opstools-rpmbuild
-    parent: legacy-base
-    run: playbooks/legacy/centos-opstools-rpmbuild/run.yaml
-    post-run: playbooks/legacy/centos-opstools-rpmbuild/post.yaml
+    parent: base
+    run: playbooks/centos-opstools/rpmbuild/run.yaml
+    post-run: playbooks/centos-opstools/rpmbuild/post.yaml
     nodeset: rdo-centos-8
 
 - job:
     name: legacy-centos-opstools-rpmlint
-    parent: legacy-base
-    run: playbooks/legacy/centos-opstools-rpmlint/run.yaml
+    parent: base
+    run: playbooks/centos-opstools/rpmlint/run.yaml
     nodeset: rdo-centos-8
 
 - job:

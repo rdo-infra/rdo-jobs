@@ -1,0 +1,9 @@
+---
+- hosts: all
+  tasks:
+    - name: Copy files from {{ ansible_user_dir }}/workspace/logs on node
+      synchronize:
+        src: '{{ ansible_user_dir }}/workspace/logs/'
+        dest: '{{ zuul.executor.log_root }}/logs'
+        mode: pull
+        verify_host: true
