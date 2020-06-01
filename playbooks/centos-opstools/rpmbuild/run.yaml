@@ -1,0 +1,63 @@
+---
+- hosts: all
+  name: centos-opstools-rpmbuild playbook
+  tasks:
+    - name: Install required packages
+      package:
+        name:
+          - "rpm-build"
+          - "rpmdevtools"
+          - "centos-release-opstools"
+          - "@Development Tools"
+        state: present
+      become: true
+
+    - name: dnf update
+      shell:
+        cmd: |
+          set -e
+          WORKSPACE="{{ ansible_user_dir }}/workspace"
+          mkdir -p $WORKSPACE/logs
+          cat << EOF | sudo tee /etc/yum.repos.d/opstools-build.repo
+          [centos-opstools-collectd-5-testing]
+          name=CentOS-8 - OpsTools collectd-5 - testing repo
+          baseurl=https://buildlogs.centos.org/centos/\$releasever/opstools/\$basearch/collectd-5
+          gpgcheck=0
+          enabled=1
+
+          [centos-messaging-qpid-proton-testing]
+          name=CentOS-8 - Messaging QPID proton - testing repo
+          baseurl=https://buildlogs.centos.org/centos/\$releasever/messaging/\$basearch/qpid-proton
+          gpgcheck=0
+          enabled=1
+
+          [centos-cloud]
+          name=CentOS-8 - OpenStack Train testing repository
+          baseurl=https://buildlogs.centos.org/centos/\$releasever/cloud/\$basearch/openstack-train/
+          gpgcheck=0
+          enabled=1
+          EOF
+
+          sudo dnf -y update
+          PROJECT="{{ ansible_user_dir }}/{{ zuul.project.src_dir }}"
+          pushd $PROJECT
+          base=`basename $PROJECT`
+          if [ -f "$base.spec" ]; then
+             specfile="$base.spec"
+          else
+             num_spec=`ls -l *.spec | wc -l`
+             if [ ${num_spec} -eq 1 ]; then
+               specfile=`ls *.spec`
+             else
+               echo "** ERROR: There are more than one spec file"
+               exit 1
+             fi
+          fi
+          spectool -g  "$specfile"
+          sudo yum-builddep -y "$specfile"
+          rpmbuild -D '_sourcedir '$PWD -D '_specdir '$PWD -D '_topdir '$PWD -ba "$specfile"
+          # move built rpms to logs for later use
+          mv SRPMS/* $WORKSPACE/logs
+          mv RPMS/* $WORKSPACE/logs
+          popd
+      changed_when: true

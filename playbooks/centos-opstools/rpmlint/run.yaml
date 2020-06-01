@@ -1,0 +1,32 @@
+---
+- hosts: all
+  name: centos-opstools-rpmlint playbook
+  tasks:
+    - name: Install rpmlint
+      package:
+        name:
+          - rpmlint
+        state: present
+      become: true
+
+    - name: rpmlint
+      shell:
+        cmd: |
+          set -e
+          PROJECT="{{ ansible_user_dir }}/{{ zuul.project.src_dir }}"
+          pushd $PROJECT
+          base=`basename $PROJECT`
+          if [ -f "$base.spec" ]; then
+             specfile="$base.spec"
+          else
+             num_spec=`ls -l *.spec | wc -l`
+             if [ ${num_spec} -eq 1 ]; then
+               specfile=`ls *.spec`
+             else
+               echo "** ERROR: There are more than one spec file"
+               exit 1
+             fi
+          fi
+          rpmlint "$specfile"
+          popd
+      changed_when: true

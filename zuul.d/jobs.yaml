@@ -206,3 +206,22 @@
     required-projects:
       - review.rdoproject.org/gating_scripts
     timeout: 10800
+
+- job:
+    name: centos-opstools-doc
+    parent: base
+    run: playbooks/centos-opstools/doc/run.yaml
+    nodeset: rdo-centos-8
+
+- job:
+    name: centos-opstools-rpmbuild
+    parent: base
+    run: playbooks/centos-opstools/rpmbuild/run.yaml
+    post-run: playbooks/centos-opstools/rpmbuild/post.yaml
+    nodeset: rdo-centos-8
+
+- job:
+    name: centos-opstools-rpmlint
+    parent: base
+    run: playbooks/centos-opstools/rpmlint/run.yaml
+    nodeset: rdo-centos-8
