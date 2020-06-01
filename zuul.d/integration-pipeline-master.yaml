@@ -73,6 +73,9 @@
         - periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-master:
             dependencies:
               - periodic-tripleo-centos-8-master-containers-build-push
+        - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-containers-build-push
         - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-master:
             dependencies:
               - periodic-tripleo-centos-8-master-containers-build-push
