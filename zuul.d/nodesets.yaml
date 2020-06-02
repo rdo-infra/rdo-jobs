@@ -1,3 +1,20 @@
+---
+# Warning:
+# When updating latest version, add depends-on check for each project using
+# the updated nodeset.
+# If all depends-on succeed, merge the change, else for the depends-on that
+# failed, either fix the project, or change the job nodeset to a pinned
+# version nodeset.
+#
+# NOTE(dpawlik) Some nodesets have been updated:
+#  - removed unused nodesets: `container-centos`, `openstack-single-node`,
+#    `openstack-two-node`, `tripleo-ovb-fedora-28`, `upstream-centos-7`,
+#    `single-fedora-28-node` and `three-centos-7-nodes`
+#  - `container-fedora` nodeset is using now `pod-fedora-31` instead of
+#    `runc-fedora-29`
+#
+# More information in TG-3414.
+
 # Container nodesets
 - nodeset:
     name: container-fedora
