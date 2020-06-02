@@ -652,3 +652,39 @@
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
+
+- job:
+    name: rdoinfo-tripleo-ussuri-testing-centos-8-standalone
+    parent: rdoinfo-tripleo-master-testing-centos-8-standalone
+    override-checkout: "stable/ussuri"
+    vars:
+      rdoinfo_release: ussuri
+      rdoinfo_phase: testing
+      branch_override: "stable/ussuri"
+
+- job:
+    name: rdoinfo-tripleo-ussuri-testing-centos-8-scenario001-standalone
+    parent: rdoinfo-tripleo-master-testing-centos-8-scenario001-standalone
+    override-checkout: "stable/ussuri"
+    vars:
+      rdoinfo_release: ussuri
+      rdoinfo_phase: testing
+      branch_override: "stable/ussuri"
+
+- job:
+    name: rdoinfo-tripleo-ussuri-testing-centos-8-scenario007-standalone
+    parent: rdoinfo-tripleo-master-testing-centos-8-scenario007-standalone
+    override-checkout: "stable/ussuri"
+    vars:
+      rdoinfo_release: ussuri
+      rdoinfo_phase: testing
+      branch_override: "stable/ussuri"
+
+- job:
+    name: rdoinfo-tripleo-ussuri-testing-centos-8-containers-multinode
+    parent: rdoinfo-tripleo-master-testing-centos-8-containers-multinode
+    override-checkout: "stable/ussuri"
+    vars:
+      rdoinfo_release: ussuri
+      rdoinfo_phase: testing
+      branch_override: "stable/ussuri"
