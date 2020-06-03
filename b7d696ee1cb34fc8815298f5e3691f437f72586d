@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6cd8de0c_f797b8c5",
+        "filename": "zuul.d/jobs.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2020-06-03T10:39:11Z",
+      "side": 1,
+      "message": "would better to move all these weirdo jobs to zuul.d/weirdo-jobs.yaml with other weirdo jobs.",
+      "revId": "b7d696ee1cb34fc8815298f5e3691f437f72586d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6f7908cf_e652bd82",
+        "filename": "zuul.d/jobs.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2020-06-03T10:39:11Z",
+      "side": 1,
+      "message": "since we want to run all 7 jobs per release, what about if we do like:-\n- create a base job for each release with parent: weirdo-validate-buildsys-tags-base, and files: buildsys-tags/\u003ctag regex\u003e\n- release job parents with this release specific base job\n\n- create a major template which contains all these jobs and then use that template to replace weirdo-validate-buildsys-tags job.",
+      "revId": "b7d696ee1cb34fc8815298f5e3691f437f72586d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
