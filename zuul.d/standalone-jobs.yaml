@@ -412,6 +412,8 @@
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
           - 'ci/environments/scenario010-standalone.yaml'
+        tempest_test_whitelist:
+          - octavia_tempest_plugin.tests.scenario
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-master
