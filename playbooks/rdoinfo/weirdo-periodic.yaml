@@ -1,0 +1,61 @@
+- hosts: all
+  tasks:
+
+    - name: Create workspace directory
+      file:
+        path: '{{ ansible_user_dir }}/workspace'
+        state: directory
+
+    - name: Create centos_releasever fact
+      set_fact:
+        centos_releasever: "{{ ansible_distribution_major_version | default('7') }}"
+
+    - name: Create centos_release fact
+      set_fact:
+        centos_release: "centos{{ centos_releasever }}"
+
+    - name: Run weirdo for the desired project and scenario
+      shell:
+        cmd: |
+          set -e -x
+
+          MASTER="victoria"
+          RELEASE="{{ rdoinfo_release }}"
+          DIST_VER="{{ centos_releasever }}"
+
+          # Find out if it is puppet or packstack and scenario
+          if [[ "{{ zuul.job }}" == *"puppet"* ]]; then
+              project="puppet-openstack"
+          else
+              project="packstack"
+          fi
+          scenario="{{ scenario }}"
+
+          # Set version related variables
+          if [ $RELEASE = $MASTER ]; then
+            VERSION="master"
+            O_RELEASE="master"
+          else
+            VERSION="stable/$RELEASE"
+            O_RELEASE="$RELEASE"
+          fi
+
+          # Prepare Ansible inventory to use localhost
+          pushd {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/weirdo'].src_dir }}
+          cat <<EOF >hosts
+          localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python{{ '3' if centos_releasever|int >= 8 else '2' }}
+          [openstack_nodes]
+          localhost log_destination=/var/log/weirdo
+          EOF
+
+          REPOS_URL="http://trunk.rdoproject.org/centos${DIST_VER}-${O_RELEASE}/puppet-passed-ci/delorean.repo,https://trunk.rdoproject.org/centos${DIST_VER}-${O_RELEASE}/delorean-deps.repo" # noqa 204
+
+          tox -e ansible-playbook -- -vv -b -i hosts playbooks/$project-$scenario.yml \
+              -e version=$VERSION \
+              -e openstack_release=$O_RELEASE \
+              -e selinux_enforcing="{{ selinux_enforcing | default('true') }}" \
+              -e tempest_from_source=false \
+              -e enable_puppet_modules_rpm=true \
+              -e trunk_repositories=$REPOS_URL
+
+      changed_when: true
