@@ -681,3 +681,64 @@
     parent: validate-buildsys-tags-victoria-testing-centos8-base
     vars:
       scenario: scenario003
+
+- job:
+    name: weirdo-periodic-base
+    parent: base
+    run: playbooks/rdoinfo/weirdo-periodic.yaml
+    post-run: playbooks/weirdo/integration/post.yaml
+    timeout: 7200
+    required-projects:
+      - name: rdo-infra/weirdo
+    vars:
+      selinux_enforcing: "false"
+    nodeset: rdo-centos-stream
+
+- job:
+    name: periodic-victoria-packstack-scenario001-centos-stream
+    parent: weirdo-periodic-base
+    vars:
+      rdoinfo_release: victoria
+      scenario: scenario001
+
+- job:
+    name: periodic-victoria-packstack-scenario002-centos-stream
+    parent: weirdo-periodic-base
+    vars:
+      rdoinfo_release: victoria
+      scenario: scenario002
+
+- job:
+    name: periodic-victoria-packstack-scenario003-centos-stream
+    parent: weirdo-periodic-base
+    vars:
+      rdoinfo_release: victoria
+      scenario: scenario003
+
+- job:
+    name: periodic-victoria-puppet-scenario001-centos-stream
+    parent: weirdo-periodic-base
+    vars:
+      rdoinfo_release: victoria
+      scenario: scenario001
+
+- job:
+    name: periodic-victoria-puppet-scenario002-centos-stream
+    parent: weirdo-periodic-base
+    vars:
+      rdoinfo_release: victoria
+      scenario: scenario002
+
+- job:
+    name: periodic-victoria-puppet-scenario003-centos-stream
+    parent: weirdo-periodic-base
+    vars:
+      rdoinfo_release: victoria
+      scenario: scenario003
+
+- job:
+    name: periodic-victoria-puppet-scenario004-centos-stream
+    parent: weirdo-periodic-base
+    vars:
+      rdoinfo_release: victoria
+      scenario: scenario004
