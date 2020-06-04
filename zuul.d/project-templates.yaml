@@ -625,3 +625,17 @@
         - validate-buildsys-tags-victoria-testing-packstack-scenario001-centos8
         - validate-buildsys-tags-victoria-testing-packstack-scenario002-centos8
         - validate-buildsys-tags-victoria-testing-packstack-scenario003-centos8
+
+- project-template:
+    name: periodic-victoria-centos-stream
+    description: |
+     Periodic jobs to validate centos-stream with weirdo on Victoria
+    periodic:
+      jobs:
+        - periodic-victoria-packstack-scenario001-centos-stream
+        - periodic-victoria-packstack-scenario002-centos-stream
+        - periodic-victoria-packstack-scenario003-centos-stream
+        - periodic-victoria-puppet-scenario001-centos-stream
+        - periodic-victoria-puppet-scenario002-centos-stream
+        - periodic-victoria-puppet-scenario003-centos-stream
+        - periodic-victoria-puppet-scenario004-centos-stream
