@@ -1,0 +1,7 @@
+---
+- hosts: all
+  tasks:
+    - name: force fail
+      fail:
+        msg: >
+          force fail to get node held
