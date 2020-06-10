@@ -215,6 +215,99 @@
     vars:
       release: ussuri
 
+
+### train
+- job:
+    name: periodic-tripleo-centos-8-train-component-baremetal-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-baremetal-promote-consistent-to-component-ci-testing
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-cinder-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-cinder-promote-consistent-to-component-ci-testing
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-clients-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-clients-promote-consistent-to-component-ci-testing
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-cloudops-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-cloudops-promote-consistent-to-component-ci-testing
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-common-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-common-promote-consistent-to-component-ci-testing
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-compute-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-compute-promote-consistent-to-component-ci-testing
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-glance-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-glance-promote-consistent-to-component-ci-testing
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-manila-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-manila-promote-consistent-to-component-ci-testing
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-network-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-octavia-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-security-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-security-promote-consistent-to-component-ci-testing
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-swift-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-swift-promote-consistent-to-component-ci-testing
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-tripleo-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-tripleo-promote-consistent-to-component-ci-testing
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-tempest-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-tempest-promote-consistent-to-component-ci-testing
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-ui-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-ui-promote-consistent-to-component-ci-testing
+    vars:
+      release: train
+
+
 ## promote-to-promoted-components
 
 ### master
@@ -340,25 +433,25 @@
     name: periodic-tripleo-centos-8-ussuri-component-clients-promote-to-promoted-components
     parent: periodic-tripleo-centos-8-master-component-clients-promote-to-promoted-components
     vars:
-      release: master
+      release: ussuri
 
 - job:
     name: periodic-tripleo-centos-8-ussuri-component-cloudops-promote-to-promoted-components
     parent: periodic-tripleo-centos-8-master-component-cloudops-promote-to-promoted-components
     vars:
-      release: master
+      release: ussuri
 
 - job:
     name: periodic-tripleo-centos-8-ussuri-component-common-promote-to-promoted-components
     parent: periodic-tripleo-centos-8-master-component-common-promote-to-promoted-components
     vars:
-      release: master
+      release: ussuri
 
 - job:
     name: periodic-tripleo-centos-8-ussuri-component-compute-promote-to-promoted-components
     parent: periodic-tripleo-centos-8-master-component-compute-promote-to-promoted-components
     vars:
-      release: master
+      release: ussuri
 
 - job:
     name: periodic-tripleo-centos-8-ussuri-component-glance-promote-to-promoted-components
@@ -413,6 +506,97 @@
     parent: periodic-tripleo-centos-8-master-component-ui-promote-to-promoted-components
     vars:
       release: ussuri
+
+### train
+- job:
+    name: periodic-tripleo-centos-8-train-component-baremetal-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-baremetal-promote-to-promoted-components
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-cinder-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-cinder-promote-to-promoted-components
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-clients-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-clients-promote-to-promoted-components
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-cloudops-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-cloudops-promote-to-promoted-components
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-common-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-common-promote-to-promoted-components
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-compute-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-compute-promote-to-promoted-components
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-glance-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-glance-promote-to-promoted-components
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-manila-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-manila-promote-to-promoted-components
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-network-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-network-promote-to-promoted-components
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-octavia-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-octavia-promote-to-promoted-components
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-security-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-security-promote-to-promoted-components
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-swift-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-swift-promote-to-promoted-components
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-tempest-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-tempest-promote-to-promoted-components
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-tripleo-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-tripleo-promote-to-promoted-components
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-ui-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-ui-promote-to-promoted-components
+    vars:
+      release: train
 
 ## ovb component promotion jobs
 - job:
@@ -815,6 +999,112 @@
     vars:
       release: ussuri
       branch_override: 'stable/ussuri'
+
+## train
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-baremetal-train
+    parent: periodic-tripleo-ci-centos-8-standalone-baremetal-master
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-cinder-train
+    parent: periodic-tripleo-ci-centos-8-standalone-cinder-master
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-clients-train
+    parent: periodic-tripleo-ci-centos-8-standalone-clients-master
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-cloudops-train
+    parent: periodic-tripleo-ci-centos-8-standalone-cloudops-master
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-common-train
+    parent: periodic-tripleo-ci-centos-8-standalone-common-master
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-compute-train
+    parent: periodic-tripleo-ci-centos-8-standalone-compute-master
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-glance-train
+    parent: periodic-tripleo-ci-centos-8-standalone-glance-master
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-manila-train
+    parent: periodic-tripleo-ci-centos-8-standalone-manila-master
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-network-train
+    parent: periodic-tripleo-ci-centos-8-standalone-network-master
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-octavia-train
+    parent: periodic-tripleo-ci-centos-8-standalone-octavia-master
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-security-train
+    parent: periodic-tripleo-ci-centos-8-standalone-security-master
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-swift-train
+    parent: periodic-tripleo-ci-centos-8-standalone-swift-master
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-tempest-train
+    parent: periodic-tripleo-ci-centos-8-standalone-tempest-master
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-tripleo-train
+    parent: periodic-tripleo-ci-centos-8-standalone-tripleo-master
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-ui-train
+    parent: periodic-tripleo-ci-centos-8-standalone-ui-master
+    vars:
+      release: train
+      branch_override: 'stable/train'
 
 # scenario001-standalone-component
 - job:

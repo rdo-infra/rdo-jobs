@@ -408,3 +408,116 @@
         - periodic-tripleo-centos-8-ussuri-component-tripleo-promote-to-promoted-components
         - periodic-tripleo-centos-8-ussuri-component-tempest-promote-to-promoted-components
         - periodic-tripleo-centos-8-ussuri-component-ui-promote-to-promoted-components
+
+
+## c8-train
+#############################################################
+- project-template:
+    name: component-pipeline-train
+    openstack-component-baremetal:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-baremetal-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-baremetal-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-baremetal-promote-consistent-to-component-ci-testing
+    openstack-component-cinder:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-cinder-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-cinder-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-cinder-promote-consistent-to-component-ci-testing
+    openstack-component-clients:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-clients-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-clients-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-clients-promote-consistent-to-component-ci-testing
+    openstack-component-cloudops:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-cloudops-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-cloudops-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-cloudops-promote-consistent-to-component-ci-testing
+    openstack-component-common:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-common-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-common-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-common-promote-consistent-to-component-ci-testing
+    openstack-component-compute:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-compute-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-compute-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-compute-promote-consistent-to-component-ci-testing
+    openstack-component-glance:
+      jobs:
+        - periodic-tripleo-ci-centos-8-scenario001-standalone-glance-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-glance-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-glance-promote-consistent-to-component-ci-testing
+    openstack-component-manila:
+      jobs:
+        - periodic-tripleo-ci-centos-8-scenario004-standalone-manila-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-manila-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-manila-promote-consistent-to-component-ci-testing
+    openstack-component-network:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-network-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-network-promote-consistent-to-component-ci-testing
+    openstack-component-octavia:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-octavia-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-octavia-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-octavia-promote-consistent-to-component-ci-testing
+    openstack-component-security:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-security-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-security-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-security-promote-consistent-to-component-ci-testing
+    openstack-component-swift:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-swift-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-swift-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-swift-promote-consistent-to-component-ci-testing
+    openstack-component-tripleo:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-tripleo-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-tripleo-promote-consistent-to-component-ci-testing
+    openstack-component-tempest:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-tempest-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-tempest-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-tempest-promote-consistent-to-component-ci-testing
+    openstack-component-ui:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-ui-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-ui-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-ui-promote-consistent-to-component-ci-testing
+    openstack-promote-component:
+      jobs:
+        - periodic-tripleo-centos-8-train-component-baremetal-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-cinder-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-clients-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-cloudops-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-common-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-compute-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-glance-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-manila-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-network-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-octavia-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-security-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-swift-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-tripleo-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-tempest-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-ui-promote-to-promoted-components
