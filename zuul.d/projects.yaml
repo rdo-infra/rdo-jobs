@@ -44,6 +44,26 @@
             files: *ceph
             dependencies:
               - tripleo-centos-8-ceph-ansible-integration-master
+        - tripleo-centos-8-ceph-integration-ussuri:
+            files: *ceph
+        - tripleo-centos-8-ceph-ansible-integration-ussuri:
+            files: *ceph
+        - tripleo-ceph-integration-centos-8-scenario001-standalone-ussuri:
+            files: *ceph
+            dependencies:
+              - tripleo-centos-8-ceph-integration-ussuri
+        - tripleo-ceph-integration-centos-8-scenario004-standalone-ussuri:
+            files: *ceph
+            dependencies:
+              - tripleo-centos-8-ceph-integration-ussuri
+        - tripleo-ceph-ansible-integration-centos-8-scenario001-standalone-ussuri:
+            files: *ceph
+            dependencies:
+              - tripleo-centos-8-ceph-ansible-integration-ussuri
+        - tripleo-ceph-ansible-integration-centos-8-scenario004-standalone-ussuri:
+            files: *ceph
+            dependencies:
+              - tripleo-centos-8-ceph-ansible-integration-ussuri
         - podman-package-rhel-8: &podman
             files:
               - zuul.d/podman.yaml
