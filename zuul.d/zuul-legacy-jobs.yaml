@@ -1,28 +1,4 @@
 - job:
-    name: legacy-centos-opstools-doc
-    parent: base
-    run: playbooks/centos-opstools/doc/run.yaml
-    nodeset: rdo-centos-8
-
-- job:
-    name: legacy-centos-opstools-rpmbuild
-    parent: base
-    run: playbooks/centos-opstools/rpmbuild/run.yaml
-    post-run: playbooks/centos-opstools/rpmbuild/post.yaml
-    nodeset: rdo-centos-8
-
-- job:
-    name: legacy-centos-opstools-rpmlint
-    parent: base
-    run: playbooks/centos-opstools/rpmlint/run.yaml
-    nodeset: rdo-centos-8
-
-- job:
-    name: legacy-centos-sinkhole-functional
-    parent: legacy-base
-    run: playbooks/legacy/centos-sinkhole-functional/run.yaml
-
-- job:
     name: legacy-rdo-infra-playbooks-integration-base
     parent: legacy-base
     run: playbooks/legacy/rdo-infra-playbooks-integration-base/run.yaml
@@ -51,13 +27,3 @@
     parent: legacy-base
     run: playbooks/legacy/rdo-registry-integration/run.yaml
     post-run: playbooks/legacy/rdo-registry-integration/post.yaml
-
-- job:
-    name: legacy-validate-buildsys-tags
-    parent: base
-    run: playbooks/validate-buildsys-tags/run.yaml
-    post-run: playbooks/validate-buildsys-tags/post.yaml
-    nodeset: rdo-centos-8
-    required-projects:
-      - review.rdoproject.org/gating_scripts
-    timeout: 10800
