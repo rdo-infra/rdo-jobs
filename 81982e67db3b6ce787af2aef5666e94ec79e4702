@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fb48ee2f_e6807956",
+        "filename": "zuul.d/ceph-ansible.yaml",
+        "patchSetId": 51
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2020-06-11T07:39:34Z",
+      "side": 1,
+      "message": "was a bit confused by that one (havn\u0027t seen \u0027release_name\u0027 before we always use \u0027release\u0027 as the var) but apparently \u0027release\u0027 is set using release_name there... :/\nhttps://review.rdoproject.org/r/gitweb?p\u003drdo-jobs.git;a\u003dblob;f\u003dplaybooks/run-rpm-build.yaml#l25\n\n[EDIT]: ah that was added in the parent review in fact https://review.rdoproject.org/r/#/c/28003/\n\nbut why? why can\u0027t we just use \u0027release\u0027 and need a new param  instead?",
+      "range": {
+        "startLine": 104,
+        "startChar": 6,
+        "endLine": 104,
+        "endChar": 18
+      },
+      "revId": "81982e67db3b6ce787af2aef5666e94ec79e4702",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
