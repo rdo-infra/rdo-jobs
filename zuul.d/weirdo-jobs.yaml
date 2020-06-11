@@ -209,6 +209,7 @@
       - name: rdo-infra/weirdo
     vars:
       selinux_enforcing: "false"
+      ceph: nautilus
     dependencies:
       - validate-buildsys-tags
     nodeset: rdo-centos-7
