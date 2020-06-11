@@ -835,8 +835,6 @@
     vars:
       branch_override: "stable/ussuri"
       release: ussuri
-      featureset_override:
-        to_build: true
 
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-ussuri
@@ -855,8 +853,6 @@
     vars:
       branch_override: "stable/ussuri"
       release: ussuri
-      featureset_override:
-        to_build: true
 
 - job:
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-ussuri-branch
@@ -866,8 +862,6 @@
     vars:
       branch_override: "stable/ussuri"
       release: ussuri
-      featureset_override:
-        to_build: true
 
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-ussuri
@@ -877,5 +871,3 @@
     vars:
       branch_override: "stable/ussuri"
       release: ussuri
-      featureset_override:
-        to_build: true
