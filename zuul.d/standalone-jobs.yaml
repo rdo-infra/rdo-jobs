@@ -191,6 +191,10 @@
     name: periodic-tripleo-ci-centos-7-scenario010-standalone-master
     parent: tripleo-ci-base-standalone-periodic
     vars: &scen10_standalone_vars
+      tags:
+        - build
+        - standalone
+        - octavia
       featureset: '062'
       release: master
       standalone_ceph: true
