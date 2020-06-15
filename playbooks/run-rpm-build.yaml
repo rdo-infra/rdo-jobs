@@ -30,6 +30,7 @@
               reponame: ceph-ansible-override
               baseurl: "{{ buildset_artifacts_url }}"
               priority: 1
+              module_hotfixes: 1
               includepkgs:
                 - ceph-ansible
                 - ansible
