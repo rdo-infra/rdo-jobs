@@ -1379,6 +1379,18 @@
     vars:
       component: octavia
 
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-network-master
+    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-component-master
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-master
+    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-component-master
+    vars:
+      component: octavia
+
 ## ussuri
 - job:
     name: periodic-tripleo-ci-centos-8-scenario010-standalone-network-ussuri
