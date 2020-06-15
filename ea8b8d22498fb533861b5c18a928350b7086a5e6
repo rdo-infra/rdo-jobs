@@ -16,6 +16,24 @@
       "revId": "ea8b8d22498fb533861b5c18a928350b7086a5e6",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "678277fb_a618b041",
+        "filename": "zuul.d/standalone-jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2020-06-15T11:25:54Z",
+      "side": 1,
+      "message": "Here https://opendev.org/openstack/tripleo-quickstart-extras/src/branch/master/playbooks/multinode-standalone.yml#L35 Download amphora image for octavia will be called on which whole octavia testing depends.\n\nEarlier it was using the wrong fs we changed it from 52 to 62 and we missed adding tags like we have in c8 sc10 job\nhttps://github.com/rdo-infra/rdo-jobs/blob/master/zuul.d/standalone-jobs.yaml#L402",
+      "parentUuid": "710afa33_daa24809",
+      "revId": "ea8b8d22498fb533861b5c18a928350b7086a5e6",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
