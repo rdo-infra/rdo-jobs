@@ -168,10 +168,6 @@
         optional_role_vars:
           docker_registry_host: "{{ ipv4_addr + ':' + push_registry_port|default('8787')|string if rdoinfo_build_containers|default(false)|bool else omit }}"
           local_docker_registry_host: "{{ ipv4_addr if rdoinfo_build_containers|default(false)|bool else omit }}"
-          standalone_ip: "{{ ipv4_addr if rdoinfo_build_containers|default(false)|bool else omit }}"
-          standalone_cidr: "{{ ipv4_prefix if rdoinfo_build_containers|default(false)|bool else omit }}"
-          standalone_network_prefix: "{{ ipv4_prefix if rdoinfo_build_containers|default(false)|bool else omit }}"
-          tripleo_deploy_local_ip: "{{ ipv4_addr + '/' + ipv4_prefix if rdoinfo_build_containers|default(false)|bool else omit }}"
       when: not stop_file.stat.exists
 
     - name: Execute mirror info role
