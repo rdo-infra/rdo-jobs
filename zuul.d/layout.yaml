@@ -1,12 +1,11 @@
 - project:
     check:
-      jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+      jobs:
+        - tripleo-ci-centos-8-scenario007-multinode-oooq-container:
+            nodeset: single-centos-8-node-vexxhost
+        - tripleo-ci-centos-8-scenario007-multinode-oooq-container-test1:
+            nodeset: single-centos-8-node-vexxhost
+        - tripleo-ci-centos-8-scenario007-multinode-oooq-container-test2:
+            nodeset: single-centos-8-node-vexxhost
+        - tripleo-ci-centos-8-scenario007-multinode-oooq-container-test3:
+            nodeset: single-centos-8-node-vexxhost
