@@ -482,6 +482,13 @@
       image_upload: false
 
 - job:
+    name: periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-cr-master
+    parent: periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-master
+    vars:
+      featureset_override:
+        enable_centos_cr_repo: true
+
+- job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload
     parent: tripleo-ci-base-ovb-periodic-upload
     vars:
@@ -795,6 +802,14 @@
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-train
     parent: periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-master
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-cr-train
+    parent: periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-cr-master
     override-checkout: "stable/train"
     vars:
       branch_override: "stable/train"
