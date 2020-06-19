@@ -68,3 +68,35 @@
     nodeset: rdo-centos-8
     required-projects:
       - name: review.rdoproject.org/rdo-infra/ci-config
+
+# rdo-tox-molecule
+
+- job:
+    name: periodic-rdo-tox-molecule
+    parent: rdo-tox-molecule-ci-config
+    required-projects:
+      - name: review.rdoproject.org/rdo-infra/ci-config
+
+# rdo-tox-molecule-delegated-centos-8
+
+- job:
+    name: periodic-rdo-tox-molecule-delegated-centos-8
+    parent: rdo-tox-molecule-delegated-centos-8-ci-config
+    required-projects:
+      - name: review.rdoproject.org/rdo-infra/ci-config
+
+# tox-py27
+#
+- job:
+    name: periodic-tox-py27
+    parent: tox-py27-ci-config
+    required-projects:
+      - name: review.rdoproject.org/rdo-infra/ci-config
+
+# tox-py36
+
+- job:
+    name: periodic-tox-py36
+    parent: tox-py36-ci-config
+    required-projects:
+      - name: review.rdoproject.org/rdo-infra/ci-config
