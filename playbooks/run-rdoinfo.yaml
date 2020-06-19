@@ -153,6 +153,11 @@
                 sudo dnf update -y python3-six
                 for image in $IMAGE_LIST; do sudo openstack tripleo container image push --registry-url "{{ ipv4_addr }}:{{ push_registry_port | default('8787') }}" --local $image:$TAG;done  # noqa 204
 
+    - name: Set local ip if deploying in CentOS 8
+      set_fact:
+        registry_host: "192.168.24.2"
+      when: ansible_distribution_major_version == '8'
+
     - name: set role variables
       set_fact:
         role_vars:
@@ -166,8 +171,8 @@
           artg_skipped_projects:
             - rdoinfo
         optional_role_vars:
-          docker_registry_host: "{{ ipv4_addr + ':' + push_registry_port|default('8787')|string if rdoinfo_build_containers|default(false)|bool else omit }}"
-          local_docker_registry_host: "{{ ipv4_addr if rdoinfo_build_containers|default(false)|bool else omit }}"
+          docker_registry_host: "{{ registry_host|default(ipv4_addr) + ':' + push_registry_port|default('8787')|string if rdoinfo_build_containers|default(false)|bool else omit }}"  # noqa 204
+          local_docker_registry_host: "{{ registry_host|default(ipv4_addr) if rdoinfo_build_containers|default(false)|bool else omit }}"
       when: not stop_file.stat.exists
 
     - name: Execute mirror info role
