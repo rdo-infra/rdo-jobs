@@ -128,6 +128,7 @@
       vars:
         release: "{{ rdoinfo_release }}"
         run_test_role_vars:
+          docker_registry_host: "{{ push_registry|default('127.0.0.1:8786') if rdoinfo_build_containers|default(false)|bool else omit }}"
           docker_registry_namespace: "tripleo{{ rdoinfo_release }}"
           container_prep_additional_repos: temp-*
           add_repos:
