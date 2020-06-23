@@ -76,3 +76,12 @@
     name: tripleo-build-containers-centos-8-master
     parent: tripleo-build-containers-centos-8-base
     branches: master
+
+- job:
+    name: periodic-tripleo-build-containers-ubi-8
+    parent: periodic-tripleo-build-containers-ubi-8-push-base
+    vars:
+      push_containers_podman: false
+      push_containers: true
+      registry_namespace: testingmaster
+      buildcontainers_authfile_path: '${XDG_RUNTIME_DIR}/containers/auth.json'
