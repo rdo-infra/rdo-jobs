@@ -76,3 +76,16 @@
     name: tripleo-build-containers-centos-8-master
     parent: tripleo-build-containers-centos-8-base
     branches: master
+
+- job:
+    name: periodic-tripleo-build-containers-ubi-8
+    parent: tripleo-build-containers-ubi-8
+    vars:
+      use_buildah: true
+      use_kolla: false
+      buildcontainers_override_repos: tripleo-ci-testing
+      push_containers: false
+      push_containers_podman: false
+      push_registry: registry.rdoproject.org
+      promote_source: tripleo-ci-testing
+      upload_dockerfiles: false
