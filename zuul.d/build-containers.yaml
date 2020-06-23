@@ -76,3 +76,7 @@
     name: tripleo-build-containers-centos-8-master
     parent: tripleo-build-containers-centos-8-base
     branches: master
+
+- job:
+    name: periodic-tripleo-build-containers-ubi-8
+    parent: periodic-tripleo-build-containers-ubi-8-push-base
