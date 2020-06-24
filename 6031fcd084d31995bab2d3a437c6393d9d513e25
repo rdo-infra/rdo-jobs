@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "97a51650_76b34242",
+        "filename": "zuul.d/integration-pipeline-centos-8-train.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2020-06-24T07:42:22Z",
+      "side": 1,
+      "message": "Since it is going to be the pipeline name, can we rename this pipeline to openstack-periodic-stable-released?\n\nWe also need to define this pipeline in config repo: https://review.rdoproject.org/r/gitweb?p\u003dconfig.git;a\u003dblob;f\u003dzuul.d/upstream.yaml#l103 \n\nand integration-pipeline-centos-8-train needs to be defined here https://review.rdoproject.org/r/gitweb?p\u003dconfig.git;a\u003dblob;f\u003dzuul.d/tripleo.yaml#l14 so that it gets triggered",
+      "range": {
+        "startLine": 5,
+        "startChar": 4,
+        "endLine": 5,
+        "endChar": 37
+      },
+      "revId": "6031fcd084d31995bab2d3a437c6393d9d513e25",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e71c4f1_202f7100",
         "filename": "zuul.d/integration-pipeline-centos-8-train.yaml",
         "patchSetId": 1
@@ -37,6 +60,30 @@
       "side": 1,
       "message": "that is just copy/paste from the existing one.\n\nThere must be some reason that was done with the centos7 nodeset: but it could probably be a separate review if it needs fixing, either before or after this patch.\n\nDo we know why that job has             nodeset: two-centos-7-nodes-vexxhost",
       "parentUuid": "7e71c4f1_202f7100",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 69
+      },
+      "revId": "6031fcd084d31995bab2d3a437c6393d9d513e25",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f43bf875_ea23eec3",
+        "filename": "zuul.d/integration-pipeline-centos-8-train.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2020-06-24T07:42:22Z",
+      "side": 1,
+      "message": "As per this review https://github.com/rdo-infra/rdo-jobs/commit/14a168494e3facd77c2826091f10d5e669a9c36a#diff-db89a1ebbd32d539a8934bae8e900258R177 the wrong nodeset got added there. Yes, it needs to be fixed in a separate review",
+      "parentUuid": "cbbe6c25_4c1dccd9",
       "range": {
         "startLine": 68,
         "startChar": 0,
