@@ -1,0 +1,9 @@
+---
+# train integration jobs
+## promote to tripleo-ci-testing
+- job:
+    name: periodic-tripleo-centos-8-train-promote-promoted-components-to-tripleo-ci-testing
+    parent: periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing
+    nodeset: single-centos-8-node-vexxhost
+    vars:
+      release: train
