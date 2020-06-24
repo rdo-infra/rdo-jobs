@@ -5,16 +5,16 @@
     openstack-periodic-stable-released:
       jobs:
         ##### stable/train centos-8 #####
-        - periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+        - periodic-tripleo-centos-8-train-promote-promoted-components-to-tripleo-ci-testing
         - periodic-tripleo-centos-8-buildimage-overcloud-full-train:
             dependencies:
-              - periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+              - periodic-tripleo-centos-8-train-promote-promoted-components-to-tripleo-ci-testing
         - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train:
             dependencies:
-              - periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+              - periodic-tripleo-centos-8-train-promote-promoted-components-to-tripleo-ci-testing
         - periodic-tripleo-centos-8-train-containers-build-push:
             dependencies:
-              - periodic-tripleo-centos-8-train-promote-consistent-to-tripleo-ci-testing
+              - periodic-tripleo-centos-8-train-promote-promoted-components-to-tripleo-ci-testing
         - periodic-tripleo-ci-centos-8-standalone-train:
             dependencies:
               - periodic-tripleo-centos-8-train-containers-build-push
