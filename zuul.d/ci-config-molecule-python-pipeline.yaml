@@ -1,0 +1,20 @@
+---
+# ci-config molecule/python jobs
+- project-template:
+    name: ci-config-molecule-python
+    periodic-ci-config-molecule-python:
+      jobs:
+        - periodic-tripleo-ci-promotion-staging-single-pipeline-centos-7
+        - periodic-tripleo-ci-promotion-staging-single-pipeline-centos-8
+        - periodic-tripleo-ci-promotion-staging-integration-pipeline-centos-7
+        - periodic-tripleo-ci-promotion-staging-integration-pipeline-centos-8
+        - periodic-molecule-container-push-delegated-centos-7
+        - periodic-molecule-container-push-delegated-centos-8
+        - periodic-molecule-tripleo-common-delegated-centos-7
+        - periodic-molecule-tripleo-common-delegated-centos-8
+        - periodic-molecule-delegated-promote-images-delegated-centos-7
+        - periodic-molecule-delegated-promote-images-delegated-centos-8
+        - periodic-rdo-tox-molecule
+        - periodic-rdo-tox-molecule-delegated-centos-8
+        - periodic-tox-py27
+        - periodic-tox-py36
