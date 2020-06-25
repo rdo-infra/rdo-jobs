@@ -48,7 +48,7 @@
       - name: github.com/containers/libpod
     vars:
       featureset: '052'
-      release: master
+      release_name: master
       registry_login_enabled: false
       featureset_override:
         standalone_environment_files:
@@ -70,7 +70,7 @@
       - name: github.com/containers/libpod
     vars:
       featureset: '052'
-      release: master
+      release_name: master
       registry_login_enabled: false
       featureset_override:
         run_tempest: false
@@ -79,6 +79,7 @@
 - job:
     name: tripleo-podman-integration-centos-8-scenario000-standalone
     parent: tripleo-ci-base-standalone-periodic-centos-8
+    nodeset: single-centos-8-node
     branches: ^master$
     voting: false
     run: playbooks/podman/install-podman-rpm.yaml
@@ -86,7 +87,7 @@
       - name: github.com/containers/libpod
     vars:
       featureset: '052'
-      release: master
+      release_name: master
       registry_login_enabled: false
       featureset_override:
         standalone_environment_files:
@@ -107,7 +108,7 @@
       - name: github.com/containers/libpod
     vars:
       featureset: '052'
-      release: master
+      release_name: master
       registry_login_enabled: false
       featureset_override:
         run_tempest: false
