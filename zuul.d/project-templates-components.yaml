@@ -425,6 +425,9 @@
         - periodic-tripleo-ci-centos-8-standalone-cinder-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-cinder-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario001-standalone-cinder-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-cinder-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-cinder-promote-consistent-to-component-ci-testing
     openstack-component-clients:
       jobs:
@@ -437,10 +440,16 @@
         - periodic-tripleo-ci-centos-8-standalone-cloudops-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-cloudops-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario001-standalone-cloudops-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-cloudops-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-cloudops-promote-consistent-to-component-ci-testing
     openstack-component-common:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-common-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-common-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario001-standalone-common-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-common-promote-consistent-to-component-ci-testing
@@ -453,6 +462,9 @@
     openstack-component-glance:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-glance-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-glance-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario001-standalone-glance-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-glance-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-glance-promote-consistent-to-component-ci-testing
