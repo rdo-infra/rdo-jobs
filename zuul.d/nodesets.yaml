@@ -349,3 +349,14 @@
       - name: subnodes
         nodes:
           - secondary
+
+- nodeset:
+    name: tripleo-ovb-centos-8-primary-psiphx
+    nodes:
+      - name: primary
+        label: upstream-centos-8-psiphx
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
