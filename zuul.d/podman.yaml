@@ -48,7 +48,7 @@
       - name: github.com/containers/libpod
     vars:
       featureset: '052'
-      release: master
+      release_name: master
       registry_login_enabled: false
       featureset_override:
         standalone_environment_files:
@@ -70,7 +70,7 @@
       - name: github.com/containers/libpod
     vars:
       featureset: '052'
-      release: master
+      release_name: master
       registry_login_enabled: false
       featureset_override:
         run_tempest: false
@@ -86,7 +86,7 @@
       - name: github.com/containers/libpod
     vars:
       featureset: '052'
-      release: master
+      release_name: master
       registry_login_enabled: false
       featureset_override:
         standalone_environment_files:
@@ -107,7 +107,7 @@
       - name: github.com/containers/libpod
     vars:
       featureset: '052'
-      release: master
+      release_name: master
       registry_login_enabled: false
       featureset_override:
         run_tempest: false
