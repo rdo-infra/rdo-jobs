@@ -34,8 +34,8 @@ if [[ "${TAG}" != "victoria-uc" ]]; then
     PROJECT_DISTRO_BRANCH="${TAG}-rdo"
 fi
 
-# Enable components for all centos8 builders for releases != train
-if [ "${CENTOS_VERSION}" = "centos8" ] && [ "${TAG}" != "train" ]; then
+# Enable components for all centos8 builders
+if [ "${CENTOS_VERSION}" = "centos8" ]; then
     components="true"
 fi
 
