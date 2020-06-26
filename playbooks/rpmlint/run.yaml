@@ -265,6 +265,9 @@
 
           # Exceptions for openstack-neutron
           addFilter("openstack-neutron-ovn-migration-tool.noarch: E: non-executable-script /usr/share/ansible/neutron-ovn-migration/playbooks/.*")
+
+          # Exceptions for openstack-keystone
+          addFilter("openstack-keystone.noarch: E: non-standard-dir-perm /etc/keystone.* 750")
           EOF
 
 
