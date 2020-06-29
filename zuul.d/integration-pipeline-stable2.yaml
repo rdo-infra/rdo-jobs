@@ -54,6 +54,10 @@
             nodeset: single-centos-8-node-vexxhost
             dependencies:
               - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario012-standalone-train:
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-train-containers-build-push
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-train:
             vars:
               cloud_name: vexxhost
