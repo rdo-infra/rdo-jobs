@@ -65,6 +65,18 @@
             files: *ceph
             dependencies:
               - tripleo-centos-8-ceph-ansible-integration-ussuri
+        - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-train:
+            vars:
+              force_periodic: true
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-train:
+            vars:
+              force_periodic: true
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset030-train:
+            vars:
+              force_periodic: true
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-train:
+            vars:
+              force_periodic: true
         - tripleo-centos-8-ceph-integration-train:
             files: *ceph
         - tripleo-ceph-integration-centos-8-scenario001-standalone-train:
