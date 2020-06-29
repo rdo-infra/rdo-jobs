@@ -7,3 +7,12 @@
     nodeset: single-centos-8-node-vexxhost
     vars:
       release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-train
+    parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-master
+    nodeset: two-centos-8-nodes-vexxhost
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
