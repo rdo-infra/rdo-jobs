@@ -57,6 +57,9 @@
             files: *ceph
             dependencies:
               - tripleo-centos-8-ceph-integration-ussuri
+        - periodic-tripleo-ci-centos-8-scenario012-standalone-train:
+            vars:
+              force_periodic: true
         - tripleo-ceph-ansible-integration-centos-8-scenario001-standalone-ussuri:
             files: *ceph
             dependencies:
