@@ -603,6 +603,13 @@
       branch_override: 'stable/train'
       release: train
 
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario012-standalone-train
+    parent: periodic-tripleo-ci-centos-8-scenario012-standalone-master
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
 
 ########## C E N T O S 7 TRAIN #############################
 - job:
