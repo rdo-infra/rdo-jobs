@@ -335,10 +335,13 @@
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: stable/train
+      - name: opendev.org/openstack/tripleo-ansible
+        override-checkout: stable/train
       - name: github.com/ceph/ceph-ansible
         override-checkout: stable-4.0
     voting: false
     vars:
+      release: train
       featureset_override: *scenario004
 
 # Scenarios jobs for ceph-ansible train
