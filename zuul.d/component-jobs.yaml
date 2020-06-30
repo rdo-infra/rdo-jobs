@@ -1004,6 +1004,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-baremetal-train
     parent: periodic-tripleo-ci-centos-8-standalone-baremetal-master
+    override-checkout: "stable/train"
     vars:
       release: train
       branch_override: 'stable/train'
@@ -1011,6 +1012,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-cinder-train
     parent: periodic-tripleo-ci-centos-8-standalone-cinder-master
+    override-checkout: "stable/train"
     vars:
       release: train
       branch_override: 'stable/train'
@@ -1018,6 +1020,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-clients-train
     parent: periodic-tripleo-ci-centos-8-standalone-clients-master
+    override-checkout: "stable/train"
     vars:
       release: train
       branch_override: 'stable/train'
@@ -1025,6 +1028,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-cloudops-train
     parent: periodic-tripleo-ci-centos-8-standalone-cloudops-master
+    override-checkout: "stable/train"
     vars:
       release: train
       branch_override: 'stable/train'
@@ -1032,6 +1036,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-common-train
     parent: periodic-tripleo-ci-centos-8-standalone-common-master
+    override-checkout: "stable/train"
     vars:
       release: train
       branch_override: 'stable/train'
@@ -1039,6 +1044,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-compute-train
     parent: periodic-tripleo-ci-centos-8-standalone-compute-master
+    override-checkout: "stable/train"
     vars:
       release: train
       branch_override: 'stable/train'
@@ -1046,6 +1052,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-glance-train
     parent: periodic-tripleo-ci-centos-8-standalone-glance-master
+    override-checkout: "stable/train"
     vars:
       release: train
       branch_override: 'stable/train'
@@ -1053,6 +1060,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-manila-train
     parent: periodic-tripleo-ci-centos-8-standalone-manila-master
+    override-checkout: "stable/train"
     vars:
       release: train
       branch_override: 'stable/train'
@@ -1060,6 +1068,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-network-train
     parent: periodic-tripleo-ci-centos-8-standalone-network-master
+    override-checkout: "stable/train"
     vars:
       release: train
       branch_override: 'stable/train'
@@ -1067,6 +1076,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-octavia-train
     parent: periodic-tripleo-ci-centos-8-standalone-octavia-master
+    override-checkout: "stable/train"
     vars:
       release: train
       branch_override: 'stable/train'
@@ -1074,6 +1084,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-security-train
     parent: periodic-tripleo-ci-centos-8-standalone-security-master
+    override-checkout: "stable/train"
     vars:
       release: train
       branch_override: 'stable/train'
@@ -1081,6 +1092,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-swift-train
     parent: periodic-tripleo-ci-centos-8-standalone-swift-master
+    override-checkout: "stable/train"
     vars:
       release: train
       branch_override: 'stable/train'
@@ -1088,6 +1100,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-tempest-train
     parent: periodic-tripleo-ci-centos-8-standalone-tempest-master
+    override-checkout: "stable/train"
     vars:
       release: train
       branch_override: 'stable/train'
@@ -1095,6 +1108,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-tripleo-train
     parent: periodic-tripleo-ci-centos-8-standalone-tripleo-master
+    override-checkout: "stable/train"
     vars:
       release: train
       branch_override: 'stable/train'
@@ -1102,6 +1116,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-ui-train
     parent: periodic-tripleo-ci-centos-8-standalone-ui-master
+    override-checkout: "stable/train"
     vars:
       release: train
       branch_override: 'stable/train'

@@ -537,6 +537,7 @@
 - job:
     name: periodic-tripleo-ceph-integration-centos-8-scenario001-standalone-train
     parent: periodic-tripleo-ceph-integration-centos-8-scenarios-standalone-train
+    override-checkout: "stable/train"
     vars:
       release_name: train
       featureset_override: *scenario001
@@ -544,6 +545,7 @@
 - job:
     name: periodic-tripleo-ceph-integration-centos-8-scenario004-standalone-train
     parent: periodic-tripleo-ceph-integration-centos-8-scenarios-standalone-train
+    override-checkout: "stable/train"
     vars:
       release_name: train
       featureset_override: *scenario004
@@ -569,6 +571,7 @@
 - job:
     name: periodic-tripleo-ceph-ansible-integration-centos-8-scenario001-standalone-train
     parent: periodic-tripleo-ceph-ansible-integration-centos-8-scenarios-standalone-train
+    override-checkout: "stable/train"
     vars:
       release_name: train
       featureset_override: *scenario001
@@ -576,6 +579,7 @@
 - job:
     name: periodic-tripleo-ceph-ansible-integration-centos-8-scenario004-standalone-train
     parent: periodic-tripleo-ceph-ansible-integration-centos-8-scenarios-standalone-train
+    override-checkout: "stable/train"
     vars:
       release_name: train
       featureset_override: *scenario004
