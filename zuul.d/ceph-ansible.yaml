@@ -523,6 +523,7 @@
     parent: tripleo-ci-base-standalone-periodic-centos-8
     abstract: true
     run: playbooks/run-rpm-build.yaml
+    override-checkout: "stable/train"
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: stable/train
@@ -531,6 +532,7 @@
     vars:
       featureset: '052'
       standalone_ceph: true
+      branch_override: 'stable/train'
 
 # Periodic version for train
 
@@ -553,6 +555,7 @@
 - job:
     name: periodic-tripleo-ceph-ansible-integration-centos-8-scenarios-standalone-train
     parent: tripleo-ci-base-standalone-periodic-centos-8
+    override-checkout: "stable/train"
     abstract: true
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
@@ -565,6 +568,7 @@
       featureset: '052'
       standalone_ceph: true
       build_ansible_rpm: true
+      branch_override: 'stable/train'
 
 - job:
     name: periodic-tripleo-ceph-ansible-integration-centos-8-scenario001-standalone-train
