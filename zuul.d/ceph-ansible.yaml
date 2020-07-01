@@ -66,6 +66,7 @@
 - job:
     name: tripleo-centos-8-ceph-ansible-integration-master
     parent: tripleo-centos-8-ceph-integration
+    branches: ^(stable-4.0|master).*$
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
       - name: github.com/ceph/ceph-ansible
@@ -91,6 +92,7 @@
 - job:
     name: tripleo-centos-8-ceph-ansible-integration-ussuri
     parent: tripleo-centos-8-ceph-integration
+    branches: ^(stable-4.0|master).*$
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: stable/ussuri
@@ -117,6 +119,7 @@
 - job:
     name: tripleo-centos-8-ceph-ansible-integration-train
     parent: tripleo-centos-8-ceph-integration
+    branches: ^(stable-4.0|master).*$
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: stable/train
@@ -346,6 +349,7 @@
 - job:
     name: tripleo-ceph-ansible-integration-centos-8-scenario001-standalone-train
     parent: tripleo-ceph-integration-centos-8-scenarios-standalone
+    branches: ^(stable-4.0|master).*$
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: stable/train
@@ -361,6 +365,7 @@
 - job:
     name: tripleo-ceph-ansible-integration-centos-8-scenario004-standalone-train
     parent: tripleo-ceph-integration-centos-8-scenarios-standalone
+    branches: ^(stable-4.0|master).*$
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: stable/train
