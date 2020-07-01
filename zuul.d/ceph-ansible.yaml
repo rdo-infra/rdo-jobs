@@ -275,6 +275,7 @@
     vars:
       release_name: ussuri
       featureset_override: *scenario001
+      branch_override: "stable/ussuri"
 
 - job:
     name: tripleo-ceph-ansible-integration-centos-8-scenario004-standalone-ussuri
@@ -290,6 +291,7 @@
     vars:
       release_name: ussuri
       featureset_override: *scenario004
+      branch_override: "stable/ussuri"
 
 # Base job for ceph on train
 
@@ -357,6 +359,7 @@
     vars:
       release_name: train
       featureset_override: *scenario001
+      branch_override: "stable/train"
 
 - job:
     name: tripleo-ceph-ansible-integration-centos-8-scenario004-standalone-train
@@ -372,6 +375,7 @@
     vars:
       release_name: train
       featureset_override: *scenario004
+      branch_override: "stable/train"
 
 # CentOS 8 Periodic jobs
 
@@ -461,6 +465,7 @@
     vars:
       featureset: '052'
       standalone_ceph: true
+      branch_override: "stable/ussuri"
 
 # Periodic version for ussuri
 
@@ -495,6 +500,7 @@
       featureset: '052'
       standalone_ceph: true
       build_ansible_rpm: true
+      branch_override: "stable/ussuri"
 
 - job:
     name: periodic-tripleo-ceph-ansible-integration-centos-8-scenario001-standalone-ussuri
