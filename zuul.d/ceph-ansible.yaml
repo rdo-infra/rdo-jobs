@@ -153,7 +153,7 @@
       - name: github.com/ceph/ceph-ansible
         override-checkout: stable-4.0
     vars:
-      release_name: master
+      release: master
       featureset_override: &scenario001
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
@@ -194,7 +194,7 @@
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
     vars:
-      release_name: master
+      release: master
       featureset_override: *scenario001
 
 - job:
@@ -208,7 +208,7 @@
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
     vars:
-      release_name: master
+      release: master
       featureset_override: *scenario004
 
 # Base job for ceph on ussuri
@@ -224,7 +224,7 @@
       - name: github.com/ceph/ceph-ansible
         override-checkout: stable-4.0
     vars:
-      release_name: ussuri
+      release: ussuri
       branch_override: "stable/ussuri"
       featureset: '052'
       standalone_ceph: true
@@ -273,7 +273,7 @@
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
     vars:
-      release_name: ussuri
+      release: ussuri
       featureset_override: *scenario001
 
 - job:
@@ -288,7 +288,7 @@
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
     vars:
-      release_name: ussuri
+      release: ussuri
       featureset_override: *scenario004
 
 # Base job for ceph on train
@@ -304,7 +304,7 @@
       - name: github.com/ceph/ceph-ansible
         override-checkout: stable-4.0
     vars:
-      release_name: train
+      release: train
       branch_override: "stable/train"
       featureset: '052'
       standalone_ceph: true
@@ -355,7 +355,7 @@
         override-checkout: stable-2.9
     voting: false
     vars:
-      release_name: train
+      release: train
       featureset_override: *scenario001
 
 - job:
@@ -370,7 +370,7 @@
         override-checkout: stable-2.9
     voting: false
     vars:
-      release_name: train
+      release: train
       featureset_override: *scenario004
 
 # CentOS 8 Periodic jobs
@@ -398,14 +398,14 @@
     name: periodic-tripleo-ceph-integration-centos-8-scenario001-standalone
     parent: periodic-tripleo-ceph-integration-centos-8-scenarios-standalone
     vars:
-      release_name: master
+      release: master
       featureset_override: *scenario001
 
 - job:
     name: periodic-tripleo-ceph-integration-centos-8-scenario004-standalone
     parent: periodic-tripleo-ceph-integration-centos-8-scenarios-standalone
     vars:
-      release_name: master
+      release: master
       featureset_override: *scenario004
 
 # Periodic version of ceph-ansible C8 master jobs
@@ -430,14 +430,14 @@
     name: periodic-tripleo-ceph-ansible-integration-centos-8-scenario001-standalone
     parent: periodic-tripleo-ceph-ansible-integration-centos-8-scenarios-standalone
     vars:
-      release_name: master
+      release: master
       featureset_override: *scenario001
 
 - job:
     name: periodic-tripleo-ceph-ansible-integration-centos-8-scenario004-standalone
     parent: periodic-tripleo-ceph-ansible-integration-centos-8-scenarios-standalone
     vars:
-      release_name: master
+      release: master
       featureset_override: *scenario004
 
 # CentOS 8 Periodic jobs for ussuri
@@ -468,14 +468,14 @@
     name: periodic-tripleo-ceph-integration-centos-8-scenario001-standalone-ussuri
     parent: periodic-tripleo-ceph-integration-centos-8-scenarios-standalone-ussuri
     vars:
-      release_name: ussuri
+      release: ussuri
       featureset_override: *scenario001
 
 - job:
     name: periodic-tripleo-ceph-integration-centos-8-scenario004-standalone-ussuri
     parent: periodic-tripleo-ceph-integration-centos-8-scenarios-standalone-ussuri
     vars:
-      release_name: ussuri
+      release: ussuri
       featureset_override: *scenario004
 
 # Periodic version of ceph-ansible Centos-8 ussuri jobs
@@ -500,14 +500,14 @@
     name: periodic-tripleo-ceph-ansible-integration-centos-8-scenario001-standalone-ussuri
     parent: periodic-tripleo-ceph-ansible-integration-centos-8-scenarios-standalone-ussuri
     vars:
-      release_name: ussuri
+      release: ussuri
       featureset_override: *scenario001
 
 - job:
     name: periodic-tripleo-ceph-ansible-integration-centos-8-scenario004-standalone-ussuri
     parent: periodic-tripleo-ceph-ansible-integration-centos-8-scenarios-standalone-ussuri
     vars:
-      release_name: ussuri
+      release: ussuri
       featureset_override: *scenario004
 
 # CentOS 8 Periodic jobs for train
@@ -538,14 +538,14 @@
     name: periodic-tripleo-ceph-integration-centos-8-scenario001-standalone-train
     parent: periodic-tripleo-ceph-integration-centos-8-scenarios-standalone-train
     vars:
-      release_name: train
+      release: train
       featureset_override: *scenario001
 
 - job:
     name: periodic-tripleo-ceph-integration-centos-8-scenario004-standalone-train
     parent: periodic-tripleo-ceph-integration-centos-8-scenarios-standalone-train
     vars:
-      release_name: train
+      release: train
       featureset_override: *scenario004
 
 # Periodic version of ceph-ansible jobs on train
@@ -570,12 +570,12 @@
     name: periodic-tripleo-ceph-ansible-integration-centos-8-scenario001-standalone-train
     parent: periodic-tripleo-ceph-ansible-integration-centos-8-scenarios-standalone-train
     vars:
-      release_name: train
+      release: train
       featureset_override: *scenario001
 
 - job:
     name: periodic-tripleo-ceph-ansible-integration-centos-8-scenario004-standalone-train
     parent: periodic-tripleo-ceph-ansible-integration-centos-8-scenarios-standalone-train
     vars:
-      release_name: train
+      release: train
       featureset_override: *scenario004
