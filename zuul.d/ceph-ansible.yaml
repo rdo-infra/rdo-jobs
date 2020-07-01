@@ -222,8 +222,6 @@
     run: playbooks/run-rpm-build.yaml
     override-checkout: "stable/ussuri"
     required-projects:
-      - name: opendev.org/openstack/tripleo-heat-templates
-        override-checkout: stable/ussuri
       - name: github.com/ceph/ceph-ansible
         override-checkout: stable-4.0
     vars:
@@ -240,11 +238,6 @@
     # stein/train/ussuri will be using stable-4.0
     # branches: ^(stable-5.0|master).*$
     branches: ^(stable-4.0|master).*$
-    required-projects:
-      - name: opendev.org/openstack/tripleo-heat-templates
-        override-checkout: stable/ussuri
-      - name: github.com/ceph/ceph-ansible
-        override-checkout: stable-4.0
     vars:
       featureset_override: *scenario001
 
@@ -254,11 +247,6 @@
     # stein/train/ussuri will be using stable-4.0
     # branches: ^(stable-5.0|master).*$
     branches: ^(stable-4.0|master).*$
-    required-projects:
-      - name: opendev.org/openstack/tripleo-heat-templates
-        override-checkout: stable/ussuri
-      - name: github.com/ceph/ceph-ansible
-        override-checkout: stable-4.0
     vars:
       featureset_override: *scenario004
 
@@ -268,9 +256,8 @@
     name: tripleo-ceph-ansible-integration-centos-8-scenario001-standalone-ussuri
     parent: tripleo-ceph-integration-centos-8-scenarios-standalone
     branches: ^(stable-4.0|master).*$
+    override-checkout: "stable/ussuri"
     required-projects:
-      - name: opendev.org/openstack/tripleo-heat-templates
-        override-checkout: stable/ussuri
       - name: github.com/ceph/ceph-ansible
         override-checkout: stable-4.0
       - name: github.com/ansible/ansible
@@ -278,14 +265,14 @@
     vars:
       release: ussuri
       featureset_override: *scenario001
+      branch_override: "stable/ussuri"
 
 - job:
     name: tripleo-ceph-ansible-integration-centos-8-scenario004-standalone-ussuri
     parent: tripleo-ceph-integration-centos-8-scenarios-standalone
     branches: ^(stable-4.0|master).*$
+    override-checkout: "stable/ussuri"
     required-projects:
-      - name: opendev.org/openstack/tripleo-heat-templates
-        override-checkout: stable/ussuri
       - name: github.com/ceph/ceph-ansible
         override-checkout: stable-4.0
       - name: github.com/ansible/ansible
@@ -293,6 +280,7 @@
     vars:
       release: ussuri
       featureset_override: *scenario004
+      branch_override: "stable/ussuri"
 
 # Base job for ceph on train
 
@@ -350,9 +338,8 @@
     name: tripleo-ceph-ansible-integration-centos-8-scenario001-standalone-train
     parent: tripleo-ceph-integration-centos-8-scenarios-standalone
     branches: ^(stable-4.0|master).*$
+    override-checkout: "stable/train"
     required-projects:
-      - name: opendev.org/openstack/tripleo-heat-templates
-        override-checkout: stable/train
       - name: github.com/ceph/ceph-ansible
         override-checkout: stable-4.0
       - name: github.com/ansible/ansible
@@ -361,14 +348,14 @@
     vars:
       release: train
       featureset_override: *scenario001
+      branch_override: "stable/train"
 
 - job:
     name: tripleo-ceph-ansible-integration-centos-8-scenario004-standalone-train
     parent: tripleo-ceph-integration-centos-8-scenarios-standalone
     branches: ^(stable-4.0|master).*$
+    override-checkout: "stable/train"
     required-projects:
-      - name: opendev.org/openstack/tripleo-heat-templates
-        override-checkout: stable/train
       - name: github.com/ceph/ceph-ansible
         override-checkout: stable-4.0
       - name: github.com/ansible/ansible
@@ -377,6 +364,7 @@
     vars:
       release: train
       featureset_override: *scenario004
+      branch_override: "stable/train"
 
 # CentOS 8 Periodic jobs
 
@@ -458,14 +446,14 @@
     parent: tripleo-ci-base-standalone-periodic-centos-8
     abstract: true
     run: playbooks/run-rpm-build.yaml
+    override-checkout: "stable/ussuri"
     required-projects:
-      - name: opendev.org/openstack/tripleo-heat-templates
-        override-checkout: stable/ussuri
       - name: github.com/ceph/ceph-ansible
         override-checkout: stable-4.0
     vars:
       featureset: '052'
       standalone_ceph: true
+      branch_override: "stable/ussuri"
 
 # Periodic version for ussuri
 
@@ -489,9 +477,8 @@
     name: periodic-tripleo-ceph-ansible-integration-centos-8-scenarios-standalone-ussuri
     parent: tripleo-ci-base-standalone-periodic-centos-8
     abstract: true
+    override-checkout: "stable/ussuri"
     required-projects:
-      - name: opendev.org/openstack/tripleo-heat-templates
-        override-checkout: ussuri
       - name: github.com/ceph/ceph-ansible
         override-checkout: stable-4.0
       - name: github.com/ansible/ansible
@@ -500,6 +487,7 @@
       featureset: '052'
       standalone_ceph: true
       build_ansible_rpm: true
+      branch_override: "stable/ussuri"
 
 - job:
     name: periodic-tripleo-ceph-ansible-integration-centos-8-scenario001-standalone-ussuri
