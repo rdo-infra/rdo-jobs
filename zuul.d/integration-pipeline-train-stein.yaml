@@ -149,9 +149,6 @@
         - periodic-tripleo-ci-centos-8-undercloud-containers-train:
             dependencies:
               - periodic-tripleo-centos-8-train-containers-build-push
-        - periodic-tripleo-ci-centos-8-singlenode-featureset050-upgrades-train:
-            dependencies:
-              - periodic-tripleo-centos-8-train-containers-build-push
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset037-updates-train:
             nodeset: two-centos-7-nodes-vexxhost
             dependencies:
