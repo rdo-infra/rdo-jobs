@@ -431,6 +431,9 @@
         - periodic-tripleo-ci-centos-8-standalone-clients-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-clients-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-clients-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-clients-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-clients-promote-consistent-to-component-ci-testing
     openstack-component-cloudops:
       jobs:
@@ -441,6 +444,9 @@
     openstack-component-common:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-common-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-common-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-common-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-common-promote-consistent-to-component-ci-testing
@@ -467,10 +473,16 @@
         - periodic-tripleo-ci-centos-8-standalone-network-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-network-promote-consistent-to-component-ci-testing
     openstack-component-octavia:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-octavia-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-octavia-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-octavia-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-octavia-promote-consistent-to-component-ci-testing
@@ -479,10 +491,16 @@
         - periodic-tripleo-ci-centos-8-standalone-security-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-security-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-security-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-security-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-security-promote-consistent-to-component-ci-testing
     openstack-component-swift:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-swift-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-swift-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-tripleo-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-swift-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-swift-promote-consistent-to-component-ci-testing
