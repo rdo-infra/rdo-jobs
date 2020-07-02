@@ -1276,6 +1276,39 @@
       release: ussuri
       branch_override: 'stable/ussuri'
 
+## train
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-cloudops-train
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-cloudops-master
+    override-checkout: "stable/train"
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-common-train
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-common-master
+    override-checkout: "stable/train"
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-glance-train
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-glance-master
+    override-checkout: "stable/train"
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-swift-train
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-swift-master
+    override-checkout: "stable/train"
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
 # scenario003-standalone-component
 - job:
     name: periodic-tripleo-ci-centos-8-scenario003-standalone-component-master
@@ -1310,6 +1343,23 @@
     vars:
       release: ussuri
       branch_override: 'stable/ussuri'
+
+## train
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario003-standalone-common-train
+    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-common-master
+    override-checkout: "stable/train"
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario003-standalone-glance-train
+    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-glance-master
+    override-checkout: "stable/train"
+    vars:
+      release: train
+      branch_override: 'stable/train'
 
 # scenario004-standalone-component
 - job:
