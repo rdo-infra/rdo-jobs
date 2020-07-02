@@ -1479,6 +1479,23 @@
       release: ussuri
       branch_override: 'stable/ussuri'
 
+## train
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-compute-train
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-compute-master
+    override-checkout: "stable/train"
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-tempest-train
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-tempest-master
+    override-checkout: "stable/train"
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
 # standalone-full-tempest-scenario-component
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-component-master
@@ -1513,6 +1530,23 @@
     vars:
       release: ussuri
       branch_override: 'stable/ussuri'
+
+## train
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-train
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-master
+    override-checkout: "stable/train"
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-tempest-train
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-tempest-master
+    override-checkout: "stable/train"
+    vars:
+      release: train
+      branch_override: 'stable/train'
 
 # standalone-on-multinode-ipa
 - job:
