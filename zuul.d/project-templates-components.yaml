@@ -32,6 +32,9 @@
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-clients-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-clients-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-clients-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-clients-promote-consistent-to-component-ci-testing
     openstack-component-cloudops:
       jobs:
@@ -63,9 +66,6 @@
             dependencies:
               - periodic-tripleo-centos-8-master-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-common-master:
-            dependencies:
-              - periodic-tripleo-centos-8-master-component-common-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-common-promote-consistent-to-component-ci-testing
@@ -237,6 +237,9 @@
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-clients-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-clients-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-clients-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-ussuri-component-clients-promote-consistent-to-component-ci-testing
     openstack-component-cloudops:
       jobs:
@@ -268,9 +271,6 @@
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-common-ussuri:
-            dependencies:
-              - periodic-tripleo-centos-8-ussuri-component-common-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-ussuri-component-common-promote-consistent-to-component-ci-testing
