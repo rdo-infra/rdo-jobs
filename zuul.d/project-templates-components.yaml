@@ -434,6 +434,9 @@
         - periodic-tripleo-ci-centos-8-scenario001-standalone-cinder-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-cinder-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-cinder-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-cinder-promote-consistent-to-component-ci-testing
     openstack-component-clients:
       jobs:
@@ -467,6 +470,9 @@
         - periodic-tripleo-ci-centos-8-scenario003-standalone-common-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-common-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario004-standalone-common-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-common-promote-consistent-to-component-ci-testing
     openstack-component-compute:
       jobs:
@@ -494,16 +500,25 @@
         - periodic-tripleo-ci-centos-8-scenario003-standalone-glance-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-glance-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario004-standalone-glance-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-glance-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-glance-promote-consistent-to-component-ci-testing
     openstack-component-manila:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-manila-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-manila-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario004-standalone-manila-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-manila-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-manila-promote-consistent-to-component-ci-testing
     openstack-component-network:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-network-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario007-standalone-network-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-network-promote-consistent-to-component-ci-testing
@@ -515,6 +530,9 @@
         - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario007-standalone-octavia-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-octavia-promote-consistent-to-component-ci-testing
     openstack-component-security:
       jobs:
