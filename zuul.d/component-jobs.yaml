@@ -1409,6 +1409,23 @@
       release: ussuri
       branch_override: 'stable/ussuri'
 
+## train
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-standalone-network-train
+    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-network-master
+    override-checkout: "stable/train"
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-train
+    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-master
+    override-checkout: "stable/train"
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
 # standalone-full-tempest-component
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-component-master
