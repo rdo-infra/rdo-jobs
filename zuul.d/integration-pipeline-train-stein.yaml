@@ -130,9 +130,6 @@
         - periodic-tripleo-ci-centos-8-scenario010-standalone-train:
             dependencies:
               - periodic-tripleo-centos-8-train-containers-build-push
-        - periodic-tripleo-ci-centos-8-standalone-upgrade-train:
-            dependencies:
-              - periodic-tripleo-centos-8-train-containers-build-push
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-train:
             dependencies:
               - periodic-tripleo-centos-8-buildimage-overcloud-full-train
@@ -147,9 +144,6 @@
               - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train
               - periodic-tripleo-centos-8-train-containers-build-push
         - periodic-tripleo-ci-centos-8-undercloud-containers-train:
-            dependencies:
-              - periodic-tripleo-centos-8-train-containers-build-push
-        - periodic-tripleo-ci-centos-8-singlenode-featureset050-upgrades-train:
             dependencies:
               - periodic-tripleo-centos-8-train-containers-build-push
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset037-updates-train:
