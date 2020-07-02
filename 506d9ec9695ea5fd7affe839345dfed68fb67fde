@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0b6ddce2_36b192c4",
+        "filename": "playbooks/run-rpm-build.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2020-07-02T07:05:59Z",
+      "side": 1,
+      "message": "release: release_name wasn\u0027t needed in the first place.\n\nAfter removal of - release: \"{{ release_name|default(\u0027master\u0027) }}\" we are not hitting previous issue mentioned below:-\n\n\n[1]: https://github.com/ansible/ansible/issues/8603\n[2]: https://logserver.rdoproject.org/03/28003/1/check/tripleo-ceph-integration-centos-8-scenario001-standalone/70119a9/job-output.txt",
+      "parentUuid": "0206fb98_4070e5da",
+      "range": {
+        "startLine": 24,
+        "startChar": 6,
+        "endLine": 24,
+        "endChar": 10
+      },
+      "revId": "506d9ec9695ea5fd7affe839345dfed68fb67fde",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a8ca68f_521fb98b",
         "filename": "zuul.d/ceph-ansible.yaml",
         "patchSetId": 2
