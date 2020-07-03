@@ -11,7 +11,7 @@
 ## containers/images
 - job:
     name: periodic-tripleo-centos-8-ussuri-containers-build-push
-    parent: periodic-tripleo-centos-8-master-containers-build-push
+    parent: periodic-tripleo-ci-build-containers-ubi-8
     nodeset: single-centos-8-node-vexxhost
     override-checkout: "stable/ussuri"
     vars:
