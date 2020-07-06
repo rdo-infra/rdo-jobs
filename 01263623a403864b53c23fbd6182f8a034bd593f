@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1164d0ab_61513084",
+        "filename": "zuul.d/standalone-jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2020-07-06T15:02:06Z",
+      "side": 0,
+      "message": "* We can possibly have c7(stein) -\u003e c7(train)  upgrade job if it has values.\n* But because we don\u0027t have c8 stein bits we can\u0027t have c8(stein) -\u003e c8(train) upgrade job, We are hitting issues as mentioned in bug: https://bugs.launchpad.net/tripleo/+bug/1886063\n\nWith this change, I am only removing c8(stein) -\u003e c8(train) upgrade jobs",
+      "parentUuid": "127e3698_966b80fb",
+      "revId": "01263623a403864b53c23fbd6182f8a034bd593f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "308251e9_3c41b045",
         "filename": "zuul.d/undercloud-jobs.yaml",
         "patchSetId": 2
