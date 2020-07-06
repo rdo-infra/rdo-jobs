@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "127e3698_966b80fb",
+        "filename": "zuul.d/standalone-jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2020-07-06T08:09:37Z",
+      "side": 0,
+      "message": "so not sure about this... i am currently trying to re-add these upstream with https://review.opendev.org/#/c/738844/7/zuul.d/standalone-jobs.yaml\n\nthe plan is to make them stable and get them voting ASAP.\n\nThere *is* a discussion to be had with upgrades team around how useful that is, since this job does stein-\u003etrain without switching OS. \n\n*IMO* it is still a valid job since it tests the upgrade tasks and anyway the standalone-upgrade was never meant to test the full upgrade workflow.\n\n\nNow if we have upstream centos8 standalone-upgrade-train then I think we will also want periodic version ...\n\nwe could remove and re-add but please let\u0027s discuss today in scrum?",
+      "revId": "01263623a403864b53c23fbd6182f8a034bd593f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
