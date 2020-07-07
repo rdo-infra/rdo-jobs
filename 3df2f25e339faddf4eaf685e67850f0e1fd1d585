@@ -22,6 +22,29 @@
       "revId": "3df2f25e339faddf4eaf685e67850f0e1fd1d585",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7c816269_d2024367",
+        "filename": "zuul.d/integration-pipeline-stable2.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2020-07-07T07:15:38Z",
+      "side": 1,
+      "message": "Earlier, there was some discussion about segregating c7 train and c8 train jobs in different pipelines, and in patch[1] we created a separate pipeline for CentOS 8 train jobs.\n\nBut with this change, we are back to zuul.d/integration-pipeline-stable2.yaml for both c7/c8 train.\n\nJust to confirm if that c7 train and c8 train jobs segregation plan dropped now?\n\n[1] https://review.rdoproject.org/r/#/c/28198/",
+      "range": {
+        "startLine": 4,
+        "startChar": 10,
+        "endLine": 4,
+        "endChar": 38
+      },
+      "revId": "3df2f25e339faddf4eaf685e67850f0e1fd1d585",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
