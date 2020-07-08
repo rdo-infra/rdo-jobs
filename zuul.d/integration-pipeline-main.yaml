@@ -6,95 +6,134 @@
       jobs:
         ##### master #####
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-master:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-8-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
               - periodic-tripleo-centos-8-buildimage-overcloud-full-master
               - periodic-tripleo-centos-8-buildimage-ironic-python-agent-master
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset030-master:
+            nodeset: two-centos-8-nodes-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-master:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-8-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
               - periodic-tripleo-centos-8-buildimage-overcloud-full-master
               - periodic-tripleo-centos-8-buildimage-ironic-python-agent-master
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-8-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
               - periodic-tripleo-centos-8-buildimage-overcloud-full-master
               - periodic-tripleo-centos-8-buildimage-ironic-python-agent-master
         - periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-master:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-8-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-master:
+            vars:
+              cloud_name: vexxhost
+            nodeset: upstream-centos-8-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
               - periodic-tripleo-centos-8-buildimage-overcloud-full-master
               - periodic-tripleo-centos-8-buildimage-ironic-python-agent-master
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset037-updates-master:
+            nodeset: two-centos-8-nodes-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-master:
+            nodeset: two-centos-8-nodes-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-centos-8-undercloud-containers-master:
+            nodeset: single-centos-8-node-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-centos-8-standalone-master:
+            nodeset: single-centos-8-node-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-centos-8-scenario001-standalone-master:
+            nodeset: single-centos-8-node-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-centos-8-scenario002-standalone-master:
+            nodeset: single-centos-8-node-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-centos-8-scenario003-standalone-master:
+            nodeset: single-centos-8-node-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-centos-8-scenario004-standalone-master:
+            nodeset: single-centos-8-node-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-centos-8-scenario007-standalone-master:
+            nodeset: single-centos-8-node-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-centos-8-scenario010-standalone-master:
+            nodeset: single-centos-8-node-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-centos-8-scenario012-standalone-master:
+            nodeset: single-centos-8-node-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-centos-8-standalone-skipped-tempest-master:
+            nodeset: single-centos-8-node-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-centos-8-standalone-full-tempest-api-master:
+            nodeset: single-centos-8-node-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-master:
+            nodeset: single-centos-8-node-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-master:
+            nodeset: two-centos-8-nodes-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-master:
+            nodeset: two-centos-8-nodes-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-centos-8-containers-undercloud-minion-master:
+            nodeset: single-centos-8-node-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-master:
+            nodeset: single-centos-8-node-vexxhost
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-build-containers-ubi-8-push:
+            nodeset: single-centos-8-node-vexxhost
             dependencies:
               - periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing
         - periodic-tripleo-centos-8-buildimage-overcloud-hardened-full-master:
+            nodeset: single-centos-8-node-vexxhost
             dependencies:
               - periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing
         - periodic-tripleo-centos-8-buildimage-overcloud-full-master:
+            nodeset: single-centos-8-node-vexxhost
             dependencies:
               - periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing
         - periodic-tripleo-centos-8-buildimage-ironic-python-agent-master:
+            nodeset: single-centos-8-node-vexxhost
             dependencies:
               - periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing
-        - periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing
+        - periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing:
+            nodeset: upstream-centos-8-vexxhost
