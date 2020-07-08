@@ -69,14 +69,6 @@
     required-projects:
       - name: review.rdoproject.org/rdo-infra/ci-config
 
-# rdo-tox-molecule
-
-- job:
-    name: periodic-rdo-tox-molecule
-    parent: rdo-tox-molecule-ci-config
-    required-projects:
-      - name: review.rdoproject.org/rdo-infra/ci-config
-
 # rdo-tox-molecule-delegated-centos-8
 
 - job:
