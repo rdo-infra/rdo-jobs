@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "eb1eceb6_7b4ea426",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2020-07-08T07:00:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d600bea0_596b06bd",
+      "revId": "c865f293fa0de06ee4d840948907fc176d0a32fa",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c4b15f24_12dd3bb4",
         "filename": "zuul.d/component-jobs.yaml",
         "patchSetId": 8
@@ -47,6 +65,24 @@
       "writtenOn": "2020-07-08T06:47:15Z",
       "side": 1,
       "message": "just wondering why we don\u0027t have override-checkout on the -ussuri jobs above .. but that is rhetorical it isn\u0027t to do with this change I think it is correct as you have it",
+      "revId": "c865f293fa0de06ee4d840948907fc176d0a32fa",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "050caf06_d799a3bd",
+        "filename": "zuul.d/component-jobs.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 1189,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2020-07-08T07:00:41Z",
+      "side": 1,
+      "message": "I needed override-checkout to avoid bug: https://bugs.launchpad.net/tripleo/+bug/1885617 (CentOS 8 train jobs fail with \"tripleo-podman not found\" error)\n\n* Without override-checkout, tripleo-ansible master branch was checkedout.\n* but master branch don\u0027t have tripleo-podman role, it was renamed to tripleo_podman.",
+      "parentUuid": "c4b15f24_12dd3bb4",
       "revId": "c865f293fa0de06ee4d840948907fc176d0a32fa",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
