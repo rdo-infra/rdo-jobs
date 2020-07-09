@@ -4,8 +4,18 @@
 # It contains all the jobs to run against rdoinfo changes.
 
 - job:
-    name: rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016
+    name: rdoinfo-tripleo-centos-7-base
+    parent: tripleo-ci-base-standalone-rdo
+    nodeset: single-centos-7-node-vexxhost
+
+- job:
+    name: rdoinfo-tripleo-centos-7-multinode-base
     parent: tripleo-ci-base-multinode-rdo
+    nodeset: two-centos-7-nodes-vexxhost
+
+- job:
+    name: rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset016
+    parent: rdoinfo-tripleo-centos-7-multinode-base
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
@@ -26,7 +36,7 @@
 # standalone counterpart for featurset016 multinode job
 - job:
     name: rdoinfo-tripleo-master-centos-7-scenario001-standalone
-    parent: tripleo-ci-base-standalone-rdo
+    parent: rdoinfo-tripleo-centos-7-base
     run: playbooks/run-rdoinfo.yaml
     post-run: playbooks/post-rdoinfo.yaml
     vars:
@@ -67,7 +77,7 @@
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset010
-    parent: tripleo-ci-base-multinode-rdo
+    parent: rdoinfo-tripleo-centos-7-multinode-base
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
@@ -87,7 +97,7 @@
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-7-standalone-featureset052
-    parent: tripleo-ci-base-standalone-rdo
+    parent: rdoinfo-tripleo-centos-7-base
     roles:
       - zuul: openstack/tripleo-ci
     run: playbooks/run-rdoinfo.yaml
@@ -104,7 +114,7 @@
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset030
-    parent: tripleo-ci-base-multinode-rdo
+    parent: rdoinfo-tripleo-centos-7-multinode-base
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
@@ -125,7 +135,7 @@
 # standalone counterpart for featurset030 multinode job
 - job:
     name: rdoinfo-tripleo-master-centos-7-scenario007-standalone
-    parent: tripleo-ci-base-standalone-rdo
+    parent: rdoinfo-tripleo-centos-7-base
     run: playbooks/run-rdoinfo.yaml
     vars:
       featureset: '052'
@@ -143,7 +153,7 @@
 
 - job:
     name: rdoinfo-tripleo-train-centos-7-scenario001-standalone
-    parent: tripleo-ci-base-standalone-rdo
+    parent: rdoinfo-tripleo-centos-7-base
     run: playbooks/run-rdoinfo.yaml
     post-run: playbooks/post-rdoinfo.yaml
     override-checkout: "stable/train"
@@ -185,7 +195,7 @@
 
 - job:
     name: rdoinfo-tripleo-train-testing-centos-7-multinode-1ctlr-featureset010
-    parent: tripleo-ci-base-multinode-rdo
+    parent: rdoinfo-tripleo-centos-7-multinode-base
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
@@ -207,7 +217,7 @@
 
 - job:
     name: rdoinfo-tripleo-train-testing-centos-7-standalone-featureset052
-    parent: tripleo-ci-base-standalone-rdo
+    parent: rdoinfo-tripleo-centos-7-base
     roles:
       - zuul: openstack/tripleo-ci
     run: playbooks/run-rdoinfo.yaml
@@ -226,7 +236,7 @@
 
 - job:
     name: rdoinfo-tripleo-train-testing-centos-7-multinode-1ctlr-featureset030
-    parent: tripleo-ci-base-multinode-rdo
+    parent: rdoinfo-tripleo-centos-7-multinode-base
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
@@ -248,7 +258,7 @@
 
 - job:
     name: rdoinfo-tripleo-stein-centos-7-scenario001-standalone
-    parent: tripleo-ci-base-standalone-rdo
+    parent: rdoinfo-tripleo-centos-7-base
     run: playbooks/run-rdoinfo.yaml
     post-run: playbooks/post-rdoinfo.yaml
     override-checkout: "stable/stein"
@@ -290,7 +300,7 @@
 
 - job:
     name: rdoinfo-tripleo-stein-release-centos-7-scenario001-standalone
-    parent: tripleo-ci-base-standalone-rdo
+    parent: rdoinfo-tripleo-centos-7-base
     run: playbooks/run-rdoinfo-cbs.yaml
     post-run: playbooks/post-rdoinfo.yaml
     override-checkout: "stable/stein"
@@ -384,7 +394,7 @@
 
 - job:
     name: rdoinfo-tripleo-train-release-centos-7-scenario001-standalone
-    parent: tripleo-ci-base-standalone-rdo
+    parent: rdoinfo-tripleo-centos-7-base
     run: playbooks/run-rdoinfo-cbs.yaml
     post-run: playbooks/post-rdoinfo.yaml
     override-checkout: "stable/train"
@@ -428,7 +438,7 @@
 
 - job:
     name: rdoinfo-tripleo-stein-testing-centos-7-standalone-featureset052
-    parent: tripleo-ci-base-standalone-rdo
+    parent: rdoinfo-tripleo-centos-7-base
     roles:
       - zuul: openstack/tripleo-ci
     run: playbooks/run-rdoinfo.yaml
@@ -447,7 +457,7 @@
 
 - job:
     name: rdoinfo-tripleo-stein-testing-centos-7-multinode-1ctlr-featureset030
-    parent: tripleo-ci-base-multinode-rdo
+    parent: rdoinfo-tripleo-centos-7-multinode-base
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
@@ -469,7 +479,7 @@
 
 - job:
     name: rdoinfo-tripleo-rocky-testing-centos-7-multinode-1ctlr-featureset016
-    parent: tripleo-ci-base-multinode-rdo
+    parent: rdoinfo-tripleo-centos-7-multinode-base
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
@@ -491,7 +501,7 @@
 
 - job:
     name: rdoinfo-tripleo-rocky-testing-centos-7-multinode-1ctlr-featureset030
-    parent: tripleo-ci-base-multinode-rdo
+    parent: rdoinfo-tripleo-centos-7-multinode-base
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
@@ -513,7 +523,7 @@
 
 - job:
     name: rdoinfo-tripleo-rocky-release-centos-7-multinode-1ctlr-featureset016
-    parent: tripleo-ci-base-multinode-rdo
+    parent: rdoinfo-tripleo-centos-7-multinode-base
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
@@ -535,7 +545,7 @@
 
 - job:
     name: rdoinfo-tripleo-queens-testing-centos-7-multinode-1ctlr-featureset016
-    parent: tripleo-ci-base-multinode-rdo
+    parent: rdoinfo-tripleo-centos-7-multinode-base
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
@@ -557,7 +567,7 @@
 
 - job:
     name: rdoinfo-tripleo-queens-testing-centos-7-multinode-1ctlr-featureset030
-    parent: tripleo-ci-base-multinode-rdo
+    parent: rdoinfo-tripleo-centos-7-multinode-base
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
@@ -579,7 +589,7 @@
 
 - job:
     name: rdoinfo-tripleo-queens-release-centos-7-multinode-1ctlr-featureset016
-    parent: tripleo-ci-base-multinode-rdo
+    parent: rdoinfo-tripleo-centos-7-multinode-base
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
     roles:
@@ -602,6 +612,7 @@
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-standalone
     parent: tripleo-ci-centos-8-standalone
+    nodeset: single-centos-8-node-vexxhost
     run: playbooks/run-rdoinfo.yaml
     vars:
       rdoinfo_release: master
@@ -610,6 +621,7 @@
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-scenario001-standalone
     parent: tripleo-ci-centos-8-scenario001-standalone
+    nodeset: single-centos-8-node-vexxhost
     run: playbooks/run-rdoinfo.yaml
     post-run: playbooks/post-rdoinfo.yaml
     roles:
@@ -640,6 +652,7 @@
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-scenario007-standalone
     parent: tripleo-ci-centos-8-scenario007-standalone
+    nodeset: single-centos-8-node-vexxhost
     run: playbooks/run-rdoinfo.yaml
     vars:
       rdoinfo_release: master
@@ -648,6 +661,7 @@
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-containers-multinode
     parent: tripleo-ci-centos-8-containers-multinode
+    nodeset: two-centos-8-nodes-vexxhost
     run: playbooks/run-rdoinfo.yaml
     vars:
       rdoinfo_release: master
