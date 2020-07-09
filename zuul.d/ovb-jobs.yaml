@@ -22,6 +22,21 @@
         to_build: false
 
 - job:
+    name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-no-deployment-testonly
+    parent: tripleo-ci-base-ovb-rdo-centos-8
+    branches: ^(?!stable/(newton|ocata|pike|queens|rocky|stein|train)).*$
+    pre-run:
+      - playbooks/tripleo-rdo-base/pre.yaml
+      - playbooks/tripleo-rdo-base/pre-ovb-create.yaml
+    run: playbooks/testonly/no_deploy_ovb.yaml
+    post-run: playbooks/tripleo-rdo-base/post-ovb-delete.yaml
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      featureset_override:
+        to_build: false
+
+- job:
     name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset001
     parent: tripleo-ci-base-ovb-rdo
     branches: ^(stable/(newton|ocata|pike|queens|rocky|stein|train)).*$

@@ -1,0 +1,5 @@
+- hosts: localhost
+  tasks:
+    - name: skip tripleo bits
+      debug:
+        msg: "skip the ovb deployment of tripleo"
