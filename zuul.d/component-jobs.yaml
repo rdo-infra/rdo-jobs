@@ -1492,6 +1492,40 @@
       release: ussuri
       branch_override: 'stable/ussuri'
 
+# scenario010-standalone-component
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-component-master
+    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master
+    abstract: true
+    vars: *component_vars_standalone
+
+# master
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-master
+    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-component-master
+    vars:
+      component: octavia
+
+# ussuri
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-component-master
+    override-checkout: 'stable/ussuri'
+    vars:
+      component: octavia
+      release: ussuri
+      branch_override: 'stable/ussuri'
+
+# train
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-train
+    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-component-master
+    override-checkout: 'stable/train'
+    vars:
+      component: octavia
+      release: train
+      branch_override: 'stable/train'
+
 # standalone-full-tempest-component
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-component-master
