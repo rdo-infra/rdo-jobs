@@ -1815,3 +1815,28 @@
     vars:
       release: ussuri
       branch_override: 'stable/ussuri'
+
+# standalone with baseos jobs
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-baseos-component-master
+    parent: tripleo-ci-base-standalone-rdo-centos-8
+    abstract: true
+    nodeset: single-centos-8-node-vexxhost
+    vars:
+      featureset: '052'
+      component: component
+      release: master
+      add_repos:
+        - type: generic
+          reponame: "{{ component }}"
+          filename: "{{ component }}-component.repo"
+          priority: 1
+          baseurl: ""
+          update_container: true
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-baseos-centos8cr-master
+    parent: periodic-tripleo-ci-centos-8-standalone-baseos-component-master
+    vars:
+      component: centos8cr
+      component_base_url: "http://mirror.centos.org/centos-8/8/cr/x86_64/os/Packages/"
