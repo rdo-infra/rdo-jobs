@@ -128,6 +128,9 @@
         - periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-octavia-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
@@ -333,6 +336,9 @@
         - periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-octavia-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-octavia-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-octavia-promote-consistent-to-component-ci-testing
@@ -506,6 +512,9 @@
         - periodic-tripleo-ci-centos-8-standalone-octavia-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-octavia-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-octavia-promote-consistent-to-component-ci-testing
     openstack-component-security:
       jobs:
