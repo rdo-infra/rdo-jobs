@@ -1,0 +1,13 @@
+---
+# It contains standalone based tempest scenario jobs
+# where tempest skipped list tempest tests will be
+# triggered in a seperate pipeline.
+
+# Master Job
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-skipped-tempest-master
+    parent: periodic-tripleo-ci-centos-8-standalone-master
+    timeout: 13500
+    vars:
+      featureset_override:
+        tempest_run_skipped: true
