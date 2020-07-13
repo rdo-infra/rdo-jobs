@@ -84,3 +84,12 @@
             nodeset: two-centos-8-nodes-vexxhost
             dependencies:
               - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-centos-8-buildimage-overcloud-hardened-full-train:
+            dependencies:
+            - periodic-tripleo-centos-8-train-promote-promoted-components-to-tripleo-ci-testing
+
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-containers-build-push
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-train
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train
