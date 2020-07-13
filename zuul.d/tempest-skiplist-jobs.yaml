@@ -1,0 +1,262 @@
+---
+# It contains standalone based tempest scenario jobs
+# where tempest skipped list tempest tests will be
+# triggered in a seperate pipeline.
+
+# Master Job
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-skipped-tempest-master
+    parent: periodic-tripleo-ci-centos-8-standalone-master
+    timeout: 13500
+    vars:
+      featureset_override:
+        run_tempest: false
+        tempest_run_concurrency: 2
+        tempest_services:
+          - cinder
+          - horizon
+          - neutron
+        tempest_test_whitelist:
+          - 'api'
+          - 'scenario'
+        use_os_tempest: true
+        tempest_run_skipped: true
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-scenario001-skipped-tempest-master
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-master
+    timeout: 13500
+    vars:
+      featureset_override:
+        tempest_run_skipped: true
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario001-standalone.yaml'
+        tempest_services:
+          - aodh
+        run_tempest: false
+        use_os_tempest: true
+        tempest_run_concurrency: 1
+        tempest_tempest_conf_overrides:
+          telemetry.alarm_granularity: '60'
+          auth.tempest_roles: "Member"
+        tempest_test_whitelist:
+          - 'tempest.api.identity.v3'
+          - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern.test_volume_boot_pattern'
+          - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-scenario002-skipped-tempest-master
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-master
+    timeout: 13500
+    vars:
+      featureset_override:
+        tempest_run_skipped: true
+        run_tempest: false
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario002-standalone.yaml'
+        tempest_services:
+          - barbican
+          - ceilometer
+          - aodh
+        tempest_tempest_conf_overrides:
+          auth.tempest_roles: "'Member, creator'"
+          telemetry.alarm_granularity: '60'
+        tempest_test_whitelist:
+          - 'tempest.api.object_storage.test_object_services.ObjectTest'
+          - 'barbican_tempest_plugin.tests.scenario.test_volume_encryption.VolumeEncryptionTest'
+          - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
+        use_os_tempest: true
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-scenario003-skipped-tempest-master
+    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-master
+    timeout: 13500
+    vars:
+      featureset_override:
+        tempest_run_skipped: true
+        run_tempest: false
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario003-standalone.yaml'
+        tempest_services:
+          - sahara
+          - mistral
+        tempest_tempest_conf_overrides:
+          auth.tempest_roles: "Member"
+        tempest_test_whitelist:
+          - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps.test_network_basic_ops'
+          - 'sahara_tempest_plugin.tests.api.test_data_sources.DataSourceTest'
+          - 'mistral_tempest_tests.tests.api.v2.test_actions.ActionTestsV2'
+        use_os_tempest: true
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-scenario004-skipped-tempest-master
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-master
+    timeout: 13500
+    vars:
+      featureset_override:
+        tempest_run_skipped: true
+        run_tempest: false
+        standalone_container_cli: podman
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario004-standalone.yaml'
+          - 'environments/podman.yaml'
+        tempest_services:
+          - manila
+        tempest_tempest_conf_overrides:
+          'auth.tempest_roles': 'Member'
+          'share.multitenancy_enabled': 'False'
+          'share.enable_protocols': 'cephfs'
+          'share.capability_snapshot_support': 'False'
+          'share.capability_create_share_from_snapshot_support': 'False'
+        tempest_test_whitelist:
+          - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps.test_network_basic_ops'
+          - 'manila_tempest_tests.tests.api.test_shares.SharesCephFSTest.test_create_get_delete_share'
+        use_os_tempest: true
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-scenario007-skipped-tempest-master
+    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-master
+    timeout: 13500
+    vars:
+      featureset_override:
+        tempest_run_skipped: true
+        run_tempest: false
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario007-standalone.yaml'
+        tempest_services:
+          - neutron
+        tempest_test_whitelist:
+          - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps.test_network_basic_ops'
+        tempest_private_net_provider_type: 'vxlan'
+        use_os_tempest: true
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-scenario010-skipped-tempest-master
+    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-master
+    timeout: 13500
+    vars:
+      featureset_override:
+        tempest_run_skipped: true
+        validate_services: false
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario010-standalone.yaml'
+
+# ussuri jobs
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-skipped-tempest-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-skipped-tempest-master
+    override-checkout: "stable/ussuri"
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-scenario001-skipped-tempest-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-scenario001-skipped-tempest-master
+    override-checkout: "stable/ussuri"
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-scenario002-skipped-tempest-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-scenario002-skipped-tempest-master
+    override-checkout: "stable/ussuri"
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-scenario003-skipped-tempest-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-scenario003-skipped-tempest-master
+    override-checkout: "stable/ussuri"
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-scenario004-skipped-tempest-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-scenario004-skipped-tempest-master
+    override-checkout: "stable/ussuri"
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-scenario007-skipped-tempest-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-scenario007-skipped-tempest-master
+    override-checkout: "stable/ussuri"
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-scenario010-skipped-tempest-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-scenario010-skipped-tempest-master
+    override-checkout: "stable/ussuri"
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+# train jobs
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-skipped-tempest-train
+    parent: periodic-tripleo-ci-centos-8-standalone-skipped-tempest-ussuri
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-scenario001-skipped-tempest-train
+    parent: periodic-tripleo-ci-centos-8-standalone-scenario001-skipped-tempest-ussuri
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-scenario002-skipped-tempest-train
+    parent: periodic-tripleo-ci-centos-8-standalone-scenario002-skipped-tempest-ussuri
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-scenario003-skipped-tempest-train
+    parent: periodic-tripleo-ci-centos-8-standalone-scenario003-skipped-tempest-ussuri
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-scenario004-skipped-tempest-train
+    parent: periodic-tripleo-ci-centos-8-standalone-scenario004-skipped-tempest-ussuri
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-scenario007-skipped-tempest-train
+    parent: periodic-tripleo-ci-centos-8-standalone-scenario007-skipped-tempest-ussuri
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-scenario010-skipped-tempest-train
+    parent: periodic-tripleo-ci-centos-8-standalone-scenario010-skipped-tempest-ussuri
+    override-checkout: "stable/train"
+    vars:
+      branch_override: "stable/train"
+      release: train
