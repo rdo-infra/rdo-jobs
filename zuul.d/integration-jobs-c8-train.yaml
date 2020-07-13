@@ -7,3 +7,23 @@
     nodeset: single-centos-8-node-vexxhost
     vars:
       release: train
+
+- job:
+    name: periodic-tripleo-centos-8-buildimage-overcloud-hardened-full-train
+    parent: periodic-tripleo-centos-8-buildimage-overcloud-hardened-full-master
+    nodeset: single-centos-8-node-vexxhost
+    override-checkout: "stable/train"
+    voting: true
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-train
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-master
+    nodeset: tripleo-ovb-centos-8-primary-vexxhost
+    override-checkout: "stable/train"
+    vars:
+      cloud_name: vexxhost
+      branch_override: "stable/train"
+      release: train
