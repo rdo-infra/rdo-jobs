@@ -1,0 +1,30 @@
+---
+- name: Enable powertools repository
+  become: true
+  when:
+    - ansible_distribution_major_version >= "8"
+    - ansible_distribution == "CentOS"
+  shell: |
+    set -o pipefail
+    set -x
+    dnf config-manager --set-enabled PowerTools
+  changed_when: true
+
+- name: Build and install rpms
+  # ideally it should not need become but it installs rpms with sudo
+  become: true
+  shell:
+    cmd: |
+      set -euo pipefail
+      sed 'golang-github-cpuguy83-go-md2man \\' contrib/build_rpm.sh
+      sed 'btrfs-progs-devel \\' contrib/build_rpm.sh
+      ./contrib/build_rpm.sh
+      podman version
+      podman info  --log-level debug
+    chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}"
+  changed_when: true
+  # go build often fails due to networking
+  register: result
+  retries: 3
+  until:
+    - '"fatal: The remote end hung up unexpectedly" not in result.stdout'
