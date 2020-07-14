@@ -13,6 +13,7 @@
     - name: Build and install rpms
       # ideally it should not need become but it installs rpms with sudo
       become: true
+      when: not build_podman_stable|default(false)|bool
       shell:
         # running podman info is essential to avoid a bug like:
         # https://github.com/containers/libpod/issues/4665
@@ -28,6 +29,10 @@
       retries: 3
       until:
         - '"fatal: The remote end hung up unexpectedly" not in result.stdout'
+
+    - name: Build stable podman rpm
+      when: build_podman_stable|bool
+      import_tasks: build_stable_podman.yaml
 
     - name: Build repository from all builder rpms
       changed_when: true
