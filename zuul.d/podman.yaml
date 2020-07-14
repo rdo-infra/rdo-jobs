@@ -33,48 +33,18 @@
     parent: podman-package-centos-8
     nodeset: single-fedora-31-node
 
+# Stable jobs
+- job:
+    name: podman-package-centos-8-stable
+    parent: podman-package-centos-8
+    branches: master
+    required-projects:
+      - name: github.com/containers/libpod
+        override-checkout: v1.6
+
 # Podman TripleO integration Jobs
 
 ## Keystone based standalone deployment
-
-- job:
-    name: tripleo-podman-integration-rhel-8-scenario000-standalone
-    parent: tripleo-ci-base-standalone-periodic
-    nodeset: single-rhel-8-node
-    branches: ^master$
-    voting: false
-    run: playbooks/podman/install-podman-rpm.yaml
-    required-projects:
-      - name: github.com/containers/libpod
-    vars:
-      featureset: '052'
-      release: master
-      registry_login_enabled: false
-      featureset_override:
-        standalone_environment_files:
-          - 'environments/low-memory-usage.yaml'
-          - 'ci/environments/scenario000-standalone.yaml'
-          - 'environments/podman.yaml'
-        run_tempest: false
-        use_os_tempest: false
-
-## Plain standalone deployment
-
-- job:
-    name: tripleo-podman-integration-rhel-8-standalone
-    parent: tripleo-ci-base-standalone-periodic
-    nodeset: single-rhel-8-node
-    branches: ^master$
-    run: playbooks/podman/install-podman-rpm.yaml
-    required-projects:
-      - name: github.com/containers/libpod
-    vars:
-      featureset: '052'
-      release: master
-      registry_login_enabled: false
-      featureset_override:
-        run_tempest: false
-        use_os_tempest: true
 
 - job:
     name: tripleo-podman-integration-centos-8-scenario000-standalone
