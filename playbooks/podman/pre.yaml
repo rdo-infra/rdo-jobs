@@ -39,6 +39,7 @@
       when:
         - ansible_distribution_major_version == "8"
         - ansible_distribution == "CentOS"
+        - not build_podman_stable|default(false)|bool
 
     - name: Workaround for missing btrfs/ioctl.h
       when:
