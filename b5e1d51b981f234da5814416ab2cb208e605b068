@@ -33,6 +33,24 @@
       "revId": "b5e1d51b981f234da5814416ab2cb208e605b068",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "42f0a151_789ac132",
+        "filename": "zuul.d/component-jobs.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 1499,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2020-07-15T01:08:56Z",
+      "side": 1,
+      "message": "This is to avoid bug: https://bugs.launchpad.net/tripleo/+bug/1885617 (CentOS 8 train jobs fail with \"tripleo-podman not found\" error )\n\n* Without override-checkout, tripleo-ansible master branch was checkedout.\n* but master branch don\u0027t have tripleo-podman role, it was renamed to tripleo_podman.",
+      "parentUuid": "dea36f8b_fa852809",
+      "revId": "b5e1d51b981f234da5814416ab2cb208e605b068",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
