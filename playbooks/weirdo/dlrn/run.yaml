@@ -1,9 +1,9 @@
 - hosts: all
   tasks:
     - block:
-        - name: Do not run weirdo if there are no new packages to test in parent job
+        - name: Do not run weirdo if there are no logs directory in parent job
           debug:
-            msg: "No new packages detected, skiping weirdo execution"
+            msg: "No logs repo in parent job, skiping weirdo execution"
 
         - meta: end_play
       when: buildset_artifacts_url is not defined
@@ -15,6 +15,28 @@
     - name: set centos_release fact
       set_fact:
         centos_release: "centos{{ centos_releasever }}"
+
+    - name: Check for actual repo in logs from parent job
+      shell:
+        cmd: |
+          set -x
+          export CENTOS_RELEASE="{{ centos_release }}"
+          logs={{ buildset_artifacts_url }}
+
+          # Use the latest repository hash
+          # If DLRN built multiple packages, there will be multiple repositories.
+          # We want the latest repository which contains all of the packages that were just built.
+          repository="${logs}/centos/current"
+          if [ ${CENTOS_RELEASE} = "centos8" ]; then
+            repository="${logs}/centos8/current"
+          fi
+          # If we could not find a working repository, give up
+          curl -o /dev/null -sIf "${repository}" || exit 1
+      register: check_repo
+      ignore_errors: yes
+
+    - meta: end_play
+      when: check_repo.rc != 0
 
     - name: Setup testing repository
       shell:
@@ -28,9 +50,6 @@
 
           export CENTOS_RELEASE="{{ centos_release }}"
           logs={{ buildset_artifacts_url }}
-
-          # If we could not find a working repository, give up
-          curl -o /dev/null -sIf "${logs}" || exit 1
 
           # Use the latest repository hash
           # If DLRN built multiple packages, there will be multiple repositories.
