@@ -103,3 +103,10 @@
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-train:
             dependencies:
               - periodic-tripleo-centos-8-train-containers-build-push
+
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-train:
+            nodeset: tripleo-ovb-centos-8-primary-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-train-containers-build-push
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-train
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train
