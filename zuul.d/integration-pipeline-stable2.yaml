@@ -96,3 +96,7 @@
         - periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-train:
             dependencies:
               - periodic-tripleo-centos-8-train-containers-build-push
+
+        - periodic-tripleo-ci-centos-8-containers-undercloud-minion-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-containers-build-push
