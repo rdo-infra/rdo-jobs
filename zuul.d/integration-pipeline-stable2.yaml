@@ -112,3 +112,6 @@
               - periodic-tripleo-centos-8-train-containers-build-push
               - periodic-tripleo-centos-8-buildimage-overcloud-full-train
               - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-containers-build-push
