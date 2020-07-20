@@ -115,3 +115,6 @@
         - periodic-tripleo-ci-centos-8-containers-undercloud-minion-train:
             dependencies:
               - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-containers-build-push
