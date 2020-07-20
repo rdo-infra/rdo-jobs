@@ -161,8 +161,8 @@
               filename: delorean-0.repo
               down_url: "{{ extra_repo_url }}"
           container_prep_additional_repos: temp-*
-          update_containers: "{{ false if rdoinfo_build_containers|default(false)|bool else true }}"
-          standalone_container_prep_updates: "{{ false if rdoinfo_build_containers|default(false)|bool else true }}"
+          update_containers: "{{ false if rdoinfo_build_containers|default(false)|bool or build_container_images|default(false)|bool else true }}"
+          standalone_container_prep_updates: "{{ false if rdoinfo_build_containers|default(false)|bool or build_container_images|default(false)|bool else true }}"  # noqa 204
           artg_skipped_projects:
             - rdoinfo
         optional_role_vars:
