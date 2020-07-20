@@ -106,3 +106,6 @@
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset030-train:
             dependencies:
               - periodic-tripleo-centos-8-train-containers-build-push
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-containers-build-push
