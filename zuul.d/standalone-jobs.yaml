@@ -203,6 +203,8 @@
           - 'environments/low-memory-usage.yaml'
           - 'environments/services/octavia.yaml'
           - 'ci/environments/scenario010-standalone.yaml'
+      tempest_tempestconf_profile_overrides:
+        load_balancer.member_role: '"Member"'
 
 ### CentOS-8 Jobs
 - job:
