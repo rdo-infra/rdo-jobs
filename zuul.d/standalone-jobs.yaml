@@ -221,7 +221,7 @@
       release: master
       featureset_override:
         run_tempest: false
-        tempest_run_concurrency: 4
+        tempest_run_concurrency: 2
         tempest_services:
           - cinder
           - horizon
@@ -258,7 +258,7 @@
       release: master
       featureset_override:
         run_tempest: false
-        tempest_run_concurrency: 4
+        tempest_run_concurrency: 2
         tempest_services:
           - cinder
           - horizon
