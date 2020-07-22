@@ -615,6 +615,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-train
     parent: periodic-tripleo-ci-centos-7-standalone-master
+    override-checkout: "stable/train"
     vars:
       branch_override: "stable/train"
       release: train
@@ -630,6 +631,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-full-tempest-train
     parent: periodic-tripleo-ci-centos-7-standalone-full-tempest-master
+    override-checkout: "stable/train"
     vars:
       branch_override: "stable/train"
       release: train
@@ -637,6 +639,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-full-tempest-api-train
     parent: periodic-tripleo-ci-centos-7-standalone-full-tempest-api-master
+    override-checkout: "stable/train"
     vars:
       branch_override: "stable/train"
       release: train
@@ -644,6 +647,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-full-tempest-scenario-train
     parent: periodic-tripleo-ci-centos-7-standalone-full-tempest-scenario-master
+    override-checkout: "stable/train"
     vars:
       branch_override: "stable/train"
       release: train
@@ -651,6 +655,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-scenario001-standalone-train
     parent: periodic-tripleo-ci-centos-7-scenario001-standalone-master
+    override-checkout: "stable/train"
     vars:
       branch_override: "stable/train"
       release: train
@@ -658,6 +663,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-scenario002-standalone-train
     parent: periodic-tripleo-ci-centos-7-scenario002-standalone-master
+    override-checkout: "stable/train"
     vars:
       branch_override: "stable/train"
       release: train
@@ -665,6 +671,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-scenario003-standalone-train
     parent: periodic-tripleo-ci-centos-7-scenario003-standalone-master
+    override-checkout: "stable/train"
     vars:
       branch_override: "stable/train"
       release: train
@@ -672,6 +679,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-scenario004-standalone-train
     parent: periodic-tripleo-ci-centos-7-scenario004-standalone-master
+    override-checkout: "stable/train"
     vars:
       branch_override: "stable/train"
       release: train
@@ -679,6 +687,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-scenario007-standalone-train
     parent: periodic-tripleo-ci-centos-7-scenario007-standalone-master
+    override-checkout: "stable/train"
     voting: false
     vars:
       branch_override: "stable/train"
@@ -687,6 +696,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-scenario010-standalone-train
     parent: periodic-tripleo-ci-centos-7-scenario010-standalone-master
+    override-checkout: "stable/train"
     vars:
       branch_override: "stable/train"
       release: train
@@ -695,6 +705,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-stein
     parent: tripleo-ci-base-standalone-periodic
+    override-checkout: "stable/stein"
     vars:
       featureset: '052'
       branch_override: "stable/stein"
@@ -712,6 +723,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-full-tempest-stein
     parent: periodic-tripleo-ci-centos-7-standalone-stein
+    override-checkout: "stable/stein"
     vars:
       featureset: '052'
       branch_override: "stable/stein"
@@ -722,6 +734,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-scenario001-standalone-stein
     parent: tripleo-ci-base-standalone-periodic
+    override-checkout: "stable/stein"
     vars:
       featureset: '052'
       branch_override: "stable/stein"
@@ -746,6 +759,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-scenario002-standalone-stein
     parent: tripleo-ci-base-standalone-periodic
+    override-checkout: "stable/stein"
     vars:
       featureset: '052'
       branch_override: "stable/stein"
@@ -772,6 +786,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-scenario003-standalone-stein
     parent: tripleo-ci-base-standalone-periodic
+    override-checkout: "stable/stein"
     vars:
       featureset: '052'
       branch_override: "stable/stein"
@@ -793,6 +808,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-scenario004-standalone-stein
     parent: tripleo-ci-base-standalone-periodic
+    override-checkout: "stable/stein"
     vars:
       featureset: '052'
       branch_override: "stable/stein"
@@ -818,6 +834,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-scenario010-standalone-stein
     parent: tripleo-ci-base-standalone-periodic
+    override-checkout: "stable/stein"
     vars:
       featureset: '052'
       branch_override: "stable/stein"
@@ -901,6 +918,7 @@
 - job:
     name: periodic-tripleo-ci-rhel-8-standalone-train
     parent: periodic-tripleo-ci-rhel-8-standalone-master
+    override-checkout: "stable/train"
     vars:
       branch_override: "stable/train"
       release: train
@@ -908,6 +926,7 @@
 - job:
     name: periodic-tripleo-ci-rhel-8-scenario001-standalone-train
     parent: periodic-tripleo-ci-rhel-8-scenario001-standalone-master
+    override-checkout: "stable/train"
     vars:
       branch_override: "stable/train"
       release: train
@@ -915,6 +934,7 @@
 - job:
     name: periodic-tripleo-ci-rhel-8-scenario002-standalone-train
     parent: periodic-tripleo-ci-rhel-8-scenario002-standalone-master
+    override-checkout: "stable/train"
     vars:
       branch_override: "stable/train"
       release: train
@@ -922,6 +942,7 @@
 - job:
     name: periodic-tripleo-ci-rhel-8-scenario003-standalone-train
     parent: periodic-tripleo-ci-rhel-8-scenario003-standalone-master
+    override-checkout: "stable/train"
     vars:
       branch_override: "stable/train"
       release: train
@@ -931,6 +952,7 @@
 - job:
     name: periodic-tripleo-ci-rhel-8-scenario004-standalone-train
     parent: periodic-tripleo-ci-rhel-8-scenario004-standalone-master
+    override-checkout: "stable/train"
     vars:
       branch_override: "stable/train"
       release: train
