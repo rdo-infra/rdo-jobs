@@ -76,3 +76,24 @@
     name: tripleo-build-containers-centos-8-master
     parent: tripleo-build-containers-centos-8-base
     branches: master
+
+
+- job:
+    name: periodic-tripleo-ci-build-containers-ubi-8-push-ussuri
+    parent: periodic-tripleo-ci-build-containers-ubi-8-push
+    override-checkout: 'stable/ussuri'
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      registry_namespace: testingussuri
+      push_containers: false
+
+- job:
+    name: periodic-tripleo-ci-build-containers-ubi-8-push-train
+    parent: periodic-tripleo-ci-build-containers-ubi-8-push
+    override-checkout: 'stable/train'
+    vars:
+      release: train
+      branch_override: 'stable/train'
+      registry_namespace: testingtraincentos8
+      push_containers: false
