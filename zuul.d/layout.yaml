@@ -1,12 +1,11 @@
 - project:
     check:
-      jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+      jobs:
+        - periodic-tripleo-ci-build-containers-ubi-8-push:
+            vars:
+              force_periodic: true
+        - periodic-tripleo-ci-centos-8-scenario001-standalone-master:
+            vars:
+              force_periodic: true
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push
