@@ -124,6 +124,14 @@
       component: ui
       dlrn_server_url: "trunk.rdoproject.org"
 
+- job:
+    name: periodic-tripleo-centos-8-master-component-validation-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: validation
+      dlrn_server_url: "trunk.rdoproject.org"
+
 ### ussuri
 - job:
     name: periodic-tripleo-centos-8-ussuri-component-baremetal-promote-consistent-to-component-ci-testing
@@ -215,6 +223,11 @@
     vars:
       release: ussuri
 
+- job:
+    name: periodic-tripleo-centos-8-ussuri-component-validation-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-validation-promote-consistent-to-component-ci-testing
+    vars:
+      release: ussuri
 
 ### train
 - job:
@@ -304,6 +317,12 @@
 - job:
     name: periodic-tripleo-centos-8-train-component-ui-promote-consistent-to-component-ci-testing
     parent: periodic-tripleo-centos-8-master-component-ui-promote-consistent-to-component-ci-testing
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-validation-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-validation-promote-consistent-to-component-ci-testing
     vars:
       release: train
 
@@ -416,6 +435,13 @@
       release: master
       component: ui
 
+- job:
+    name: periodic-tripleo-centos-8-master-component-validation-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: validation
+
 ### ussuri
 - job:
     name: periodic-tripleo-centos-8-ussuri-component-baremetal-promote-to-promoted-components
@@ -507,6 +533,12 @@
     vars:
       release: ussuri
 
+- job:
+    name: periodic-tripleo-centos-8-ussuri-component-validation-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-validation-promote-to-promoted-components
+    vars:
+      release: ussuri
+
 ### train
 - job:
     name: periodic-tripleo-centos-8-train-component-baremetal-promote-to-promoted-components
@@ -595,6 +627,12 @@
 - job:
     name: periodic-tripleo-centos-8-train-component-ui-promote-to-promoted-components
     parent: periodic-tripleo-centos-8-master-component-ui-promote-to-promoted-components
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-validation-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-validation-promote-to-promoted-components
     vars:
       release: train
 
@@ -980,6 +1018,12 @@
     vars:
       component: ui
 
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-validation-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: validation
+
 ## ussuri
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-baremetal-ussuri
@@ -1082,6 +1126,13 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-ui-ussuri
     parent: periodic-tripleo-ci-centos-8-standalone-ui-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-validation-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-validation-master
     vars:
       release: ussuri
       branch_override: 'stable/ussuri'
@@ -1202,6 +1253,14 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-ui-train
     parent: periodic-tripleo-ci-centos-8-standalone-ui-master
+    override-checkout: "stable/train"
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-validation-train
+    parent: periodic-tripleo-ci-centos-8-standalone-validation-master
     override-checkout: "stable/train"
     vars:
       release: train
