@@ -189,6 +189,12 @@
             dependencies:
               - periodic-tripleo-centos-8-master-component-ui-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-ui-promote-consistent-to-component-ci-testing
+    openstack-component-validation:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-validation-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-validation-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-master-component-validation-promote-consistent-to-component-ci-testing
     openstack-promote-component:
       jobs:
         - periodic-tripleo-centos-8-master-component-baremetal-promote-to-promoted-components
@@ -206,6 +212,7 @@
         - periodic-tripleo-centos-8-master-component-tripleo-promote-to-promoted-components
         - periodic-tripleo-centos-8-master-component-tempest-promote-to-promoted-components
         - periodic-tripleo-centos-8-master-component-ui-promote-to-promoted-components
+        - periodic-tripleo-centos-8-master-component-validation-promote-to-promoted-components
 
 ## ussuri
 #############################################################
@@ -397,6 +404,12 @@
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-ui-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-ussuri-component-ui-promote-consistent-to-component-ci-testing
+    openstack-component-validation:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-validation-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-validation-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-ussuri-component-validation-promote-consistent-to-component-ci-testing
     openstack-promote-component:
       jobs:
         - periodic-tripleo-centos-8-ussuri-component-baremetal-promote-to-promoted-components
@@ -414,6 +427,7 @@
         - periodic-tripleo-centos-8-ussuri-component-tripleo-promote-to-promoted-components
         - periodic-tripleo-centos-8-ussuri-component-tempest-promote-to-promoted-components
         - periodic-tripleo-centos-8-ussuri-component-ui-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-validation-promote-to-promoted-components
 
 
 ## c8-train
@@ -609,6 +623,12 @@
             dependencies:
               - periodic-tripleo-centos-8-train-component-ui-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-ui-promote-consistent-to-component-ci-testing
+    openstack-component-validation:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-validation-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-validation-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-validation-promote-consistent-to-component-ci-testing
     openstack-promote-component:
       jobs:
         - periodic-tripleo-centos-8-train-component-baremetal-promote-to-promoted-components
@@ -626,3 +646,4 @@
         - periodic-tripleo-centos-8-train-component-tripleo-promote-to-promoted-components
         - periodic-tripleo-centos-8-train-component-tempest-promote-to-promoted-components
         - periodic-tripleo-centos-8-train-component-ui-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-validation-promote-to-promoted-components
