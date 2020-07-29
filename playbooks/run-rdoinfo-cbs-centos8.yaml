@@ -95,11 +95,6 @@
             mv /etc/yum.repos.d/CentOS-Ceph-Nautilus.repo /etc/yum.repos.d/delorean-ceph.repo
             mv /etc/yum.repos.d/advanced-virtualization.repo /etc/yum.repos.d/delorean-advirt.repo
             mv /etc/yum.repos.d/CentOS-Messaging-rabbitmq.repo /etc/yum.repos.d/delorean-messaging.repo
-        - name: Install deps using bindep role
-          include_role:
-            name: bindep
-          vars:
-            bindep_dir: "{{ ansible_user_dir }}/{{ zuul.projects['opendev.org/openstack/python-tripleoclient'].src_dir }}"
         - name: Set ip addr
           set_fact:
             ipv4_addr: "{{ ansible_default_ipv4.address }}"
@@ -122,6 +117,11 @@
           get_url:
             url: "{{ extra_repo_url }}"
             dest: "/etc/yum.repos.d/temp-{{ buildsys_tag }}.repo"
+        - name: Install deps using bindep role
+          include_role:
+            name: bindep
+          vars:
+            bindep_dir: "{{ ansible_user_dir }}/{{ zuul.projects['opendev.org/openstack/python-tripleoclient'].src_dir }}"
         - name: Run build containers pre tasks
           include_role:
             name: build-containers
