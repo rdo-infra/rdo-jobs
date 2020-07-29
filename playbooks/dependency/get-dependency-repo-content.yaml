@@ -1,0 +1,23 @@
+---
+- hosts: all
+  vars:
+    package_manager_utils: >-
+        {% if ansible_distribution_major_version|int >= 8 -%}
+        dnf-utils
+        {%- else -%}
+        yum-utils
+        {%- endif -%}
+  tasks:
+    - name: install yum/dnf-utils
+      become: true
+      package:
+        name: "{{ package_manager_utils }}"
+        state: present
+
+    - name: get repoquery list
+      become: true
+      shell: >
+        set -o pipefail &&
+        repoquery  --repofrompath={{ dependency }},{{ dependency_base_url }} \
+        --repoid={{ dependency }} -q -a | tee -a  {{ ansible_user_dir }}/dependency_repoquery_list.log
+      changed_when: false
