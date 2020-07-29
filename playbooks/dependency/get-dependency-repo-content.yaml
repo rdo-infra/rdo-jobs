@@ -1,0 +1,14 @@
+---
+- hosts: all
+  vars:
+    workspace: "{{ ansible_user_dir }}/workspace"
+  tasks:
+    - name: get content from repo baseurl
+      get_url:
+        url: "{{ dependency_content_url | default(dependency_base_url) }}"
+        dest: "{{ workspace }}/dependency_repo_content.txt"
+        mode: "0755"
+
+   - name: display repo contents
+     debug:
+       msg: "{{ lookup('url', dependency_content_url | default(dependency_base_url)) }}"
