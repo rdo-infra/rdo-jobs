@@ -1,0 +1,38 @@
+---
+# dependency jobs
+
+### centos 8 CR jobs
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-dependency-master
+    parent: periodic-tripleo-ci-centos-8-standalone-master
+    abstract: true
+    nodeset: single-centos-8-node-vexxhost
+    pre-run: playbooks/dependency/get-dependency-repo-content.yaml
+    vars: &dependency_vars_standalone
+      featureset: '052'
+      dependency: dependency
+      release: master
+      promote_source: current-tripleo
+      dependency_base_url: ""
+      add_repos:
+        - type: generic
+          reponame: "{{ dependency }}"
+          filename: "{{ dependency }}-dependency.repo"
+          priority: 1
+          baseurl: "{{ dependency_base_url }}"
+          update_container: false
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-centos8cr-master
+    parent: periodic-tripleo-ci-centos-8-standalone-dependency-master
+    vars:
+      dependency: centos8cr
+      dependency_base_url: "http://mirror.centos.org/centos/8/cr/x86_64/os"
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-centos8cr-container-build-master
+    parent: periodic-tripleo-ci-centos-8-standalone-dependency-master
+    vars:
+      dependency: centos8cr
+      dependency_base_url: "http://mirror.centos.org/centos/8/cr/x86_64/os"
+      build_container_images: true
