@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks:
+    - name: get content from repo baseurl
+      get_url:
+        url: "{{ dependency_content_url | default(dependency_base_url/Packages) }}"
+        dest: "{{ workspace }}/dependency_repo_content.txt"
+        mode: "0755"
