@@ -1916,6 +1916,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-train
     parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-master
+    override-checkout: "stable/train"
     vars:
       release: train
       branch_override: 'stable/train'
@@ -1923,6 +1924,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-security-train
     parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-security-master
+    override-checkout: "stable/train"
     vars:
       release: train
       branch_override: 'stable/train'
