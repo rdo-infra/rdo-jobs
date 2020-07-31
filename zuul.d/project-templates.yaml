@@ -365,15 +365,6 @@
         - rdo-tox-molecule
 
 - project-template:
-    name: tripleo-buildimages-jobs
-    description: |
-      3rd party image building job
-    openstack-check:
-      jobs:
-        - tripleo-rhel-8-buildimage-overcloud-full-train
-        - tripleo-rhel-8-buildimage-ironic-python-agent-train
-
-- project-template:
     name: podman-jobs
     description: |
       3rd party job to gate podman
