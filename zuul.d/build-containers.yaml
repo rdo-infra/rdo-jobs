@@ -2,12 +2,6 @@
 # zuul.d/build-containers.yaml
 # Zuul layout for TripleO Build Containers jobs.
 
-- project-template:
-    name: tripleo-build-containers-jobs
-    openstack-check:
-      jobs:
-        - tripleo-build-containers-centos-8-master
-
 - job:
     name: tripleo-build-containers-rhel-8-base
     parent: tripleo-build-containers-base-with-files
@@ -71,8 +65,3 @@
       kolla_base_tag: 8
       push_containers: false
       push_containers_podman: false
-
-- job:
-    name: tripleo-build-containers-centos-8-master
-    parent: tripleo-build-containers-centos-8-base
-    branches: master
