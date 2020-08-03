@@ -1,8 +1,9 @@
 - hosts: all
   name: Autoconverted job legacy-rdo-infra-playbooks-integration-base from old job
     rdo-infra-playbooks-integration-base
+  environment:
+    LANG: 'en_us.utf-8'
   tasks:
-
     - name: Ensure legacy workspace directory
       file:
         path: '{{ ansible_user_dir }}/workspace'
