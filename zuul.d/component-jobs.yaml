@@ -1538,6 +1538,12 @@
     vars:
       component: manila
 
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-master
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-component-master
+    vars:
+      component: tripleo
+
 ## ussuri
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-ussuri
@@ -1563,6 +1569,13 @@
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-manila-ussuri
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-manila-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-master
     vars:
       release: ussuri
       branch_override: 'stable/ussuri'
@@ -1595,6 +1608,14 @@
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-manila-train
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-manila-master
+    override-checkout: "stable/train"
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-train
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-master
     override-checkout: "stable/train"
     vars:
       release: train
