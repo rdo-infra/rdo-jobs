@@ -133,4 +133,6 @@
               $ADDITIONAL_OPTS
 
       changed_when: true
+      environment:
+        LANG: 'en_US.UTF-8'
       when: not stop_file.stat.exists
