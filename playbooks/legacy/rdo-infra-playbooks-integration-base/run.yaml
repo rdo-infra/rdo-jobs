@@ -57,7 +57,9 @@
               /usr/zuul-env/bin/zuul-cloner -v $GIT_SOURCE $ZUUL_PROJECT
           fi
         chdir: '{{ ansible_user_dir }}/workspace'
-      environment: '{{ zuul | zuul_legacy_vars }}'
+      environment:
+        '{{ zuul | zuul_legacy_vars }}'
+        LANG: 'en_US.UTF-8'
 
     - shell:
         cmd: |
@@ -80,7 +82,9 @@
             rdo-infra/rdo-infra-playbooks \
             centos-opstools/opstools-ansible
         chdir: '{{ ansible_user_dir }}/workspace'
-      environment: '{{ zuul | zuul_legacy_vars }}'
+      environment:
+        '{{ zuul | zuul_legacy_vars }}'
+        LANG: 'en_US.UTF-8'
 
     - shell:
         cmd: |
@@ -145,4 +149,6 @@
               -e "deploy_telegraf=true"
           popd
         chdir: '{{ ansible_user_dir }}/workspace'
-      environment: '{{ zuul | zuul_legacy_vars }}'
+      environment:
+        '{{ zuul | zuul_legacy_vars }}'
+        LANG: 'en_US.UTF-8'
