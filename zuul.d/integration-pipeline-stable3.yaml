@@ -7,14 +7,14 @@
         ##### stable/stein #####
         - periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-stein-upload:
             vars:
-              cloud_name: vexxhost
-            nodeset: upstream-centos-7-vexxhost
+              cloud_name: rdocloud
+            nodeset: rdo-centos-7
             dependencies:
               - periodic-tripleo-centos-7-stein-containers-build-push
         - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-stein:
             vars:
-              cloud_name: vexxhost
-            nodeset: upstream-centos-7-vexxhost
+              cloud_name: rdocloud
+            nodeset: rdo-centos-7
             dependencies:
               - periodic-tripleo-centos-7-stein-containers-build-push
         - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-stein:
@@ -23,14 +23,14 @@
               - periodic-tripleo-centos-7-stein-containers-build-push
         - periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-stein:
             vars:
-              cloud_name: vexxhost
-            nodeset: upstream-centos-7-vexxhost
+              cloud_name: rdocloud
+            nodeset: rdo-centos-7
             dependencies:
               - periodic-tripleo-centos-7-stein-containers-build-push
         - periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-stein:
             vars:
-              cloud_name: vexxhost
-            nodeset: upstream-centos-7-vexxhost
+              cloud_name: rdocloud
+            nodeset: rdo-centos-7
             dependencies:
               - periodic-tripleo-centos-7-stein-containers-build-push
         - periodic-tripleo-ci-centos-7-undercloud-containers-stein:
@@ -43,8 +43,8 @@
               - periodic-tripleo-centos-7-stein-containers-build-push
         - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-stein:
             vars:
-              cloud_name: vexxhost
-            nodeset: upstream-centos-7-vexxhost
+              cloud_name: rdocloud
+            nodeset: rdo-centos-7
             dependencies:
               - periodic-tripleo-centos-7-stein-containers-build-push
         - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-stein:
@@ -57,8 +57,8 @@
               - periodic-tripleo-centos-7-stein-containers-build-push
         - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-stein:
             vars:
-              cloud_name: vexxhost
-            nodeset: upstream-centos-7-vexxhost
+              cloud_name: rdocloud
+            nodeset: rdo-centos-7
             dependencies:
               - periodic-tripleo-centos-7-stein-containers-build-push
         - periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-stein:
