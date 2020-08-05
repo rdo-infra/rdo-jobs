@@ -1949,3 +1949,14 @@
     vars:
       release: train
       branch_override: 'stable/train'
+
+
+## Update and Upgrade jobs ( ask marios for the source of truth on updates/upgrades)
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tripleo-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-ussuri
+    override-checkout: "stable/ussuri"
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: tripleo
