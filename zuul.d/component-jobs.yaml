@@ -1949,3 +1949,41 @@
     vars:
       release: train
       branch_override: 'stable/train'
+
+
+## Update and Upgrade jobs ( ask marios for the source of truth on updates/upgrades)
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-master
+    abstract: true
+    nodeset: two-centos-8-nodes-vexxhost
+    vars: &component_vars_multinode_updates
+      component: component
+      release: master
+      dlrn_server_url: "trunk.rdoproject.org"
+      promote_source: component-ci-testing
+      add_repos:
+        - type: generic
+          reponame: "{{ component }}"
+          filename: "{{ component }}-component.repo"
+          priority: 1
+          baseurl: "https://{{ dlrn_server_url }}/centos8-{{ release }}/component/{{ component }}/component-ci-testing"
+          update_container: true
+
+# master
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tripleo-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      release: master
+      component: tripleo
+
+# ussuri
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tripleo-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tripleo-master
+    override-checkout: "stable/ussuri"
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: tripleo
