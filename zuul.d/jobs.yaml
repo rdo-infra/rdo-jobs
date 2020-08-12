@@ -17,8 +17,7 @@
     pre-run: playbooks/base/pre.yaml
     vars:
       ara_report_type: database
-      ara_report_path: ara-report
-      ara_report_run: false
+      ara_report_path: "{{ zuul.executor.log_root }}/ara-report"
 
 - job:
     name: legacy-base
