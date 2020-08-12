@@ -17,7 +17,6 @@
     pre-run: playbooks/base/pre.yaml
     vars:
       ara_report_type: database
-      ara_report_path: ara-report
 
 - job:
     name: legacy-base
