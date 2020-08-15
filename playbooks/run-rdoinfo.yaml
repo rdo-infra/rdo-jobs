@@ -165,6 +165,7 @@
           standalone_container_prep_updates: "{{ false if rdoinfo_build_containers|default(false)|bool or build_container_images|default(false)|bool else true }}"  # noqa 204
           artg_skipped_projects:
             - rdoinfo
+          amphora_url: https://images.rdoproject.org/rdo-jobs/master/amphora-x64-haproxy-centos.qcow2
         optional_role_vars:
           docker_registry_host: "{{ ipv4_addr + ':' + push_registry_port|default('8787')|string if rdoinfo_build_containers|default(false)|bool else omit }}"
           local_docker_registry_host: "{{ ipv4_addr if rdoinfo_build_containers|default(false)|bool else omit }}"
