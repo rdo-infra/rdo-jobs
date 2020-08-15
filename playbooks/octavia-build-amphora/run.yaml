@@ -22,6 +22,7 @@
           fi
           sudo wget -O /etc/yum.repos.d/delorean.repo https://trunk.rdoproject.org/centos{{ centos_release }}-${RELEASE}/current/delorean.repo
           sudo wget -O /etc/yum.repos.d/delorean-deps.repo https://trunk.rdoproject.org/centos{{ centos_release }}-${RELEASE}/delorean-deps.repo
+          sudo wget -O /etc/yum.repos.d/delorean-0.repo https://ykarel.fedorapeople.org/temp-cloud8-openstack-victoria-testing.repo
 
           if [ "{{ centos_release }}" == "7" ]; then
             # NOTE(jpena): python36-distro, a mock requirement, conflicts with python2-distro
@@ -47,7 +48,7 @@
             export DIB_LOCAL_IMAGE=$PWD/$IMAGE_NAME
           else
             mkdir $PWD/rdo-repos
-            cp /etc/yum.repos.d/delorean.repo /etc/yum.repos.d/delorean-deps.repo $PWD/rdo-repos/
+            cp /etc/yum.repos.d/delorean.repo /etc/yum.repos.d/delorean-deps.repo /etc/yum.repos.d/delorean-0.repo $PWD/rdo-repos/
             export DIB_YUM_MINIMAL_EXTRA_REPOS=$PWD/rdo-repos
           fi
           sudo --preserve-env=DIB_LOCAL_IMAGE,DIB_YUM_MINIMAL_EXTRA_REPOS \
