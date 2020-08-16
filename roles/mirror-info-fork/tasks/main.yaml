@@ -1,3 +1,8 @@
+- name: Set mirror_fqdn if not defined
+  set_fact:
+    mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
+  when: mirror_fqdn is not defined or not mirror_fqdn
+
 - name: Create /etc/ci
   become: true
   file:
