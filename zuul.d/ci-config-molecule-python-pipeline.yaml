@@ -8,10 +8,12 @@
         - periodic-tripleo-ci-promotion-staging-single-pipeline-centos-8
         - periodic-tripleo-ci-promotion-staging-integration-pipeline-centos-7
         - periodic-tripleo-ci-promotion-staging-integration-pipeline-centos-8
-        - periodic-molecule-container-push-delegated-centos-7
-        - periodic-molecule-container-push-delegated-centos-8
-        - periodic-molecule-tripleo-common-delegated-centos-7
-        - periodic-molecule-tripleo-common-delegated-centos-8
-        - periodic-molecule-delegated-promote-images-delegated-centos-7
-        - periodic-molecule-delegated-promote-images-delegated-centos-8
+        - periodic-mol-promoter
+        - periodic-mol-promoter-centos-7
+        - periodic-mol-promote_images
+        - periodic-mol-container_push
+        - periodic-mol-container_push_secure
+        - periodic-mol-container_push_manifests
+        - periodic-mol-container_push_multiarch
+        - periodic-mol-tripleo_common_integration
         - periodic-tox-py36
