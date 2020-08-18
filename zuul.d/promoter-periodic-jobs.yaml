@@ -1,0 +1,89 @@
+# tripleo-ci-promotion-staging-single-pipeline-centos-8
+- job:
+    name: periodic-tripleo-ci-promotion-staging-single-pipeline-centos-8
+    parent: tripleo-ci-promotion-staging-single-pipeline-centos-8
+    required-projects:
+      - name: review.rdoproject.org/rdo-infra/ci-config
+
+- job:
+    name: periodic-tripleo-ci-promotion-staging-single-pipeline-centos-7
+    parent: tripleo-ci-promotion-staging-single-pipeline-centos-7
+    nodeset: rdo-centos-7
+    required-projects:
+      - name: review.rdoproject.org/rdo-infra/ci-config
+
+# tripleo-ci-promotion-staging-integration-pipeline-centos-8
+- job:
+    name: periodic-tripleo-ci-promotion-staging-integration-pipeline-centos-8
+    parent: tripleo-ci-promotion-staging-integration-pipeline-centos-8
+    required-projects:
+      - name: review.rdoproject.org/rdo-infra/ci-config
+
+- job:
+    name: periodic-tripleo-ci-promotion-staging-integration-pipeline-centos-7
+    parent: tripleo-ci-promotion-staging-integration-pipeline-centos-7
+    nodeset: rdo-centos-7
+    required-projects:
+      - name: review.rdoproject.org/rdo-infra/ci-config
+
+# mol-promoter
+- job:
+    name: periodic-mol-promoter
+    parent: mol-promoter
+    required-projects:
+      - name: review.rdoproject.org/rdo-infra/ci-config
+
+- job:
+    name: periodic-mol-promoter-centos-7
+    parent: periodic-mol-promoter
+    nodeset: rdo-centos-7
+
+# mol-container_push
+- job:
+    name: periodic-mol-container_push
+    parent: mol-container_push
+    required-projects:
+      - name: review.rdoproject.org/rdo-infra/ci-config
+
+# mol-container_push_secure
+- job:
+    name: periodic-mol-container_push_secure
+    parent: mol-container_push_secure
+    required-projects:
+      - name: review.rdoproject.org/rdo-infra/ci-config
+
+# mol-container_push_multiarch
+- job:
+    name: periodic-mol-container_push_multiarch
+    parent: mol-container_push_multiarch
+    required-projects:
+      - name: review.rdoproject.org/rdo-infra/ci-config
+
+# mol-container_push_manifests
+- job:
+    name: periodic-mol-container_push_manifests
+    parent: mol-container_push_manifests
+    required-projects:
+      - name: review.rdoproject.org/rdo-infra/ci-config
+
+# mol-promote_images
+- job:
+    name: periodic-mol-promote_images
+    parent: mol-promote_images
+    required-projects:
+      - name: review.rdoproject.org/rdo-infra/ci-config
+
+# mol-tripleo_common_integration
+- job:
+    name: periodic-mol-tripleo_common_integration
+    parent: mol-tripleo_common_integration
+    required-projects:
+      - name: review.rdoproject.org/rdo-infra/ci-config
+
+# tox-py36
+
+- job:
+    name: periodic-tox-py36
+    parent: tox-py36-ci-config
+    required-projects:
+      - name: review.rdoproject.org/rdo-infra/ci-config
