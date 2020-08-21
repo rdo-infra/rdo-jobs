@@ -1,0 +1,10 @@
+---
+## master
+#############################################################
+- project-template:
+    name: dependencies-pipeline-main
+    openstack-dependencies-centos8cr:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-centos8cr-master
+        # waiting on https://review.opendev.org/#/c/743432/
+        # - periodic-tripleo-ci-centos-8-standalone-centos8cr-container-build-master
