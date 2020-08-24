@@ -444,6 +444,7 @@
           load_balancer.test_reuse_connection: false
           load_balancer.load_balancing_algorithm: 'SOURCE_IP_PORT'
           load_balancer.test_flavors: false
+          load_balancer.enabled_provider_drivers: '"amphora:The Octavia Amphora driver.,octavia:Deprecated alias of the Octavia Amphora driver.,ovn:Octavia OVN driver."'
           loadbalancer-feature-enabled.health_monitor_enabled: false
           loadbalancer-feature-enabled.pool_algorithms_enabled: false
           loadbalancer-feature-enabled.l7_protocol_enabled: false
