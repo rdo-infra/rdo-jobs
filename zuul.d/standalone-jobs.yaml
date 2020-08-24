@@ -432,6 +432,10 @@
     name: periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-master
     parent: periodic-tripleo-ci-centos-8-scenario010-standalone-master
     vars:
+      tags:
+        - build
+        - standalone
+        - octavia
       featureset_override:
         validate_services: false
         tempest_tempestconf_profile_overrides:
