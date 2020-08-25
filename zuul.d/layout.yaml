@@ -28,8 +28,8 @@
                   sudo rm -rf /etc/yum.repos.d/*.rpmsave;
                   sudo dnf repolist;
                   sudo dnf module list;
-                  sudo dnf module disable container-tools:rhel8 -y;
-                  sudo dnf module enable container-tools:2.0 -y;
+                  # sudo dnf module disable container-tools:rhel8 -y;
+                  # sudo dnf module enable container-tools:2.0 -y;
                   sudo dnf clean metadata
                   sudo dnf update -y --exclude *openvswitch*
                   sudo dnf install -y podman crudini
