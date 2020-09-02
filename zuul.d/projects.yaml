@@ -2,6 +2,8 @@
     name: rdo-jobs
     check:
       jobs:
+        - periodic-tripleo-ci-centos-8-standalone-centos8cr-master
+        - periodic-tripleo-ci-centos-8-standalone-centos8stream-master
         - tox-docs: &cfg
             nodeset: rdo-centos-8
             vars:
