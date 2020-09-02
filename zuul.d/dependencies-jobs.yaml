@@ -1,7 +1,6 @@
 ---
 # dependency jobs
 
-### centos 8 CR jobs
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-dependency-master
     parent: periodic-tripleo-ci-centos-8-standalone-master
@@ -10,29 +9,71 @@
     pre-run: playbooks/dependency/get-dependency-repo-content.yaml
     vars: &dependency_vars_standalone
       featureset: '052'
-      dependency: dependency
+      dependency:
+        - {'dependency_name': '', 'dependency_base_url': ''}
+      # dependency_override_repos defines default repos to disable
       release: master
       promote_source: current-tripleo
-      dependency_base_url: ""
       add_repos:
+        {% for item in dependency -%}
         - type: generic
-          reponame: "{{ dependency }}"
-          filename: "{{ dependency }}-dependency.repo"
+          reponame: "{{ item.dependency_name }}"
+          filename: "{{ item.dependency_name }}-dependency.repo"
           priority: 1
-          baseurl: "{{ dependency_base_url }}"
+          baseurl: "{{ item.dependency_base_url }}"
           update_container: false
+        {% endfor -%}
 
+### centos 8 CR jobs
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-centos8cr-master
     parent: periodic-tripleo-ci-centos-8-standalone-dependency-master
     vars:
-      dependency: centos8cr
-      dependency_base_url: "http://mirror.centos.org/centos/8/cr/x86_64/os"
+      dependency:
+        - {'dependency_name': 'centos8cr', 'dependency_base_url': 'http://mirror.centos.org/centos/8/cr/x86_64/os'}
 
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-centos8cr-container-build-master
     parent: periodic-tripleo-ci-centos-8-standalone-dependency-master
     vars:
-      dependency: centos8cr
-      dependency_base_url: "http://mirror.centos.org/centos/8/cr/x86_64/os"
+      dependency:
+        - {'dependency_name': 'centos8cr', 'dependency_base_url': 'http://mirror.centos.org/centos/8/cr/x86_64/os'}
+      build_container_images: true
+
+### centos 8 stream jobs
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-centos8stream-master
+    parent: periodic-tripleo-ci-centos-8-standalone-dependency-master
+    vars:
+      dependency:
+        - {'dependency_name':'centos8stream-base', 'dependency_base_url': 'http://mirror.den01.meanservers.net/centos/8-stream/BaseOS/x86_64/os/'}
+        - {'dependency_name':'centos8stream-appstreams', 'dependency_base_url': 'http://mirror.den01.meanservers.net/centos/8-stream/AppStream/x86_64/os/'}
+        - {'dependency_name':'centos8stream-powertools', 'dependency_base_url': 'http://mirror.den01.meanservers.net/centos/8-stream/PowerTools/x86_64/os/'}
+        - {'dependency_name':'centos8stream-highavailability', 'dependency_base_url': 'http://mirror.den01.meanservers.net/centos/8-stream/HighAvailability/x86_64/os/'}
+        - {'dependency_name':'centos8stream-extras', 'dependency_base_url': 'http://mirror.den01.meanservers.net/centos/8-stream/extras/x86_64/os/'}
+        - {'dependency_name':'centos8stream-cr', 'dependency_base_url': 'http://mirror.den01.meanservers.net/centos/8-stream/cr/x86_64/os/'}
+      dependency_override_repos:
+        - quickstart-centos-base.repo
+        - quickstart-centos-appstreams.repo
+        - quickstart-centos-powertools.repo
+        - quickstart-centos-highavailability.repo
+        - quickstart-centos-extras.repo
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-centos8stream-container-build-master
+    parent: periodic-tripleo-ci-centos-8-standalone-dependency-master
+    vars:
+      dependency:
+        - {'dependency_name':'centos8stream-base', 'dependency_base_url': 'http://mirror.den01.meanservers.net/centos/8-stream/BaseOS/x86_64/os/'}
+        - {'dependency_name':'centos8stream-appstreams', 'dependency_base_url': 'http://mirror.den01.meanservers.net/centos/8-stream/AppStream/x86_64/os/'}
+        - {'dependency_name':'centos8stream-powertools', 'dependency_base_url': 'http://mirror.den01.meanservers.net/centos/8-stream/PowerTools/x86_64/os/'}
+        - {'dependency_name':'centos8stream-highavailability', 'dependency_base_url': 'http://mirror.den01.meanservers.net/centos/8-stream/HighAvailability/x86_64/os/'}
+        - {'dependency_name':'centos8stream-extras', 'dependency_base_url': 'http://mirror.den01.meanservers.net/centos/8-stream/extras/x86_64/os/'}
+        - {'dependency_name':'centos8stream-cr', 'dependency_base_url': 'http://mirror.den01.meanservers.net/centos/8-stream/cr/x86_64/os/'}
+      dependency_override_repos:
+        - quickstart-centos-base.repo
+        - quickstart-centos-appstreams.repo
+        - quickstart-centos-powertools.repo
+        - quickstart-centos-highavailability.repo
+        - quickstart-centos-extras.repo
       build_container_images: true
