@@ -18,6 +18,34 @@
       become: true
       shell: >
         set -o pipefail &&
-        repoquery  --repofrompath={{ dependency }},{{ dependency_base_url }} \
-        --repoid={{ dependency }} -q -a | tee -a  {{ ansible_user_dir }}/dependency_repoquery_list.log
+        repoquery  --repofrompath={{ item.dependency_name }},{{ item.dependency_base_url }} \
+        --repoid={{ item.dependency_name }} -q -a | tee -a  {{ ansible_user_dir }}/dependency_repoquery_list_{{ item.dependency_name }}.log
       changed_when: false
+      with_items: "{{ dependency }}"
+
+    - name: Create dependency repos
+      set_fact:
+        dependency_repo_item:
+          - type: generic
+            reponame: "{{ item.dependency_name }}"
+            filename: "{{ item.dependency_name }}-dependency.repo"
+            priority: 1
+            baseurl: "{{ item.dependency_base_url }}"
+            update_container: false
+      with_items: "{{ dependency }}"
+      register: dependency_repo_result
+
+    - name: Make a dependency_repos list
+      set_fact:
+        dependency_repos:
+          "{{ dependency_repo_result.results | map(attribute='ansible_facts.dependency_repo_item') | list }}"
+
+    - name: Add dependency repos to job.add_repos
+      set_fact:
+        add_repos:
+          "{{ add_repos|default([]) + dependency_repos }}"
+        cachaeable: true
+
+    - name: debug output on add_repos
+      debug:
+        var: "{{ add_repos }}"
