@@ -114,4 +114,4 @@
               - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train
         - periodic-tripleo-ci-centos-8-containers-undercloud-minion-train:
             dependencies:
-              - periodic-tripleo-centos-8-train-containers-build-push
+              - periodic-tripleo-ci-build-containers-ubi-8-push-train
