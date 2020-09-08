@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aeaa6b18_2ac827cc",
+        "filename": "playbooks/dependency/create-dependency-repo-setup.yaml",
+        "patchSetId": 25
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2020-09-08T12:53:25Z",
+      "side": 1,
+      "message": "Load the dependency yaml file here.",
+      "revId": "2357a1a93b444699fed897b3e2bc50ee77e58388",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fe1d3042_8da95ff6",
+        "filename": "zuul.d/dependencies-jobs.yaml",
+        "patchSetId": 25
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2020-09-08T12:53:25Z",
+      "side": 1,
+      "message": "I am thinking about making it more simpler.\nMove all the contents of dependency in yaml file and then \nwhen dependency_override_repos is passed, get the values from that yaml, add repo and enable it when needed.\n\nOne more thing, then we can pass.\ndependency_override_repos:\n  - quickstart-centos-base\n  - quickstart-centos-appstreams\n\nIt will help to pull the dependency base url.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 39
+      },
+      "revId": "2357a1a93b444699fed897b3e2bc50ee77e58388",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
