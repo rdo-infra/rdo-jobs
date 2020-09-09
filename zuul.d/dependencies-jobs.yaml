@@ -36,3 +36,27 @@
       dependency: centos8cr
       dependency_base_url: "http://mirror.centos.org/centos/8/cr/x86_64/os"
       build_container_images: true
+
+### centos 8 multiple dependency jobs
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-multiple-dependency-master
+    parent: periodic-tripleo-ci-centos-8-standalone-master
+    abstract: true
+    nodeset: single-centos-8-node-vexxhost
+    pre-run: playbooks/dependency/get-dependency-repo-content.yaml
+    vars: &multiple_dependency_vars_standalone
+      featureset: '052'
+      dependency: dependency
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-centos8stream-master
+    parent: periodic-tripleo-ci-centos-8-standalone-multiple-dependency-master
+    vars:
+      dependency: centos8stream
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-centos8stream-container-build-master
+    parent: periodic-tripleo-ci-centos-8-standalone-multiple-dependency-master
+    vars:
+      dependency: centos8stream
+      build_container_images: true
