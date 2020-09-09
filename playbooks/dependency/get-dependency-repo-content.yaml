@@ -14,10 +14,19 @@
         name: "{{ package_manager_utils }}"
         state: present
 
+    - name: include dependency-related vars
+      include_vars: >-
+        {{ ansible_user_dir }}/{{
+              zuul.projects[
+                'opendev.org/openstack/tripleo-ci'
+              ].src_dir
+            }}/config/release/dependency_ci/{{ job.dependency_name|default(dependency_name) }}/repo_config.yaml
+
     - name: get repoquery list
       become: true
       shell: >
         set -o pipefail &&
-        repoquery  --repofrompath={{ dependency }},{{ dependency_base_url }} \
-        --repoid={{ dependency }} -q -a | tee -a  {{ ansible_user_dir }}/dependency_repoquery_list.log
+        repoquery  --repofrompath={{ item.reponame }},{{ item.baseurl }} \
+        --repoid={{ item.reponame }} -q -a | tee -a  {{ ansible_user_dir }}/dependency_repoquery_list.log
+      with_items: "{{ add_repos }}"
       changed_when: false
