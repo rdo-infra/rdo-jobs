@@ -14,10 +14,59 @@
         name: "{{ package_manager_utils }}"
         state: present
 
+    - name: include dependency-related vars
+      include_vars: >-
+        {{ zuul.executor.work_root }}/{{
+              zuul.projects[
+                'opendev.org/openstack/tripleo-quickstart'
+              ].src_dir
+            }}/config/release/dependency_ci/{{ job.dependency|default(dependency) }}/repo_config.yaml
+
     - name: get repoquery list
       become: true
       shell: >
         set -o pipefail &&
-        repoquery  --repofrompath={{ dependency }},{{ dependency_base_url }} \
-        --repoid={{ dependency }} -q -a | tee -a  {{ ansible_user_dir }}/dependency_repoquery_list.log
+        repoquery  --repofrompath={{ item.reponame }},{{ item.baseurl }} \
+        --repoid={{ item.reponame }} -q -a | tee -a  {{ ansible_user_dir }}/dependency_repoquery_list.log
+      with_items: "{{ add_repos }}"
       changed_when: false
+
+    - when: dependency_override_repos is defined
+      block:
+        - name: set default release file used
+          set_fact:
+            default_release_file_path: >-
+              {{ zuul.executor.work_root }}/{{
+                  zuul.projects[
+                    'opendev.org/openstack/tripleo-quickstart'
+                  ].src_dir
+                }}/config/release/tripleo-ci/{{ ansible_distribution }}-{{ ansible_distribution_major_version }}/{{ release }}.yml
+
+        - name: set release file used
+          set_fact:
+            original_repo_file_path:
+              "{{ original_repo_file_path | default(default_release_file_path) }}"
+
+        - name: debug
+          debug:
+            msg: "{{ original_repo_file_path }}"
+
+        - name: include original repo vars
+          include_vars: "{{ original_repo_file_path }}"
+
+        - name: get repoquery list - disabled repos
+          become: true
+          shell: >
+            {% if item|selectattr("reponame", "defined")|list|length >0 %}
+            {% if item.reponame in dependency_override_repos %}
+            set -o pipefail &&
+            repoquery  --repofrompath={{ item.reponame }},{{ item.baseurl }} \
+            --repoid={{ item.reponame }} -q -a | tee -a  {{ ansible_user_dir }}/override_repoquery_list.log
+            {% else %}
+            echo "reponame is not in dependency_override_repos."
+            {% endif %}
+            {% else %}
+            echo "reponame is not defined - {{ item.filename }}"
+            echo "{{ item.baseurl }}"
+            {% endif %}
+          with_items: "{{ repos }}"
