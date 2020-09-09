@@ -11,6 +11,9 @@
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-baremetal-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-baremetal-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario012-standalone-baremetal-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-baremetal-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-baremetal-promote-consistent-to-component-ci-testing
     openstack-component-cinder:
       jobs:
@@ -78,6 +81,9 @@
             dependencies:
               - periodic-tripleo-centos-8-master-component-compute-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-compute-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario012-standalone-compute-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-compute-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-compute-promote-consistent-to-component-ci-testing
@@ -454,6 +460,9 @@
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-baremetal-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-baremetal-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario012-standalone-baremetal-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-baremetal-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-baremetal-promote-consistent-to-component-ci-testing
     openstack-component-cinder:
       jobs:
@@ -521,6 +530,9 @@
             dependencies:
               - periodic-tripleo-centos-8-train-component-compute-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-compute-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario012-standalone-compute-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-compute-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-compute-promote-consistent-to-component-ci-testing
