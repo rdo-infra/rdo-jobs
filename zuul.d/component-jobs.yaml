@@ -1759,6 +1759,44 @@
       release: train
       branch_override: 'stable/train'
 
+# scenario012-standalone-component
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario012-standalone-component-master
+    parent: periodic-tripleo-ci-centos-8-scenario012-standalone-master
+    abstract: true
+    vars: *component_vars_standalone
+
+# master
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario012-standalone-compute-master
+    parent: periodic-tripleo-ci-centos-8-scenario012-standalone-component-master
+    vars:
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario012-standalone-baremetal-master
+    parent: periodic-tripleo-ci-centos-8-scenario012-standalone-component-master
+    vars:
+      component: baremetal
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario012-standalone-compute-train
+    parent: periodic-tripleo-ci-centos-8-scenario012-standalone-component-master
+    override-checkout: 'stable/train'
+    vars:
+      component: compute
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario012-standalone-baremetal-train
+    parent: periodic-tripleo-ci-centos-8-scenario012-standalone-component-master
+    override-checkout: 'stable/train'
+    vars:
+      component: baremetal
+      release: train
+      branch_override: 'stable/train'
+
 # standalone-full-tempest-component
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-component-master
