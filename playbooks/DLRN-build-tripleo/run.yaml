@@ -92,7 +92,7 @@
           # Remove the last line, then add all required repos
           sed -i '$ d' ${mock_cfg}
           # current
-          if [ "$CENTOS_VERS" = "centos7" ]||[ "$CENTOS_VERS" = "centos8" -a "{{ zuul.branch }}" = "train-rdo" ]; then
+          if [ "$CENTOS_VERS" = "centos7" ]; then
             curl -o /tmp/delorean-current.repo  ${baseurl}/current/delorean.repo
             sed -i 's/priority=.*/priority=10/' /tmp/delorean-current.repo
             sed -i 's/\[delorean\]/\[delorean-current\]/' /tmp/delorean-current.repo
