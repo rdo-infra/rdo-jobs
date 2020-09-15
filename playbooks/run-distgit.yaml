@@ -82,8 +82,8 @@
         name: run-test
       vars:
         run_test_role_vars:
-          standalone_container_ceph_updates: true
-          update_containers: true
+          standalone_container_ceph_updates: false
+          update_containers: false
           artg_skipped_projects:
             - rdoinfo
           container_prep_additional_repos: temp-*

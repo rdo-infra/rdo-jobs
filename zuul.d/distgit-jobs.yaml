@@ -130,14 +130,20 @@
     parent: tripleo-ci-centos-8-scenario001-standalone
     nodeset: single-centos-8-node-vexxhost
     run: playbooks/run-distgit.yaml
+    dependencies:
+      - tripleo-ci-centos-8-content-provider
     vars:
       release: master
+      consumer_job: true
+      build_container_images: false
 
 - job:
     name: distgit-tripleo-master-testing-centos-8-standalone-scenario002
     parent: tripleo-ci-centos-8-scenario002-standalone
     nodeset: single-centos-8-node-vexxhost
     run: playbooks/run-distgit.yaml
+    dependencies:
+      - tripleo-ci-centos-8-content-provider
     vars:
       release: master
 
@@ -146,6 +152,8 @@
     parent: tripleo-ci-centos-8-scenario003-standalone
     nodeset: single-centos-8-node-vexxhost
     run: playbooks/run-distgit.yaml
+    dependencies:
+      - tripleo-ci-centos-8-content-provider
     vars:
       release: master
 
@@ -154,6 +162,8 @@
     parent: tripleo-ci-centos-8-scenario004-standalone
     nodeset: single-centos-8-node-vexxhost
     run: playbooks/run-distgit.yaml
+    dependencies:
+      - tripleo-ci-centos-8-content-provider
     vars:
       release: master
 
@@ -162,6 +172,8 @@
     parent: distgit-tripleo-master-testing-centos-8-standalone
     nodeset: single-centos-8-node-vexxhost
     timeout: 14400
+    dependencies:
+      - tripleo-ci-centos-8-content-provider
     vars:
       featureset_override:
         run_tempest: false
@@ -180,6 +192,8 @@
     parent: tripleo-ci-centos-8-scenario007-standalone
     nodeset: single-centos-8-node-vexxhost
     run: playbooks/run-distgit.yaml
+    dependencies:
+      - tripleo-ci-centos-8-content-provider
     vars:
       release: master
 
@@ -198,6 +212,8 @@
     parent: tripleo-ci-centos-8-undercloud-containers
     nodeset: single-centos-8-node-vexxhost
     run: playbooks/run-distgit.yaml
+    dependencies:
+      - tripleo-ci-centos-8-content-provider
     vars:
       release: master
 
@@ -208,6 +224,8 @@
     parent: tripleo-ci-base-multinode-rdo-centos-8
     nodeset: two-centos-8-nodes-vexxhost
     run: playbooks/run-distgit.yaml
+    dependencies:
+      - tripleo-ci-centos-8-content-provider
     voting: false
     vars:
       nodes: 1ctlr
