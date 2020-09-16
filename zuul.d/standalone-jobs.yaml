@@ -289,6 +289,7 @@
         tempest_test_whitelist:
           - 'tempest.api.identity.v3'
           - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern.test_volume_boot_pattern'
+          - 'tempest.scenario.test_snapshot_pattern.TestSnapshotPattern.test_snapshot_pattern'
           - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
 
 - job:
@@ -312,6 +313,8 @@
         tempest_test_whitelist:
           - 'tempest.api.object_storage.test_object_services.ObjectTest'
           - 'barbican_tempest_plugin.tests.scenario.test_volume_encryption.VolumeEncryptionTest'
+          - 'barbican_tempest_plugin.tests.scenario.test_image_signing.ImageSigningSnapshotTest'
+          - 'barbican_tempest_plugin.tests.scenario.test_image_signing.ImageSigningTest.test_signed_image_upload_and_boot'
           - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
         use_os_tempest: true
 
