@@ -3,10 +3,6 @@
 #############################################################
 - project-template:
     name: dependencies-pipeline-main
-    openstack-dependencies-centos8cr:
-      jobs:
-        - periodic-tripleo-ci-centos-8-standalone-centos8cr-master
-        - periodic-tripleo-ci-centos-8-standalone-centos8cr-container-build-master
     openstack-dependencies-centos8stream:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-centos8stream-master
