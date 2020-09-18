@@ -375,7 +375,7 @@
 - job:
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039
     parent: tripleo-ci-base-ovb-rdo-centos-8
-    branches: ^(?!stable/(newton|ocata|pike|queens|rocky|stein|train)).*$
+    branches: ^(?!stable/(newton|ocata|pike|queens|rocky|stein)).*$
     vars: &fs39_vars
       nodes: 3ctlr_1comp_1supp
       featureset: '039'
