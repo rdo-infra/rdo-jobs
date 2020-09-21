@@ -619,9 +619,6 @@
         - periodic-tripleo-ci-centos-8-scenario002-standalone-swift-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-swift-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-tripleo-train:
-            dependencies:
-              - periodic-tripleo-centos-8-train-component-swift-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-swift-promote-consistent-to-component-ci-testing
     openstack-component-tripleo:
       jobs:
@@ -632,6 +629,9 @@
             dependencies:
               - periodic-tripleo-centos-8-train-component-tripleo-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-tripleo-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-tripleo-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-train:
