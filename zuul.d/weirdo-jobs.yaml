@@ -1,7 +1,7 @@
 - job:
     name: weirdo-ansible-lint
     parent: base
-    nodeset: rdo-centos-7
+    nodeset: rdo-centos-8
     run: playbooks/weirdo/ansible-lint/run.yaml
     required-projects:
       - rdo-infra/ansible-role-weirdo-common
