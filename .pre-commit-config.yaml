@@ -37,6 +37,7 @@ repos:
           ansible-lint --force-color -p -v'
         additional_dependencies:
           - zuul
+          - 'ansible<2.10'
   - repo: https://github.com/openstack-dev/bashate.git
     rev: 0.6.0
     hooks:
