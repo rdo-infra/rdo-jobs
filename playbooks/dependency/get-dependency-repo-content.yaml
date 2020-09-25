@@ -27,7 +27,7 @@
       shell: >
         set -o pipefail &&
         repoquery  --repofrompath={{ item.reponame }},{{ item.baseurl }} \
-        --repoid={{ item.reponame }} -q -a | tee -a  {{ ansible_user_dir }}/dependency_repoquery_list.log
+        --repoid={{ item.reponame }} -q -a --nvr | sort | uniq | tee -a  {{ ansible_user_dir }}/dependency_repoquery_list.log
       with_items: "{{ add_repos }}"
       changed_when: false
 
@@ -57,6 +57,6 @@
             export NODEPOOL_RDO_PROXY=https://trunk.rdoproject.org
             set -o pipefail &&
             repoquery  --repofrompath={{ item.filename|replace('.repo','') }},{{ item.baseurl|default('') }} \
-            --repoid={{ item.filename|replace('.repo','') }} -q -a | tee -a  {{ ansible_user_dir }}/override_repoquery_list.log
+            --repoid={{ item.filename|replace('.repo','') }} -q -a --nvr | sort | uniq | tee -a  {{ ansible_user_dir }}/override_repoquery_list.log
           when: item.filename|replace('.repo','') in dependency_override_repos
           with_items: "{{ repos }}"
