@@ -1,5 +1,7 @@
 - project:
     check:
       jobs: &jobs
-        - tripleo-ci-centos-8-standalone-upgrade-ussuri
-        - tripleo-ci-centos-8-scenario001-standalone
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-tripleo-master:
+            vars:
+              run_test_role_vars:
+                docker_registry_host: trunk.registry.rdoproject.org
