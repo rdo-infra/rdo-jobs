@@ -163,6 +163,14 @@
       branch_override: "stable/ussuri"
       release: ussuri
 
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-upgrade-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-upgrade-master
+    override-checkout: 'stable/ussuri'
+    vars:
+      branch_override: 'stable/ussuri'
+      release: ussuri
+
 ## multinode
 - job:
     name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-ussuri
