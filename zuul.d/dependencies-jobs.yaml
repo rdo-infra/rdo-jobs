@@ -21,6 +21,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-centos8stream-container-build-master
     parent: periodic-tripleo-ci-centos-8-standalone-multiple-dependency-master
+    post-run: playbooks/dependency/get-node-containers-rpms.yaml
     vars:
       dependency: centos8stream
       build_container_images: true

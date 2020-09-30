@@ -1,0 +1,34 @@
+---
+- hosts: all
+  vars:
+    package_manager_utils: >-
+        {% if ansible_distribution_major_version|int >= 8 -%}
+        dnf-utils
+        {%- else -%}
+        yum-utils
+        {%- endif -%}
+  tasks:
+    - name: Get a list of installed rpms on the node
+      shell: |
+        repoquery -q -a --installed --nvr \
+        | tee -a  {{ ansible_user_dir }}/installed_repos_list.log
+      changed_when: false
+
+    - name: Get the list of podman container ids
+      shell: |
+        podman images | awk '{print $3}'
+      register: podman_image_ids
+
+    - name: Append the list of the rpms on the containers
+      shell: |
+        podman run --net=host {{ item }} \
+        repoquery -q -a --installed --nvr \
+        | tee -a  {{ ansible_user_dir }}/installed_repos_list.log
+      with_items: "{{ podman_image_ids.stdout_lines }}"
+
+    - name: Return a file with just unquie entries
+      shell: |
+        sort {{ ansible_user_dir }}/installed_repos_list.log \
+        | uniq -u | tee -a  \
+        {{ ansible_user_dir }}/installed_repos_unique_list.log
+      changed_when: false
