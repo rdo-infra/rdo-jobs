@@ -1,12 +1,30 @@
+- job:
+    name: tripleo-ci-centos-8-standalone-upgrade-ussuri-override
+    parent: tripleo-ci-base-standalone-upgrade-centos-8
+    voting: false
+    override-checkout: 'stable/ussuri'
+    vars:
+      featureset: '056'
+      branch_override: 'stable/ussuri'
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'environments/docker-ha.yaml'
+          - 'environments/podman.yaml'
+
+
+- job:
+    name: tripleo-ci-centos-8-standalone-upgrade-ussuri-br-ex-modified
+    parent: tripleo-ci-centos-8-standalone-upgrade-ussuri-override
+
+- job:
+    name: tripleo-ci-centos-8-standalone-upgrade-br-ex-modified
+    parent: tripleo-ci-centos-8-standalone-upgrade
+
 - project:
     check:
       jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+        - tripleo-ci-centos-8-standalone-upgrade
+        #- tripleo-ci-centos-8-standalone-upgrade-br-ex-modified
+        - tripleo-ci-centos-8-standalone-upgrade-ussuri-override
+        #- tripleo-ci-centos-8-standalone-upgrade-ussuri-br-ex-modified
