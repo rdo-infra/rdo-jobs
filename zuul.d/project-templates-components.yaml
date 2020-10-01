@@ -122,6 +122,9 @@
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
     openstack-component-octavia:
       jobs:
@@ -341,6 +344,9 @@
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-ussuri-component-network-promote-consistent-to-component-ci-testing
@@ -575,6 +581,9 @@
             dependencies:
               - periodic-tripleo-centos-8-train-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-network-promote-consistent-to-component-ci-testing
