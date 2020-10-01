@@ -1,12 +1,12 @@
 - project:
     check:
       jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+        - tripleo-ci-centos-8-standalone-upgrade:
+            vars:
+              bridge_address_prefix: 172.24.4
+              bridge_address_offset: 1
+              bridge_address_subnet: 24
+              run_test_role_vars:
+                tempest_public_subnet_cidr: 172.24.4.0/24
+                tempest_public_subnet_allocation_pools: 172.24.4.41-172.24.4.100
+                tempest_cidr: '172.24.4.0/24'
