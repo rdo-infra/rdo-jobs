@@ -1,12 +1,13 @@
+- job:
+    name: tripleo-ci-centos-8-standalone-upgrade-br-ex-modified
+    parent: tripleo-ci-centos-8-standalone-upgrade
+    vars:
+      bridge_address_prefix: 172.24.4
+      bridge_address_offset: 1
+      bridge_address_subnet: 24
+
 - project:
     check:
       jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+        - tripleo-ci-centos-8-standalone-upgrade
+        - tripleo-ci-centos-8-standalone-upgrade-br-ex-modified
