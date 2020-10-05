@@ -1,12 +1,11 @@
 - project:
     check:
       jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+        - tripleo-ci-centos-8-undercloud-upgrade:
+            vars:
+              run_test_role_vars:
+                use_os_tempest: true
+                undercloud_enable_tempest: true
+                tempest_undercloud: true
+                tempest_overcloud: false
+                tempest_private_net_provider_type: 'vxlan'
