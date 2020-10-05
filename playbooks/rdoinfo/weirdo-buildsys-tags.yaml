@@ -63,7 +63,7 @@
         cmd: |
           set -e -x
 
-          MASTER="victoria"
+          MASTER="wallaby"
           RELEASE="{{ rdoinfo_release }}"
           PHASE="{{ rdoinfo_phase }}"
           DIST_VER="{{ centos_releasever }}"
@@ -113,7 +113,7 @@
                   ADDITIONAL_OPTS=""
               else
                   REPOS_URL="$TEMP_REPO_URL"
-                  ADDITIONAL_OPTS="-e stable_repositories=https://rdoproject.org/repos/openstack-${RELEASE}/${RELEASE_RPM} -e testing_repository=true"
+                  ADDITIONAL_OPTS="-e stable_repositories=https://cbs.centos.org/kojifiles/work/tasks/1212/1531212/rdo-release-${RELEASE}-0.el8.noarch.rpm -e testing_repository=true"
               fi
 
           ;;
