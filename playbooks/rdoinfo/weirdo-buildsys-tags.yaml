@@ -63,7 +63,7 @@
         cmd: |
           set -e -x
 
-          MASTER="victoria"
+          MASTER="wallaby"
           RELEASE="{{ rdoinfo_release }}"
           PHASE="{{ rdoinfo_phase }}"
           DIST_VER="{{ centos_releasever }}"
