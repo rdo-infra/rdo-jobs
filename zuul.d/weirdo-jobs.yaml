@@ -683,6 +683,58 @@
       scenario: scenario003
 
 - job:
+    name: validate-buildsys-tags-victoria-release-centos8-base
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: victoria
+      rdoinfo_phase: release
+    nodeset: rdo-centos-8
+    files:
+      - ^buildsys-tags/cloud8-openstack-victoria-release.yml$
+
+- job:
+    name: validate-buildsys-tags-victoria-release-puppet-scenario001-centos8
+    parent: validate-buildsys-tags-victoria-release-centos8-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-victoria-release-puppet-scenario002-centos8
+    parent: validate-buildsys-tags-victoria-release-centos8-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-victoria-release-puppet-scenario003-centos8
+    parent: validate-buildsys-tags-victoria-release-centos8-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: validate-buildsys-tags-victoria-release-puppet-scenario004-centos8
+    parent: validate-buildsys-tags-victoria-release-centos8-base
+    vars:
+      scenario: scenario004
+
+- job:
+    name: validate-buildsys-tags-victoria-release-packstack-scenario001-centos8
+    parent: validate-buildsys-tags-victoria-release-centos8-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-victoria-release-packstack-scenario002-centos8
+    parent: validate-buildsys-tags-victoria-release-centos8-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-victoria-release-packstack-scenario003-centos8
+    parent: validate-buildsys-tags-victoria-release-centos8-base
+    vars:
+      scenario: scenario003
+
+- job:
     name: weirdo-periodic-base
     parent: base
     run: playbooks/rdoinfo/weirdo-periodic.yaml
