@@ -1,0 +1,49 @@
+---
+# victoria integration jobs
+## promote to tripleo-ci-testing
+- job:
+    name: periodic-tripleo-centos-8-victoria-promote-promoted-components-to-tripleo-ci-testing
+    parent: periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing
+    nodeset: single-centos-8-node-vexxhost
+    vars:
+      release: victoria
+
+## containers/images
+
+- job:
+    name: periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+    parent: periodic-tripleo-ci-build-containers-ubi-8-push
+    override-checkout: 'stable/victoria'
+    nodeset: single-centos-8-node-vexxhost
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      registry_namespace: tripleovictoria
+
+- job:
+    name: periodic-tripleo-centos-8-buildimage-overcloud-full-victoria
+    parent: periodic-tripleo-centos-8-buildimage-overcloud-full-master
+    nodeset: single-centos-8-node-vexxhost
+    override-checkout: "stable/victoria"
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
+- job:
+    name: periodic-tripleo-centos-8-buildimage-ironic-python-agent-victoria
+    parent: periodic-tripleo-centos-8-buildimage-ironic-python-agent-master
+    nodeset: single-centos-8-node-vexxhost
+    override-checkout: "stable/victoria"
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
+- job:
+    name: periodic-tripleo-centos-8-buildimage-overcloud-hardened-full-victoria
+    parent: periodic-tripleo-centos-8-buildimage-overcloud-hardened-full-master
+    nodeset: single-centos-8-node-vexxhost
+    override-checkout: "stable/victoria"
+    voting: true
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'

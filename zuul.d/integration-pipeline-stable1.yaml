@@ -100,3 +100,19 @@
               - periodic-tripleo-centos-8-ussuri-promote-promoted-components-to-tripleo-ci-testing
         ## promote to tripleo-ci-testing
         - periodic-tripleo-centos-8-ussuri-promote-promoted-components-to-tripleo-ci-testing
+
+        ##### victoria #####
+        - periodic-tripleo-ci-build-containers-ubi-8-push-victoria:
+            nodeset: single-centos-8-node-vexxhost
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-promote-promoted-components-to-tripleo-ci-testing
+        - periodic-tripleo-centos-8-buildimage-overcloud-hardened-full-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-promote-promoted-components-to-tripleo-ci-testing
+        - periodic-tripleo-centos-8-buildimage-overcloud-full-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-promote-promoted-components-to-tripleo-ci-testing
+        - periodic-tripleo-centos-8-buildimage-ironic-python-agent-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-promote-promoted-components-to-tripleo-ci-testing
+        - periodic-tripleo-centos-8-victoria-promote-promoted-components-to-tripleo-ci-testing
