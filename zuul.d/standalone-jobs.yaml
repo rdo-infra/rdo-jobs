@@ -388,6 +388,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-scenario010-standalone-master
     parent: tripleo-ci-base-standalone-periodic-centos-8
+    timeout: 14400
     vars:
       tags:
         - build

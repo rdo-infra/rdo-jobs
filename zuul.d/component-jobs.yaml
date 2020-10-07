@@ -1701,6 +1701,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-scenario010-standalone-component-master
     parent: periodic-tripleo-ci-centos-8-scenario010-standalone-master
+    timeout: 14400
     abstract: true
     vars: *component_vars_standalone
 
