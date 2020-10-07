@@ -206,7 +206,12 @@
     post-run: playbooks/weirdo/integration/post.yaml
     timeout: 7200
     required-projects:
-      - name: rdo-infra/weirdo
+      - rdo-infra/weirdo
+      - rdo-infra/ansible-role-weirdo-common
+      - rdo-infra/ansible-role-weirdo-kolla
+      - rdo-infra/ansible-role-weirdo-logs
+      - rdo-infra/ansible-role-weirdo-packstack
+      - rdo-infra/ansible-role-weirdo-puppet-openstack
     vars:
       selinux_enforcing: "false"
     dependencies:

@@ -58,6 +58,16 @@
         path: "{{ ansible_user_dir }}/workspace/not_required"
       register: stop_file
 
+    - name: Setup weirdo roles
+      shell:
+        cmd: |
+          export WBASE="{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/weirdo'].src_dir }}";
+          mkdir -p $WBASE/playbooks/roles
+          {% for project in ["common", "logs", "kolla", "packstack", "puppet-openstack"] %}
+            ln -s "{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/ansible-role-weirdo-' + project].src_dir }}" $WBASE/playbooks/roles/{{ project }};  # noqa 204
+          {% endfor %}
+      changed_when: true
+
     - name: Run weirdo for the desired project and scenario
       shell:
         cmd: |
