@@ -1,7 +1,7 @@
 ---
 - hosts: primary
   vars:
-    master_release: victoria
+    master_release: wallaby
   tasks:
     - name: Run pre-quickstart role
       import_role:
