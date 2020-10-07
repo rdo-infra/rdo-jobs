@@ -134,7 +134,7 @@
     parent: DLRN-rpmbuild
     voting: false
     vars:
-      tag: 'victoria-uc'
+      tag: 'wallaby-uc'
 
 - job:
     name: DLRN-rpmbuild-rpm-packaging-centos
@@ -168,7 +168,7 @@
     name: DLRN-rpmbuild-centos8-pinned
     parent: DLRN-rpmbuild-centos8
     vars:
-      tag: 'victoria-uc'
+      tag: 'wallaby-uc'
       centos_version: 'centos8'
 
 - job:
