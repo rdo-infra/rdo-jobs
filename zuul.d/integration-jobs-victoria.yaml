@@ -47,3 +47,60 @@
     vars:
       release: victoria
       branch_override: 'stable/victoria'
+
+## standalone
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-victoria
+    parent: periodic-tripleo-ci-centos-8-standalone-master
+    nodeset: single-centos-8-node-vexxhost
+    override-checkout: "stable/victoria"
+    vars:
+      branch_override: "stable/victoria"
+      release: victoria
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-master
+    nodeset: single-centos-8-node-vexxhost
+    override-checkout: "stable/victoria"
+    vars:
+      branch_override: "stable/victoria"
+      release: victoria
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-master
+    nodeset: single-centos-8-node-vexxhost
+    override-checkout: "stable/victoria"
+    vars:
+      branch_override: "stable/victoria"
+      release: victoria
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario003-standalone-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-master
+    nodeset: single-centos-8-node-vexxhost
+    override-checkout: "stable/victoria"
+    vars:
+      branch_override: "stable/victoria"
+      release: victoria
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-master
+    nodeset: single-centos-8-node-vexxhost
+    override-checkout: "stable/victoria"
+    vars:
+      branch_override: "stable/victoria"
+      release: victoria
+
+## ovb
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-victoria
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master
+    nodeset: upstream-centos-8-vexxhost
+    override-checkout: "stable/victoria"
+    vars:
+      cloud_name: vexxhost
+      branch_override: "stable/victoria"
+      release: victoria
