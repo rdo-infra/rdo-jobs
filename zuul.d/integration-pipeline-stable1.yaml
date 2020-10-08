@@ -115,4 +115,24 @@
         - periodic-tripleo-centos-8-buildimage-ironic-python-agent-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-promote-promoted-components-to-tripleo-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-victoria:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push--victoria
+        - periodic-tripleo-ci-centos-8-scenario001-standalone-victoria:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+         - periodic-tripleo-ci-centos-8-scenario002-standalone-victoria:
+             dependencies:
+               - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+        - periodic-tripleo-ci-centos-8-scenario003-standalone-victoria:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+        - periodic-tripleo-ci-centos-8-scenario004-standalone-victoria:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-victoria:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-victoria
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-victoria
         - periodic-tripleo-centos-8-victoria-promote-promoted-components-to-tripleo-ci-testing
