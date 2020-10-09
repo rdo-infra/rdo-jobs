@@ -72,6 +72,11 @@
         - ansible_distribution == "CentOS"
         - ansible_distribution_major_version == '8'
 
+    - name: Set ip addr
+      set_fact:
+        ipv4_addr: "{{ ansible_default_ipv4.address }}"
+        ipv4_prefix: "{{ ansible_default_ipv4.prefix | default('24') }}"
+
     - name: Build containers using build-containers role
       when:
         - not stop_file.stat.exists
@@ -95,10 +100,6 @@
             mv /etc/yum.repos.d/CentOS-Ceph-Nautilus.repo /etc/yum.repos.d/delorean-ceph.repo
             mv /etc/yum.repos.d/advanced-virtualization.repo /etc/yum.repos.d/delorean-advirt.repo
             mv /etc/yum.repos.d/CentOS-Messaging-rabbitmq.repo /etc/yum.repos.d/delorean-messaging.repo
-        - name: Set ip addr
-          set_fact:
-            ipv4_addr: "{{ ansible_default_ipv4.address }}"
-            ipv4_prefix: "{{ ansible_default_ipv4.prefix | default('24') }}"
         - name: Set repo facts
           set_fact:
             buildsys_tag: "cloud{{ ansible_distribution_major_version }}-openstack-{{ rdoinfo_release }}-{{ rdoinfo_phase }}"
