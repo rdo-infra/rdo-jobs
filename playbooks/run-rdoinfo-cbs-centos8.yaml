@@ -1,5 +1,7 @@
 ---
 - hosts: primary
+  vars:
+    master_release: wallaby
   tasks:
     - name: Run pre-quickstart role
       import_role:
@@ -72,6 +74,28 @@
         - ansible_distribution == "CentOS"
         - ansible_distribution_major_version == '8'
 
+    - name: Set ip addr
+      set_fact:
+        ipv4_addr: "{{ ansible_default_ipv4.address }}"
+        ipv4_prefix: "{{ ansible_default_ipv4.prefix | default('24') }}"
+    - name: Set repo facts
+      set_fact:
+        buildsys_tag: "cloud{{ ansible_distribution_major_version }}-openstack-{{ rdoinfo_release }}-{{ rdoinfo_phase }}"
+    - name: Handle master release buildsys_tags
+      set_fact:
+        buildsys_tag: "cloud{{ ansible_distribution_major_version }}-openstack-{{ master_release }}-{{ rdoinfo_phase }}"
+      when: rdoinfo_release == "master"
+    - name: set url
+      set_fact:
+        extra_repo_url: "{{ buildset_artifacts_url | default('') }}/repos/{{ buildsys_tag }}/temp-{{ buildsys_tag }}.repo"
+      when: buildset_artifacts_url is defined
+      # To use packages included in the gating repo in build-containers role
+    - name: install temp-buildys repo
+      become: true
+      get_url:
+        url: "{{ extra_repo_url }}"
+        dest: "/etc/yum.repos.d/temp-{{ buildsys_tag }}.repo"
+
     - name: Build containers using build-containers role
       when:
         - not stop_file.stat.exists
@@ -95,28 +119,9 @@
             mv /etc/yum.repos.d/CentOS-Ceph-Nautilus.repo /etc/yum.repos.d/delorean-ceph.repo
             mv /etc/yum.repos.d/advanced-virtualization.repo /etc/yum.repos.d/delorean-advirt.repo
             mv /etc/yum.repos.d/CentOS-Messaging-rabbitmq.repo /etc/yum.repos.d/delorean-messaging.repo
-        - name: Set ip addr
-          set_fact:
-            ipv4_addr: "{{ ansible_default_ipv4.address }}"
-            ipv4_prefix: "{{ ansible_default_ipv4.prefix | default('24') }}"
         - name: Set repo facts
           set_fact:
-            buildsys_tag: "cloud{{ ansible_distribution_major_version }}-openstack-{{ rdoinfo_release }}-{{ rdoinfo_phase }}"
             delorean_repos: "http://{{ ipv4_addr }}/delorean-CentOS-OpenStack-{{ rdoinfo_release }}.repo,http://{{ ipv4_addr }}/delorean-messaging.repo,http://{{ ipv4_addr }}/delorean-advirt.repo,http://{{ ipv4_addr }}/delorean-ceph.repo"  # noqa 204
-        - name: Handle master release buildsys_tags
-          set_fact:
-            buildsys_tag: "cloud{{ ansible_distribution_major_version }}-openstack-ussuri-{{ rdoinfo_phase }}"
-          when: rdoinfo_release == "master"
-        - name: set url
-          set_fact:
-            extra_repo_url: "{{ buildset_artifacts_url | default('') }}/repos/{{ buildsys_tag }}/temp-{{ buildsys_tag }}.repo"
-          when: buildset_artifacts_url is defined
-          # To use packages included in the gating repo in build-containers role
-        - name: install temp-buildys repo
-          become: true
-          get_url:
-            url: "{{ extra_repo_url }}"
-            dest: "/etc/yum.repos.d/temp-{{ buildsys_tag }}.repo"
         - name: Install deps using bindep role
           include_role:
             name: bindep
@@ -199,12 +204,7 @@
         run_test_role_vars:
           docker_registry_namespace: "tripleo{{ rdoinfo_release }}"
           container_prep_additional_repos: temp-*
-          docker_registry_host: "{{ ipv4_addr + ':' + push_registry_port|default('8787')|string }}"
-          local_docker_registry_host: "{{ ipv4_addr }}"
-          standalone_ip: "{{ ipv4_addr }}"
-          standalone_cidr: "{{ ipv4_prefix }}"
-          standalone_network_prefix: "{{ ipv4_prefix }}"
-          tripleo_deploy_local_ip: "{{ ipv4_addr + '/' + ipv4_prefix }}"
+          enable_opstools_repo: true
           add_repos:
             - type: file
               filename: delorean-0.repo
