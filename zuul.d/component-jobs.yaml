@@ -132,6 +132,37 @@
       component: validation
       dlrn_server_url: "trunk.rdoproject.org"
 
+### victoria
+- job:
+    name: periodic-tripleo-centos-8-victoria-component-baremetal-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-baremetal-promote-consistent-to-component-ci-testing
+    vars:
+      release: victoria
+
+- job:
+    name: periodic-tripleo-centos-8-victoria-component-cinder-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-cinder-promote-consistent-to-component-ci-testing
+    vars:
+      release: victoria
+
+- job:
+    name: periodic-tripleo-centos-8-victoria-component-clients-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-clients-promote-consistent-to-component-ci-testing
+    vars:
+      release: victoria
+
+- job:
+    name: periodic-tripleo-centos-8-victoria-component-cloudops-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-cloudops-promote-consistent-to-component-ci-testing
+    vars:
+      release: victoria
+
+- job:
+    name: periodic-tripleo-centos-8-victoria-component-common-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-common-promote-consistent-to-component-ci-testing
+    vars:
+      release: victoria
+
 ### ussuri
 - job:
     name: periodic-tripleo-centos-8-ussuri-component-baremetal-promote-consistent-to-component-ci-testing
@@ -441,6 +472,37 @@
     vars:
       release: master
       component: validation
+
+### victoria
+- job:
+    name: periodic-tripleo-centos-8-victoria-component-baremetal-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-baremetal-promote-to-promoted-components
+    vars:
+      release: victoria
+
+- job:
+    name: periodic-tripleo-centos-8-victoria-component-cinder-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-cinder-promote-to-promoted-components
+    vars:
+      release: victoria
+
+- job:
+    name: periodic-tripleo-centos-8-victoria-component-clients-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-clients-promote-to-promoted-components
+    vars:
+      release: victoria
+
+- job:
+    name: periodic-tripleo-centos-8-victoria-component-cloudops-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-cloudops-promote-to-promoted-components
+    vars:
+      release: victoria
+
+- job:
+    name: periodic-tripleo-centos-8-victoria-component-common-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-common-promote-to-promoted-components
+    vars:
+      release: victoria
 
 ### ussuri
 - job:
@@ -1048,6 +1110,42 @@
     vars:
       component: validation
 
+## victoria
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-baremetal-victoria
+    parent: periodic-tripleo-ci-centos-8-standalone-baremetal-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-cinder-victoria
+    parent: periodic-tripleo-ci-centos-8-standalone-cinder-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-clients-victoria
+    parent: periodic-tripleo-ci-centos-8-standalone-clients-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-cloudops-victoria
+    parent: periodic-tripleo-ci-centos-8-standalone-cloudops-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-common-victoria
+    parent: periodic-tripleo-ci-centos-8-standalone-common-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
 ## ussuri
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-baremetal-ussuri
@@ -1322,6 +1420,28 @@
     vars:
       component: glance
 
+## victoria
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-cinder-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-cinder-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-cloudops-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-cloudops-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-common-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-common-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
 ## ussuri
 - job:
     name: periodic-tripleo-ci-centos-8-scenario001-standalone-cinder-ussuri
@@ -1416,6 +1536,21 @@
     vars:
       component: swift
 
+## victoria
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-cloudops-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-cloudops-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-common-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-common-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
 ## ussuri
 - job:
     name: periodic-tripleo-ci-centos-8-scenario002-standalone-cloudops-ussuri
@@ -1498,6 +1633,14 @@
     vars:
       component: glance
 
+## victoria
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario003-standalone-common-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-common-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
 ## ussuri
 - job:
     name: periodic-tripleo-ci-centos-8-scenario003-standalone-common-ussuri
@@ -1567,6 +1710,21 @@
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-component-master
     vars:
       component: tripleo
+
+## victoria
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-common-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-common-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
 
 ## ussuri
 - job:
