@@ -205,8 +205,38 @@
           docker_registry_namespace: "tripleo{{ rdoinfo_release }}"
           container_prep_additional_repos: temp-*
           enable_opstools_repo: true
+          repo_cmd_before: |
+            sudo rm -rf /etc/yum.repos.d/delorean*;
+            sudo rm -rf /etc/yum.repos.d/*.rpmsave;
+            sudo rm -rf /etc/yum.repos.d/epel*;
+            sudo dnf remove -y rdo-release centos-release-ceph-* centos-release-openstack-* centos-release-qemu-ev || true;
+            sudo rm -rf /etc/yum.repos.d/CentOS-OpenStack-*.repo /etc/yum.repos.d/CentOS-Ceph-*.repo /etc/yum.repos.d/CentOS-QEMU-EV.repo;
+            sudo dnf clean all;
+            sudo dnf config-manager --disable "*" || true;
+            if [ -e /etc/ci/mirror_info.sh ]; then
+              source /etc/ci/mirror_info.sh
+            else
+              # Otherwise, fallback to official mirrors provided by CentOS.
+              export NODEPOOL_CENTOS_MIRROR=http://mirror.centos.org/centos
+              export NODEPOOL_RDO_PROXY=https://trunk.rdoproject.org
+            fi
+            sudo dnf install --enablerepo=extras -y https://cbs.centos.org/kojifiles/work/tasks/6449/1556449/centos-release-openstack-victoria-1-1.el8.noarch.rpm  # noqa 204
           add_repos:
             - type: file
               filename: delorean-0.repo
               down_url: "{{ extra_repo_url }}"
+            - type: generic
+              reponame: delorean-tripleo-component
+              filename: delorean-1.repo
+              baseurl: "https://trunk.rdoproject.org/centos8-master/component/tripleo/current/"
+            - type: generic
+              reponame: delorean-validation-component
+              filename: delorean-2.repo
+              baseurl: "https://trunk.rdoproject.org/centos8-victoria/component/validation/current/"
+            - type: generic
+              reponame: delorean-security-component
+              filename: delorean-3.repo
+              baseurl: "https://trunk.rdoproject.org/centos8-victoria/component/security/current/"
+              includepkgs:
+                - ansible-tripleo-ipa*
       when: not stop_file.stat.exists
