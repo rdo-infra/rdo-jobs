@@ -302,6 +302,78 @@
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-victoria-component-common-promote-consistent-to-component-ci-testing
+    openstack-component-compute:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-compute-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-compute-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-api-compute-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-compute-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-compute-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario012-standalone-compute-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-compute-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-victoria-component-compute-promote-consistent-to-component-ci-testing
+    openstack-component-glance:
+      jobs:
+        - periodic-tripleo-ci-centos-8-scenario001-standalone-glance-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-glance-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario002-standalone-glance-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-glance-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario003-standalone-glance-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-glance-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario004-standalone-glance-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-glance-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-victoria-component-glance-promote-consistent-to-component-ci-testing
+    openstack-component-manila:
+      jobs:
+        - periodic-tripleo-ci-centos-8-scenario004-standalone-manila-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-manila-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-victoria-component-manila-promote-consistent-to-component-ci-testing
+    openstack-component-network:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-network-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario007-standalone-network-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario010-standalone-network-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-victoria-component-network-promote-consistent-to-component-ci-testing
+    openstack-component-octavia:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-octavia-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-octavia-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario007-standalone-octavia-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-octavia-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-octavia-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-octavia-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-octavia-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-victoria-component-octavia-promote-consistent-to-component-ci-testing
     openstack-promote-component:
       jobs:
         - periodic-tripleo-centos-8-victoria-component-baremetal-promote-to-promoted-components
@@ -309,6 +381,11 @@
         - periodic-tripleo-centos-8-victoria-component-clients-promote-to-promoted-components
         - periodic-tripleo-centos-8-victoria-component-cloudops-promote-to-promoted-components
         - periodic-tripleo-centos-8-victoria-component-common-promote-to-promoted-components
+        - periodic-tripleo-centos-8-victoria-component-compute-promote-to-promoted-components
+        - periodic-tripleo-centos-8-victoria-component-glance-promote-to-promoted-components
+        - periodic-tripleo-centos-8-victoria-component-manila-promote-to-promoted-components
+        - periodic-tripleo-centos-8-victoria-component-network-promote-to-promoted-components
+        - periodic-tripleo-centos-8-victoria-component-octavia-promote-to-promoted-components
 
 ## ussuri
 #############################################################
