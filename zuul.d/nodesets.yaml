@@ -192,6 +192,17 @@
         nodes: []
 
 - nodeset:
+    name: single-centos-8-node-standalone
+    nodes:
+      - name: primary
+        label: upstream-centos-8
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
+- nodeset:
     name: two-centos-8-nodes
     nodes:
       - name: primary
