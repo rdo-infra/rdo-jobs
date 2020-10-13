@@ -163,6 +163,36 @@
     vars:
       release: victoria
 
+- job:
+    name: periodic-tripleo-centos-8-victoria-component-compute-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-compute-promote-consistent-to-component-ci-testing
+    vars:
+      release: victoria
+
+- job:
+    name: periodic-tripleo-centos-8-victoria-component-glance-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-glance-promote-consistent-to-component-ci-testing
+    vars:
+      release: victoria
+
+- job:
+    name: periodic-tripleo-centos-8-victoria-component-manila-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-manila-promote-consistent-to-component-ci-testing
+    vars:
+      release: victoria
+
+- job:
+    name: periodic-tripleo-centos-8-victoria-component-network-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
+    vars:
+      release: victoria
+
+- job:
+    name: periodic-tripleo-centos-8-victoria-component-octavia-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
+    vars:
+      release: victoria
+
 ### ussuri
 - job:
     name: periodic-tripleo-centos-8-ussuri-component-baremetal-promote-consistent-to-component-ci-testing
@@ -504,6 +534,36 @@
     vars:
       release: victoria
 
+- job:
+    name: periodic-tripleo-centos-8-victoria-component-compute-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-compute-promote-to-promoted-components
+    vars:
+      release: victoria
+
+- job:
+    name: periodic-tripleo-centos-8-victoria-component-glance-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-glance-promote-to-promoted-components
+    vars:
+      release: victoria
+
+- job:
+    name: periodic-tripleo-centos-8-victoria-component-manila-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-manila-promote-to-promoted-components
+    vars:
+      release: victoria
+
+- job:
+    name: periodic-tripleo-centos-8-victoria-component-network-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-network-promote-to-promoted-components
+    vars:
+      release: victoria
+
+- job:
+    name: periodic-tripleo-centos-8-victoria-component-octavia-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-octavia-promote-to-promoted-components
+    vars:
+      release: victoria
+
 ### ussuri
 - job:
     name: periodic-tripleo-centos-8-ussuri-component-baremetal-promote-to-promoted-components
@@ -783,6 +843,14 @@
       release: victoria
       branch_override: 'stable/victoria'
 
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-victoria
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+    vars:
+      component: network
+      release: victoria
+      branch_override: 'stable/victoria'
+
 ### ussuri
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-baremetal-ussuri
@@ -938,6 +1006,20 @@
 - job:
     name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-common-victoria
     parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-common-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-victoria
+    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-octavia-victoria
+    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-octavia-master
     vars:
       release: victoria
       branch_override: 'stable/victoria'
@@ -1182,6 +1264,42 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-common-victoria
     parent: periodic-tripleo-ci-centos-8-standalone-common-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-compute-victoria
+    parent: periodic-tripleo-ci-centos-8-standalone-compute-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-glance-victoria
+    parent: periodic-tripleo-ci-centos-8-standalone-glance-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-manila-victoria
+    parent: periodic-tripleo-ci-centos-8-standalone-manila-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-network-victoria
+    parent: periodic-tripleo-ci-centos-8-standalone-network-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-octavia-victoria
+    parent: periodic-tripleo-ci-centos-8-standalone-octavia-master
     vars:
       release: victoria
       branch_override: 'stable/victoria'
@@ -1482,6 +1600,13 @@
       release: victoria
       branch_override: 'stable/victoria'
 
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-glance-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-glance-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
 ## ussuri
 - job:
     name: periodic-tripleo-ci-centos-8-scenario001-standalone-cinder-ussuri
@@ -1591,6 +1716,13 @@
       release: victoria
       branch_override: 'stable/victoria'
 
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-glance-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-glance-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
 ## ussuri
 - job:
     name: periodic-tripleo-ci-centos-8-scenario002-standalone-cloudops-ussuri
@@ -1681,6 +1813,13 @@
       release: victoria
       branch_override: 'stable/victoria'
 
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario003-standalone-glance-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-glance-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
 ## ussuri
 - job:
     name: periodic-tripleo-ci-centos-8-scenario003-standalone-common-ussuri
@@ -1762,6 +1901,21 @@
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-common-victoria
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-common-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-glance-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-glance-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-manila-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-manila-master
     vars:
       release: victoria
       branch_override: 'stable/victoria'
@@ -1863,6 +2017,21 @@
     vars:
       component: octavia
 
+## victoria
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario007-standalone-network-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-network-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario007-standalone-octavia-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-octavia-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
 ## ussuri
 - job:
     name: periodic-tripleo-ci-centos-8-scenario007-standalone-network-ussuri
@@ -1916,6 +2085,21 @@
     vars:
       component: octavia
 
+## victoria
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-standalone-network-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-network-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
 ## ussuri
 - job:
     name: periodic-tripleo-ci-centos-8-scenario010-standalone-network-ussuri
@@ -1962,6 +2146,16 @@
     vars:
       component: octavia
 
+# victoria
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-component-master
+    override-checkout: 'stable/victoria'
+    vars:
+      component: octavia
+      release: victoria
+      branch_override: 'stable/victoria'
+
 # ussuri
 - job:
     name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-ussuri
@@ -2001,6 +2195,15 @@
     parent: periodic-tripleo-ci-centos-8-scenario012-standalone-component-master
     vars:
       component: baremetal
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario012-standalone-compute-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario012-standalone-component-master
+    override-checkout: 'stable/victoria'
+    vars:
+      component: compute
+      release: victoria
+      branch_override: 'stable/victoria'
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario012-standalone-compute-train
@@ -2049,6 +2252,14 @@
     vars:
       component: tempest
 
+### victoria
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-compute-victoria
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-compute-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
 ## ussuri
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-compute-ussuri
@@ -2083,6 +2294,14 @@
     parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-component-master
     vars:
       component: tempest
+
+## victoria
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-compute-victoria
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-compute-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
 
 ## ussuri
 - job:
@@ -2135,6 +2354,14 @@
     parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-component-master
     vars:
       component: tempest
+
+## victoria
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-victoria
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
 
 ## ussuri
 - job:
