@@ -102,6 +102,7 @@
         - periodic-tripleo-centos-8-ussuri-promote-promoted-components-to-tripleo-ci-testing
 
         ##### victoria #####
+        ## containers/images
         - periodic-tripleo-ci-build-containers-ubi-8-push-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-promote-promoted-components-to-tripleo-ci-testing
@@ -114,6 +115,7 @@
         - periodic-tripleo-centos-8-buildimage-ironic-python-agent-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-promote-promoted-components-to-tripleo-ci-testing
+        ## standalone
         - periodic-tripleo-ci-centos-8-standalone-victoria:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
@@ -129,9 +131,69 @@
         - periodic-tripleo-ci-centos-8-scenario004-standalone-victoria:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+        - periodic-tripleo-ci-centos-8-scenario007-standalone-victoria:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+        - periodic-tripleo-ci-centos-8-scenario010-standalone-victoria:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+        - periodic-tripleo-ci-centos-8-scenario012-standalone-victoria:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-api-victoria:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-victoria:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+        - periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-victoria:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+        - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-victoria:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+        - periodic-tripleo-ci-centos-8-standalone-upgrade-victoria:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+        ## ovb
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-victoria:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
               - periodic-tripleo-centos-8-buildimage-overcloud-full-victoria
               - periodic-tripleo-centos-8-buildimage-ironic-python-agent-victoria
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-victoria:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-victoria
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-victoria
+        - periodic-tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-victoria:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-victoria
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-victoria
+        - periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-victoria:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-victoria:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-victoria
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-victoria
+        ## multinode
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset030-victoria:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-victoria:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-victoria:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+        ## undercloud
+        - periodic-tripleo-ci-centos-8-undercloud-containers-victoria:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+        - periodic-tripleo-ci-centos-8-containers-undercloud-minion-victoria:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
         - periodic-tripleo-centos-8-victoria-promote-promoted-components-to-tripleo-ci-testing
