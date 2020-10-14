@@ -362,6 +362,8 @@
       nodes: 1ctlr
       featureset: '030'
       release: master
+      playbooks:
+        - multinode.yml
 
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-train
