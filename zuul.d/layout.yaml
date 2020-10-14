@@ -1,12 +1,13 @@
+- job:
+    name: tripleo-ci-centos-7-standalone-upgrade-stein-test
+    parent: tripleo-ci-base-standalone-upgrade
+    voting: false
+    override-checkout: 'stable/stein'
+    vars:
+      featureset: '056'
+      branch_override: 'stable/stein'
+
 - project:
     check:
       jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+        - tripleo-ci-centos-7-standalone-upgrade-stein-test
