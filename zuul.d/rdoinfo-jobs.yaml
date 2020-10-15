@@ -765,6 +765,42 @@
         to_build: false
 
 - job:
+    name: rdoinfo-tripleo-victoria-testing-centos-8-standalone
+    parent: rdoinfo-tripleo-master-testing-centos-8-standalone
+    override-checkout: "stable/victoria"
+    vars:
+      rdoinfo_release: victoria
+      rdoinfo_phase: testing
+      branch_override: "stable/victoria"
+
+- job:
+    name: rdoinfo-tripleo-victoria-testing-centos-8-scenario001-standalone
+    parent: rdoinfo-tripleo-master-testing-centos-8-scenario001-standalone
+    override-checkout: "stable/victoria"
+    vars:
+      rdoinfo_release: victoria
+      rdoinfo_phase: testing
+      branch_override: "stable/victoria"
+
+- job:
+    name: rdoinfo-tripleo-victoria-testing-centos-8-scenario007-standalone
+    parent: rdoinfo-tripleo-master-testing-centos-8-scenario007-standalone
+    override-checkout: "stable/victoria"
+    vars:
+      rdoinfo_release: victoria
+      rdoinfo_phase: testing
+      branch_override: "stable/victoria"
+
+- job:
+    name: rdoinfo-tripleo-victoria-testing-centos-8-containers-multinode
+    parent: rdoinfo-tripleo-master-testing-centos-8-containers-multinode
+    override-checkout: "stable/victoria"
+    vars:
+      rdoinfo_release: victoria
+      rdoinfo_phase: testing
+      branch_override: "stable/victoria"
+
+- job:
     name: rdoinfo-tripleo-ussuri-testing-centos-8-standalone
     parent: rdoinfo-tripleo-master-testing-centos-8-standalone
     override-checkout: "stable/ussuri"
