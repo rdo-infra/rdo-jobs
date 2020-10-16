@@ -2,7 +2,7 @@
 # train integration pipeline
 - project-template:
     name: integration-pipeline-train
-    openstack-periodic-integration-stable2:
+    openstack-periodic-integration-stable3:
       jobs:
         ##### stable/train centos-8 #####
         - periodic-tripleo-centos-8-train-promote-promoted-components-to-tripleo-ci-testing:
