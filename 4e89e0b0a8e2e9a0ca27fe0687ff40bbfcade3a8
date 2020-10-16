@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "327a21a0_49b35cdf",
+        "filename": "zuul.d/integration-pipeline-queens.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2020-10-16T12:41:15Z",
+      "side": 1,
+      "message": "Do we want to create a new pipeline for queen branch?\n\nI remember last time we decided to trigger everything - stable4 and older in one pipeline.\n\nIf queen has its own separate pipeline, why we are clubbing stein and rocky in openstack-periodic-integration-stable4-5.\n\nIn long term I think we would reducing our coverage for queen/rocky/stein .. so would be good to merge stable4 and older in one pipeline in the future.\n\nI am okay with this change if the reason of creating \" openstack-periodic-integration-stable6:\" is because of many number of jobs in  openstack-periodic-integration-stable4-5 in case of clubbing.",
+      "range": {
+        "startLine": 5,
+        "startChar": 4,
+        "endLine": 5,
+        "endChar": 42
+      },
+      "revId": "4e89e0b0a8e2e9a0ca27fe0687ff40bbfcade3a8",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
