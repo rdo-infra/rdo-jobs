@@ -281,6 +281,17 @@
         nodes: []
 
 - nodeset:
+    name: upstream-centos-8-psi-public
+    nodes:
+      - name: primary
+        label: upstream-centos-8-psi-public
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
+- nodeset:
     name: single-centos-8-node-vexxhost
     nodes:
       - name: primary
