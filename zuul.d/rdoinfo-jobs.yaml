@@ -323,6 +323,7 @@
       buildcontainers_override_repos: current-tripleo
       buildcontainers_version_hash: cloudsig-stein
       buildcontainers_venv: false
+      setup_docker_registry: true
       featureset_override:
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
@@ -419,6 +420,7 @@
       buildcontainers_override_repos: current-tripleo
       buildcontainers_version_hash: cloudsig-train
       buildcontainers_venv: false
+      setup_docker_registry: true
       featureset_override:
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
