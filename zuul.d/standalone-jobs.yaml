@@ -478,6 +478,11 @@
     vars:
       featureset: '056'
       release: master
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'environments/docker-ha.yaml'
+          - 'environments/podman.yaml'
 
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-master
