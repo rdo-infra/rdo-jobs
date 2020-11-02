@@ -881,6 +881,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-component-master
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-master
+    nodeset: tripleo-ovb-centos-8-primary-vexxhost
     abstract: true
     vars: *component_vars_ovb
 
@@ -1013,7 +1014,6 @@
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-train
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-master
     override-checkout: "stable/train"
-    nodeset: tripleo-ovb-centos-8-primary-vexxhost
     vars:
       component: security
       release: train
