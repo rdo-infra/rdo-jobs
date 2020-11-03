@@ -764,6 +764,9 @@
 - job:
     name: validate-buildsys-tags-wallaby-testing-puppet-scenario003-centos8
     parent: validate-buildsys-tags-wallaby-testing-centos8-base
+    # set non-voting until https://review.opendev.org/#/c/759673/ is merged
+    # and we can get other puppet-promotion
+    voting: false
     vars:
       scenario: scenario003
 
