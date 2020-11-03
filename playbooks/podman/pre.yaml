@@ -54,9 +54,9 @@
           yum install -y btrfs-progs-devel
       # WARNING: Before asking about pure ansible approach, feel free to update the PR yourself
       # NOTE: This code should not be part of the CI/CD job definition, it
-      # should be taken care by libpod Makefile.
+      # should be taken care by podman Makefile.
 
-    # Note(chkumar): Once https://github.com/containers/libpod/issues/6226
+    # Note(chkumar): Once https://github.com/containers/podman/issues/6226
     - name: Workaround for Fedora 31 podman version
       when: ansible_distribution == "Fedora"
       become: true
