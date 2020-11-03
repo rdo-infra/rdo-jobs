@@ -10,7 +10,7 @@
     - name: Copy the artifact
       become: true
       synchronize:
-        src: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}/build/buildset/"
+        src: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/podman'].src_dir }}/build/buildset/"
         dest: "{{ zuul.executor.log_root }}/buildset"
         mode: pull
         verify_host: true
