@@ -8,63 +8,13 @@
         - periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-train-upload:
             dependencies:
               - periodic-tripleo-centos-7-train-containers-build-push
-        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-train:
-            dependencies:
-              - periodic-tripleo-centos-7-train-containers-build-push
-        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-train:
-            dependencies:
-              - periodic-tripleo-centos-7-train-containers-build-push
-        - periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-train:
-            dependencies:
-              - periodic-tripleo-centos-7-train-containers-build-push
-        - periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-train:
-            dependencies:
-              - periodic-tripleo-centos-7-train-containers-build-push
         - periodic-tripleo-ci-centos-7-undercloud-containers-train:
             dependencies:
               - periodic-tripleo-centos-7-train-containers-build-push
-        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-train:
-            dependencies:
-              - periodic-tripleo-centos-7-train-containers-build-push
-        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-train:
-            dependencies:
-              - periodic-tripleo-centos-7-train-containers-build-push
         - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-train:
+            nodeset: two-centos-7-nodes-vexxhost
             dependencies:
-              - periodic-tripleo-centos-7-train-containers-build-push
-        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-train:
-            dependencies:
-              - periodic-tripleo-centos-7-train-containers-build-push
-        - periodic-tripleo-ci-centos-7-ovb-1ctlr_1cellctrl_1comp-featureset063-train:
-            dependencies:
-              - periodic-tripleo-centos-7-train-containers-build-push
-        - periodic-tripleo-ci-centos-7-standalone-train:
-            dependencies:
-              - periodic-tripleo-centos-7-train-containers-build-push
-        - periodic-tripleo-ci-centos-7-standalone-full-tempest-api-train:
-            dependencies:
-              - periodic-tripleo-centos-7-train-containers-build-push
-        - periodic-tripleo-ci-centos-7-standalone-full-tempest-scenario-train:
-            dependencies:
-              - periodic-tripleo-centos-7-train-containers-build-push
-        - periodic-tripleo-ci-centos-7-scenario001-standalone-train:
-            dependencies:
-              - periodic-tripleo-centos-7-train-containers-build-push
-        - periodic-tripleo-ci-centos-7-scenario002-standalone-train:
-            dependencies:
-              - periodic-tripleo-centos-7-train-containers-build-push
-        - periodic-tripleo-ci-centos-7-scenario003-standalone-train:
-            dependencies:
-              - periodic-tripleo-centos-7-train-containers-build-push
-        - periodic-tripleo-ci-centos-7-scenario004-standalone-train:
-            dependencies:
-              - periodic-tripleo-centos-7-train-containers-build-push
-        - periodic-tripleo-ci-centos-7-scenario007-standalone-train:
-            dependencies:
-              - periodic-tripleo-centos-7-train-containers-build-push
-        - periodic-tripleo-ci-centos-7-scenario010-standalone-train:
-            dependencies:
-              - periodic-tripleo-centos-7-train-containers-build-push
+              - periodic-tripleo-centos-7-train-containers-build-push                
         - periodic-tripleo-ci-centos-7-standalone-upgrade-train:
             dependencies:
               - periodic-tripleo-centos-7-train-containers-build-push
