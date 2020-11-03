@@ -6,7 +6,7 @@
       # Needed here to avoid a post failure when make package-install fails
       become: true
       file:
-        path: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}/build/buildset"
+        path: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/podman'].src_dir }}/build/buildset"
         state: directory
         recurse: true
 
@@ -15,13 +15,13 @@
       become: true
       shell:
         # running podman info is essential to avoid a bug like:
-        # https://github.com/containers/libpod/issues/4665
+        # https://github.com/containers/podman/issues/4665
         cmd: |
           set -euo pipefail
           make package-install
           podman version
           podman info  --log-level debug
-        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}"
+        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/podman'].src_dir }}"
       changed_when: true
       # go build often fails due to networking
       register: result
@@ -40,6 +40,6 @@
             cp -l ~/rpmbuild/RPMS/*/*.rpm .
             createrepo .
             popd
-        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/libpod'].src_dir }}"
+        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/podman'].src_dir }}"
       args:
         warn: false

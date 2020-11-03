@@ -16,7 +16,7 @@
     required-projects:
       # without options, the branch of the PR is used for the required-projects
       - name: opendev.org/openstack/tripleo-heat-templates
-      - name: github.com/containers/libpod
+      - name: github.com/containers/podman
 
 - job:
     name: podman-package-centos-7
@@ -45,7 +45,7 @@
     voting: false
     run: playbooks/podman/install-podman-rpm.yaml
     required-projects:
-      - name: github.com/containers/libpod
+      - name: github.com/containers/podman
     vars:
       featureset: '052'
       release: master
@@ -67,7 +67,7 @@
     branches: ^master$
     run: playbooks/podman/install-podman-rpm.yaml
     required-projects:
-      - name: github.com/containers/libpod
+      - name: github.com/containers/podman
     vars:
       featureset: '052'
       release: master
@@ -83,7 +83,7 @@
     voting: false
     run: playbooks/podman/install-podman-rpm.yaml
     required-projects:
-      - name: github.com/containers/libpod
+      - name: github.com/containers/podman
     vars:
       featureset: '052'
       release: master
@@ -104,7 +104,7 @@
     branches: ^master$
     run: playbooks/podman/install-podman-rpm.yaml
     required-projects:
-      - name: github.com/containers/libpod
+      - name: github.com/containers/podman
     vars:
       featureset: '052'
       release: master
