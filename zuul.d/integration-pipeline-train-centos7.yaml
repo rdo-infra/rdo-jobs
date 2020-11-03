@@ -27,12 +27,6 @@
             nodeset: upstream-centos-7-vexxhost
             dependencies:
               - periodic-tripleo-centos-7-train-containers-build-push
-        - periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-train:
-            vars:
-              cloud_name: vexxhost
-            nodeset: upstream-centos-7-vexxhost
-            dependencies:
-              - periodic-tripleo-centos-7-train-containers-build-push
         - periodic-tripleo-ci-centos-7-undercloud-containers-train:
             nodeset: single-centos-7-node-vexxhost
             dependencies:
@@ -59,12 +53,6 @@
               - periodic-tripleo-centos-7-train-containers-build-push
         - periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-train:
             nodeset: single-centos-7-node-vexxhost
-            dependencies:
-              - periodic-tripleo-centos-7-train-containers-build-push
-        - periodic-tripleo-ci-centos-7-ovb-1ctlr_1cellctrl_1comp-featureset063-train:
-            vars:
-              cloud_name: vexxhost
-            nodeset: upstream-centos-7-vexxhost
             dependencies:
               - periodic-tripleo-centos-7-train-containers-build-push
         - periodic-tripleo-ci-centos-7-standalone-train:

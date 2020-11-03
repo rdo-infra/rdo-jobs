@@ -585,14 +585,6 @@
       release: master
 
 - job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-train
-    parent: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-master
-    override-checkout: "stable/train"
-    vars:
-      branch_override: "stable/train"
-      release: train
-
-- job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-stein
     parent: tripleo-ci-base-ovb-periodic
     timeout: 18000
@@ -717,13 +709,6 @@
       nodes: 1ctlr_1cellctrl_1comp
       featureset: '063'
       release: master
-
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1cellctrl_1comp-featureset063-train
-    parent: periodic-tripleo-ci-centos-7-ovb-1ctlr_1cellctrl_1comp-featureset063-master
-    vars:
-      branch_override: "stable/train"
-      release: train
 
 ##################################################################
 #################### CENTOS-8 PERIODIC JOBS ######################
