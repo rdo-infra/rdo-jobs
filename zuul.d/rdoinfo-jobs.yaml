@@ -364,6 +364,7 @@
       branch_override: "cloudsig/victoria"
       rdoinfo_build_containers: false
       build_container_images: true
+      containers_base_image: "ubi8:8.2"
       use_buildah: true
       kolla_base_pull: true
       kolla_base_tag: 8
@@ -415,6 +416,7 @@
       branch_override: "cloudsig/ussuri"
       rdoinfo_build_containers: false
       build_container_images: true
+      containers_base_image: "ubi8:8.2"
       use_buildah: true
       kolla_base_pull: true
       kolla_base_tag: 8
@@ -690,6 +692,7 @@
       rdoinfo_phase: testing
       rdoinfo_build_containers: false
       build_container_images: true
+      containers_base_image: "ubi8:8.2"
       use_buildah: true
       kolla_base_pull: true
       kolla_base_tag: 8
