@@ -205,6 +205,10 @@
     run: playbooks/run-distgit.yaml
     vars:
       release: master
+      playbooks:
+        - quickstart.yml
+        - multinode-undercloud.yml
+        - multinode-validate.yml
 
 # Multinode Container job
 
