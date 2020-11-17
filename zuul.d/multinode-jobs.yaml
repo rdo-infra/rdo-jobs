@@ -31,6 +31,8 @@
     vars:
       nodes: 1ctlr
       featureset: '016'
+      playbooks:
+        - multinode.yml
 
 - job:
     name: tripleo-ci-centos-7-multinode-1ctlr-featureset017
@@ -39,6 +41,8 @@
     vars:
       nodes: 1ctlr
       featureset: '017'
+      playbooks:
+        - multinode.yml
 
 - job:
     name: tripleo-ci-centos-7-multinode-1ctlr-featureset018
@@ -47,6 +51,8 @@
     vars:
       nodes: 1ctlr
       featureset: '018'
+      playbooks:
+        - multinode.yml
 
 - job:
     name: tripleo-ci-centos-7-multinode-1ctlr-featureset019
@@ -55,6 +61,8 @@
     vars:
       nodes: 1ctlr
       featureset: '019'
+      playbooks:
+        - multinode.yml
 
 # legacy-tripleo-ci-centos-7-containers-multinode-upgrades-queens
 - job:
@@ -65,6 +73,8 @@
     vars:
       nodes: 1ctlr
       featureset: '040'
+      playbooks:
+        - multinode.yml
       release: queens
       extra_tags:
         - overcloud-upgrade
@@ -77,6 +87,8 @@
     vars:
       nodes: 1ctlr
       featureset: '037'
+      playbooks:
+        - multinode.yml
       extra_tags:
         - overcloud-update
 
@@ -103,6 +115,8 @@
     vars:
       nodes: 1ctlr
       featureset: '040'
+      playbooks:
+        - multinode.yml
       extra_tags:
         - overcloud-upgrade
 
@@ -115,6 +129,8 @@
     vars:
       nodes: 1ctlr
       featureset: '051'
+      playbooks:
+        - multinode.yml
       extra_tags:
         - overcloud-upgrade
 
@@ -128,6 +144,8 @@
     vars:
       nodes: 1ctlr
       featureset: '040'
+      playbooks:
+        - multinode.yml
       extra_tags:
         - overcloud-upgrade
 
@@ -353,6 +371,8 @@
     vars:
       nodes: 1ctlr
       featureset: '030'
+      playbooks:
+        - multinode.yml
       release: master
 
 - job:
@@ -427,6 +447,8 @@
     vars:
       nodes: 1ctlr
       featureset: '037'
+      playbooks:
+        - multinode.yml
       release: master
       extra_tags:
         - overcloud-update
@@ -446,6 +468,8 @@
     vars:
       nodes: 1ctlr
       featureset: '037'
+      playbooks:
+        - multinode.yml
       branch_override: "stable/stein"
       release: stein
       extra_tags:
@@ -459,6 +483,8 @@
     vars:
       nodes: 1ctlr
       featureset: '037'
+      playbooks:
+        - multinode.yml
       branch_override: "stable/rocky"
       release: rocky
       extra_tags:
@@ -472,6 +498,8 @@
     vars:
       nodes: 1ctlr
       featureset: '037'
+      playbooks:
+        - multinode.yml
       branch_override: "stable/queens"
       release: queens
       extra_tags:
@@ -497,6 +525,8 @@
     vars: &fs038_vars
       nodes: 1ctlr
       featureset: '038'
+      playbooks:
+        - multinode.yml
       branch_override: "stable/queens"
       release: queens
       extra_tags:
