@@ -46,6 +46,29 @@
       "revId": "d15a7e87a8511a832296277b2e7a36085aa1080c",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f41c933_8b9ae4ba",
+        "filename": "zuul.d/multinode-jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2020-11-18T08:39:31Z",
+      "side": 1,
+      "message": "ideally you could have included these in your test run for sanity check @ https://review.rdoproject.org/r/#/c/25325/\n\nbut\n\nit *should* be ok... https://opendev.org/openstack/tripleo-quickstart-extras/src/commit/385fc94927c2d69ad2534ed448e015fea5f63e91/playbooks/multinode.yml#L6-L7\n\nit has the\n\n- import_playbook: multinode-overcloud-update.yml\n- import_playbook: multinode-overcloud-upgrade.yml\n\n\nwhich is what these jobs are using so should be fine.",
+      "range": {
+        "startLine": 445,
+        "startChar": 55,
+        "endLine": 445,
+        "endChar": 68
+      },
+      "revId": "d15a7e87a8511a832296277b2e7a36085aa1080c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
