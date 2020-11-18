@@ -45,6 +45,10 @@
         - periodic-tripleo-ci-centos-8-containers-undercloud-minion-ussuri:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-ussuri
+        ## singlenode
+        - periodic-tripleo-ci-centos-8-singlenode-featureset050-upgrades-ussuri:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-ussuri
         ## standalone
         - periodic-tripleo-ci-centos-8-standalone-ussuri:
             dependencies:
