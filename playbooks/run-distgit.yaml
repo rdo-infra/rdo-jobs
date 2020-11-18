@@ -82,7 +82,6 @@
         name: run-test
       vars:
         run_test_role_vars:
-          standalone_container_ceph_updates: true
           update_containers: true
           artg_skipped_projects:
             - rdoinfo
