@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c66ed7a5_7b7b40a5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2020-11-18T07:23:23Z",
+      "side": 1,
+      "message": "this is specifically about the undercloud upgrade jobs",
+      "range": {
+        "startLine": 7,
+        "startChar": 15,
+        "endLine": 7,
+        "endChar": 29
+      },
+      "revId": "42293a0e73ebc24e288a043233e59a28ed2c9aaa",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "012e764d_0fbff1e1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2020-11-18T07:23:23Z",
+      "side": 1,
+      "message": "not on master \n\n\nhttps://github.com/openstack/tripleo-ci/blob/1b36059ce90106cf54c4ddc2af5683fc79005250/zuul.d/undercloud-jobs.yaml#L188\n\nhttps://github.com/openstack/tripleo-ci/blob/master/zuul.d/multinode-jobs.yaml#L904",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 32
+      },
+      "revId": "42293a0e73ebc24e288a043233e59a28ed2c9aaa",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e33fb7b6_5ecc6199",
+        "filename": "zuul.d/integration-pipeline-main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2020-11-18T07:23:23Z",
+      "side": 1,
+      "message": "not sure if we want to have them here... depends on how stable the master periodics are - let\u0027s discuss today?\n\nHmm, perhaps we add them in here by default and then we can decide if we will use them in the promotion criteria as a separate patch.",
+      "range": {
+        "startLine": 52,
+        "startChar": 10,
+        "endLine": 52,
+        "endChar": 18
+      },
+      "revId": "42293a0e73ebc24e288a043233e59a28ed2c9aaa",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "161f495c_bfb1703c",
+        "filename": "zuul.d/undercloud-jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2020-11-18T07:23:23Z",
+      "side": 1,
+      "message": "this is a spectacular example of the terrible naming we have on our periodic jobs and we should change it soon.\n\nI don\u0027t mean you should do it here I think it is part of a wider change we said we\u0027d do at some point... re-aligning the periodic names with the upstream ones.\n\nSO here, \nperiodic-tripleo-ci-centos-8-singlenode-featureset050-upgrades-ussuri\nis the equivalent for\ntripleo-ci-centos-8-undercloud-upgrade-ussuri",
+      "range": {
+        "startLine": 91,
+        "startChar": 20,
+        "endLine": 91,
+        "endChar": 75
+      },
+      "revId": "42293a0e73ebc24e288a043233e59a28ed2c9aaa",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
