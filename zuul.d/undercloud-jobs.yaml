@@ -88,6 +88,22 @@
       release: train
 
 - job:
+    name: periodic-tripleo-ci-centos-8-singlenode-featureset050-upgrades-ussuri
+    parent: periodic-tripleo-ci-centos-8-singlenode-featureset050-upgrades-master
+    override-checkout: 'stable/ussuri'
+    vars:
+      branch_override: "stable/ussuri"
+      release: ussuri
+
+- job:
+    name: periodic-tripleo-ci-centos-8-singlenode-featureset050-upgrades-victoria
+    parent: periodic-tripleo-ci-centos-8-singlenode-featureset050-upgrades-master
+    override-checkout: 'stable/victoria'
+    vars:
+      branch_override: "stable/victoria"
+      release: victoria
+
+- job:
     name: periodic-tripleo-ci-centos-8-singlenode-featureset050-upgrades-master
     parent: tripleo-ci-base-singlenode-periodic-centos-8
     nodeset: single-centos-8-node-vexxhost
@@ -97,3 +113,4 @@
       release: master
       extra_tags:
         - undercloud-upgrade
+
