@@ -72,7 +72,7 @@
     name: tripleo-ovb-centos-7-primary
     nodes:
       - name: primary
-        label: tripleo-ovb-centos-7
+        label: upstream-centos-7-vexxhost
     groups:
       - name: switch
         nodes: []
@@ -141,9 +141,9 @@
     name: upstream-centos-7-2-node
     nodes:
       - name: primary
-        label: upstream-centos-7
+        label: upstream-centos-7-vexxhost
       - name: secondary
-        label: upstream-centos-7
+        label: upstream-centos-7-vexxhost
     groups:
       - name: subnodes
         nodes:
@@ -153,9 +153,9 @@
     name: two-centos-7-nodes
     nodes:
       - name: primary
-        label: upstream-centos-7
+        label: upstream-centos-7-vexxhost
       - name: secondary
-        label: upstream-centos-7
+        label: upstream-centos-7-vexxhost
     groups:
       - name: switch
         nodes:
@@ -171,7 +171,7 @@
     name: single-centos-7-node
     nodes:
       - name: primary
-        label: upstream-centos-7
+        label: upstream-centos-7-vexxhost
     groups:
       - name: switch
         nodes:
@@ -183,7 +183,7 @@
     name: single-centos-8-node
     nodes:
       - name: primary
-        label: upstream-centos-8
+        label: upstream-centos-8-vexxhost
     groups:
       - name: switch
         nodes:
@@ -195,7 +195,7 @@
     name: single-centos-8-node-standalone
     nodes:
       - name: primary
-        label: upstream-centos-8
+        label: upstream-centos-8-vexxhost
     groups:
       - name: switch
         nodes: []
@@ -206,9 +206,9 @@
     name: two-centos-8-nodes
     nodes:
       - name: primary
-        label: upstream-centos-8
+        label: upstream-centos-8-vexxhost
       - name: secondary
-        label: upstream-centos-8
+        label: upstream-centos-8-vexxhost
     groups:
       - name: switch
         nodes:
@@ -224,7 +224,7 @@
     name: tripleo-ovb-centos-8-primary
     nodes:
       - name: primary
-        label: tripleo-ovb-centos-8
+        label: tripleo-ovb-centos-8-vexxhost
     groups:
       - name: switch
         nodes: []
@@ -259,7 +259,7 @@
     # status: deprecated, use rdo-centos-7 instead
     nodes:
       - name: upstream-centos-7
-        label: upstream-centos-7
+        label: upstream-centos-7-vexxhost
 
 - nodeset:
     name: centos-8
