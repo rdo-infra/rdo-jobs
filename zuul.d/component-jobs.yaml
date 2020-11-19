@@ -835,9 +835,7 @@
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master
     abstract: true
-    nodeset: upstream-centos-8-vexxhost
     vars: &component_vars_ovb
-      cloud_name: vexxhost
       component: component
       release: master
       featureset_override:
@@ -881,7 +879,6 @@
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-component-master
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-master
-    nodeset: tripleo-ovb-centos-8-primary-vexxhost
     abstract: true
     vars: *component_vars_ovb
 
@@ -1024,7 +1021,6 @@
     name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-component-master
     parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-master
     abstract: true
-    nodeset: two-centos-8-nodes-vexxhost
     vars: &component_vars_multinode
       component: component
       release: master
@@ -1215,7 +1211,6 @@
     name: periodic-tripleo-ci-centos-8-standalone-component-master
     parent: periodic-tripleo-ci-centos-8-standalone-master
     abstract: true
-    nodeset: single-centos-8-node-vexxhost
     vars: &component_vars_standalone
       component: component
       release: master
@@ -2640,7 +2635,6 @@
     name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
     parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-master
     abstract: true
-    nodeset: two-centos-8-nodes-vexxhost
     vars: &component_vars_multinode_updates
       component: component
       release: master
