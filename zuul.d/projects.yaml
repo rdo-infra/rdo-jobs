@@ -85,14 +85,13 @@
             files: *ceph
             dependencies:
               - tripleo-centos-8-ceph-ansible-integration-train
-        - podman-package-rhel-8: &podman
+        - podman-package-centos-8: &podman
             files:
               - zuul.d/podman.yaml
               - playbooks/podman/.*
             # until we fix https://github.com/containers/podman/issues/4665
             voting: false
         - podman-package-centos-7: *podman
-        - podman-package-centos-8: *podman
         - podman-package-fedora-31: *podman
         - tripleo-podman-integration-centos-8-scenario000-standalone:
             files:
