@@ -84,7 +84,6 @@
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035
     parent: tripleo-ci-base-ovb-rdo
     branches: ^(stable/(newton|ocata|pike|queens|rocky|stein|train)).*$
-    nodeset: upstream-centos-7-vexxhost
     vars:
       nodes: 3ctlr_1comp
       featureset: '035'
@@ -94,7 +93,6 @@
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035
     parent: tripleo-ci-base-ovb-rdo-centos-8
     branches: ^(?!stable/(newton|ocata|pike|queens|rocky|stein|train)).*$
-    nodeset: upstream-centos-8-vexxhost
     vars:
       nodes: 3ctlr_1comp
       featureset: '035'
@@ -297,7 +295,6 @@
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-vexxhost
     parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
-    nodeset: upstream-centos-7-vexxhost
     timeout: 18000
     vars:
       cloud_name: vexxhost
@@ -305,7 +302,6 @@
 - job:
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-vexxhost
     parent: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
-    nodeset: upstream-centos-8-vexxhost
     timeout: 18000
     vars:
       cloud_name: vexxhost

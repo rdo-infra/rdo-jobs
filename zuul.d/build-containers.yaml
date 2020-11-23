@@ -48,7 +48,6 @@
 - job:
     name: tripleo-build-containers-centos-8-base
     parent: tripleo-build-containers-base-with-files
-    nodeset: single-centos-8-node
     required-projects:
       - opendev.org/openstack/kolla
       - opendev.org/openstack/python-tripleoclient

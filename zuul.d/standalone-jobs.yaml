@@ -407,7 +407,6 @@
 - job:
     name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master
     parent: tripleo-ci-base-standalone-periodic-centos-8
-    nodeset: single-centos-8-node-vexxhost
     vars:
       tags:
         - build
@@ -487,7 +486,6 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-master
     parent: tripleo-ci-base-standalone-periodic-centos-8
-    nodeset: two-centos-8-nodes-vexxhost
     required-projects:
       - opendev.org/x/tripleo-ipa
       - opendev.org/openstack/tripleo-ansible
