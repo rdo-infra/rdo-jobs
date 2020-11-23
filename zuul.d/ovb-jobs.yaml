@@ -56,7 +56,6 @@
 - job:
     name: tripleo-ci-rhel-8-ovb-3ctlr_1comp-featureset001
     parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
-    nodeset: tripleo-ovb-rhel-8-primary
     branches: ^master$
     vars:
       featureset_override:
@@ -65,7 +64,6 @@
 - job:
     name: tripleo-ci-rhel-8-ovb-3ctlr_1comp-featureset001-train
     parent: tripleo-ci-rhel-8-ovb-3ctlr_1comp-featureset001
-    nodeset: tripleo-ovb-rhel-8-primary
     override-checkout: "stable/train"
     branches: ^master$
     voting: false
@@ -84,7 +82,6 @@
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035
     parent: tripleo-ci-base-ovb-rdo
     branches: ^(stable/(newton|ocata|pike|queens|rocky|stein|train)).*$
-    nodeset: upstream-centos-7-vexxhost
     vars:
       nodes: 3ctlr_1comp
       featureset: '035'
@@ -94,7 +91,6 @@
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035
     parent: tripleo-ci-base-ovb-rdo-centos-8
     branches: ^(?!stable/(newton|ocata|pike|queens|rocky|stein|train)).*$
-    nodeset: upstream-centos-8-vexxhost
     vars:
       nodes: 3ctlr_1comp
       featureset: '035'
@@ -297,7 +293,6 @@
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-vexxhost
     parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
-    nodeset: upstream-centos-7-vexxhost
     timeout: 18000
     vars:
       cloud_name: vexxhost
@@ -305,7 +300,6 @@
 - job:
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-vexxhost
     parent: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
-    nodeset: upstream-centos-8-vexxhost
     timeout: 18000
     vars:
       cloud_name: vexxhost
@@ -458,7 +452,6 @@
 - job:
     name: periodic-tripleo-ci-rhel-8-ovb-3ctlr_1comp-featureset001-master
     parent: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
-    nodeset: tripleo-ovb-rhel-8-primary
     vars:
       featureset_override:
         to_build: false
