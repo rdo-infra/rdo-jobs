@@ -22,6 +22,15 @@
             vars:
               tox_environment:
                 PYTEST_REQPASS: 1
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-clients-master:
+            vars:
+              nodes: 2ctlr
+              playbooks:
+                - quickstart.yml
+                - multinode-undercloud.yml
+                - multinode-overcloud-prep.yml
+                - multinode-multiple-overcloud.yml
+                - multinode-validate.yml
         - tripleo-centos-8-ceph-integration-master:
             files: &ceph
               - ^playbooks/tripleo-ceph-integration.*$
