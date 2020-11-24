@@ -1,12 +1,27 @@
+- job:
+    name: tripleo-ci-centos-8-content-provider-1
+    parent: tripleo-ci-centos-8-content-provider
+    nodeset: single-centos-8-node-vexxhost
+
+- job:
+    name: tripleo-ci-centos-8-content-provider-2
+    parent: tripleo-ci-centos-8-content-provider
+    nodeset: single-centos-8-node-vexxhost
+
+- job:
+    name: tripleo-ci-centos-8-content-provider-3
+    parent: tripleo-ci-centos-8-content-provider
+    nodeset: single-centos-8-node-vexxhost
+
+- job:
+    name: tripleo-ci-centos-8-content-provider-4
+    parent: tripleo-ci-centos-8-content-provider
+    nodeset: single-centos-8-node-vexxhost
+
 - project:
     check:
       jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+        - tripleo-ci-centos-8-content-provider-1
+        - tripleo-ci-centos-8-content-provider-2
+        - tripleo-ci-centos-8-content-provider-3
+        - tripleo-ci-centos-8-content-provider-4
