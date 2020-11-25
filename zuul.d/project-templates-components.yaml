@@ -185,6 +185,9 @@
         - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-upgrade-tripleo-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-tripleo-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-tripleo-promote-consistent-to-component-ci-testing
     openstack-component-tempest:
       jobs:
@@ -415,6 +418,9 @@
         - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tripleo-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-upgrade-tripleo-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-tripleo-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-victoria-component-tripleo-promote-consistent-to-component-ci-testing
     openstack-component-tempest:
       jobs:
@@ -637,6 +643,9 @@
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-tripleo-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tripleo-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-upgrade-tripleo-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-tripleo-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-ussuri-component-tripleo-promote-consistent-to-component-ci-testing
