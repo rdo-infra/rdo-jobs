@@ -16,6 +16,23 @@
       "revId": "4580307e77f1791107a2eda2570ab6c182a0d710",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "52cb9574_8793e448",
+        "filename": "zuul.d/component-jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2683,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2020-11-25T16:29:45Z",
+      "side": 1,
+      "message": "i think we\u0027ll need to add featureset here too \n\nthe base doesn\u0027t have it so not inherited from https://github.com/openstack/tripleo-ci/blob/4b3638d47c0602f930b74615fd93395acbef3903/zuul.d/base.yaml#L447\n\n\" https://logserver.rdoproject.org/01/31201/1/check/periodic-tripleo-ci-centos-8-standalone-upgrade-tripleo-master/300174b/job-output.txt \" \n\n                * 2020-11-25 14:44:41.688468 | primary |   \"msg\": \"AnsibleUndefinedVariable: \u0027featureset\u0027 is undefined\"",
+      "revId": "4580307e77f1791107a2eda2570ab6c182a0d710",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
