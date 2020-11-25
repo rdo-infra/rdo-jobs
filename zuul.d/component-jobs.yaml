@@ -2675,3 +2675,35 @@
       release: ussuri
       branch_override: 'stable/ussuri'
       component: tripleo
+
+# standalone-upgrade
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-upgrade-component-master
+    parent: tripleo-ci-base-standalone-upgrade-periodic-centos-8
+    abstract: true
+    vars: *component_vars_standalone
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-upgrade-tripleo-master
+    parent: periodic-tripleo-ci-centos-8-standalone-upgrade-component-master
+    vars:
+      release: master
+      component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-upgrade-tripleo-victoria
+    parent: periodic-tripleo-ci-centos-8-standalone-upgrade-component-master
+    override-checkout: "stable/victoria"
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-upgrade-tripleo-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-upgrade-component-master
+    override-checkout: "stable/ussuri"
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: tripleo
