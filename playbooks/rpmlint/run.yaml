@@ -268,8 +268,11 @@
 
           # Exceptions for openstack-keystone
           addFilter("openstack-keystone.noarch: E: non-standard-dir-perm /etc/keystone.* 750")
-          EOF
 
+          # Exceptions for os-net-config (temporary for workaround)
+          addFilter("os-net-config.noarch: .*s-net-config-sriov-bind.*)
+          
+          EOF
 
           # if there is no previous package, it means that is new
           # packages so just run rpmlint on the packages and exit
