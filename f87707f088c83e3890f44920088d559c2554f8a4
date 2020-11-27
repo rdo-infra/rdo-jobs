@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56969c24_f3381c4d",
+        "filename": "zuul.d/component-jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1225,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2020-11-27T13:10:57Z",
+      "side": 1,
+      "message": "this causes problems for the case of the upgrade jobs.\n\nfor example standalone-upgrade-victoria fails like: \n\n\t\t\t* https://logserver.rdoproject.org/01/31201/1/check/periodic-tripleo-ci-centos-8-standalone-upgrade-tripleo-victoria/0a1982b/logs/undercloud/home/zuul/install_packages.sh.log.txt.gz\n\t\t\t* 2020-11-26 12:10:57 |  Problem: cannot install the best candidate for the job\n\t\t2020-11-26 12:10:57 |   - nothing provides python3-openstacksdk \u003e\u003d 0.48.0 needed by python3-tripleoclient-14.0.1-0.20201112144218.c6461d1.el8.noarch\n\n\nThe add_repos here means that we have a victoria component-ci-testing:\n\n        * https://logserver.rdoproject.org/01/31201/1/check/periodic-tripleo-ci-centos-8-standalone-upgrade-tripleo-victoria/0a1982b/logs/undercloud/etc/yum.repos.d/tripleo-component.repo.txt.gz\n        * baseurl\u003dhttps://trunk.rdoproject.org/centos8-victoria/component/tripleo/component-ci-testing\n\n\nbut during the installation we are using ussuri repos for everything else:\n\n        * https://logserver.rdoproject.org/01/31201/1/check/periodic-tripleo-ci-centos-8-standalone-upgrade-tripleo-victoria/0a1982b/logs/undercloud/etc/yum.repos.d/delorean.repo.txt.gz\n        * baseurl\u003dhttp://mirror.regionone.vexxhost-nodepool-tripleo.rdoproject.org:8080/rdo/centos8-ussuri/component/tripleo/27/7c/277cfee98b5cfa2b89489fedb7ac49334855e2ab_268a3de3\n\nThe failing version of tripleoclient is coming from the component-ci-testing repo:         \n\n* https://trunk.rdoproject.org/centos8-victoria/component/tripleo/component-ci-testing/ * python3-tripleoclient-14.0.1-0.20201112144218.c6461d1.el8.noarch.rpm\n\nbut latest in delorean repo (clients component) for openstacksdk is:         \n        \n        * http://mirror.regionone.vexxhost-nodepool-tripleo.rdoproject.org:8080/rdo/centos8-ussuri/component/clients/8b/35/8b35c64fdac1b46bc10ae4b489914df7298944ab_4432ca02/        * python3-openstacksdk-tests-0.46.0-0.20200424132926.fc3b3d0.el8.noarch.rpm\n\nand we need the one from victoria to get new enough to satisfy requirement:         \n                \n        * http://mirror.regionone.vexxhost-nodepool-tripleo.rdoproject.org:8080/rdo/centos8-victoria/component/clients/current-tripleo/\n        * python-openstacksdk-0.50.0-0.20200928104615.9fd923e.el8.src.rpm",
+      "range": {
+        "startLine": 1219,
+        "startChar": 5,
+        "endLine": 1225,
+        "endChar": 32
+      },
+      "revId": "f87707f088c83e3890f44920088d559c2554f8a4",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
