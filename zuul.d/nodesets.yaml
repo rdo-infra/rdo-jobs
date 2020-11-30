@@ -132,12 +132,6 @@
           - secondary
 
 - nodeset:
-    name: upstream-rhel-8
-    nodes:
-      - name: upstream-rhel-8
-        label: upstream-rhel-8
-
-- nodeset:
     name: upstream-centos-7-2-node
     nodes:
       - name: primary
@@ -232,29 +226,6 @@
         nodes: []
 
 - nodeset:
-    name: single-rhel-8-node
-    nodes:
-      - name: primary
-        label: upstream-rhel-8
-    groups:
-      - name: switch
-        nodes:
-          - primary
-      - name: peers
-        nodes: []
-
-- nodeset:
-    name: tripleo-ovb-rhel-8-primary
-    nodes:
-      - name: primary
-        label: upstream-rhel-8
-    groups:
-      - name: switch
-        nodes: []
-      - name: peers
-        nodes: []
-
-- nodeset:
     name: centos-7
     # status: deprecated, use rdo-centos-7 instead
     nodes:
@@ -302,58 +273,6 @@
         nodes: []
       - name: peers
         nodes: []
-
-- nodeset:
-    name: upstream-rhel-8-vexxhost
-    nodes:
-      - name: primary
-        label: upstream-rhel-8-vexxhost
-    groups:
-      - name: switch
-        nodes: []
-      - name: peers
-        nodes: []
-
-- nodeset:
-    name: single-rhel-8-node-vexxhost
-    nodes:
-      - name: primary
-        label: upstream-rhel-8-vexxhost
-    groups:
-      - name: switch
-        nodes:
-          - primary
-      - name: peers
-        nodes: []
-
-- nodeset:
-    name: tripleo-ovb-rhel-8-primary-vexxhost
-    nodes:
-      - name: primary
-        label: upstream-rhel-8-vexxhost
-    groups:
-      - name: switch
-        nodes: []
-      - name: peers
-        nodes: []
-
-- nodeset:
-    name: two-rhel-8-nodes-vexxhost
-    nodes:
-      - name: primary
-        label: upstream-rhel-8-vexxhost
-      - name: secondary
-        label: upstream-rhel-8-vexxhost
-    groups:
-      - name: switch
-        nodes:
-          - primary
-      - name: peers
-        nodes:
-          - secondary
-      - name: subnodes
-        nodes:
-          - secondary
 
 - nodeset:
     name: two-centos-8-nodes-vexxhost
