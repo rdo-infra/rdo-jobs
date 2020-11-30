@@ -22,6 +22,30 @@
       "revId": "f87707f088c83e3890f44920088d559c2554f8a4",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "439ea620_1a158a73",
+        "filename": "zuul.d/component-jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1225,
+      "author": {
+        "id": 242
+      },
+      "writtenOn": "2020-11-30T20:50:34Z",
+      "side": 1,
+      "message": "As discussed - should be no issue to add enabled flag on the repo that is true by default and false (override var) in upgrade jobs\n\nSomething like:\n      vars:\n        repo_enable: true\n      add_repos:\n        - type: generic\n          reponame: \"{{ component }}\"\n          filename: \"{{ component }}-component.repo\"\n          priority: 1\n          baseurl: \"https://{{ dlrn_server_url }}/centos8-{{ release }}/component/{{ component }}/component-ci-testing\"\n          update_container: true\n          enabled: \"{{ repo_enable}}\"\n\nThen on upgrade jobs, set repo_enable to false to start\nand edit it later in the job back to true",
+      "parentUuid": "56969c24_f3381c4d",
+      "range": {
+        "startLine": 1219,
+        "startChar": 5,
+        "endLine": 1225,
+        "endChar": 32
+      },
+      "revId": "f87707f088c83e3890f44920088d559c2554f8a4",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
