@@ -10,3 +10,10 @@
         regexp: '.*rhui-cds$'
         line: "38.145.32.241 rhui-cds"
         state: present
+
+    - name: Install Ansible
+      become: true
+      pip:
+        name: ansible
+        version: "{{ ensure_ansible_version|default('latest', true) }}"
+        state: "{{ ensure_ansible_state|default('present', true) }}"
