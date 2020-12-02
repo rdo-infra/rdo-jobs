@@ -1,0 +1,58 @@
+- name: Load RDO releases data
+  # We can't take advantage of include_vars module as it cannot load files from
+  # remote [1]. We cannot use facts script either as Zuul checked out projects
+  # into the working directory for the job, not in ansible controller.
+  # [1] https://github.com/ansible/ansible/issues/58169
+  slurp:
+    src: "{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdoinfo'].src_dir }}/rdo.yml"
+  register: _rdo
+
+- set_fact:
+    _rdo_releases: "{{ (_rdo.content | b64decode | from_yaml).releases }}"
+
+- name: Get RDO releases in extended maintenance
+  set_fact:
+    rdo_ext_maintenance_releases: "{{ _rdo_releases
+                                      | selectattr('status', 'match', '^extended maintenance$')
+                                      | map(attribute='name')
+                                      | reverse
+                                      | list }}"
+
+- name: Get RDO maintained releases
+  set_fact:
+    rdo_maintained_releases: "{{ _rdo_releases
+                                 | selectattr('status', 'match', '^maintained$')
+                                 | map(attribute='name')
+                                 | reverse
+                                 | list }}"
+
+- name: Get RDO master release
+  set_fact:
+    rdo_master_release: "{{ _rdo_releases
+                            | selectattr('status', 'match', '^development$')
+                            | map(attribute='name')
+                            | list }}"
+
+- name: Set a list of all maintained and master RDO releases
+  set_fact:
+    rdo_all_releases: "{{ rdo_master_release
+                          | rdo_releases_ext_maintenance
+                          | union(rdo_releases_maintained)
+                          | union(rdo_master_release)
+                          | list }}"
+
+- name: Pop RDO master release from list
+  set_fact:
+    rdo_master_release: "{{ rdo_master_release | first }}"
+
+- name: Check if RDO maintained and master releases are present
+  fail:
+    msg: "Could not get RDO maintained and master releases from rdoinfo"
+  when:
+    - not rdo_maintained_releases or not rdo_master_release
+
+- debug:
+    var: rdo_all_releases
+
+- debug:
+    var: rdo_master_release
