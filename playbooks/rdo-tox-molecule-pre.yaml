@@ -10,3 +10,10 @@
         regexp: '.*rhui-cds$'
         line: "38.145.32.241 rhui-cds"
         state: present
+
+    - name: Install packages required for job
+      become: true
+      package:
+        name:
+          - ansible
+        state: present
