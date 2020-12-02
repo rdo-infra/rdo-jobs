@@ -3,8 +3,8 @@
     check:
       jobs:
         - rdoinfo-tripleo-master-testing-centos-8-standalone:
-            dependencies:
-              - validate-buildsys-tags
+          # dependencies:
+          #   - validate-buildsys-tags
             voting: false
             files:
               - ^buildsys-tags/cloud8-openstack-wallaby-testing.yml$
