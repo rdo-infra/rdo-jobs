@@ -1,0 +1,39 @@
+# We can't take advantage of include_vars module as it cannot load files from
+# remote [1]. We cannot use facts script either as Zuul checked out projects
+# into the working directory for the job, not in ansible controller.
+# [1] https://github.com/ansible/ansible/issues/58169
+- name: Load RDO releases data
+  slurp:
+    src:  "{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdoinfo'].src_dir }}/rdo.yml"
+  register: rdo
+
+- set_fact:
+    rdo_releases: "{{ (rdo.content | b64decode | from_yaml).releases }}"
+
+- name: Get RDO maintained releases
+  set_fact:
+    releases_maintained: "{{ rdo_releases | selectattr('status', 'match', '^maintained$') | map(attribute='name') | list }}"
+
+- name: Get RDO releases in extended maintenance
+  set_fact:
+    releases_ext_maintenance: "{{ rdo_releases | selectattr('status', 'match', '^extended maintenance$') | map(attribute='name') | list }}"
+
+- name: Get RDO development release
+  set_fact:
+    development_release: "{{ rdo_releases | selectattr('status', 'match', '^development$') | map(attribute='name') | list }}"
+
+- name: Set a list of all maintained and development RDO releases
+  set_fact:
+    releases: "{{ development_release | union(releases_maintained) | union(releases_ext_maintenance) | reverse | list }}"
+
+- name: Check if RDO maintained and development releases are present
+  fail:
+    msg: "Could not get RDO maintained and development releases from rdoinfo"
+  when:
+    - not development_release or not releases
+
+- debug:
+    var: releases
+
+- debug:
+    var: development_release
