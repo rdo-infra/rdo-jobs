@@ -132,7 +132,7 @@
     parent: DLRN-rpmbuild
     voting: false
     vars:
-      tag: 'wallaby-uc'
+      pinned: true
 
 - job:
     name: DLRN-rpmbuild-rpm-packaging-centos
@@ -166,7 +166,7 @@
     name: DLRN-rpmbuild-centos8-pinned
     parent: DLRN-rpmbuild-centos8
     vars:
-      tag: 'wallaby-uc'
+      pinned: true
       centos_version: 'centos8'
 
 - job:
@@ -179,6 +179,7 @@
 
 - job:
     name: rdoinfo-DLRN-check
+    pre-run: playbooks/rdoinfo/DLRN-check-pre.yaml
     run: playbooks/rdoinfo/DLRN-check.yaml
     post-run: playbooks/rdoinfo/DLRN-check-post.yaml
     timeout: 10800
