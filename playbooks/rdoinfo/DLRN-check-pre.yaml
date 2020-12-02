@@ -1,0 +1,5 @@
+- hosts: all
+  tasks:
+    - name: install jmespath for json_query filter
+      pip:
+        name: jmespath
