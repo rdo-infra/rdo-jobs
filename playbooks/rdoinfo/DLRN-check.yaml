@@ -1,6 +1,11 @@
 - hosts: all
   name: playbook for rdoinfo-DLRN-check
   tasks:
+    - name: Load rdoinfo data
+      include_role:
+        name: rdoinfo-data
+        tasks_from: load-releases-status
+
     - name: link rdoinfo dir to /tmp/rdoinfo
       file:
         src: "{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdoinfo'].src_dir }}"
@@ -66,47 +71,22 @@
           . .venv/bin/activate
           pip install rdopkg
 
-          export CENTOS_VERS="{{  centos_version | default('centos7') }}"
-
-          CURRENT_MASTER_TAG="wallaby-uc"
-
-          PACKAGES_UPDATED_MASTER=""
-          PACKAGES_UPDATED_QUEENS=""
-          PACKAGES_UPDATED_ROCKY=""
-          PACKAGES_UPDATED_STEIN=""
-          PACKAGES_UPDATED_TRAIN=""
-          PACKAGES_UPDATED_USSURI=""
-          PACKAGES_UPDATED_VICTORIA=""
+          export CENTOS_VERS="{{ centos_version | default('centos7') }}"
 
           TAGS_DIFF=$(rdopkg info-tags-diff .)
+          RDO_RELEASES="{{ _rdo_releases | rejectattr('status', 'match', '^unmaintained$') | selectattr('repos', 'search', 'el' + centos_version[-1]) | map(attribute='name') | list | join(' ') }}"
+          RDO_MASTER_RELEASE="{{ rdo_master_release }}"
+          RDO_RELEASES=$(echo $RDO_RELEASES | sed "s/${RDO_MASTER_RELEASE}/${RDO_MASTER_RELEASE}-uc/")
+          echo $RDO_RELEASES
 
+          declare -A PACKAGES_UPDATED
           while read line; do
               PKGNAME=$(awk '{print $1}' <<< $line)
-              if [ "${CENTOS_VERS}" = "centos8" ]; then
-                  if [[ -n $(echo "$line" | grep -w $CURRENT_MASTER_TAG) ]]; then
-                      PACKAGES_UPDATED_MASTER="$PACKAGES_UPDATED_MASTER $PKGNAME"
+              for release in $RDO_RELEASES; do
+                  if [[ -n $(echo "$line" | grep -w $release) ]]; then
+                      PACKAGES_UPDATED[$release]+="$PKGNAME "
                   fi
-                  if [[ -n $(echo "$line" | grep -w victoria) ]]; then
-                      PACKAGES_UPDATED_VICTORIA="$PACKAGES_UPDATED_VICTORIA $PKGNAME"
-                  fi
-                  if [[ -n $(echo "$line" | grep -w ussuri) ]]; then
-                      PACKAGES_UPDATED_USSURI="$PACKAGES_UPDATED_USSURI $PKGNAME"
-                  fi
-              fi
-              if [[ -n $(echo "$line" | grep -w train) ]]; then
-                  PACKAGES_UPDATED_TRAIN="$PACKAGES_UPDATED_TRAIN $PKGNAME"
-              fi
-              if [ "${CENTOS_VERS}" = "centos7" ]; then
-                  if [[ -n $(echo "$line" | grep -w stein) ]]; then
-                      PACKAGES_UPDATED_STEIN="$PACKAGES_UPDATED_STEIN $PKGNAME"
-                  fi
-                  if [[ -n $(echo "$line" | grep -w rocky) ]]; then
-                      PACKAGES_UPDATED_ROCKY="$PACKAGES_UPDATED_ROCKY $PKGNAME"
-                  fi
-                  if [[ -n $(echo "$line" | grep -w queens) ]]; then
-                      PACKAGES_UPDATED_QUEENS="$PACKAGES_UPDATED_QUEENS $PKGNAME"
-                  fi
-              fi
+              done
           done <<< "${TAGS_DIFF}"
 
           pushd "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
@@ -114,76 +94,18 @@
           mkdir -p logs
           ret=0
           TIMEOUT="{{ zuul.timeout | default('10800') }}"
-          if [ -n "${PACKAGES_UPDATED_MASTER}" ]; then
-              timeout --signal=SIGKILL $TIMEOUT  {{ ansible_user_dir }}/rdoinfo-DLRN.sh $CURRENT_MASTER_TAG "${PACKAGES_UPDATED_MASTER}" "${CENTOS_VERS}"
-              ret1=$?
-              if [ $ret1 -ne 0 ]; then
-                  ret=$ret1
+          for release in $RDO_RELEASES; do
+              if [ -n "${PACKAGES_UPDATED[$release]}" ]; then
+                  timeout --signal=SIGKILL $TIMEOUT  {{ ansible_user_dir }}/rdoinfo-DLRN.sh $release "${PACKAGES_UPDATED[$release]}" "${CENTOS_VERS}"
+                  ret1=$?
+                  if [ $ret1 -ne 0 ]; then
+                      ret=$ret1
+                  fi
               fi
               # The data/ contents have been archived already, remove to avoid issues with the next branch
               rm -rf data
               sudo rm -rf /var/cache/mock/*
-          fi
-          if [ -n "${PACKAGES_UPDATED_VICTORIA}" ]; then
-              timeout --signal=SIGKILL $TIMEOUT  {{ ansible_user_dir }}/rdoinfo-DLRN.sh victoria "${PACKAGES_UPDATED_VICTORIA}" "${CENTOS_VERS}"
-              ret1=$?
-              if [ $ret1 -ne 0 ]; then
-                  ret=$ret1
-              fi
-              # The data/ contents have been archived already, remove to avoid issues with the next branch
-              rm -rf data
-              sudo rm -rf /var/cache/mock/*
-          fi
-          if [ -n "${PACKAGES_UPDATED_USSURI}" ]; then
-              timeout --signal=SIGKILL $TIMEOUT  {{ ansible_user_dir }}/rdoinfo-DLRN.sh ussuri "${PACKAGES_UPDATED_USSURI}" "${CENTOS_VERS}"
-              ret1=$?
-              if [ $ret1 -ne 0 ]; then
-                  ret=$ret1
-              fi
-              # The data/ contents have been archived already, remove to avoid issues with the next branch
-              rm -rf data
-              sudo rm -rf /var/cache/mock/*
-          fi
-          if [ -n "${PACKAGES_UPDATED_TRAIN}" ]; then
-              timeout --signal=SIGKILL $TIMEOUT {{ ansible_user_dir }}/rdoinfo-DLRN.sh train "${PACKAGES_UPDATED_TRAIN}" "${CENTOS_VERS}"
-              ret1=$?
-              if [ $ret1 -ne 0 ]; then
-                  ret=$ret1
-              fi
-              # The data/ contents have been archived already, remove to avoid issues with the next branch
-              rm -rf data
-              sudo rm -rf /var/cache/mock/*
-          fi
-          if [ -n "${PACKAGES_UPDATED_STEIN}" ]; then
-              timeout --signal=SIGKILL $TIMEOUT {{ ansible_user_dir }}/rdoinfo-DLRN.sh stein "${PACKAGES_UPDATED_STEIN}" "${CENTOS_VERS}"
-              ret1=$?
-              if [ $ret1 -ne 0 ]; then
-                  ret=$ret1
-              fi
-              # The data/ contents have been archived already, remove to avoid issues with the next branch
-              rm -rf data
-              sudo rm -rf /var/cache/mock/*
-          fi
-          if [ -n "${PACKAGES_UPDATED_ROCKY}" ]; then
-              timeout --signal=SIGKILL $TIMEOUT {{ ansible_user_dir }}/rdoinfo-DLRN.sh rocky "${PACKAGES_UPDATED_ROCKY}" "${CENTOS_VERS}"
-              ret1=$?
-              if [ $ret1 -ne 0 ]; then
-                  ret=$ret1
-              fi
-              # The data/ contents have been archived already, remove to avoid issues with the next branch
-              rm -rf data
-              sudo rm -rf /var/cache/mock/*
-          fi
-          if [ -n "${PACKAGES_UPDATED_QUEENS}" ]; then
-              timeout --signal=SIGKILL $TIMEOUT {{ ansible_user_dir }}/rdoinfo-DLRN.sh queens "${PACKAGES_UPDATED_QUEENS}" "${CENTOS_VERS}"
-              ret1=$?
-              if [ $ret1 -ne 0 ]; then
-                  ret=$ret1
-              fi
-              # The data/ contents have been archived already, remove to avoid issues with the next branch
-              rm -rf data
-              sudo rm -rf /var/cache/mock/*
-          fi
+          done
           popd
 
           exit $ret
