@@ -1,0 +1,47 @@
+- shell:
+    cmd: |
+      echo $USER
+      ls -la $HOME
+      ls -la $HOME/src
+  delegate_to: rdo-centos-8
+
+- shell:
+    cmd: |
+      echo $USER
+      ls -la $HOME
+      ls -la $HOME/src
+  delegate_to: localhost
+
+- name: Load RDO releases data
+  include_vars:
+    file: "{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdoinfo'].src_dir }}/rdo.yml"
+    name: rdo
+  delegate_to: rdo-centos-8
+
+- name: Get RDO maintained releases
+  set_fact:
+    releases_maintained: "{{ rdo.releases | selectattr('status', 'match', '^maintained$') | map(attribute='name') | list }}"
+
+- name: Get RDO releases in extended maintenance
+  set_fact:
+    releases_ext_maintenance: "{{ rdo.releases | selectattr('status', 'match', '^extended maintenance$') | map(attribute='name') | list }}"
+
+- name: Get RDO development release
+  set_fact:
+    development_release: "{{ rdo.releases | selectattr('status', 'match', '^development$') | map(attribute='name') | list }}"
+
+- name: Set a list of all maintained and development RDO releases
+  set_fact:
+    releases: "{{ development_release | union(releases_maintained) | union(releases_ext_maintenance) | reverse | list }}"
+
+- name: Check if RDO maintained and development releases are present
+  fail:
+    msg: "Could not get RDO maintained and development releases from rdoinfo"
+  when:
+    - not development_release or not releases
+
+- debug:
+    var: releases
+
+- debug:
+    var: development_release
