@@ -1,6 +1,11 @@
 ---
 - hosts: all
   tasks:
+    - name: Load rdoinfo data
+      include_role:
+        name: rdoinfo-data
+        tasks_from: load-releases-status
+
     - include_tasks: setup_dlrn.yaml
 
     - name: Ensure mirrors are setup properly
@@ -26,6 +31,7 @@
       changed_when: true
       shell:
         cmd: |
+          export PINNED="{{ pinned | default(false) }}"
           export TAG="{{  tag | default('') }}"
           export CENTOS_VERS="{{  centos_version | default('centos7') }}"
           export REPO_SERVER="https://trunk.rdoproject.org"
@@ -35,13 +41,14 @@
              export TARGET="centos8"
           fi
           #
-          if [ -z "$TAG" ];then
-          ARGS="$TARGET ${REPO_SERVER}/${CENTOS_VERS}/"
-          else
-          ARGS="$TARGET ${REPO_SERVER}/${CENTOS_VERS}/ $TAG"
-          fi
           if [[ "{{ zuul.pipeline }}" =~ "openstack-" ]]; then
               ARGS=""
+          elif [ "$PINNED" = true ]; then
+              ARGS="$TARGET ${REPO_SERVER}/${CENTOS_VERS}/ {{ development_release[0] }}-uc"
+          elif [ ! -z "$TAG" ]; then
+              ARGS="$TARGET ${REPO_SERVER}/${CENTOS_VERS}/ $TAG"
+          else
+              ARGS="$TARGET ${REPO_SERVER}/${CENTOS_VERS}/"
           fi
           ./scripts/run_tests.sh {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdoinfo'].src_dir }} $ARGS
         chdir: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
