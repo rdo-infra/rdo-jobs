@@ -1,7 +1,5 @@
 ---
 - hosts: primary
-  vars:
-    master_release: wallaby
   tasks:
     - name: Run pre-quickstart role
       import_role:
@@ -10,6 +8,11 @@
     - name: check for correct import
       debug:
         var: tripleo_root
+
+    - name: Load rdoinfo data
+      include_role:
+        name: rdoinfo-data
+        tasks_from: load-releases-status
 
     - name: set workspace
       set_fact:
@@ -39,7 +42,7 @@
           fi
 
           if [ "{{ rdoinfo_release }}" = "master" ]; then
-              RELEASE="{{ master_release }}"
+              RELEASE="{{ rdo_master_release }}"
           else
               RELEASE="{{ rdoinfo_release }}"
           fi
