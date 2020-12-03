@@ -1224,6 +1224,12 @@
           baseurl: "https://{{ dlrn_server_url }}/centos8-{{ release }}/component/{{ component }}/component-ci-testing"
           update_container: true
 
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-component-master-validation
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      enable_validation: true
+
 ## master
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-baremetal-master
@@ -1262,6 +1268,12 @@
       component: compute
 
 - job:
+    name: periodic-tripleo-ci-centos-8-standalone-compute-master-validation
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master-validation
+    vars:
+      component: compute
+
+- job:
     name: periodic-tripleo-ci-centos-8-standalone-glance-master
     parent: periodic-tripleo-ci-centos-8-standalone-component-master
     vars:
@@ -1276,6 +1288,12 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-network-master
     parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-network-master-validation
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master-validation
     vars:
       component: network
 
@@ -1310,6 +1328,12 @@
       component: tripleo
 
 - job:
+    name: periodic-tripleo-ci-centos-8-standalone-tripleo-master-validation
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master-validation
+    vars:
+      component: tripleo
+
+- job:
     name: periodic-tripleo-ci-centos-8-standalone-ui-master
     parent: periodic-tripleo-ci-centos-8-standalone-component-master
     vars:
@@ -1320,6 +1344,7 @@
     parent: periodic-tripleo-ci-centos-8-standalone-component-master
     vars:
       component: validation
+      enable_validation: true
 
 ## victoria
 - job:
