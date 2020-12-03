@@ -1224,6 +1224,12 @@
           baseurl: "https://{{ dlrn_server_url }}/centos8-{{ release }}/component/{{ component }}/component-ci-testing"
           update_container: true
 
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-component-master-validation
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      enable_validation: true
+
 ## master
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-baremetal-master
@@ -1258,6 +1264,12 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-compute-master
     parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-compute-master-validation
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master-validation
     vars:
       component: compute
 
