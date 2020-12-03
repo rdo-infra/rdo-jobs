@@ -46,6 +46,30 @@
       "revId": "f87707f088c83e3890f44920088d559c2554f8a4",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cca1b333_6cb5df23",
+        "filename": "zuul.d/component-jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1225,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2020-12-03T12:28:41Z",
+      "side": 1,
+      "message": "k so with the depends-on https://review.opendev.org/c/openstack/tripleo-quickstart-extras/+/764767 in v3 of this patch it looks to be doing the right thing\n\nthe repo is installed and enabled by the multinode-standalone-upgrade playbook - commented there with pointers to logs in test         * https://review.opendev.org/c/openstack/tripleo-quickstart-extras/+/764767/2/playbooks/multinode-standalone-upgrade.yml#39\n\nPer the original problem described above, I sanity checked the packages and they look to be OK now.\n\nWe have python3-tripleoclient installed from the tripleo component-ci-testing repo and the required version of openstacksdk:\n\n\n\nAvailable version:\n\n        * https://trunk.rdoproject.org/centos8-master/component/tripleo/component-ci-testing/\n                * python-tripleoclient-14.1.0-0.20201202140358.10a5c9b.el8.src.rpm\n        \n\n\nInstalled:\n\n        * https://logserver.rdoproject.org/01/31201/1/check/periodic-tripleo-ci-centos-8-standalone-upgrade-tripleo-master/e47d5a3/logs/undercloud/var/log/extra/package-list-installed.txt.gz\n\n        * python3-tripleoclient.noarch                  14.1.0-0.20201202140358.10a5c9b.el8            @tripleo                           \n\n        * python3-openstacksdk.noarch                   0.52.0-0.20201120131401.e169c49.el8            @delorean-component-clients",
+      "parentUuid": "56969c24_f3381c4d",
+      "range": {
+        "startLine": 1219,
+        "startChar": 5,
+        "endLine": 1225,
+        "endChar": 32
+      },
+      "revId": "f87707f088c83e3890f44920088d559c2554f8a4",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
