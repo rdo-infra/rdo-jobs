@@ -1224,6 +1224,24 @@
           baseurl: "https://{{ dlrn_server_url }}/centos8-{{ release }}/component/{{ component }}/component-ci-testing"
           update_container: true
 
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-component-master-validation
+    parent: periodic-tripleo-ci-centos-8-standalone-master
+    abstract: true
+    vars: &component_vars_standalone
+      component: component
+      release: master
+      dlrn_server_url: "trunk.rdoproject.org"
+      promote_source: component-ci-testing
+      enable_validation: true
+      add_repos:
+        - type: generic
+          reponame: "{{ component }}"
+          filename: "{{ component }}-component.repo"
+          priority: 1
+          baseurl: "https://{{ dlrn_server_url }}/centos8-{{ release }}/component/{{ component }}/component-ci-testing"
+          update_container: true
+
 ## master
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-baremetal-master
