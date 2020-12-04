@@ -374,7 +374,7 @@
       jobs:
         # - podman-package-centos-7
         - podman-package-centos-8
-        - podman-package-fedora-31
+        - podman-package-fedora-32
         - tripleo-podman-integration-centos-8-scenario000-standalone:
             dependencies:
               - podman-package-centos-8

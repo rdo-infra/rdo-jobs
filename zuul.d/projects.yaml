@@ -92,7 +92,7 @@
             # until we fix https://github.com/containers/podman/issues/4665
             voting: false
         - podman-package-centos-7: *podman
-        - podman-package-fedora-31: *podman
+        - podman-package-fedora-32: *podman
         - tripleo-podman-integration-centos-8-scenario000-standalone:
             files:
               - zuul.d/podman.yaml
