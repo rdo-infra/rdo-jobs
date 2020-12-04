@@ -3,10 +3,6 @@
     - block:
         - include_role: name=prepare-workspace
       when: "ansible_connection != 'kubectl'"
-    - block:
-        - include_role: name=prepare-workspace-openshift
-      run_once: true
-      when: "ansible_connection == 'kubectl'"
 
     - import_role: name=ensure-output-dirs
       when: ansible_user_dir is defined
@@ -25,3 +21,4 @@
         - ansible_connection != 'kubectl'
         - _worker_is_sudoer.rc == 0
         - ansible_distribution != "Fedora" or (ansible_distribution == "Fedora" and ansible_distribution_major_version|int > 28)
+        - ansible_connection != 'kubectl'
