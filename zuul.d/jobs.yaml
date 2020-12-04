@@ -82,7 +82,7 @@
       Dependency check with "rdopkg reqcheck"
     parent: base
     run: playbooks/reqcheck/run.yaml
-    nodeset: single-fedora-32-node
+    nodeset: container-fedora
     required-projects:
       - rdopkg
 
