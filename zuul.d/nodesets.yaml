@@ -3,7 +3,13 @@
     name: container-fedora
     nodes:
       - name: container
-        label: pod-fedora-31
+        label: pod-python-f33
+
+- nodeset:
+    name: container-centos
+    nodes:
+      - name: container
+        label: pod-centos-8
 
 # Dib centos
 - nodeset:
