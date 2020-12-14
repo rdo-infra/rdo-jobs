@@ -66,6 +66,7 @@ for PACKAGE in ${PACKAGES_TO_BUILD}; do
     else
         GIT_BASE_URL="https://review.rdoproject.org/r/p"
         GIT_BASE="review.rdoproject.org"
+        git config --global Http.sslVerify false
     fi
 
     # If we are running under Zuul v3, we can find the distgit repos under /home/zuul
