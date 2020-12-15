@@ -63,6 +63,12 @@
         label: cloud-fedora-32-vexxhost
 
 - nodeset:
+    name: single-fedora-rawhide-node-vexxhost
+    nodes:
+      - name: primary
+        label: cloud-fedora-rawhide-vexxhost
+
+- nodeset:
     name: single-fedora-rawhide-node
     nodes:
       - name: primary
