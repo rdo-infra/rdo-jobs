@@ -1,12 +1,11 @@
 - project:
     check:
       jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+        - tripleo-ci-centos-8-scenario001-standalone
+        - tripleo-ci-centos-8-scenario002-standalone
+        - tripleo-ci-centos-8-scenario003-standalone
+        - tripleo-ci-centos-8-scenario004-standalone
+        - tripleo-ci-centos-8-scenario007-standalone
+        - tripleo-ci-centos-8-standalone-upgrade
+        - tripleo-ci-centos-8-undercloud-upgrade
+        - tripleo-ci-centos-8-containers-multinode
