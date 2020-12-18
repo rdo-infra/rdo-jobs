@@ -459,3 +459,11 @@
         - periodic-victoria-puppet-scenario002-centos-stream
         - periodic-victoria-puppet-scenario003-centos-stream
         - periodic-victoria-puppet-scenario004-centos-stream
+
+- project-template:
+    name: periodic-cloudsig-jobs
+    description: |
+     Periodic jobs to validate CloudSIG repos
+    periodic:
+      jobs:
+        - cloudsig-victoria-release-centos-8-scenario001-standalone
