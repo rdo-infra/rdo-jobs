@@ -1,0 +1,34 @@
+---
+- hosts: primary
+  tasks:
+    - name: Run pre-quickstart role
+      import_role:
+        name: common
+
+    - name: check for correct import
+      debug:
+        var: tripleo_root
+
+    - name: set workspace
+      set_fact:
+        workspace: "{{ ansible_user_dir }}/workspace"
+
+    - name: ensure workspace presence
+      file:
+        path: "{{ workspace }}"
+        state: directory
+
+    - name: Execute mirror info role
+      import_role:
+        name: mirror-info-fork
+      vars:
+        mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
+      when:
+        - ansible_distribution != "Fedora" or (ansible_distribution == "Fedora" and ansible_distribution_major_version|int > 28)
+
+    - name: Run quickstart
+      include_role:
+        name: run-test
+      vars:
+        run_test_role_vars:
+          enable_opstools_repo: true
