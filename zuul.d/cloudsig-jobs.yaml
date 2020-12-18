@@ -1,0 +1,41 @@
+- job:
+    name: cloudsig-victoria-release-centos-8-scenario001-standalone
+    parent: tripleo-ci-centos-8-scenario001-standalone
+    nodeset: single-centos-8-node-vexxhost
+    pre-run: playbooks/mirror.yaml
+    roles:
+      - zuul: opendev.org/openstack/tripleo-ansible
+    override-checkout: "stable/victoria"
+    vars:
+      featureset: '052'
+      release: victoria
+      standalone_ceph: true
+      branch_override: "cloudsig/victoria"
+      build_container_images: true
+      containers_base_image: "ubi8"
+      use_buildah: true
+      # push in centos8 needs to be handled differently
+      push_containers: false
+      run_test_role_vars:
+        enable_opstools_repo: true
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario001-standalone.yaml'
+        tempest_plugins:
+          - python-telemetry-tests-tempest
+          - python-heat-tests-tempest
+        test_white_regex: ''
+        tempest_workers: 1
+        tempest_extra_config: {'telemetry.alarm_granularity': '60'}
+        tempest_whitelist:
+          - 'tempest.api.identity.v3'
+          - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern.test_volume_boot_pattern'
+          - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
+    required-projects:
+      - opendev.org/openstack/ansible-role-container-registry
+      - opendev.org/openstack/kolla
+      - opendev.org/openstack/python-tripleoclient
+      - opendev.org/openstack/requirements
+      - opendev.org/openstack/tripleo-ansible
+      - opendev.org/openstack/tripleo-common
