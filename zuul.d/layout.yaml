@@ -1,12 +1,12 @@
 - project:
     check:
-      jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-master:
+            vars:
+              timeout: 22000
+              force_periodic: true
+              run_test_role_vars:
+                container_prep_additional_repos: brew-task-repo-ovn2.13-20.09.0-23bz1908391.el8fdn-scratch
+
     gate:
-      jobs: *jobs
+      jobs: []
