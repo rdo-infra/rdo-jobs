@@ -18,6 +18,7 @@
           cat << EOF | tee /etc/mock/site-defaults.cfg
           config_opts['use_bootstrap'] = False
           config_opts['dnf_warning'] = False
+          config_opts['module_enable'] = ['container-tools:2.0']
           EOF
       become: true
       changed_when: true
