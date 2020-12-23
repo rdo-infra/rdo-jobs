@@ -1,12 +1,6 @@
 - project:
     check:
       jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+        - periodic-tripleo-centos-8-buildimage-overcloud-hardened-full-train:
+            vars:
+              tripleo_image_source: https://cloud.centos.org/centos/8/x86_64/images/CentOS-8-GenericCloud-8.3.2011-20201204.2.x86_64.qcow2
