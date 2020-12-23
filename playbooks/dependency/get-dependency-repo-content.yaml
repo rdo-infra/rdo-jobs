@@ -22,13 +22,13 @@
               ].src_dir
             }}/config/release/dependency_ci/{{ job.dependency|default(dependency) }}/repo_config.yaml
 
-    - name: get repoquery list
+    - name: get repoquery list - test repos
       become: true
       shell: >
         set -o pipefail &&
         repoquery  --repofrompath={{ item.reponame }},{{ item.baseurl }} \
         --repoid={{ item.reponame }} -q -a --nvr --latest-limit 1 \
-        | sort | uniq | tee -a  {{ ansible_user_dir }}/dependency_repoquery_list.log
+        | sort | uniq | tee -a  {{ ansible_user_dir }}/test_repoquery_list.log
       with_items: "{{ add_repos }}"
       changed_when: false
 
@@ -51,7 +51,7 @@
         - name: include original repo vars
           include_vars: "{{ original_repo_file_path }}"
 
-        - name: get repoquery list - disabled repos
+        - name: get repoquery list - disabled (control) repos
           become: true
           shell: |
             export NODEPOOL_CENTOS_MIRROR='http://mirror.centos.org/centos'
@@ -59,6 +59,6 @@
             set -o pipefail &&
             repoquery  --repofrompath={{ item.filename|replace('.repo','') }},{{ item.baseurl|default('') }} \
             --repoid={{ item.filename|replace('.repo','') }} -q -a --nvr --latest-limit 1 \
-            | sort | uniq | tee -a  {{ ansible_user_dir }}/override_repoquery_list.log
+            | sort | uniq | tee -a  {{ ansible_user_dir }}/control_repoquery_list.log
           when: item.filename|replace('.repo','') in dependency_override_repos
           with_items: "{{ repos }}"

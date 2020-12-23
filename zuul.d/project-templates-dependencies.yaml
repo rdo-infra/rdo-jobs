@@ -5,5 +5,60 @@
     name: dependencies-pipeline-main
     openstack-dependencies-centos8stream:
       jobs:
-        - periodic-tripleo-ci-centos-8-standalone-centos8stream-master
-        - periodic-tripleo-ci-centos-8-standalone-centos8stream-container-build-master
+        - periodic-tripleo-ci-centos-8-standalone-centos8stream-master:
+            dependencies:
+              - periodic-tripleo-ci-centos-8-standalone-master
+        - periodic-tripleo-ci-centos-8-standalone-centos8stream-container-build-master:
+            dependencies:
+              - periodic-tripleo-ci-centos-8-standalone-master
+        - periodic-tripleo-ci-centos-8-standalone-master:
+            vars:
+              force_periodic: false
+
+## victoria
+#############################################################
+- project-template:
+    name: dependencies-pipeline-victoria
+    openstack-dependencies-centos8stream:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-centos8stream-victoria:
+            dependencies:
+              - periodic-tripleo-ci-centos-8-standalone-victoria
+        - periodic-tripleo-ci-centos-8-standalone-centos8stream-container-build-victoria:
+            dependencies:
+              - periodic-tripleo-ci-centos-8-standalone-victoria
+        - periodic-tripleo-ci-centos-8-standalone-victoria:
+            vars:
+              force_periodic: false
+
+## ussuri
+#############################################################
+- project-template:
+    name: dependencies-pipeline-ussuri
+    openstack-dependencies-centos8stream:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-centos8stream-ussuri:
+            dependencies:
+              - periodic-tripleo-ci-centos-8-standalone-ussuri
+        - periodic-tripleo-ci-centos-8-standalone-centos8stream-container-build-ussuri:
+            dependencies:
+              - periodic-tripleo-ci-centos-8-standalone-ussuri
+        - periodic-tripleo-ci-centos-8-standalone-ussuri:
+            vars:
+              force_periodic: false
+
+## train
+#############################################################
+- project-template:
+    name: dependencies-pipeline-train
+    openstack-dependencies-centos8stream:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-centos8stream-train:
+            dependencies:
+              - periodic-tripleo-ci-centos-8-standalone-train
+        - periodic-tripleo-ci-centos-8-standalone-centos8stream-container-build-train:
+            dependencies:
+              - periodic-tripleo-ci-centos-8-standalone-train
+        - periodic-tripleo-ci-centos-8-standalone-train:
+            vars:
+              force_periodic: false

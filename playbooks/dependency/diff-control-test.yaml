@@ -1,0 +1,66 @@
+---
+- hosts: primary
+  vars:
+    rdo_ci_config_repo: "{{ ansible_user_dir }}/{{
+              zuul.projects[
+                'review.rdoproject.org/rdo-infra/ci-config'
+              ].src_dir
+           }}"
+  tasks:
+    - name: set python_cmd
+      set_fact:
+        python_cmd: "python{{ ansible_python.version.major }}"
+        cacheable: true
+      when: python_cmd is not defined
+
+    - name: Check if virtualenv is in the system
+      command: "{{ python_cmd }} -m virtualenv --version"
+      args:
+        warn: false
+      register: virtualenv_exist
+      changed_when: false
+      failed_when: false
+
+    - when: virtualenv_exist.rc != 0
+      name: Install virtualenv
+      become: true
+      package:
+        state: present
+        name: >
+          {% if ansible_python.version.major == 3 %}
+          python3-virtualenv
+          {% else %}
+          python-virtualenv
+          {% endif %}
+
+    - name: Install and update pip
+      # noqa 403
+      pip:
+        name: pip
+        virtualenv: "{{ ansible_user_dir }}/diff-rpm-venv"
+        state: latest
+        extra_args: --upgrade
+
+    - name: Install requirements
+      pip:
+        name: "{{ item }}"
+        virtualenv: "{{ ansible_user_dir }}/diff-rpm-venv"
+        state: present
+      with_items:
+        - requests
+        - click
+        - bs4
+        - cachecontrol
+        - prettytable
+        - toolchest
+
+    - name: Run diff repo script
+      shell: |
+        source {{ ansible_user_dir }}/diff-rpm-venv/bin/activate
+        python{{ ansible_python.version.major }} \
+        {{ rdo_ci_config_repo }}/ci-scripts/infra-setup/roles/rrcockpit/files/compare_rpms/diff_control_test.py \
+        --control_list {{ ansible_user_dir }}/control_repoquery_list.log \
+        --test_list  {{ ansible_user_dir }}/test_repoquery_list.log \
+        --ignore_list {{ rdo_ci_config_repo }}/ci-scripts/infra-setup/roles/rrcockpit/files/compare_rpms/diff_tripleo_builds/rpm_skip_list/centos8_stream.txt \
+        --table_location {{ ansible_user_dir }}/control_test_diff_table.log
+      changed_when: false
