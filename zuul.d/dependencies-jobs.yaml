@@ -23,3 +23,60 @@
     vars:
       dependency: centos8stream
       build_container_images: true
+
+# victoria jobs
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-centos8stream-victoria
+    parent: periodic-tripleo-ci-centos-8-standalone-centos8stream-master
+    vars:
+    override-checkout: "stable/victoria"
+    vars:
+      release: victoria
+      branch_override: "stable/victoria"
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-centos8stream-container-build-victoria
+    parent: periodic-tripleo-ci-centos-8-standalone-centos8stream-container-build-master
+    vars:
+    override-checkout: "stable/victoria"
+    vars:
+      release: victoria
+      branch_override: "stable/victoria"
+
+# ussuri jobs
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-centos8stream-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-centos8stream-master
+    vars:
+    override-checkout: "stable/ussuri"
+    vars:
+      release: ussuri
+      branch_override: "stable/ussuri"
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-centos8stream-container-build-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-centos8stream-container-build-master
+    vars:
+    override-checkout: "stable/ussuri"
+    vars:
+      release: ussuri
+      branch_override: "stable/ussuri"
+
+# train c8 jobs
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-centos8stream-train
+    parent: periodic-tripleo-ci-centos-8-standalone-centos8stream-master
+    vars:
+    override-checkout: "stable/train"
+    vars:
+      release: train
+      branch_override: "stable/train"
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-centos8stream-container-build-train
+    parent: periodic-tripleo-ci-centos-8-standalone-centos8stream-container-build-master
+    vars:
+    override-checkout: "stable/train"
+    vars:
+      release: train
+      branch_override: "stable/train"
