@@ -18,6 +18,12 @@
           {% endfor %}
       changed_when: true
 
+    - name: Hack for https://review.rdoproject.org/r/31434
+      lineinfile:
+        path: "{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/ansible-role-weirdo-common'].src_dir }}/tasks/repositories/stable.yml"
+        insertafter: 'state: "present"'
+        line: "        disable_gpg_check: True"
+
     - name: Install python2-devel
       package:
         name: python2-devel
