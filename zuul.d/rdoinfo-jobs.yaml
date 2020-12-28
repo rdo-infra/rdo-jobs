@@ -892,3 +892,40 @@
       rdoinfo_release: ussuri
       rdoinfo_phase: testing
       branch_override: "stable/ussuri"
+
+- job:
+    name: rdoinfo-tripleo-train-testing-centos-8-standalone
+    parent: rdoinfo-tripleo-master-testing-centos-8-standalone
+    override-checkout: "stable/train"
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: testing
+      branch_override: "stable/train"
+
+- job:
+    name: rdoinfo-tripleo-train-testing-centos-8-scenario001-standalone
+    parent: rdoinfo-tripleo-master-testing-centos-8-scenario001-standalone
+    override-checkout: "stable/train"
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: testing
+      branch_override: "stable/train"
+      registry_namespace: tripleotraincentos8
+
+- job:
+    name: rdoinfo-tripleo-train-testing-centos-8-scenario007-standalone
+    parent: rdoinfo-tripleo-master-testing-centos-8-scenario007-standalone
+    override-checkout: "stable/train"
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: testing
+      branch_override: "stable/train"
+
+- job:
+    name: rdoinfo-tripleo-train-testing-centos-8-containers-multinode
+    parent: rdoinfo-tripleo-master-testing-centos-8-containers-multinode
+    override-checkout: "stable/train"
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: testing
+      branch_override: "stable/train"
