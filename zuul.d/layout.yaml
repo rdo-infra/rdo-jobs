@@ -1,12 +1,7 @@
 - project:
     check:
       jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+        - periodic-victoria-puppet-scenario001-centos-stream
+        - periodic-victoria-puppet-scenario002-centos-stream
+        - periodic-victoria-puppet-scenario003-centos-stream
+        - periodic-victoria-puppet-scenario004-centos-stream
