@@ -50,15 +50,14 @@
 
           REPOS_URL="http://trunk.rdoproject.org/centos${DIST_VER}-${O_RELEASE}/puppet-passed-ci/delorean.repo,https://trunk.rdoproject.org/centos${DIST_VER}-${O_RELEASE}/delorean-deps.repo" # noqa 204
 
-          # https://bugzilla.redhat.com/show_bug.cgi?id=1900650
-          sudo dnf downgrade selinux-policy -y
           tox -e ansible-playbook -- -vv -b -i hosts playbooks/$project-$scenario.yml \
               -e version=$VERSION \
               -e openstack_release=$O_RELEASE \
               -e selinux_enforcing="{{ selinux_enforcing | default('true') }}" \
               -e tempest_from_source=false \
               -e enable_puppet_modules_rpm=true \
-              -e trunk_repositories=$REPOS_URL
+              -e trunk_repositories=$REPOS_URL \
+              -e refspec=refs/changes/62/769962/1
 
       changed_when: true
       environment:
