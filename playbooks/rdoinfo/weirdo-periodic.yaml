@@ -50,6 +50,7 @@
 
           REPOS_URL="http://trunk.rdoproject.org/centos${DIST_VER}-${O_RELEASE}/puppet-passed-ci/delorean.repo,https://trunk.rdoproject.org/centos${DIST_VER}-${O_RELEASE}/delorean-deps.repo" # noqa 204
 
+          dnf downgrade selinux-policy -y
           tox -e ansible-playbook -- -vv -b -i hosts playbooks/$project-$scenario.yml \
               -e version=$VERSION \
               -e openstack_release=$O_RELEASE \
