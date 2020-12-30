@@ -67,9 +67,9 @@
       shell: |
         set -ex
         # for puppet for some rubygem
-        dnf config-manager --enable PowerTools
+        dnf config-manager --enable powertools
         # for pcs
-        dnf config-manager --enable HighAvailability
+        dnf config-manager --enable ha
       when:
         - ansible_distribution == "CentOS"
         - ansible_distribution_major_version == '8'
