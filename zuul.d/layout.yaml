@@ -1,12 +1,7 @@
 - project:
     check:
       jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+        - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens:
+            vars:
+              remove_ovb_after_job: false
+              force_job_failure: true
