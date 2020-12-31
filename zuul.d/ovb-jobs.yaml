@@ -268,6 +268,7 @@
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-train-branch
     parent: tripleo-ci-base-ovb-rdo
     branches: ^master$
+    override-checkout: "stable/train"
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
@@ -310,6 +311,7 @@
     timeout: 12600
     branches: ^master$
     voting: false
+    override-checkout: "stable/train"
     vars:
       nodes: 3ctlr_1comp_1supp
       featureset: '039'
@@ -428,6 +430,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-train
     parent: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
+    override-checkout: "stable/train"
     vars:
       branch_override: "stable/train"
       release: train
@@ -455,6 +458,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-train-upload
     parent: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload
+    override-checkout: "stable/train"
     vars:
       branch_override: "stable/train"
       release: train
@@ -600,6 +604,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-train
     parent: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master
+    override-checkout: "stable/train"
     # timeouts seen on fs035 train
     timeout: 18000
     vars:
@@ -654,6 +659,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-train
     parent: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master
+    override-checkout: "stable/train"
     vars:
       branch_override: "stable/train"
       release: train
@@ -684,6 +690,7 @@
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1cellctrl_1comp-featureset063-train
     parent: periodic-tripleo-ci-centos-7-ovb-1ctlr_1cellctrl_1comp-featureset063-master
+    override-checkout: "stable/train"
     vars:
       branch_override: "stable/train"
       release: train
