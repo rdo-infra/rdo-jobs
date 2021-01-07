@@ -6,6 +6,7 @@
     name: periodic-tripleo-ci-centos-8-standalone-multiple-dependency-master
     parent: periodic-tripleo-ci-centos-8-standalone-master
     abstract: true
+    nodeset: single-centos-8-stream-node
     pre-run:
       - playbooks/dependency/get-dependency-repo-content.yaml
       - playbooks/dependency/diff-control-test.yaml
