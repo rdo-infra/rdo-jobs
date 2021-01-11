@@ -83,11 +83,9 @@
           CHANGED_FILES=$(git diff --name-only --diff-filter=ACMTR HEAD~1)
           PACKAGES_TO_BUILD=""
           for spec in $CHANGED_FILES; do
-            filename=$(echo $spec | awk -F/ '{print $NF}')
-            extension=$(echo $filename | awk -F. '{print $NF}')
-            if [ "$extension" = "j2" ]; then
-                # Remove the .spec.j2 extension
-                PACKAGES_TO_BUILD="$PACKAGES_TO_BUILD --package-name $(echo $filename | awk 'BEGIN{FS=OFS="."}{NF--; NF--; print}')"
+            package=$(echo $spec | awk -F/ '{print $2}')
+            if [ -n $package ]; then
+                PACKAGES_TO_BUILD="$PACKAGES_TO_BUILD --package-name $package"
             fi
           done
           popd
