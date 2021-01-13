@@ -51,7 +51,7 @@
         - name: include original repo vars
           include_vars: "{{ original_repo_file_path }}"
 
-        - name: get repoquery list - disabled (control) repos
+        - name: get control repoquery list when control repos defined in release file
           become: true
           shell: |
             export NODEPOOL_CENTOS_MIRROR='http://mirror.centos.org/centos'
@@ -62,3 +62,19 @@
             | sort | uniq | tee -a  {{ ansible_user_dir }}/control_repoquery_list.log
           when: item.filename|replace('.repo','') in dependency_override_repos
           with_items: "{{ repos }}"
+
+        - name: check if control_repoquery_list.log exists
+          stat:
+            path: "{{ ansible_user_dir }}/control_repoquery_list.log"
+          register: control_repoquery_list
+
+        - name: get repoquery list by repoid with dependency_control_repos
+          with_items: "{{ dependency_override_repos }}"
+          when: >
+            control_repoquery_list.stat.exists == false or
+            (control_repoquery_list.stat.size is defined and control_repoquery_list.stat.size == 0)
+          become: true
+          shell: >
+            set -o pipefail &&
+            repoquery --repoid={{ item }} -q -a --nvr --latest-limit 1 | sort | uniq \
+            | tee -a  {{ ansible_user_dir }}/control_repoquery_list.log
