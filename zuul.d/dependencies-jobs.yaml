@@ -6,7 +6,7 @@
     name: periodic-tripleo-ci-centos-8-standalone-multiple-dependency-master
     parent: periodic-tripleo-ci-centos-8-standalone-master
     abstract: true
-    pre-run:
+    pre-run: &dependency_repo_pre
       - playbooks/dependency/get-dependency-repo-content.yaml
       - playbooks/dependency/diff-control-test.yaml
     vars: &multiple_dependency_vars_standalone
@@ -56,6 +56,27 @@
     nodeset: single-centos-8-stream-node
     vars:
       dependency: container-tools
+      build_container_images: true
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-openvswitch-container-build-master
+    parent: periodic-tripleo-ci-centos-8-standalone-multiple-dependency-master
+    vars:
+      dependency: openvswitch
+      build_container_images: true
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario007-standalone-dependency-master
+    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-master
+    abstract: true
+    pre-run: *dependency_repo_pre
+    vars: *multiple_dependency_vars_standalone
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario007-standalone-openvswitch-container-build-master
+    parent: periodic-tripleo-ci-centos-8-standalone-multiple-dependency-master
+    vars:
+      dependency: openvswitch
       build_container_images: true
 
 # victoria jobs
