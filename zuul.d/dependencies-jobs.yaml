@@ -26,6 +26,12 @@
       dependency: centos8stream
       build_container_images: true
 
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-openvswitch-master
+    parent: periodic-tripleo-ci-centos-8-standalone-multiple-dependency-master
+    vars:
+      dependency: openvswitch
+
 # victoria jobs
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-centos8stream-victoria
