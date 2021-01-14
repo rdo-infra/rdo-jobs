@@ -1,0 +1,166 @@
+- job:
+    name: weirdo-cloudsig-periodic-base
+    parent: base
+    run: playbooks/rdoinfo/weirdo-buildsys-tags.yaml
+    post-run: playbooks/weirdo/integration/post.yaml
+    timeout: 7200
+    required-projects:
+      - rdo-infra/weirdo
+      - rdo-infra/ansible-role-weirdo-common
+      - rdo-infra/ansible-role-weirdo-kolla
+      - rdo-infra/ansible-role-weirdo-logs
+      - rdo-infra/ansible-role-weirdo-packstack
+      - rdo-infra/ansible-role-weirdo-puppet-openstack
+    vars:
+      selinux_enforcing: "false"
+    nodeset: rdo-centos-8
+
+- job:
+    name: cloudsig-victoria-release-centos8-base
+    parent: weirdo-cloudsig-periodic-base
+    vars:
+      rdoinfo_release: victoria
+      rdoinfo_phase: release
+      periodic_job: true
+
+- job:
+    name: cloudsig-victoria-release-puppet-scenario001-centos8
+    parent: cloudsig-victoria-release-centos8-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: cloudsig-victoria-release-puppet-scenario002-centos8
+    parent: cloudsig-victoria-release-centos8-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: cloudsig-victoria-release-puppet-scenario003-centos8
+    parent: cloudsig-victoria-release-centos8-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: cloudsig-victoria-release-puppet-scenario004-centos8
+    parent: cloudsig-victoria-release-centos8-base
+    vars:
+      scenario: scenario004
+
+- job:
+    name: cloudsig-victoria-release-packstack-scenario001-centos8
+    parent: cloudsig-victoria-release-centos8-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: cloudsig-victoria-release-packstack-scenario002-centos8
+    parent: cloudsig-victoria-release-centos8-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: cloudsig-victoria-release-packstack-scenario003-centos8
+    parent: cloudsig-victoria-release-centos8-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: cloudsig-ussuri-release-centos8-base
+    parent: weirdo-cloudsig-periodic-base
+    vars:
+      rdoinfo_release: ussuri
+      rdoinfo_phase: release
+      periodic_job: true
+
+- job:
+    name: cloudsig-ussuri-release-puppet-scenario001-centos8
+    parent: cloudsig-ussuri-release-centos8-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: cloudsig-ussuri-release-puppet-scenario002-centos8
+    parent: cloudsig-ussuri-release-centos8-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: cloudsig-ussuri-release-puppet-scenario003-centos8
+    parent: cloudsig-ussuri-release-centos8-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: cloudsig-ussuri-release-puppet-scenario004-centos8
+    parent: cloudsig-ussuri-release-centos8-base
+    vars:
+      scenario: scenario004
+
+- job:
+    name: cloudsig-ussuri-release-packstack-scenario001-centos8
+    parent: cloudsig-ussuri-release-centos8-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: cloudsig-ussuri-release-packstack-scenario002-centos8
+    parent: cloudsig-ussuri-release-centos8-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: cloudsig-ussuri-release-packstack-scenario003-centos8
+    parent: cloudsig-ussuri-release-centos8-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: cloudsig-train-release-centos8-base
+    parent: weirdo-cloudsig-periodic-base
+    vars:
+      rdoinfo_release: train
+      rdoinfo_phase: release
+      periodic_job: true
+
+- job:
+    name: cloudsig-train-release-puppet-scenario001-centos8
+    parent: cloudsig-train-release-centos8-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: cloudsig-train-release-puppet-scenario002-centos8
+    parent: cloudsig-train-release-centos8-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: cloudsig-train-release-puppet-scenario003-centos8
+    parent: cloudsig-train-release-centos8-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: cloudsig-train-release-puppet-scenario004-centos8
+    parent: cloudsig-train-release-centos8-base
+    vars:
+      scenario: scenario004
+
+- job:
+    name: cloudsig-train-release-packstack-scenario001-centos8
+    parent: cloudsig-train-release-centos8-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: cloudsig-train-release-packstack-scenario002-centos8
+    parent: cloudsig-train-release-centos8-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: cloudsig-train-release-packstack-scenario003-centos8
+    parent: cloudsig-train-release-centos8-base
+    vars:
+      scenario: scenario003
