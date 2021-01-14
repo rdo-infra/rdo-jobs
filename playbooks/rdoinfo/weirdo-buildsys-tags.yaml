@@ -6,13 +6,19 @@
         path: '{{ ansible_user_dir }}/workspace'
         state: directory
 
+    - name: Create periodic_job fact
+      set_fact:
+        periodic_job: "{{ periodic_job|default(false) or periodic in zuul.pipeline }}"
+
     - block:
         - name: Do not run weirdo if there are no new packages to test in parent job
           debug:
             msg: "No new packages detected, skiping weirdo execution"
 
         - meta: end_play
-      when: buildset_artifacts_url is not defined
+      when:
+        - not periodic_job|default(false)
+        - buildset_artifacts_url is not defined
 
     - name: Create centos_releasever fact
       set_fact:
@@ -52,11 +58,13 @@
 
         chdir: "{{ ansible_user_dir }}/workspace"
       changed_when: true
+      when: not periodic_job|default(false)
 
     - name: Detect if we created the file to stop quickstart run
       stat:
         path: "{{ ansible_user_dir }}/workspace/not_required"
       register: stop_file
+      when: not periodic_job|default(false)
 
     - name: Setup weirdo roles
       shell:
@@ -96,9 +104,11 @@
             O_RELEASE="$RELEASE"
           fi
 
+          {% if not periodic_job|default(false) %}
           # Temporary repo URL
           logs={{ buildset_artifacts_url }}
           TEMP_REPO_URL="${logs}/repos/$REPO/temp-$REPO.repo"
+          {% endif %}
 
           # Release RPM name is different for el7 and el8
           if [ ${DIST_VER} -eq 8 ]; then
@@ -119,10 +129,10 @@
           case $PHASE in
           testing)
               if [ $RELEASE = $MASTER ]; then
-                  REPOS_URL="http://trunk.rdoproject.org/centos8-master/puppet-passed-ci/delorean.repo,https://trunk.rdoproject.org/centos8-master/delorean-deps.repo,$TEMP_REPO_URL" # noqa 204
+                  REPOS_URL="http://trunk.rdoproject.org/centos8-master/puppet-passed-ci/delorean.repo,https://trunk.rdoproject.org/centos8-master/delorean-deps.repo{% if not periodic_job|default(false) %},$TEMP_REPO_URL{% endif %}" # noqa 204
                   ADDITIONAL_OPTS=""
               else
-                  REPOS_URL="$TEMP_REPO_URL"
+                  REPOS_URL="{% if not periodic_job|default(false) %}$TEMP_REPO_URL{% endif %}"
                   ADDITIONAL_OPTS="-e stable_repositories=https://rdoproject.org/repos/openstack-${RELEASE}/${RELEASE_RPM} -e testing_repository=true"
               fi
 
@@ -145,4 +155,4 @@
       changed_when: true
       environment:
         LANG: 'en_US.UTF-8'
-      when: not stop_file.stat.exists
+      when: not stop_file.stat.exists|default(true) or periodic_job|default(false)
