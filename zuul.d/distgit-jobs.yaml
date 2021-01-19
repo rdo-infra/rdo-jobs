@@ -129,6 +129,9 @@
     name: distgit-tripleo-ci-centos-8-content-provider
     parent: tripleo-ci-centos-8-content-provider
     nodeset: single-centos-8-node-vexxhost
+    run: playbooks/run-distgit.yaml
+    vars:
+      release: master
 
 - job:
     name: distgit-tripleo-master-testing-centos-8-standalone-scenario001
