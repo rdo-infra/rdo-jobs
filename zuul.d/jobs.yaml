@@ -111,7 +111,7 @@
       - DLRN-rpmbuild-centos8
     vars:
       centos_version: 'centos8'
-    nodeset: rdo-centos-8
+    nodeset: rdo-centos-8-stream
 
 - job:
     name: DLRN-rpmbuild-base
@@ -160,7 +160,7 @@
     branches: ^((rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo))$
     vars:
       centos_version: 'centos8'
-    nodeset: rdo-centos-8
+    nodeset: rdo-centos-8-stream
 
 - job:
     name: DLRN-rpmbuild-centos8-pinned
