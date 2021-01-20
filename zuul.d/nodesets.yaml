@@ -33,6 +33,13 @@
         label: rdo-centos-8-vexxhost
 
 - nodeset:
+    # status: recommended
+    name: rdo-centos-8-stream
+    nodes:
+      - name: rdo-centos-stream
+        label: rdo-centos-stream
+
+- nodeset:
     name: rdo-fedora-30
     nodes:
       - name: primary
