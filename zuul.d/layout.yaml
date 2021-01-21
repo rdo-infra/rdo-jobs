@@ -1,12 +1,12 @@
 - project:
     check:
       jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+        - periodic-tripleo-ci-centos-8-standalone-tempest-master:
+            vars:
+              add_repos:
+                - type: generic
+                  reponame: "tempest"
+                  filename: "tempest-component.repo"
+                  priority: 1
+                  baseurl: "https://trunk.rdoproject.org/centos8-master/component/tempest/consistent"
+                  update_container: true
