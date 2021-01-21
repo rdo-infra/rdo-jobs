@@ -2,6 +2,9 @@
     name: rdo-jobs
     check:
       jobs:
+        - periodic-tripleo-ci-centos-8-standalone-ansible-deps-master:
+            vars:
+              force_periodic: true
         - tox-docs: &cfg
             nodeset: rdo-centos-8
             vars:

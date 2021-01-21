@@ -1,0 +1,7 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Install latest ansible via pip
+      pip:
+        name: ansible==2.10.5

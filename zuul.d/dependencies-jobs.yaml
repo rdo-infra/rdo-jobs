@@ -76,3 +76,9 @@
     vars:
       release: train
       branch_override: "stable/train"
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-ansible-deps-master
+    parent: periodic-tripleo-ci-centos-8-standalone-master
+    pre-run:
+      - playbooks/dependency/pip-package-install.yaml
