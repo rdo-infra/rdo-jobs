@@ -30,7 +30,7 @@
           skip="openstack-macros"
           pkginfo_driver="dlrn.drivers.gitrepo.GitRepoDriver"
           branch="{{ zuul.branch }}"
-          if [ "${branch} == "master" ]; then
+          if [ "${branch}" == "master" ]; then
               target=centos8-stream
           else
               target=centos8
