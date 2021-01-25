@@ -1,12 +1,158 @@
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-1
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-2
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-3
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-4
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-5
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-6
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-7
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-8
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-9
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-10
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-11
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-12
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-13
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-14
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-15
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-16
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-17
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-18
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-19
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-20
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-21
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-22
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-23
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-24
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-25
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-26
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-27
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-28
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-29
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-30
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-31
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
 - project:
     check:
       jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+        - periodic-tripleo-ci-centos-8-standalone-train-1
+        - periodic-tripleo-ci-centos-8-standalone-train-2
+        - periodic-tripleo-ci-centos-8-standalone-train-3
+        - periodic-tripleo-ci-centos-8-standalone-train-4
+        - periodic-tripleo-ci-centos-8-standalone-train-5
+        - periodic-tripleo-ci-centos-8-standalone-train-6
+        - periodic-tripleo-ci-centos-8-standalone-train-7
+        - periodic-tripleo-ci-centos-8-standalone-train-8
+        - periodic-tripleo-ci-centos-8-standalone-train-9
+        - periodic-tripleo-ci-centos-8-standalone-train-10
+        - periodic-tripleo-ci-centos-8-standalone-train-11
+        - periodic-tripleo-ci-centos-8-standalone-train-12
+        - periodic-tripleo-ci-centos-8-standalone-train-13
+        - periodic-tripleo-ci-centos-8-standalone-train-14
+        - periodic-tripleo-ci-centos-8-standalone-train-15
+        - periodic-tripleo-ci-centos-8-standalone-train-16
+        - periodic-tripleo-ci-centos-8-standalone-train-17
+        - periodic-tripleo-ci-centos-8-standalone-train-18
+        - periodic-tripleo-ci-centos-8-standalone-train-19
+        - periodic-tripleo-ci-centos-8-standalone-train-20
+        - periodic-tripleo-ci-centos-8-standalone-train-21
+        - periodic-tripleo-ci-centos-8-standalone-train-22
+        - periodic-tripleo-ci-centos-8-standalone-train-23
+        - periodic-tripleo-ci-centos-8-standalone-train-24
+        - periodic-tripleo-ci-centos-8-standalone-train-25
+        - periodic-tripleo-ci-centos-8-standalone-train-26
+        - periodic-tripleo-ci-centos-8-standalone-train-27
+        - periodic-tripleo-ci-centos-8-standalone-train-28
+        - periodic-tripleo-ci-centos-8-standalone-train-29
+        - periodic-tripleo-ci-centos-8-standalone-train-30
+        - periodic-tripleo-ci-centos-8-standalone-train-31
