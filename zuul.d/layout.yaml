@@ -1,12 +1,58 @@
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-1
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-2
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-3
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-4
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-5
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-6
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-7
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-8
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-9
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-10
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-train-11
+    parent: periodic-tripleo-ci-centos-8-standalone-train
+
 - project:
     check:
       jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+        - periodic-tripleo-ci-centos-8-standalone-train-1
+        - periodic-tripleo-ci-centos-8-standalone-train-2
+        - periodic-tripleo-ci-centos-8-standalone-train-3
+        - periodic-tripleo-ci-centos-8-standalone-train-4
+        - periodic-tripleo-ci-centos-8-standalone-train-5
+        - periodic-tripleo-ci-centos-8-standalone-train-6
+        - periodic-tripleo-ci-centos-8-standalone-train-7
+        - periodic-tripleo-ci-centos-8-standalone-train-8
+        - periodic-tripleo-ci-centos-8-standalone-train-9
+        - periodic-tripleo-ci-centos-8-standalone-train-10
+        - periodic-tripleo-ci-centos-8-standalone-train-11
