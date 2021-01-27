@@ -50,6 +50,7 @@
       openstack_release: master
       scenario: scenario001
       selinux_enforcing: "false"
+      centos_releasever: 8s
     nodeset: rdo-centos-8
 
 - job:
@@ -59,6 +60,7 @@
       openstack_release: master
       scenario: scenario003
       selinux_enforcing: "false"
+      centos_releasever: 8s
     nodeset: rdo-centos-8
 
 - job:
@@ -67,6 +69,7 @@
     vars:
       openstack_release: master
       scenario: scenario001
+      centos_releasever: 8s
     nodeset: rdo-centos-8
 
 - job:
@@ -75,6 +78,7 @@
     vars:
       openstack_release: master
       scenario: scenario003
+      centos_releasever: 8s
     nodeset: rdo-centos-8
 
 - job:
@@ -83,6 +87,7 @@
     vars:
       openstack_release: master
       scenario: scenario004
+      centos_releasever: 8s
     nodeset: rdo-centos-8
 
 - job:
@@ -154,6 +159,7 @@
       openstack_release: master
       scenario: scenario001
       selinux_enforcing: "false"
+      centos_releasever: 8s
 
 - job:
     name: weirdo-dlrn-master-packstack-scenario002-centos8
@@ -162,6 +168,7 @@
       openstack_release: master
       scenario: scenario002
       selinux_enforcing: "false"
+      centos_releasever: 8s
 
 - job:
     name: weirdo-dlrn-master-packstack-scenario003-centos8
@@ -170,6 +177,7 @@
       openstack_release: master
       scenario: scenario003
       selinux_enforcing: "false"
+      centos_releasever: 8s
 
 - job:
     name: weirdo-dlrn-master-puppet-scenario001-centos8
@@ -177,6 +185,7 @@
     vars:
       openstack_release: master
       scenario: scenario001
+      centos_releasever: 8s
 
 - job:
     name: weirdo-dlrn-master-puppet-scenario002-centos8
@@ -184,6 +193,7 @@
     vars:
       openstack_release: master
       scenario: scenario002
+      centos_releasever: 8s
 
 - job:
     name: weirdo-dlrn-master-puppet-scenario003-centos8
@@ -191,6 +201,7 @@
     vars:
       openstack_release: master
       scenario: scenario003
+      centos_releasever: 8s
 
 - job:
     name: weirdo-dlrn-master-puppet-scenario004-centos8
@@ -198,6 +209,7 @@
     vars:
       openstack_release: master
       scenario: scenario004
+      centos_releasever: 8s
 
 - job:
     name: weirdo-validate-buildsys-tags-base
@@ -745,9 +757,10 @@
     vars:
       rdoinfo_release: wallaby
       rdoinfo_phase: testing
+      centos_releasever: 8s
     nodeset: rdo-centos-8
     files:
-      - ^buildsys-tags/cloud8-openstack-wallaby-testing.yml$
+      - ^buildsys-tags/cloud8s-openstack-wallaby-testing.yml$
 
 - job:
     name: validate-buildsys-tags-wallaby-testing-puppet-scenario001-centos8

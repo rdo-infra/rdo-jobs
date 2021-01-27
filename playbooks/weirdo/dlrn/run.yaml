@@ -11,10 +11,16 @@
     - name: set centos_releasever fact
       set_fact:
         centos_releasever: "{{ ansible_distribution_major_version | default('7') }}"
+      when: centos_releasever is not defined
 
     - name: set centos_release fact
       set_fact:
         centos_release: "centos{{ centos_releasever }}"
+
+    - name: set centos_release fact for 8-stream
+      set_fact:
+        centos_release: "centos8"
+      when: centos_releasever == "8s"
 
     - name: Check for actual repo in logs from parent job
       shell:
@@ -147,7 +153,7 @@
           cd "{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/weirdo'].src_dir }}"
           # Prepare Ansible inventory to use localhost
           cat <<EOF >hosts
-          localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python{{ '3' if centos_releasever|int >= 8 else '2' }}
+          localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python{{ '3' if centos_release == "centos8" else '2' }}
           [openstack_nodes]
           localhost log_destination=/var/log/weirdo
           EOF

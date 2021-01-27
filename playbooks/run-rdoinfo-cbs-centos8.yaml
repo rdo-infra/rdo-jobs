@@ -78,12 +78,16 @@
       set_fact:
         ipv4_addr: "{{ ansible_default_ipv4.address }}"
         ipv4_prefix: "{{ ansible_default_ipv4.prefix | default('24') }}"
+    - name: Create centos_releasever fact
+      set_fact:
+        centos_releasever: "{{ ansible_distribution_major_version | default('7') }}"
+      when: centos_releasever is not defined
     - name: Set repo facts
       set_fact:
-        buildsys_tag: "cloud{{ ansible_distribution_major_version }}-openstack-{{ rdoinfo_release }}-{{ rdoinfo_phase }}"
+        buildsys_tag: "cloud{{ centos_releasever }}-openstack-{{ rdoinfo_release }}-{{ rdoinfo_phase }}"
     - name: Handle master release buildsys_tags
       set_fact:
-        buildsys_tag: "cloud{{ ansible_distribution_major_version }}-openstack-{{ master_release }}-{{ rdoinfo_phase }}"
+        buildsys_tag: "cloud{{ centos_releasever }}-openstack-{{ master_release }}-{{ rdoinfo_phase }}"
       when: rdoinfo_release == "master"
     - name: set url
       set_fact:
