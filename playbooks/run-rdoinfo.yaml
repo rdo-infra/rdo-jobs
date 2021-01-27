@@ -75,9 +75,13 @@
       when:
         - not stop_file.stat.exists
       block:
+        - name: Create centos_releasever fact
+          set_fact:
+            centos_releasever: "{{ ansible_distribution_major_version | default('7') }}"
+          when: centos_releasever is not defined
         - name: Set buildsys tag fact
           set_fact:
-            buildsys_tag: "cloud{{ ansible_distribution_major_version }}-openstack-{{ master_release if rdoinfo_release == 'master' else rdoinfo_release }}-{{ rdoinfo_phase }}"  # noqa 204
+            buildsys_tag: "cloud{{ centos_releasever }}-openstack-{{ master_release if rdoinfo_release == 'master' else rdoinfo_release }}-{{ rdoinfo_phase }}"  # noqa 204
         - name: set url
           set_fact:
             extra_repo_url: "{{ buildset_artifacts_url | default('') }}/repos/{{ buildsys_tag }}/temp-{{ buildsys_tag }}.repo"

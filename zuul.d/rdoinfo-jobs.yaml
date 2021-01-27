@@ -678,6 +678,7 @@
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
+      centos_releasever: 8s
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-scenario001-standalone
@@ -690,6 +691,7 @@
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
+      centos_releasever: 8s
       rdoinfo_build_containers: false
       build_container_images: true
       containers_base_image: "ubi8:8.2"
@@ -720,6 +722,7 @@
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
+      centos_releasever: 8s
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-scenario003-standalone
@@ -729,6 +732,7 @@
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
+      centos_releasever: 8s
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-scenario004-standalone
@@ -738,6 +742,7 @@
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
+      centos_releasever: 8s
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-scenario007-standalone
@@ -747,6 +752,7 @@
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
+      centos_releasever: 8s
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-scenario010-standalone
@@ -756,6 +762,7 @@
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
+      centos_releasever: 8s
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-undercloud-containers
@@ -765,6 +772,7 @@
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
+      centos_releasever: 8s
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-containers-multinode
@@ -774,6 +782,7 @@
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
+      centos_releasever: 8s
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-ovb-3ctlr_1comp-featureset001
@@ -787,6 +796,7 @@
       featureset: '001'
       rdoinfo_release: master
       rdoinfo_phase: testing
+      centos_releasever: 8s
       featureset_override:
         to_build: false
 
@@ -802,6 +812,7 @@
       featureset: '035'
       rdoinfo_release: master
       rdoinfo_phase: testing
+      centos_releasever: 8s
       featureset_override:
         to_build: false
 
@@ -817,6 +828,7 @@
       featureset: '020'
       rdoinfo_release: master
       rdoinfo_phase: testing
+      centos_releasever: 8s
       featureset_override:
         to_build: false
 
