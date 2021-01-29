@@ -827,10 +827,24 @@
       scenario: scenario001
 
 - job:
+    name: periodic-wallaby-packstack-scenario001-centos-stream
+    parent: weirdo-periodic-base
+    vars:
+      rdoinfo_release: wallaby
+      scenario: scenario001
+
+- job:
     name: periodic-victoria-packstack-scenario002-centos-stream
     parent: weirdo-periodic-base
     vars:
       rdoinfo_release: victoria
+      scenario: scenario002
+
+- job:
+    name: periodic-wallaby-packstack-scenario002-centos-stream
+    parent: weirdo-periodic-base
+    vars:
+      rdoinfo_release: wallaby
       scenario: scenario002
 
 - job:
@@ -841,10 +855,24 @@
       scenario: scenario003
 
 - job:
+    name: periodic-wallaby-packstack-scenario003-centos-stream
+    parent: weirdo-periodic-base
+    vars:
+      rdoinfo_release: wallaby
+      scenario: scenario003
+
+- job:
     name: periodic-victoria-puppet-scenario001-centos-stream
     parent: weirdo-periodic-base
     vars:
       rdoinfo_release: victoria
+      scenario: scenario001
+
+- job:
+    name: periodic-wallaby-puppet-scenario001-centos-stream
+    parent: weirdo-periodic-base
+    vars:
+      rdoinfo_release: wallaby
       scenario: scenario001
 
 - job:
@@ -855,6 +883,13 @@
       scenario: scenario002
 
 - job:
+    name: periodic-wallaby-puppet-scenario002-centos-stream
+    parent: weirdo-periodic-base
+    vars:
+      rdoinfo_release: wallaby
+      scenario: scenario002
+
+- job:
     name: periodic-victoria-puppet-scenario003-centos-stream
     parent: weirdo-periodic-base
     vars:
@@ -862,8 +897,22 @@
       scenario: scenario003
 
 - job:
+    name: periodic-wallaby-puppet-scenario003-centos-stream
+    parent: weirdo-periodic-base
+    vars:
+      rdoinfo_release: wallaby
+      scenario: scenario003
+
+- job:
     name: periodic-victoria-puppet-scenario004-centos-stream
     parent: weirdo-periodic-base
     vars:
       rdoinfo_release: victoria
+      scenario: scenario004
+
+- job:
+    name: periodic-wallaby-puppet-scenario004-centos-stream
+    parent: weirdo-periodic-base
+    vars:
+      rdoinfo_release: wallaby
       scenario: scenario004
