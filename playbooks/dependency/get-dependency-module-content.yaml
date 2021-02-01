@@ -1,0 +1,56 @@
+---
+- hosts: all
+  vars:
+    package_manager_utils: >-
+        {% if ansible_distribution_major_version|int >= 8 -%}
+        dnf-utils
+        {%- else -%}
+        yum-utils
+        {%- endif -%}
+  tasks:
+    - name: install yum/dnf-utils
+      become: true
+      package:
+        name: "{{ package_manager_utils }}"
+        state: present
+
+    - name: include dependency-related vars
+      include_vars: >-
+        {{ zuul.executor.work_root }}/{{
+              zuul.projects[
+                'opendev.org/openstack/tripleo-quickstart'
+              ].src_dir
+            }}/config/release/dependency_ci/{{ job.dependency|default(dependency) }}/repo_config.yaml
+
+    - name: ensure latest version of dnf is installed
+      # noqa 403
+      become: true
+      package:
+        name: dnf
+        state: latest
+
+    - name: get the rpm list - control (disabled - to be overridden) modules
+      become: true
+      shell: |
+        set -o pipefail &&
+        sudo dnf module disable {{ item.module_name }}:{{ item.test_version }} -y
+        sudo dnf module enable {{ item.module_name }}:{{ item.control_version }} -y
+        sudo dnf clean metadata
+        dnf module repoquery --enabled {{ item.module_name }};
+        dnf module repoquery --enabled {{ item.module_name }} | sed '/Last metadata.*/d' \
+        | tee -a  {{ ansible_user_dir }}/control_repoquery_list.log
+      with_items: "{{ dependency_modules }}"
+      changed_when: false
+
+    - name: get the rpm list - test version modules
+      become: true
+      shell: |
+        set -o pipefail &&
+        sudo dnf module disable {{ item.module_name }}:{{ item.control_version }} -y
+        sudo dnf module enable {{ item.module_name }}:{{ item.test_version }} -y
+        sudo dnf clean metadata
+        dnf module repoquery --enabled {{ item.module_name }};
+        dnf module repoquery --enabled {{ item.module_name }} | sed '/Last metadata.*/d' \
+        | tee -a  {{ ansible_user_dir }}/test_repoquery_list.log
+      with_items: "{{ dependency_modules }}"
+      changed_when: false

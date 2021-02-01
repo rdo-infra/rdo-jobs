@@ -31,6 +31,7 @@
         | sort | uniq | tee -a  {{ ansible_user_dir }}/test_repoquery_list.log
       with_items: "{{ add_repos }}"
       changed_when: false
+      when: add_repos is defined
 
     - when: dependency_override_repos is defined
       block:
