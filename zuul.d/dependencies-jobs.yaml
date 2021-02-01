@@ -80,3 +80,17 @@
     vars:
       release: train
       branch_override: "stable/train"
+
+# pacemaker deps jobs
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-pacemaker-master
+    parent: periodic-tripleo-ci-centos-8-standalone-centos8stream-master
+    vars:
+      dependency: pacemaker
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-pacemaker-container-build-master
+    parent: periodic-tripleo-ci-centos-8-standalone-centos8stream-container-build-master
+    vars:
+      dependency: pacemaker
+      build_container_images: true
