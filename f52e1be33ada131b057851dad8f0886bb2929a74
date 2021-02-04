@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f877df8b_5e743e14",
+        "filename": "zuul.d/standalone-jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 155
+      },
+      "writtenOn": "2021-02-04T16:48:32Z",
+      "side": 1,
+      "message": "This is base job for periodic which contains everything periodic job needs - including pre, etc.",
+      "parentUuid": "d52004b9_907bea10",
+      "range": {
+        "startLine": 271,
+        "startChar": 14,
+        "endLine": 271,
+        "endChar": 38
+      },
+      "revId": "f52e1be33ada131b057851dad8f0886bb2929a74",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dab24048_4b8caf71",
         "filename": "zuul.d/standalone-jobs.yaml",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2021-02-04T08:48:03Z",
       "side": 1,
       "message": "so if we parent directly from upstream what about the parent tripleo-ci-base-standalone-periodic-centos-8 with its pre plays? https://github.com/rdo-infra/review.rdoproject.org-config/blob/master/zuul.d/tripleo-rdo-base.yaml#L440",
+      "range": {
+        "startLine": 276,
+        "startChar": 12,
+        "endLine": 276,
+        "endChar": 19
+      },
+      "revId": "f52e1be33ada131b057851dad8f0886bb2929a74",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "589d00d0_23e2b0ac",
+        "filename": "zuul.d/standalone-jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 155
+      },
+      "writtenOn": "2021-02-04T16:48:32Z",
+      "side": 1,
+      "message": "We don\u0027t parent directly. We add another parent, that\u0027s why it\u0027s \"multiparenting\". So, the mother is still periodic job, but settings are defined in upstream dummy \"father\" job, which are applied here.\nIf you see \"tripleo-ci-centos-8-scenario001-standalone-options\" in upstream patch, it just holds all settings, nothing more.",
+      "parentUuid": "dab24048_4b8caf71",
       "range": {
         "startLine": 276,
         "startChar": 12,
