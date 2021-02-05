@@ -122,6 +122,9 @@
         - periodic-tripleo-ci-centos-8-scenario010-standalone-network-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-network-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
@@ -364,6 +367,9 @@
         - periodic-tripleo-ci-centos-8-scenario010-standalone-network-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-network-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-network-promote-consistent-to-component-ci-testing
@@ -589,6 +595,9 @@
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-scenario010-standalone-network-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-network-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-ussuri:
