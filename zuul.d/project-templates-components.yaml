@@ -87,6 +87,7 @@
             dependencies:
               - periodic-tripleo-centos-8-master-component-compute-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-compute-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-compute-master-validation
     openstack-component-glance:
       jobs:
         - periodic-tripleo-ci-centos-8-scenario001-standalone-glance-master:
@@ -126,6 +127,7 @@
             dependencies:
               - periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-network-master-validation
     openstack-component-octavia:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-octavia-master:
@@ -189,6 +191,7 @@
             dependencies:
               - periodic-tripleo-centos-8-master-component-tripleo-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-tripleo-master-validation
     openstack-component-tempest:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-tempest-master:
@@ -213,6 +216,7 @@
             dependencies:
               - periodic-tripleo-centos-8-master-component-validation-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-validation-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-validation-master
     openstack-promote-component:
       jobs:
         - periodic-tripleo-centos-8-master-component-baremetal-promote-to-promoted-components
