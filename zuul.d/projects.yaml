@@ -2,6 +2,10 @@
     name: rdo-jobs
     check:
       jobs:
+        - periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-network-master:
+            vars:
+              build_container_images: true
+        - periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-network-victoria
         - tox-docs: &cfg
             nodeset: rdo-centos-8
             vars:

@@ -2302,7 +2302,38 @@
       release: train
       branch_override: 'stable/train'
 
-# scenario010-standalone-component
+# scenario010-ovn-provider-standalone-component
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-component-master
+    parent: periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-master
+    timeout: 14400
+    abstract: true
+    vars: *component_vars_standalone
+
+## master
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-network-master
+    parent: periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-component-master
+    vars:
+      component: network
+
+## victoria
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-network-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-network-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
+## ussuri
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-network-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-network-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+
+# scenario010-kvm-standalone-component
 - job:
     name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-component-master
     parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master
