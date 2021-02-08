@@ -35,6 +35,7 @@
         - distgit-cbs-validate:
             branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
+        - distgit-cbs-validate-centos8-stream
     gate:
       jobs:
         - DLRN-rpmbuild
@@ -42,6 +43,7 @@
         - distgit-cbs-final-build:
             branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
+        - distgit-cbs-final-build-centos8-stream
 
 - project-template:
     name: package-distgit-tripleo-check-jobs
