@@ -7,6 +7,7 @@
       - zuul: opendev.org/openstack/tripleo-ansible
     override-checkout: "stable/victoria"
     vars:
+      force_non_periodic: true
       featureset: '052'
       release: victoria
       standalone_ceph: true
