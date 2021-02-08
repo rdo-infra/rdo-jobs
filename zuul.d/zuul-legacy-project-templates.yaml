@@ -59,6 +59,7 @@
         - distgit-cbs-validate:
             branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
+        - distgit-cbs-validate-centos8-stream
     experimental:
       jobs:
         - weirdo-dlrn-master-packstack-scenario003-centos8
@@ -70,7 +71,7 @@
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: ^(queens|rocky|stein|train)-rdo$
-        - distgit-cbs-final-build-centos8
+        - distgit-cbs-final-build-centos8-stream
 
 - project-template:
     name: weirdo-dlrn-master-barbican
@@ -91,6 +92,7 @@
         - distgit-cbs-validate:
             branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
+        - distgit-cbs-validate-centos8-stream
     experimental:
       jobs:
         - weirdo-dlrn-master-puppet-scenario002-centos8
@@ -101,7 +103,7 @@
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: ^(queens|rocky|stein|train)-rdo$
-        - distgit-cbs-final-build-centos8
+        - distgit-cbs-final-build-centos8-stream
 
 - project-template:
     name: weirdo-dlrn-master-ceilometer
@@ -123,6 +125,7 @@
         - distgit-cbs-validate:
             branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
+        - distgit-cbs-validate-centos8-stream
     experimental:
       jobs:
         - weirdo-dlrn-master-packstack-scenario003-centos8
@@ -134,7 +137,7 @@
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: ^(queens|rocky|stein|train)-rdo$
-        - distgit-cbs-final-build-centos8
+        - distgit-cbs-final-build-centos8-stream
 
 - project-template:
     name: weirdo-dlrn-master-cinder
@@ -157,6 +160,7 @@
         - distgit-cbs-validate:
             branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
+        - distgit-cbs-validate-centos8-stream
     experimental:
       jobs:
         - weirdo-dlrn-master-packstack-scenario001-centos8
@@ -169,7 +173,7 @@
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: ^(queens|rocky|stein|train)-rdo$
-        - distgit-cbs-final-build-centos8
+        - distgit-cbs-final-build-centos8-stream
 
 - project-template:
     name: weirdo-dlrn-master-glance
@@ -193,6 +197,7 @@
         - distgit-cbs-validate:
             branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
+        - distgit-cbs-validate-centos8-stream
     experimental:
       jobs:
         - weirdo-dlrn-master-packstack-scenario001-centos8
@@ -206,7 +211,7 @@
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: ^(queens|rocky|stein|train)-rdo$
-        - distgit-cbs-final-build-centos8
+        - distgit-cbs-final-build-centos8-stream
 
 - project-template:
     name: weirdo-dlrn-master-gnocchi
@@ -237,6 +242,7 @@
         - distgit-cbs-validate:
             branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
+        - distgit-cbs-validate-centos8-stream
     experimental:
       jobs:
         - weirdo-dlrn-master-packstack-scenario003-centos8:
@@ -255,7 +261,7 @@
             branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-final-build:
             branches: ^(queens|rocky|stein|train)-rdo$
-        - distgit-cbs-final-build-centos8
+        - distgit-cbs-final-build-centos8-stream
 
 - project-template:
     name: weirdo-dlrn-master-heat
@@ -277,6 +283,7 @@
         - distgit-cbs-validate:
             branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
+        - distgit-cbs-validate-centos8-stream
     experimental:
       jobs:
         - weirdo-dlrn-master-packstack-scenario003-centos8
@@ -288,7 +295,7 @@
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: ^(queens|rocky|stein|train)-rdo$
-        - distgit-cbs-final-build-centos8
+        - distgit-cbs-final-build-centos8-stream
 
 - project-template:
     name: weirdo-dlrn-master-horizon
@@ -309,6 +316,7 @@
         - distgit-cbs-validate:
             branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
+        - distgit-cbs-validate-centos8-stream
     experimental:
       jobs:
         - weirdo-dlrn-master-puppet-scenario003-centos8
@@ -319,7 +327,7 @@
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: ^(queens|rocky|stein|train)-rdo$
-        - distgit-cbs-final-build-centos8
+        - distgit-cbs-final-build-centos8-stream
 
 - project-template:
     name: weirdo-dlrn-master-keystone
@@ -341,6 +349,7 @@
         - distgit-cbs-validate:
             branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
+        - distgit-cbs-validate-centos8-stream
     experimental:
       jobs:
         - weirdo-dlrn-master-packstack-scenario001-centos8
@@ -352,7 +361,7 @@
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: ^(queens|rocky|stein|train)-rdo$
-        - distgit-cbs-final-build-centos8
+        - distgit-cbs-final-build-centos8-stream
 
 - project-template:
     name: weirdo-dlrn-master-networking-bgpvpn
@@ -373,6 +382,7 @@
         - distgit-cbs-validate:
             branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
+        - distgit-cbs-validate-centos8-stream
     experimental:
       jobs:
         - weirdo-dlrn-master-puppet-scenario004-centos8
@@ -383,7 +393,7 @@
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: ^(queens|rocky|stein|train)-rdo$
-        - distgit-cbs-final-build-centos8
+        - distgit-cbs-final-build-centos8-stream
 
 - project-template:
     name: weirdo-dlrn-master-neutron
@@ -406,6 +416,7 @@
         - distgit-cbs-validate:
             branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
+        - distgit-cbs-validate-centos8-stream
     experimental:
       jobs:
         - weirdo-dlrn-master-packstack-scenario001-centos8
@@ -418,7 +429,7 @@
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: ^(queens|rocky|stein|train)-rdo$
-        - distgit-cbs-final-build-centos8
+        - distgit-cbs-final-build-centos8-stream
 
 - project-template:
     name: weirdo-dlrn-master-nova
@@ -440,6 +451,7 @@
         - distgit-cbs-validate:
             branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
+        - distgit-cbs-validate-centos8-stream
     experimental:
       jobs:
         - weirdo-dlrn-master-packstack-scenario001-centos8
@@ -451,7 +463,7 @@
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: ^(queens|rocky|stein|train)-rdo$
-        - distgit-cbs-final-build-centos8
+        - distgit-cbs-final-build-centos8-stream
 
 - project-template:
     name: weirdo-dlrn-master-oslo
@@ -474,6 +486,7 @@
         - distgit-cbs-validate:
             branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
+        - distgit-cbs-validate-centos8-stream
     experimental:
       jobs:
         - weirdo-dlrn-master-packstack-scenario002-centos8
@@ -486,7 +499,7 @@
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: ^(queens|rocky|stein|train)-rdo$
-        - distgit-cbs-final-build-centos8
+        - distgit-cbs-final-build-centos8-stream
 
 - project-template:
     name: weirdo-dlrn-master-watcher
@@ -507,6 +520,7 @@
         - distgit-cbs-validate:
             branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
+        - distgit-cbs-validate-centos8-stream
     experimental:
       jobs:
         - weirdo-dlrn-master-puppet-scenario004-centos8
@@ -517,7 +531,7 @@
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: ^(queens|rocky|stein|train)-rdo$
-        - distgit-cbs-final-build-centos8
+        - distgit-cbs-final-build-centos8-stream
 
 - project-template:
     name: weirdo-dlrn-master-zaqar
@@ -538,6 +552,7 @@
         - distgit-cbs-validate:
             branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
+        - distgit-cbs-validate-centos8-stream
     experimental:
       jobs:
         - weirdo-dlrn-master-puppet-scenario002-centos8
@@ -548,7 +563,7 @@
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
             branches: ^(queens|rocky|stein|train)-rdo$
-        - distgit-cbs-final-build-centos8
+        - distgit-cbs-final-build-centos8-stream
 
 - project-template:
     name: weirdo-gate-jobs
