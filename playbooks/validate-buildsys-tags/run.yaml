@@ -20,6 +20,7 @@
           set -e -x
           # Install requirements
           YUM="{{ ansible_pkg_mgr }}"
+          PROJECT="{{ zuul.project.name }}"
           sudo $YUM install -y mock;
           # python3-urllib3-1.25.7 not work with old six from base, so need to update six
           # cbs command fails with Failed to parse: https://cbs.centos.org/kojihub/
@@ -38,9 +39,20 @@
           export logs="https://logserver.rdoproject.org/{{ zuul_log_path }}/buildset"
           export WORKSPACE="{{ ansible_user_dir }}/workspace"
           mkdir -p $WORKSPACE
-          RDOINFO_DIR="{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdoinfo'].src_dir }}"
-          bash ./create_temporary_repos.sh $RDOINFO_DIR $WORKSPACE/logs
+          case $PROJECT in
+          rdoinfo)
+            export INFO_DIR="{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdoinfo'].src_dir | default('src/review.rdoproject.org/rdoinfo') }}"
+            export INFO_FILE=rdo-full.yml
+            export VALIDATE_SCRIPT=validate_updates.sh
+            ;;
+          nfvinfo
+            export INFO_DIR="{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/nfvinfo'].src_dir | default('src/review.rdoproject.org/nfvinfo') }}"
+            export INFO_FILE=nfv.yml
+            export VALIDATE_SCRIPT=validate_updates_nfv.sh
+            ;;
+          esac
+          bash ./create_temporary_repos.sh $INFO_DIR $WORKSPACE/logs $INFO_FILE
           ln -s $WORKSPACE/logs $WORKSPACE/buildset
-          bash ./validate_updates.sh $WORKSPACE/logs
+          bash ./${VALIDATE_SCRIPT} $WORKSPACE/logs
           popd
       changed_when: true
