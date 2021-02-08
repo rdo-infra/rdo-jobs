@@ -58,7 +58,7 @@
           # If we could not find a working repository, give up
           curl -o $CREPOS_FILE -sf "$logs/repos/changed_repos.txt" || exit 1
 
-          if ! grep -q -E "$RELEASE-{{ rdoinfo_phase }}" $CREPOS_FILE; then
+          if ! grep -q -E "($RELEASE|openvswitch-2)-{{ rdoinfo_phase }}" $CREPOS_FILE; then
               echo "INFO: this test is not required"| tee not_required
               exit 0
           fi
@@ -82,6 +82,10 @@
         - name: Set buildsys tag fact
           set_fact:
             buildsys_tag: "cloud{{ centos_releasever }}-openstack-{{ master_release if rdoinfo_release == 'master' else rdoinfo_release }}-{{ rdoinfo_phase }}"  # noqa 204
+        - name: Set buildsys tag fact for nfv
+          set_fact:
+            buildsys_tag: "nfv{{ centos_releasever }}-openvswitch-2-{{ rdoinfo_phase }}"
+          when: zuul.project.name == "nfvinfo"
         - name: set url
           set_fact:
             extra_repo_url: "{{ buildset_artifacts_url | default('') }}/repos/{{ buildsys_tag }}/temp-{{ buildsys_tag }}.repo"
