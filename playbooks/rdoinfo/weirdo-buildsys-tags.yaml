@@ -40,6 +40,18 @@
           # This job requires variables 'rdoinfo_release' and 'rdoinfo_phase' to be defined.
 
           CREPOS_FILE=changed_repos.txt
+          PROJECT="{{ zuul.project.name }}"
+          RELEASE="{{ rdoinfo_release }}"
+          PHASE="{{ rdoinfo_phase }}"
+          DIST_VER="{{ centos_releasever }}"
+          case $PROJECT in
+          rdoinfo)
+            REPO="cloud${DIST_VER}-openstack-$RELEASE-$PHASE"
+          ;;
+          nfvinfo)
+            REPO="nfv${DIST_VER}-openvswitch-2-$PHASE"
+          ;;
+          esac
 
           if [ -z "{{ rdoinfo_phase|default("") }}" -o -z "{{ rdoinfo_release|default("") }}" ]; then
               echo "ERROR in job definition: rdoinfo_phase or rdoinfo_release are not defined"
@@ -52,7 +64,7 @@
           # If we could not find a working repository, give up
           curl -o $CREPOS_FILE -sf "$logs/repos/changed_repos.txt" || exit 1
 
-          if ! grep -q -E "{{ rdoinfo_release }}-{{ rdoinfo_phase }}" $CREPOS_FILE; then
+          if ! grep -q -E ${REPO} $CREPOS_FILE; then
               echo "INFO: this test is not required"| tee not_required
               exit 0
           fi
@@ -85,8 +97,16 @@
           MASTER="wallaby"
           RELEASE="{{ rdoinfo_release }}"
           PHASE="{{ rdoinfo_phase }}"
+          PROJECT="{{ zuul.project.name }}"
           DIST_VER="{{ centos_releasever }}"
-          REPO="cloud${DIST_VER}-openstack-$RELEASE-$PHASE"
+          case $PROJECT in
+          rdoinfo)
+            REPO="cloud${DIST_VER}-openstack-$RELEASE-$PHASE"
+          ;;
+          nfvinfo)
+            REPO="nfv${DIST_VER}-openvswitch-2-$PHASE"
+          ;;
+          esac
 
           # Find out if it is puppet or packstack and scenario
           if [[ "{{ zuul.job }}" == *"puppet"* ]]; then
@@ -139,8 +159,13 @@
 
           ;;
           release)
-              REPOS_URL="$TEMP_REPO_URL"
-              ADDITIONAL_OPTS="-e stable_repositories=https://rdoproject.org/repos/openstack-${RELEASE}/${RELEASE_RPM} -e testing_repository=false"
+              if [ $RELEASE = $MASTER ]; then
+                  REPOS_URL="http://trunk.rdoproject.org/centos8-master/puppet-passed-ci/delorean.repo,https://trunk.rdoproject.org/centos8-master/delorean-deps.repo{% if not periodic_job|default(false) %},$TEMP_REPO_URL{% endif %}" # noqa 204
+                  ADDITIONAL_OPTS=""
+              else
+                  REPOS_URL="$TEMP_REPO_URL"
+                  ADDITIONAL_OPTS="-e stable_repositories=https://rdoproject.org/repos/openstack-${RELEASE}/${RELEASE_RPM} -e testing_repository=false"
+              fi
           ;;
           esac
 
