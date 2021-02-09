@@ -715,6 +715,13 @@
       - opendev.org/openstack/tripleo-repos
 
 - job:
+    name: rdoinfo-tripleo-master-release-centos-8-scenario001-standalone
+    parent: rdoinfo-tripleo-master-testing-centos-8-scenario001-standalone
+    vars:
+      rdoinfo_phase: release
+      centos_releasever: 8
+
+- job:
     name: rdoinfo-tripleo-master-testing-centos-8-scenario002-standalone
     parent: tripleo-ci-centos-8-scenario002-standalone
     nodeset: single-centos-8-node-vexxhost
