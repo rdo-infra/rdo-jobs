@@ -30,11 +30,7 @@
           skip="openstack-macros"
           pkginfo_driver="dlrn.drivers.gitrepo.GitRepoDriver"
           branch="{{ zuul.branch }}"
-          if [ "${branch}" == "master" ]; then
-              target=centos8-stream
-          else
-              target=centos8
-          fi
+          target=centos8-stream
 
           # Update the configuration
           sed -i "s%#repo=.*%repo=$repo%" projects.ini
