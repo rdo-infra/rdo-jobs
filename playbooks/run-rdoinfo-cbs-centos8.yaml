@@ -204,12 +204,9 @@
       when:
         - ansible_distribution != "Fedora" or (ansible_distribution == "Fedora" and ansible_distribution_major_version|int > 28)
 
-    - name: Run quickstart
-      include_role:
-        name: run-test
-      vars:
-        release: "{{ rdoinfo_release }}"
-        run_test_role_vars:
+    - name: set role variables
+      set_fact:
+        role_vars:
           docker_registry_namespace: "tripleo{{ rdoinfo_release }}"
           container_prep_additional_repos: temp-*
           enable_opstools_repo: true
@@ -217,4 +214,16 @@
             - type: file
               filename: delorean-0.repo
               down_url: "{{ extra_repo_url }}"
+        optional_role_vars:
+          push_registry: "{{ trunk.registry.rdoproject.org if not build_container_images|default(false)|bool else omit }}"
+          update_containers: "{{ true if not build_container_images|default(false)|bool else omit }}"
+          standalone_container_prep_updates: "{{ true if not build_container_images|default(false)|bool else omit }}"
+      when: not stop_file.stat.exists
+
+    - name: Run quickstart
+      include_role:
+        name: run-test
+      vars:
+        release: "{{ rdoinfo_release }}"
+        run_test_role_vars: "{{ role_vars | combine(optional_role_vars) }}"
       when: not stop_file.stat.exists
