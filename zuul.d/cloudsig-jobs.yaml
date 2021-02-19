@@ -13,7 +13,6 @@
       standalone_ceph: true
       branch_override: "cloudsig/victoria"
       build_container_images: true
-      containers_base_image: "ubi8"
       use_buildah: true
       # push in centos8 needs to be handled differently
       push_containers: false
