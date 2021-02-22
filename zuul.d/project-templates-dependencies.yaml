@@ -17,6 +17,18 @@
 
     openstack-dependencies-openvswitch:
       jobs:
+        - periodic-tripleo-ci-centos-8-standalone-container-tools-master:
+            dependencies:
+              - periodic-tripleo-ci-centos-8-standalone-master
+        - periodic-tripleo-ci-centos-8-standalone-container-tools-container-build-master:
+            dependencies:
+              - periodic-tripleo-ci-centos-8-scenario007-standalone-master
+        - periodic-tripleo-ci-centos-8-standalone-master:
+            vars:
+              force_periodic: false
+
+    openstack-dependencies-containertools:
+      jobs:
         - periodic-tripleo-ci-centos-8-standalone-openvswitch-container-build-master:
             dependencies:
               - periodic-tripleo-ci-centos-8-standalone-master
@@ -29,6 +41,7 @@
         - periodic-tripleo-ci-centos-8-scenario007-standalone-master:
             vars:
               force_periodic: false
+
 
 ## victoria
 #############################################################
