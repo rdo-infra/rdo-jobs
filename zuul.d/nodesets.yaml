@@ -379,3 +379,32 @@
           - primary
       - name: peers
         nodes: []
+
+- nodeset:
+    name: tripleo-ovb-centos-8-stream-primary-vexxhost
+    nodes:
+      - name: primary
+        label: upstream-centos-8-stream-vexxhost
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: two-centos-8-stream-nodes-vexxhost
+    nodes:
+      - name: primary
+        label: upstream-centos-8-stream-vexxhost
+      - name: secondary
+        label: upstream-centos-8-stream-vexxhost
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes:
+          - secondary
+      - name: subnodes
+        nodes:
+          - secondary
