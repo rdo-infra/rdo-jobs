@@ -620,6 +620,8 @@
     vars:
       branch_override: "stable/train"
       release: train
+      run_test_role_vars:
+        standalone_control_virtual_ip: 192.168.24.3
 
 - job:
     name: periodic-tripleo-ci-centos-7-scenario007-standalone-train
