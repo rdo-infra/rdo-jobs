@@ -24,11 +24,6 @@
     nodeset: centos-7
 
 - job:
-    name: podman-package-fedora-32
-    parent: podman-package-centos-8
-    nodeset: single-fedora-32-node
-
-- job:
     name: podman-package-fedora-33
     parent: podman-package-centos-8
     nodeset: single-fedora-33-node
