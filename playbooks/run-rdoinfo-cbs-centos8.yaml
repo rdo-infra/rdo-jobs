@@ -217,9 +217,10 @@
               filename: delorean-0.repo
               down_url: "{{ extra_repo_url }}"
         optional_role_vars:
-          push_registry: "{{ trunk.registry.rdoproject.org if not build_container_images|default(false)|bool else omit }}"
+          push_registry: "{{ 'trunk.registry.rdoproject.org' if not build_container_images|default(false)|bool else omit }}"
           update_containers: "{{ true if not build_container_images|default(false)|bool else omit }}"
           standalone_container_prep_updates: "{{ true if not build_container_images|default(false)|bool else omit }}"
+          docker_image_tag: "{{ 'current-tripleo' if not build_container_images|default(false)|bool else omit }}"
       when: not stop_file.stat.exists
 
     - name: Run quickstart
