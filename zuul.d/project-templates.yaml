@@ -361,6 +361,10 @@
             dependencies:
               - podman-package-centos-8
             voting: false
+        - tripleo-podman-integration-centos-8-standalone:
+            dependencies:
+              - podman-package-centos-8
+            voting: false
 
 - project-template:
     name: weirdo-validate-buildsys-tags-jobs
