@@ -89,15 +89,19 @@
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-build-containers-ubi-8-push:
+            nodeset: single-centos-8-stream-node
             dependencies:
               - periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing
         - periodic-tripleo-centos-8-buildimage-overcloud-hardened-full-master:
+            nodeset: single-centos-8-stream-node
             dependencies:
               - periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing
         - periodic-tripleo-centos-8-buildimage-overcloud-full-master:
+            nodeset: single-centos-8-stream-node
             dependencies:
               - periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing
         - periodic-tripleo-centos-8-buildimage-ironic-python-agent-master:
+            nodeset: single-centos-8-stream-node
             dependencies:
               - periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing
-        - periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing
+#        - periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing
