@@ -366,7 +366,6 @@
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
           - 'ci/environments/scenario010-standalone.yaml'
-          - 'ci/environments/octavia-kvm.yaml'
         tempest_test_whitelist:
           - neutron_tempest_plugin.scenario
           - tempest.scenario.test_network_basic_ops.TestNetworkBasicOps
