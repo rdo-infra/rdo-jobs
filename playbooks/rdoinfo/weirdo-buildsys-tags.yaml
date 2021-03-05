@@ -132,10 +132,6 @@
           {% endif %}
 
           # Release RPM name is different for el7 and el8
-          export RELEASE_WEB="https://rdoproject.org/repos/openstack-${RELEASE}"
-          if [[ ${DIST_VER} = 8s ]]; then
-              export RELEASE_WEB="https://ykarel.fedorapeople.org/repos/openstack-${RELEASE}"
-          fi
           if [[ ${DIST_VER} = 8* ]]; then
               export RELEASE_RPM="rdo-release-${RELEASE}.el8.rpm"
           else
@@ -158,7 +154,7 @@
                   ADDITIONAL_OPTS=""
               else
                   REPOS_URL="{% if not periodic_job|default(false) %}$TEMP_REPO_URL{% endif %}"
-                  ADDITIONAL_OPTS="-e stable_repositories=${RELEASE_WEB}/${RELEASE_RPM} -e testing_repository=true"
+                  ADDITIONAL_OPTS="-e stable_repositories=https://rdoproject.org/repos/openstack-${RELEASE}/${RELEASE_RPM} -e testing_repository=true"
               fi
 
           ;;
@@ -168,7 +164,7 @@
                   ADDITIONAL_OPTS=""
               else
                   REPOS_URL="$TEMP_REPO_URL"
-                  ADDITIONAL_OPTS="-e stable_repositories=${RELEASE_WEB}/${RELEASE_RPM} -e testing_repository=false"
+                  ADDITIONAL_OPTS="-e stable_repositories=https://rdoproject.org/repos/openstack-${RELEASE}/${RELEASE_RPM} -e testing_repository=false"
               fi
           ;;
           esac
