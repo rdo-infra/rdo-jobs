@@ -7,17 +7,32 @@
         ##### victoria #####
         ## containers/images
         - periodic-tripleo-ci-build-containers-ubi-8-push-victoria:
+            nodeset: single-centos-8-stream-node
             dependencies:
               - periodic-tripleo-centos-8-victoria-promote-promoted-components-to-tripleo-ci-testing
+            vars:
+              volume_mounts:
+                - "/etc/yum.repos.d:/etc/distro.repos.d:z"
+                - "/etc/pki/rpm-gpg:/etc/pki/rpm-gpg:z"
+                - "/etc/dnf/vars:/etc/dnf/vars:z"
         - periodic-tripleo-centos-8-buildimage-overcloud-hardened-full-victoria:
+            nodeset: single-centos-8-stream-node
             dependencies:
               - periodic-tripleo-centos-8-victoria-promote-promoted-components-to-tripleo-ci-testing
+            vars:
+              tripleo_image_source: https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-20201217.0.x86_64.qcow2
         - periodic-tripleo-centos-8-buildimage-overcloud-full-victoria:
+            nodeset: single-centos-8-stream-node
             dependencies:
               - periodic-tripleo-centos-8-victoria-promote-promoted-components-to-tripleo-ci-testing
+            vars:
+              tripleo_image_source: https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-20201217.0.x86_64.qcow2
         - periodic-tripleo-centos-8-buildimage-ironic-python-agent-victoria:
+            nodeset: single-centos-8-stream-node
             dependencies:
               - periodic-tripleo-centos-8-victoria-promote-promoted-components-to-tripleo-ci-testing
+            vars:
+              tripleo_image_source: https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-20201217.0.x86_64.qcow2
         ## standalone
         - periodic-tripleo-ci-centos-8-standalone-victoria:
             dependencies:
