@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e748ed28_59524c88",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2021-03-09T13:28:35Z",
+      "side": 1,
+      "message": "```\nRemoving volume_mounts var from periodic-tripleo-ci-build-containers-ubi-8-push job\n\nAs volume_mounts is already defined in https://opendev.org/openstack/tripleo-ci/src/branch/master/roles/build-containers/vars/centos-8.yml#L21, So we donot need to redefine.\n\n```\nSomething like that we can write the commit message.",
+      "range": {
+        "startLine": 7,
+        "startChar": 1,
+        "endLine": 7,
+        "endChar": 229
+      },
+      "revId": "33e47d16093b3d21e7c392e1439c3033f3e61a50",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
