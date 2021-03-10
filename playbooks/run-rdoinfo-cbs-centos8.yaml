@@ -89,9 +89,18 @@
       set_fact:
         buildsys_tag: "cloud{{ centos_releasever }}-openstack-{{ master_release }}-{{ rdoinfo_phase }}"
       when: rdoinfo_release == "master"
+    - name: Detect tag change is nfv8 or nfv8s
+      slurp:
+        src: "{{ ansible_user_dir }}/workspace/changed_repos.txt"
+      register: changed_repos_output
+      when: zuul.project.name == "nfvinfo"
+    - name: set fact for nfv tags
+      set_fact:
+        nfv_dist: "{{ '8s' if 'nfv8s' in changed_repos_output.content | b64decode else '8' }}"
+      when: zuul.project.name == "nfvinfo"
     - name: Set buildsys tag fact for nfv
       set_fact:
-        buildsys_tag: "nfv{{ centos_releasever }}-openvswitch-2-{{ rdoinfo_phase }}"
+        buildsys_tag: "nfv{{ nfv_dist }}-openvswitch-2-{{ rdoinfo_phase }}"
       when: zuul.project.name == "nfvinfo"
     - name: set url
       set_fact:
