@@ -91,16 +91,26 @@
               - periodic-tripleo-ci-build-containers-ubi-8-push-ussuri
         ## containers/images
         - periodic-tripleo-ci-build-containers-ubi-8-push-ussuri:
+            nodeset: single-centos-8-stream-node
             dependencies:
               - periodic-tripleo-centos-8-ussuri-promote-promoted-components-to-tripleo-ci-testing
         - periodic-tripleo-centos-8-buildimage-overcloud-full-ussuri:
+            nodeset: single-centos-8-stream-node
             dependencies:
               - periodic-tripleo-centos-8-ussuri-promote-promoted-components-to-tripleo-ci-testing
+            vars:
+              tripleo_image_source: https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-20201217.0.x86_64.qcow2
         - periodic-tripleo-centos-8-buildimage-ironic-python-agent-ussuri:
+            nodeset: single-centos-8-stream-node
             dependencies:
               - periodic-tripleo-centos-8-ussuri-promote-promoted-components-to-tripleo-ci-testing
+            vars:
+              tripleo_image_source: https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-20201217.0.x86_64.qcow2
         - periodic-tripleo-centos-8-buildimage-overcloud-hardened-full-ussuri:
+            nodeset: single-centos-8-stream-node
             dependencies:
               - periodic-tripleo-centos-8-ussuri-promote-promoted-components-to-tripleo-ci-testing
+            vars:
+              tripleo_image_source: https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-20201217.0.x86_64.qcow2
         ## promote to tripleo-ci-testing
         - periodic-tripleo-centos-8-ussuri-promote-promoted-components-to-tripleo-ci-testing
