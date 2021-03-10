@@ -35,6 +35,7 @@
         tempest_test_whitelist:
           - 'api'
           - 'scenario'
+          - '^octavia_tempest_plugin.*smoke'
         use_os_tempest: true
 
 - job:
