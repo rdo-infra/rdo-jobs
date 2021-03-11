@@ -35,9 +35,6 @@
         - periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-train:
             dependencies:
               - periodic-tripleo-centos-7-train-containers-build-push
-        - periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-train:
-            dependencies:
-              - periodic-tripleo-centos-7-train-containers-build-push
         - periodic-tripleo-ci-centos-7-ovb-1ctlr_1cellctrl_1comp-featureset063-train:
             dependencies:
               - periodic-tripleo-centos-7-train-containers-build-push

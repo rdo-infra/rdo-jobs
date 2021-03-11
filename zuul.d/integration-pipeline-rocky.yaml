@@ -14,9 +14,6 @@
         - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-rocky:
             dependencies:
               - periodic-tripleo-centos-7-rocky-containers-build-push
-        - periodic-tripleo-ci-centos-7-singlenode-featureset050-upgrades-rocky:
-            dependencies:
-              - periodic-tripleo-centos-7-rocky-containers-build-push
         - periodic-tripleo-centos-7-rocky-containers-build-push:
             dependencies:
               - periodic-tripleo-centos-7-rocky-promote-consistent-to-tripleo-ci-testing
