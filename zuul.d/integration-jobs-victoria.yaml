@@ -164,13 +164,6 @@
       branch_override: 'stable/victoria'
       release: victoria
 
-- job:
-    name: periodic-tripleo-ci-centos-8-singlenode-featureset050-upgrades-victoria
-    parent: periodic-tripleo-ci-centos-8-singlenode-featureset050-upgrades-master
-    vars:
-      branch_override: "stable/victoria"
-      release: victoria
-
 ## multinode
 - job:
     name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-victoria
