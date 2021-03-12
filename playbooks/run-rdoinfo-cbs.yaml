@@ -122,6 +122,20 @@
           vars:
             buildcontainers_rpm_setup_config: "{{ delorean_repos }},{{ extra_repo_url | default('') }}"
 
+    - name: Dump package list in job from repo being tested
+      changed_when: true
+      when:
+        - buildset_artifacts_url is defined
+        - not stop_file.stat.exists
+      shell:
+        cmd: |
+          # Collect the list of updated packages in a log file
+          UPDATED_PKGS=$(curl "{{ buildset_artifacts_url }}/repos/{{ buildsys_tag }}.content.txt" |rev|awk -F'/' '{printf $1","}'|rev)
+          if [ ! -d /var/log/extra/ ]; then
+              sudo mkdir /var/log/extra/
+          fi
+          echo "{{ buildsys_tag }}${UPDATED_PKGS}" |sudo tee -a /var/log/extra/tested_pkgs_updates.txt
+
     - name: Run quickstart
       include_role:
         name: run-test
