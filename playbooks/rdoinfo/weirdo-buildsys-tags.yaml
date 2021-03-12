@@ -129,6 +129,12 @@
           # Temporary repo URL
           logs={{ buildset_artifacts_url }}
           TEMP_REPO_URL="${logs}/repos/$REPO/temp-$REPO.repo"
+          # Collect the list of updated packages in a log file
+          UPDATED_PKGS=$(curl "${logs}/repos/$REPO.content.txt" |rev|awk -F'/' '{printf $1","}'|rev)
+          if [ ! -d /var/log/weirdo/ ]; then
+              sudo mkdir /var/log/weirdo/
+          fi
+          echo "${REPO}${UPDATED_PKGS}" |sudo tee -a /var/log/weirdo/tested_pkgs_updates.txt
           {% endif %}
 
           # Release RPM name is different for el7 and el8
