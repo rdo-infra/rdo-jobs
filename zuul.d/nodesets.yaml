@@ -190,7 +190,7 @@
     name: single-centos-8-node
     nodes:
       - name: primary
-        label: upstream-centos-8-vexxhost
+        label:upstream-centos-8-stream
     groups:
       - name: switch
         nodes:
@@ -202,7 +202,7 @@
     name: single-centos-8-node-standalone
     nodes:
       - name: primary
-        label: upstream-centos-8-vexxhost
+        label: upstream-centos-8-stream
     groups:
       - name: switch
         nodes: []
@@ -213,9 +213,9 @@
     name: two-centos-8-nodes
     nodes:
       - name: primary
-        label: upstream-centos-8-vexxhost
+        label: upstream-centos-8-stream
       - name: secondary
-        label: upstream-centos-8-vexxhost
+        label: upstream-centos-8-stream
     groups:
       - name: switch
         nodes:
@@ -231,7 +231,7 @@
     name: tripleo-ovb-centos-8-primary
     nodes:
       - name: primary
-        label: tripleo-ovb-centos-8-vexxhost
+        label: upstream-centos-8-stream
     groups:
       - name: switch
         nodes: []
@@ -257,7 +257,7 @@
     name: upstream-centos-8-vexxhost
     nodes:
       - name: primary
-        label: upstream-centos-8-vexxhost
+        label: upstream-centos-8-stream
     groups:
       - name: switch
         nodes: []
@@ -279,7 +279,7 @@
     name: upstream-centos-8-psi-public
     nodes:
       - name: primary
-        label: upstream-centos-8-psi-public
+        label: upstream-centos-8-stream
     groups:
       - name: switch
         nodes: []
@@ -290,7 +290,7 @@
     name: upstream-centos-8-stream-psi-public
     nodes:
       - name: primary
-        label: upstream-centos-8-stream-psi-public
+        label: upstream-centos-8-stream
     groups:
       - name: switch
         nodes: []
@@ -301,7 +301,7 @@
     name: single-centos-8-node-psi
     nodes:
       - name: primary
-        label: upstream-centos-8-psi-public
+        label: upstream-centos-8-stream
     groups:
       - name: switch
         nodes:
@@ -313,9 +313,9 @@
     name: two-centos-8-nodes-psi
     nodes:
       - name: primary
-        label: upstream-centos-8-psi-public
+        label: upstream-centos-8-stream
       - name: secondary
-        label: upstream-centos-8-psi-public
+        label: upstream-centos-8-stream
     groups:
       - name: switch
         nodes:
@@ -331,7 +331,7 @@
     name: single-centos-8-node-vexxhost
     nodes:
       - name: primary
-        label: upstream-centos-8-vexxhost
+        label: upstream-centos-8-stream
     groups:
       - name: switch
         nodes:
@@ -343,7 +343,7 @@
     name: tripleo-ovb-centos-8-primary-vexxhost
     nodes:
       - name: primary
-        label: upstream-centos-8-vexxhost
+        label: upstream-centos-8-stream
     groups:
       - name: switch
         nodes: []
@@ -354,9 +354,9 @@
     name: two-centos-8-nodes-vexxhost
     nodes:
       - name: primary
-        label: upstream-centos-8-vexxhost
+        label: upstream-centos-8-stream
       - name: secondary
-        label: upstream-centos-8-vexxhost
+        label: upstream-centos-8-stream
     groups:
       - name: switch
         nodes:
