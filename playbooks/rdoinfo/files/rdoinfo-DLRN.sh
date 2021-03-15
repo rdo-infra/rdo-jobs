@@ -54,7 +54,7 @@ for PACKAGE in ${PACKAGES_TO_BUILD}; do
     PROJECT_TO_BUILD_MAPPED=$(echo "$PACKAGE_INFO" | awk '/^name:/ {print $2}')
     PROJECT_IN_RDOINFO=$(echo "$PACKAGE_INFO" | awk '/^project:/ {print $2}')
     PROJECT_DISTGIT=$(echo "$PACKAGE_INFO" | awk '/^distgit:/ {print $2}')
-    NAMESPACE=$(echo "$PACKAGE_INFO" | awk '/^patches/ { split($2, res, "/"); print res[6] }')
+    NAMESPACE=$(echo "$PACKAGE_INFO" | awk '/^patches/ { split($2, res, "/"); print res[5] }')
     # Remove trailing .git from distgit name, otherwise Depends-On: will fail
     PROJECT_DISTRO="$NAMESPACE/$(echo $PROJECT_DISTGIT | awk -F/ '{print $NF}' | sed 's/\.git$//')"
     PROJECT_DISTRO_DIR=${PROJECT_TO_BUILD_MAPPED}_distro
@@ -64,7 +64,7 @@ for PACKAGE in ${PACKAGES_TO_BUILD}; do
         GIT_BASE="review.openstack.org"
         PROJECT_DISTRO=$(basename $PROJECT_DISTGIT)
     else
-        GIT_BASE_URL="https://review.rdoproject.org/r/p"
+        GIT_BASE_URL="https://review.rdoproject.org/r"
         GIT_BASE="review.rdoproject.org"
         git config --global Http.sslVerify false
     fi
