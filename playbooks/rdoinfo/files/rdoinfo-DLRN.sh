@@ -64,7 +64,7 @@ for PACKAGE in ${PACKAGES_TO_BUILD}; do
         GIT_BASE="review.openstack.org"
         PROJECT_DISTRO=$(basename $PROJECT_DISTGIT)
     else
-        GIT_BASE_URL="https://review.rdoproject.org/r/p"
+        GIT_BASE_URL="https://review.rdoproject.org/r"
         GIT_BASE="review.rdoproject.org"
         git config --global Http.sslVerify false
     fi
