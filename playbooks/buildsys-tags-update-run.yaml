@@ -1,0 +1,103 @@
+- hosts: all
+  name: rdoinfo-buildsys-tags-update playbook
+  tasks:
+    - name: Install required dependencies
+      package:
+        name:
+          - git
+          - centos-packager
+          - python3-PyYAML
+        state: present
+      become: true
+
+    - name: rdoinfo-buildsys-tags-update
+      shell:
+        cmd: |
+          set +e -x
+          PHASE={{ rdoinfo_phase }}
+          # I want to run jobs for testing in odd days and release in even
+          # When updating packages from -testing to -release we want to automatically include
+          # dependencies. For promotions from -candidate to -testing we will keep it manual as
+          # someone must create the build and justify the update.
+          case $PHASE in
+            testing )
+              DEPS="-n"
+            ;;
+            release )
+              DEPS=""
+            ;;
+          esac
+          virtualenv --system-site-packages .venv
+          . .venv/bin/activate
+          pushd {{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/graffiti'].src_dir }}
+          pip install .
+          popd
+          pip install 'ruamel.yaml<=0.15.0' sh git-review
+          # Install releng, needed for update_uc command
+          pushd {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/releng'].src_dir }}
+          pip install .
+          popd
+
+          mkdir -p ~/.ssh
+          cat >> ~/.ssh/config << EOF
+
+          Host review.rdoproject.org
+            IdentityFile ~/.ssh/rdoinfo_id_rsa
+          EOF
+          chmod 0400 ~/.ssh/config
+          ssh-keyscan -p 29418 review.rdoproject.org >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+          cd {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdoinfo'].src_dir }}
+          for RELEASE in {{ stable_releases }} ; do
+            # If release has format <openstack_release>,<centos_release> get centos release.
+            CENTOS_V=$(echo $RELEASE|awk -F',' '{print $2}')
+            # seperate out Release from distro version
+            TARGET_RELEASE=$(echo $RELEASE|awk -F',' '{print $1}')
+            # if not defaults to 7
+            CENTOS_V=${CENTOS_V:-7}
+            git reset --hard origin/master
+            python {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}/buildsys-tags/update-buildsys-tags.py \
+              -c {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}/buildsys-tags/graffiti_config.yaml \
+              -r $TARGET_RELEASE \
+              -p $PHASE \
+              --centos-release $CENTOS_V \
+              $DEPS
+            DIFF=$(git diff *.yml */*.yml)
+            TOPIC=${RELEASE/,/-}-$PHASE
+            if [ -n "$DIFF" ]; then
+              # Check for an open change, if so reuse it
+              change_info=$(ssh -p 29418 rdo-trunk@review.rdoproject.org \
+              gerrit query --current-patch-set status:open project:rdoinfo owner:rdo-trunk branch:master \
+                  topic:"$TOPIC"-update)
+              previous=$(echo "$change_info" | grep "^  number:" | awk '{print $2}')
+              if [ -n "$previous" ]; then
+                  CHANGE_ID=$(echo "$change_info" | grep "^change" | awk '{print $2}')
+                  COMMIT_MSG="Promote CBS tags update for $TOPIC\n\nChange-Id: $CHANGE_ID\n"
+              else
+                  COMMIT_MSG="Promote CBS tags update for $TOPIC"
+              fi
+              git config user.name "rdo-trunk"
+              git config user.email "javier.pena@redhat.com"
+              git config gitreview.username "rdo-trunk"
+              git checkout -b proposal
+              git review -s -v
+              echo -e $COMMIT_MSG | git commit -F- *.yml */*.yml
+              DIFF_RDO=0
+              if [ -n "$CHANGE_ID" ]; then
+                  # Just in case, check if there are changes between this version and the current review
+                  for i in $(ls *yml */*yml 2>/dev/null); do
+                      curl https://review.rdoproject.org/r/changes/rdoinfo~master~$CHANGE_ID/revisions/current/files/${i/\//%2F}/content |base64 -d > $i.current
+                      diff $i $i.current
+                      if [ $? -ne 0 ]; then
+                          DIFF_RDO=1
+                          break
+                      fi
+                  done
+              fi
+              if [[ ! -n "$CHANGE_ID" ]] || [[ $DIFF_RDO -ne 0 ]]; then
+                  git review -t "$TOPIC-update" < /dev/null
+              fi
+            fi
+          done
+      changed_when: true
