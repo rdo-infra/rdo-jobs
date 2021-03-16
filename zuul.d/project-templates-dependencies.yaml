@@ -5,9 +5,6 @@
     name: dependencies-pipeline-main
     openstack-dependencies-containertools:
       jobs:
-        - periodic-tripleo-ci-centos-8-standalone-container-tools-master:
-            dependencies:
-              - periodic-tripleo-ci-centos-8-standalone-master
         - periodic-tripleo-ci-centos-8-standalone-container-tools-container-build-master:
             dependencies:
               - periodic-tripleo-ci-centos-8-standalone-master
@@ -35,13 +32,37 @@
 #############################################################
 - project-template:
     name: dependencies-pipeline-victoria
+    openstack-dependencies-containertools:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-container-tools-container-build-victoria:
+            dependencies:
+              - periodic-tripleo-ci-centos-8-standalone-victoria
+        - periodic-tripleo-ci-centos-8-standalone-victoria:
+            vars:
+              force_periodic: false
 
 ## ussuri
 #############################################################
 - project-template:
     name: dependencies-pipeline-ussuri
+    openstack-dependencies-containertools:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-container-tools-container-build-ussuri:
+            dependencies:
+              - periodic-tripleo-ci-centos-8-standalone-ussuri
+        - periodic-tripleo-ci-centos-8-standalone-ussuri:
+            vars:
+              force_periodic: false
 
 ## train
 #############################################################
 - project-template:
     name: dependencies-pipeline-train
+    openstack-dependencies-containertools:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-container-tools-container-build-train:
+            dependencies:
+              - periodic-tripleo-ci-centos-8-standalone-train
+        - periodic-tripleo-ci-centos-8-standalone-train:
+            vars:
+              force_periodic: false

@@ -96,6 +96,14 @@
       release: victoria
       branch_override: "stable/victoria"
 
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-container-tools-container-build-victoria
+    parent: periodic-tripleo-ci-centos-8-standalone-container-tools-container-build-master
+    override-checkout: "stable/victoria"
+    vars:
+      release: victoria
+      branch_override: "stable/victoria"
+
 # ussuri jobs
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-centos8stream-ussuri
@@ -113,6 +121,14 @@
       release: ussuri
       branch_override: "stable/ussuri"
 
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-container-tools-container-build-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-container-tools-container-build-master
+    override-checkout: "stable/ussuri"
+    vars:
+      release: victoria
+      branch_override: "stable/ussuri"
+
 # train c8 jobs
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-centos8stream-train
@@ -128,4 +144,12 @@
     override-checkout: "stable/train"
     vars:
       release: train
+      branch_override: "stable/train"
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-container-tools-container-build-train
+    parent: periodic-tripleo-ci-centos-8-standalone-container-tools-container-build-master
+    override-checkout: "stable/train"
+    vars:
+      release: victoria
       branch_override: "stable/train"
