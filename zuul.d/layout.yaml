@@ -1,12 +1,26 @@
+- job:
+    name: rdoinfo-buildsys-tags-update-testing-test
+    parent: distgit-cbs-validate
+    description: |
+      This job updates -candidate buildsys tags to -testing.
+    run: playbooks/buildsys-tags-update-run.yaml
+    vars:
+      rdoinfo_phase: testing
+      stable_releases: queens rocky stein train train,8 ussuri,8 victoria,8 victoria,8s ussuri,8s train,8s
+    nodeset: rdo-centos-8-stream
+    timeout: 3600
+    required-projects:
+      - name: gating_scripts
+      - name: graffiti
+      - name: rdoinfo
+      - name: rdo-infra/releng
+
+- job:
+    name: rdoinfo-buildsys-tags-update-testing-test
+    parent: rdo-deps-uc-send-review
+    run: playbooks/buildsys-tags-update-run.yaml
+
 - project:
     check:
       jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+        - rdoinfo-buildsys-tags-update-testing-test
