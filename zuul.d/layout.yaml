@@ -8,5 +8,9 @@
               - ^requirements.txt
               - ^test-requirements.txt
               - ^tox.ini$
+        - periodic-tripleo-ci-centos-8-standalone-container-tools-container-build-master
+        - periodic-tripleo-ci-centos-8-standalone-container-tools-container-build-victoria
+        - periodic-tripleo-ci-centos-8-standalone-container-tools-container-build-ussuri
+        - periodic-tripleo-ci-centos-8-standalone-container-tools-container-build-train
     gate:
       jobs: *jobs
