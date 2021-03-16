@@ -7,19 +7,16 @@
         ##### stable/train centos-8 #####
         - periodic-tripleo-centos-8-train-promote-promoted-components-to-tripleo-ci-testing
         - periodic-tripleo-centos-8-buildimage-overcloud-full-train:
-            nodeset: single-centos-8-stream-node
             dependencies:
               - periodic-tripleo-centos-8-train-promote-promoted-components-to-tripleo-ci-testing
             vars:
               tripleo_image_source: https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-20201217.0.x86_64.qcow2
         - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train:
-            nodeset: single-centos-8-stream-node
             dependencies:
               - periodic-tripleo-centos-8-train-promote-promoted-components-to-tripleo-ci-testing
             vars:
               tripleo_image_source: https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-20201217.0.x86_64.qcow2
         - periodic-tripleo-ci-build-containers-ubi-8-push-train:
-            nodeset: single-centos-8-stream-node
             dependencies:
               - periodic-tripleo-centos-8-train-promote-promoted-components-to-tripleo-ci-testing
         - periodic-tripleo-ci-centos-8-standalone-train:
@@ -72,7 +69,6 @@
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-train
         - periodic-tripleo-centos-8-buildimage-overcloud-hardened-full-train:
-            nodeset: single-centos-8-stream-node
             dependencies:
               - periodic-tripleo-centos-8-train-promote-promoted-components-to-tripleo-ci-testing
             vars:

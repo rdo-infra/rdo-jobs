@@ -27,7 +27,7 @@
     name: periodic-tripleo-ci-centos-8-standalone-centos8stream-master
     parent: periodic-tripleo-ci-centos-8-standalone-multiple-dependency-master
     ansible-version: 2.9
-    nodeset: single-centos-8-stream-node
+    nodeset: single-centos-8-node
     vars:
       dependency: centos8stream
 
@@ -35,7 +35,7 @@
     name: periodic-tripleo-ci-centos-8-standalone-centos8stream-container-build-master
     parent: periodic-tripleo-ci-centos-8-standalone-multiple-dependency-master
     ansible-version: 2.9
-    nodeset: single-centos-8-stream-node
+    nodeset: single-centos-8-node
     vars:
       dependency: centos8stream
       build_container_images: true
@@ -45,7 +45,7 @@
     name: periodic-tripleo-ci-centos-8-standalone-container-tools-master
     parent: periodic-tripleo-ci-centos-8-standalone-module-dependency-master
     ansible-version: 2.9
-    nodeset: single-centos-8-stream-node
+    nodeset: single-centos-8-node
     vars:
       dependency: container-tools
 
@@ -53,7 +53,7 @@
     name: periodic-tripleo-ci-centos-8-standalone-container-tools-container-build-master
     parent: periodic-tripleo-ci-centos-8-standalone-module-dependency-master
     ansible-version: 2.9
-    nodeset: single-centos-8-stream-node
+    nodeset: single-centos-8-node
     vars:
       dependency: container-tools
       build_container_images: true
