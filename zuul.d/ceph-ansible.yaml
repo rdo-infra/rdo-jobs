@@ -1,4 +1,11 @@
 ---
+# Ceph version Mapping
+# Train: stable-4
+# Ussuri: stable-4
+# Victoria: stable-4
+# Wallaby: stable-5
+# master: stable-5 | master
+
 - job:
     # This is an abstract job to share common bits for each ooo-ceph integration jobs
     name: tripleo-ceph-integration
@@ -56,19 +63,47 @@
     parent: tripleo-centos-8-ceph-integration
     # stein/train/ussuri will be using stable-4.0
     # branches: ^(stable-5.0|master).*$
-    branches: ^(stable-4.0|master).*$
+    branches: ^(stable-5.0|master).*$
     required-projects:
       # without options, the branch of the PR is used for the required-projects
       - name: opendev.org/openstack/tripleo-heat-templates
       - name: github.com/ceph/ceph-ansible
-        override-checkout: stable-4.0
+        override-checkout: stable-5.0
 
 - job:
     name: tripleo-centos-8-ceph-ansible-integration-master
     parent: tripleo-centos-8-ceph-integration
-    branches: ^(stable-4.0|master).*$
+    branches: ^(stable-5.0|master).*$
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
+      - name: github.com/ceph/ceph-ansible
+        override-checkout: stable-5.0
+      - name: github.com/ansible/ansible
+        override-checkout: stable-2.9
+    vars:
+      build_ansible_rpm: true
+
+## Victoria Jobs
+- job:
+    name: tripleo-centos-8-ceph-integration-victoria
+    parent: tripleo-centos-8-ceph-integration
+    branches: stable-4.0
+    required-projects:
+      - name: opendev.org/openstack/tripleo-heat-templates
+        override-checkout: stable/victoria
+      - name: github.com/ceph/ceph-ansible
+        override-checkout: stable-4.0
+    vars:
+      dist: "el8"
+      mock_config: "epel-8-x86_64"
+
+- job:
+    name: tripleo-centos-8-ceph-ansible-integration-victoria
+    parent: tripleo-centos-8-ceph-integration
+    branches: stable-4.0
+    required-projects:
+      - name: opendev.org/openstack/tripleo-heat-templates
+        override-checkout: stable/victoria
       - name: github.com/ceph/ceph-ansible
         override-checkout: stable-4.0
       - name: github.com/ansible/ansible
@@ -76,10 +111,12 @@
     vars:
       build_ansible_rpm: true
 
+## Ussuri Jobs
+
 - job:
     name: tripleo-centos-8-ceph-integration-ussuri
     parent: tripleo-centos-8-ceph-integration
-    branches: ^(stable-4.0|master).*$
+    branches: stable-4.0
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: stable/ussuri
@@ -92,7 +129,7 @@
 - job:
     name: tripleo-centos-8-ceph-ansible-integration-ussuri
     parent: tripleo-centos-8-ceph-integration
-    branches: ^(stable-4.0|master).*$
+    branches: stable-4.0
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: stable/ussuri
@@ -103,10 +140,12 @@
     vars:
       build_ansible_rpm: true
 
+## Train jobs
+
 - job:
     name: tripleo-centos-8-ceph-integration-train
     parent: tripleo-centos-8-ceph-integration
-    branches: ^(stable-4.0|master).*$
+    branches: stable-4.0
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: stable/train
@@ -119,7 +158,7 @@
 - job:
     name: tripleo-centos-8-ceph-ansible-integration-train
     parent: tripleo-centos-8-ceph-integration
-    branches: ^(stable-4.0|master).*$
+    branches: stable-4.0
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: stable/train
@@ -148,13 +187,11 @@
 - job:
     name: tripleo-ceph-integration-centos-8-scenario001-standalone
     parent: tripleo-ceph-integration-centos-8-scenarios-standalone
-    # stein/train/ussuri will be using stable-4.0
-    # branches: ^(stable-5.0|master).*$
-    branches: ^(stable-4.0|master).*$
+    branches: ^(stable-5.0|master).*$
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
       - name: github.com/ceph/ceph-ansible
-        override-checkout: stable-4.0
+        override-checkout: stable-5.0
     vars:
       release: master
       featureset_override: &scenario001
@@ -168,13 +205,11 @@
 - job:
     name: tripleo-ceph-integration-centos-8-scenario004-standalone
     parent: tripleo-ceph-integration-centos-8-scenarios-standalone
-    # stein/train/ussuri will be using stable-4.0
-    # branches: ^(stable-5.0|master).*$
-    branches: ^(stable-4.0|master).*$
+    branches: ^(stable-5.0|master).*$
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
       - name: github.com/ceph/ceph-ansible
-        override-checkout: stable-4.0
+        override-checkout: stable-5.0
     vars:
       featureset_override: &scenario004
         run_tempest: false
@@ -189,11 +224,11 @@
 - job:
     name: tripleo-ceph-ansible-integration-centos-8-scenario001-standalone
     parent: tripleo-ceph-integration-centos-8-scenarios-standalone
-    branches: ^(stable-4.0|master).*$
+    branches: ^(stable-5.0|master).*$
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
       - name: github.com/ceph/ceph-ansible
-        override-checkout: stable-4.0
+        override-checkout: stable-5.0
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
     vars:
@@ -203,16 +238,75 @@
 - job:
     name: tripleo-ceph-ansible-integration-centos-8-scenario004-standalone
     parent: tripleo-ceph-integration-centos-8-scenarios-standalone
-    branches: ^(stable-4.0|master).*$
+    branches: ^(stable-5.0|master).*$
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
       - name: github.com/ceph/ceph-ansible
-        override-checkout: stable-4.0
+        override-checkout: stable-5.0
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
     vars:
       release: master
       featureset_override: *scenario004
+
+# jobs for ceph on victoria
+- job:
+    name: tripleo-ceph-integration-centos-8-scenarios-standalone-victoria
+    parent: tripleo-ci-base-standalone-rdo-centos-8
+    run: playbooks/run-rpm-build.yaml
+    override-checkout: "stable/victoria"
+    required-projects:
+      - name: github.com/ceph/ceph-ansible
+        override-checkout: stable-4.0
+    vars:
+      release: victoria
+      branch_override: "stable/victoria"
+      featureset: '052'
+      standalone_ceph: true
+
+- job:
+    name: tripleo-ceph-integration-centos-8-scenario001-standalone-victoria
+    parent: tripleo-ceph-integration-centos-8-scenarios-standalone-victoria
+    branches: ^(stable-4.0|master).*$
+    vars:
+      featureset_override: *scenario001
+
+- job:
+    name: tripleo-ceph-integration-centos-8-scenario004-standalone-victoria
+    parent: tripleo-ceph-integration-centos-8-scenarios-standalone-victoria
+    branches: ^(stable-4.0|master).*$
+    vars:
+      featureset_override: *scenario004
+
+- job:
+    name: tripleo-ceph-ansible-integration-centos-8-scenario001-standalone-victoria
+    parent: tripleo-ceph-integration-centos-8-scenarios-standalone
+    branches: ^(stable-4.0|master).*$
+    override-checkout: "stable/victoria"
+    required-projects:
+      - name: github.com/ceph/ceph-ansible
+        override-checkout: stable-4.0
+      - name: github.com/ansible/ansible
+        override-checkout: stable-2.9
+    vars:
+      release: victoria
+      featureset_override: *scenario001
+      branch_override: "stable/victoria"
+
+- job:
+    name: tripleo-ceph-ansible-integration-centos-8-scenario004-standalone-victoria
+    parent: tripleo-ceph-integration-centos-8-scenarios-standalone
+    branches: ^(stable-4.0|master).*$
+    override-checkout: "stable/victoria"
+    required-projects:
+      - name: github.com/ceph/ceph-ansible
+        override-checkout: stable-4.0
+      - name: github.com/ansible/ansible
+        override-checkout: stable-2.9
+    vars:
+      release: victoria
+      featureset_override: *scenario004
+      branch_override: "stable/victoria"
 
 # Base job for ceph on ussuri
 
@@ -235,8 +329,6 @@
 - job:
     name: tripleo-ceph-integration-centos-8-scenario001-standalone-ussuri
     parent: tripleo-ceph-integration-centos-8-scenarios-standalone-ussuri
-    # stein/train/ussuri will be using stable-4.0
-    # branches: ^(stable-5.0|master).*$
     branches: ^(stable-4.0|master).*$
     vars:
       featureset_override: *scenario001
@@ -244,8 +336,6 @@
 - job:
     name: tripleo-ceph-integration-centos-8-scenario004-standalone-ussuri
     parent: tripleo-ceph-integration-centos-8-scenarios-standalone-ussuri
-    # stein/train/ussuri will be using stable-4.0
-    # branches: ^(stable-5.0|master).*$
     branches: ^(stable-4.0|master).*$
     vars:
       featureset_override: *scenario004
@@ -305,8 +395,6 @@
 - job:
     name: tripleo-ceph-integration-centos-8-scenario001-standalone-train
     parent: tripleo-ceph-integration-centos-8-scenarios-standalone-train
-    # stein/train/ussuri will be using stable-4.0
-    # branches: ^(stable-5.0|master).*$
     branches: ^(stable-4.0|master).*$
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
@@ -320,8 +408,6 @@
 - job:
     name: tripleo-ceph-integration-centos-8-scenario004-standalone-train
     parent: tripleo-ceph-integration-centos-8-scenarios-standalone-train
-    # stein/train/ussuri will be using stable-4.0
-    # branches: ^(stable-5.0|master).*$
     branches: ^(stable-4.0|master).*$
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
@@ -411,7 +497,7 @@
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: master
       - name: github.com/ceph/ceph-ansible
-        override-checkout: stable-4.0
+        override-checkout: stable-5.0
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
     vars:
@@ -431,6 +517,76 @@
     parent: periodic-tripleo-ceph-ansible-integration-centos-8-scenarios-standalone
     vars:
       release: master
+      featureset_override: *scenario004
+
+# CentOS 8 Periodic jobs for victoria
+
+- job:
+    name: periodic-tripleo-centos-8-ceph-integration-ussuri
+    parent: tripleo-centos-8-ceph-integration-ussuri
+
+# CentOS 8 Base periodic job for victoria
+
+- job:
+    name: periodic-tripleo-ceph-integration-centos-8-scenarios-standalone-victoria
+    parent: tripleo-ci-base-standalone-periodic-centos-8
+    abstract: true
+    run: playbooks/run-rpm-build.yaml
+    override-checkout: "stable/victoria"
+    required-projects:
+      - name: github.com/ceph/ceph-ansible
+        override-checkout: stable-4.0
+    vars:
+      featureset: '052'
+      standalone_ceph: true
+      branch_override: "stable/victoria"
+
+# Periodic version for ussuri
+
+- job:
+    name: periodic-tripleo-ceph-integration-centos-8-scenario001-standalone-victoria
+    parent: periodic-tripleo-ceph-integration-centos-8-scenarios-standalone-victoria
+    vars:
+      release: victoria
+      featureset_override: *scenario001
+
+- job:
+    name: periodic-tripleo-ceph-integration-centos-8-scenario004-standalone-victoria
+    parent: periodic-tripleo-ceph-integration-centos-8-scenarios-standalone-victoria
+    vars:
+      release: victoria
+      featureset_override: *scenario004
+
+# Periodic version of ceph-ansible Centos-8 victoria jobs
+
+- job:
+    name: periodic-tripleo-ceph-ansible-integration-centos-8-scenarios-standalone-victoria
+    parent: tripleo-ci-base-standalone-periodic-centos-8
+    abstract: true
+    override-checkout: "stable/victoria"
+    required-projects:
+      - name: github.com/ceph/ceph-ansible
+        override-checkout: stable-4.0
+      - name: github.com/ansible/ansible
+        override-checkout: stable-2.9
+    vars:
+      featureset: '052'
+      standalone_ceph: true
+      build_ansible_rpm: true
+      branch_override: "stable/victoria"
+
+- job:
+    name: periodic-tripleo-ceph-ansible-integration-centos-8-scenario001-standalone-victoria
+    parent: periodic-tripleo-ceph-ansible-integration-centos-8-scenarios-standalone-victoria
+    vars:
+      release: victoria
+      featureset_override: *scenario001
+
+- job:
+    name: periodic-tripleo-ceph-ansible-integration-centos-8-scenario004-standalone-victoria
+    parent: periodic-tripleo-ceph-ansible-integration-centos-8-scenarios-standalone-victoria
+    vars:
+      release: victoria
       featureset_override: *scenario004
 
 # CentOS 8 Periodic jobs for ussuri
