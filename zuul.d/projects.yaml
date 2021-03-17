@@ -45,6 +45,26 @@
             files: *ceph
             dependencies:
               - tripleo-centos-8-ceph-ansible-integration-master
+        - tripleo-centos-8-ceph-integration-victoria:
+            files: *ceph
+        - tripleo-centos-8-ceph-ansible-integration-victoria:
+            files: *ceph
+        - tripleo-ceph-integration-centos-8-scenario001-standalone-victoria:
+            files: *ceph
+            dependencies:
+              - tripleo-centos-8-ceph-integration-victoria
+        - tripleo-ceph-integration-centos-8-scenario004-standalone-victoria:
+            files: *ceph
+            dependencies:
+              - tripleo-centos-8-ceph-integration-victoria
+        - tripleo-ceph-ansible-integration-centos-8-scenario001-standalone-victoria:
+            files: *ceph
+            dependencies:
+              - tripleo-centos-8-ceph-ansible-integration-victoria
+        - tripleo-ceph-ansible-integration-centos-8-scenario004-standalone-victoria:
+            files: *ceph
+            dependencies:
+              - tripleo-centos-8-ceph-ansible-integration-victoria
         - tripleo-centos-8-ceph-integration-ussuri:
             files: *ceph
         - tripleo-centos-8-ceph-ansible-integration-ussuri:
