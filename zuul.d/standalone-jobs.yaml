@@ -367,9 +367,6 @@
           - 'environments/low-memory-usage.yaml'
           - 'ci/environments/scenario010-standalone.yaml'
           - 'ci/environments/octavia-kvm.yaml'
-        tempest_test_whitelist:
-          - neutron_tempest_plugin.scenario
-          - tempest.scenario.test_network_basic_ops.TestNetworkBasicOps
 
 # TODO(rfolco): consolidate parent jobs so we don't miss any config updates
 # https://github.com/openstack/tripleo-ci/blob/master/zuul.d/standalone-jobs.yaml
