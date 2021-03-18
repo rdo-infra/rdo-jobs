@@ -9,13 +9,9 @@
         - periodic-tripleo-centos-8-buildimage-overcloud-full-train:
             dependencies:
               - periodic-tripleo-centos-8-train-promote-promoted-components-to-tripleo-ci-testing
-            vars:
-              tripleo_image_source: https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-20201217.0.x86_64.qcow2
         - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train:
             dependencies:
               - periodic-tripleo-centos-8-train-promote-promoted-components-to-tripleo-ci-testing
-            vars:
-              tripleo_image_source: https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-20201217.0.x86_64.qcow2
         - periodic-tripleo-ci-build-containers-ubi-8-push-train:
             dependencies:
               - periodic-tripleo-centos-8-train-promote-promoted-components-to-tripleo-ci-testing
@@ -71,8 +67,6 @@
         - periodic-tripleo-centos-8-buildimage-overcloud-hardened-full-train:
             dependencies:
               - periodic-tripleo-centos-8-train-promote-promoted-components-to-tripleo-ci-testing
-            vars:
-              tripleo_image_source: https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-20201217.0.x86_64.qcow2
 
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-train:
             dependencies:
