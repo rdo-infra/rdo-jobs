@@ -67,6 +67,9 @@
         - periodic-tripleo-ci-centos-8-scenario010-standalone-ussuri:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-ussuri
+        - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-ussuri:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-ussuri
         - periodic-tripleo-ci-centos-8-scenario012-standalone-ussuri:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-ussuri
