@@ -343,18 +343,10 @@
       standalone_ceph: true
       featureset_override:
         validate_services: false
-        tempest_tempest_conf_overrides:
-          load_balancer.region: 'regionOne'
-          load_balancer.enabled_provider_drivers: '"amphora:The Octavia Amphora driver.,octavia:Deprecated alias of the Octavia Amphora driver.,ovn:Octavia OVN driver."'
-          load_balancer.test_with_ipv6: false
-          load_balancer.member_role: '"Member"'
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
           - 'ci/environments/scenario010-standalone.yaml'
           - 'ci/environments/octavia-kvm.yaml'
-        tempest_test_whitelist:
-          - neutron_tempest_plugin.scenario
-          - tempest.scenario.test_network_basic_ops.TestNetworkBasicOps
 
 # TODO(rfolco): consolidate parent jobs so we don't miss any config updates
 # https://github.com/openstack/tripleo-ci/blob/master/zuul.d/standalone-jobs.yaml
