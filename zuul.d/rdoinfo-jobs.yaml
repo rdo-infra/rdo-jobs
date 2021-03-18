@@ -882,6 +882,17 @@
       branch_override: "stable/ussuri"
       force_periodic: true
       release: ussuri
+      featureset_override: &featureset-cinder-tempest-plugin
+        tempest_plugins:
+          - python3-cinder-tests-tempest
+          - python3-barbican-tests-tempest
+        tempest_test_whitelist:
+          - 'barbican_tempest_plugin.tests.api.test_secrets'
+          - 'cinder_tempest_plugin.api.volume.test_create_from_image'
+          - 'tempest.api.identity.v3'
+          - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern.test_volume_boot_pattern'
+          - 'tempest.scenario.test_snapshot_pattern.TestSnapshotPattern.test_snapshot_pattern'
+          - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
 
 - job:
     name: distgit-tripleo-master-testing-centos-8-standalone-scenario002-ussuri
@@ -893,6 +904,7 @@
       branch_override: "stable/ussuri"
       force_periodic: true
       release: ussuri
+      featureset_override: *featureset-cinder-tempest-plugin
 
 - job:
     name: distgit-tripleo-master-testing-centos-8-standalone-scenario003-ussuri
@@ -948,6 +960,7 @@
       branch_override: "stable/victoria"
       force_periodic: true
       release: victoria
+      featureset_override: *featureset-cinder-tempest-plugin
 
 - job:
     name: distgit-tripleo-master-testing-centos-8-standalone-scenario002-victoria
@@ -959,6 +972,7 @@
       branch_override: "stable/victoria"
       force_periodic: true
       release: victoria
+      featureset_override: *featureset-cinder-tempest-plugin
 
 - job:
     name: distgit-tripleo-master-testing-centos-8-standalone-scenario003-victoria
@@ -1080,6 +1094,17 @@
       branch_override: "stable/train"
       force_periodic: true
       release: train
+      featureset_override: &featureset-cinder-tempest-plugin-7
+        tempest_plugins:
+          - python-cinder-tests-tempest
+          - python-barbican-tests-tempest
+        tempest_test_whitelist:
+          - 'barbican_tempest_plugin.tests.api.test_secrets'
+          - 'cinder_tempest_plugin.api.volume.test_create_from_image'
+          - 'tempest.api.identity.v3'
+          - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern.test_volume_boot_pattern'
+          - 'tempest.scenario.test_snapshot_pattern.TestSnapshotPattern.test_snapshot_pattern'
+          - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
 
 - job:
     name: distgit-tripleo-master-testing-centos-7-standalone-scenario002-train
@@ -1091,6 +1116,7 @@
       branch_override: "stable/train"
       force_periodic: true
       release: train
+      featureset_override: *featureset-cinder-tempest-plugin-7
 
 - job:
     name: distgit-tripleo-master-testing-centos-7-standalone-scenario003-train
