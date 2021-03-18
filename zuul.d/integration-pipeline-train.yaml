@@ -42,6 +42,9 @@
         - periodic-tripleo-ci-centos-8-scenario010-standalone-train:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-train
+        - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-train:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-train
         - periodic-tripleo-ci-centos-8-scenario012-standalone-train:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-train
