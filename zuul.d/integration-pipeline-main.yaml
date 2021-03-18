@@ -61,6 +61,9 @@
         - periodic-tripleo-ci-centos-8-scenario010-standalone-master:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
+        - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-centos-8-scenario012-standalone-master:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
