@@ -358,6 +358,7 @@
       standalone_ceph: true
       featureset_override:
         validate_services: false
+        tempest_run_concurrency: 1
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
           - 'ci/environments/scenario010-standalone.yaml'
