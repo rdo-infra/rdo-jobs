@@ -1,0 +1,61 @@
+---
+# wallaby integration jobs
+## promote to tripleo-ci-testing
+- job:
+    name: periodic-tripleo-centos-8-wallaby-promote-promoted-components-to-tripleo-ci-testing
+    parent: periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing
+    vars:
+      release: wallaby
+
+## containers/images
+
+- job:
+    name: periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+    parent: periodic-tripleo-ci-build-containers-ubi-8-push
+    override-checkout: 'stable/wallaby'
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      registry_namespace: tripleowallaby
+
+- job:
+    name: periodic-tripleo-centos-8-buildimage-overcloud-full-wallaby
+    parent: periodic-tripleo-centos-8-buildimage-overcloud-full-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-centos-8-buildimage-ironic-python-agent-wallaby
+    parent: periodic-tripleo-centos-8-buildimage-ironic-python-agent-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-centos-8-buildimage-overcloud-hardened-full-wallaby
+    parent: periodic-tripleo-centos-8-buildimage-overcloud-hardened-full-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+## standalone
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-wallaby
+    parent: periodic-tripleo-ci-centos-8-standalone-master
+    override-checkout: "stable/wallaby"
+    vars:
+      branch_override: "stable/wallaby"
+      release: wallaby
+
+## ovb
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master
+    override-checkout: "stable/wallaby"
+    vars:
+      branch_override: "stable/wallaby"
+      release: wallaby
