@@ -68,24 +68,28 @@
           # If DLRN built multiple packages, there will be multiple repositories.
           # We want the latest repository which contains all of the packages that were just built.
 
-          if [ "$CENTOS_VERS" = "centos7" ]; then
-            repository="${logs}/centos/current"
-            mock_cfg=centos.cfg
-          else
-            repository="${logs}/centos8/current"
-            mock_cfg=centos8.cfg
-          fi
-
-          # Fetch all src.rpm files, we will rebuild them here
-          wget -e robots=off -nd -r --accept .src.rpm $repository
-
           # Create mock config file
           if [[ "{{ zuul.branch }}" =~ -rdo ]]; then
               branch=$(sed "s/-rdo//" <<< "{{ zuul.branch }}")
           else
               branch="master"
           fi
+
+          if [ "$CENTOS_VERS" = "centos7" ]; then
+            repository="${logs}/centos/current"
+            mock_cfg=centos.cfg
+          else
+            repository="${logs}/centos8/current"
+            if [ ${branch} = "master" ]||[ ${branch} = "wallaby" ]; then
+              mock_cfg=centos8-stream.cfg
+            else
+              mock_cfg=centos8.cfg
+            fi
+          fi
           baseurl="https://trunk.rdoproject.org/${CENTOS_VERS}-${branch}/"
+
+          # Fetch all src.rpm files, we will rebuild them here
+          wget -e robots=off -nd -r --accept .src.rpm $repository
 
           # Fetch base mock configuration, we will update it to match TripleO requirements
           cp "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}/scripts/${mock_cfg}" .
