@@ -882,6 +882,17 @@
       branch_override: "stable/ussuri"
       force_periodic: true
       release: ussuri
+      featureset_override: &featureset-cinder-tempest-plugin
+        tempest_services:
+          - barbican
+          - cinder 
+        tempest_test_whitelist:
+          - 'barbican_tempest_plugin.tests.api.test_secrets'
+          - 'cinder_tempest_plugin.api.volume.test_create_from_image'
+          - 'tempest.api.identity.v3'
+          - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern.test_volume_boot_pattern'
+          - 'tempest.scenario.test_snapshot_pattern.TestSnapshotPattern.test_snapshot_pattern'
+          - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
 
 - job:
     name: distgit-tripleo-master-testing-centos-8-standalone-scenario002-ussuri
@@ -890,6 +901,8 @@
     nodeset: single-centos-8-node-vexxhost
     run: playbooks/run-distgit.yaml
     vars:
+      featureset_override:
+        <<: *featureset-cinder-tempest-plugin
       branch_override: "stable/ussuri"
       force_periodic: true
       release: ussuri
@@ -945,6 +958,8 @@
     nodeset: single-centos-8-node-vexxhost
     run: playbooks/run-distgit.yaml
     vars:
+      featureset_override:
+        <<: *featureset-cinder-tempest-plugin
       branch_override: "stable/victoria"
       force_periodic: true
       release: victoria
@@ -956,6 +971,8 @@
     nodeset: single-centos-8-node-vexxhost
     run: playbooks/run-distgit.yaml
     vars:
+      featureset_override:
+        <<: *featureset-cinder-tempest-plugin
       branch_override: "stable/victoria"
       force_periodic: true
       release: victoria
@@ -1011,6 +1028,8 @@
     nodeset: single-centos-8-node-vexxhost
     run: playbooks/run-distgit.yaml
     vars:
+      featureset_override:
+        <<: *featureset-cinder-tempest-plugin
       branch_override: "stable/train"
       force_periodic: true
       release: train
@@ -1022,6 +1041,8 @@
     nodeset: single-centos-8-node-vexxhost
     run: playbooks/run-distgit.yaml
     vars:
+      featureset_override:
+        <<: *featureset-cinder-tempest-plugin
       branch_override: "stable/train"
       force_periodic: true
       release: train
@@ -1080,6 +1101,17 @@
       branch_override: "stable/train"
       force_periodic: true
       release: train
+      featureset_override: &featureset-cinder-tempest-plugin-7
+        tempest_plugins:
+          - barbican
+          - cinder
+        tempest_test_whitelist:
+          - 'barbican_tempest_plugin.tests.api.test_secrets'
+          - 'cinder_tempest_plugin.api.volume.test_create_from_image'
+          - 'tempest.api.identity.v3'
+          - 'tempest.scenario.test_volume_boot_pattern.TestVolumeBootPattern.test_volume_boot_pattern'
+          - 'tempest.scenario.test_snapshot_pattern.TestSnapshotPattern.test_snapshot_pattern'
+          - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
 
 - job:
     name: distgit-tripleo-master-testing-centos-7-standalone-scenario002-train
@@ -1088,6 +1120,8 @@
     nodeset: single-centos-7-node-vexxhost
     run: playbooks/run-distgit.yaml
     vars:
+      featureset_override:
+        <<: *featureset-cinder-tempest-plugin-7
       branch_override: "stable/train"
       force_periodic: true
       release: train
