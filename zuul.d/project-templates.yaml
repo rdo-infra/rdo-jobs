@@ -36,6 +36,15 @@
             branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
         - distgit-cbs-validate-centos8-stream
+        - weirdo-dlrn-master-packstack-scenario001-centos8:
+            dependencies:
+              - DLRN-rpmbuild-centos8
+        - weirdo-dlrn-master-packstack-scenario002-centos8:
+            dependencies:
+              - DLRN-rpmbuild-centos8
+        - weirdo-dlrn-master-packstack-scenario003-centos8:
+            dependencies:
+              - DLRN-rpmbuild-centos8
     gate:
       jobs:
         - DLRN-rpmbuild
