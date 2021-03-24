@@ -259,6 +259,9 @@
         - periodic-tripleo-ci-centos-8-standalone-cinder-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-cinder-promote-consistent-to-component-ci-testing
+	- periodic-tripleo-ci-centos-8-scenario001-standalone-cinder-wallaby:
+            dependancies:
+              - periodic-tripleo-centos-8-wallaby-component-cinder-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-cinder-promote-consistent-to-component-ci-testing
     openstack-component-clients:
       jobs:
@@ -271,10 +274,16 @@
         - periodic-tripleo-ci-centos-8-standalone-cloudops-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-cloudops-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario001-standalone-cloudops-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-cloudops-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-cloudops-promote-consistent-to-component-ci-testing
     openstack-component-common:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-common-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-common-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario001-standalone-common-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-common-promote-consistent-to-component-ci-testing
@@ -286,13 +295,16 @@
         - periodic-tripleo-centos-8-wallaby-component-compute-promote-consistent-to-component-ci-testing
     openstack-component-glance:
       jobs:
+        - periodic-tripleo-ci-centos-8-standalone-glance-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-glance-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-scenario001-standalone-glance-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-glance-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-glance-promote-consistent-to-component-ci-testing
     openstack-component-manila:
       jobs:
-        - periodic-tripleo-ci-centos-8-scenario004-standalone-manila-wallaby:
+        - periodic-tripleo-ci-centos-8-standalone-manila-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-manila-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-manila-promote-consistent-to-component-ci-testing
@@ -316,7 +328,7 @@
         - periodic-tripleo-centos-8-wallaby-component-security-promote-consistent-to-component-ci-testing
     openstack-component-swift:
       jobs:
-        - periodic-tripleo-ci-centos-8-scenario002-standalone-swift-wallaby:
+        - periodic-tripleo-ci-centos-8-standalone-swift-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-swift-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-swift-promote-consistent-to-component-ci-testing
