@@ -1929,6 +1929,34 @@
     vars:
       component: glance
 
+## wallaby
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-cinder-wallaby
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-cinder-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-cloudops-wallaby
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-cloudops-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-common-wallaby
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-common-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-glance-wallaby
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-glance-master
+    vars:
+      release: wallaby
+
 ## victoria
 - job:
     name: periodic-tripleo-ci-centos-8-scenario001-standalone-cinder-victoria
