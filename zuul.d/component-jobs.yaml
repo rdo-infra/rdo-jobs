@@ -2052,6 +2052,35 @@
     vars:
       component: swift
 
+## wallaby
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-cloudops-wallaby
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-cloudops-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-common-wallaby
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-common-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-glance-wallaby
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-glance-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-swift-wallaby
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-swift-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
 ## victoria
 - job:
     name: periodic-tripleo-ci-centos-8-scenario002-standalone-cloudops-victoria
