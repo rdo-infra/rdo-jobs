@@ -2450,6 +2450,21 @@
     vars:
       component: octavia
 
+## wallaby
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-standalone-network-wallaby
+    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-network-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-wallaby
+    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
 ## victoria
 - job:
     name: periodic-tripleo-ci-centos-8-scenario010-standalone-network-victoria
@@ -2510,6 +2525,16 @@
     parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-component-master
     vars:
       component: octavia
+
+# wallaby
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-wallaby
+    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-component-master
+    override-checkout: 'stable/wallaby'
+    vars:
+      component: octavia
+      release: wallaby
+      branch_override: 'stable/wallaby'
 
 # victoria
 - job:
