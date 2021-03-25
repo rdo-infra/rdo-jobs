@@ -2336,6 +2336,21 @@
     vars:
       component: glance
 
+## wallaby
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario003-standalone-common-wallaby
+    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-common-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario003-standalone-glance-wallaby
+    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-glance-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
 ## victoria
 - job:
     name: periodic-tripleo-ci-centos-8-scenario003-standalone-common-victoria
@@ -2420,6 +2435,43 @@
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-component-master
     vars:
       component: tripleo
+
+## wallaby
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-wallaby
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-common-wallaby
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-common-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-glance-wallaby
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-glance-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-manila-wallaby
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-manila-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-wallaby
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
 
 ## victoria
 - job:
