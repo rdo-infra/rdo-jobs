@@ -1,0 +1,103 @@
+
+---
+# wallaby integration pipeline
+- project-template:
+    name: integration-pipeline-wallaby
+    openstack-periodic-integration-stable1:
+      jobs:
+        ##### wallaby #####
+        ## containers/images
+        - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-promote-promoted-components-to-tripleo-ci-testing
+        - periodic-tripleo-centos-8-buildimage-overcloud-hardened-full-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-promote-promoted-components-to-tripleo-ci-testing
+        - periodic-tripleo-centos-8-buildimage-overcloud-full-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-promote-promoted-components-to-tripleo-ci-testing
+        - periodic-tripleo-centos-8-buildimage-ironic-python-agent-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-promote-promoted-components-to-tripleo-ci-testing
+        ## standalone
+        - periodic-tripleo-ci-centos-8-standalone-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+        - periodic-tripleo-ci-centos-8-scenario001-standalone-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+        - periodic-tripleo-ci-centos-8-scenario002-standalone-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+        - periodic-tripleo-ci-centos-8-scenario003-standalone-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+        - periodic-tripleo-ci-centos-8-scenario004-standalone-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+        - periodic-tripleo-ci-centos-8-scenario007-standalone-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+        - periodic-tripleo-ci-centos-8-scenario010-standalone-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+        - periodic-tripleo-ci-centos-8-scenario012-standalone-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-api-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+        - periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+        - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+        - periodic-tripleo-ci-centos-8-standalone-upgrade-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+        ## ovb
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-wallaby
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-wallaby
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-wallaby
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-wallaby
+        - periodic-tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-wallaby
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-wallaby
+        - periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+              - periodic-tripleo-centos-8-buildimage-overcloud-full-wallaby
+              - periodic-tripleo-centos-8-buildimage-ironic-python-agent-wallaby
+        ## multinode
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset030-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+        ## undercloud
+        - periodic-tripleo-ci-centos-8-undercloud-containers-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+        - periodic-tripleo-ci-centos-8-containers-undercloud-minion-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+        - periodic-tripleo-centos-8-wallaby-promote-promoted-components-to-tripleo-ci-testing
