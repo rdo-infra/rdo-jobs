@@ -213,6 +213,23 @@
       release: master
 
 - job:
+    name: periodic-tripleo-ci-centos-8-standalone-master-repoclosure
+    parent: tripleo-ci-base-standalone-periodic-centos-8
+    vars:
+      featureset: '052'
+      release: master
+      repoclosure: true
+
+- job:
+    name: tripleo-ci-centos-8-standalone-master-repoclosure
+    parent: tripleo-ci-centos-8-standalone
+    vars:
+      featureset: '052'
+      release: master
+      repoclosure: true
+
+
+- job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-master
     parent: periodic-tripleo-ci-centos-8-standalone-master
     timeout: 14400
