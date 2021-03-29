@@ -313,6 +313,15 @@
         - periodic-tripleo-ci-centos-8-scenario012-standalone-compute-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-compute-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-compute-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-compute-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-api-compute-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-compute-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-compute-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-compute-promote-consistent-to-component-ci-testing
     openstack-component-glance:
       jobs:
@@ -373,6 +382,9 @@
         - periodic-tripleo-ci-centos-8-standalone-security-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-security-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-security-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-security-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-security-promote-consistent-to-component-ci-testing
     openstack-component-swift:
       jobs:
@@ -391,10 +403,28 @@
         - periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tripleo-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-upgrade-tripleo-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-tripleo-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-tripleo-promote-consistent-to-component-ci-testing
     openstack-component-tempest:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-tempest-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-tempest-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-tempest-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-tempest-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-api-tempest-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-tempest-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-tempest-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-tempest-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-tempest-promote-consistent-to-component-ci-testing
