@@ -2900,6 +2900,21 @@
     vars:
       component: tempest
 
+### wallaby
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-compute-wallaby
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-compute-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-tempest-wallaby
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-tempest-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
 ### victoria
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-compute-victoria
@@ -2949,6 +2964,21 @@
     parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-component-master
     vars:
       component: tempest
+
+## wallaby
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-compute-wallaby
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-compute-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-tempest-wallaby
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-tempest-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
 
 ## victoria
 - job:
@@ -3017,6 +3047,21 @@
     vars:
       component: tempest
 
+## wallaby
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-wallaby
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-tempest-wallaby
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-tempest-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
 ## victoria
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-victoria
@@ -3083,6 +3128,21 @@
     parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-component-master
     vars:
       component: security
+
+## wallaby
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-wallaby
+    parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-security-wallaby
+    parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-security-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
 
 ## victoria
 - job:
@@ -3158,6 +3218,16 @@
       release: master
       component: tripleo
 
+# wallaby
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tripleo-wallaby
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tripleo-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      component: tripleo
+
 # victoria
 - job:
     name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tripleo-victoria
@@ -3203,6 +3273,15 @@
     parent: periodic-tripleo-ci-centos-8-standalone-upgrade-component-master
     vars:
       release: master
+      component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-upgrade-tripleo-wallaby
+    parent: periodic-tripleo-ci-centos-8-standalone-upgrade-component-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
       component: tripleo
 
 - job:
