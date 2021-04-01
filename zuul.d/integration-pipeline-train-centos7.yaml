@@ -62,9 +62,6 @@
         - periodic-tripleo-ci-centos-7-scenario007-standalone-train:
             dependencies:
               - periodic-tripleo-centos-7-train-containers-build-push
-        - periodic-tripleo-ci-centos-7-scenario010-standalone-train:
-            dependencies:
-              - periodic-tripleo-centos-7-train-containers-build-push
         - periodic-tripleo-ci-centos-7-standalone-upgrade-train:
             dependencies:
               - periodic-tripleo-centos-7-train-containers-build-push
