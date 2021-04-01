@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "084e9391_9c121a3d",
+        "filename": "zuul.d/project-templates-components.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 672
+      },
+      "writtenOn": "2021-04-01T07:35:28Z",
+      "side": 1,
+      "message": "In the previous patch [1] I have mistakenly missed to change the job names, Like it was copy/paste issue. To resolve this job names issue, i have posted separate patch [2]. On this patch I made dependency with patch [2].\n\n[1]https://review.rdoproject.org/r/c/rdo-jobs/+/32693\n\n[2]https://review.rdoproject.org/r/c/rdo-jobs/+/32912",
+      "parentUuid": "6cf563e8_f2988c77",
+      "range": {
+        "startLine": 307,
+        "startChar": 39,
+        "endLine": 307,
+        "endChar": 49
+      },
+      "revId": "b07466f3afb0a8562d80e1016119c20b410a1b54",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3c13a057_42a5505a",
         "filename": "zuul.d/project-templates-components.yaml",
         "patchSetId": 7
@@ -36,6 +60,24 @@
       "writtenOn": "2021-04-01T07:09:56Z",
       "side": 1,
       "message": "worth adding a note in the commit message about why we are also changing the manila scen4 and swift scen2 to standalone?",
+      "revId": "b07466f3afb0a8562d80e1016119c20b410a1b54",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73199725_6b1bbc48",
+        "filename": "zuul.d/project-templates-components.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 672
+      },
+      "writtenOn": "2021-04-01T07:35:28Z",
+      "side": 1,
+      "message": "Same above comment.",
+      "parentUuid": "3c13a057_42a5505a",
       "revId": "b07466f3afb0a8562d80e1016119c20b410a1b54",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": true
