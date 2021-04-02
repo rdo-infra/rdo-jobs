@@ -94,7 +94,7 @@
         cmd: |
           set -e -x
 
-          MASTER="wallaby"
+          MASTER="xena"
           RELEASE="{{ rdoinfo_release }}"
           PHASE="{{ rdoinfo_phase }}"
           PROJECT="{{ zuul.project.name }}"
@@ -160,7 +160,7 @@
                   ADDITIONAL_OPTS=""
               else
                   REPOS_URL="{% if not periodic_job|default(false) %}$TEMP_REPO_URL{% endif %}"
-                  ADDITIONAL_OPTS="-e stable_repositories=https://rdoproject.org/repos/openstack-${RELEASE}/${RELEASE_RPM} -e testing_repository=true"
+                  ADDITIONAL_OPTS="-e stable_repositories=https://ykarel.fedorapeople.org/${RELEASE_RPM} -e testing_repository=true"
               fi
 
           ;;
@@ -170,7 +170,7 @@
                   ADDITIONAL_OPTS=""
               else
                   REPOS_URL="$TEMP_REPO_URL"
-                  ADDITIONAL_OPTS="-e stable_repositories=https://rdoproject.org/repos/openstack-${RELEASE}/${RELEASE_RPM} -e testing_repository=false"
+                  ADDITIONAL_OPTS="-e stable_repositories=https://ykarel.fedorapeople.org/${RELEASE_RPM} -e testing_repository=false"
               fi
           ;;
           esac
