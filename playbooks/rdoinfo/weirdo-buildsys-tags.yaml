@@ -94,7 +94,7 @@
         cmd: |
           set -e -x
 
-          MASTER="wallaby"
+          MASTER="xena"
           RELEASE="{{ rdoinfo_release }}"
           PHASE="{{ rdoinfo_phase }}"
           PROJECT="{{ zuul.project.name }}"
@@ -153,6 +153,11 @@
           localhost log_destination=/var/log/weirdo
           EOF
 
+          # FIXME(ykarel) once https://pagure.io/fedora-infrastructure/issue/9843 is fixed
+          RELEASE_BASE="https://rdoproject.org/repos/openstack-${RELEASE}"
+          if [ $RELEASE = "wallaby" ]; then
+              RELEASE_BASE="https://ykarel.fedorapeople.org"
+          fi
           case $PHASE in
           testing)
               if [ $RELEASE = $MASTER ]; then
@@ -160,7 +165,7 @@
                   ADDITIONAL_OPTS=""
               else
                   REPOS_URL="{% if not periodic_job|default(false) %}$TEMP_REPO_URL{% endif %}"
-                  ADDITIONAL_OPTS="-e stable_repositories=https://rdoproject.org/repos/openstack-${RELEASE}/${RELEASE_RPM} -e testing_repository=true"
+                  ADDITIONAL_OPTS="-e stable_repositories=${RELEASE_BASE}/${RELEASE_RPM} -e testing_repository=true"
               fi
 
           ;;
@@ -170,7 +175,7 @@
                   ADDITIONAL_OPTS=""
               else
                   REPOS_URL="$TEMP_REPO_URL"
-                  ADDITIONAL_OPTS="-e stable_repositories=https://rdoproject.org/repos/openstack-${RELEASE}/${RELEASE_RPM} -e testing_repository=false"
+                  ADDITIONAL_OPTS="-e stable_repositories=${RELEASE_BASE}/${RELEASE_RPM} -e testing_repository=false"
               fi
           ;;
           esac
