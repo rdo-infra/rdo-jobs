@@ -256,6 +256,9 @@
         - periodic-tripleo-ci-centos-8-scenario012-standalone-baremetal-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-baremetal-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-baremetal-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-baremetal-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-baremetal-promote-consistent-to-component-ci-testing
     openstack-component-cinder:
       jobs:
@@ -272,6 +275,12 @@
     openstack-component-clients:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-clients-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-clients-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-clients-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-clients-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-clients-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-clients-promote-consistent-to-component-ci-testing
@@ -302,6 +311,9 @@
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-scenario004-standalone-common-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-common-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-common-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-common-promote-consistent-to-component-ci-testing
@@ -361,6 +373,12 @@
         - periodic-tripleo-ci-centos-8-scenario010-standalone-network-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-network-promote-consistent-to-component-ci-testing
     openstack-component-octavia:
       jobs:
@@ -376,6 +394,9 @@
         - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-octavia-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-octavia-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-octavia-promote-consistent-to-component-ci-testing
     openstack-component-security:
       jobs:
@@ -383,6 +404,12 @@
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-security-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-security-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-security-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-security-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-security-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-security-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-security-promote-consistent-to-component-ci-testing
@@ -410,6 +437,12 @@
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-tripleo-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-standalone-upgrade-tripleo-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-tripleo-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-tripleo-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-tripleo-promote-consistent-to-component-ci-testing
