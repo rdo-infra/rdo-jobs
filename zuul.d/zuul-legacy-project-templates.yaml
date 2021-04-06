@@ -57,7 +57,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-validate-centos8
         - distgit-cbs-validate-centos8-stream
     experimental:
@@ -70,7 +70,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -90,7 +90,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-validate-centos8
         - distgit-cbs-validate-centos8-stream
     experimental:
@@ -102,7 +102,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -123,7 +123,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-validate-centos8
         - distgit-cbs-validate-centos8-stream
     experimental:
@@ -136,7 +136,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -158,7 +158,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-validate-centos8
         - distgit-cbs-validate-centos8-stream
     experimental:
@@ -172,7 +172,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -195,7 +195,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-validate-centos8
         - distgit-cbs-validate-centos8-stream
     experimental:
@@ -210,7 +210,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -238,9 +238,9 @@
               - DLRN-rpmbuild-centos8-pinned
         - DLRN-rpmbuild-centos8-pinned
         - DLRN-rpmbuild-pinned:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-validate:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-validate-centos8
         - distgit-cbs-validate-centos8-stream
     experimental:
@@ -253,14 +253,14 @@
               - DLRN-rpmbuild-centos8-pinned
         - DLRN-rpmbuild-centos8-pinned
         - DLRN-rpmbuild-pinned:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
     gate:
       jobs:
         - DLRN-rpmbuild-centos8-pinned
         - DLRN-rpmbuild:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-final-build:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -281,7 +281,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-validate-centos8
         - distgit-cbs-validate-centos8-stream
     experimental:
@@ -294,7 +294,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -314,7 +314,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-validate-centos8
         - distgit-cbs-validate-centos8-stream
     experimental:
@@ -326,7 +326,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -347,7 +347,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-validate-centos8
         - distgit-cbs-validate-centos8-stream
     experimental:
@@ -360,7 +360,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -380,7 +380,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-validate-centos8
         - distgit-cbs-validate-centos8-stream
     experimental:
@@ -392,7 +392,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -414,7 +414,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-validate-centos8
         - distgit-cbs-validate-centos8-stream
     experimental:
@@ -428,7 +428,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -449,7 +449,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-validate-centos8
         - distgit-cbs-validate-centos8-stream
     experimental:
@@ -462,7 +462,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -484,7 +484,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-validate-centos8
         - distgit-cbs-validate-centos8-stream
     experimental:
@@ -498,7 +498,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -518,7 +518,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-validate-centos8
         - distgit-cbs-validate-centos8-stream
     experimental:
@@ -530,7 +530,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -550,7 +550,7 @@
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild
         - distgit-cbs-validate:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-validate-centos8
         - distgit-cbs-validate-centos8-stream
     experimental:
@@ -562,7 +562,7 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - distgit-cbs-final-build:
-            branches: ^(queens|rocky|stein|train)-rdo$
+            branches: ^(queens|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
 
 - project-template:
@@ -575,20 +575,16 @@
               - ^docs/.*$
               - ^.*\.rst$
         - weirdo-integration-queens-packstack-scenario001
-        - weirdo-integration-rocky-packstack-scenario002
         - weirdo-integration-master-packstack-scenario003-centos8
         - weirdo-integration-queens-puppet-scenario001
-        - weirdo-integration-rocky-puppet-scenario002
         - weirdo-integration-master-puppet-scenario003-centos8
         - weirdo-integration-master-puppet-scenario004-centos8:
             voting: false
     experimental:
       jobs:
         - weirdo-integration-queens-packstack-scenario003
-        - weirdo-integration-rocky-packstack-scenario002
         - weirdo-integration-master-packstack-scenario001-centos8
         - weirdo-integration-queens-puppet-scenario003
-        - weirdo-integration-rocky-puppet-scenario002
         - weirdo-integration-master-puppet-scenario001-centos8
     gate:
       jobs:
