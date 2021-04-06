@@ -99,14 +99,14 @@
 - job:
     name: DLRN-build-tripleo
     parent: DLRN-build-tripleo-base
-    branches: ^(queens-rdo)|(rocky-rdo)|(stein-rdo)|(train-rdo)$
+    branches: ^(queens-rdo)|(stein-rdo)|(train-rdo)$
     dependencies:
       - DLRN-rpmbuild
 
 - job:
     name: DLRN-build-tripleo-centos8
     parent: DLRN-build-tripleo-base
-    branches: ^((rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo))$
+    branches: ^((rpm-master)|(^(?!queens|stein)(\w+)-rdo))$
     dependencies:
       - DLRN-rpmbuild-centos8
     vars:
@@ -125,7 +125,7 @@
 - job:
     name: DLRN-rpmbuild
     parent: DLRN-rpmbuild-base
-    branches: ^(queens-rdo)|(rocky-rdo)|(stein-rdo)|(train-rdo)$
+    branches: ^(queens-rdo)|(stein-rdo)|(train-rdo)$
 
 - job:
     name: DLRN-rpmbuild-pinned
@@ -157,7 +157,7 @@
 - job:
     name: DLRN-rpmbuild-centos8
     parent: DLRN-rpmbuild-base
-    branches: ^((rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo))$
+    branches: ^((rpm-master)|(^(?!queens|stein)(\w+)-rdo))$
     vars:
       centos_version: 'centos8'
     nodeset: rdo-centos-8-stream
