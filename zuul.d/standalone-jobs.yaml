@@ -529,6 +529,13 @@
     vars:
       branch_override: "stable/train"
       release: train
+      featureset_override:
+        tempest_tempest_conf_overrides:
+          'auth.tempest_roles': 'Member'
+          'share.multitenancy_enabled': 'False'
+          'share.enable_protocols': 'nfs'
+          'share.capability_snapshot_support': 'False'
+          'share.capability_create_share_from_snapshot_support': 'False'
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario007-standalone-train
