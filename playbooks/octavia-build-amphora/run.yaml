@@ -34,7 +34,7 @@
           # images are built using the centos-minimal DIB element. This element
           # builds the base system in a chroot, whereas the centos DIB element
           # used in previous releases uses a pre-existing qcow image.
-          if [[ "$RELEASE" =~ (queens|rocky|stein) ]]; then
+          if [[ "$RELEASE" =~ (queens|stein) ]]; then
             export IMAGE_NAME=CentOS-7-x86_64-GenericCloud.qcow2
             wget https://cloud.centos.org/centos/7/images/$IMAGE_NAME
             sudo systemctl start libvirtd
