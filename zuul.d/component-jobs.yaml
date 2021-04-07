@@ -2561,115 +2561,112 @@
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-victoria
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-master
-    vars:
+    vars: &scenario004_victoria_vars
       release: victoria
       branch_override: 'stable/victoria'
+      featureset_override:
+        tempest_tempest_conf_overrides:
+          'auth.tempest_roles': 'Member'
+          'share.multitenancy_enabled': 'False'
+          'share.enable_protocols': 'nfs'
+          'share.capability_snapshot_support': 'False'
+          'share.capability_create_share_from_snapshot_support': 'False'
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-common-victoria
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-common-master
-    vars:
-      release: victoria
-      branch_override: 'stable/victoria'
+    vars: *scenario004_victoria_vars
 
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-glance-victoria
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-glance-master
-    vars:
-      release: victoria
-      branch_override: 'stable/victoria'
+    vars: *scenario004_victoria_vars
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-manila-victoria
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-manila-master
-    vars:
-      release: victoria
-      branch_override: 'stable/victoria'
+    vars: *scenario004_victoria_vars
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-victoria
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-master
-    vars:
-      release: victoria
-      branch_override: 'stable/victoria'
+    vars: *scenario004_victoria_vars
 
 ## ussuri
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-ussuri
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-master
-    vars:
+    vars: &scenario004_ussuri_vars
       release: ussuri
       branch_override: 'stable/ussuri'
+      featureset_override:
+        tempest_tempest_conf_overrides:
+          'auth.tempest_roles': 'Member'
+          'share.multitenancy_enabled': 'False'
+          'share.enable_protocols': 'nfs'
+          'share.capability_snapshot_support': 'False'
+          'share.capability_create_share_from_snapshot_support': 'False'
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-common-ussuri
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-common-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
+    vars: *scenario004_ussuri_vars
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-glance-ussuri
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-glance-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
+    vars: *scenario004_ussuri_vars
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-manila-ussuri
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-manila-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
+    vars: *scenario004_ussuri_vars
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-ussuri
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
+    vars: *scenario004_ussuri_vars
 
 ## train
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-train
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-master
     override-checkout: "stable/train"
-    vars:
+    vars: &scenario004_train_vars
       release: train
       branch_override: 'stable/train'
+      featureset_override:
+        tempest_tempest_conf_overrides:
+          'auth.tempest_roles': 'Member'
+          'share.multitenancy_enabled': 'False'
+          'share.enable_protocols': 'nfs'
+          'share.capability_snapshot_support': 'False'
+          'share.capability_create_share_from_snapshot_support': 'False'
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-common-train
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-common-master
     override-checkout: "stable/train"
-    vars:
-      release: train
-      branch_override: 'stable/train'
+    vars: *scenario004_train_vars
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-glance-train
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-glance-master
     override-checkout: "stable/train"
-    vars:
-      release: train
-      branch_override: 'stable/train'
+    vars: *scenario004_train_vars
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-manila-train
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-manila-master
     override-checkout: "stable/train"
-    vars:
-      release: train
-      branch_override: 'stable/train'
+    vars: *scenario004_train_vars
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-train
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-master
     override-checkout: "stable/train"
-    vars:
-      release: train
-      branch_override: 'stable/train'
+    vars: *scenario004_train_vars
 
 # scenario007-standalone-component
 - job:

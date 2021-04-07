@@ -86,7 +86,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-victoria
-    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-master
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-previous-options-master
     override-checkout: "stable/victoria"
     vars:
       branch_override: "stable/victoria"
