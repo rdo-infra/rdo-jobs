@@ -91,20 +91,6 @@
     nodeset: rdo-centos-8-stream
 
 - job:
-    name: weirdo-integration-rocky-packstack-scenario002
-    parent: weirdo-integration-base
-    vars:
-      openstack_release: rocky
-      scenario: scenario002
-
-- job:
-    name: weirdo-integration-rocky-puppet-scenario002
-    parent: weirdo-integration-base
-    vars:
-      openstack_release: rocky
-      scenario: scenario002
-
-- job:
     name: weirdo-integration-queens-packstack-scenario001
     parent: weirdo-integration-base
     vars:
