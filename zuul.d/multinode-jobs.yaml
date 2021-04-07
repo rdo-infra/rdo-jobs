@@ -188,18 +188,6 @@
       playbooks:
         - multinode.yml
 
-# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-rocky
-- job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-rocky
-    parent: tripleo-ci-base-multinode-periodic
-    vars:
-      nodes: 1ctlr
-      featureset: '010'
-      branch_override: "stable/rocky"
-      release: rocky
-      playbooks:
-        - multinode.yml
-
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-queens
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-queens
@@ -230,16 +218,6 @@
       branch_override: "stable/stein"
       release: stein
 
-# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-rocky
-- job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-rocky
-    parent: tripleo-ci-base-multinode-periodic
-    vars:
-      nodes: 1ctlr
-      featureset: '016'
-      branch_override: "stable/rocky"
-      release: rocky
-
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-queens
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset016-queens
@@ -267,16 +245,6 @@
       featureset: '017'
       branch_override: "stable/stein"
       release: stein
-
-# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-rocky
-- job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-rocky
-    parent: tripleo-ci-base-multinode-periodic
-    vars:
-      nodes: 1ctlr
-      featureset: '017'
-      branch_override: "stable/rocky"
-      release: rocky
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset017-queens
 - job:
@@ -306,16 +274,6 @@
       branch_override: "stable/stein"
       release: stein
 
-# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-rocky
-- job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-rocky
-    parent: tripleo-ci-base-multinode-periodic
-    vars:
-      nodes: 1ctlr
-      featureset: '018'
-      branch_override: "stable/rocky"
-      release: rocky
-
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-queens
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset018-queens
@@ -343,16 +301,6 @@
       featureset: '019'
       branch_override: "stable/stein"
       release: stein
-
-# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-rocky
-- job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-rocky
-    parent: tripleo-ci-base-multinode-periodic
-    vars:
-      nodes: 1ctlr
-      featureset: '019'
-      branch_override: "stable/rocky"
-      release: rocky
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset019-queens
 - job:
@@ -400,16 +348,6 @@
       featureset: '030'
       branch_override: "stable/stein"
       release: stein
-
-# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-rocky
-- job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-rocky
-    parent: tripleo-ci-base-multinode-periodic
-    vars:
-      nodes: 1ctlr
-      featureset: '030'
-      branch_override: "stable/rocky"
-      release: rocky
 
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-queens
 - job:
@@ -475,21 +413,6 @@
       extra_tags:
         - overcloud-update
 
-# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-rocky
-- job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-rocky
-    parent: tripleo-ci-base-multinode-periodic
-    override-checkout: "stable/rocky"
-    vars:
-      nodes: 1ctlr
-      featureset: '037'
-      playbooks:
-        - multinode.yml
-      branch_override: "stable/rocky"
-      release: rocky
-      extra_tags:
-        - overcloud-update
-
 # legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-queens
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-queens
@@ -531,15 +454,6 @@
       release: queens
       extra_tags:
         - octavia
-
-- job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset038-rocky
-    parent: tripleo-ci-base-multinode-periodic
-    override-checkout: "stable/rocky"
-    vars:
-      <<: *fs038_vars
-      branch_override: "stable/rocky"
-      release: rocky
 
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset038-stein
