@@ -1,0 +1,19 @@
+- hosts: all
+  tasks:
+    - name: collect logs
+      become: true
+      changed: true
+      shell: |
+        set -x
+        mkdir -p {{ ansible_user_dir }}/logs/system_logs
+
+        {{ ansible_pkg_mgr }} list installed &> {{ ansible_user_dir }}/logs/system_logs/installed_pkgs.txt
+        {{ ansible_python.executable }} -m pip freeze &> {{ ansible_user_dir }}/logs/system_logs/pip_freeze.txt
+        chown -R {{ ansible_user }} "{{ ansible_user_dir }}/logs"
+
+    - name: Collect artifacts from {{ ansible_user_dir }}/logs/system_logs/
+      synchronize:
+        src: '{{ ansible_user_dir }}/logs/system_logs/'
+        dest: '{{ zuul.executor.log_root }}/logs'
+        mode: pull
+        verify_host: true

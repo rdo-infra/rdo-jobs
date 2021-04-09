@@ -1,0 +1,107 @@
+- hosts: all
+  name: update-buildsys-tags playbook
+  tasks:
+    - name: Install required dependencies
+      package:
+        name:
+          - createrepo
+          - mock
+          - git
+          - centos-packager
+          - yum-utils
+        state: present
+      become: true
+
+    - name: graffiti
+      shell:
+        cmd: |
+          set +e
+          FAILED=0
+          PROJECT="{{ zuul.project.name }}"
+          # Install requirements
+          virtualenv --system-site-packages .venv
+          . .venv/bin/activate
+          pip install ruamel.yaml rdopkg
+          pushd {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}/buildsys-tags/
+          WORKSPACE="{{ ansible_user_dir }}/workspace"
+          case $PROJECT in
+          rdoinfo)
+            RDOINFO_DIR="{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdoinfo'].src_dir | default('src/review.rdoproject.org/rdoinfo') }}"
+            INFO_FILE=rdo-full.yml
+            ;;
+          nfvinfo)
+            RDOINFO_DIR="{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/nfvinfo'].src_dir | default('src/review.rdoproject.org/nfvinfo') }}"
+            INFO_FILE=nfv.yml
+            ;;
+          esac
+          # create_temporary_repos.sh will create input files for graffiti
+          bash ./create_temporary_repos.sh $RDOINFO_DIR $WORKSPACE/logs $INFO_FILE
+          popd
+          pushd {{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/graffiti'].src_dir }}
+          pip install .
+          popd
+          # Files cbs_actions.txt, register.yaml and tags.yaml are created under $WORKSPACE/logs/info/
+          # by create_temporary_repos.sh script
+          # If there are register actions, they are executed first
+          pushd $RDOINFO_DIR
+          if [ -s $WORKSPACE/logs/info/register.yaml ]; then
+              echo "INFO: Executing CBS register actions CentOS7"
+              cat $WORKSPACE/logs/info/register.yaml
+              graffiti --config-file={{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}/buildsys-tags/graffiti_config.yaml --info-file $INFO_FILE register -f $WORKSPACE/logs/info/register.yaml  # noqa 204
+              if [ $? -ne 0 ]; then
+                  FAILED=1
+                  echo "ERROR: Executing CBS register actions CentOS7"
+              fi
+          fi
+          # If there are tag actions, they are executed
+          if [ -s $WORKSPACE/logs/info/tags.yaml ]; then
+              echo "INFO: Executing CBS tag actions CentOS7"
+              cat $WORKSPACE/logs/info/tags.yaml
+              graffiti --config-file={{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}/buildsys-tags/graffiti_config.yaml --info-file $INFO_FILE tag -f $WORKSPACE/logs/info/tags.yaml  # noqa 204
+              if [ $? -ne 0 ]; then
+                  FAILED=1
+                  echo "ERROR: Executing CBS tag actions CentOS7"
+              fi
+          fi
+          if [ -s $WORKSPACE/logs/info/register-c8.yaml ]; then
+              echo "INFO: Executing CBS register actions CentOS8"
+              cat $WORKSPACE/logs/info/register-c8.yaml
+              graffiti --centos-release 8 --config-file={{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}/buildsys-tags/graffiti_config.yaml --info-file $INFO_FILE register -f $WORKSPACE/logs/info/register-c8.yaml  # noqa 204
+              if [ $? -ne 0 ]; then
+                  FAILED=1
+                  echo "ERROR: Executing CBS register actions CentOS8"
+              fi
+          fi
+          # If there are tag actions, they are executed
+          if [ -s $WORKSPACE/logs/info/tags-c8.yaml ]; then
+              echo "INFO: Executing CBS tag actions CentOS8"
+              cat $WORKSPACE/logs/info/tags-c8.yaml
+              graffiti --centos-release 8 --config-file={{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}/buildsys-tags/graffiti_config.yaml --info-file $INFO_FILE tag -f $WORKSPACE/logs/info/tags-c8.yaml  # noqa 204
+              if [ $? -ne 0 ]; then
+                  FAILED=1
+                  echo "ERROR: Executing CBS tag actions CentOS8"
+              fi
+          fi
+          if [ -s $WORKSPACE/logs/info/register-c8s.yaml ]; then
+              echo "INFO: Executing CBS register actions CentOS Stream 8"
+              cat $WORKSPACE/logs/info/register-c8s.yaml
+              graffiti --centos-release 8s --config-file={{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}/buildsys-tags/graffiti_config.yaml --info-file $INFO_FILE register -f $WORKSPACE/logs/info/register-c8s.yaml  # noqa 204
+              if [ $? -ne 0 ]; then
+                  FAILED=1
+                  echo "ERROR: Executing CBS register actions CentOS Stream 8"
+              fi
+          fi
+          # If there are tag actions, they are executed
+          if [ -s $WORKSPACE/logs/info/tags-c8s.yaml ]; then
+              echo "INFO: Executing CBS tag actions CentOS Stream 8"
+              cat $WORKSPACE/logs/info/tags-c8s.yaml
+              graffiti --centos-release 8s --config-file={{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}/buildsys-tags/graffiti_config.yaml --info-file $INFO_FILE tag -f $WORKSPACE/logs/info/tags-c8s.yaml  # noqa 204
+              if [ $? -ne 0 ]; then
+                  FAILED=1
+                  echo "ERROR: Executing CBS tag actions CentOS Stream 8"
+              fi
+          fi
+          popd
+
+          exit $FAILED
+      changed_when: true
