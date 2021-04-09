@@ -1,12 +1,25 @@
+- job:
+    name: update-buildsys-tags-test-c8
+    parent: distgit-cbs-validate
+    description: |
+      This job tags builds in CBS as per rdoinfo changes
+    run: playbooks/update-buildsys-tags.yaml
+    post-run: playbooks/post-collect.yaml
+    timeout: 10800
+    nodeset: rdo-centos-8-stream
+    required-projects:
+      - name: gating_scripts
+      - name: graffiti
+      - name: rdoinfo
+
+- job:
+    name: update-buildsys-tags-test-c7
+    parent: update-buildsys-tags-test-c8
+    nodeset: rdo-centos-7
+
 - project:
     check:
       jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+        - update-buildsys-tags-test-c7
+        - update-buildsys-tags-test-c8
+
