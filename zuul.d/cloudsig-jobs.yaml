@@ -39,3 +39,55 @@
       - opendev.org/openstack/requirements
       - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/tripleo-common
+
+- job:
+    name: cloudsig-victoria-release-centos-8-undercloud-containers
+    parent: tripleo-ci-centos-8-undercloud-containers
+    nodeset: single-centos-8-node-vexxhost
+    pre-run: playbooks/mirror.yaml
+    override-checkout: "stable/victoria"
+    vars:
+      force_non_periodic: true
+      release: victoria
+      branch_override: "cloudsig/victoria"
+      run_test_role_vars:
+        enable_opstools_repo: true
+        docker_registry_host: trunk.registry.rdoproject.org
+        docker_image_tag: current-tripleo
+        add_repos:
+          - type: generic
+            reponame: delorean-current
+            filename: delorean-current.repo
+            baseurl: https://trunk.rdoproject.org/centos8-ussuri/component/tripleo/current-tripleo/
+            priority: 1
+            includepkgs:
+              - puppet-neutron
+    required-projects:
+      - opendev.org/openstack/ansible-role-container-registry
+      - opendev.org/openstack/kolla
+      - opendev.org/openstack/python-tripleoclient
+      - opendev.org/openstack/requirements
+      - opendev.org/openstack/tripleo-ansible
+      - opendev.org/openstack/tripleo-common
+
+- job:
+    name: cloudsig-ussuri-release-centos-8-undercloud-containers
+    parent: tripleo-ci-centos-8-undercloud-containers
+    nodeset: single-centos-8-node-vexxhost
+    pre-run: playbooks/mirror.yaml
+    override-checkout: "stable/ussuri"
+    vars:
+      force_non_periodic: true
+      release: ussuri
+      branch_override: "cloudsig/ussuri"
+      run_test_role_vars:
+        enable_opstools_repo: true
+        docker_registry_host: trunk.registry.rdoproject.org
+        docker_image_tag: current-tripleo
+    required-projects:
+      - opendev.org/openstack/ansible-role-container-registry
+      - opendev.org/openstack/kolla
+      - opendev.org/openstack/python-tripleoclient
+      - opendev.org/openstack/requirements
+      - opendev.org/openstack/tripleo-ansible
+      - opendev.org/openstack/tripleo-common
