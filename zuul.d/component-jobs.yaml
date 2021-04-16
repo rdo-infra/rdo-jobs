@@ -1509,6 +1509,15 @@
     vars:
       enable_validation: true
 
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-component-wallaby-validation
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      enable_validation: true
+
 ## master
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-baremetal-master
@@ -1660,7 +1669,6 @@
       release: wallaby
       branch_override: 'stable/wallaby'
 
-
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-compute-wallaby
     parent: periodic-tripleo-ci-centos-8-standalone-compute-master
@@ -1695,7 +1703,6 @@
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
-
 
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-security-wallaby
@@ -1738,6 +1745,24 @@
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-compute-wallaby-validation
+    parent: periodic-tripleo-ci-centos-8-standalone-component-wallaby-validation
+    vars:
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-network-wallaby-validation
+    parent: periodic-tripleo-ci-centos-8-standalone-component-wallaby-validation
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-tripleo-wallaby-validation
+    parent: periodic-tripleo-ci-centos-8-standalone-component-wallaby-validation
+    vars:
+      component: tripleo
 
 ## victoria
 - job:
