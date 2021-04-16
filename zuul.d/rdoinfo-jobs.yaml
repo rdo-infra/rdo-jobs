@@ -1069,3 +1069,14 @@
       rdoinfo_release: train
       rdoinfo_phase: testing
       branch_override: "stable/train"
+
+- job:
+    name: rdoinfo-tripleo-ussuri-release-centos-8-undercloud-containers
+    parent: tripleo-ci-centos-8-undercloud-containers
+    nodeset: single-centos-8-node-vexxhost
+    run: playbooks/run-rdoinfo-cbs-centos8.yaml
+    override-checkout: "stable/ussuri"
+    vars:
+      rdoinfo_release: ussuri
+      rdoinfo_phase: release
+      branch_override: "cloudsig/ussuri"
