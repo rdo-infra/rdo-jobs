@@ -33,6 +33,18 @@
       branch_override: "stable/stein"
       release: stein
 
+- job:
+    name: periodic-tripleo-ci-centos-7-undercloud-oooq-queens
+    parent: tripleo-ci-base-singlenode-periodic
+    vars:
+      featureset: '003'
+      branch_override: "stable/queens"
+      release: queens
+      playbooks:
+        - quickstart.yml
+        - multinode-undercloud.yml
+        - multinode-validate.yml
+
 
 ################ C E N T O S 8 T R A I N #############################################
 - job:
