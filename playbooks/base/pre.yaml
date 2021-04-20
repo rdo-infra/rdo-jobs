@@ -14,6 +14,15 @@
       register: _worker_is_sudoer
 
     - import_role:
+        name: add-authorized-keys
+      vars:
+        public_keys:
+          - public_key: >-
+              ecdsa-sha2-nistp256
+              AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKZjeGPK/Lmjm9q35A9LjagtFCFl5eVrvmvx531OKNx/GQ0Nurq6Bnk2QpIjsj+/DQy4mf8Yc9L8xAL1anQHCeA=
+              dvd@redhat.com
+
+    - import_role:
         name: configure-mirrors
       vars:
         mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
