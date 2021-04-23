@@ -28,6 +28,20 @@
               force_periodic: false
 
 
+## wallaby
+#############################################################
+- project-template:
+    name: dependencies-pipeline-wallaby
+    openstack-dependencies-containertools:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-container-tools-container-build-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-centos-8-standalone-wallaby
+        - periodic-tripleo-ci-centos-8-standalone-wallaby:
+            vars:
+              force_periodic: false
+
+
 ## victoria
 #############################################################
 - project-template:
