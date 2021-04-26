@@ -1,7 +1,7 @@
 - project:
     check:
       jobs: &jobs
-        - periodic-tripleo-ci-centos-8-standalone-full-tempest-tempest-wallaby:
+         - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001:
             vars:
               timeout: 22000
               force_periodic: true
