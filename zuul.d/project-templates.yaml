@@ -54,6 +54,15 @@
             voting: false
             branches: ^rpm-master$
 
+- project-template:
+    name: deps-distgit-check-jobs
+    check:
+      jobs:
+        - deps-cbs-validate
+    gate:
+      jobs:
+        - deps-cbs-validate
+
 # TripleO CI templates
 - project-template:
     name: tripleo-ovb
