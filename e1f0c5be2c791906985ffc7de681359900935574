@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "6a631ad7_01e14cdc",
+        "filename": "zuul.d/ceph-ansible.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2021-04-28T10:38:25Z",
+      "side": 1,
+      "message": "As per John comment, I think we need to change master to https://github.com/ceph/ceph-ansible/tree/stable-6.0 also? \n\nJohn, Am i correct?",
+      "range": {
+        "startLine": 66,
+        "startChar": 3,
+        "endLine": 66,
+        "endChar": 37
+      },
+      "revId": "e1f0c5be2c791906985ffc7de681359900935574",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bf067b47_841c0e37",
         "filename": "zuul.d/ceph-ansible.yaml",
         "patchSetId": 2
