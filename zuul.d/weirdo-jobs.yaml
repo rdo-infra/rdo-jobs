@@ -1176,6 +1176,60 @@
       scenario: scenario003
 
 - job:
+    name: validate-buildsys-tags-xena-testing-centos8-base
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: xena
+      rdoinfo_phase: testing
+      centos_releasever: 8s
+    nodeset: rdo-centos-8-stream
+    files:
+      - ^buildsys-tags/cloud8s-openstack-xena-testing.yml$
+
+- job:
+    name: validate-buildsys-tags-xena-testing-puppet-scenario001-centos8
+    parent: validate-buildsys-tags-xena-testing-centos8-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-xena-testing-puppet-scenario002-centos8
+    parent: validate-buildsys-tags-xena-testing-centos8-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-xena-testing-puppet-scenario003-centos8
+    parent: validate-buildsys-tags-xena-testing-centos8-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: validate-buildsys-tags-xena-testing-puppet-scenario004-centos8
+    parent: validate-buildsys-tags-xena-testing-centos8-base
+    vars:
+      scenario: scenario004
+
+- job:
+    name: validate-buildsys-tags-xena-testing-packstack-scenario001-centos8
+    parent: validate-buildsys-tags-xena-testing-centos8-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-xena-testing-packstack-scenario002-centos8
+    parent: validate-buildsys-tags-xena-testing-centos8-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-xena-testing-packstack-scenario003-centos8
+    parent: validate-buildsys-tags-xena-testing-centos8-base
+    vars:
+      scenario: scenario003
+
+
+- job:
     name: weirdo-periodic-base
     parent: base
     run: playbooks/rdoinfo/weirdo-periodic.yaml
