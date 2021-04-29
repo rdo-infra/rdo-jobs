@@ -32,8 +32,8 @@
           - 'environments/low-memory-usage.yaml'
           - 'ci/environments/scenario001-standalone.yaml'
         tempest_plugins:
-          - python-telemetry-tests-tempest
-          - python-heat-tests-tempest
+          - tempest_service_available_aodh
+          - tempest_service_available_heat
         test_white_regex: ''
         tempest_workers: 1
         tempest_extra_config: {'telemetry.alarm_granularity': '60'}
@@ -59,8 +59,8 @@
           - 'barbican_tempest_plugin.tests.scenario.test_volume_encryption.VolumeEncryptionTest'
           - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
         tempest_plugins:
-          - python-telemetry-tests-tempest
-          - python-barbican-tests-tempest
+          - tempest_service_available_aodh
+          - tempest_service_available_barbican
         tempest_extra_config:
           auth.tempest_roles: "'Member, creator'"
           telemetry.alarm_granularity: '60'
@@ -83,8 +83,8 @@
           - 'sahara_tempest_plugin.tests.api.test_data_sources.DataSourceTest'
           - 'mistral_tempest_tests.tests.api.v2.test_actions.ActionTestsV2'
         tempest_plugins:
-          - python-sahara-tests-tempest
-          - python-mistral-tests-tempest
+          - tempest_service_available_sahara
+          - tempest_service_available_mistral
         test_white_regex: ""
 
 - job:
@@ -104,7 +104,7 @@
           - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps.test_network_basic_ops'
           - 'manila_tempest_tests.tests.api.test_shares.SharesCephFSTest.test_create_get_delete_share'
         tempest_plugins:
-          - python2-manila-tests-tempest
+          - tempest_service_available_manila
         tempest_extra_config:
           'share.multitenancy_enabled': 'False'
           'share.enable_protocols': 'cephfs'
