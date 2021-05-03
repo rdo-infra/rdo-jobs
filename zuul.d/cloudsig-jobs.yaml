@@ -39,3 +39,19 @@
       - opendev.org/openstack/requirements
       - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/tripleo-common
+
+- job:
+    name: cloudsig-wallaby-release-centos-8-scenario001-standalone
+    parent: cloudsig-victoria-release-centos-8-scenario001-standalone
+    override-checkout: "stable/wallaby"
+    vars:
+      force_non_periodic: true
+      featureset: '052'
+      release: wallaby
+      standalone_ceph: true
+      branch_override: "cloudsig/wallaby"
+      add_repos:
+        - type: generic
+          reponame: delorean-current-tripleo
+          filename: delorean-current-tripleo.repo
+          baseurl: "https://trunk.rdoproject.org/centos8-wallaby/component/tripleo/current-tripleo/"
