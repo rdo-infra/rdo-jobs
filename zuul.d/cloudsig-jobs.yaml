@@ -39,3 +39,36 @@
       - opendev.org/openstack/requirements
       - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/tripleo-common
+
+- job:
+    name: cloudsig-wallaby-release-centos-8-scenario001-standalone
+    parent: cloudsig-victoria-release-centos-8-scenario001-standalone
+    override-checkout: "stable/wallaby"
+    vars:
+      force_non_periodic: true
+      featureset: '052'
+      release: wallaby
+      standalone_ceph: true
+      branch_override: "cloudsig/wallaby"
+      add_repos:
+        - type: generic
+          reponame: delorean-current-tripleo
+          filename: delorean-current-tripleo.repo
+          baseurl: "https://trunk.rdoproject.org/centos8-wallaby/component/tripleo/current-tripleo/"
+        - type: generic
+          reponame: delorean-current-tripleo-validation
+          filename: delorean-current-tripleo-validation.repo
+          baseurl: "https://trunk.rdoproject.org/centos8-wallaby/component/validation/current-tripleo/"
+        - type: generic
+          reponame: delorean-current-tripleo-baremetal
+          filename: delorean-current-tripleo-baremetal.repo
+          baseurl: "https://trunk.rdoproject.org/centos8-wallaby/component/baremetal/current-tripleo/"
+          includepkgs:
+            - python3-metalsmith
+            - ansible-role-metalsmith-deployment
+        - type: generic
+          reponame: delorean-current-tripleo-security
+          filename: delorean-current-tripleo-security.repo
+          baseurl: "https://trunk.rdoproject.org/centos8-wallaby/component/security/current-tripleo/"
+          includepkgs:
+            - ansible-tripleo-ipa
