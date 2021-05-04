@@ -379,3 +379,52 @@
           - primary
       - name: peers
         nodes: []
+
+# Fake nodesets to resolve puppet jobs
+- nodeset:
+    name: ubuntu-focal
+    nodes:
+      - name: primary
+        label: upstream-centos-8-stream
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: ubuntu-bionic
+    nodes:
+      - name: primary
+        label: upstream-centos-8-stream
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: ubuntu-xenial
+    nodes:
+      - name: primary
+        label: upstream-centos-8-stream
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: debian-stable
+    nodes:
+      - name: primary
+        label: upstream-centos-8-stream
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
