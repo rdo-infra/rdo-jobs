@@ -27,6 +27,22 @@
       branch_override: "stable/stein"
       release: stein
 
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens-branch
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^master$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      branch_override: "stable/queens"
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^(stable/(newton|ocata|pike|queens|stein)).*$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
 
 ######
 # zuul.d/standalone-jobs.yaml

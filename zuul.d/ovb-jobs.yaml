@@ -4,14 +4,6 @@
 # It contains all the jobs related to OVB testing in RDO Cloud.
 
 - job:
-    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^(stable/(newton|ocata|pike|queens|stein)).*$
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '001'
-
-- job:
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
     parent: tripleo-ci-base-ovb-rdo-centos-8
     branches: ^(?!stable/(newton|ocata|pike|queens|rocky|stein)).*$
@@ -24,7 +16,7 @@
 - job:
     name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset001
     parent: tripleo-ci-base-ovb-rdo
-    branches: ^(stable/(newton|ocata|pike|queens|stein|train)).*$
+    branches: ^(stable/train).*$
     vars:
       nodes: 1ctlr_1comp
       featureset: '001'
@@ -219,16 +211,6 @@
     vars:
       nodes: 3ctlr_1comp
       featureset: '042'
-
-- job:
-    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens-branch
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^master$
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '001'
-      branch_override: "stable/queens"
-
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-stein-branch
