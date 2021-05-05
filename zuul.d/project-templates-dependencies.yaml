@@ -27,6 +27,15 @@
             vars:
               force_periodic: false
 
+    puppet-openstack-integration:
+      jobs:
+        - puppet-openstack-integration-6-scenario000-tempest-centos-8-stream
+        - puppet-openstack-integration-6-scenario001-tempest-centos-8-stream
+        - puppet-openstack-integration-6-scenario002-tempest-centos-8-stream
+        - puppet-openstack-integration-6-scenario003-tempest-centos-8-stream
+        - puppet-openstack-integration-6-scenario003-tempest-centos-8-stream
+        - puppet-openstack-integration-6-scenario004-tempest-centos-8-stream
+
 
 ## wallaby
 #############################################################
