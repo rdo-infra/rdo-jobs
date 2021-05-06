@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d0dba86_29049af6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2021-05-06T07:17:58Z",
+      "side": 1,
+      "message": "would be nice to add more context about this. \n\n\"We are only the mol-get_hash-centos-7 job in periodic here because we still need to support the resolution of RDO hash for centos7 delorean builds\"",
+      "range": {
+        "startLine": 10,
+        "startChar": 11,
+        "endLine": 10,
+        "endChar": 34
+      },
+      "revId": "3ef8c69eddc94a73dbf619c0d8d1e4796c408646",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3030cff0_f397ed32",
+        "filename": "zuul.d/promoter-periodic-jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2021-05-06T07:17:58Z",
+      "side": 1,
+      "message": "nodeset isn\u0027t necessary can remove if you like it is already given on the parent\n\nI had to go looking for this as i am not familiar with those jobs... found them here \nhttps://github.com/rdo-infra/ci-config/blob/d79d8ab3f70d3110ed2a679f59d29787c1e6757b/zuul.d/jobs-mol.yaml#L112-L131",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 25
+      },
+      "revId": "3ef8c69eddc94a73dbf619c0d8d1e4796c408646",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4efc3973_32abc8cc",
+        "filename": "zuul.d/promoter-periodic-jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2021-05-06T07:17:58Z",
+      "side": 1,
+      "message": "same can remove this one is on the parent https://github.com/rdo-infra/ci-config/blob/d79d8ab3f70d3110ed2a679f59d29787c1e6757b/zuul.d/jobs-mol.yaml#L112-L131",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 11
+      },
+      "revId": "3ef8c69eddc94a73dbf619c0d8d1e4796c408646",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    }
+  ]
+}
