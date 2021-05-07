@@ -39,3 +39,11 @@
       - opendev.org/openstack/requirements
       - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/tripleo-common
+
+- job:
+    name: cloudsig-wallaby-release-centos-8-scenario001-standalone
+    parent: cloudsig-victoria-release-centos-8-scenario001-standalone
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: "cloudsig/wallaby"
