@@ -347,6 +347,7 @@
       - opendev.org/openstack/tripleo-common
       - opendev.org/openstack/tripleo-repos
 
+
 - job:
     name: rdoinfo-tripleo-victoria-release-centos-8-scenario001-standalone
     parent: tripleo-ci-centos-8-scenario001-standalone
@@ -397,6 +398,15 @@
       - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/tripleo-common
       - opendev.org/openstack/tripleo-repos
+
+- job:
+    name: rdoinfo-tripleo-wallaby-release-centos-8-scenario001-standalone
+    parent: rdoinfo-tripleo-victoria-release-centos-8-scenario001-standalone
+    override-checkout: "stable/wallaby"
+    vars:
+      rdoinfo_release: wallaby
+      branch_override: "cloudsig/wallaby"
+      buildcontainers_version_hash: cloudsig-wallaby
 
 - job:
     name: rdoinfo-tripleo-victoria-release-centos-8-scenario002-standalone
@@ -959,6 +969,42 @@
       centos_releasever: 8s
       featureset_override:
         to_build: false
+
+- job:
+    name: rdoinfo-tripleo-wallaby-testing-centos-8-standalone
+    parent: rdoinfo-tripleo-master-testing-centos-8-standalone
+    override-checkout: "stable/wallaby"
+    vars:
+      rdoinfo_release: wallaby
+      rdoinfo_phase: testing
+      branch_override: "stable/wallaby"
+
+- job:
+    name: rdoinfo-tripleo-wallaby-testing-centos-8-scenario001-standalone
+    parent: rdoinfo-tripleo-master-testing-centos-8-scenario001-standalone
+    override-checkout: "stable/wallaby"
+    vars:
+      rdoinfo_release: wallaby
+      rdoinfo_phase: testing
+      branch_override: "stable/wallaby"
+
+- job:
+    name: rdoinfo-tripleo-wallaby-testing-centos-8-scenario007-standalone
+    parent: rdoinfo-tripleo-master-testing-centos-8-scenario007-standalone
+    override-checkout: "stable/wallaby"
+    vars:
+      rdoinfo_release: wallaby
+      rdoinfo_phase: testing
+      branch_override: "stable/wallaby"
+
+- job:
+    name: rdoinfo-tripleo-wallaby-testing-centos-8-containers-multinode
+    parent: rdoinfo-tripleo-master-testing-centos-8-containers-multinode
+    override-checkout: "stable/wallaby"
+    vars:
+      rdoinfo_release: wallaby
+      rdoinfo_phase: testing
+      branch_override: "stable/wallaby"
 
 - job:
     name: rdoinfo-tripleo-victoria-testing-centos-8-standalone
