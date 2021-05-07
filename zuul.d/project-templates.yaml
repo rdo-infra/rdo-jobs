@@ -539,6 +539,7 @@
      Periodic jobs to validate CloudSIG repos
     periodic:
       jobs:
+        - cloudsig-wallaby-release-centos-8-scenario001-standalone
         - cloudsig-victoria-release-centos-8-scenario001-standalone
         - periodic-cloudsig-victoria-release-puppet-scenario001-centos8
         - periodic-cloudsig-victoria-release-puppet-scenario002-centos8
