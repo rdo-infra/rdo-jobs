@@ -1,0 +1,75 @@
+---
+- hosts: all
+  roles:
+    - role: add-authorized-keys
+      public_keys:
+        # sshnaidm
+        - public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDDhi/BqsZibuAPiUjJe7b3Dqe5nyI7\
+            BckOwfGwJYg436+bFQMoR/7RKmtPe+ISVQ04lwIriIPwKGaSHj5mbEe4LsCLZ5jAUHxv\
+            WfgHitqS5ln295zU7vp1z28o7e6LQNplgExyqQlxUPdOU48tmlz93F6szSYkNYvZnhzM\
+            n9syrajC74qPuKsmHTeYFLEcxesb7/u+BtxCk8WdjYTb//sk038NEtIsNhrGtAOV3WcD\
+            pXnA5mNMpUfeoQ4yiN9LqtreXr7Zeo587LV3T2QL+huAE0J7EuCzHAKk6TIzJqjLidg0\
+            SYwZZwfbxgviU66QLkeyzh9oiovwskelvOQCBFq3 sshnaidm@redhat.com"
+
+- hosts: all
+  vars:
+    collection_path: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/ansible-podman-collections'].src_dir }}"
+  tasks:
+
+    - name: Check if ansible is installed
+      command: rpm -q ansible
+      register: ansible_installed
+      failed_when: false
+
+    - when: ansible_installed.rc != 0
+      become: true
+      block:
+
+        - name: Install epel
+          package:
+            name:
+              - epel-release
+
+        - name: Install ansible
+          package:
+            name:
+              - ansible
+            enablerepo: epel
+            update_cache: true
+
+        - name: Remove epel
+          package:
+            name:
+              - epel-release
+            state: absent
+
+    - name: Install packages
+      package:
+        name:
+          - rpm-build
+        state: present
+        disable_gpg_check: true
+      become: true
+      register: install
+      retries: 10
+      until: install is success
+      delay: 10
+
+    - name: Build collection
+      shell: ./contrib/build_rpm.sh
+      args:
+        chdir: "{{ collection_path }}"
+      changed_when: true
+
+    - name: Install collection
+      shell: dnf install -y rpmbuild/RPMS/noarch/ansible-collection-containers-podman*.rpm
+      become: true
+
+    - name: Remove ansible if was installed
+      package:
+        name:
+          - ansible
+        state: absent
+        autoremove: false
+      when: ansible_installed.rc != 0
+      become: true
