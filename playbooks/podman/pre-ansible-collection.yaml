@@ -1,0 +1,62 @@
+---
+- hosts: all
+  vars:
+    collection_path: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/ansible-podman-collections'].src_dir }}"
+  tasks:
+
+    - name: Check if ansible is installed
+      command: rpm -q ansible
+      register: ansible_installed
+      failed_when: false
+
+    - when: ansible_installed.rc != 0
+      become: true
+      block:
+
+        - name: Install epel
+          package:
+            name:
+              - epel-release
+
+        - name: Install ansible
+          package:
+            name:
+              - ansible
+            update_cache: true
+
+        - name: Remove epel
+          package:
+            name:
+              - epel-release
+            state: absent
+
+    - name: Install packages
+      package:
+        name:
+          - rpm-build
+          - https://cbs.centos.org/kojifiles/packages/ansible-macros/2021.1.2/2.el7/noarch/ansible-macros-2021.1.2-2.el7.noarch.rpm
+        state: present
+        disable_gpg_check: true
+      become: true
+      register: install
+      retries: 10
+      until: install is success
+      delay: 10
+
+    - name: Build collection
+      shell: ./contrib/build_rpm.sh
+      args:
+        chdir: "{{ collection_path }}"
+      changed_when: true
+
+    - name: Install collection
+      shell: dnf install -y rpmbuild/RPMS/noarch/ansible-collection-containers-podman*.rpm
+      become: true
+
+    - name: Remove ansible if was installed
+      package:
+        name:
+          - ansible
+        state: absent
+      when: ansible_installed.rc != 0
+      become: true
