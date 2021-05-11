@@ -1,0 +1,46 @@
+---
+- hosts: all
+  vars:
+    collection_path: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/ansible-podman-collections'].src_dir }}"
+  tasks:
+
+    - name: Install pip
+      package:
+        name:
+          - python3-pip
+      become: true
+
+    - name: Upgrade pip
+      pip:
+        name:
+          #- https://opendev.org/openstack/tripleo-repos
+          - pip
+      become: true
+
+    - name: Install python packages
+      pip:
+        name:
+          - ansible-core
+      become: true
+
+    - name: Install packages
+      package:
+        name:
+          - rpm-build
+          - https://cbs.centos.org/kojifiles/packages/ansible-macros/2021.1.2/2.el7/noarch/ansible-macros-2021.1.2-2.el7.noarch.rpm
+        state: present
+      become: true
+      register: install
+      retries: 10
+      until: install is success
+      delay: 10
+
+    - name: Build collection
+      shell: ./contrib/build_rpm.sh
+      args:
+        chdir: "{{ collection_path }}"
+      changed_when: true
+
+    - name: Install collection
+      shell: dnf install -y rpmbuild/RPMS/noarch/ansible-collection-containers-podman*.rpm
+      become: true
