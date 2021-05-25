@@ -10,8 +10,6 @@
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
-      featureset_override:
-        to_build: false
 
 - job:
     name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset001
@@ -28,8 +26,6 @@
     vars:
       nodes: 1ctlr_1comp
       featureset: '001'
-      featureset_override:
-        to_build: false
 
 - job:
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-ovb-master
@@ -63,8 +59,6 @@
       nodes: 3ctlr_1comp
       featureset: '035'
       cloud_name: vexxhost
-      featureset_override:
-        to_build: false
 
 - job:
     name: tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-queens
@@ -153,8 +147,6 @@
     vars:
       nodes: 1ctlr_2comp
       featureset: '020'
-      featureset_override:
-        to_build: false
 
 - job:
     name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022
