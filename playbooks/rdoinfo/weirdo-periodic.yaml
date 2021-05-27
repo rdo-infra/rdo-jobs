@@ -15,12 +15,37 @@
       set_fact:
         centos_release: "centos{{ ansible_distribution_major_version | default('7') }}"
 
+    - name: install tox in CentOS 9
+      shell:
+        cmd: |
+          # tox is not in CentOS 9 and it is not in base image. Doing this workaround until we have tox in the image
+          cd /etc/yum.repos.d
+          sudo curl https://trunk.rdoproject.org/centos9/delorean-deps.repo -o delorean-deps.repo
+          sudo dnf -y install python3-tox
+          sudo rm -f delorean-deps.repo
+
+      when: centos_release == "centos9"
+
+    - name: set sysctl net.ipv6.conf.all.disable_ipv6  to 0
+      become: true
+      sysctl:
+        name: net.ipv6.conf.all.disable_ipv6
+        value: 0
+        state: present
+
+    - name: set net.ipv6.conf.default.disable_ipv6 to 0
+      become: true
+      sysctl:
+        name: net.ipv6.conf.default.disable_ipv6
+        value: 0
+        state: present
+
     - name: Run weirdo for the desired project and scenario
       shell:
         cmd: |
           set -e -x
 
-          MASTER="wallaby"
+          MASTER="xena"
           RELEASE="{{ rdoinfo_release }}"
           DIST_VER="{{ centos_releasever }}"
 
@@ -41,15 +66,21 @@
             O_RELEASE="$RELEASE"
           fi
 
+          if [ $DIST_VER = "9"  ]; then
+            DLRN_RELEASE="master-preview"
+          else
+            DLRN_RELEASE="$O_RELEASE"
+          fi
+
           # Prepare Ansible inventory to use localhost
           pushd {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/weirdo'].src_dir }}
           cat <<EOF >hosts
-          localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python{{ '3' if centos_release == "centos8" else '2' }}
+          localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python{{ '2' if centos_release == "centos7" else '3' }}
           [openstack_nodes]
           localhost log_destination=/var/log/weirdo
           EOF
 
-          REPOS_URL="http://trunk.rdoproject.org/centos${DIST_VER}-${O_RELEASE}/puppet-passed-ci/delorean.repo,https://trunk.rdoproject.org/centos${DIST_VER}-${O_RELEASE}/delorean-deps.repo" # noqa 204
+          REPOS_URL="http://trunk.rdoproject.org/centos${DIST_VER}-${DLRN_RELEASE}/current/delorean.repo,https://trunk.rdoproject.org/centos${DIST_VER}-${DLRN_RELEASE}/delorean-deps.repo" # noqa 204
 
           tox -e ansible-playbook -- -vv -b -i hosts playbooks/$project-$scenario.yml \
               -e version=$VERSION \
@@ -57,7 +88,8 @@
               -e selinux_enforcing="{{ selinux_enforcing | default('true') }}" \
               -e tempest_from_source=false \
               -e enable_puppet_modules_rpm=true \
-              -e trunk_repositories=$REPOS_URL
+              -e trunk_repositories=$REPOS_URL  \
+              -e repository="file://{{ ansible_user_dir }}/{{ zuul.projects['opendev.org/openstack/puppet-openstack-integration'].src_dir }}"
 
       changed_when: true
       environment:
