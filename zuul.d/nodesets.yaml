@@ -380,6 +380,18 @@
       - name: peers
         nodes: []
 
+# Centos 9 Stream nodesets
+- nodeset:
+    name: cloud-centos-9-stream-vexxhost
+    nodes:
+      - name: primary
+        label: cloud-centos-9-stream
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
 # Fake nodesets to resolve puppet jobs
 - nodeset:
     name: ubuntu-focal
