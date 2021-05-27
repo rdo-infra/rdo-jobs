@@ -20,7 +20,7 @@
         cmd: |
           set -e -x
 
-          MASTER="wallaby"
+          MASTER="xena"
           RELEASE="{{ rdoinfo_release }}"
           DIST_VER="{{ centos_releasever }}"
 
@@ -41,15 +41,21 @@
             O_RELEASE="$RELEASE"
           fi
 
+          if [ $DST_VER = "9"  ]; then
+            DLRN_RELEASE="master-preview"
+          else
+            DLRN_RELEASE="$O_RELEASE"
+          fi
+
           # Prepare Ansible inventory to use localhost
           pushd {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/weirdo'].src_dir }}
           cat <<EOF >hosts
-          localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python{{ '3' if centos_release == "centos8" else '2' }}
+          localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python{{ '2' if centos_release == "centos7" else '3' }}
           [openstack_nodes]
           localhost log_destination=/var/log/weirdo
           EOF
 
-          REPOS_URL="http://trunk.rdoproject.org/centos${DIST_VER}-${O_RELEASE}/puppet-passed-ci/delorean.repo,https://trunk.rdoproject.org/centos${DIST_VER}-${O_RELEASE}/delorean-deps.repo" # noqa 204
+          REPOS_URL="http://trunk.rdoproject.org/centos${DIST_VER}-${DLRN_RELEASE}/consistent/delorean.repo,https://trunk.rdoproject.org/centos${DIST_VER}-${DLRN_RELEASE}/delorean-deps.repo" # noqa 204
 
           tox -e ansible-playbook -- -vv -b -i hosts playbooks/$project-$scenario.yml \
               -e version=$VERSION \
