@@ -123,6 +123,62 @@
       selinux_enforcing: "false"
 
 - job:
+    name: weirdo-integration-master-puppet-scenario000-centos9
+    parent: weirdo-integration-base
+    vars:
+      openstack_release: master
+      scenario: scenario000
+      centos_releasever: 8s
+    nodeset:
+      nodes:
+        - name: cloud-centos-9-stream
+          label: cloud-centos-9-stream
+
+- job:
+    name: weirdo-integration-rocky-packstack-scenario002
+    parent: weirdo-integration-base
+    vars:
+      openstack_release: rocky
+      scenario: scenario002
+      selinux_enforcing: "false"
+
+- job:
+    name: weirdo-integration-rocky-puppet-scenario002
+    parent: weirdo-integration-base
+    vars:
+      openstack_release: rocky
+      scenario: scenario002
+      selinux_enforcing: "false"
+
+- job:
+    name: weirdo-integration-queens-packstack-scenario001
+    parent: weirdo-integration-base
+    vars:
+      openstack_release: queens
+      scenario: scenario001
+
+- job:
+    name: weirdo-integration-queens-packstack-scenario003
+    parent: weirdo-integration-base
+    vars:
+      openstack_release: queens
+      scenario: scenario003
+
+- job:
+    name: weirdo-integration-queens-puppet-scenario001
+    parent: weirdo-integration-base
+    vars:
+      openstack_release: queens
+      scenario: scenario001
+
+- job:
+    name: weirdo-integration-queens-puppet-scenario003
+    parent: weirdo-integration-base
+    vars:
+      openstack_release: queens
+      scenario: scenario003
+
+- job:
     name: weirdo-dlrn-base
     parent: base
     run: playbooks/weirdo/dlrn/run.yaml
@@ -1227,7 +1283,12 @@
     post-run: playbooks/weirdo/integration/post.yaml
     timeout: 7200
     required-projects:
-      - name: rdo-infra/weirdo
+      - rdo-infra/weirdo
+      - rdo-infra/ansible-role-weirdo-common
+      - rdo-infra/ansible-role-weirdo-kolla
+      - rdo-infra/ansible-role-weirdo-logs
+      - rdo-infra/ansible-role-weirdo-packstack
+      - rdo-infra/ansible-role-weirdo-puppet-openstack
     vars:
       selinux_enforcing: "false"
     nodeset:
@@ -1332,3 +1393,74 @@
     vars:
       rdoinfo_release: wallaby
       scenario: scenario004
+
+- job:
+    name: weirdo-periodic-base-centos9
+    parent: base
+    run: playbooks/rdoinfo/weirdo-periodic.yaml
+    post-run: playbooks/weirdo/integration/post.yaml
+    timeout: 7200
+    required-projects:
+      - rdo-infra/weirdo
+      - rdo-infra/ansible-role-weirdo-common
+      - rdo-infra/ansible-role-weirdo-kolla
+      - rdo-infra/ansible-role-weirdo-logs
+      - rdo-infra/ansible-role-weirdo-packstack
+      - rdo-infra/ansible-role-weirdo-puppet-openstack
+      - opendev.org/openstack/puppet-openstack-integration
+    vars:
+      selinux_enforcing: "false"
+      rdoinfo_release: xena
+      centos_releasever: 9
+    nodeset:
+      nodes:
+        - name: cloud-centos-9-stream
+          label: cloud-centos-9-stream
+
+- job:
+    name: periodic-xena-puppet-scenario000-centos-stream-9
+    parent: weirdo-periodic-base-centos9
+    vars:
+      scenario: scenario000
+
+- job:
+    name: periodic-xena-puppet-scenario001-centos-stream-9
+    parent: weirdo-periodic-base-centos9
+    vars:
+      scenario: scenario001
+
+- job:
+    name: periodic-xena-puppet-scenario002-centos-stream-9
+    parent: weirdo-periodic-base-centos9
+    vars:
+      scenario: scenario002
+
+- job:
+    name: periodic-xena-puppet-scenario003-centos-stream-9
+    parent: weirdo-periodic-base-centos9
+    vars:
+      scenario: scenario003
+
+- job:
+    name: periodic-xena-puppet-scenario004-centos-stream-9
+    parent: weirdo-periodic-base-centos9
+    vars:
+      scenario: scenario004
+
+- job:
+    name: periodic-xena-packstack-scenario001-centos-stream-9
+    parent: weirdo-periodic-base-centos9
+    vars:
+      scenario: scenario001
+
+- job:
+    name: periodic-xena-packstack-scenario002-centos-stream-9
+    parent: weirdo-periodic-base-centos9
+    vars:
+      scenario: scenario002
+
+- job:
+    name: periodic-xena-packstack-scenario003-centos-stream-9
+    parent: weirdo-periodic-base-centos9
+    vars:
+      scenario: scenario003
