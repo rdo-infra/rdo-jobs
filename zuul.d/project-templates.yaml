@@ -32,6 +32,8 @@
         - DLRN-build-tripleo-centos8
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
+        - DLRN-rpmbuild-centos9:
+            voting: false
         - distgit-cbs-validate:
             branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8
