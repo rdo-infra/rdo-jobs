@@ -170,6 +170,21 @@
       centos_version: 'centos8'
 
 - job:
+    name: DLRN-rpmbuild-centos9
+    parent: DLRN-rpmbuild-base
+    branches: ^((rpm-master)|(^(?!queens|rocky|stein)(\w+)-rdo))$
+    voting: false
+    vars:
+      centos_version: 'centos9'
+    nodeset: rdo-centos-8-stream
+
+- job:
+    name: DLRN-rpmbuild-centos9-pinned
+    parent: DLRN-rpmbuild-centos9
+    vars:
+      tag: 'xena-uc'
+
+- job:
     name: rpmlint
     run: playbooks/rpmlint/run.yaml
     dependencies:
