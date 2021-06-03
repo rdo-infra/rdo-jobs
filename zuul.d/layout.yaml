@@ -1,12 +1,13 @@
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-train-upload-1
+    parent: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-train-upload
+
+- job:
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-train-upload-2
+    parent: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-train-upload
+
 - project:
     check:
-      jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+      jobs:
+        - periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-train-upload-1
+        - periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-train-upload-2
