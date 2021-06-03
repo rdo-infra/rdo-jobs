@@ -1,12 +1,21 @@
+- job: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-1
+  parent: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
+  vars:
+    featureset_override:
+      to_build: true
+
+- job: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-2
+  parent: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
+  vars:
+    featureset_override:
+      to_build: true
+
 - project:
     check:
-      jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+      jobs:
+        - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001:
+            vars:
+              featureset_override:
+                to_build: true
+        - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-1
+        - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-2
