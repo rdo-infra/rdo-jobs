@@ -44,6 +44,31 @@
       nodes: 3ctlr_1comp
       featureset: '001'
 
+- job:
+    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset001
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^(stable/train).*$
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '001'
+
+- job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039
+    parent: tripleo-ci-base-ovb-rdo
+    timeout: 12600
+    branches: ^(stable/(stein|train)).*$
+    voting: false
+    vars:
+      nodes: 3ctlr_1comp_1supp
+      featureset: '039'
+      playbooks:
+        - ovb-setup.yml
+        - baremetal-full-freeipa.yml
+        - baremetal-full-undercloud.yml
+        - baremetal-full-overcloud-prep.yml
+        - baremetal-full-overcloud.yml
+        - baremetal-full-overcloud-validate.yml
+
 ######
 # zuul.d/standalone-jobs.yaml
 # Zuul layout for TripleO standalone jobs.
