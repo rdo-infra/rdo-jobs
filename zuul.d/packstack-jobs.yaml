@@ -1,0 +1,52 @@
+- job:
+    name: packstack-centos9
+    parent: packstack-centos8s
+    voting: false
+    vars:
+      selinux_enforcing: "false"
+      delorean: "https://trunk.rdoproject.org/centos9/current/delorean.repo"
+      delorean_deps: "https://trunk.rdoproject.org/centos9/delorean-deps.repo"
+    nodeset:
+      nodes:
+        - name: cloud-centos-9-stream
+          label: cloud-centos-9-stream
+
+- job:
+    name: packstack-multinode-centos9
+    parent: packstack-centos8s
+    voting: false
+    vars:
+      selinux_enforcing: "false"
+      delorean: "https://trunk.rdoproject.org/centos9/current/delorean.repo"
+      delorean_deps: "https://trunk.rdoproject.org/centos9/delorean-deps.repo"
+    nodeset:
+      nodes:
+        - name: controller
+          label: cloud-centos-9-stream
+        - name: compute
+          label: cloud-centos-9-stream
+
+- job:
+    name: packstack-centos9-integration-scenario001
+    parent: packstack-centos9
+    vars:
+      scenario: scenario001
+
+- job:
+    name: packstack-centos9-integration-scenario002
+    parent: packstack-centos9
+    vars:
+      scenario: scenario002
+
+- job:
+    name: packstack-centos9-integration-scenario003
+    parent: packstack-centos9
+    vars:
+      scenario: scenario003
+
+- job:
+    name: packstack-centos9-multinode-scenario002-tempest
+    parent: packstack-multinode-centos9
+    post-run: playbooks/packstack-post-compute.yaml
+    vars:
+      scenario: scenario002
