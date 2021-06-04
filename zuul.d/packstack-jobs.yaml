@@ -1,0 +1,43 @@
+- job:
+    name: packstack-centos9-on-rdo
+    parent: packstack-centos9
+    voting: false
+    nodeset:
+      nodes:
+        - name: cloud-centos-9-stream
+          label: cloud-centos-9-stream
+
+- job:
+    name: packstack-multinode-centos9-on-rdo
+    parent: packstack-multinode-centos9
+    voting: false
+    nodeset:
+      nodes:
+        - name: controller
+          label: cloud-centos-9-stream
+        - name: compute
+          label: cloud-centos-9-stream
+
+- job:
+    name: packstack-centos9-integration-scenario001
+    parent: packstack-centos9-on-rdo
+    vars:
+      scenario: scenario001
+
+- job:
+    name: packstack-centos9-integration-scenario002
+    parent: packstack-centos9-on-rdo
+    vars:
+      scenario: scenario002
+
+- job:
+    name: packstack-centos9-integration-scenario003
+    parent: packstack-centos9-on-rdo
+    vars:
+      scenario: scenario003
+
+- job:
+    name: packstack-centos9-multinode-scenario002-tempest
+    parent: packstack-multinode-centos9-on-rdo
+    vars:
+      scenario: scenario002
