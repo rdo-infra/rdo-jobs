@@ -18,7 +18,7 @@
         - meta: end_play
       when:
         - not periodic_job|default(false)
-        - buildset_artifacts_url is not defined
+        - buildset_artifacts_url is defined
 
     - name: Create centos_releasever fact
       set_fact:
