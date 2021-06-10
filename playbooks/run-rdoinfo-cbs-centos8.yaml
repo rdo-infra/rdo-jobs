@@ -225,6 +225,14 @@
             - type: file
               filename: delorean-0.repo
               down_url: "{{ extra_repo_url }}"
+          add_repos:
+            - type: generic
+              reponame: delorean-current
+              filename: delorean-current.repo
+              baseurl: https://trunk.rdoproject.org/centos8-wallaby/component/tripleo/current/delorean.repo
+              priority: 1
+              includepkgs:
+                - puppet-tripleo
         optional_role_vars:
           push_registry: "{{ 'trunk.registry.rdoproject.org' if not build_container_images|default(false)|bool else omit }}"
           update_containers: "{{ true if not build_container_images|default(false)|bool else omit }}"
