@@ -119,7 +119,7 @@
           # WeIRDO uses ARA for ansible-playbook run visualization
           export WORKSPACE="{{ ansible_user_dir }}/workspace"
           mkdir -p $WORKSPACE
-          export ARA_DATABASE="sqlite:///$WORKSPACE/ara.sqlite"
+          export ARA_DATABASE_NAME="$WORKSPACE/ara.sqlite"
 
           # Backwards compat for project and openstack_release
           # (dmsimard) TODO: Clean this up ASAP
