@@ -1,12 +1,30 @@
 - project:
     check:
       jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+        - periodic-tripleo-ci-centos-8-undercloud-upgrade-master:
+            vars:
+              force_periodic: true
+              undercloud: 127.0.0.2
+              environment_infra: osinfra
+              environment_type: singlenode
+              common_featureset: featureset-multinode-common.yml
+              playbooks:
+                - quickstart.yml
+                - multinode-undercloud.yml
+                - multinode-undercloud-upgrade.yml
+                - multinode-validate.yml
+              tags:
+                - build
+                - undercloud-setup
+                - undercloud-scripts
+                - undercloud-install
+                - undercloud-validate
+                - images
+              extra_tags:
+                - undercloud-upgrade
+              featureset: '050'
+              featureset_override:
+                validate_services: false
+        - periodic-tripleo-ci-centos-8-standalone-upgrade-master:
+            vars:
+              force_periodic: true
