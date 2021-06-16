@@ -274,6 +274,9 @@
           addFilter("os-net-config.noarch: E: script-without-shebang /usr/bin/os-net-config-sriov-bind")
           addFilter("os-net-config.noarch: E: zero-length /usr/bin/os-net-config-sriov-bind")
           addFilter("os-net-config.noarch: W: non-executable-in-bin /usr/bin/os-net-config-sriov-bind 644")
+
+          # Exceptions for cinder
+          addFilter("python3-cinder-common.noarch: E: explicit-lib-dependency libcgroup-tools")
           EOF
 
 
