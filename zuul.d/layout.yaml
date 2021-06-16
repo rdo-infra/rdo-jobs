@@ -1,12 +1,15 @@
+- job:
+    name: test-job
+    description: |
+      Test job
+    final: true
+    run: playbooks/test-job.yaml
+    nodeset: rdo-centos-8
+    post-review: false
+    secrets:
+      - ocp_jenkins
+
 - project:
     check:
       jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+        - test-job
