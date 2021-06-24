@@ -7,4 +7,4 @@
     success: "{{ zuul_success }}"
     host_vars: "{{ hostvars }}"
     path: "{{ zuul.executor.log_root }}"
-    log_url: "{{ (lookup('file', zuul.executor.result_data_file) | from_json).get('zuul').get('log_url') }}"
+    log_url: "{{ (lookup('file', zuul.executor.result_data_file) | from_json).get('data').get('zuul').get('log_url') }}"
