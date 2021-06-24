@@ -1,10 +1,15 @@
-- name: Submit logstash processing jobs to log processors
-  submit_log_processor_jobs:
-    gearman_server: "{{ logstash_gearman_server }}"
-    gearman_port: "{{ logstash_gearman_server_port }}"
-    job: "push-log"
-    config: "{{ logstash_processor_config }}"
-    success: "{{ zuul_success }}"
-    host_vars: "{{ hostvars }}"
-    path: "{{ zuul.executor.log_root }}"
-    log_url: "{{ (lookup('file', zuul.executor.result_data_file) | from_json).get('zuul').get('log_url') }}"
+- name: Test debug
+    debug:
+      msg: "{{ lookup('file', zuul.executor.result_data_file) }}"
+
+#- name: Submit logstash processing jobs to log processors
+#  submit_log_processor_jobs:
+#    gearman_server: "{{ logstash_gearman_server }}"
+#    gearman_port: "{{ logstash_gearman_server_port }}"
+#    job: "push-log"
+#    config: "{{ logstash_processor_config }}"
+#    success: "{{ zuul_success }}"
+#    host_vars: "{{ hostvars }}"
+#    path: "{{ zuul.executor.log_root }}"
+#    log_url: "{{ (lookup('file', zuul.executor.result_data_file) | from_json).get('data').get('zuul').get('log_url') }}"
+#    log_url: "test"
