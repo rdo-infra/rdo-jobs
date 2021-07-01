@@ -1,0 +1,37 @@
+---
+- name: Set facts for collection
+  set_fact:
+    collection_path: "{{ ansible_user_dir }}/{{ zuul.projects[item].src_dir }}"
+    artg_change:
+      project: "{{ item.replace('github.com/', '') }}"
+
+- name: Create a script to build collection
+  template:
+    src: "{{ ansible_user_dir }}/{{
+          zuul.projects['opendev.org/openstack/tripleo-quickstart-extras'].src_dir
+          }}/roles/build-test-packages/templates/build_collection.sh.j2"
+    dest: ~/build_collection.sh
+    mode: 0777
+
+- name: Create a spec file for building collection
+  template:
+    src: "{{ ansible_user_dir }}/{{
+          zuul.projects['opendev.org/openstack/tripleo-quickstart-extras'].src_dir
+          }}/roles/build-test-packages/templates/specs/{{ artg_change.project.split('/')[1].split('.') | join ('-') }}-build.spec.j2"
+    dest: "{{ collection_path }}/{{ 'ansible-collection-' + (artg_change.project.split('/')[1].split('.') | join ('-')) }}-build.spec"
+
+- name: Change collection version in galaxy.yml
+  lineinfile:
+    path: "{{ collection_path }}/galaxy.yml"
+    regexp: "^version:.*"
+    line: 'version: 9.9.9'
+
+- name: Build collection
+  shell: >-
+    ~/build_collection.sh > ~/{{ artg_change.project|replace('/', '-') }}-build_rpm-err.log 2>&1 || true;
+    ~/build_collection.sh > ~/{{ artg_change.project|replace('/', '-') }}-build_rpm.log 2>&1
+  args:
+    chdir: "{{ collection_path }}"
+  changed_when: true
+  tags:
+    - skip_ansible_lint
