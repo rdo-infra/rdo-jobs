@@ -1,0 +1,34 @@
+
+- job:
+    name: tripleo-collection-integration-centos-8-standalone
+    parent: tripleo-ci-base-standalone-periodic-centos-8
+    abstract: true
+    run: playbooks/podman/install-podman-rpm.yaml
+    vars:
+      featureset: '052'
+      release: master
+      registry_login_enabled: false
+
+- job:
+    name: periodic-tripleo-collection-integration-centos-8-standalone-community-general
+    parent: tripleo-collection-integration-centos-8-standalone
+    pre-run: playbooks/ansible/build-ansible-collection.yaml
+    required-projects:
+      - name: github.com/containers/ansible-collections/community.general
+        override-checkout: main
+
+- job:
+    name: periodic-tripleo-collection-integration-centos-8-standalone-ansible-netcommon
+    parent: tripleo-collection-integration-centos-8-standalone
+    pre-run: playbooks/ansible/build-ansible-collection.yaml
+    required-projects:
+      - name: github.com/containers/ansible-collections/ansible.netcommon
+        override-checkout: main
+
+- job:
+    name: periodic-tripleo-collection-integration-centos-8-standalone-ansible-posix
+    parent: tripleo-collection-integration-centos-8-standalone
+    pre-run: playbooks/ansible/build-ansible-collection.yaml
+    required-projects:
+      - name: github.com/containers/ansible-collections/ansible.posix
+        override-checkout: main

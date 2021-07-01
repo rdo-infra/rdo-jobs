@@ -1,0 +1,75 @@
+---
+- hosts: all
+  vars:
+    collections:
+      - github.com/ansible-collections/community.general
+      - github.com/ansible-collections/ansible.netcommon
+      - github.com/ansible-collections/ansible.posix
+
+  tasks:
+
+    - name: Discover collections to build
+      set_fact:
+        project_items: "{{ collections | intersect(zuul.projects.keys()) }}"
+
+    - name: Check if ansible is installed
+      command: rpm -q ansible
+      register: ansible_installed
+      failed_when: false
+      changed_when: false
+      tags:
+        - skip_ansible_lint
+
+    - when: ansible_installed.rc != 0
+      become: true
+      block:
+
+        - name: Install epel
+          package:
+            name:
+              - epel-release
+
+        - name: Install ansible
+          package:
+            name:
+              - ansible
+            enablerepo: epel
+            update_cache: true
+
+        - name: Remove epel
+          package:
+            name:
+              - epel-release
+            state: absent
+
+    - name: Install packages
+      package:
+        name:
+          - rpm-build
+        state: present
+        disable_gpg_check: true
+      become: true
+      register: install
+      retries: 10
+      until: install is success
+      delay: 10
+
+    - include_tasks: rpm-build-ansible-collection.yaml
+      loop: "{{ project_items }}"
+
+    #    collection_path: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/containers/ansible-podman-collections'].src_dir }}"
+
+
+
+    # - name: Build collection
+    #   shell: ./contrib/build_rpm.sh
+    #   args:
+    #     chdir: "{{ collection_path }}"
+    #   changed_when: true
+    #   tags:
+    #     - skip_ansible_lint
+
+    - name: Install collections
+      shell: dnf install -y rpmbuild/RPMS/noarch/*.rpm
+      become: true
+      changed_when: true
