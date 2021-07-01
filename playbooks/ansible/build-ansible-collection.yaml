@@ -1,0 +1,68 @@
+---
+- hosts: all
+  vars:
+    collections:
+      - github.com/ansible-collections/community.general
+      - github.com/ansible-collections/ansible.netcommon
+      - github.com/ansible-collections/ansible.posix
+
+  tasks:
+
+    - name: Discover collections to build
+      set_fact:
+        project_items: "{{ collections | intersect(zuul.projects.keys()) }}"
+
+    - name: Check if ansible is installed
+      command: rpm -q ansible
+      register: ansible_installed
+      failed_when: false
+      changed_when: false
+      tags:
+        - skip_ansible_lint
+
+    # TODO(sshnaidm): change URL according to host distro
+    - name: Install delorean deps for Ansible and collection deps
+      become: true
+      get_url:
+        url: https://trunk.rdoproject.org/centos8-master/delorean-deps.repo
+        dest: /etc/yum.repos.d/delorean-deps.repo
+      retries: 5
+      delay: 5
+      register: result
+      until: result is success
+
+    - when: ansible_installed.rc != 0
+      become: true
+      block:
+
+        - name: Install ansible
+          package:
+            name:
+              - ansible
+            update_cache: true
+
+    - name: Install packages
+      package:
+        name:
+          - rpm-build
+        state: present
+        disable_gpg_check: true
+      become: true
+      register: install
+      retries: 10
+      until: install is success
+      delay: 10
+
+    - include_tasks: rpm-build-ansible-collection.yaml
+      loop: "{{ project_items }}"
+
+    - name: Install collections
+      shell: dnf install -y rpmbuild/RPMS/noarch/*.rpm
+      become: true
+      changed_when: true
+
+    - name: Remove delorean deps if was installed
+      become: true
+      file:
+        path: /etc/yum.repos.d/delorean-deps.repo
+        state: absent
