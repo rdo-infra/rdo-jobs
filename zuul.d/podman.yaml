@@ -17,6 +17,7 @@
       # without options, the branch of the PR is used for the required-projects
       - name: opendev.org/openstack/tripleo-heat-templates
       - name: github.com/containers/podman
+        override-checkout: main
 
 - job:
     name: podman-package-centos-7
@@ -39,6 +40,7 @@
     run: playbooks/podman/install-podman-rpm.yaml
     required-projects:
       - name: github.com/containers/podman
+        override-checkout: main
     vars:
       featureset: '052'
       release: master
