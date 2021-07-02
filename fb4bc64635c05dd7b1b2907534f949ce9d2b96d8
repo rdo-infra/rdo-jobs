@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d613e1b_e215d80b",
+        "filename": "zuul.d/integration-jobs-ussuri.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2021-07-02T10:15:08Z",
+      "side": 0,
+      "message": "Changes in this file: Looks okay\n\nAs periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-ussuri already exists\n\n~~~\nhttps://review.rdoproject.org/r/gitweb?p\u003drdo-jobs.git;a\u003dblob;f\u003dzuul.d/integration-jobs-ussuri.yaml#l183\nhttps://review.rdoproject.org/zuul/builds?job_name\u003dperiodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-ussuri\n~~~\n\nAlso, reference[1] of this job is removed in same patch\n\n[1] \nhttps://review.rdoproject.org/r/gitweb?p\u003drdo-jobs.git;a\u003dblob;f\u003dzuul.d/multinode-jobs.yaml#l364",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 223,
+        "endChar": 6
+      },
+      "revId": "fb4bc64635c05dd7b1b2907534f949ce9d2b96d8",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eee00904_852c88c2",
+        "filename": "zuul.d/integration-jobs-victoria.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2021-07-02T10:15:08Z",
+      "side": 0,
+      "message": "Changes in this file: Looks okay\n\nperiodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-ussuri already exists\n\n~~~\nhttps://review.rdoproject.org/r/gitweb?p\u003drdo-jobs.git;a\u003dblob;f\u003dzuul.d/integration-jobs-ussuri.yaml#l183\nhttps://review.rdoproject.org/zuul/builds?job_name\u003dperiodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-ussuri\n~~~\n\nNo other reference of this job in any other template.",
+      "range": {
+        "startLine": 192,
+        "startChar": 0,
+        "endLine": 192,
+        "endChar": 6
+      },
+      "revId": "fb4bc64635c05dd7b1b2907534f949ce9d2b96d8",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "54af3a2e_77901e23",
+        "filename": "zuul.d/integration-jobs-wallaby.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2021-07-02T10:15:08Z",
+      "side": 0,
+      "message": "Changes in this file looks okay:-\n\nperiodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-wallaby is running\n\n\nhttps://review.rdoproject.org/zuul/builds?job_name\u003dperiodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-wallaby\n\n\n\nBut please remove reference from criteria first.\n\nhttps://review.rdoproject.org/r/gitweb?p\u003drdo-infra/ci-config.git;a\u003dblob;f\u003dci-scripts/dlrnapi_promoter/config_environments/rdo/CentOS-8/wallaby.yaml#l39",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 6
+      },
+      "revId": "fb4bc64635c05dd7b1b2907534f949ce9d2b96d8",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18b8f797_1a1d1b85",
+        "filename": "zuul.d/integration-pipeline-main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2021-07-02T10:15:08Z",
+      "side": 0,
+      "message": "Looks okay.\n\nAs periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-master exists in line 82\n\nbut please remove from criteria first:-\n\nhttps://review.rdoproject.org/r/gitweb?p\u003drdo-infra/ci-config.git;a\u003dblob;f\u003dci-scripts/dlrnapi_promoter/config_environments/rdo/CentOS-8/master.yaml#l38",
+      "revId": "fb4bc64635c05dd7b1b2907534f949ce9d2b96d8",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "543db54b_ccabd85c",
+        "filename": "zuul.d/integration-pipeline-train.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2021-07-02T10:15:08Z",
+      "side": 0,
+      "message": "Looks okay as we renamed in same patch in multinode-jobs.yaml",
+      "range": {
+        "startLine": 67,
+        "startChar": 10,
+        "endLine": 67,
+        "endChar": 83
+      },
+      "revId": "fb4bc64635c05dd7b1b2907534f949ce9d2b96d8",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    }
+  ]
+}
