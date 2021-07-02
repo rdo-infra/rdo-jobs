@@ -64,7 +64,7 @@
         - periodic-tripleo-ci-centos-8-undercloud-containers-train:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-train
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset037-updates-train:
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-train:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-train
         - periodic-tripleo-centos-8-buildimage-overcloud-hardened-full-train:
