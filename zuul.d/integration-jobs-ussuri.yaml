@@ -172,8 +172,8 @@
       release: ussuri
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset030-ussuri
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset030-master
+    name: periodic-tripleo-ci-centos-8-scenario007-multinode-oooq-container-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario007-multinode-oooq-container-master
     override-checkout: "stable/ussuri"
     vars:
       branch_override: "stable/ussuri"

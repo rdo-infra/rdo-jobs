@@ -29,7 +29,7 @@
               - periodic-tripleo-centos-8-buildimage-overcloud-full-ussuri
               - periodic-tripleo-centos-8-buildimage-ironic-python-agent-ussuri
         ## multinode
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset030-ussuri:
+        - periodic-tripleo-ci-centos-8-scenario007-multinode-oooq-container-ussuri:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-ussuri
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-ussuri:
