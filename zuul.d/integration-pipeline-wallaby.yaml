@@ -83,7 +83,7 @@
               - periodic-tripleo-centos-8-buildimage-overcloud-full-wallaby
               - periodic-tripleo-centos-8-buildimage-ironic-python-agent-wallaby
         ## multinode
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset030-wallaby:
+        - periodic-tripleo-ci-centos-8-scenario007-multinode-oooq-container-wallaby:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
         - periodic-tripleo-ci-centos-8-containers-multinode-wallaby:
