@@ -79,7 +79,7 @@
         - periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-train:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-train
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-train:
+        - periodic-tripleo-ci-centos-8-containers-multinode-train:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-train
         - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset030-train:

@@ -14,7 +14,7 @@
         - multinode.yml
 
 - job:
-    name: tripleo-ci-centos-8-multinode-1ctlr-featureset010
+    name: tripleo-ci-centos-8-containers-multinode
     parent: tripleo-ci-base-multinode-rdo-centos-8
     voting: false
     branches: ^master$
@@ -161,7 +161,7 @@
         - multinode.yml
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-master
     parent: tripleo-ci-base-multinode-periodic-centos-8
     vars:
       nodes: 1ctlr
