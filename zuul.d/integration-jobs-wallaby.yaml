@@ -156,8 +156,8 @@
 
 ## multinode
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-wallaby
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-wallaby
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-master
     override-checkout: "stable/wallaby"
     vars:
       branch_override: "stable/wallaby"

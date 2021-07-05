@@ -32,7 +32,7 @@
         - periodic-tripleo-ci-centos-8-standalone-clients-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-clients-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-clients-master:
+        - periodic-tripleo-ci-centos-8-containers-multinode-clients-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-clients-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-master:
@@ -68,7 +68,7 @@
         - periodic-tripleo-ci-centos-8-scenario004-standalone-common-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-common-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-common-master:
+        - periodic-tripleo-ci-centos-8-containers-multinode-common-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-common-promote-consistent-to-component-ci-testing
@@ -122,7 +122,7 @@
         - periodic-tripleo-ci-centos-8-scenario010-standalone-network-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-master:
+        - periodic-tripleo-ci-centos-8-containers-multinode-network-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-master:
@@ -146,7 +146,7 @@
         - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-octavia-master:
+        - periodic-tripleo-ci-centos-8-containers-multinode-octavia-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
@@ -158,7 +158,7 @@
         - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-security-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-security-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-security-master:
+        - periodic-tripleo-ci-centos-8-containers-multinode-security-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-security-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-master:
@@ -179,7 +179,7 @@
         - periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-tripleo-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-tripleo-master:
+        - periodic-tripleo-ci-centos-8-containers-multinode-tripleo-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-tripleo-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tripleo-master:
@@ -280,7 +280,7 @@
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-clients-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-clients-wallaby:
+        - periodic-tripleo-ci-centos-8-containers-multinode-clients-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-clients-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-clients-promote-consistent-to-component-ci-testing
@@ -313,7 +313,7 @@
         - periodic-tripleo-ci-centos-8-scenario004-standalone-common-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-common-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-common-wallaby:
+        - periodic-tripleo-ci-centos-8-containers-multinode-common-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-common-promote-consistent-to-component-ci-testing
@@ -379,7 +379,7 @@
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-network-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-wallaby:
+        - periodic-tripleo-ci-centos-8-containers-multinode-network-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-standalone-network-wallaby-validation:
@@ -400,7 +400,7 @@
         - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-octavia-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-octavia-wallaby:
+        - periodic-tripleo-ci-centos-8-containers-multinode-octavia-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-octavia-promote-consistent-to-component-ci-testing
@@ -415,7 +415,7 @@
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-security-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-security-wallaby:
+        - periodic-tripleo-ci-centos-8-containers-multinode-security-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-security-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-security-promote-consistent-to-component-ci-testing
@@ -448,7 +448,7 @@
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-tripleo-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-tripleo-wallaby:
+        - periodic-tripleo-ci-centos-8-containers-multinode-tripleo-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-tripleo-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-standalone-tripleo-wallaby-validation:
@@ -534,7 +534,7 @@
         - periodic-tripleo-ci-centos-8-standalone-clients-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-clients-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-clients-victoria:
+        - periodic-tripleo-ci-centos-8-containers-multinode-clients-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-clients-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-victoria:
@@ -570,7 +570,7 @@
         - periodic-tripleo-ci-centos-8-scenario004-standalone-common-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-common-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-common-victoria:
+        - periodic-tripleo-ci-centos-8-containers-multinode-common-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-victoria-component-common-promote-consistent-to-component-ci-testing
@@ -621,7 +621,7 @@
         - periodic-tripleo-ci-centos-8-scenario010-standalone-network-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-network-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-victoria:
+        - periodic-tripleo-ci-centos-8-containers-multinode-network-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-victoria:
@@ -642,7 +642,7 @@
         - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-victoria:
             dependencies:
               - periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-octavia-victoria:
+        - periodic-tripleo-ci-centos-8-containers-multinode-octavia-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-victoria-component-octavia-promote-consistent-to-component-ci-testing
@@ -654,7 +654,7 @@
         - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-security-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-security-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-security-victoria:
+        - periodic-tripleo-ci-centos-8-containers-multinode-security-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-security-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-victoria:
@@ -675,7 +675,7 @@
         - periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-tripleo-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-tripleo-victoria:
+        - periodic-tripleo-ci-centos-8-containers-multinode-tripleo-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-tripleo-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-victoria:
@@ -764,7 +764,7 @@
         - periodic-tripleo-ci-centos-8-standalone-clients-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-clients-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-clients-ussuri:
+        - periodic-tripleo-ci-centos-8-containers-multinode-clients-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-clients-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-ussuri:
@@ -800,7 +800,7 @@
         - periodic-tripleo-ci-centos-8-scenario004-standalone-common-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-common-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-common-ussuri:
+        - periodic-tripleo-ci-centos-8-containers-multinode-common-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-ussuri-component-common-promote-consistent-to-component-ci-testing
@@ -848,7 +848,7 @@
         - periodic-tripleo-ci-centos-8-scenario010-standalone-network-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-network-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-ussuri:
+        - periodic-tripleo-ci-centos-8-containers-multinode-network-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-ussuri:
@@ -869,7 +869,7 @@
         - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-octavia-ussuri:
+        - periodic-tripleo-ci-centos-8-containers-multinode-octavia-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-ussuri-component-octavia-promote-consistent-to-component-ci-testing
@@ -881,7 +881,7 @@
         - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-security-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-security-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-security-ussuri:
+        - periodic-tripleo-ci-centos-8-containers-multinode-security-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-security-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-ussuri:
@@ -902,7 +902,7 @@
         - periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-tripleo-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-tripleo-ussuri:
+        - periodic-tripleo-ci-centos-8-containers-multinode-tripleo-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-tripleo-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-ussuri:
@@ -998,7 +998,7 @@
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-clients-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-clients-train:
+        - periodic-tripleo-ci-centos-8-containers-multinode-clients-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-clients-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-clients-promote-consistent-to-component-ci-testing
@@ -1031,7 +1031,7 @@
         - periodic-tripleo-ci-centos-8-scenario004-standalone-common-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-common-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-common-train:
+        - periodic-tripleo-ci-centos-8-containers-multinode-common-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-common-promote-consistent-to-component-ci-testing
@@ -1088,7 +1088,7 @@
         - periodic-tripleo-ci-centos-8-scenario010-standalone-network-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-network-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-train:
+        - periodic-tripleo-ci-centos-8-containers-multinode-network-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-train:
@@ -1109,7 +1109,7 @@
         - periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-octavia-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-octavia-train:
+        - periodic-tripleo-ci-centos-8-containers-multinode-octavia-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-train-component-octavia-promote-consistent-to-component-ci-testing
@@ -1121,7 +1121,7 @@
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-security-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-security-train:
+        - periodic-tripleo-ci-centos-8-containers-multinode-security-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-security-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-security-train:
@@ -1148,7 +1148,7 @@
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-tripleo-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-tripleo-train:
+        - periodic-tripleo-ci-centos-8-containers-multinode-tripleo-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-tripleo-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-train:
