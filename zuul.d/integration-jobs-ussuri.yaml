@@ -164,8 +164,8 @@
 
 ## multinode
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-ussuri
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-ussuri
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-master
     override-checkout: "stable/ussuri"
     vars:
       branch_override: "stable/ussuri"
