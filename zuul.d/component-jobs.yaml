@@ -1254,8 +1254,8 @@
 
 ## multinode component jobs
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-component-master
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-component-master
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-master
     abstract: true
     vars: &component_vars_multinode
       component: component
@@ -1272,214 +1272,214 @@
 
 ### master
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-clients-master
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-component-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-clients-master
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-component-master
     vars:
       component: clients
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-common-master
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-component-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-common-master
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-component-master
     vars:
       component: common
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-master
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-component-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-network-master
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-component-master
     vars:
       component: network
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-octavia-master
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-component-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-octavia-master
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-component-master
     vars:
       component: octavia
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-security-master
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-component-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-security-master
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-component-master
     vars:
       component: security
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-tripleo-master
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-component-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-tripleo-master
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-component-master
     vars:
       component: tripleo
 
 ### wallaby
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-clients-wallaby
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-clients-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-clients-wallaby
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-clients-master
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-common-wallaby
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-common-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-common-wallaby
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-common-master
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-wallaby
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-network-wallaby
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-network-master
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-octavia-wallaby
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-octavia-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-octavia-wallaby
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-octavia-master
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-security-wallaby
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-security-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-security-wallaby
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-security-master
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-tripleo-wallaby
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-tripleo-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-tripleo-wallaby
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-tripleo-master
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
 
 ### victoria
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-clients-victoria
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-clients-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-clients-victoria
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-clients-master
     vars:
       release: victoria
       branch_override: 'stable/victoria'
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-common-victoria
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-common-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-common-victoria
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-common-master
     vars:
       release: victoria
       branch_override: 'stable/victoria'
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-victoria
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-network-victoria
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-network-master
     vars:
       release: victoria
       branch_override: 'stable/victoria'
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-octavia-victoria
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-octavia-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-octavia-victoria
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-octavia-master
     vars:
       release: victoria
       branch_override: 'stable/victoria'
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-security-victoria
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-security-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-security-victoria
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-security-master
     vars:
       release: victoria
       branch_override: 'stable/victoria'
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-tripleo-victoria
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-tripleo-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-tripleo-victoria
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-tripleo-master
     vars:
       release: victoria
       branch_override: 'stable/victoria'
 
 ### ussuri
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-clients-ussuri
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-clients-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-clients-ussuri
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-clients-master
     vars:
       release: ussuri
       branch_override: 'stable/ussuri'
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-common-ussuri
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-common-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-common-ussuri
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-common-master
     vars:
       release: ussuri
       branch_override: 'stable/ussuri'
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-ussuri
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-network-ussuri
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-network-master
     vars:
       release: ussuri
       branch_override: 'stable/ussuri'
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-octavia-ussuri
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-octavia-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-octavia-ussuri
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-octavia-master
     vars:
       release: ussuri
       branch_override: 'stable/ussuri'
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-security-ussuri
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-security-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-security-ussuri
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-security-master
     vars:
       release: ussuri
       branch_override: 'stable/ussuri'
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-tripleo-ussuri
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-tripleo-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-tripleo-ussuri
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-tripleo-master
     vars:
       release: ussuri
       branch_override: 'stable/ussuri'
 
 ### train
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-clients-train
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-clients-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-clients-train
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-clients-master
     override-checkout: "stable/train"
     vars:
       release: train
       branch_override: 'stable/train'
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-common-train
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-common-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-common-train
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-common-master
     override-checkout: "stable/train"
     vars:
       release: train
       branch_override: 'stable/train'
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-train
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-network-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-network-train
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-network-master
     override-checkout: "stable/train"
     vars:
       release: train
       branch_override: 'stable/train'
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-octavia-train
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-octavia-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-octavia-train
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-octavia-master
     override-checkout: "stable/train"
     vars:
       release: train
       branch_override: 'stable/train'
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-security-train
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-security-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-security-train
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-security-master
     override-checkout: "stable/train"
     vars:
       release: train
       branch_override: 'stable/train'
 
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-tripleo-train
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-tripleo-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-tripleo-train
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-tripleo-master
     override-checkout: "stable/train"
     vars:
       release: train

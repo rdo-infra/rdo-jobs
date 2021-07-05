@@ -166,8 +166,8 @@
 
 ## multinode
 - job:
-    name: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-victoria
-    parent: periodic-tripleo-ci-centos-8-multinode-1ctlr-featureset010-master
+    name: periodic-tripleo-ci-centos-8-containers-multinode-victoria
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-master
     override-checkout: "stable/victoria"
     vars:
       branch_override: "stable/victoria"
