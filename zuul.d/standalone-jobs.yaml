@@ -252,6 +252,16 @@
         use_os_tempest: true
 
 - job:
+    name: periodic-tripleo-ci-centos-8-scenario000-standalone-master
+    parent: tripleo-ci-base-standalone-periodic-centos-8
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-standalone-master
+    parent: tripleo-ci-centos-8-scenario000-standalone-options
+    vars:
+      release: master
+
+- job:
     name: periodic-tripleo-ci-centos-8-scenario001-standalone-master
     parent: tripleo-ci-base-standalone-periodic-centos-8
 
