@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "95c6a949_fd0c22b3",
+        "filename": "playbooks/ansible/build-ansible-collection.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2021-07-08T08:00:29Z",
+      "side": 1,
+      "message": "that one looks like it causes the conflict at the testproject https://review.rdoproject.org/zuul/build/e0f6944b0d5b4457a9328073cb8dea44 \n\nLast metadata expiration check: 0:00:45 ago on Tue 06 Jul 2021 11:42:40 AM UTC.\nError: \n Problem: conflicting requests\n  - nothing provides ansible-collection(ansible.utils) \u003e\u003d 2.0.0 needed by ansible-collection-ansible-netcommon-9.9.9-999.el8.noarch\n(try to add \u0027--skip-broken\u0027 to skip uninstallable packages or \u0027--nobest\u0027 to use not only best candidate packages)",
+      "revId": "fc6ab6d6cd3f661ec7ba9ef7876c1ccc2df668e3",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    }
+  ]
+}
