@@ -213,7 +213,7 @@
 # Multinode Container job
 
 - job:
-    name: distgit-tripleo-master-testing-centos-8-multinode-1ctlr-featureset010
+    name: distgit-tripleo-master-testing-centos-8-containers-multinode
     parent: tripleo-ci-base-multinode-rdo-centos-8
     nodeset: two-centos-8-nodes-vexxhost
     run: playbooks/run-distgit.yaml
