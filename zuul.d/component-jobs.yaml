@@ -1066,6 +1066,13 @@
       component: clients
 
 - job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-compute-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+    vars:
+      component: compute
+      enable_validation: true
+
+- job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-master
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
     vars:
@@ -1097,6 +1104,15 @@
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
     vars:
       component: clients
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-compute-wallaby-validation
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+    vars:
+      component: compute
+      enable_validation: true
       release: wallaby
       branch_override: 'stable/wallaby'
 
@@ -1138,6 +1154,15 @@
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
     vars:
       component: clients
+      release: victoria
+      branch_override: 'stable/victoria'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-compute-victoria-validation
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+    vars:
+      component: compute
+      enable_validation: true
       release: victoria
       branch_override: 'stable/victoria'
 
@@ -1191,6 +1216,15 @@
       branch_override: 'stable/ussuri'
 
 - job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-compute-ussuri-validation
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+    vars:
+      component: compute
+      enable_validation: true
+      release: ussuri
+      branch_override: 'stable/ussuri'
+
+- job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-ussuri
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
     vars:
@@ -1231,6 +1265,15 @@
     override-checkout: "stable/train"
     vars:
       component: clients
+      release: train
+      branch_override: 'stable/train'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-compute-train-validation
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+    vars:
+      component: compute
+      enable_validation: true
       release: train
       branch_override: 'stable/train'
 
@@ -1552,12 +1595,6 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-compute-master
     parent: periodic-tripleo-ci-centos-8-standalone-component-master
-    vars:
-      component: compute
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-compute-master-validation
-    parent: periodic-tripleo-ci-centos-8-standalone-component-master-validation
     vars:
       component: compute
 
