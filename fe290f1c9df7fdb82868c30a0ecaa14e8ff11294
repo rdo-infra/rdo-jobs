@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4d0d2bc2_d6aeef5f",
+        "filename": "zuul.d/integration-jobs-c8-train.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 242
+      },
+      "writtenOn": "2021-07-08T15:07:15Z",
+      "side": 1,
+      "message": "branches: ^(?!stable/(queens|stein|train|ussuri)).*$\n\nhttps://opendev.org/openstack/tripleo-ci/src/branch/master/zuul.d/multinode-jobs.yaml#L294\nupstream job does not run on train",
+      "revId": "fe290f1c9df7fdb82868c30a0ecaa14e8ff11294",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d63c4d5_510f39e8",
+        "filename": "zuul.d/integration-jobs-ussuri.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 242
+      },
+      "writtenOn": "2021-07-08T15:07:15Z",
+      "side": 1,
+      "message": "same as train ... https://opendev.org/openstack/tripleo-ci/src/branch/master/zuul.d/multinode-jobs.yaml#L294 ...",
+      "revId": "fe290f1c9df7fdb82868c30a0ecaa14e8ff11294",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    }
+  ]
+}
