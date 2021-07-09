@@ -409,16 +409,15 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-undercloud-upgrade-master
-    parent: tripleo-ci-base-standalone-upgrade-periodic-centos-8
+    parent: tripleo-ci-base-singlenode-rdo-centos-8
     voting: false
     vars:
       featureset: '050'
       release: master
       featureset_override:
-        standalone_environment_files:
-          - 'environments/low-memory-usage.yaml'
-          - 'environments/docker-ha.yaml'
-          - 'environments/podman.yaml'
+        validate_services: false
+      extra_tags:
+        - undercloud-upgrade
 
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-master
