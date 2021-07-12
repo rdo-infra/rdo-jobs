@@ -51,6 +51,14 @@
       branch_override: "stable/victoria"
       release: victoria
 
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-victoria
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-master
+    override-checkout: "stable/victoria"
+    vars:
+      branch_override: "stable/victoria"
+      release: victoria
+
 ## standalone
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-victoria

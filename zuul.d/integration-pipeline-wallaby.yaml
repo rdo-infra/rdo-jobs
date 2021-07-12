@@ -99,4 +99,7 @@
         - periodic-tripleo-ci-centos-8-containers-undercloud-minion-wallaby:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+        - periodic-tripleo-ci-centos-8-undercloud-upgrade-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
         - periodic-tripleo-centos-8-wallaby-promote-promoted-components-to-tripleo-ci-testing
