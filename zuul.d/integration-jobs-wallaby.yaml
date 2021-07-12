@@ -235,3 +235,11 @@
     vars:
       branch_override: "stable/wallaby"
       release: wallaby
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-wallaby
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-master
+    override-checkout: "stable/wallaby"
+    vars:
+      branch_override: "stable/wallaby"
+      release: wallaby
