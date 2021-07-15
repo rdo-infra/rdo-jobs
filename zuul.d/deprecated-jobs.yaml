@@ -264,9 +264,9 @@
       release: rocky
 
 
-# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-rocky
+# legacy-periodic-tripleo-ci-centos-7-scenario000-multinode-oooq-container-updates-rocky
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-rocky
+    name: periodic-tripleo-ci-centos-7-scenario000-multinode-oooq-container-updates-rocky
     parent: tripleo-ci-base-multinode-periodic
     override-checkout: "stable/rocky"
     vars:

@@ -69,7 +69,7 @@
         - overcloud-upgrade
 
 - job:
-    name: tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates
+    name: tripleo-ci-centos-7-scenario000-multinode-oooq-container-updates
     parent: tripleo-ci-base-multinode-rdo
     branches: ^(?!stable/(newton|ocata|pike)).*$
     voting: false
@@ -356,9 +356,9 @@
       branch_override: "stable/train"
       release: train
 
-# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master
+# legacy-periodic-tripleo-ci-centos-7-scenario000-multinode-oooq-container-updates-master
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master
+    name: periodic-tripleo-ci-centos-7-scenario000-multinode-oooq-container-updates-master
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -370,15 +370,15 @@
         - overcloud-update
 
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-train
-    parent: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-master
+    name: periodic-tripleo-ci-centos-7-scenario000-multinode-oooq-container-updates-train
+    parent: periodic-tripleo-ci-centos-7-scenario000-multinode-oooq-container-updates-master
     override-checkout: "stable/train"
     vars:
       branch_override: "stable/train"
       release: train
 
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-stein
+    name: periodic-tripleo-ci-centos-7-scenario000-multinode-oooq-container-updates-stein
     parent: tripleo-ci-base-multinode-periodic
     override-checkout: "stable/stein"
     vars:
@@ -391,9 +391,9 @@
       extra_tags:
         - overcloud-update
 
-# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-queens
+# legacy-periodic-tripleo-ci-centos-7-scenario000-multinode-oooq-container-updates-queens
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset037-updates-queens
+    name: periodic-tripleo-ci-centos-7-scenario000-multinode-oooq-container-updates-queens
     parent: tripleo-ci-base-multinode-periodic
     override-checkout: "stable/queens"
     vars:
