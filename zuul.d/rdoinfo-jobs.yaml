@@ -114,7 +114,7 @@
       - rdoinfo
 
 - job:
-    name: rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset030
+    name: rdoinfo-tripleo-master-testing-centos-7-scenario007-multinode-oooq-container
     parent: rdoinfo-tripleo-centos-7-multinode-base
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
@@ -237,7 +237,7 @@
       - rdoinfo
 
 - job:
-    name: rdoinfo-tripleo-train-testing-centos-7-multinode-1ctlr-featureset030
+    name: rdoinfo-tripleo-train-testing-centos-7-scenario007-multinode-oooq-container
     parent: rdoinfo-tripleo-centos-7-multinode-base
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
@@ -607,7 +607,7 @@
       - rdoinfo
 
 - job:
-    name: rdoinfo-tripleo-stein-testing-centos-7-multinode-1ctlr-featureset030
+    name: rdoinfo-tripleo-stein-testing-centos-7-scenario007-multinode-oooq-container
     parent: rdoinfo-tripleo-centos-7-multinode-base
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
@@ -651,7 +651,7 @@
       - rdoinfo
 
 - job:
-    name: rdoinfo-tripleo-rocky-testing-centos-7-multinode-1ctlr-featureset030
+    name: rdoinfo-tripleo-rocky-testing-centos-7-scenario007-multinode-oooq-container
     parent: rdoinfo-tripleo-centos-7-multinode-base
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
@@ -717,7 +717,7 @@
       - rdoinfo
 
 - job:
-    name: rdoinfo-tripleo-queens-testing-centos-7-multinode-1ctlr-featureset030
+    name: rdoinfo-tripleo-queens-testing-centos-7-scenario007-multinode-oooq-container
     parent: rdoinfo-tripleo-centos-7-multinode-base
     run: playbooks/run-rdoinfo.yaml
     timeout: 10800
