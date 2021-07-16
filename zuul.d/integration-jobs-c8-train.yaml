@@ -72,3 +72,11 @@
     vars:
       branch_override: "stable/train"
       release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-upgrade-train
+    parent: periodic-tripleo-ci-centos-8-standalone-upgrade-master
+    override-checkout: 'stable/train'
+    vars:
+      branch_override: 'stable/train'
+      release: train
