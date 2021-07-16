@@ -301,9 +301,9 @@
       branch_override: "stable/queens"
       release: queens
 
-# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-master
+# legacy-periodic-tripleo-ci-centos-7-scenario007-multinode-oooq-container-master
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-master
+    name: periodic-tripleo-ci-centos-7-scenario007-multinode-oooq-container-master
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -323,14 +323,14 @@
         - multinode.yml
 
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-train
-    parent: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-master
+    name: periodic-tripleo-ci-centos-7-scenario007-multinode-oooq-container-train
+    parent: periodic-tripleo-ci-centos-7-scenario007-multinode-oooq-container-master
     vars:
       branch_override: "stable/train"
       release: train
 
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset030-stein
+    name: periodic-tripleo-ci-centos-7-scenario007-multinode-oooq-container-stein
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
