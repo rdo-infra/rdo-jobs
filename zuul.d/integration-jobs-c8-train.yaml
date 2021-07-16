@@ -64,11 +64,3 @@
     vars:
       branch_override: "stable/train"
       release: train
-
-- job:
-    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-train
-    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-master
-    override-checkout: "stable/train"
-    vars:
-      branch_override: "stable/train"
-      release: train
