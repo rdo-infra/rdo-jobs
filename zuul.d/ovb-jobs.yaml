@@ -398,6 +398,16 @@
       nodes: 1ctlr_1comp
       featureset: '002'
       release: master
+      whole_disk_images: true
+
+    # Note(sbaker): this job can be removed when only overcloud-hardened-uefi-full should be published
+    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload-partition
+    parent: tripleo-ci-base-ovb-periodic-upload
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '002'
+      release: master
+      whole_disk_images: false
 
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-train-upload
