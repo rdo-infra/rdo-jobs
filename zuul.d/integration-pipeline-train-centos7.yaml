@@ -5,7 +5,7 @@
     openstack-periodic-integration-stable4-centos7:
       jobs:
         ##### stable/train #####
-        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-train:
+        - periodic-tripleo-ci-centos-7-containers-multinode-train:
             dependencies:
               - periodic-tripleo-centos-7-train-containers-build-push
         - periodic-tripleo-ci-centos-7-standalone-train:
