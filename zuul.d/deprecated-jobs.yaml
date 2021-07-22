@@ -73,7 +73,7 @@
         - overcloud-upgrade
 
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-pike
+    name: periodic-tripleo-ci-centos-7-containers-multinode-pike
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -196,9 +196,9 @@
       branch_override: "stable/pike"
       release: pike
 
-# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-rocky
+# legacy-periodic-tripleo-ci-centos-7-containers-multinode-rocky
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-rocky
+    name: periodic-tripleo-ci-centos-7-containers-multinode-rocky
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr

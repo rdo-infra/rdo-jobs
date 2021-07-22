@@ -5,7 +5,7 @@
     openstack-periodic-integration-stable7:
       jobs:
         ##### stable/queens #####
-        - periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-queens:
+        - periodic-tripleo-ci-centos-7-containers-multinode-queens:
             dependencies:
               - periodic-tripleo-centos-7-queens-containers-build
         - periodic-tripleo-ci-centos-7-undercloud-oooq-queens:
