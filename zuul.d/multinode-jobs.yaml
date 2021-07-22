@@ -4,16 +4,6 @@
 # It contains all the jobs using deployed-servers in nodepool.
 
 - job:
-    name: tripleo-ci-centos-7-multinode-1ctlr-featureset010
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^master$
-    vars:
-      nodes: 1ctlr
-      featureset: '010'
-      playbooks:
-        - multinode.yml
-
-- job:
     name: tripleo-ci-centos-7-multinode-1ctlr-featureset016
     parent: tripleo-ci-base-multinode-rdo
     branches: ^master$
@@ -138,9 +128,9 @@
       extra_tags:
         - overcloud-upgrade
 
-# legacy-periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-master
+# legacy-periodic-tripleo-ci-centos-7-containers-multinode-master
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-master
+    name: periodic-tripleo-ci-centos-7-containers-multinode-master
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
@@ -160,14 +150,14 @@
         - multinode.yml
 
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-train
-    parent: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-master
+    name: periodic-tripleo-ci-centos-7-containers-multinode-train
+    parent: periodic-tripleo-ci-centos-7-containers-multinode-master
     vars:
       branch_override: "stable/train"
       release: train
 
 - job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset010-stein
+    name: periodic-tripleo-ci-centos-7-containers-multinode-stein
     parent: tripleo-ci-base-multinode-periodic
     vars:
       nodes: 1ctlr
