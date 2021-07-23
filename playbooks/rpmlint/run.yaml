@@ -279,6 +279,8 @@
           addFilter("python3-cinder-common.noarch: E: explicit-lib-dependency libcgroup-tools")
 
           # Exceptions for tripleo-repos
+          addFilter("python3-tripleo-repos.noarch: W: devel-file-in-non-devel-package /usr/bin/tripleo-yum-config")
+          addFilter("python3-tripleo-repos.noarch: W: conffile-without-noreplace-flag /etc/tripleo_get_hash/config.yaml")
           addFilter("python3-tripleo-repos.noarch: E: non-executable-script /usr/lib/python3.6/site-packages/tripleo_repos/.*")
           addFilter("python3-tripleo-repos.noarch: E: wrong-script-interpreter /usr/lib/python3.6/site-packages/tripleo_repos/.*")
           EOF
