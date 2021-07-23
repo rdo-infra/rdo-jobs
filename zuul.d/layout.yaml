@@ -1,12 +1,17 @@
+- job:
+    name: rdoinfo-upper-constraints-update-test
+    parent: base
+    description: |
+      This job syncs rdoinfo tags with upper-constraints.
+    run: playbooks/upper-constraints-update-run.yaml
+    vars:
+      stable_releases: stein train ussuri victoria wallaby master
+    nodeset: rdo-centos-8-stream
+    required-projects:
+      - name: rdoinfo
+      - name: rdo-infra/releng
+
 - project:
     check:
       jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+        - rdoinfo-upper-constraints-update-test
