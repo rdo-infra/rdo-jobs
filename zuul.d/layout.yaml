@@ -1,12 +1,28 @@
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master-vexx-1
+    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master
+    vars:
+      timeout: 22000
+      # periodic running currently
+      #force_periodic: true
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master-psi-1
+    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master-vexx-1
+    nodeset: single-centos-8-node-psi
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master-psi-2
+    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master-psi-1
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master-psi-3
+    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master-psi-1
+
 - project:
     check:
-      jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+      jobs:
+        - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master-vexx-1
+        - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master-psi-1
+        - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master-psi-2
+        - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master-psi-3
