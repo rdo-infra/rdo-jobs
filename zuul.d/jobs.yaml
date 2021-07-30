@@ -1,6 +1,6 @@
 - job:
     name: base
-    parent: base-minimal
+    parent: base-minimal-test
     # Default since Zuul 3.19
     ansible-version: 2.9
     # if your jobs rely on code that does need an older version of ansible
