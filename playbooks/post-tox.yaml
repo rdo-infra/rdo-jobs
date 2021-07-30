@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Include Zuul manifest role
+      include_role:
+        name: generate-zuul-manifest
+    - name: Generate bulk log download script
+      include_role:
+        name: local-log-download
+      vars:
+        local_log_download_api: 'https://softwarefactory-project.io/zuul/api/tenant/{{ zuul.tenant }}'

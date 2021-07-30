@@ -10,6 +10,10 @@
             pre-run:
               - playbooks/rdo-tox-epel.yaml
               - playbooks/pre-tox.yaml
+            post-run:
+              - playbooks/post-tox.yaml
+            roles:
+              - zuul: zuul/zuul-jobs
         - tox-linters: *cfg
         - rdo-tox-molecule-delegated-centos-8: &molecule
             files:
