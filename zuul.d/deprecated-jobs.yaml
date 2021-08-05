@@ -394,3 +394,20 @@
       featureset: '027'
       branch_override: "stable/rocky"
       release: rocky
+
+
+# deprecate minion master & wallaby https://review.opendev.org/c/openstack/tripleo-ci/+/803043
+# job definition kept around because of parenting so adding abstract: true
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-undercloud-minion-master
+    parent: tripleo-ci-base-multinode-periodic-centos-8
+    abstract: true
+    vars:
+      nodes: 1minion
+      featureset: '061'
+      release: master
+      playbooks:
+        - multinode-minion.yml
+      extra_tags:
+        - undercloud-minion-setup
+        - undercloud-minion-deploy

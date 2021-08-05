@@ -82,9 +82,6 @@
         - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-master:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
-        - periodic-tripleo-ci-centos-8-containers-undercloud-minion-master:
-            dependencies:
-              - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-master:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push

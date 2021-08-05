@@ -432,17 +432,5 @@
       branch_override: "stable/stein"
       release: stein
 
-- job:
-    name: periodic-tripleo-ci-centos-8-containers-undercloud-minion-master
-    parent: tripleo-ci-base-multinode-periodic-centos-8
-    vars:
-      nodes: 1minion
-      featureset: '061'
-      release: master
-      playbooks:
-        - multinode-minion.yml
-      extra_tags:
-        - undercloud-minion-setup
-        - undercloud-minion-deploy
 
 ## multinode component jobs: zuul.d/component-jobs.yaml

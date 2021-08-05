@@ -222,13 +222,6 @@
 
 ## undercloud
 - job:
-    name: periodic-tripleo-ci-centos-8-containers-undercloud-minion-wallaby
-    parent: periodic-tripleo-ci-centos-8-containers-undercloud-minion-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-- job:
     name: periodic-tripleo-ci-centos-8-undercloud-containers-wallaby
     parent: periodic-tripleo-ci-centos-8-undercloud-containers-master
     override-checkout: "stable/wallaby"
