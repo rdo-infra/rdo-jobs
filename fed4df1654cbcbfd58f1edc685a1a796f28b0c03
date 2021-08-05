@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b435fcb3_0811877e",
+        "filename": "zuul.d/component-jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 3330,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2021-08-05T07:36:23Z",
+      "side": 1,
+      "message": "these look OK but it is hard to spot any nits because they are all being added here. It would be easier to review if instead you posted a review per branch\n\nbut there is a bigger issue here let\u0027s discuss on this afternoon\u0027s scrum? \n\nI think we need to break out this file it is getting unmanageable and we are making the problem worse.\n\nI think we should split this per branch, as we have for the integration jobs (see integration-jobs-\u003cbranch\u003e @ https://github.com/rdo-infra/rdo-jobs/tree/master/zuul.d )\n\nbut lets talk about it first make sure we all agree",
+      "revId": "fed4df1654cbcbfd58f1edc685a1a796f28b0c03",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    }
+  ]
+}
