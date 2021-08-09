@@ -28,6 +28,14 @@
       featureset: '001'
 
 - job:
+    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^(stable/(newton|ocata|pike|queens|stein|train)).*$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+
+- job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ovb-master
     parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
     branches: ^master$
