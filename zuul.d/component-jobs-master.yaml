@@ -1,0 +1,682 @@
+# component master jobs
+
+## promote-consistent-to-component-ci-testing
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-baremetal-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: baremetal
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-cinder-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: cinder
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-clients-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: clients
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-cloudops-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: cloudops
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-common-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: common
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-compute-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: compute
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-glance-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: glance
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-manila-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: manila
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: network
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: octavia
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-security-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: security
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-swift-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: swift
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-tripleo-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: tripleo
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-tempest-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: tempest
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-ui-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: ui
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-validation-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: validation
+      dlrn_server_url: "trunk.rdoproject.org"
+
+
+## promote-to-promoted-components
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-baremetal-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: baremetal
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-cinder-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: cinder
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-clients-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: clients
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-cloudops-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-common-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: common
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-compute-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: compute
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-glance-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: glance
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-manila-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: manila
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-network-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: network
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-octavia-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: octavia
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-security-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: security
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-swift-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: swift
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-tempest-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: tempest
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-tripleo-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: tripleo
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-ui-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: ui
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-validation-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: validation
+
+
+## ovb component promotion jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-baremetal-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+    vars:
+      component: baremetal
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+    vars:
+      component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+    vars:
+      component: clients
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-component-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-master
+    abstract: true
+    vars: *component_vars_ovb
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-component-master
+    vars:
+      component: security
+
+
+## multinode component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-clients-master
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-component-master
+    vars:
+      component: clients
+
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-common-master
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-network-master
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-component-master
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-octavia-master
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-component-master
+    vars:
+      component: octavia
+
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-security-master
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-component-master
+    vars:
+      component: security
+
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-tripleo-master
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-component-master
+    vars:
+      component: tripleo
+
+
+## standalone component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-component-master-validation
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      enable_validation: true
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-component-wallaby-validation
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      enable_validation: true
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-baremetal-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: baremetal
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-cinder-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: cinder
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-clients-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: clients
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-cloudops-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-common-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-compute-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-compute-master-validation
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master-validation
+    vars:
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-glance-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: glance
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-manila-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: manila
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-network-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-network-master-validation
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master-validation
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-octavia-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: octavia
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-security-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: security
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-swift-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: swift
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-tempest-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: tempest
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-tripleo-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-tripleo-master-validation
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master-validation
+    vars:
+      component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-ui-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: ui
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-validation-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      component: validation
+
+
+## scenario001-standalone-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-cinder-master
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-component-master
+    vars:
+      component: cinder
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-cloudops-master
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-component-master
+    vars:
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-common-master
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-glance-master
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-component-master
+    vars:
+      component: glance
+
+
+# #scenario002-standalone-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-cloudops-master
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-component-master
+    vars:
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-common-master
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-glance-master
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-component-master
+    vars:
+      component: glance
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-swift-master
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-component-master
+    vars:
+      component: swift
+
+
+## scenario003-standalone-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario003-standalone-common-master
+    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario003-standalone-glance-master
+    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-component-master
+    vars:
+      component: glance
+
+
+## scenario004-standalone-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-master
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-component-master
+    vars:
+      component: cinder
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-common-master
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-glance-master
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-component-master
+    vars:
+      component: glance
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-manila-master
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-component-master
+    vars:
+      component: manila
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-master
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-component-master
+    vars:
+      component: tripleo
+
+
+## scenario007-standalone-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario007-standalone-network-master
+    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-component-master
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario007-standalone-octavia-master
+    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-component-master
+    vars:
+      component: octavia
+
+
+## scenario010-standalone-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-standalone-network-master
+    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-component-master
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-master
+    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-component-master
+    vars:
+      component: octavia
+
+
+## scenario010-kvm-standalone-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-master
+    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-component-master
+    vars:
+      component: octavia
+
+
+## scenario012-standalone-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario012-standalone-compute-master
+    parent: periodic-tripleo-ci-centos-8-scenario012-standalone-component-master
+    vars:
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario012-standalone-baremetal-master
+    parent: periodic-tripleo-ci-centos-8-scenario012-standalone-component-master
+    vars:
+      component: baremetal
+
+
+## standalone-full-tempest-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-compute-master
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-component-master
+    vars:
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-tempest-master
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-component-master
+    vars:
+      component: tempest
+
+
+## standalone-full-tempest-api-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-compute-master
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-component-master
+    vars:
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-tempest-master
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-component-master
+    vars:
+      component: tempest
+
+
+## standalone-full-tempest-scenario-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-master
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-component-master
+    vars:
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-tempest-master
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-component-master
+    vars:
+      component: tempest
+
+
+## standalone-on-multinode-ipa jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-master
+    parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-component-master
+    vars:
+      component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-security-master
+    parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-component-master
+    vars:
+      component: security
+
+
+## Update and Upgrade jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tripleo-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      release: master
+      component: tripleo
