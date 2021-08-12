@@ -141,6 +141,14 @@
               - manifests/profile/base/neutron/plugins/ovs/opendaylight.pp
               - tox.ini
 
+# TripleO CI templates - fs35
+- project-template:
+    name: tripleo-ovb-fs35
+    openstack-check:
+      jobs:
+        - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035:
+            irrelevant-files: *fs001_irrelevant_files
+
 - project-template:
     name: ovb-experimental
     openstack-experimental:
