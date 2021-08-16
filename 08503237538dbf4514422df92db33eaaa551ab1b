@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "92dcb799_913b8178",
+        "filename": "zuul.d/component-jobs.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 1697,
+      "author": {
+        "id": 672
+      },
+      "writtenOn": "2021-08-16T12:14:23Z",
+      "side": 1,
+      "message": "Actually I was thinking to keep base/parent jobs in the component-jobs.yaml file only. Like the job \"periodic-tripleo-ci-centos-8-scenario001-standalone-component-master\" is parent to rest of other $components master jobs. so I have not moved them $component-jobs-$release.yaml file. If you think I should move these also, I am fine with it. Please give your opinion.",
+      "parentUuid": "1812174c_25594b9a",
+      "range": {
+        "startLine": 1697,
+        "startChar": 39,
+        "endLine": 1697,
+        "endChar": 78
+      },
+      "revId": "08503237538dbf4514422df92db33eaaa551ab1b",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "57b665f4_4f217b0c",
         "filename": "zuul.d/component-jobs.yaml",
         "patchSetId": 3
