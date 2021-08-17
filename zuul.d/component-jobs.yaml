@@ -132,103 +132,6 @@
       component: validation
       dlrn_server_url: "trunk.rdoproject.org"
 
-### wallaby
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-baremetal-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-baremetal-promote-consistent-to-component-ci-testing
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-cinder-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-cinder-promote-consistent-to-component-ci-testing
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-clients-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-clients-promote-consistent-to-component-ci-testing
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-cloudops-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-cloudops-promote-consistent-to-component-ci-testing
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-common-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-common-promote-consistent-to-component-ci-testing
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-compute-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-compute-promote-consistent-to-component-ci-testing
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-glance-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-glance-promote-consistent-to-component-ci-testing
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-manila-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-manila-promote-consistent-to-component-ci-testing
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-network-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-octavia-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-security-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-security-promote-consistent-to-component-ci-testing
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-swift-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-swift-promote-consistent-to-component-ci-testing
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-tripleo-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-tripleo-promote-consistent-to-component-ci-testing
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-tempest-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-tempest-promote-consistent-to-component-ci-testing
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-ui-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-ui-promote-consistent-to-component-ci-testing
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-validation-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-validation-promote-consistent-to-component-ci-testing
-    vars:
-      release: wallaby
-
 ### ussuri
 - job:
     name: periodic-tripleo-centos-8-ussuri-component-baremetal-promote-consistent-to-component-ci-testing
@@ -442,103 +345,6 @@
       component: validation
 
 
-### wallaby
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-baremetal-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-baremetal-promote-to-promoted-components
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-cinder-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-cinder-promote-to-promoted-components
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-clients-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-clients-promote-to-promoted-components
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-cloudops-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-cloudops-promote-to-promoted-components
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-common-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-common-promote-to-promoted-components
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-compute-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-compute-promote-to-promoted-components
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-glance-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-glance-promote-to-promoted-components
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-manila-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-manila-promote-to-promoted-components
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-network-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-network-promote-to-promoted-components
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-octavia-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-octavia-promote-to-promoted-components
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-security-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-security-promote-to-promoted-components
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-swift-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-swift-promote-to-promoted-components
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-tempest-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-tempest-promote-to-promoted-components
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-tripleo-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-tripleo-promote-to-promoted-components
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-ui-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-ui-promote-to-promoted-components
-    vars:
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-centos-8-wallaby-component-validation-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-validation-promote-to-promoted-components
-    vars:
-      release: wallaby
-
 ### ussuri
 - job:
     name: periodic-tripleo-centos-8-ussuri-component-baremetal-promote-to-promoted-components
@@ -694,46 +500,65 @@
     vars:
       component: security
 
-### wallaby
+
+## ovb component promotion jobs
 - job:
-    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-baremetal-wallaby
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master
+    abstract: true
+    vars: &component_vars_ovb
+      component: component
+      release: master
+      featureset_override:
+        to_build: true
+      component_update_overcloud_image: true
+      dlrn_server_url: "trunk.rdoproject.org"
+      promote_source: component-ci-testing
+      add_repos:
+        - type: generic
+          reponame: "{{ component }}"
+          filename: "{{ component }}-component.repo"
+          priority: 1
+          baseurl: "https://{{ dlrn_server_url }}/centos8-{{ release }}/component/{{ component }}/component-ci-testing"
+          update_container: true
+
+### master
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-baremetal-master
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
     vars:
       component: baremetal
-      release: wallaby
-      branch_override: 'stable/wallaby'
 
 - job:
-    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-wallaby
-    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
-    vars:
-      component: clients
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-wallaby
-    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
-    vars:
-      component: network
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-wallaby
-    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-master
-    vars:
-      component: security
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-wallaby
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-master
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
     vars:
       component: tripleo
-      release: wallaby
-      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+    vars:
+      component: clients
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-component-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-master
+    abstract: true
+    vars: *component_vars_ovb
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-component-master
+    vars:
+      component: security
+
 
 ### ussuri
 - job:
@@ -775,6 +600,7 @@
       component: security
       release: ussuri
       branch_override: 'stable/ussuri'
+
 
 ## multinode component jobs
 - job:
@@ -831,48 +657,6 @@
     vars:
       component: tripleo
 
-### wallaby
-- job:
-    name: periodic-tripleo-ci-centos-8-containers-multinode-clients-wallaby
-    parent: periodic-tripleo-ci-centos-8-containers-multinode-clients-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-containers-multinode-common-wallaby
-    parent: periodic-tripleo-ci-centos-8-containers-multinode-common-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-containers-multinode-network-wallaby
-    parent: periodic-tripleo-ci-centos-8-containers-multinode-network-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-containers-multinode-octavia-wallaby
-    parent: periodic-tripleo-ci-centos-8-containers-multinode-octavia-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-containers-multinode-security-wallaby
-    parent: periodic-tripleo-ci-centos-8-containers-multinode-security-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-containers-multinode-tripleo-wallaby
-    parent: periodic-tripleo-ci-centos-8-containers-multinode-tripleo-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
 
 ### ussuri
 - job:
@@ -917,7 +701,8 @@
       release: ussuri
       branch_override: 'stable/ussuri'
 
-# standalone
+
+# standalone component jobs
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-component-master
     parent: periodic-tripleo-ci-centos-8-standalone-master
@@ -939,15 +724,6 @@
     name: periodic-tripleo-ci-centos-8-standalone-component-master-validation
     parent: periodic-tripleo-ci-centos-8-standalone-component-master
     vars:
-      enable_validation: true
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-component-wallaby-validation
-    parent: periodic-tripleo-ci-centos-8-standalone-component-master
-    override-checkout: "stable/wallaby"
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
       enable_validation: true
 
 ## master
@@ -1065,136 +841,6 @@
     vars:
       component: validation
 
-## wallaby
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-baremetal-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-baremetal-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-cinder-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-cinder-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-clients-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-clients-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-cloudops-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-cloudops-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-common-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-common-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-compute-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-compute-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-glance-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-glance-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-manila-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-manila-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-network-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-network-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-octavia-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-octavia-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-security-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-security-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-swift-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-swift-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-tempest-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-tempest-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-tripleo-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-tripleo-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-ui-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-ui-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-validation-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-validation-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-compute-wallaby-validation
-    parent: periodic-tripleo-ci-centos-8-standalone-component-wallaby-validation
-    vars:
-      component: compute
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-network-wallaby-validation
-    parent: periodic-tripleo-ci-centos-8-standalone-component-wallaby-validation
-    vars:
-      component: network
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-tripleo-wallaby-validation
-    parent: periodic-tripleo-ci-centos-8-standalone-component-wallaby-validation
-    vars:
-      component: tripleo
 
 ## ussuri
 - job:
@@ -1309,7 +955,9 @@
       release: ussuri
       branch_override: 'stable/ussuri'
 
-# scenario001-standalone-component
+
+## scenario001-standalone-component jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-scenario001-standalone-component-master
     parent: periodic-tripleo-ci-centos-8-scenario001-standalone-master
@@ -1341,34 +989,6 @@
     vars:
       component: glance
 
-## wallaby
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario001-standalone-cinder-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-cinder-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario001-standalone-cloudops-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-cloudops-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario001-standalone-common-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-common-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario001-standalone-glance-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-glance-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
 
 ## ussuri
 - job:
@@ -1399,7 +1019,9 @@
       release: ussuri
       branch_override: 'stable/ussuri'
 
-# scenario002-standalone-component
+
+## scenario002-standalone-component jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-scenario002-standalone-component-master
     parent: periodic-tripleo-ci-centos-8-scenario002-standalone-master
@@ -1431,34 +1053,6 @@
     vars:
       component: swift
 
-## wallaby
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario002-standalone-cloudops-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-cloudops-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario002-standalone-common-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-common-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario002-standalone-glance-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-glance-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario002-standalone-swift-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-swift-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
 
 ## ussuri
 - job:
@@ -1489,7 +1083,9 @@
       release: ussuri
       branch_override: 'stable/ussuri'
 
-# scenario003-standalone-component
+
+## scenario003-standalone-component jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-scenario003-standalone-component-master
     parent: periodic-tripleo-ci-centos-8-scenario003-standalone-master
@@ -1509,20 +1105,6 @@
     vars:
       component: glance
 
-## wallaby
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario003-standalone-common-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-common-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario003-standalone-glance-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-glance-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
 
 ## ussuri
 - job:
@@ -1539,7 +1121,9 @@
       release: ussuri
       branch_override: 'stable/ussuri'
 
-# scenario004-standalone-component
+
+## scenario004-standalone-component jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-component-master
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-master
@@ -1576,43 +1160,6 @@
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-component-master
     vars:
       component: tripleo
-
-## wallaby
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario004-standalone-common-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-common-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario004-standalone-glance-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-glance-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario004-standalone-manila-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-manila-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
 
 
 ## ussuri
@@ -1651,7 +1198,9 @@
       release: ussuri
       branch_override: 'stable/ussuri'
 
-# scenario007-standalone-component
+
+## scenario007-standalone-component jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-scenario007-standalone-component-master
     parent: periodic-tripleo-ci-centos-8-scenario007-standalone-master
@@ -1671,20 +1220,6 @@
     vars:
       component: octavia
 
-## wallaby
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario007-standalone-network-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-network-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario007-standalone-octavia-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-octavia-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
 
 ## ussuri
 - job:
@@ -1701,7 +1236,9 @@
       release: ussuri
       branch_override: 'stable/ussuri'
 
-# scenario010-standalone-component
+
+## scenario010-standalone-component jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-scenario010-standalone-component-master
     parent: periodic-tripleo-ci-centos-8-scenario010-standalone-master
@@ -1722,20 +1259,6 @@
     vars:
       component: octavia
 
-## wallaby
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario010-standalone-network-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-network-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
 
 ## ussuri
 - job:
@@ -1752,7 +1275,9 @@
       release: ussuri
       branch_override: 'stable/ussuri'
 
-# scenario010-standalone-component
+
+## scenario010-standalone-component jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-component-master
     parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master
@@ -1766,15 +1291,6 @@
     vars:
       component: octavia
 
-# wallaby
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-component-master
-    override-checkout: 'stable/wallaby'
-    vars:
-      component: octavia
-      release: wallaby
-      branch_override: 'stable/wallaby'
 
 # ussuri
 - job:
@@ -1786,7 +1302,9 @@
       release: ussuri
       branch_override: 'stable/ussuri'
 
-# scenario012-standalone-component
+
+## scenario012-standalone-component jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-scenario012-standalone-component-master
     parent: periodic-tripleo-ci-centos-8-scenario012-standalone-master
@@ -1806,25 +1324,9 @@
     vars:
       component: baremetal
 
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario012-standalone-compute-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario012-standalone-component-master
-    override-checkout: 'stable/wallaby'
-    vars:
-      component: compute
-      release: wallaby
-      branch_override: 'stable/wallaby'
 
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario012-standalone-baremetal-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario012-standalone-component-master
-    override-checkout: 'stable/wallaby'
-    vars:
-      component: baremetal
-      release: wallaby
-      branch_override: 'stable/wallaby'
+## standalone-full-tempest-component jobs
 
-# standalone-full-tempest-component
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-component-master
     parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-master
@@ -1844,20 +1346,6 @@
     vars:
       component: tempest
 
-### wallaby
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-compute-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-compute-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-tempest-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-tempest-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
 
 ## ussuri
 - job:
@@ -1874,7 +1362,9 @@
       release: ussuri
       branch_override: 'stable/ussuri'
 
-# standalone-full-tempest-api-component
+
+## standalone-full-tempest-api-component jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-component-master
     parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-master
@@ -1894,20 +1384,6 @@
     vars:
       component: tempest
 
-## wallaby
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-compute-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-compute-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-tempest-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-tempest-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
 
 ## ussuri
 - job:
@@ -1924,7 +1400,9 @@
       release: ussuri
       branch_override: 'stable/ussuri'
 
-# standalone-full-tempest-scenario-component
+
+## standalone-full-tempest-scenario-component jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-component-master
     parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-master
@@ -1944,20 +1422,6 @@
     vars:
       component: tempest
 
-## wallaby
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-tempest-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-tempest-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
 
 ## ussuri
 - job:
@@ -1974,7 +1438,9 @@
       release: ussuri
       branch_override: 'stable/ussuri'
 
-# standalone-on-multinode-ipa
+
+## standalone-on-multinode-ipa jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-component-master
     parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-master
@@ -1994,20 +1460,6 @@
     vars:
       component: security
 
-## wallaby
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-security-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-security-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
 
 ## ussuri
 - job:
@@ -2023,23 +1475,6 @@
     vars:
       release: ussuri
       branch_override: 'stable/ussuri'
-
-## train
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-train
-    parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-master
-    override-checkout: "stable/train"
-    vars:
-      release: train
-      branch_override: 'stable/train'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-security-train
-    parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-security-master
-    override-checkout: "stable/train"
-    vars:
-      release: train
-      branch_override: 'stable/train'
 
 
 ## Update and Upgrade jobs
@@ -2068,15 +1503,6 @@
       release: master
       component: tripleo
 
-# wallaby
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tripleo-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tripleo-master
-    override-checkout: "stable/wallaby"
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-      component: tripleo
 
 # ussuri
 - job:
@@ -2088,7 +1514,9 @@
       branch_override: 'stable/ussuri'
       component: tripleo
 
-# standalone-upgrade
+
+## standalone-upgrade jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-upgrade-component-master
     parent: tripleo-ci-base-standalone-upgrade-periodic-centos-8
@@ -2114,16 +1542,6 @@
     vars:
       release: master
       component: tripleo
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-upgrade-tripleo-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-upgrade-component-master
-    override-checkout: "stable/wallaby"
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-      component: tripleo
-
 
 # docker-ha,podman env files https://bugs.launchpad.net/tripleo/+bug/1906822
 - job:
