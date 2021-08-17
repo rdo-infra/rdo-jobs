@@ -1,12 +1,14 @@
 - project:
     check:
       jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+        - periodic-tripleo-ci-centos-8-scenario001-standalone-train:
+            vars:
+              force_periodic: true
+              run_test_role_vars:
+                container_prep_additional_repos: temp-*
+                add_repos:
+                  - type: generic
+                    reponame: temp-distgit
+                    filename: temp-distgit.repo
+                    baseurl: https://trunk.rdoproject.org/train/centos8/component/glance/79/e0/79e043af2a86f4547f8e7bad6be90ff4542e005e_245233f7/
+                    priority: 1
