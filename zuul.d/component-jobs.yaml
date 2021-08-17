@@ -855,7 +855,7 @@
       release: train
       branch_override: 'stable/train'
 
-## standalone
+## standalone component jobs
 
 ## victoria
 - job:
@@ -1214,7 +1214,7 @@
       release: train
       branch_override: 'stable/train'
 
-## scenario001-standalone-component
+## scenario001-standalone-component jobs
 
 ## victoria
 - job:
@@ -1307,7 +1307,7 @@
       release: train
       branch_override: 'stable/train'
 
-## scenario002-standalone-component
+## scenario002-standalone-component jobs
 
 ## victoria
 - job:
@@ -1400,7 +1400,7 @@
       release: train
       branch_override: 'stable/train'
 
-## scenario003-standalone-component
+## scenario003-standalone-component jobs
 
 ## victoria
 - job:
@@ -1449,7 +1449,7 @@
       release: train
       branch_override: 'stable/train'
 
-## scenario004-standalone-component
+## scenario004-standalone-component jobs
 
 ## victoria
 - job:
@@ -1565,7 +1565,7 @@
       release: train
       branch_override: 'stable/train'
 
-## scenario007-standalone-component
+## scenario007-standalone-component jobs
 
 ## victoria
 - job:
@@ -1614,22 +1614,7 @@
       release: train
       branch_override: 'stable/train'
 
-## scenario010-standalone-component
-
-## wallaby
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario010-standalone-network-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-network-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
+## scenario010-standalone-component jobs
 
 ## victoria
 - job:
@@ -1678,7 +1663,7 @@
       release: train
       branch_override: 'stable/train'
 
-## scenario010-kvm-standalone-component
+## scenario010-standalone-component jobs
 
 # victoria
 - job:
@@ -1710,7 +1695,7 @@
       release: train
       branch_override: 'stable/train'
 
-## scenario012-standalone-component
+## scenario012-standalone-component jobs
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario012-standalone-compute-victoria
@@ -1748,7 +1733,7 @@
       release: train
       branch_override: 'stable/train'
 
-## standalone-full-tempest-component
+## standalone-full-tempest-component jobs
 
 ### victoria
 - job:
@@ -1780,7 +1765,7 @@
       release: ussuri
       branch_override: 'stable/ussuri'
 
-## standalone-full-tempest-api-component
+## standalone-full-tempest-api-component jobs
 
 ## victoria
 - job:
@@ -1829,7 +1814,7 @@
       release: train
       branch_override: 'stable/train'
 
-## standalone-full-tempest-scenario-component
+## standalone-full-tempest-scenario-component jobs
 
 ## victoria
 - job:
@@ -1878,7 +1863,7 @@
       release: train
       branch_override: 'stable/train'
 
-## standalone-on-multinode-ipa
+## standalone-on-multinode-ipa jobs
 
 ## victoria
 - job:
@@ -1950,7 +1935,7 @@
       branch_override: 'stable/ussuri'
       component: tripleo
 
-## standalone-upgrade
+## standalone-upgrade jobs
 
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-upgrade-tripleo-victoria
