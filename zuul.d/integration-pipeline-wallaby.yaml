@@ -9,7 +9,7 @@
         - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-promote-promoted-components-to-tripleo-ci-testing
-        - periodic-tripleo-centos-8-buildimage-overcloud-hardened-full-wallaby:
+        - periodic-tripleo-centos-8-buildimage-overcloud-hardened-uefi-full-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-promote-promoted-components-to-tripleo-ci-testing
         - periodic-tripleo-centos-8-buildimage-overcloud-full-wallaby:
