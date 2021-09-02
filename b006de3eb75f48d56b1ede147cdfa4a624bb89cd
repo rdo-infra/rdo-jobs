@@ -22,6 +22,30 @@
       "revId": "b006de3eb75f48d56b1ede147cdfa4a624bb89cd",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5fbb3910_633bb9b9",
+        "filename": "zuul.d/component-jobs-master.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 672
+      },
+      "writtenOn": "2021-09-02T06:21:28Z",
+      "side": 1,
+      "message": "in component_vars_ovb below two options are extra that are not in component_vars_multinode:\nfeatureset_override:\n   to_build: true\ncomponent_update_overcloud_image: true\n\nI am not sure, does it make difference or not. If not I will make generic one.",
+      "parentUuid": "87ea0b0b_41eb2e84",
+      "range": {
+        "startLine": 314,
+        "startChar": 11,
+        "endLine": 314,
+        "endChar": 35
+      },
+      "revId": "b006de3eb75f48d56b1ede147cdfa4a624bb89cd",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
     }
   ]
 }
