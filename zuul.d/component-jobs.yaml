@@ -326,103 +326,6 @@
     vars:
       release: victoria
 
-### ussuri
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-baremetal-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-baremetal-promote-consistent-to-component-ci-testing
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-cinder-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-cinder-promote-consistent-to-component-ci-testing
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-clients-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-clients-promote-consistent-to-component-ci-testing
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-cloudops-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-cloudops-promote-consistent-to-component-ci-testing
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-common-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-common-promote-consistent-to-component-ci-testing
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-compute-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-compute-promote-consistent-to-component-ci-testing
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-glance-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-glance-promote-consistent-to-component-ci-testing
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-manila-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-manila-promote-consistent-to-component-ci-testing
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-network-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-octavia-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-security-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-security-promote-consistent-to-component-ci-testing
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-swift-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-swift-promote-consistent-to-component-ci-testing
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-tripleo-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-tripleo-promote-consistent-to-component-ci-testing
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-tempest-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-tempest-promote-consistent-to-component-ci-testing
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-ui-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-ui-promote-consistent-to-component-ci-testing
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-validation-promote-consistent-to-component-ci-testing
-    parent: periodic-tripleo-centos-8-master-component-validation-promote-consistent-to-component-ci-testing
-    vars:
-      release: ussuri
-
 ### train
 - job:
     name: periodic-tripleo-centos-8-train-component-baremetal-promote-consistent-to-component-ci-testing
@@ -831,103 +734,6 @@
     vars:
       release: victoria
 
-### ussuri
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-baremetal-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-baremetal-promote-to-promoted-components
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-cinder-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-cinder-promote-to-promoted-components
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-clients-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-clients-promote-to-promoted-components
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-cloudops-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-cloudops-promote-to-promoted-components
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-common-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-common-promote-to-promoted-components
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-compute-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-compute-promote-to-promoted-components
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-glance-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-glance-promote-to-promoted-components
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-manila-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-manila-promote-to-promoted-components
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-network-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-network-promote-to-promoted-components
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-octavia-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-octavia-promote-to-promoted-components
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-security-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-security-promote-to-promoted-components
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-swift-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-swift-promote-to-promoted-components
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-tempest-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-tempest-promote-to-promoted-components
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-tripleo-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-tripleo-promote-to-promoted-components
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-ui-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-ui-promote-to-promoted-components
-    vars:
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-centos-8-ussuri-component-validation-promote-to-promoted-components
-    parent: periodic-tripleo-centos-8-master-component-validation-promote-to-promoted-components
-    vars:
-      release: ussuri
-
 ### train
 - job:
     name: periodic-tripleo-centos-8-train-component-baremetal-promote-to-promoted-components
@@ -1165,47 +971,6 @@
       release: victoria
       branch_override: 'stable/victoria'
 
-### ussuri
-- job:
-    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-baremetal-ussuri
-    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
-    vars:
-      component: baremetal
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-ussuri
-    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
-    vars:
-      component: tripleo
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-ussuri
-    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
-    vars:
-      component: clients
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-ussuri
-    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
-    vars:
-      component: network
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-ussuri
-    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-master
-    vars:
-      component: security
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
 ### train
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-baremetal-train
@@ -1392,49 +1157,6 @@
     vars:
       release: victoria
       branch_override: 'stable/victoria'
-
-### ussuri
-- job:
-    name: periodic-tripleo-ci-centos-8-containers-multinode-clients-ussuri
-    parent: periodic-tripleo-ci-centos-8-containers-multinode-clients-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-containers-multinode-common-ussuri
-    parent: periodic-tripleo-ci-centos-8-containers-multinode-common-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-containers-multinode-network-ussuri
-    parent: periodic-tripleo-ci-centos-8-containers-multinode-network-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-containers-multinode-octavia-ussuri
-    parent: periodic-tripleo-ci-centos-8-containers-multinode-octavia-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-containers-multinode-security-ussuri
-    parent: periodic-tripleo-ci-centos-8-containers-multinode-security-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-containers-multinode-tripleo-ussuri
-    parent: periodic-tripleo-ci-centos-8-containers-multinode-tripleo-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
 
 ### train
 - job:
@@ -1879,119 +1601,6 @@
       release: victoria
       branch_override: 'stable/victoria'
 
-## ussuri
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-baremetal-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-baremetal-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-cinder-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-cinder-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-clients-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-clients-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-cloudops-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-cloudops-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-common-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-common-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-compute-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-compute-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-glance-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-glance-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-manila-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-manila-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-network-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-network-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-octavia-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-octavia-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-security-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-security-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-swift-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-swift-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-tempest-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-tempest-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-tripleo-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-tripleo-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-ui-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-ui-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-validation-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-validation-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
 ## train
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-baremetal-train
@@ -2211,35 +1820,6 @@
       release: victoria
       branch_override: 'stable/victoria'
 
-## ussuri
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario001-standalone-cinder-ussuri
-    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-cinder-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario001-standalone-cloudops-ussuri
-    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-cloudops-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario001-standalone-common-ussuri
-    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-common-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario001-standalone-glance-ussuri
-    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-glance-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
 ## train
 - job:
     name: periodic-tripleo-ci-centos-8-scenario001-standalone-cinder-train
@@ -2363,35 +1943,6 @@
       release: victoria
       branch_override: 'stable/victoria'
 
-## ussuri
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario002-standalone-cloudops-ussuri
-    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-cloudops-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario002-standalone-common-ussuri
-    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-common-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario002-standalone-glance-ussuri
-    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-glance-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario002-standalone-swift-ussuri
-    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-swift-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
 ## train
 - job:
     name: periodic-tripleo-ci-centos-8-scenario002-standalone-cloudops-train
@@ -2474,21 +2025,6 @@
     vars:
       release: victoria
       branch_override: 'stable/victoria'
-
-## ussuri
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario003-standalone-common-ussuri
-    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-common-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario003-standalone-glance-ussuri
-    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-glance-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
 
 ## train
 - job:
@@ -2619,42 +2155,6 @@
       release: victoria
       branch_override: 'stable/victoria'
 
-## ussuri
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-ussuri
-    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario004-standalone-common-ussuri
-    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-common-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario004-standalone-glance-ussuri
-    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-glance-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario004-standalone-manila-ussuri
-    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-manila-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-ussuri
-    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
 ## train
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-train
@@ -2746,21 +2246,6 @@
       release: victoria
       branch_override: 'stable/victoria'
 
-## ussuri
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario007-standalone-network-ussuri
-    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-network-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario007-standalone-octavia-ussuri
-    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-octavia-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
 ## train
 - job:
     name: periodic-tripleo-ci-centos-8-scenario007-standalone-network-train
@@ -2829,21 +2314,6 @@
       release: victoria
       branch_override: 'stable/victoria'
 
-## ussuri
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario010-standalone-network-ussuri
-    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-network-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-ussuri
-    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
 ## train
 - job:
     name: periodic-tripleo-ci-centos-8-scenario010-standalone-network-train
@@ -2894,16 +2364,6 @@
       component: octavia
       release: victoria
       branch_override: 'stable/victoria'
-
-# ussuri
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-ussuri
-    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-component-master
-    override-checkout: 'stable/ussuri'
-    vars:
-      component: octavia
-      release: ussuri
-      branch_override: 'stable/ussuri'
 
 # train
 - job:
@@ -3039,20 +2499,6 @@
       release: victoria
       branch_override: 'stable/victoria'
 
-## ussuri
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-compute-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-compute-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-tempest-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-tempest-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
 
 # standalone-full-tempest-api-component
 - job:
@@ -3103,21 +2549,6 @@
     vars:
       release: victoria
       branch_override: 'stable/victoria'
-
-## ussuri
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-compute-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-compute-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-tempest-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-tempest-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
 
 ## train
 - job:
@@ -3186,21 +2617,6 @@
       release: victoria
       branch_override: 'stable/victoria'
 
-## ussuri
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-tempest-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-tempest-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
 ## train
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-train
@@ -3268,20 +2684,6 @@
       release: victoria
       branch_override: 'stable/victoria'
 
-## ussuri
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-security-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-security-master
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
 
 ## train
 - job:
@@ -3347,15 +2749,6 @@
       branch_override: 'stable/victoria'
       component: tripleo
 
-# ussuri
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tripleo-ussuri
-    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tripleo-master
-    override-checkout: "stable/ussuri"
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-      component: tripleo
 
 # standalone-upgrade
 - job:
@@ -3401,18 +2794,3 @@
       release: victoria
       branch_override: 'stable/victoria'
       component: tripleo
-
-# docker-ha,podman env files https://bugs.launchpad.net/tripleo/+bug/1906822
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-upgrade-tripleo-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-upgrade-component-master
-    override-checkout: "stable/ussuri"
-    vars:
-      release: ussuri
-      branch_override: 'stable/ussuri'
-      component: tripleo
-      featureset_override:
-        standalone_environment_files:
-          - 'environments/low-memory-usage.yaml'
-          - 'environments/docker-ha.yaml'
-          - 'environments/podman.yaml'
