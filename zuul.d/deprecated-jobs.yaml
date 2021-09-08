@@ -370,14 +370,6 @@
       branch_override: "stable/rocky"
 
 
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-rocky
-    parent: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master
-    vars:
-      branch_override: "stable/rocky"
-      release: rocky
-
-
 # legacy-periodic-tripleo-ci-centos-7-undercloud-containers-rocky
 - job:
     name: periodic-tripleo-ci-centos-7-undercloud-containers-rocky
