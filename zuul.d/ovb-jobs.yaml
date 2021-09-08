@@ -196,30 +196,6 @@
       featureset: '024'
 
 - job:
-    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset041
-    parent: tripleo-ci-base-ovb-rdo
-    timeout: 14400
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '041'
-      playbooks:
-        - ovb-setup.yml
-        - baremetal-full-undercloud.yml
-        - baremetal-full-overcloud-prep.yml
-        - baremetal-full-overcloud.yml
-        - baremetal-full-overcloud-validate.yml
-        - overcloud-validate-ha.yml
-
-- job:
-    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset042
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^(?!stable/(newton|ocata|pike)).*$
-    timeout: 10800
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '042'
-
-- job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-stein-branch
     parent: tripleo-ci-base-ovb-rdo
     branches: ^master$
@@ -303,15 +279,6 @@
         - baremetal-full-overcloud-prep.yml
         - baremetal-full-overcloud.yml
         - baremetal-full-overcloud-validate.yml
-
-- job:
-    name: tripleo-ci-centos-7-ovb-1ctlr_1cellctrl_1comp-featureset063
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ".*"
-    timeout: 12600
-    vars:
-      nodes: 1ctlr_1cellctrl_1comp
-      featureset: '063'
 
 # =================  C E N T O S  8  C H E C K  J O B S
 
@@ -584,24 +551,6 @@
     vars:
       branch_override: "stable/stein"
       release: stein
-
-
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1cellctrl_1comp-featureset063-master
-    parent: tripleo-ci-base-ovb-rdo
-    timeout: 12600
-    vars:
-      nodes: 1ctlr_1cellctrl_1comp
-      featureset: '063'
-      release: master
-
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1cellctrl_1comp-featureset063-train
-    parent: periodic-tripleo-ci-centos-7-ovb-1ctlr_1cellctrl_1comp-featureset063-master
-    override-checkout: "stable/train"
-    vars:
-      branch_override: "stable/train"
-      release: train
 
 ##################################################################
 #################### CENTOS-8 PERIODIC JOBS ######################
