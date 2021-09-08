@@ -14,15 +14,6 @@
         - tripleo-ci-centos-7-containers-multinode-upgrades-pike:
             voting: false
             branches: ^stable/pike$
-        - tripleo-ci-centos-7-container-to-container-upgrades-queens:
-            voting: false
-            branches: ^stable/queens$
-        - tripleo-ci-centos-7-container-to-container-upgrades-master:
-            voting: false
-            branches: ^master$
-        - tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens:
-            voting: false
-            branches: ^stable/queens$
 
 - project-template:
     name: tripleo-upgrades-check-branchless
@@ -32,11 +23,6 @@
             voting: false
             branches: ^master$
         - tripleo-ci-centos-7-scenario000-multinode-oooq-container-updates:
-            branches: ^master$
-        - tripleo-ci-centos-7-container-to-container-upgrades-master:
-            voting: false
-            branches: ^master$
-        - tripleo-ci-centos-7-container-to-container-featureset051-upgrades:
             branches: ^master$
 
 - project-template:
