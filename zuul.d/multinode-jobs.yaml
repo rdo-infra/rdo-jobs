@@ -43,21 +43,6 @@
       playbooks:
         - multinode.yml
 
-# legacy-tripleo-ci-centos-7-containers-multinode-upgrades-queens
-- job:
-    name: tripleo-ci-centos-7-containers-multinode-upgrades-queens
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^stable/queens$
-    voting: false
-    vars:
-      nodes: 1ctlr
-      featureset: '040'
-      playbooks:
-        - multinode.yml
-      release: queens
-      extra_tags:
-        - overcloud-upgrade
-
 - job:
     name: tripleo-ci-centos-7-scenario000-multinode-oooq-container-updates
     parent: tripleo-ci-base-multinode-rdo
@@ -71,34 +56,6 @@
       extra_tags:
         - overcloud-update
 
-# legacy-tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens
-- job:
-    name: tripleo-ci-centos-7-multinode-1ctlr-featureset036-oc-ffu-queens
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^stable/queens$
-    voting: false
-    timeout: 10800
-    vars:
-      nodes: 1ctlr
-      featureset: '036'
-      extra_tags:
-        - overcloud-upgrade
-
-# legacy-tripleo-ci-centos-7-container-to-container-upgrades-queens
-- job:
-    name: tripleo-ci-centos-7-container-to-container-upgrades-queens
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^stable/queens$
-    voting: false
-    timeout: 10800
-    vars:
-      nodes: 1ctlr
-      featureset: '040'
-      playbooks:
-        - multinode.yml
-      extra_tags:
-        - overcloud-upgrade
-
 - job:
     name: tripleo-ci-centos-7-container-to-container-featureset051-upgrades
     parent: tripleo-ci-base-multinode-rdo
@@ -108,21 +65,6 @@
     vars:
       nodes: 1ctlr
       featureset: '051'
-      playbooks:
-        - multinode.yml
-      extra_tags:
-        - overcloud-upgrade
-
-# legacy-tripleo-ci-centos-7-container-to-container-upgrades-master
-- job:
-    name: tripleo-ci-centos-7-container-to-container-upgrades-master
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^master$
-    voting: false
-    timeout: 10800
-    vars:
-      nodes: 1ctlr
-      featureset: '040'
       playbooks:
         - multinode.yml
       extra_tags:
@@ -408,20 +350,6 @@
       unbound_cache_min_ttl: 900
       extra_tags:
         - overcloud-update
-
-- job:
-    name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset038-queens
-    parent: tripleo-ci-base-multinode-periodic
-    override-checkout: "stable/queens"
-    vars: &fs038_vars
-      nodes: 1ctlr
-      featureset: '038'
-      playbooks:
-        - multinode.yml
-      branch_override: "stable/queens"
-      release: queens
-      extra_tags:
-        - octavia
 
 - job:
     name: periodic-tripleo-ci-centos-7-multinode-1ctlr-featureset038-stein
