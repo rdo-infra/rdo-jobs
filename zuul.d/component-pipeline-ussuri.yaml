@@ -1,0 +1,227 @@
+## ussuri
+#############################################################
+- project-template:
+    name: component-pipeline-ussuri
+    openstack-component-baremetal:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-baremetal-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-baremetal-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-baremetal-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-baremetal-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-ussuri-component-baremetal-promote-consistent-to-component-ci-testing
+    openstack-component-cinder:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-cinder-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-cinder-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario001-standalone-cinder-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-cinder-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-cinder-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-ussuri-component-cinder-promote-consistent-to-component-ci-testing
+    openstack-component-clients:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-clients-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-clients-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-containers-multinode-clients-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-clients-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-clients-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-ussuri-component-clients-promote-consistent-to-component-ci-testing
+    openstack-component-cloudops:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-cloudops-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-cloudops-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario001-standalone-cloudops-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-cloudops-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario002-standalone-cloudops-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-cloudops-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-ussuri-component-cloudops-promote-consistent-to-component-ci-testing
+    openstack-component-common:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-common-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-common-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario001-standalone-common-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-common-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario002-standalone-common-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-common-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario003-standalone-common-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-common-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario004-standalone-common-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-common-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-containers-multinode-common-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-common-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-ussuri-component-common-promote-consistent-to-component-ci-testing
+    openstack-component-compute:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-compute-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-compute-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-api-compute-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-compute-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-compute-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-ussuri-component-compute-promote-consistent-to-component-ci-testing
+    openstack-component-glance:
+      jobs:
+        - periodic-tripleo-ci-centos-8-scenario001-standalone-glance-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-glance-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario002-standalone-glance-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-glance-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario003-standalone-glance-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-glance-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario004-standalone-glance-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-glance-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-ussuri-component-glance-promote-consistent-to-component-ci-testing
+    openstack-component-manila:
+      jobs:
+        - periodic-tripleo-ci-centos-8-scenario004-standalone-manila-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-manila-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-ussuri-component-manila-promote-consistent-to-component-ci-testing
+    openstack-component-network:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-network-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario007-standalone-network-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario010-standalone-network-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-containers-multinode-network-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-ussuri-component-network-promote-consistent-to-component-ci-testing
+    openstack-component-octavia:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-octavia-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-octavia-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario007-standalone-octavia-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-octavia-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-octavia-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-containers-multinode-octavia-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-octavia-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-ussuri-component-octavia-promote-consistent-to-component-ci-testing
+    openstack-component-security:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-security-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-security-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-security-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-security-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-containers-multinode-security-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-security-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-security-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-ussuri-component-security-promote-consistent-to-component-ci-testing
+    openstack-component-swift:
+      jobs:
+        - periodic-tripleo-ci-centos-8-scenario002-standalone-swift-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-swift-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-ussuri-component-swift-promote-consistent-to-component-ci-testing
+    openstack-component-tripleo:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-tripleo-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-containers-multinode-tripleo-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tripleo-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-upgrade-tripleo-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-ussuri-component-tripleo-promote-consistent-to-component-ci-testing
+    openstack-component-tempest:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-tempest-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-tempest-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-api-tempest-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-tempest-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-tempest-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-tempest-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-ussuri-component-tempest-promote-consistent-to-component-ci-testing
+    openstack-component-ui:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-ui-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-ui-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-ussuri-component-ui-promote-consistent-to-component-ci-testing
+    openstack-component-validation:
+      jobs:
+        - periodic-tripleo-ci-centos-8-standalone-validation-ussuri:
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-validation-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-ussuri-component-validation-promote-consistent-to-component-ci-testing
+    openstack-promote-component:
+      jobs:
+        - periodic-tripleo-centos-8-ussuri-component-baremetal-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-cinder-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-clients-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-cloudops-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-common-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-compute-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-glance-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-manila-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-network-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-octavia-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-security-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-swift-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-tripleo-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-tempest-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-ui-promote-to-promoted-components
+        - periodic-tripleo-centos-8-ussuri-component-validation-promote-to-promoted-components
+
