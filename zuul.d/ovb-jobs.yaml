@@ -30,7 +30,7 @@
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
     parent: tripleo-ci-base-ovb-rdo
-    branches: ^(stable/(newton|ocata|pike|queens|stein|train)).*$
+    branches: ^(stable/(train)).*$
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
@@ -83,33 +83,14 @@
       cloud_name: vexxhost
 
 - job:
-    name: tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-queens
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^master$
-    override-checkout: "stable/queens"
-    timeout: 18000
-    vars:
-      nodes: 1ctlr_2comp
-      featureset: '020'
-      branch_override: "stable/queens"
-
-
-- job:
-    name: tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-stein
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^master$
-    override-checkout: "stable/stein"
-    timeout: 18000
-    vars:
-      nodes: 1ctlr_2comp
-      featureset: '020'
-      branch_override: "stable/stein"
-
-- job:
     name: tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-train
-    parent: tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-stein
+    parent: tripleo-ci-base-ovb-rdo
+    branches: ^master$
     override-checkout: "stable/train"
+    timeout: 18000
     vars:
+      nodes: 1ctlr_2comp
+      featureset: '020'
       branch_override: "stable/train"
 
 # Job for testing featureset002 changes
@@ -137,26 +118,10 @@
       branch_override: "stable/train"
 
 - job:
-    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload-stein
-    parent: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload
-    override-checkout: "stable/stein"
-    vars:
-      branch_override: "stable/stein"
-
-
-- job:
-    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload-queens
-    parent: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload
-    override-checkout: "stable/queens"
-    vars:
-      branch_override: "stable/queens"
-
-
-- job:
     name: tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020
     parent: tripleo-ci-base-ovb-rdo
     timeout: 18000
-    branches: ^(stable/(newton|ocata|pike|queens|rocky|stein|train)).*$
+    branches: ^(stable/(train)).*$
     vars:
       nodes: 1ctlr_2comp
       featureset: '020'
@@ -169,31 +134,6 @@
     vars:
       nodes: 1ctlr_2comp
       featureset: '020'
-
-- job:
-    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset022
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^stable/pike$
-    vars:
-      nodes: 1ctlr_1comp
-      featureset: '022'
-
-- job:
-    name: tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ".*"
-    timeout: 18000
-    vars:
-      nodes: 1ctlr_2comp
-      featureset: '021'
-
-- job:
-    name: tripleo-ci-centos-7-ovb-1ctlr_1comp_1ceph-featureset024
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^stable/pike$
-    vars:
-      nodes: 1ctlr_1comp_1ceph
-      featureset: '024'
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset041
@@ -218,15 +158,6 @@
     vars:
       nodes: 3ctlr_1comp
       featureset: '042'
-
-- job:
-    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-stein-branch
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^master$
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '001'
-      branch_override: "stable/stein"
 
 - job:
     name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-train-branch
@@ -353,32 +284,6 @@
       featureset: '001'
       release: master
 
-# legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-queens
-    parent: tripleo-ci-base-ovb-periodic
-    # Bumping to 5hours for fs1 to run *api* tempest see
-    # https://tree.taiga.io/project/tripleo-ci-board/task/1383
-    timeout: 18000
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '001'
-      branch_override: "stable/queens"
-      release: queens
-
-
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-stein
-    parent: tripleo-ci-base-ovb-periodic
-    # Bumping to 5hours for fs1 to run *api* tempest see
-    # https://tree.taiga.io/project/tripleo-ci-board/task/1383
-    timeout: 18000
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '001'
-      branch_override: "stable/stein"
-      release: stein
-
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-train
     parent: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
@@ -416,26 +321,6 @@
       release: train
 
 - job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-stein-upload
-    parent: tripleo-ci-base-ovb-periodic-upload
-    vars:
-      nodes: 1ctlr_1comp
-      featureset: '002'
-      branch_override: "stable/stein"
-      release: stein
-
-
-# legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-queens-upload
-    parent: tripleo-ci-base-ovb-periodic-upload
-    vars:
-      nodes: 1ctlr_1comp
-      featureset: '002'
-      branch_override: "stable/queens"
-      release: queens
-
-- job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-master
     parent: tripleo-ci-base-ovb-periodic
     timeout: 18000
@@ -443,29 +328,6 @@
       nodes: 1ctlr_2comp
       featureset: '020'
       release: master
-
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-queens
-    parent: tripleo-ci-base-ovb-periodic
-    override-checkout: "stable/queens"
-    timeout: 18000
-    vars:
-      nodes: 1ctlr_2comp
-      featureset: '020'
-      branch_override: "stable/queens"
-      release: queens
-
-
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-stein
-    parent: tripleo-ci-base-ovb-periodic
-    timeout: 18000
-    override-checkout: "stable/stein"
-    vars:
-      nodes: 1ctlr_2comp
-      featureset: '020'
-      branch_override: "stable/stein"
-      release: stein
 
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-train
@@ -491,29 +353,6 @@
     vars:
       branch_override: "stable/train"
       release: train
-
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-stein
-    parent: tripleo-ci-base-ovb-periodic
-    timeout: 18000
-    override-checkout: "stable/stein"
-    vars:
-      nodes: 1ctlr_2comp
-      featureset: '021'
-      branch_override: "stable/stein"
-      release: stein
-
-
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-queens
-    parent: tripleo-ci-base-ovb-periodic
-    timeout: 18000
-    override-checkout: "stable/queens"
-    vars:
-      nodes: 1ctlr_2comp
-      featureset: '021'
-      branch_override: "stable/queens"
-      release: queens
 
 # legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset035-master
 - job:
@@ -577,14 +416,6 @@
     vars:
       branch_override: "stable/train"
       release: train
-
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-stein
-    parent: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp_1supp-featureset039-master
-    vars:
-      branch_override: "stable/stein"
-      release: stein
-
 
 - job:
     name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1cellctrl_1comp-featureset063-master
