@@ -827,11 +827,116 @@
           update_container: true
 
 - job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-baremetal-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      release: master
+      component: baremetal
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-cinder-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      release: master
+      component: cinder
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-clients-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      release: master
+      component: clients
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-cloudops-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      release: master
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-common-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      release: master
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-compute-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      release: master
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-glance-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      release: master
+      component: glance
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-manila-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      release: master
+      component: manila
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-network-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      release: master
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-octavia-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      release: master
+      component: octavia
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-security-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      release: master
+      component: security
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-swift-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      release: master
+      component: swift
+
+- job:
     name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tripleo-master
     parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
     vars:
       release: master
       component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tempest-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      release: master
+      component: tempest
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-ui-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      release: master
+      component: ui
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-validation-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      release: master
+      component: validation
 
 
 ## standalone-upgrade jobs

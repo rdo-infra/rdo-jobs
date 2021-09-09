@@ -14,6 +14,9 @@
         - periodic-tripleo-ci-centos-8-scenario012-standalone-baremetal-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-baremetal-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-baremetal-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-baremetal-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-baremetal-promote-consistent-to-component-ci-testing
     openstack-component-cinder:
       jobs:
@@ -24,6 +27,9 @@
             dependencies:
               - periodic-tripleo-centos-8-master-component-cinder-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-cinder-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-cinder-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-cinder-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-cinder-promote-consistent-to-component-ci-testing
@@ -38,6 +44,9 @@
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-clients-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-clients-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-clients-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-clients-promote-consistent-to-component-ci-testing
     openstack-component-cloudops:
       jobs:
@@ -48,6 +57,9 @@
             dependencies:
               - periodic-tripleo-centos-8-master-component-cloudops-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-scenario002-standalone-cloudops-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-cloudops-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-cloudops-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-cloudops-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-cloudops-promote-consistent-to-component-ci-testing
@@ -71,6 +83,9 @@
         - periodic-tripleo-ci-centos-8-containers-multinode-common-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-common-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-common-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-common-promote-consistent-to-component-ci-testing
     openstack-component-compute:
       jobs:
@@ -89,6 +104,9 @@
         - periodic-tripleo-ci-centos-8-standalone-compute-master-validation:
             dependencies:
               - periodic-tripleo-centos-8-master-component-compute-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-compute-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-compute-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-compute-promote-consistent-to-component-ci-testing
     openstack-component-glance:
       jobs:
@@ -104,10 +122,16 @@
         - periodic-tripleo-ci-centos-8-scenario004-standalone-glance-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-glance-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-glance-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-glance-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-glance-promote-consistent-to-component-ci-testing
     openstack-component-manila:
       jobs:
         - periodic-tripleo-ci-centos-8-scenario004-standalone-manila-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-manila-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-manila-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-manila-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-manila-promote-consistent-to-component-ci-testing
@@ -134,6 +158,9 @@
         - periodic-tripleo-ci-centos-8-standalone-network-master-validation:
             dependencies:
               - periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-network-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
     openstack-component-octavia:
       jobs:
@@ -152,6 +179,9 @@
         - periodic-tripleo-ci-centos-8-containers-multinode-octavia-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-octavia-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
     openstack-component-security:
       jobs:
@@ -167,10 +197,16 @@
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-security-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-security-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-security-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-security-promote-consistent-to-component-ci-testing
     openstack-component-swift:
       jobs:
         - periodic-tripleo-ci-centos-8-scenario002-standalone-swift-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-swift-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-swift-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-swift-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-swift-promote-consistent-to-component-ci-testing
@@ -212,10 +248,16 @@
         - periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-tempest-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-tempest-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tempest-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-tempest-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-tempest-promote-consistent-to-component-ci-testing
     openstack-component-ui:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-ui-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-ui-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-ui-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-ui-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-ui-promote-consistent-to-component-ci-testing
@@ -225,6 +267,9 @@
             dependencies:
               - periodic-tripleo-centos-8-master-component-validation-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-standalone-validation-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-validation-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-validation-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-validation-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-validation-promote-consistent-to-component-ci-testing
