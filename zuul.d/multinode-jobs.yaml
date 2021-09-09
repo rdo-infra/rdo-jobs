@@ -43,21 +43,6 @@
       playbooks:
         - multinode.yml
 
-# legacy-tripleo-ci-centos-7-containers-multinode-upgrades-queens
-- job:
-    name: tripleo-ci-centos-7-containers-multinode-upgrades-queens
-    parent: tripleo-ci-base-multinode-rdo
-    branches: ^stable/queens$
-    voting: false
-    vars:
-      nodes: 1ctlr
-      featureset: '040'
-      playbooks:
-        - multinode.yml
-      release: queens
-      extra_tags:
-        - overcloud-upgrade
-
 - job:
     name: tripleo-ci-centos-7-scenario000-multinode-oooq-container-updates
     parent: tripleo-ci-base-multinode-rdo
