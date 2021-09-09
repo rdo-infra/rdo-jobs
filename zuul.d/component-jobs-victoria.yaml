@@ -665,6 +665,126 @@
       branch_override: 'stable/victoria'
       component: tripleo
 
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-cinder-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-cinder-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: cinder
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-cloudops-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-cloudops-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-common-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-common-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-glance-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-glance-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: glance
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-octavia-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-octavia-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: octavia
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-security-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-security-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: security
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-compute-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-compute-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-clients-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-clients-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: clients
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tempest-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tempest-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: tempest
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-network-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-network-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-swift-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-swift-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: swift
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-ui-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-ui-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: ui
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-validation-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-validation-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: validation
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-manila-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-manila-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: manila
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-baremetal-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-baremetal-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: baremetal
+
 
 ## standalone-upgrade jobs
 
