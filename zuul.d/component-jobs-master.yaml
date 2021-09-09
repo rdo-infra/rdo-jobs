@@ -1,9 +1,8 @@
 ---
-# component jobs
+# component master jobs
 
 ## promote-consistent-to-component-ci-testing
 
-### master
 - job:
     name: periodic-tripleo-centos-8-master-component-baremetal-promote-consistent-to-component-ci-testing
     parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
@@ -135,7 +134,6 @@
 
 ## promote-to-promoted-components
 
-### master
 - job:
     name: periodic-tripleo-centos-8-master-component-baremetal-promote-to-promoted-components
     parent: tripleo-ci-base-component-promote-to-promoted-components
@@ -248,7 +246,9 @@
       release: master
       component: validation
 
+
 ## ovb component promotion jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master
@@ -269,7 +269,6 @@
           baseurl: "https://{{ dlrn_server_url }}/centos8-{{ release }}/component/{{ component }}/component-ci-testing"
           update_container: true
 
-### master
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-baremetal-master
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
@@ -308,6 +307,7 @@
 
 
 ## multinode component jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-containers-multinode-component-master
     parent: periodic-tripleo-ci-centos-8-containers-multinode-master
@@ -325,7 +325,6 @@
           baseurl: "https://{{ dlrn_server_url }}/centos8-{{ release }}/component/{{ component }}/component-ci-testing"
           update_container: true
 
-### master
 - job:
     name: periodic-tripleo-ci-centos-8-containers-multinode-clients-master
     parent: periodic-tripleo-ci-centos-8-containers-multinode-component-master
@@ -363,7 +362,8 @@
       component: tripleo
 
 
-# standalone
+## standalone component jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-component-master
     parent: periodic-tripleo-ci-centos-8-standalone-master
@@ -387,7 +387,21 @@
     vars:
       enable_validation: true
 
-## master
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-component-master-validation
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    vars:
+      enable_validation: true
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-component-wallaby-validation
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      enable_validation: true
+
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-baremetal-master
     parent: periodic-tripleo-ci-centos-8-standalone-component-master
@@ -503,14 +517,14 @@
       component: validation
 
 
-# scenario001-standalone-component
+## scenario001-standalone-component jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-scenario001-standalone-component-master
     parent: periodic-tripleo-ci-centos-8-scenario001-standalone-master
     abstract: true
     vars: *component_vars_standalone
 
-## master
 - job:
     name: periodic-tripleo-ci-centos-8-scenario001-standalone-cinder-master
     parent: periodic-tripleo-ci-centos-8-scenario001-standalone-component-master
@@ -536,14 +550,14 @@
       component: glance
 
 
-# scenario002-standalone-component
+## scenario002-standalone-component jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-scenario002-standalone-component-master
     parent: periodic-tripleo-ci-centos-8-scenario002-standalone-master
     abstract: true
     vars: *component_vars_standalone
 
-## master
 - job:
     name: periodic-tripleo-ci-centos-8-scenario002-standalone-cloudops-master
     parent: periodic-tripleo-ci-centos-8-scenario002-standalone-component-master
@@ -569,14 +583,14 @@
       component: swift
 
 
-# scenario003-standalone-component
+## scenario003-standalone-component jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-scenario003-standalone-component-master
     parent: periodic-tripleo-ci-centos-8-scenario003-standalone-master
     abstract: true
     vars: *component_vars_standalone
 
-## master
 - job:
     name: periodic-tripleo-ci-centos-8-scenario003-standalone-common-master
     parent: periodic-tripleo-ci-centos-8-scenario003-standalone-component-master
@@ -590,14 +604,14 @@
       component: glance
 
 
-# scenario004-standalone-component
+## scenario004-standalone-component jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-component-master
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-master
     abstract: true
     vars: *component_vars_standalone
 
-## master
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-master
     parent: periodic-tripleo-ci-centos-8-scenario004-standalone-component-master
@@ -629,14 +643,14 @@
       component: tripleo
 
 
-# scenario007-standalone-component
+## scenario007-standalone-component jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-scenario007-standalone-component-master
     parent: periodic-tripleo-ci-centos-8-scenario007-standalone-master
     abstract: true
     vars: *component_vars_standalone
 
-## master
 - job:
     name: periodic-tripleo-ci-centos-8-scenario007-standalone-network-master
     parent: periodic-tripleo-ci-centos-8-scenario007-standalone-component-master
@@ -650,7 +664,8 @@
       component: octavia
 
 
-# scenario010-standalone-component
+## scenario010-standalone-component jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-scenario010-standalone-component-master
     parent: periodic-tripleo-ci-centos-8-scenario010-standalone-master
@@ -658,7 +673,6 @@
     abstract: true
     vars: *component_vars_standalone
 
-## master
 - job:
     name: periodic-tripleo-ci-centos-8-scenario010-standalone-network-master
     parent: periodic-tripleo-ci-centos-8-scenario010-standalone-component-master
@@ -672,14 +686,14 @@
       component: octavia
 
 
-# scenario010-standalone-component
+## scenario010-kvm-standalone-component jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-component-master
     parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master
     abstract: true
     vars: *component_vars_standalone
 
-# master
 - job:
     name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-master
     parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-component-master
@@ -687,14 +701,14 @@
       component: octavia
 
 
-# scenario012-standalone-component
+## scenario012-standalone-component jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-scenario012-standalone-component-master
     parent: periodic-tripleo-ci-centos-8-scenario012-standalone-master
     abstract: true
     vars: *component_vars_standalone
 
-# master
 - job:
     name: periodic-tripleo-ci-centos-8-scenario012-standalone-compute-master
     parent: periodic-tripleo-ci-centos-8-scenario012-standalone-component-master
@@ -708,14 +722,14 @@
       component: baremetal
 
 
-# standalone-full-tempest-component
+## standalone-full-tempest-component jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-component-master
     parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-master
     abstract: true
     vars: *component_vars_standalone
 
-## master
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-compute-master
     parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-component-master
@@ -729,14 +743,14 @@
       component: tempest
 
 
-# standalone-full-tempest-api-component
+## standalone-full-tempest-api-component jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-component-master
     parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-master
     abstract: true
     vars: *component_vars_standalone
 
-## master
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-compute-master
     parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-component-master
@@ -750,14 +764,14 @@
       component: tempest
 
 
-# standalone-full-tempest-scenario-component
+## standalone-full-tempest-scenario-component jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-component-master
     parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-master
     abstract: true
     vars: *component_vars_standalone
 
-## master
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-master
     parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-component-master
@@ -771,14 +785,14 @@
       component: tempest
 
 
-# standalone-on-multinode-ipa
+## standalone-on-multinode-ipa jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-component-master
     parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-master
     abstract: true
     vars: *component_vars_standalone
 
-## master
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-master
     parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-component-master
@@ -792,25 +806,8 @@
       component: security
 
 
-## train
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-train
-    parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-master
-    override-checkout: "stable/train"
-    vars:
-      release: train
-      branch_override: 'stable/train'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-security-train
-    parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-security-master
-    override-checkout: "stable/train"
-    vars:
-      release: train
-      branch_override: 'stable/train'
-
-
 ## Update and Upgrade jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
     parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-master
@@ -828,7 +825,6 @@
           baseurl: "https://{{ dlrn_server_url }}/centos8-{{ release }}/component/{{ component }}/component-ci-testing"
           update_container: true
 
-# master
 - job:
     name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tripleo-master
     parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
@@ -837,7 +833,8 @@
       component: tripleo
 
 
-# standalone-upgrade
+## standalone-upgrade jobs
+
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-upgrade-component-master
     parent: tripleo-ci-base-standalone-upgrade-periodic-centos-8
