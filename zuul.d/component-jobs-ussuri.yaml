@@ -643,6 +643,102 @@
 ## Update and Upgrade jobs
 
 - job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-baremetal-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-baremetal-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: baremetal
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-cinder-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-cinder-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: cinder
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-clients-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-clients-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: clients
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-cloudops-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-cloudops-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-common-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-common-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-compute-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-compute-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-glance-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-glance-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: glance
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-manila-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-manila-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: manila
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-network-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-network-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-octavia-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-octavia-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: octavia
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-security-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-security-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: security
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-swift-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-swift-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: swift
+
+- job:
     name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tripleo-ussuri
     parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tripleo-master
     override-checkout: "stable/ussuri"
@@ -650,6 +746,30 @@
       release: ussuri
       branch_override: 'stable/ussuri'
       component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tempest-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tempest-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: tempest
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-ui-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-ui-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: ui
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-validation-ussuri
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-validation-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: validation
 
 
 ## standalone-upgrade jobs
