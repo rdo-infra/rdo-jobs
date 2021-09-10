@@ -36,7 +36,7 @@
 - job:
     name: octavia-build-amphora-centos8
     parent: octavia-build-amphora
-    nodeset: rdo-centos-8
+    nodeset: rdo-centos-8-stream
 
 - job:
     name: octavia-build-amphora-centos7
