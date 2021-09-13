@@ -860,3 +860,32 @@
     vars:
       release: master
       component: tripleo
+
+## undercloud-upgrade jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-component-master
+    parent: tripleo-ci-base-singlenode-periodic-centos-8
+    abstract: true
+    vars:
+      <<: *component_vars_standalone
+      add_repos:
+        - type: generic
+          reponame: "{{ component }}"
+          filename: "{{ component }}-component.repo"
+          priority: 1
+          baseurl: "https://{{ dlrn_server_url }}/centos8-{{ release }}/component/{{ component }}/component-ci-testing"
+          update_container: true
+          enabled: 0
+      featureset: '050'
+      featureset_override:
+        validate_services: false
+      extra_tags:
+        - undercloud-upgrade
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-tripleo-master
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-component-master
+    vars:
+      release: master
+      component: tripleo
