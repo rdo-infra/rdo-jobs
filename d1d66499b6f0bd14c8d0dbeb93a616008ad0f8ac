@@ -374,6 +374,30 @@
       "revId": "d1d66499b6f0bd14c8d0dbeb93a616008ad0f8ac",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85b1a1cd_b982e08c",
+        "filename": "zuul.d/zuul-legacy-project-templates.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2021-09-13T13:38:57Z",
+      "side": 0,
+      "message": "Hello Yatin,\n\nI think we are getting some old data from codesearch.\n\nhttps://review.rdoproject.org/codesearch/?q\u003dtripleo-upgrades-check.*\u0026i\u003dnope\u0026files\u003d\u0026repos\u003dconfig\n\nCurrently, it shows usage in following files\n\nzuul.d/projects.yaml - Line 548\nzuul.d/tripleo.yaml - Line 34 \n\nvs if we check the files directly\n\n\nhttps://review.rdoproject.org/r/gitweb?p\u003dconfig.git;a\u003dblob;f\u003dzuul.d/projects.yaml#l548\nhttps://review.rdoproject.org/r/gitweb?p\u003dconfig.git;a\u003dblob;f\u003dzuul.d/tripleo.yaml#l34\n\nif we directly search.. we are not finding upgrades-check .",
+      "parentUuid": "09ca7b5b_2cf7cf9a",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 30
+      },
+      "revId": "d1d66499b6f0bd14c8d0dbeb93a616008ad0f8ac",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
     }
   ]
 }
