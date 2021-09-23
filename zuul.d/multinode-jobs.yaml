@@ -16,10 +16,12 @@
 - job:
     name: periodic-tripleo-ci-centos-7-containers-multinode-train
     parent: tripleo-ci-base-multinode-periodic
+    override-checkout: "stable/train"
     vars:
       nodes: 1ctlr
       featureset: '010'
-      release: master
+      release: train
+      branch_override: "stable/train"
       playbooks:
         - multinode.yml
 
