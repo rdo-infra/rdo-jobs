@@ -332,6 +332,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master
     parent: tripleo-ci-base-standalone-periodic-centos-8
+    nodeset: single-centos-8-node-psi
     vars:
       tags:
         - build
