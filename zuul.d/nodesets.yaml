@@ -392,6 +392,19 @@
       - name: peers
         nodes: []
 
+# Fake nested-virt nodeset - default to PSI
+- nodeset:
+    name: single-centos-8-node-nested-virt
+    nodes:
+      - name: primary
+        label: upstream-centos-8-stream-psi-public
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
+
 # Fake nodesets to resolve puppet jobs
 - nodeset:
     name: ubuntu-focal
