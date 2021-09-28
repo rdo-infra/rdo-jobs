@@ -1,0 +1,8 @@
+---
+# master integration pipeline
+- project-template:
+    name: openstack-periodic-integration-main-centos-stream-9
+    openstack-periodic-integration-main:
+      jobs:
+        ##### master #####
+        - periodic-tripleo-ci-build-containers-centos-9-push-master
