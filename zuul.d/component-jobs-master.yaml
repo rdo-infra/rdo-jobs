@@ -388,12 +388,6 @@
       enable_validation: true
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-component-master-validation
-    parent: periodic-tripleo-ci-centos-8-standalone-component-master
-    vars:
-      enable_validation: true
-
-- job:
     name: periodic-tripleo-ci-centos-8-standalone-component-wallaby-validation
     parent: periodic-tripleo-ci-centos-8-standalone-component-master
     override-checkout: "stable/wallaby"
@@ -515,6 +509,7 @@
     parent: periodic-tripleo-ci-centos-8-standalone-component-master
     vars:
       component: validation
+      enable_validation: true
 
 
 ## scenario001-standalone-component jobs
