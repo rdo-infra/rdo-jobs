@@ -758,6 +758,12 @@
       component: compute
 
 - job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-network-master
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-component-master
+    vars:
+      component: network
+
+- job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-tempest-master
     parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-component-master
     vars:

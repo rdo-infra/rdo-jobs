@@ -592,6 +592,13 @@
       branch_override: 'stable/ussuri'
 
 - job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-network-ussuri
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-network-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+
+- job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-tempest-ussuri
     parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-tempest-master
     vars:
