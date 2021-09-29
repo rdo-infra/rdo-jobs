@@ -643,6 +643,14 @@
       branch_override: 'stable/train'
 
 - job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-network-train
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-network-master
+    override-checkout: "stable/train"
+    vars:
+      release: train
+      branch_override: 'stable/train'
+
+- job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-tempest-train
     parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-tempest-master
     override-checkout: "stable/train"

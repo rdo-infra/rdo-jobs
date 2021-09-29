@@ -640,6 +640,13 @@
       branch_override: 'stable/wallaby'
 
 - job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-network-wallaby
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-network-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-tempest-wallaby
     parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-tempest-master
     vars:
