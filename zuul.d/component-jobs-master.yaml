@@ -409,6 +409,12 @@
       component: baremetal
 
 - job:
+    name: periodic-tripleo-ci-centos-8-standalone-baremetal-master-validation
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master-validation
+    vars:
+      component: baremetal
+
+- job:
     name: periodic-tripleo-ci-centos-8-standalone-cinder-master
     parent: periodic-tripleo-ci-centos-8-standalone-component-master
     vars:

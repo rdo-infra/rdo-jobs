@@ -410,6 +410,12 @@
       branch_override: 'stable/wallaby'
 
 - job:
+    name: periodic-tripleo-ci-centos-8-standalone-baremetal-wallaby-validation
+    parent: periodic-tripleo-ci-centos-8-standalone-component-wallaby-validation
+    vars:
+      component: baremetal
+
+- job:
     name: periodic-tripleo-ci-centos-8-standalone-compute-wallaby-validation
     parent: periodic-tripleo-ci-centos-8-standalone-component-wallaby-validation
     vars:
