@@ -42,6 +42,14 @@
       release: wallaby
       branch_override: 'stable/wallaby'
 
+- job:
+    name: periodic-tripleo-centos-8-buildimage-overcloud-hardened-uefi-full-wallaby
+    parent: periodic-tripleo-centos-8-buildimage-overcloud-hardened-uefi-full-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
 ## standalone
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-wallaby
