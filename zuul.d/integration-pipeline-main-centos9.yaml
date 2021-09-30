@@ -1,0 +1,11 @@
+---
+# master integration pipeline
+- project-template:
+    name: integration-pipeline-main-centos9
+    openstack-periodic-integration-main:
+      jobs:
+        ##### master #####
+        - periodic-tripleo-ci-build-containers-centos-9-push-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-promote-promoted-components-to-tripleo-ci-testing
+        - periodic-tripleo-centos-9-master-promote-promoted-components-to-tripleo-ci-testing
