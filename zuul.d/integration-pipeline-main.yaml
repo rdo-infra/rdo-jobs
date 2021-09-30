@@ -9,6 +9,7 @@
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
               - periodic-tripleo-centos-8-buildimage-overcloud-full-master
+              - periodic-tripleo-centos-8-buildimage-overcloud-hardened-uefi-full-master
               - periodic-tripleo-centos-8-buildimage-ironic-python-agent-master
         - periodic-tripleo-ci-centos-8-scenario007-multinode-oooq-container-master:
             dependencies:
@@ -17,11 +18,13 @@
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
               - periodic-tripleo-centos-8-buildimage-overcloud-full-master
+              - periodic-tripleo-centos-8-buildimage-overcloud-hardened-uefi-full-master
               - periodic-tripleo-centos-8-buildimage-ironic-python-agent-master
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
               - periodic-tripleo-centos-8-buildimage-overcloud-full-master
+              - periodic-tripleo-centos-8-buildimage-overcloud-hardened-uefi-full-master
               - periodic-tripleo-centos-8-buildimage-ironic-python-agent-master
         - periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-master:
             dependencies:
@@ -30,6 +33,7 @@
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
               - periodic-tripleo-centos-8-buildimage-overcloud-full-master
+              - periodic-tripleo-centos-8-buildimage-overcloud-hardened-uefi-full-master
               - periodic-tripleo-centos-8-buildimage-ironic-python-agent-master
         - periodic-tripleo-ci-centos-8-containers-multinode-master:
             dependencies:
