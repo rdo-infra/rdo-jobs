@@ -971,3 +971,139 @@
     vars:
       release: master
       component: tripleo
+
+
+## undercloud-upgrade jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-component-master
+    parent: tripleo-ci-base-singlenode-periodic-centos-8
+    abstract: true
+    vars:
+      <<: *component_vars_standalone
+      add_repos:
+        - type: generic
+          reponame: "{{ component }}"
+          filename: "{{ component }}-component.repo"
+          priority: 1
+          baseurl: "https://{{ dlrn_server_url }}/centos8-{{ release }}/component/{{ component }}/component-ci-testing"
+          update_container: true
+          enabled: 0
+      featureset: '050'
+      release: master
+      featureset_override:
+        validate_services: false
+      extra_tags:
+        - undercloud-upgrade
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-baremetal-master
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-component-master
+    vars:
+      release: master
+      component: baremetal
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-cinder-master
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-component-master
+    vars:
+      release: master
+      component: cinder
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-clients-master
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-component-master
+    vars:
+      release: master
+      component: clients
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-cloudops-master
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-component-master
+    vars:
+      release: master
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-common-master
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-component-master
+    vars:
+      release: master
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-compute-master
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-component-master
+    vars:
+      release: master
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-glance-master
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-component-master
+    vars:
+      release: master
+      component: glance
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-manila-master
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-component-master
+    vars:
+      release: master
+      component: manila
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-network-master
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-component-master
+    vars:
+      release: master
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-octavia-master
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-component-master
+    vars:
+      release: master
+      component: octavia
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-security-master
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-component-master
+    vars:
+      release: master
+      component: security
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-swift-master
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-component-master
+    vars:
+      release: master
+      component: swift
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-tripleo-master
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-component-master
+    vars:
+      release: master
+      component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-tempest-master
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-component-master
+    vars:
+      release: master
+      component: tempest
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-ui-master
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-component-master
+    vars:
+      release: master
+      component: ui
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-validation-master
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-component-master
+    vars:
+      release: master
+      component: validation

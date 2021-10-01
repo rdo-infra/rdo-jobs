@@ -830,3 +830,134 @@
       release: wallaby
       branch_override: 'stable/wallaby'
       component: tripleo
+
+
+## undercloud-upgrade jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-baremetal-wallaby
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-baremetal-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      component: baremetal
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-cinder-wallaby
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-cinder-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      component: cinder
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-clients-wallaby
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-clients-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      component: clients
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-cloudops-wallaby
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-cloudops-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-common-wallaby
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-common-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-compute-wallaby
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-compute-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-glance-wallaby
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-glance-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      component: glance
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-manila-wallaby
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-manila-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      component: manila
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-network-wallaby
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-network-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-octavia-wallaby
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-octavia-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      component: octavia
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-security-wallaby
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-security-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      component: security
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-swift-wallaby
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-swift-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      component: swift
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-tripleo-wallaby
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-tripleo-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-tempest-wallaby
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-tempest-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      component: tempest
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-ui-wallaby
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-ui-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      component: ui
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-validation-wallaby
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-validation-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      component: validation

@@ -788,3 +788,134 @@
           - 'environments/low-memory-usage.yaml'
           - 'environments/docker-ha.yaml'
           - 'environments/podman.yaml'
+
+
+## undercloud-upgrade jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-baremetal-ussuri
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-baremetal-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: baremetal
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-cinder-ussuri
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-cinder-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: cinder
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-clients-ussuri
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-clients-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: clients
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-cloudops-ussuri
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-cloudops-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-common-ussuri
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-common-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-compute-ussuri
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-compute-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-glance-ussuri
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-glance-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: glance
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-manila-ussuri
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-manila-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: manila
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-network-ussuri
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-network-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-octavia-ussuri
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-octavia-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: octavia
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-security-ussuri
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-security-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: security
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-swift-ussuri
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-swift-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: swift
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-tripleo-ussuri
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-tripleo-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-tempest-ussuri
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-tempest-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: tempest
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-ui-ussuri
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-ui-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: ui
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-validation-ussuri
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-validation-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
+      component: validation
