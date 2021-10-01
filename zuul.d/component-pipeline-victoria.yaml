@@ -17,6 +17,9 @@
         - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-baremetal-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-baremetal-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-undercloud-upgrade-baremetal-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-baremetal-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-victoria-component-baremetal-promote-consistent-to-component-ci-testing
     openstack-component-cinder:
       jobs:
@@ -30,6 +33,9 @@
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-cinder-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-cinder-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-cinder-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-undercloud-upgrade-cinder-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-cinder-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-victoria-component-cinder-promote-consistent-to-component-ci-testing
@@ -47,6 +53,9 @@
         - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-clients-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-clients-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-undercloud-upgrade-clients-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-clients-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-victoria-component-clients-promote-consistent-to-component-ci-testing
     openstack-component-cloudops:
       jobs:
@@ -60,6 +69,9 @@
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-cloudops-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-cloudops-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-cloudops-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-undercloud-upgrade-cloudops-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-cloudops-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-victoria-component-cloudops-promote-consistent-to-component-ci-testing
@@ -86,6 +98,9 @@
         - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-common-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-common-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-undercloud-upgrade-common-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-victoria-component-common-promote-consistent-to-component-ci-testing
     openstack-component-compute:
       jobs:
@@ -102,6 +117,9 @@
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-compute-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-compute-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-compute-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-undercloud-upgrade-compute-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-compute-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-victoria-component-compute-promote-consistent-to-component-ci-testing
@@ -122,6 +140,9 @@
         - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-glance-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-glance-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-undercloud-upgrade-glance-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-glance-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-victoria-component-glance-promote-consistent-to-component-ci-testing
     openstack-component-manila:
       jobs:
@@ -129,6 +150,9 @@
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-manila-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-manila-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-manila-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-undercloud-upgrade-manila-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-manila-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-victoria-component-manila-promote-consistent-to-component-ci-testing
@@ -155,6 +179,9 @@
         - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-network-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-undercloud-upgrade-network-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-victoria-component-network-promote-consistent-to-component-ci-testing
     openstack-component-octavia:
       jobs:
@@ -176,6 +203,9 @@
         - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-octavia-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-octavia-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-undercloud-upgrade-octavia-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-victoria-component-octavia-promote-consistent-to-component-ci-testing
     openstack-component-security:
       jobs:
@@ -194,6 +224,9 @@
         - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-security-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-security-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-undercloud-upgrade-security-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-security-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-victoria-component-security-promote-consistent-to-component-ci-testing
     openstack-component-swift:
       jobs:
@@ -201,6 +234,9 @@
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-swift-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-swift-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-swift-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-undercloud-upgrade-swift-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-swift-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-victoria-component-swift-promote-consistent-to-component-ci-testing
@@ -227,6 +263,9 @@
         - periodic-tripleo-ci-centos-8-standalone-upgrade-tripleo-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-undercloud-upgrade-tripleo-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-tripleo-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-victoria-component-tripleo-promote-consistent-to-component-ci-testing
     openstack-component-tempest:
       jobs:
@@ -242,6 +281,9 @@
         - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tempest-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-tempest-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-undercloud-upgrade-tempest-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-tempest-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-victoria-component-tempest-promote-consistent-to-component-ci-testing
     openstack-component-ui:
       jobs:
@@ -251,6 +293,9 @@
         - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-ui-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-ui-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-undercloud-upgrade-ui-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-ui-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-victoria-component-ui-promote-consistent-to-component-ci-testing
     openstack-component-validation:
       jobs:
@@ -258,6 +303,9 @@
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-validation-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-validation-victoria:
+            dependencies:
+              - periodic-tripleo-centos-8-victoria-component-validation-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-undercloud-upgrade-validation-victoria:
             dependencies:
               - periodic-tripleo-centos-8-victoria-component-validation-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-victoria-component-validation-promote-consistent-to-component-ci-testing

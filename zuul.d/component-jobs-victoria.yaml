@@ -803,3 +803,134 @@
       release: victoria
       branch_override: 'stable/victoria'
       component: tripleo
+
+
+## undercloud-upgrade jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-baremetal-victoria
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-baremetal-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: baremetal
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-cinder-victoria
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-cinder-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: cinder
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-clients-victoria
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-clients-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: clients
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-cloudops-victoria
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-cloudops-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-common-victoria
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-common-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-compute-victoria
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-compute-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-glance-victoria
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-glance-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: glance
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-manila-victoria
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-manila-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: manila
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-network-victoria
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-network-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-octavia-victoria
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-octavia-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: octavia
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-security-victoria
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-security-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: security
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-swift-victoria
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-swift-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: swift
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-tripleo-victoria
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-tripleo-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-tempest-victoria
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-tempest-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: tempest
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-ui-victoria
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-ui-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: ui
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-validation-victoria
+    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-validation-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+      component: validation
