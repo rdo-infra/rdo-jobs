@@ -1,7 +1,7 @@
 ---
 - hosts: primary
   vars:
-    master_release: xena
+    master_release: yoga
   tasks:
     - name: Run pre-quickstart role
       import_role:

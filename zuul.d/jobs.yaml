@@ -132,7 +132,7 @@
     parent: DLRN-rpmbuild
     voting: false
     vars:
-      tag: 'xena-uc'
+      tag: 'yoga-uc'
 
 - job:
     name: DLRN-rpmbuild-rpm-packaging-centos
@@ -166,7 +166,7 @@
     name: DLRN-rpmbuild-centos8-pinned
     parent: DLRN-rpmbuild-centos8
     vars:
-      tag: 'xena-uc'
+      tag: 'yoga-uc'
       centos_version: 'centos8'
 
 - job:
@@ -182,7 +182,7 @@
     name: DLRN-rpmbuild-centos9-pinned
     parent: DLRN-rpmbuild-centos9
     vars:
-      tag: 'xena-uc'
+      tag: 'yoga-uc'
 
 - job:
     name: rpmlint
