@@ -4,9 +4,6 @@
       jobs:
         - tox-docs: &cfg
             nodeset: rdo-centos-8
-            vars:
-              # needed to avoid accidental call of /usr/bin/tox
-              tox_executable: "{{ ansible_python.executable }} -m tox"
             pre-run:
               - playbooks/rdo-tox-epel.yaml
               - playbooks/pre-tox.yaml
