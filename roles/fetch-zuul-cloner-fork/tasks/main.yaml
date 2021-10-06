@@ -1,7 +1,12 @@
+- name: Ensure pip is available
+  include_role:
+    name: ensure-pip
+
 - name: Install zuul-cloner shim dependencies
   pip:
     name: PyYAML
     virtualenv: "{{ virtualenv }}"
+    virtualenv_command: "{{ ensure_pip_virtualenv_command }}"
   become: true
 
 - name: Install zuul-cloner shim
