@@ -286,6 +286,13 @@
       release: victoria
       branch_override: 'stable/victoria'
 
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-validation-victoria
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-validation-master
+    vars:
+      release: victoria
+      branch_override: 'stable/victoria'
+
 
 ## standalone component jobs
 
