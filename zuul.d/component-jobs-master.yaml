@@ -361,6 +361,19 @@
     vars:
       component: tripleo
 
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-validation-master
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-component-master
+    description: |
+      Job uses featureset 010 with one primary and one secondary node.
+      The 'validations.yml' playbook of tripleo-quickstart is used to initiate
+      role containing the actual tests. Set of tests run is determined on basis
+      of the 'component' variable value.
+    vars:
+      component: validation
+      enable_validation: true
+      extra_tags:
+        - component-validations
 
 ## standalone component jobs
 
