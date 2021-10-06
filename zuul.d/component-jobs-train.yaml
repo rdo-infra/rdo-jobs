@@ -297,6 +297,13 @@
       release: train
       branch_override: 'stable/train'
 
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-validation-train
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-validation-master
+    override-checkout: "stable/train"
+    vars:
+      release: train
+      branch_override: 'stable/train'
 
 ## standalone component jobs
 
