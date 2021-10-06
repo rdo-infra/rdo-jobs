@@ -12,6 +12,7 @@
       release: master
       playbooks:
         - multinode.yml
+        - all-nodes-validations.yml
 
 - job:
     name: periodic-tripleo-ci-centos-7-containers-multinode-train
