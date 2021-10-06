@@ -286,6 +286,12 @@
       release: ussuri
       branch_override: 'stable/ussuri'
 
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-validation-ussuri
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-validation-master
+    vars:
+      release: ussuri
+      branch_override: 'stable/ussuri'
 
 ## standalone component jobs
 
