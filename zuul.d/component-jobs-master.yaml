@@ -361,6 +361,16 @@
     vars:
       component: tripleo
 
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-validation-master
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-component-master
+    vars:
+      component: validation
+      enable_validation: true
+      playbooks:
+        - multinode.yml
+        - validations.yml
+      skip_tags_list: ''
 
 ## standalone component jobs
 
