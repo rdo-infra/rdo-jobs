@@ -26,6 +26,7 @@
       changed_when: true
       shell:
         cmd: |
+          export REQUESTS_CA_BUNDLE=/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt
           export TAG="{{  tag | default('') }}"
           export CENTOS_VERS="{{  centos_version | default('centos7') }}"
           export REPO_SERVER="https://trunk.rdoproject.org"
