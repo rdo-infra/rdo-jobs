@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf5b4a13_d3dd7372",
+        "filename": "zuul.d/integration-jobs-cs9-master.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2021-10-08T10:27:19Z",
+      "side": 1,
+      "message": "We need the job definition for periodic-tripleo-centos-9-master-promote-promoted-components-to-tripleo-ci-testing\n\nhttps://review.rdoproject.org/r/gitweb?p\u003dconfig.git;a\u003dblob;f\u003dzuul.d/tripleoci.yaml#l10",
+      "revId": "8376336bc3528e9a90a693a03e6be4cb149abf4e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a588222_595307cf",
+        "filename": "zuul.d/integration-pipeline-centos-9-stream-main.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2021-10-08T10:27:19Z",
+      "side": 1,
+      "message": "I would rename this file to openstack-periodic-integration-main-cs9.yaml to keep consistency.",
+      "revId": "8376336bc3528e9a90a693a03e6be4cb149abf4e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5c18489_e2810f3c",
+        "filename": "zuul.d/integration-pipeline-centos-9-stream-main.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2021-10-08T10:27:19Z",
+      "side": 1,
+      "message": "We need add this job periodic-tripleo-centos-9-master-promote-promoted-components-to-tripleo-ci-testing as a dependency for  periodic-tripleo-ci-build-containers-centos-9-push-master.\n\nFor example: https://github.com/rdo-infra/rdo-jobs/blob/master/zuul.d/integration-pipeline-main.yaml#L88",
+      "revId": "8376336bc3528e9a90a693a03e6be4cb149abf4e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    }
+  ]
+}
