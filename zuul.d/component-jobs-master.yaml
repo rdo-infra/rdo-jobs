@@ -338,6 +338,13 @@
       component: common
 
 - job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-compute-master-validation
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-validation-master
+    vars:
+      component: compute
+      enable_validation: true
+
+- job:
     name: periodic-tripleo-ci-centos-8-containers-multinode-network-master
     parent: periodic-tripleo-ci-centos-8-containers-multinode-component-master
     vars:
@@ -361,6 +368,19 @@
     vars:
       component: tripleo
 
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-tripleo-master-validation
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-validation-master
+    vars:
+      component: tripleo
+      enable_validation: true
+
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-validation-master
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-component-master
+    vars:
+      component: validation
+      enable_validation: true
 
 ## standalone component jobs
 
