@@ -827,11 +827,52 @@
           update_container: true
 
 - job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-baremetal-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      component: baremetal
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-clients-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      component: clients
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-cloudops-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-common-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-network-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-security-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      component: security
+
+- job:
     name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tripleo-master
     parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
     vars:
-      release: master
       component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-tempest-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      component: tempest
 
 
 ## standalone-upgrade jobs
