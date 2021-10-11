@@ -12,7 +12,7 @@ if [ "$CENTOS_VERSION" = "centos7" ];then
     target="centos"
     PYTHON_VERSION="py27"
 else
-    target="centos8"
+    target=${CENTOS_VERSION}
     PYTHON_VERSION="py36"
 fi
 baseurl="http://trunk.rdoproject.org/${CENTOS_VERSION}/"
@@ -34,8 +34,8 @@ if [[ "${TAG}" != "yoga-uc" ]]; then
     PROJECT_DISTRO_BRANCH="${TAG}-rdo"
 fi
 
-# Enable components for all centos8 builders
-if [ "${CENTOS_VERSION}" = "centos8" ]; then
+# Enable components for all centos builders for centos >= 8
+if [ "${CENTOS_VERSION}" != "centos7" ]; then
     components="true"
 fi
 

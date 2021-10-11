@@ -211,6 +211,14 @@
     nodeset: rdo-centos-8
 
 - job:
+    name: rdoinfo-DLRN-check-centos9
+    parent: rdoinfo-DLRN-check
+    timeout: 18000
+    vars:
+      centos_version: centos9
+    nodeset: rdo-centos-8
+
+- job:
     name: validate-buildsys-tags
     parent: base
     run: playbooks/validate-buildsys-tags/run.yaml
