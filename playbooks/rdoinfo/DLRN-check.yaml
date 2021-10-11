@@ -83,6 +83,11 @@
 
           while read line; do
               PKGNAME=$(awk '{print $1}' <<< $line)
+              if [ "${CENTOS_VERS}" = "centos9" ]; then
+                  if [[ -n $(echo "$line" | grep -w $CURRENT_MASTER_TAG) ]]; then
+                      PACKAGES_UPDATED_MASTER="$PACKAGES_UPDATED_MASTER $PKGNAME"
+                  fi
+              fi
               if [ "${CENTOS_VERS}" = "centos8" ]; then
                   if [[ -n $(echo "$line" | grep -w $CURRENT_MASTER_TAG) ]]; then
                       PACKAGES_UPDATED_MASTER="$PACKAGES_UPDATED_MASTER $PKGNAME"
@@ -99,11 +104,14 @@
                   if [[ -n $(echo "$line" | grep -w ussuri) ]]; then
                       PACKAGES_UPDATED_USSURI="$PACKAGES_UPDATED_USSURI $PKGNAME"
                   fi
-              fi
-              if [[ -n $(echo "$line" | grep -w train) ]]; then
-                  PACKAGES_UPDATED_TRAIN="$PACKAGES_UPDATED_TRAIN $PKGNAME"
+                  if [[ -n $(echo "$line" | grep -w train) ]]; then
+                      PACKAGES_UPDATED_TRAIN="$PACKAGES_UPDATED_TRAIN $PKGNAME"
+                  fi
               fi
               if [ "${CENTOS_VERS}" = "centos7" ]; then
+                  if [[ -n $(echo "$line" | grep -w train) ]]; then
+                      PACKAGES_UPDATED_TRAIN="$PACKAGES_UPDATED_TRAIN $PKGNAME"
+                  fi
                   if [[ -n $(echo "$line" | grep -w stein) ]]; then
                       PACKAGES_UPDATED_STEIN="$PACKAGES_UPDATED_STEIN $PKGNAME"
                   fi
