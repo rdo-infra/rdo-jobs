@@ -1221,6 +1221,59 @@
       scenario: scenario003
 
 - job:
+    name: validate-buildsys-tags-yoga-testing-centos9-base
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: yoga
+      rdoinfo_phase: testing
+      centos_releasever: 9s
+    nodeset: cloud-centos-9-stream-vexxhost
+    files:
+      - ^buildsys-tags/cloud9s-openstack-yoga-testing.yml$
+
+- job:
+    name: validate-buildsys-tags-yoga-testing-puppet-scenario001-centos9
+    parent: validate-buildsys-tags-yoga-testing-centos9-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-yoga-testing-puppet-scenario002-centos9
+    parent: validate-buildsys-tags-yoga-testing-centos9-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-yoga-testing-puppet-scenario003-centos9
+    parent: validate-buildsys-tags-yoga-testing-centos9-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: validate-buildsys-tags-yoga-testing-puppet-scenario004-centos9
+    parent: validate-buildsys-tags-yoga-testing-centos9-base
+    vars:
+      scenario: scenario004
+
+- job:
+    name: validate-buildsys-tags-yoga-testing-packstack-scenario001-centos9
+    parent: validate-buildsys-tags-yoga-testing-centos9-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-yoga-testing-packstack-scenario002-centos9
+    parent: validate-buildsys-tags-yoga-testing-centos9-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-yoga-testing-packstack-scenario003-centos9
+    parent: validate-buildsys-tags-yoga-testing-centos9-base
+    vars:
+      scenario: scenario003
+
+- job:
     name: weirdo-periodic-base
     parent: base
     run: playbooks/rdoinfo/weirdo-periodic.yaml
