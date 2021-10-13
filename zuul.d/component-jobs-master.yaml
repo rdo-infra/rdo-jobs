@@ -375,6 +375,70 @@
       extra_tags:
         - component-validations
 
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-validation-master-1ctlr-1comp
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-validation-master
+    abstract: true
+    nodeset: three-centos-8-nodes
+
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-tripleo-master-validation
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-validation-master-1ctlr-1comp
+    vars:
+      component: tripleo
+      nodes: 1ctlr_1comp
+      featureset_override:
+        overcloud_roles:
+          - name: Controller
+              CountDefault: 1
+              tags:
+                - primary
+                - controller
+              networks:
+                - External
+                - InternalApi
+                - Storage
+                - StorageMgmt
+                - Tenant
+          - name: Compute
+              CountDefault: 1
+              tags:
+                - compute
+              networks:
+                - External
+                - InternalApi
+                - Storage
+                - StorageMgmt
+                - Tenant
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-compute-master-validation
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-validation-master-1ctlr-1comp
+    vars:
+      component: compute
+      featureset_override:
+        overcloud_roles:
+          - name: Controller
+              CountDefault: 1
+              tags:
+                - primary
+                - controller
+              networks:
+                - External
+                - InternalApi
+                - Storage
+                - StorageMgmt
+                - Tenant
+          - name: Compute
+              CountDefault: 1
+              tags:
+                - compute
+              networks:
+                - External
+                - InternalApi
+                - Storage
+                - StorageMgmt
+                - Tenant
+
 ## standalone component jobs
 
 - job:
