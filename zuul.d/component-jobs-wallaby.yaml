@@ -292,6 +292,20 @@
       release: wallaby
       branch_override: 'stable/wallaby'
 
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-tripleo-wallaby-validation
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-validation-wallaby
+    vars:
+      component: tripleo
+      nodes: 1ctlr_1comp
+
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-compute-wallaby-validation
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-validation-wallaby
+    vars:
+      component: compute
+      nodes: 1ctlr_1comp
+
 ## standalone component jobs
 
 - job:
