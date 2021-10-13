@@ -2,6 +2,7 @@
     name: rdo-jobs
     check:
       jobs:
+        - periodic-tripleo-ci-centos-8-scenario001-standalone-master-glance-multistore-test
         - tox-docs: &cfg
             nodeset: rdo-centos-8
             pre-run:
