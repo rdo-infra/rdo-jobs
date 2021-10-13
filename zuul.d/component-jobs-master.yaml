@@ -375,6 +375,59 @@
       extra_tags:
         - component-validations
 
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-validation-master-1ctlr-1comp
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-validation-master
+    abstract: true
+    nodeset: three-centos-8-nodes
+    description: |
+      Overrides 'overcloud_roles' variable of the '010' feature set to allow for
+      two nodes, 1 controller and 1 compute.
+      Sets the 'validations_inventory' variable to ensure that proper inventory
+      is used by the executed validations. The default inventory path is set in
+      the 'validations.yml' playbook as 'tripleo-deploy/tripleo-ansible-inventory.yaml'.
+    vars:
+      validations_inventory: "tripleo-deploy/undercloud/tripleo-ansible-inventory.yaml"
+      featureset_override:
+        overcloud_roles:
+          - name: Controller
+            CountDefault: 1
+            networks:
+              - External
+              - InternalApi
+              - Storage
+              - StorageMgmt
+              - Tenant
+            tags:
+              - primary
+              - controller
+          - name: Compute
+            CountDefault: 1
+            networks:
+              - External
+              - InternalApi
+              - Storage
+              - StorageMgmt
+              - Tenant
+            tags:
+              - compute
+
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-tripleo-master-validation
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-validation-master-1ctlr-1comp
+    vars:
+      component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-compute-master-validation
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-validation-master-1ctlr-1comp
+    description: |
+      Sets the 'validations_inventory' to retrieve overcloud inventory
+      from the '~/config-download' dir.
+    vars:
+      component: compute
+      validations_inventory: "config-download/overcloud/tripleo-ansible-inventory.yaml"
+
 ## standalone component jobs
 
 - job:
