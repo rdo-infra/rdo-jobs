@@ -261,6 +261,19 @@
     vars:
       release: master
 
+# This is just for a test currently
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario001-standalone-master-glance-multistore-test
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-master
+    vars:
+      force_periodic: true
+      featureset_override:
+        tempest_tempest_conf_overrides:
+          'image-feature-enabled.import_image': True
+        tempest_test_whitelist:
+          - 'tempest.api.image.v2.admin.test_images.ImportCopyImagesTest'
+          - 'tempest.api.image.v2.test_images.MultiStoresImportImagesTest'
+
 - job:
     name: periodic-tripleo-ci-centos-8-scenario002-standalone-master
     parent: tripleo-ci-base-standalone-periodic-centos-8
