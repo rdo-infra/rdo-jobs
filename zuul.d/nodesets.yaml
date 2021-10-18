@@ -392,6 +392,18 @@
       - name: peers
         nodes: []
 
+- nodeset:
+    name: single-centos-9-stream-node-vexxhost
+    nodes:
+      - name: primary
+        label: cloud-centos-9-stream
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
+
 # Fake nested-virt nodeset - default to PSI
 - nodeset:
     name: single-centos-8-node-nested-virt
