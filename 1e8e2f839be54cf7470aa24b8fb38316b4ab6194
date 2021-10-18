@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ceeb92a_189b875d",
+        "filename": "zuul.d/component-jobs-master.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 278
+      },
+      "writtenOn": "2021-10-18T08:31:16Z",
+      "side": 1,
+      "message": "You should not use this playbook, but only the multinode one.",
+      "range": {
+        "startLine": 372,
+        "startChar": 8,
+        "endLine": 372,
+        "endChar": 25
+      },
+      "revId": "1e8e2f839be54cf7470aa24b8fb38316b4ab6194",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59070255_74857a2b",
+        "filename": "zuul.d/component-jobs-master.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 278
+      },
+      "writtenOn": "2021-10-18T08:31:16Z",
+      "side": 1,
+      "message": "and why those extra tags ?\nI don\u0027t think you need this, adding tags is painful in this big chain of oooq.\nWe are able to determine if it\u0027s component or not with zuul variables.",
+      "range": {
+        "startLine": 373,
+        "startChar": 6,
+        "endLine": 375,
+        "endChar": 29
+      },
+      "revId": "1e8e2f839be54cf7470aa24b8fb38316b4ab6194",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3722b86_56eb2c19",
+        "filename": "zuul.d/component-jobs-master.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 278
+      },
+      "writtenOn": "2021-10-18T08:31:16Z",
+      "side": 1,
+      "message": "why this ?",
+      "range": {
+        "startLine": 377,
+        "startChar": 8,
+        "endLine": 377,
+        "endChar": 26
+      },
+      "revId": "1e8e2f839be54cf7470aa24b8fb38316b4ab6194",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    }
+  ]
+}
