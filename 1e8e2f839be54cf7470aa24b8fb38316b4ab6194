@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "57d9c85c_41079481",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2021-10-18T08:37:34Z",
+      "side": 1,
+      "message": "this not needed, can drop depends-on on tripleo-ci patch.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 70
+      },
+      "revId": "1e8e2f839be54cf7470aa24b8fb38316b4ab6194",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5ceeb92a_189b875d",
         "filename": "zuul.d/component-jobs-master.yaml",
         "patchSetId": 12
@@ -62,6 +85,29 @@
       "range": {
         "startLine": 377,
         "startChar": 8,
+        "endLine": 377,
+        "endChar": 26
+      },
+      "revId": "1e8e2f839be54cf7470aa24b8fb38316b4ab6194",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c15ac6ad_f7443083",
+        "filename": "zuul.d/component-jobs-master.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2021-10-18T08:37:34Z",
+      "side": 1,
+      "message": "I think skip_tags_list was added as to override default of skip_tags_list which contains tripleo-validations as an item.\nto get skip_tags_list working in job defination, you just pass skip_tags_list: \u0027\u0027 as vars: instead of adding to featureset_override:",
+      "range": {
+        "startLine": 376,
+        "startChar": 0,
         "endLine": 377,
         "endChar": 26
       },
