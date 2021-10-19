@@ -380,6 +380,12 @@
         - component-validations
       validations_inventory: "tripleo-deploy/undercloud/tripleo-ansible-inventory.yaml"
 
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-octavia-master-validation
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-validation-master
+    vars:
+      component: octavia
+
 ## standalone component jobs
 
 - job:
