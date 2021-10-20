@@ -375,6 +375,17 @@
       extra_tags:
         - component-validations
 
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-tripleo-master-validation
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-validation-master
+    description: |
+      Sets the 'validations_inventory' variable to ensure that proper inventory
+      is used by the executed validations. The default inventory path is set in
+      the 'validations.yml' playbook as 'tripleo-deploy/tripleo-ansible-inventory.yaml'.
+    vars:
+      component: tripleo
+      validations_inventory: "tripleo-deploy/undercloud/tripleo-ansible-inventory.yaml"
+
 ## standalone component jobs
 
 - job:
