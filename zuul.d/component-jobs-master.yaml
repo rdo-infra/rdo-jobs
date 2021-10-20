@@ -375,6 +375,12 @@
       extra_tags:
         - component-validations
 
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-tripleo-master-validation
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-validation-master
+    vars:
+      component: tripleo
+
 ## standalone component jobs
 
 - job:
