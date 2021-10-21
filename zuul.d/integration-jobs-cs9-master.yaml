@@ -8,6 +8,12 @@
       containers_base_image: quay.io/centos/centos:stream9-development
       registry_namespace: tripleomastercentos9
       promote_source: tripleo-ci-testing
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-master
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-master
+    nodeset: cloud-centos-9-stream-vexxhost
+
 - job:
     name: periodic-tripleo-centos-9-master-promote-promoted-components-to-tripleo-ci-testing
     parent: periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing
