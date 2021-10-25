@@ -240,6 +240,17 @@
       release: wallaby
       branch_override: 'stable/wallaby'
 
+## validation ovb jobs:
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-wallaby-validation
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master-validation
+    description: |
+      VF OVB job for wallaby branch. Inheriting from the master job and overriding release
+      specifying parameters.
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
 
 ## multinode component jobs
 
