@@ -305,6 +305,33 @@
     vars:
       component: security
 
+## validation ovb jobs:
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-master-validation
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-master
+    vars:
+      enable_validation: true
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-validation-master-validation
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+    vars:
+      component: validation
+      enable_validation: true
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-master-validation
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-master
+    vars:
+      enable_validation: true
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-compute-master-validation
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+    vars:
+      component: compute
+      enable_validation: true
 
 ## multinode component jobs
 
