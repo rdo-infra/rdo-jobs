@@ -240,6 +240,37 @@
       release: wallaby
       branch_override: 'stable/wallaby'
 
+## validation ovb jobs:
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-wallaby-validation
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master-validation
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-baremetal-wallaby-validation
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-wallaby-validation
+    vars:
+      component: baremetal
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-wallaby-validation
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-wallaby-validation
+    vars:
+      component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-wallaby-validation
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-wallaby-validation
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-compute-wallaby-validation
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-wallaby-validation
+    vars:
+      component: compute
 
 ## multinode component jobs
 
