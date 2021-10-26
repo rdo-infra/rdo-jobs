@@ -313,6 +313,12 @@
       validations_inventory: "config-download/overcloud/tripleo-ansible-inventory.yaml"
       component: compute
 
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-network-wallaby-validation
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-1ctlr-1comp-validation-wallaby
+    vars:
+      component: network
+
 ## standalone component jobs
 
 - job:
