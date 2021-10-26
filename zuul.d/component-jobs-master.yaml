@@ -422,6 +422,15 @@
     vars:
       component: tripleo
 
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-network-master-validation
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-1ctlr-1comp-validation-master
+    description: |
+      Executes select validations for the network component on a cloud
+      with featureset '010', using 1 controller and 1 compute.
+    vars:
+      component: network
+
 ## standalone component jobs
 
 - job:
