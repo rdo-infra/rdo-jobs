@@ -312,6 +312,12 @@
     vars:
       component: compute
 
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-network-wallaby-validation-1ctlr-1comp
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-validation-wallaby-1ctlr-1comp
+    vars:
+      component: network
+
 ## standalone component jobs
 
 - job:

@@ -427,6 +427,15 @@
     vars:
       component: compute
       validations_inventory: "config-download/overcloud/tripleo-ansible-inventory.yaml"
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-network-master-validation
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-validation-master-1ctlr-1comp
+    description: |
+      Sets the 'validations_inventory' to retrieve overcloud inventory
+      from the '~/config-download' dir.
+    vars:
+      component: network
+      validations_inventory: "config-download/overcloud/tripleo-ansible-inventory.yaml"
 
 ## standalone component jobs
 
