@@ -42,3 +42,9 @@
     name: periodic-tripleo-ci-centos-9-scenario003-standalone-master
     parent: periodic-tripleo-ci-centos-8-scenario003-standalone-master
     nodeset: single-centos-9-stream-node-vexxhost
+
+## multinode
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-master
+    parent: periodic-tripleo-ci-centos-8-containers-multinode-master
+    nodeset: two-centos-9-nodes-vexxhost
