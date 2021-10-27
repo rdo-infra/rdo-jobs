@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bd2189ac_3416edb9",
+        "filename": "zuul.d/component-jobs-master.yaml",
+        "patchSetId": 34
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2021-10-27T10:51:08Z",
+      "side": 1,
+      "message": "Got added here: https://review.opendev.org/c/openstack/tripleo-ci/+/815222",
+      "range": {
+        "startLine": 392,
+        "startChar": 8,
+        "endLine": 392,
+        "endChar": 23
+      },
+      "revId": "f613861806dd9b5f5b97e17061e7925ba630ee19",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2357c221_0e997337",
+        "filename": "zuul.d/component-jobs-master.yaml",
+        "patchSetId": 34
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2021-10-27T10:51:08Z",
+      "side": 1,
+      "message": "Since this one is getting repeated in all jobs, Can we create one more base job by using parent periodic-tripleo-ci-centos-8-containers-multinode-validation-master and put the validations_inventory there? It will avoid repeatition.",
+      "range": {
+        "startLine": 423,
+        "startChar": 6,
+        "endLine": 423,
+        "endChar": 87
+      },
+      "revId": "f613861806dd9b5f5b97e17061e7925ba630ee19",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    }
+  ]
+}
