@@ -34,6 +34,11 @@
     nodeset: single-centos-9-stream-node-vexxhost
 
 - job:
+    name: periodic-tripleo-ci-centos-9-scenario001-standalone-master
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-master
+    nodeset: single-centos-9-stream-node-vexxhost
+
+- job:
     name: periodic-tripleo-ci-centos-9-scenario002-standalone-master
     parent: periodic-tripleo-ci-centos-8-scenario002-standalone-master
     nodeset: single-centos-9-stream-node-vexxhost
