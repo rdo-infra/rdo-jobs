@@ -1,4 +1,33 @@
 ---
+
+## Standalone
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario001-standalone-master
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-master
+    vars:
+      nodeset: single-centos-9-stream-node-vexxhost
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario002-standalone-master
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-master
+    vars:
+      nodeset: single-centos-9-stream-node-vexxhost
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario003-standalone-master
+    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-master
+    vars:
+      nodeset: single-centos-9-stream-node-vexxhost
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario004-standalone-master
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-master
+    vars:
+      nodeset: single-centos-9-stream-node-vexxhost
+
+## containers/images
+
 - job:
     name: periodic-tripleo-ci-build-containers-centos-9-push-master
     parent: periodic-tripleo-ci-build-containers-ubi-8-push
