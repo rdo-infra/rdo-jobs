@@ -5,6 +5,9 @@
     openstack-periodic-integration-main-cs9:
       jobs:
         ##### master #####
+        - periodic-tripleo-ci-centos-9-containers-multinode-master:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-centos-9-push-master
         - periodic-tripleo-ci-build-containers-centos-9-push-master:
             dependencies:
               - periodic-tripleo-centos-9-master-promote-promoted-components-to-tripleo-ci-testing
