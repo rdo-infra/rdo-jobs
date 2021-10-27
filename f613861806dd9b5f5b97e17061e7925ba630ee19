@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "94501b41_e893f0a6",
+        "filename": "zuul.d/component-jobs-master.yaml",
+        "patchSetId": 34
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 717
+      },
+      "writtenOn": "2021-10-27T11:39:10Z",
+      "side": 1,
+      "message": "Yes, the tripleoci patch is necessary for this to work properly. Otherwise there is no way to override the overcloud_roles key.",
+      "parentUuid": "bd2189ac_3416edb9",
+      "range": {
+        "startLine": 392,
+        "startChar": 8,
+        "endLine": 392,
+        "endChar": 23
+      },
+      "revId": "f613861806dd9b5f5b97e17061e7925ba630ee19",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a4b08990_5bb6bc02",
         "filename": "zuul.d/component-jobs-master.yaml",
         "patchSetId": 34
@@ -36,6 +60,30 @@
       "writtenOn": "2021-10-27T10:52:36Z",
       "side": 1,
       "message": "Can we move this here: https://opendev.org/openstack/tripleo-quickstart/src/branch/master/config/nodes as other jobs nodes config are there?",
+      "range": {
+        "startLine": 393,
+        "startChar": 10,
+        "endLine": 413,
+        "endChar": 23
+      },
+      "revId": "f613861806dd9b5f5b97e17061e7925ba630ee19",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2582b047_a2cba148",
+        "filename": "zuul.d/component-jobs-master.yaml",
+        "patchSetId": 34
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 717
+      },
+      "writtenOn": "2021-10-27T11:39:10Z",
+      "side": 1,
+      "message": "I\u0027ve tried that in one of the previous patchesets. It unfortunately clashes with the featureset settings.",
+      "parentUuid": "a4b08990_5bb6bc02",
       "range": {
         "startLine": 393,
         "startChar": 10,
@@ -68,6 +116,30 @@
       "revId": "f613861806dd9b5f5b97e17061e7925ba630ee19",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb70e403_86a04bb5",
+        "filename": "zuul.d/component-jobs-master.yaml",
+        "patchSetId": 34
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 717
+      },
+      "writtenOn": "2021-10-27T11:39:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2357c221_0e997337",
+      "range": {
+        "startLine": 423,
+        "startChar": 6,
+        "endLine": 423,
+        "endChar": 87
+      },
+      "revId": "f613861806dd9b5f5b97e17061e7925ba630ee19",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
