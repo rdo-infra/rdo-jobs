@@ -5,51 +5,99 @@
     name: component-pipeline-master-centos9
     openstack-component-baremetal:
       jobs:
+        - periodic-tripleo-ci-centos-9-standalone-baremetal-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-baremetal-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-baremetal-promote-consistent-to-component-ci-testing
     openstack-component-cinder:
       jobs:
+        - periodic-tripleo-ci-centos-9-standalone-cinder-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-cinder-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-cinder-promote-consistent-to-component-ci-testing
     openstack-component-clients:
       jobs:
+        - periodic-tripleo-ci-centos-9-standalone-clients-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-clients-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-clients-promote-consistent-to-component-ci-testing
     openstack-component-cloudops:
       jobs:
+        - periodic-tripleo-ci-centos-9-standalone-cloudops-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-cloudops-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-cloudops-promote-consistent-to-component-ci-testing
     openstack-component-common:
       jobs:
+        - periodic-tripleo-ci-centos-9-standalone-common-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-common-promote-consistent-to-component-ci-testing
     openstack-component-compute:
       jobs:
+        - periodic-tripleo-ci-centos-9-standalone-compute-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-compute-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-compute-promote-consistent-to-component-ci-testing
     openstack-component-glance:
       jobs:
+        - periodic-tripleo-ci-centos-9-standalone-glance-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-glance-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-glance-promote-consistent-to-component-ci-testing
     openstack-component-manila:
       jobs:
+        - periodic-tripleo-ci-centos-9-standalone-manila-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-manila-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-manila-promote-consistent-to-component-ci-testing
     openstack-component-network:
       jobs:
+        - periodic-tripleo-ci-centos-9-standalone-network-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-network-promote-consistent-to-component-ci-testing
     openstack-component-octavia:
       jobs:
+        - periodic-tripleo-ci-centos-9-standalone-octavia-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-octavia-promote-consistent-to-component-ci-testing
     openstack-component-security:
       jobs:
+        - periodic-tripleo-ci-centos-9-standalone-security-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-security-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-security-promote-consistent-to-component-ci-testing
     openstack-component-swift:
       jobs:
+        - periodic-tripleo-ci-centos-9-standalone-swift-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-swift-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-swift-promote-consistent-to-component-ci-testing
     openstack-component-tripleo:
       jobs:
+        - periodic-tripleo-ci-centos-9-standalone-tripleo-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-tripleo-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-tripleo-promote-consistent-to-component-ci-testing
     openstack-component-tempest:
       jobs:
+        - periodic-tripleo-ci-centos-9-standalone-tempest-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-tempest-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-tempest-promote-consistent-to-component-ci-testing
     openstack-component-ui:
       jobs:
+        - periodic-tripleo-ci-centos-9-standalone-ui-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-ui-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-ui-promote-consistent-to-component-ci-testing
     openstack-component-validation:
       jobs:
+        - periodic-tripleo-ci-centos-9-standalone-validation-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-validation-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-validation-promote-consistent-to-component-ci-testing
     openstack-promote-component:
       jobs:

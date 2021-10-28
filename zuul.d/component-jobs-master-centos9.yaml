@@ -212,3 +212,119 @@
     parent: tripleo-ci-centos-9-master-base-component-promote-to-promoted-components
     vars:
       component: validation
+
+## standalone component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-component-master
+    parent: periodic-tripleo-ci-centos-9-standalone-master
+    abstract: true
+    vars: &component_vars_standalone
+      component: component
+      release: master
+      dlrn_server_url: "trunk.rdoproject.org"
+      promote_source: component-ci-testing
+      add_repos:
+        - type: generic
+          reponame: "{{ component }}"
+          filename: "{{ component }}-component.repo"
+          priority: 1
+          baseurl: "https://{{ dlrn_server_url }}/centos9-{{ release }}/component/{{ component }}/component-ci-testing"
+          update_container: true
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-baremetal-master
+    parent: periodic-tripleo-ci-centos-9-standalone-component-master
+    vars:
+      component: baremetal
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-cinder-master
+    parent: periodic-tripleo-ci-centos-9-standalone-component-master
+    vars:
+      component: cinder
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-clients-master
+    parent: periodic-tripleo-ci-centos-9-standalone-component-master
+    vars:
+      component: clients
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-cloudops-master
+    parent: periodic-tripleo-ci-centos-9-standalone-component-master
+    vars:
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-common-master
+    parent: periodic-tripleo-ci-centos-9-standalone-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-compute-master
+    parent: periodic-tripleo-ci-centos-9-standalone-component-master
+    vars:
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-glance-master
+    parent: periodic-tripleo-ci-centos-9-standalone-component-master
+    vars:
+      component: glance
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-manila-master
+    parent: periodic-tripleo-ci-centos-9-standalone-component-master
+    vars:
+      component: manila
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-network-master
+    parent: periodic-tripleo-ci-centos-9-standalone-component-master
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-octavia-master
+    parent: periodic-tripleo-ci-centos-9-standalone-component-master
+    vars:
+      component: octavia
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-security-master
+    parent: periodic-tripleo-ci-centos-9-standalone-component-master
+    vars:
+      component: security
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-swift-master
+    parent: periodic-tripleo-ci-centos-9-standalone-component-master
+    vars:
+      component: swift
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-tempest-master
+    parent: periodic-tripleo-ci-centos-9-standalone-component-master
+    vars:
+      component: tempest
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-tripleo-master
+    parent: periodic-tripleo-ci-centos-9-standalone-component-master
+    vars:
+      component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-ui-master
+    parent: periodic-tripleo-ci-centos-9-standalone-component-master
+    vars:
+      component: ui
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-validation-master
+    parent: periodic-tripleo-ci-centos-9-standalone-component-master
+    vars:
+      component: validation
+      enable_validation: true
