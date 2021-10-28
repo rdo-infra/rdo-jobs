@@ -42,3 +42,18 @@
     name: periodic-tripleo-ci-centos-9-scenario003-standalone-master
     parent: periodic-tripleo-ci-centos-8-scenario003-standalone-master
     nodeset: single-centos-9-stream-node-vexxhost
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario010-standalone-master
+    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-master
+    nodeset: single-centos-9-stream-node-vexxhost
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-master
+    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master
+    nodeset: single-centos-9-stream-node-vexxhost
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario010-ovn-provider-standalone-master
+    parent: periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-master
+    nodeset: single-centos-9-stream-node-vexxhost
