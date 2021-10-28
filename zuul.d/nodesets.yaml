@@ -385,7 +385,7 @@
     name: cloud-centos-9-stream-vexxhost
     nodes:
       - name: primary
-        label: cloud-centos-9-stream
+        label: cloud-centos-9-stream-vexxhost
     groups:
       - name: switch
         nodes: []
@@ -396,7 +396,7 @@
     name: single-centos-9-stream-node-vexxhost
     nodes:
       - name: primary
-        label: cloud-centos-9-stream
+        label: cloud-centos-9-stream-vexxhost
     groups:
       - name: switch
         nodes:
@@ -408,9 +408,9 @@
     name: two-centos-9-nodes-vexxhost
     nodes:
       - name: primary
-        label: cloud-centos-9-stream
+        label: cloud-centos-9-stream-vexxhost
       - name: secondary
-        label: cloud-centos-9-stream
+        label: cloud-centos-9-stream-vexxhost
     groups:
       - name: switch
         nodes:
@@ -421,6 +421,17 @@
       - name: subnodes
         nodes:
           - secondary
+
+- nodeset:
+    name: tripleo-ovb-centos-9-primary-vexxhost
+    nodes:
+      - name: primary
+        label: cloud-centos-9-stream-vexxhost
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
 
 # Fake nested-virt nodeset - default to PSI
 - nodeset:
