@@ -49,6 +49,9 @@
         - periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-wallaby:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+        - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
         - periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-wallaby:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
