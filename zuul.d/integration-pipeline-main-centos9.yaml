@@ -17,4 +17,13 @@
         - periodic-tripleo-ci-build-containers-centos-9-push-master:
             dependencies:
               - periodic-tripleo-centos-9-master-promote-promoted-components-to-tripleo-ci-testing
+        - periodic-tripleo-centos-9-buildimage-overcloud-hardened-uefi-full-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-promote-promoted-components-to-tripleo-ci-testing
+        - periodic-tripleo-centos-9-buildimage-overcloud-full-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-promote-promoted-components-to-tripleo-ci-testing
+        - periodic-tripleo-centos-9-buildimage-ironic-python-agent-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-promote-promoted-components-to-tripleo-ci-testing
         - periodic-tripleo-centos-9-master-promote-promoted-components-to-tripleo-ci-testing
