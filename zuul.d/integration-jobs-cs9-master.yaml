@@ -59,3 +59,13 @@
     name: periodic-tripleo-ci-centos-9-undercloud-containers-master
     parent: periodic-tripleo-ci-centos-8-undercloud-containers-master
     nodeset: single-centos-9-stream-node-vexxhost
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario007-standalone-master
+    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-master
+    nodeset: single-centos-9-stream-node-vexxhost
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario012-standalone-master
+    parent: periodic-tripleo-ci-centos-8-scenario012-standalone-master
+    nodeset: single-centos-9-stream-node-vexxhost
