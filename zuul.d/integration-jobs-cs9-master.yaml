@@ -13,7 +13,7 @@
     nodeset: cloud-centos-9-stream-vexxhost
     vars:
       buildcontainers_override_repos: centos9-master
-      containers_base_image: quay.io/centos/centos:stream9-development
+      containers_base_image: quay.io/centos/centos:stream9
       registry_namespace: tripleomastercentos9
       promote_source: tripleo-ci-testing
 
