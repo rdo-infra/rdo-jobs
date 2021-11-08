@@ -407,7 +407,7 @@
     name: cloud-centos-9-stream-vexxhost
     nodes:
       - name: primary
-        label: cloud-centos-9-stream-vexxhost
+        label: cloud-centos-9-stream-tripleo-vexxhost
     groups:
       - name: switch
         nodes: []
@@ -418,7 +418,7 @@
     name: single-centos-9-stream-node-vexxhost
     nodes:
       - name: primary
-        label: cloud-centos-9-stream-vexxhost
+        label: cloud-centos-9-stream-tripleo-vexxhost
     groups:
       - name: switch
         nodes:
@@ -430,9 +430,9 @@
     name: two-centos-9-nodes-vexxhost
     nodes:
       - name: primary
-        label: cloud-centos-9-stream-vexxhost
+        label: cloud-centos-9-stream-tripleo-vexxhost
       - name: secondary
-        label: cloud-centos-9-stream-vexxhost
+        label: cloud-centos-9-stream-tripleo-vexxhost
     groups:
       - name: switch
         nodes:
@@ -448,7 +448,7 @@
     name: tripleo-ovb-centos-9-primary-vexxhost
     nodes:
       - name: primary
-        label: cloud-centos-9-stream-vexxhost
+        label: cloud-centos-9-stream-tripleo-vexxhost
     groups:
       - name: switch
         nodes: []
