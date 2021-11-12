@@ -81,3 +81,10 @@
     name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-master
     parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-master
     nodeset: two-centos-9-nodes-vexxhost
+
+## OVB
+
+- job:
+    name: periodic-tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset002-master
+    parent: periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-master
+    nodeset: tripleo-ovb-centos-9-primary-vexxhost
