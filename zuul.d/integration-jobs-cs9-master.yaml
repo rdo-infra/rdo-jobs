@@ -91,3 +91,10 @@
     name: periodic-tripleo-ci-centos-9-scenario010-ovn-provider-standalone-master
     parent: periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-master
     nodeset: single-centos-9-stream-node-vexxhost
+
+## OVB
+
+- job:
+    name: periodic-tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset002-master
+    parent: periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-master
+    nodeset: tripleo-ovb-centos-9-primary-vexxhost
