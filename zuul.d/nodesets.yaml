@@ -516,3 +516,16 @@
           - primary
       - name: peers
         nodes: []
+
+# Fake nodeset for image build jobs
+- nodeset:
+    name: single-centos-9-node
+    nodes:
+      - name: primary
+        label: cloud-centos-9-stream
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
