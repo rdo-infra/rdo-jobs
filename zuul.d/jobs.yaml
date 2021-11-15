@@ -246,3 +246,102 @@
     parent: base
     run: playbooks/centos-opstools/rpmlint/run.yaml
     nodeset: rdo-centos-8
+
+- job:
+    name: weirdo-base-promote-consistent-to-puppet-ci-testing
+    parent: base
+    abstract: true
+    run: playbooks/promote.yaml
+    nodeset: rdo-centos-9-stream
+    vars:
+      promote_source: consistent
+      promote_target: puppet-ci-testing
+    secrets:
+      - dlrnapitest
+
+- job:
+    name: weirdo-base-promote-puppet-ci-testing-to-puppet-passed-ci
+    parent: base
+    abstract: true
+    run: playbooks/promote.yaml
+    nodeset: rdo-centos-9-stream
+    vars:
+      promote_source: puppet-ci-testing
+      promote_target: puppet-passed-ci
+    secrets:
+      - dlrnapitest
+
+- job:
+    name: weirdo-yoga-promote-consistent-to-puppet-ci-testing
+    parent: weirdo-base-promote-consistent-to-puppet-ci-testing
+    vars:
+      release: master
+
+- job:
+    name: weirdo-yoga-promote-puppet-ci-testing-to-puppet-passed-ci
+    parent: weirdo-base-promote-puppet-ci-testing-to-puppet-passed-ci
+    vars:
+      release: master
+
+- job:
+    name: weirdo-promote-base-centos9
+    parent: base
+    run: playbooks/rdoinfo/weirdo-periodic.yaml
+    post-run: playbooks/weirdo/integration/post.yaml
+    timeout: 7200
+    required-projects:
+      - rdo-infra/weirdo
+      - rdo-infra/ansible-role-weirdo-common
+      - rdo-infra/ansible-role-weirdo-kolla
+      - rdo-infra/ansible-role-weirdo-logs
+      - rdo-infra/ansible-role-weirdo-packstack
+      - rdo-infra/ansible-role-weirdo-puppet-openstack
+      - opendev.org/openstack/puppet-openstack-integration
+    vars:
+      selinux_enforcing: "false"
+      rdoinfo_release: yoga
+      centos_releasever: 9
+      job_type: promotion
+    nodeset: rdo-centos-9-stream
+
+- job:
+    name: weirdo-yoga-promote-puppet-scenario001-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      scenario: scenario001
+
+- job:
+    name: weirdo-yoga-promote-puppet-scenario002-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      scenario: scenario002
+
+- job:
+    name: weirdo-yoga-promote-puppet-scenario003-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      scenario: scenario003
+
+- job:
+    name: weirdo-yoga-promote-puppet-scenario004-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      scenario: scenario004
+
+- job:
+    name: weirdo-yoga-promote-packstack-scenario001-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      scenario: scenario001
+
+- job:
+    name: weirdo-yoga-promote-packstack-scenario002-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      scenario: scenario002
+
+- job:
+    name: weirdo-yoga-promote-packstack-scenario003-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      scenario: scenario003
