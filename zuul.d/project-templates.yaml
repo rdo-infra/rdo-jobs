@@ -571,3 +571,39 @@
         - periodic-cloudsig-train-release-packstack-scenario001-centos8
         - periodic-cloudsig-train-release-packstack-scenario002-centos8
         - periodic-cloudsig-train-release-packstack-scenario003-centos8
+
+- project-template:
+    name: weirdo-master-promotion-pipeline
+    check:
+      jobs:
+        - weirdo-yoga-promote-consistent-to-puppet-ci-testing
+        - weirdo-yoga-promote-puppet-scenario001-centos-stream-9:
+            dependencies:
+              - weirdo-yoga-promote-consistent-to-puppet-ci-testing
+        - weirdo-yoga-promote-puppet-scenario002-centos-stream-9:
+            dependencies:
+              - weirdo-yoga-promote-consistent-to-puppet-ci-testing
+        - weirdo-yoga-promote-puppet-scenario003-centos-stream-9:
+            dependencies:
+              - weirdo-yoga-promote-consistent-to-puppet-ci-testing
+        - weirdo-yoga-promote-puppet-scenario004-centos-stream-9:
+            dependencies:
+              - weirdo-yoga-promote-consistent-to-puppet-ci-testing
+        - weirdo-yoga-promote-packstack-scenario001-centos-stream-9:
+            dependencies:
+              - weirdo-yoga-promote-consistent-to-puppet-ci-testing
+        - weirdo-yoga-promote-packstack-scenario002-centos-stream-9:
+            dependencies:
+              - weirdo-yoga-promote-consistent-to-puppet-ci-testing
+        - weirdo-yoga-promote-packstack-scenario003-centos-stream-9:
+            dependencies:
+              - weirdo-yoga-promote-consistent-to-puppet-ci-testing
+        - weirdo-yoga-promote-puppet-ci-testing-to-puppet-passed-ci:
+            dependencies:
+              - weirdo-yoga-promote-puppet-scenario001-centos-stream-9
+              - weirdo-yoga-promote-puppet-scenario002-centos-stream-9
+              - weirdo-yoga-promote-puppet-scenario003-centos-stream-9
+              - weirdo-yoga-promote-puppet-scenario004-centos-stream-9
+              - weirdo-yoga-promote-packstack-scenario001-centos-stream-9
+              - weirdo-yoga-promote-packstack-scenario002-centos-stream-9
+              - weirdo-yoga-promote-packstack-scenario003-centos-stream-9
