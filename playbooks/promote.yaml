@@ -1,0 +1,13 @@
+- hosts: all
+  tasks:
+    - name: Promote all component repos
+      block:
+        - name: Promote all components
+          shell:
+            cmd: |
+              export delorean_url="https://trunk.rdoproject.org/centos9-{{ release }}/{{ promote_source |default('consistent')}}/delorean.repo"
+              export promotion_symlink="{{ promote_target | default('puppet-ci-testing') }}"
+              export delorean_api_url="https://trunk.rdoproject.org/api-centos9-master-uc"
+              export SSL_CA_BUNDLE="/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt"
+              bash -xe {{ ansible_user_dir }}/{{ zuul.project.src_dir }}/puppet-ci-promote.sh
+          environment: "{{ zuul | zuul_legacy_vars | combine({'DLRNAPI_PASSWD': dlrnapitest.password,'DLRNAPI_USERNAME': 'ciuser'}) }}"
