@@ -1,12 +1,13 @@
 - project:
     check:
       jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
-            files:
-              - .*molecule.*
-              - ^roles
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+        - tripleo-ci-centos-8-standalone:
+            vars:
+              run_test_role_vars:
+                container_prep_additional_repos: temp-*
+              add_repos:
+                - type: generic
+                  reponame: temp-appstream
+                  filename: temp-appstream.repo
+                  baseurl: http://mirror.centos.org/centos/8-stream/AppStream/x86_64/os/
+                  priority: 1
