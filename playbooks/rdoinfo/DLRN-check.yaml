@@ -41,6 +41,15 @@
         - ansible_distribution == "CentOS"
         - ansible_distribution_major_version == '8'
 
+    - name: Update ca-certificates package in CentOS 7
+      package:
+        name: ca-certificates
+        state: latest
+      become: true
+      when:
+        - ansible_distribution == "CentOS"
+        - ansible_distribution_major_version == '7'
+
     - name: Ensure user in mock group
       user:
         name: "{{ ansible_user }}"

@@ -100,6 +100,8 @@ function copy_logs {
 }
 trap copy_logs ERR EXIT
 
+# Force to use system-provided CA bundle instead of the one installed with pip in certifi.
+export REQUESTS_CA_BUNDLE=/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt
 # Run DLRN
 dlrn --config-file projects.ini --head-only $PACKAGE_LINE --dev --info-repo /tmp/rdoinfo
 # For componentized builds we need to consolidate all updates in a single repodata
