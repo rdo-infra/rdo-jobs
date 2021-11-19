@@ -207,6 +207,8 @@
       component: baremetal
       release: wallaby
       branch_override: 'stable/wallaby'
+      enable_validation: true
+      validations_inventory: /home/zuul/config-download/overcloud/tripleo-ansible-inventory.yaml
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-wallaby
@@ -223,6 +225,8 @@
       component: network
       release: wallaby
       branch_override: 'stable/wallaby'
+      enable_validation: true
+      validations_inventory: /home/zuul/config-download/overcloud/tripleo-ansible-inventory.yaml
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-wallaby
@@ -239,7 +243,18 @@
       component: tripleo
       release: wallaby
       branch_override: 'stable/wallaby'
+      enable_validation: true
+      validations_inventory: /home/zuul/config-download/overcloud/tripleo-ansible-inventory.yaml
 
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-compute-wallaby
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+    vars:
+      component: compute
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      enable_validation: true
+      validations_inventory: /home/zuul/config-download/overcloud/tripleo-ansible-inventory.yaml
 
 ## multinode component jobs
 
