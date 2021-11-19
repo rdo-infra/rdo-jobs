@@ -203,10 +203,19 @@
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-baremetal-wallaby
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+    description: |
+      OVB job for Wallaby with 3 controller and 1 compute for Baremetal
+      component.
+      Validations are explicitly disabled on this component because some
+      validations are broken.
+      Validations are executed from the undercloud host, with inventory set by
+      the 'validations_inventory' variable.
     vars:
       component: baremetal
       release: wallaby
       branch_override: 'stable/wallaby'
+      enable_validation: false
+      validations_inventory: /home/zuul/config-download/overcloud/tripleo-ansible-inventory.yaml
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-wallaby
@@ -219,10 +228,16 @@
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-wallaby
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+    description: |
+      OVB job for Wallaby with 3 controller and 1 compute for Network component.
+      Validations are enabled and executed from the undercloud host, with
+      inventory set by the 'validations_inventory' variable.
     vars:
       component: network
       release: wallaby
       branch_override: 'stable/wallaby'
+      enable_validation: true
+      validations_inventory: /home/zuul/config-download/overcloud/tripleo-ansible-inventory.yaml
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-wallaby
@@ -235,10 +250,30 @@
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-wallaby
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+    description: |
+      OVB job for Wallaby with 3 controller and 1 compute for Tripleo component.
+      Validations are enabled and executed from the undercloud host, with
+      inventory set by the 'validations_inventory' variable.
     vars:
       component: tripleo
       release: wallaby
       branch_override: 'stable/wallaby'
+      enable_validation: true
+      validations_inventory: /home/zuul/config-download/overcloud/tripleo-ansible-inventory.yaml
+
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-compute-wallaby
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master
+    description: |
+      OVB job for Wallaby with 3 controller and 1 compute for Compute component.
+      Validations are enabled and executed from the undercloud host, with
+      inventory set by the 'validations_inventory' variable.
+    vars:
+      component: compute
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      enable_validation: true
+      validations_inventory: /home/zuul/config-download/overcloud/tripleo-ansible-inventory.yaml
 
 ## validation ovb jobs:
 
