@@ -230,9 +230,6 @@
         - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-tripleo-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-standalone-upgrade-tripleo-master:
-            dependencies:
-              - periodic-tripleo-centos-8-master-component-tripleo-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-standalone-tripleo-master-validation:
             dependencies:
               - periodic-tripleo-centos-8-master-component-tripleo-promote-consistent-to-component-ci-testing

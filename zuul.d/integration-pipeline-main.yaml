@@ -89,9 +89,6 @@
         - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-master:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
-        - periodic-tripleo-ci-centos-8-standalone-upgrade-master:
-            dependencies:
-              - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-centos-8-undercloud-upgrade-master:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
