@@ -1,6 +1,20 @@
 ---
 # dependency jobs
 
+### CentOS 9 Composes Dependency Job
+# TODO(dviroel):
+#   - add repo content and diff list playbooks
+#   - pin to an older image
+    name: periodic-tripleo-ci-centos-9-standalone-composes-dependency-master
+    parent: periodic-tripleo-ci-centos-9-standalone-master
+    abstract: true
+    pre-run:
+      - playbooks/dependency/setup-compose-repos.yml
+    vars:
+      featureset: '052'
+      dependency: centos-compose
+      build_container_images: true
+
 ### centos 8 multiple dependency jobs
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-multiple-dependency-master
