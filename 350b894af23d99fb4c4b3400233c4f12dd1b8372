@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "b4beed90_6756b886",
+        "filename": "zuul.d/component-jobs-wallaby.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 278
+      },
+      "writtenOn": "2021-11-25T09:56:01Z",
+      "side": 1,
+      "message": "I\u0027m not sure about renaming the jobs since we provide a brief description of the job which is shown in the zuul summary.\nIt\u0027s up to you, I could do it but, I mean, the overcloud-validate tasks is triggered as well in those jobs and not mentioned in the name. Wdyt ?\n\nAnd for the duplication, as we previously discussed, it\u0027s probably better to save CI time by triggering validation (10 minutes) at the end of an existing job, instead of re-deploying the whole thing.",
+      "parentUuid": "8e6e284a_4a04e990",
+      "revId": "350b894af23d99fb4c4b3400233c4f12dd1b8372",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cd45b9cd_1902ef78",
         "filename": "zuul.d/component-jobs-wallaby.yaml",
         "patchSetId": 4
