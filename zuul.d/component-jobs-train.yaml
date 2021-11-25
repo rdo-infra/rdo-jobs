@@ -609,6 +609,15 @@
 ## scenario010-kvm-standalone-component jobs
 
 - job:
+    name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-network-train
+    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-component-master
+    override-checkout: 'stable/train'
+    vars:
+      component: network
+      release: train
+      branch_override: 'stable/train'
+
+- job:
     name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-train
     parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-component-master
     override-checkout: 'stable/train'

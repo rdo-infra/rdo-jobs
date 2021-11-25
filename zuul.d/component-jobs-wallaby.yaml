@@ -615,6 +615,15 @@
 ## scenario010-kvm-standalone-component jobs
 
 - job:
+    name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-network-wallaby
+    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-component-master
+    override-checkout: 'stable/wallaby'
+    vars:
+      component: network
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
     name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-wallaby
     parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-component-master
     override-checkout: 'stable/wallaby'

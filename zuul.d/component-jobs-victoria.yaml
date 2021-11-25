@@ -563,6 +563,15 @@
 ## scenario010-standalone-kvm-component jobs
 
 - job:
+    name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-network-victoria
+    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-component-master
+    override-checkout: 'stable/victoria'
+    vars:
+      component: network
+      release: victoria
+      branch_override: 'stable/victoria'
+
+- job:
     name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-victoria
     parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-component-master
     override-checkout: 'stable/victoria'
