@@ -26,10 +26,16 @@
         - periodic-tripleo-ci-centos-9-standalone-cloudops-master:
             dependencies:
               - periodic-tripleo-centos-9-master-component-cloudops-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-scenario002-standalone-cloudops-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-cloudops-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-cloudops-promote-consistent-to-component-ci-testing
     openstack-component-common:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-common-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-common-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-scenario002-standalone-common-master:
             dependencies:
               - periodic-tripleo-centos-9-master-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-common-promote-consistent-to-component-ci-testing
@@ -42,6 +48,9 @@
     openstack-component-glance:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-glance-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-glance-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-scenario002-standalone-glance-master:
             dependencies:
               - periodic-tripleo-centos-9-master-component-glance-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-glance-promote-consistent-to-component-ci-testing
@@ -72,6 +81,9 @@
     openstack-component-swift:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-swift-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-swift-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-scenario002-standalone-swift-master:
             dependencies:
               - periodic-tripleo-centos-9-master-component-swift-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-swift-promote-consistent-to-component-ci-testing
