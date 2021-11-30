@@ -3,7 +3,18 @@ quiet: false
 exclude_paths:
     - playbooks/legacy
 skip_list:
-    - ANSIBLE0010  # Package installs should not use latest.
-    - 601  # Due to https://github.com/ansible/ansible-lint/issues/470
-    - 602  # Due to https://github.com/ansible/ansible-lint/issues/457
+    - risky-file-permissions
+    - package-latest
+    - role-name
+    - experimental
 verbosity: 1
+mock_roles:
+  - common
+  - ci-common-vars
+  - fetch-zuul-cloner-fork
+  - mirror-info-fork
+  - set-artifact-path-for-children
+  - submit-log-processor-jobs
+  - submit-logstash-jobs
+mock_modules:
+  - ini_file  # moved to community.general.ini_file in ansible-core
