@@ -328,3 +328,37 @@
     vars:
       component: validation
       enable_validation: true
+
+
+## scenario002-standalone-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario002-standalone-component-master
+    parent: periodic-tripleo-ci-centos-9-scenario002-standalone-master
+    abstract: true
+    vars: *component_vars_standalone
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario002-standalone-cloudops-master
+    parent: periodic-tripleo-ci-centos-9-scenario002-standalone-component-master
+    vars:
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario002-standalone-common-master
+    parent: periodic-tripleo-ci-centos-9-scenario002-standalone-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario002-standalone-glance-master
+    parent: periodic-tripleo-ci-centos-9-scenario002-standalone-component-master
+    vars:
+      component: glance
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario002-standalone-swift-master
+    parent: periodic-tripleo-ci-centos-9-scenario002-standalone-component-master
+    vars:
+      component: swift
+
