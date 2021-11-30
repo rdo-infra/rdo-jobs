@@ -20,7 +20,7 @@ repos:
         types: [file, yaml]
         entry: yamllint --strict -f parsable
   - repo: https://github.com/ansible/ansible-lint.git
-    rev: v4.1.1a6
+    rev: v5.2.1
     hooks:
       - id: ansible-lint
         always_run: true
@@ -37,7 +37,7 @@ repos:
           ansible-lint --force-color -p -v'
         additional_dependencies:
           - zuul
-          - 'ansible<2.10'
+          - 'ansible-core<=2.12'
   - repo: https://github.com/openstack-dev/bashate.git
     rev: 0.6.0
     hooks:
