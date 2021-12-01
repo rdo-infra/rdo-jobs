@@ -5,7 +5,7 @@
   tasks:
     - name: Run pre-quickstart role
       import_role:
-        name: common
+        name: ci-common-vars
 
     - name: check for correct import
       debug:
