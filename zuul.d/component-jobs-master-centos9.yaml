@@ -361,3 +361,51 @@
     parent: periodic-tripleo-ci-centos-9-scenario001-standalone-component-master
     vars:
       component: glance
+
+
+## standalone-full-tempest-api-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-component-master
+    parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-master
+    abstract: true
+    vars: *component_vars_standalone
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-compute-master
+    parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-component-master
+    vars:
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-network-master
+    parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-component-master
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-tempest-master
+    parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-component-master
+    vars:
+      component: tempest
+
+
+## standalone-full-tempest-scenario-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-component-master
+    parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-master
+    abstract: true
+    vars: *component_vars_standalone
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-compute-master
+    parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-component-master
+    vars:
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-tempest-master
+    parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-component-master
+    vars:
+      component: tempest
