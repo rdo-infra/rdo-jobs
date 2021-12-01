@@ -55,6 +55,12 @@
         - periodic-tripleo-ci-centos-9-standalone-compute-master:
             dependencies:
               - periodic-tripleo-centos-9-master-component-compute-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-compute-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-compute-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-compute-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-compute-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-compute-promote-consistent-to-component-ci-testing
     openstack-component-glance:
       jobs:
@@ -78,6 +84,9 @@
     openstack-component-network:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-network-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-network-master:
             dependencies:
               - periodic-tripleo-centos-9-master-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-network-promote-consistent-to-component-ci-testing
@@ -111,6 +120,12 @@
     openstack-component-tempest:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-tempest-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-tempest-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-tempest-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-tempest-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-tempest-master:
             dependencies:
               - periodic-tripleo-centos-9-master-component-tempest-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-tempest-promote-consistent-to-component-ci-testing
