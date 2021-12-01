@@ -24,6 +24,11 @@
     nodeset: single-centos-9-stream-node-vexxhost
 
 - job:
+    name: periodic-tripleo-ci-centos-9-standalone-full-tempest-master
+    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-master
+    nodeset: single-centos-9-stream-node-vexxhost
+
+- job:
     name: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-master
     parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-master
     nodeset: single-centos-9-stream-node-vexxhost
