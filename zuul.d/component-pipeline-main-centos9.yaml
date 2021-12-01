@@ -45,8 +45,10 @@
         - periodic-tripleo-ci-centos-9-scenario001-standalone-common-master:
             dependencies:
               - periodic-tripleo-centos-9-master-component-common-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-centos-9-master-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-scenario002-standalone-common-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-common-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-scenario003-standalone-common-master:
             dependencies:
               - periodic-tripleo-centos-9-master-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-common-promote-consistent-to-component-ci-testing
@@ -64,8 +66,10 @@
         - periodic-tripleo-ci-centos-9-scenario001-standalone-glance-master:
             dependencies:
               - periodic-tripleo-centos-9-master-component-glance-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-centos-9-master-component-glance-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-scenario002-standalone-glance-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-glance-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-scenario003-standalone-glance-master:
             dependencies:
               - periodic-tripleo-centos-9-master-component-glance-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-glance-promote-consistent-to-component-ci-testing

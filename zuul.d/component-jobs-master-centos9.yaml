@@ -394,3 +394,24 @@
     parent: periodic-tripleo-ci-centos-9-scenario002-standalone-component-master
     vars:
       component: swift
+
+
+## scenario003-standalone-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario003-standalone-component-master
+    parent: periodic-tripleo-ci-centos-9-scenario003-standalone-master
+    abstract: true
+    vars: *component_vars_standalone
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario003-standalone-common-master
+    parent: periodic-tripleo-ci-centos-9-scenario003-standalone-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario003-standalone-glance-master
+    parent: periodic-tripleo-ci-centos-9-scenario003-standalone-component-master
+    vars:
+      component: glance
