@@ -328,3 +328,42 @@
     vars:
       component: validation
       enable_validation: true
+
+
+## scenario004-standalone-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario004-standalone-component-master
+    parent: periodic-tripleo-ci-centos-9-scenario004-standalone-master
+    abstract: true
+    vars: *component_vars_standalone
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario004-standalone-cinder-master
+    parent: periodic-tripleo-ci-centos-9-scenario004-standalone-component-master
+    vars:
+      component: cinder
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario004-standalone-common-master
+    parent: periodic-tripleo-ci-centos-9-scenario004-standalone-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario004-standalone-glance-master
+    parent: periodic-tripleo-ci-centos-9-scenario004-standalone-component-master
+    vars:
+      component: glance
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario004-standalone-manila-master
+    parent: periodic-tripleo-ci-centos-9-scenario004-standalone-component-master
+    vars:
+      component: manila
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario004-standalone-tripleo-master
+    parent: periodic-tripleo-ci-centos-9-scenario004-standalone-component-master
+    vars:
+      component: tripleo
