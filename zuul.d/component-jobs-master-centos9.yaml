@@ -409,3 +409,120 @@
     parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-component-master
     vars:
       component: tempest
+
+
+## multinode component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-component-master
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-master
+    abstract: true
+    vars: &component_vars_multinode
+      component: component
+      release: master
+      dlrn_server_url: "trunk.rdoproject.org"
+      promote_source: component-ci-testing
+      add_repos:
+        - type: generic
+          reponame: "{{ component }}"
+          filename: "{{ component }}-component.repo"
+          priority: 1
+          baseurl: "https://{{ dlrn_server_url }}/centos9-{{ release }}/component/{{ component }}/component-ci-testing"
+          update_container: true
+
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-clients-master
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-component-master
+    vars:
+      component: clients
+
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-common-master
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-network-master
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-component-master
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-octavia-master
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-component-master
+    vars:
+      component: octavia
+
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-security-master
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-component-master
+    vars:
+      component: security
+
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-tripleo-master
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-component-master
+    vars:
+      component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-validation-master
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-component-master
+    description: |
+      Job uses featureset 010 with one primary and one secondary node.
+      The 'validations.yml' playbook of tripleo-quickstart is used to initiate
+      role containing the actual tests. Set of tests run is determined on basis
+      of the 'component' variable value.
+      Sets the 'validations_inventory' variable to ensure that proper inventory
+      is used by the executed validations. The default inventory path is set in
+      the 'validations.yml' playbook as 'tripleo-deploy/tripleo-ansible-inventory.yaml',
+      and is used by validation standalone jobs.
+    vars:
+      component: validation
+      enable_validation: true
+      extra_tags:
+        - component-validations
+      validations_inventory: "tripleo-deploy/undercloud/tripleo-ansible-inventory.yaml"
+
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-1ctlr-1comp-validation-master
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-validation-master
+    abstract: true
+    nodeset: three-centos-8-nodes
+    description: |
+      Overrides 'overcloud_roles' variable of the '010' feature set to allow for
+      two nodes, 1 controller and 1 compute.
+      Sets the 'validations_inventory' variable to ensure that proper inventory
+      is used by the executed validations. The default inventory path is set in
+      the 'validations.yml' playbook as 'tripleo-deploy/tripleo-ansible-inventory.yaml'.
+    vars:
+      featureset_override:
+        overcloud_roles:
+          - name: Controller
+            CountDefault: 1
+            networks:
+              - External
+              - InternalApi
+              - Storage
+              - StorageMgmt
+              - Tenant
+            tags:
+              - primary
+              - controller
+          - name: Compute
+            CountDefault: 1
+            networks:
+              - External
+              - InternalApi
+              - Storage
+              - StorageMgmt
+              - Tenant
+            tags:
+              - compute
+
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-tripleo-master-validation
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-validation-master
+    vars:
+      component: tripleo
