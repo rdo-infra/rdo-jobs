@@ -172,7 +172,7 @@
 - job:
     name: DLRN-rpmbuild-centos9
     parent: DLRN-rpmbuild-base
-    branches: ^rpm-master$
+    branches: ^(rpm-master)|(xena-rdo)$
     voting: false
     vars:
       centos_version: 'centos9'
