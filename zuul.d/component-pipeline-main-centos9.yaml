@@ -26,6 +26,9 @@
         - periodic-tripleo-ci-centos-9-standalone-clients-master:
             dependencies:
               - periodic-tripleo-centos-9-master-component-clients-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-containers-multinode-clients-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-clients-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-clients-promote-consistent-to-component-ci-testing
     openstack-component-cloudops:
       jobs:
@@ -52,6 +55,9 @@
             dependencies:
               - periodic-tripleo-centos-9-master-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-scenario003-standalone-common-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-common-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-containers-multinode-common-master:
             dependencies:
               - periodic-tripleo-centos-9-master-component-common-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-common-promote-consistent-to-component-ci-testing
@@ -99,16 +105,25 @@
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-network-master:
             dependencies:
               - periodic-tripleo-centos-9-master-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-containers-multinode-network-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-network-promote-consistent-to-component-ci-testing
     openstack-component-octavia:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-octavia-master:
             dependencies:
               - periodic-tripleo-centos-9-master-component-octavia-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-containers-multinode-octavia-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-octavia-promote-consistent-to-component-ci-testing
     openstack-component-security:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-security-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-security-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-containers-multinode-security-master:
             dependencies:
               - periodic-tripleo-centos-9-master-component-security-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-security-promote-consistent-to-component-ci-testing
@@ -124,6 +139,12 @@
     openstack-component-tripleo:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-tripleo-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-containers-multinode-tripleo-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-containers-multinode-tripleo-master-validation:
             dependencies:
               - periodic-tripleo-centos-9-master-component-tripleo-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-tripleo-promote-consistent-to-component-ci-testing
@@ -148,6 +169,9 @@
     openstack-component-validation:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-validation-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-validation-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-containers-multinode-validation-master:
             dependencies:
               - periodic-tripleo-centos-9-master-component-validation-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-validation-promote-consistent-to-component-ci-testing
