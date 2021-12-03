@@ -146,9 +146,6 @@
         - periodic-tripleo-ci-centos-8-standalone-full-tempest-api-network-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-scenario010-standalone-network-master:
-            dependencies:
-              - periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-network-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
@@ -174,9 +171,6 @@
             dependencies:
               - periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-scenario007-standalone-octavia-master:
-            dependencies:
-              - periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-master:
