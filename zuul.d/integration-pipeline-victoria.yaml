@@ -37,9 +37,6 @@
         - periodic-tripleo-ci-centos-8-scenario007-standalone-victoria:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
-        - periodic-tripleo-ci-centos-8-scenario010-standalone-victoria:
-            dependencies:
-              - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
         - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-victoria:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-victoria

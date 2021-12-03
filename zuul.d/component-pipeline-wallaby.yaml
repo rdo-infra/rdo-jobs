@@ -128,9 +128,6 @@
         - periodic-tripleo-ci-centos-8-scenario007-standalone-network-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-network-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-scenario010-standalone-network-wallaby:
-            dependencies:
-              - periodic-tripleo-centos-8-wallaby-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-network-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-network-promote-consistent-to-component-ci-testing
@@ -153,9 +150,6 @@
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-scenario007-standalone-octavia-wallaby:
-            dependencies:
-              - periodic-tripleo-centos-8-wallaby-component-octavia-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-scenario010-standalone-octavia-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-wallaby:
