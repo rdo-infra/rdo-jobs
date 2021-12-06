@@ -394,3 +394,23 @@
     parent: periodic-tripleo-ci-centos-9-scenario002-standalone-component-master
     vars:
       component: swift
+
+## scenario012-standalone-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario012-standalone-component-master
+    parent: periodic-tripleo-ci-centos-9-scenario012-standalone-master
+    abstract: true
+    vars: *component_vars_standalone
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario012-standalone-compute-master
+    parent: periodic-tripleo-ci-centos-9-scenario012-standalone-component-master
+    vars:
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario012-standalone-baremetal-master
+    parent: periodic-tripleo-ci-centos-9-scenario012-standalone-component-master
+    vars:
+      component: baremetal
