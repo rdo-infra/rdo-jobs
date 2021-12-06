@@ -483,3 +483,28 @@
     parent: periodic-tripleo-ci-centos-9-scenario012-standalone-component-master
     vars:
       component: baremetal
+
+## scenario007-standalone-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario007-standalone-master
+    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-master
+    nodeset: single-centos-9-stream-node-vexxhost
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario007-standalone-component-master
+    parent: periodic-tripleo-ci-centos-9-scenario007-standalone-master
+    abstract: true
+    vars: *component_vars_standalone
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario007-standalone-network-master
+    parent: periodic-tripleo-ci-centos-9-scenario007-standalone-component-master
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario007-standalone-octavia-master
+    parent: periodic-tripleo-ci-centos-9-scenario007-standalone-component-master
+    vars:
+      component: octavia
