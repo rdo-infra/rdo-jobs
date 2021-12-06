@@ -76,3 +76,8 @@
     name: periodic-tripleo-ci-centos-9-containers-multinode-master
     parent: periodic-tripleo-ci-centos-8-containers-multinode-master
     nodeset: two-centos-9-nodes-vexxhost
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-master
+    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-master
+    nodeset: two-centos-9-nodes-vexxhost
