@@ -120,6 +120,9 @@
         - periodic-tripleo-ci-centos-9-containers-multinode-network-master:
             dependencies:
               - periodic-tripleo-centos-9-master-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-scenario010-standalone-network-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-network-promote-consistent-to-component-ci-testing
     openstack-component-octavia:
       jobs:
@@ -127,6 +130,9 @@
             dependencies:
               - periodic-tripleo-centos-9-master-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-containers-multinode-octavia-master:
+            dependencies:
+              - periodic-tripleo-centos-9-master-component-octavia-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-scenario010-standalone-octavia-master:
             dependencies:
               - periodic-tripleo-centos-9-master-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-master-component-octavia-promote-consistent-to-component-ci-testing
