@@ -262,10 +262,13 @@
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-validation-master:
             dependencies:
-              - periodic-tripleo-centos-8-master-component-validation-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-standalone-validation-master:
+              - periodic-tripleo-centos-8-master-component-validation-promote-consistent-to-component-ci-testingv
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-master-validation:
             dependencies:
-              - periodic-tripleo-centos-8-master-component-validation-promote-consistent-to-component-ci-testing
+              - periodic-tripleo-centos-8-master-component-validation-promote-consistent-to-component-ci-testingv
+        - periodic-tripleo-ci-centos-8-containers-multinode-validation-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-validation-promote-consistent-to-component-ci-testingv
         - periodic-tripleo-centos-8-master-component-validation-promote-consistent-to-component-ci-testing
     openstack-promote-component:
       jobs:
