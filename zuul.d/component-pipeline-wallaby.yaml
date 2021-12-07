@@ -236,6 +236,12 @@
         - periodic-tripleo-ci-centos-8-standalone-validation-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-validation-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-wallaby-validation:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-validation-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-containers-multinode-validation-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-validation-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-validation-promote-consistent-to-component-ci-testing
     openstack-promote-component:
       jobs:
