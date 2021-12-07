@@ -236,6 +236,9 @@
         - periodic-tripleo-ci-centos-8-undercloud-upgrade-tripleo-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-containers-multinode-tripleo-master-validation:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-tripleo-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-master-component-tripleo-promote-consistent-to-component-ci-testing
     openstack-component-tempest:
       jobs:
