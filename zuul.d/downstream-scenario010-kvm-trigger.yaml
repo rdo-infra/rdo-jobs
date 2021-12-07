@@ -1,0 +1,12 @@
+- job:
+    name: create-scenario010-trigger-for-downstream
+    description: Set a trigger for downstream run on scenario010-kvm
+    run: playbooks/scenario010-kvm-trigger.yaml
+    vars:
+      # trigger_repository: "scenario010-kvm-trigger"
+      trigger_repository: "testproject"
+    secrets: rdoinfo_ssh
+    nodeset:
+      nodes:
+        - name: primary
+          label: zuul-worker-f34

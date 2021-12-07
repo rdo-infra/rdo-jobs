@@ -1,0 +1,63 @@
+---
+- hosts: primary
+  vars:
+    gerrit_key_name: "rdoinfo_id_rsa"
+  tasks:
+    - name: Install system dependencies
+      package:
+        name:
+          - git
+          - git-review
+        state: present
+      become: true
+
+    - name: Ensure .ssh directory
+      file:
+        path: .ssh
+        state: directory
+        mode: 0700
+
+    - name: Install SSH private key from secret
+      copy:
+        content: "{{ rdoinfo_ssh.private_key }}"
+        dest: "~/.ssh/{{ gerrit_key_name }}"
+        mode: 0600
+
+    - name: Setup git config to contact review.rdoproject.org
+      shell: |
+          set +e -x
+          cat >> ~/.ssh/config << EOF
+
+          Host review.rdoproject.org
+            IdentityFile "~/.ssh/{{ gerrit_key_name }}"
+          EOF
+          chmod 0400 ~/.ssh/config
+          ssh-keyscan -p 29418 review.rdoproject.org >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+    - name: Setup git identity config
+      shell: |
+        git config user.name "rdo-trunk"
+        git config user.email "amoralej+rdo-trunk@redhat.com"
+        git config gitreview.username "rdo-trunk"
+
+    - name: Clone trigger repository
+      shell: git clone https://review.rdoproject.org/r/{{ trigger_repository }}
+
+    - name: Run git-review setup
+      shell: git review -s -v
+      args:
+        chdir: "{{ trigger_repository }}"
+
+    - name: Create the trigger file
+      shell: |
+        touch trigger
+        git add trigger
+        git commit -m"Trigger for scenario010-kvm"
+      args:
+        chdir: "{{ trigger_repository }}"
+
+    - name: Open Gerrit review for trigger
+      shell: git review
+      args:
+        chdir: "{{ trigger_repository }}"
