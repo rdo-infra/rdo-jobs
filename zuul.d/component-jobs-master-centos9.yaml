@@ -394,3 +394,28 @@
     parent: periodic-tripleo-ci-centos-9-scenario002-standalone-component-master
     vars:
       component: swift
+
+## scenario010-kvm-standalone-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-component-master
+    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-component-master
+    nodeset: single-centos-9-stream-node-vexxhost
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-component-master
+    parent: periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-master
+    abstract: true
+    vars: *component_vars_standalone
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-network-master
+    parent: periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-component-master
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-octavia-master
+    parent: periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-component-master
+    vars:
+      component: octavia
