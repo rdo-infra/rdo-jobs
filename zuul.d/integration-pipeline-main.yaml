@@ -114,3 +114,6 @@
             dependencies:
               - periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing
         - periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing
+        - create-scenario010-trigger-for-downstream:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push
