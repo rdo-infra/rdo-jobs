@@ -19,6 +19,8 @@
             vars:
               tox_environment:
                 PYTEST_REQPASS: 1
+        # For testing will remove soon
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset064-wallaby
         - tripleo-centos-8-ceph-integration-master:
             files: &ceph
               - ^playbooks/tripleo-ceph-integration.*$
