@@ -323,6 +323,12 @@
       featureset: '063'
       release: master
 
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset064-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-master
+    vars:
+      featureset: '064'
+
 ## ovb component jobs: zuul.d/component-jobs.yaml
 
 ########## C E N T O S 8 TRAIN ####################
