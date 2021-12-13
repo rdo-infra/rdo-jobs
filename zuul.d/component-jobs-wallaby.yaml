@@ -359,10 +359,14 @@
     name: periodic-tripleo-ci-centos-8-standalone-component-wallaby-validation
     parent: periodic-tripleo-ci-centos-8-standalone-component-master
     override-checkout: "stable/wallaby"
+    description: | 
+      Additional tests of the Validation Framework are requested by setting
+      the 'enable_feature_tests' variable to true.
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
       enable_validation: true
+      enable_feature_tests: true
 
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-baremetal-wallaby
