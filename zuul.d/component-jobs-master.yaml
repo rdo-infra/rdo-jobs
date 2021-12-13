@@ -319,12 +319,15 @@
       List of validations to be executed is specified by the 'validations' role.
       Role is defined in the 'validations-common' repository and invoked in
       the 'validations.yml' playbook from the 'tripleo-quickstart-extras'.
+      Additional tests of the Validation Framework are requested by setting
+      the 'enable_feature_tests' variable to true.
     vars:
       component: validation
       enable_validation: true
       enable_overcloud_validate: false
       validations_inventory: /home/zuul/config-download/overcloud/tripleo-ansible-inventory.yaml
       execute_full_vf_catalogue: true
+      enable_feature_tests: true
 
 ## multinode component jobs
 
@@ -393,12 +396,15 @@
       is used by the executed validations. The default inventory path is set in
       the 'validations.yml' playbook as 'tripleo-deploy/tripleo-ansible-inventory.yaml',
       and is used by validation standalone jobs.
+      Additional tests of the Validation Framework are requested by setting
+      the 'enable_feature_tests' variable to true.
     vars:
       component: validation
       enable_validation: true
       extra_tags:
         - component-validations
       validations_inventory: "tripleo-deploy/undercloud/tripleo-ansible-inventory.yaml"
+      enable_feature_tests: true
 
 - job:
     name: periodic-tripleo-ci-centos-8-containers-multinode-1ctlr-1comp-validation-master
@@ -579,10 +585,13 @@
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-validation-master
     parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    description: |
+      Additional tests of the Validation Framework are requested by setting
+      the 'enable_feature_tests' variable to true.
     vars:
       component: validation
       enable_validation: true
-
+      enable_feature_tests: true
 
 ## scenario001-standalone-component jobs
 
