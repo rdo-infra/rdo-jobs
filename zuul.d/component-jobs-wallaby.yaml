@@ -357,12 +357,12 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-component-wallaby-validation
-    parent: periodic-tripleo-ci-centos-8-standalone-component-master
+    parent: periodic-tripleo-ci-centos-8-standalone-component-master-validation
+    abstract: true
     override-checkout: "stable/wallaby"
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
-      enable_validation: true
 
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-baremetal-wallaby
