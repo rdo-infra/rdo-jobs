@@ -626,3 +626,39 @@
               - weirdo-yoga-promote-packstack-scenario001-centos-stream-9
               - weirdo-yoga-promote-packstack-scenario002-centos-stream-9
               - weirdo-yoga-promote-packstack-scenario003-centos-stream-9
+
+- project-template:
+    name: weirdo-xena-promotion-pipeline
+    check:
+      jobs:
+        - weirdo-xena-promote-consistent-to-puppet-ci-testing
+        - weirdo-xena-promote-puppet-scenario001-centos-stream-9:
+            dependencies:
+              - weirdo-xena-promote-consistent-to-puppet-ci-testing
+        - weirdo-xena-promote-puppet-scenario002-centos-stream-9:
+            dependencies:
+              - weirdo-xena-promote-consistent-to-puppet-ci-testing
+        - weirdo-xena-promote-puppet-scenario003-centos-stream-9:
+            dependencies:
+              - weirdo-xena-promote-consistent-to-puppet-ci-testing
+        - weirdo-xena-promote-puppet-scenario004-centos-stream-9:
+            dependencies:
+              - weirdo-xena-promote-consistent-to-puppet-ci-testing
+        - weirdo-xena-promote-packstack-scenario001-centos-stream-9:
+            dependencies:
+              - weirdo-xena-promote-consistent-to-puppet-ci-testing
+        - weirdo-xena-promote-packstack-scenario002-centos-stream-9:
+            dependencies:
+              - weirdo-xena-promote-consistent-to-puppet-ci-testing
+        - weirdo-xena-promote-packstack-scenario003-centos-stream-9:
+            dependencies:
+              - weirdo-xena-promote-consistent-to-puppet-ci-testing
+        - weirdo-xena-promote-puppet-ci-testing-to-puppet-passed-ci:
+            dependencies:
+              - weirdo-xena-promote-puppet-scenario001-centos-stream-9
+              - weirdo-xena-promote-puppet-scenario002-centos-stream-9
+              - weirdo-xena-promote-puppet-scenario003-centos-stream-9
+              - weirdo-xena-promote-puppet-scenario004-centos-stream-9
+              - weirdo-xena-promote-packstack-scenario001-centos-stream-9
+              - weirdo-xena-promote-packstack-scenario002-centos-stream-9
+              - weirdo-xena-promote-packstack-scenario003-centos-stream-9
