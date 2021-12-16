@@ -623,3 +623,39 @@
               - weirdo-yoga-promote-packstack-scenario001-centos-stream-9
               - weirdo-yoga-promote-packstack-scenario002-centos-stream-9
               - weirdo-yoga-promote-packstack-scenario003-centos-stream-9
+
+- project-template:
+    name: weirdo-wallaby-promotion-pipeline
+    check:
+      jobs:
+        - weirdo-wallaby-promote-consistent-to-puppet-ci-testing
+        - weirdo-wallaby-promote-puppet-scenario001-centos-stream-9:
+            dependencies:
+              - weirdo-wallaby-promote-consistent-to-puppet-ci-testing
+        - weirdo-wallaby-promote-puppet-scenario002-centos-stream-9:
+            dependencies:
+              - weirdo-wallaby-promote-consistent-to-puppet-ci-testing
+        - weirdo-wallaby-promote-puppet-scenario003-centos-stream-9:
+            dependencies:
+              - weirdo-wallaby-promote-consistent-to-puppet-ci-testing
+        - weirdo-wallaby-promote-puppet-scenario004-centos-stream-9:
+            dependencies:
+              - weirdo-wallaby-promote-consistent-to-puppet-ci-testing
+        - weirdo-wallaby-promote-packstack-scenario001-centos-stream-9:
+            dependencies:
+              - weirdo-wallaby-promote-consistent-to-puppet-ci-testing
+        - weirdo-wallaby-promote-packstack-scenario002-centos-stream-9:
+            dependencies:
+              - weirdo-wallaby-promote-consistent-to-puppet-ci-testing
+        - weirdo-wallaby-promote-packstack-scenario003-centos-stream-9:
+            dependencies:
+              - weirdo-wallaby-promote-consistent-to-puppet-ci-testing
+        - weirdo-wallaby-promote-puppet-ci-testing-to-puppet-passed-ci:
+            dependencies:
+              - weirdo-wallaby-promote-puppet-scenario001-centos-stream-9
+              - weirdo-wallaby-promote-puppet-scenario002-centos-stream-9
+              - weirdo-wallaby-promote-puppet-scenario003-centos-stream-9
+              - weirdo-wallaby-promote-puppet-scenario004-centos-stream-9
+              - weirdo-wallaby-promote-packstack-scenario001-centos-stream-9
+              - weirdo-wallaby-promote-packstack-scenario002-centos-stream-9
+              - weirdo-wallaby-promote-packstack-scenario003-centos-stream-9
