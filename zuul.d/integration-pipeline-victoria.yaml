@@ -40,6 +40,11 @@
         - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-victoria:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
+        - create-scenario010-trigger-for-downstream:
+            vars:
+              trigger_branch: victoria
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
         - periodic-tripleo-ci-centos-8-scenario012-standalone-victoria:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-victoria
