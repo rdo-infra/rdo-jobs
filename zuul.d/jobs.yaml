@@ -360,6 +360,18 @@
       release: xena
 
 - job:
+    name: weirdo-wallaby-promote-consistent-to-puppet-ci-testing
+    parent: weirdo-base-promote-consistent-to-puppet-ci-testing
+    vars:
+      release: wallaby
+
+- job:
+    name: weirdo-wallaby-promote-puppet-ci-testing-to-puppet-passed-ci
+    parent: weirdo-base-promote-puppet-ci-testing-to-puppet-passed-ci
+    vars:
+      release: wallaby
+
+- job:
     name: weirdo-promote-base-centos9
     parent: base
     run: playbooks/rdoinfo/weirdo-periodic.yaml
@@ -469,4 +481,52 @@
     parent: weirdo-promote-base-centos9
     vars:
       rdoinfo_release: xena
+
+- job:
+    name: weirdo-wallaby-promote-puppet-scenario001-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: wallaby
+      scenario: scenario001
+
+- job:
+    name: weirdo-wallaby-promote-puppet-scenario002-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: wallaby
+      scenario: scenario002
+
+- job:
+    name: weirdo-wallaby-promote-puppet-scenario003-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: wallaby
+      scenario: scenario003
+
+- job:
+    name: weirdo-wallaby-promote-puppet-scenario004-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: wallaby
+      scenario: scenario004
+
+- job:
+    name: weirdo-wallaby-promote-packstack-scenario001-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: wallaby
+      scenario: scenario001
+
+- job:
+    name: weirdo-wallaby-promote-packstack-scenario002-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: wallaby
+      scenario: scenario002
+
+- job:
+    name: weirdo-wallaby-promote-packstack-scenario003-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: wallaby
       scenario: scenario003
