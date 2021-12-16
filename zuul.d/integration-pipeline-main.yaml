@@ -108,6 +108,8 @@
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
         - create-scenario010-trigger-for-downstream:
+            vars:
+              trigger_branch: master
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push
         - periodic-tripleo-ci-build-containers-ubi-8-push:
