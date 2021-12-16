@@ -3,6 +3,41 @@
 # Zuul layout for TripleO OVB RDO Cloud related jobs.
 # It contains all the jobs related to OVB testing in RDO Cloud.
 
+# =================  C E N T O S  9  C H E C K  J O B S
+
+- job:
+    name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001
+    parent: tripleo-ci-base-ovb-rdo-centos-9
+    branches: ^(?!stable/(queens|rocky|stein|train|wallaby)).*$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '001'
+
+- job:
+    name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset035
+    parent: tripleo-ci-base-ovb-rdo-centos-9
+    branches: ^(?!stable/(queens|rocky|stein|train|wallaby)).*$
+    vars:
+      nodes: 3ctlr_1comp
+      featureset: '035'
+
+- job:
+    name: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039
+    parent: tripleo-ci-base-ovb-rdo-centos-9
+    branches: ^(?!stable/(queens|rocky|stein|train|wallaby)).*$
+    vars: &fs39_vars
+      nodes: 3ctlr_1comp_1supp
+      featureset: '039'
+      playbooks:
+        - ovb-setup.yml
+        - baremetal-full-freeipa.yml
+        - baremetal-full-undercloud.yml
+        - baremetal-full-overcloud-prep.yml
+        - baremetal-full-overcloud.yml
+        - baremetal-full-overcloud-validate.yml
+
+# =================  C E N T O S  8  C H E C K  J O B S
+
 - job:
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
     parent: tripleo-ci-base-ovb-rdo-centos-8
@@ -149,16 +184,7 @@
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039
     parent: tripleo-ci-base-ovb-rdo-centos-8
     branches: ^(?!stable/(newton|ocata|pike|queens|rocky|stein)).*$
-    vars: &fs39_vars
-      nodes: 3ctlr_1comp_1supp
-      featureset: '039'
-      playbooks:
-        - ovb-setup.yml
-        - baremetal-full-freeipa.yml
-        - baremetal-full-undercloud.yml
-        - baremetal-full-overcloud-prep.yml
-        - baremetal-full-overcloud.yml
-        - baremetal-full-overcloud-validate.yml
+    vars: *fs39_vars
 
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_1cellctrl_1comp-featureset063
