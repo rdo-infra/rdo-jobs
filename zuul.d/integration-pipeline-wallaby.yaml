@@ -49,6 +49,11 @@
         - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-wallaby:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+        - create-scenario010-trigger-for-downstream:
+            vars:
+              target_branch: wallaby
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
         - periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-wallaby:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
