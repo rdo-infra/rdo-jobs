@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "49e0e73a_5e057dd0",
+        "filename": "zuul.d/integration-pipeline-main.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2021-12-17T07:39:57Z",
+      "side": 1,
+      "message": "lets use \u0026build_con_ubi_8_push_master \n\nhere for consistency please (i.e. include the branch name)",
+      "range": {
+        "startLine": 20,
+        "startChar": 85,
+        "endLine": 20,
+        "endChar": 105
+      },
+      "revId": "74100ffc03da31d0aecabee1a2e19ed13cf435c8",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d500c606_16943d4f",
+        "filename": "zuul.d/integration-pipeline-train.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2021-12-17T07:39:57Z",
+      "side": 1,
+      "message": "lets make it consistent so its easier to follow?\n\ne.g.\n\n\u0026promoted_comp_to_ci_testing_train\n\ni.e. like the master one but with _branch on the end of it _train",
+      "range": {
+        "startLine": 9,
+        "startChar": 70,
+        "endLine": 9,
+        "endChar": 92
+      },
+      "revId": "74100ffc03da31d0aecabee1a2e19ed13cf435c8",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efc00da6_161a2778",
+        "filename": "zuul.d/integration-pipeline-train.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2021-12-17T07:39:57Z",
+      "side": 1,
+      "message": "build_con_ubi_8_push_train please?\n\n (doesn\u0027t have to be all of that but just be consistent please?\nmaster one is build_con_ubi_8_push  so lets make this one build_con_ubi_8_push_train",
+      "range": {
+        "startLine": 22,
+        "startChar": 70,
+        "endLine": 22,
+        "endChar": 89
+      },
+      "revId": "74100ffc03da31d0aecabee1a2e19ed13cf435c8",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    }
+  ]
+}
