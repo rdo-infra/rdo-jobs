@@ -113,6 +113,12 @@
         - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-network-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-network-promote-consistent-to-component-ci-testing
+        - create-scenario010-trigger-for-downstream:
+            vars:
+              trigger_branch: ussuri
+              trigger_component: network
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-standalone-full-tempest-api-network-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-network-promote-consistent-to-component-ci-testing
@@ -134,6 +140,12 @@
         - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
+        - create-scenario010-trigger-for-downstream:
+            vars:
+              trigger_branch: ussuri
+              trigger_component: octavia
+            dependencies:
+              - periodic-tripleo-centos-8-ussuri-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-containers-multinode-octavia-ussuri:
             dependencies:
               - periodic-tripleo-centos-8-ussuri-component-octavia-promote-consistent-to-component-ci-testing

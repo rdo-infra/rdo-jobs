@@ -149,6 +149,12 @@
         - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-network-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
+        - create-scenario010-trigger-for-downstream:
+            vars:
+              trigger_branch: master
+              trigger_component: network
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-containers-multinode-network-master:
             dependencies:
               - periodic-tripleo-centos-8-master-component-network-promote-consistent-to-component-ci-testing
@@ -174,6 +180,12 @@
             dependencies:
               - periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-master:
+            dependencies:
+              - periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
+        - create-scenario010-trigger-for-downstream:
+            vars:
+              trigger_branch: master
+              trigger_component: octavia
             dependencies:
               - periodic-tripleo-centos-8-master-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-containers-multinode-octavia-master:

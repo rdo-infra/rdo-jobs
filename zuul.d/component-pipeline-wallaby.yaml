@@ -131,6 +131,12 @@
         - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-network-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-network-promote-consistent-to-component-ci-testing
+        - create-scenario010-trigger-for-downstream:
+            vars:
+              trigger_branch: wallaby
+              trigger_component: network
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-standalone-full-tempest-api-network-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-network-promote-consistent-to-component-ci-testing
@@ -153,6 +159,12 @@
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-octavia-promote-consistent-to-component-ci-testing
+        - create-scenario010-trigger-for-downstream:
+            vars:
+              trigger_branch: wallaby
+              trigger_component: octavia
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-containers-multinode-octavia-wallaby:
