@@ -1054,3 +1054,25 @@
     parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-component-master
     vars:
       component: tripleo
+
+# trigger jobs for scenario010
+
+- job:
+    name: create-scenario010-trigger-for-downstream-component-master
+    parent: create-scenario010-trigger-for-downstream
+    abstract: true
+    vars:
+      trigger_branch: master
+      trigger_component: "{{ component }}"
+
+- job:
+    name: create-scenario010-trigger-for-downstream-network-master
+    parent: create-scenario010-trigger-for-downstream-component-master
+    vars:
+      component: network
+
+- job:
+    name: create-scenario010-trigger-for-downstream-octavia-master
+    parent: create-scenario010-trigger-for-downstream-component-master
+    vars:
+      component: octavia
