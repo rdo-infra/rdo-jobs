@@ -141,6 +141,22 @@
               - manifests/profile/base/neutron/plugins/ovs/opendaylight.pp
               - tox.ini
 
+# Temporary templates for CentOS 9 OVB check jobs
+
+- project-template:
+    name: tripleo-ovb-c9
+    openstack-check:
+      jobs:
+        - tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001:
+            irrelevant-files: *fs001_irrelevant_files
+
+- project-template:
+    name: tripleo-ovb-fs35-c9
+    openstack-check:
+      jobs:
+        - tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset035:
+            irrelevant-files: *fs001_irrelevant_files
+
 # TripleO CI templates - fs35
 - project-template:
     name: tripleo-ovb-fs35
