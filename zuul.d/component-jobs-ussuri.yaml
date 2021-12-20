@@ -683,3 +683,20 @@
           - 'environments/low-memory-usage.yaml'
           - 'environments/docker-ha.yaml'
           - 'environments/podman.yaml'
+
+# trigger jobs for scenario010
+
+- job:
+    name: create-scenario010-trigger-for-downstream-network-ussuri
+    parent: create-scenario010-trigger-for-downstream-network-master
+    vars:
+      trigger_branch: ussuri
+      trigger_component: network
+
+- job:
+    name: create-scenario010-trigger-for-downstream-octavia-ussuri
+    parent: create-scenario010-trigger-for-downstream-octavia-master
+    vars:
+      trigger_branch: ussuri
+      trigger_component: octavia
+

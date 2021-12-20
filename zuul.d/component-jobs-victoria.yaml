@@ -699,3 +699,19 @@
       release: victoria
       branch_override: 'stable/victoria'
       component: tripleo
+
+# trigger jobs for scenario010
+
+- job:
+    name: create-scenario010-trigger-for-downstream-network-victoria
+    parent: create-scenario010-trigger-for-downstream-network-master
+    vars:
+      trigger_branch: victoria
+      trigger_component: network
+
+- job:
+    name: create-scenario010-trigger-for-downstream-octavia-victoria
+    parent: create-scenario010-trigger-for-downstream-octavia-master
+    vars:
+      trigger_branch: victoria
+      trigger_component: octavia
