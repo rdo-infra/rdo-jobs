@@ -529,3 +529,22 @@
           - primary
       - name: peers
         nodes: []
+
+# Fake nodeset for cs9 multinode jobs
+- nodeset:
+    name: two-centos-9-nodes
+    nodes:
+      - name: primary
+        label: cloud-centos-9-stream
+      - name: secondary
+        label: cloud-centos-9-stream
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes:
+          - secondary
+      - name: subnodes
+        nodes:
+          - secondary
