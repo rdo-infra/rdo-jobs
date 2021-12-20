@@ -786,3 +786,19 @@
       release: wallaby
       branch_override: 'stable/wallaby'
       component: tripleo
+
+# trigger jobs for scenario010
+
+- job:
+    name: create-scenario010-trigger-for-downstream-network-wallaby
+    parent: create-scenario010-trigger-for-downstream-network-master
+    vars:
+      trigger_branch: wallaby
+      trigger_component: network
+
+- job:
+    name: create-scenario010-trigger-for-downstream-octavia-wallaby
+    parent: create-scenario010-trigger-for-downstream-octavia-master
+    vars:
+      trigger_branch: wallaby
+      trigger_component: octavia

@@ -711,3 +711,19 @@
     vars:
       release: train
       branch_override: 'stable/train'
+
+# trigger jobs for scenario010
+
+- job:
+    name: create-scenario010-trigger-for-downstream-network-train
+    parent: create-scenario010-trigger-for-downstream-network-master
+    vars:
+      trigger_branch: train
+      trigger_component: network
+
+- job:
+    name: create-scenario010-trigger-for-downstream-octavia-train
+    parent: create-scenario010-trigger-for-downstream-octavia-master
+    vars:
+      trigger_branch: train
+      trigger_component: octavia
