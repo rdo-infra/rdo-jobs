@@ -17,11 +17,9 @@
         - periodic-tripleo-ci-centos-8-scenario012-standalone-wallaby: *build_containers_ubi_8_push_wallaby
         - periodic-tripleo-ci-centos-8-standalone-full-tempest-api-wallaby: *build_containers_ubi_8_push_wallaby
         - periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-wallaby: *build_containers_ubi_8_push_wallaby
-        - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-wallaby: *build_containers_ubi_8_push_wallaby
         - periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-wallaby: *build_containers_ubi_8_push_wallaby
         - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-wallaby: *build_containers_ubi_8_push_wallaby
         - periodic-tripleo-ci-centos-8-standalone-upgrade-wallaby: *build_containers_ubi_8_push_wallaby
-        - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-wallaby: *build_containers_ubi_8_push_wallaby
         - create-scenario010-trigger-for-downstream:
             vars:
               trigger_branch: wallaby
