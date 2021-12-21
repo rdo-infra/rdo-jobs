@@ -122,9 +122,6 @@
         - periodic-tripleo-ci-centos-8-scenario007-standalone-network-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-network-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-network-train:
-            dependencies:
-              - periodic-tripleo-centos-8-train-component-network-promote-consistent-to-component-ci-testing
         - create-scenario010-trigger-for-downstream-network-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-network-promote-consistent-to-component-ci-testing
@@ -144,9 +141,6 @@
             dependencies:
               - periodic-tripleo-centos-8-train-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-scenario007-standalone-octavia-train:
-            dependencies:
-              - periodic-tripleo-centos-8-train-component-octavia-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-octavia-train:
             dependencies:
               - periodic-tripleo-centos-8-train-component-octavia-promote-consistent-to-component-ci-testing
         - create-scenario010-trigger-for-downstream-octavia-train:
