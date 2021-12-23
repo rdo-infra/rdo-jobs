@@ -30,6 +30,7 @@
         - create-scenario010-trigger-for-downstream:
             vars:
               trigger_branch: train
+              trigger_os_distro: centos_8
             dependencies: *dep_build_con_ubi_8_push_train
         - periodic-tripleo-ci-centos-8-containers-multinode-train: *build_con_ubi_8_push_train
         - periodic-tripleo-ci-centos-8-scenario007-multinode-oooq-container-train: *build_con_ubi_8_push_train

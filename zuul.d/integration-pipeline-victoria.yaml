@@ -21,6 +21,7 @@
         - create-scenario010-trigger-for-downstream:
             vars:
               trigger_branch: victoria
+              trigger_os_distro: centos_8
             dependencies: *dep_build_con_ubi_8_push_victoria
         - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-victoria: *build_con_ubi_8_push_victoria
         - periodic-tripleo-ci-centos-8-standalone-upgrade-victoria: *build_con_ubi_8_push_victoria

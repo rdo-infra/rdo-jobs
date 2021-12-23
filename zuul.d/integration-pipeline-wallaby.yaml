@@ -23,6 +23,7 @@
         - create-scenario010-trigger-for-downstream:
             vars:
               trigger_branch: wallaby
+              trigger_os_distro: centos_8
             dependencies: *dep_build_containers_ubi_8_push_wallaby
         ## ovb
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby: &ovb_deps_wallaby
