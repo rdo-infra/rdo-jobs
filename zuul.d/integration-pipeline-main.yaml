@@ -40,6 +40,7 @@
         - create-scenario010-trigger-for-downstream:
             vars:
               trigger_branch: master
+              trigger_os_distro: centos_8
             dependencies: *dep_build_con_ubi_8_push_master
         - periodic-tripleo-ci-build-containers-ubi-8-push: &promoted_comp_to_ci_testing_master
             dependencies:
