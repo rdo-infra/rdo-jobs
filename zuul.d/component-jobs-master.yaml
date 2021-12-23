@@ -1064,6 +1064,7 @@
     vars:
       trigger_branch: master
       trigger_component: "{{ component }}"
+      trigger_os_distro: centos_8
 
 - job:
     name: create-scenario010-trigger-for-downstream-network-master
