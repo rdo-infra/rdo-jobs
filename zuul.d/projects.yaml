@@ -129,13 +129,19 @@
             # until we fix https://github.com/containers/podman/issues/4665
             voting: false
         - podman-package-centos-7: *podman
-        - podman-package-fedora-33: *podman
+        - podman-package-centos-9: *podman
         - tripleo-podman-integration-centos-8-standalone:
             files:
               - zuul.d/podman.yaml
               - playbooks/podman/.*
             dependencies:
               - podman-package-centos-8
+        - tripleo-podman-integration-centos-9-standalone:
+            files:
+              - zuul.d/podman.yaml
+              - playbooks/podman/.*
+            dependencies:
+              - podman-package-centos-9
 
     gate:
       jobs:

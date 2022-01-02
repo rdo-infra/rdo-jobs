@@ -24,10 +24,9 @@
     nodeset: centos-7
 
 - job:
-    name: podman-package-fedora-33
+    name: podman-package-centos-9
     parent: podman-package-centos-8
-    nodeset: single-fedora-33-node
-
+    nodeset: single-centos-9-stream-node-vexxhost
 
 ## Plain standalone deployment
 
@@ -46,6 +45,11 @@
       featureset_override:
         run_tempest: false
         use_os_tempest: true
+
+- job:
+    name: tripleo-podman-integration-centos-9-standalone
+    parent: tripleo-podman-integration-centos-8-standalone
+    nodeset: single-centos-9-stream-node-vexxhost
 
 - job:
     name: tripleo-ci-centos-8-standalone-podman-ansible
