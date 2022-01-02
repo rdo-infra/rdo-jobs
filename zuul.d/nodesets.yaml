@@ -529,7 +529,7 @@
     name: single-centos-9-node
     nodes:
       - name: primary
-        label: cloud-centos-9-stream
+        label: cloud-centos-9-stream-tripleo-vexxhost
     groups:
       - name: switch
         nodes:
@@ -542,9 +542,9 @@
     name: two-centos-9-nodes
     nodes:
       - name: primary
-        label: cloud-centos-9-stream
+        label: cloud-centos-9-stream-tripleo-vexxhost
       - name: secondary
-        label: cloud-centos-9-stream
+        label: cloud-centos-9-stream-tripleo-vexxhost
     groups:
       - name: switch
         nodes:
