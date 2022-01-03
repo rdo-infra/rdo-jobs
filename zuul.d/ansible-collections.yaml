@@ -29,3 +29,18 @@
     required-projects:
       - name: github.com/ansible-collections/ansible.posix
         override-checkout: main
+
+- job:
+    name: periodic-tripleo-collection-integration-centos-9-standalone-community-general
+    parent: periodic-tripleo-collection-integration-centos-8-standalone-community-general
+    nodeset: single-centos-9-stream-node-vexxhost
+
+- job:
+    name: periodic-tripleo-collection-integration-centos-9-standalone-ansible-netcommon
+    parent: periodic-tripleo-collection-integration-centos-8-standalone-ansible-netcommon
+    nodeset: single-centos-9-stream-node-vexxhost
+
+- job:
+    name: periodic-tripleo-collection-integration-centos-9-standalone-ansible-posix
+    parent: periodic-tripleo-collection-integration-centos-8-standalone-ansible-posix
+    nodeset: single-centos-9-stream-node-vexxhost
