@@ -1,0 +1,26 @@
+---
+## containers/images
+
+- job:
+    name: periodic-tripleo-centos-9-buildimage-overcloud-full-wallaby
+    parent: periodic-tripleo-centos-9-buildimage-overcloud-full-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-centos-9-buildimage-ironic-python-agent-wallaby
+    parent: periodic-tripleo-centos-9-buildimage-ironic-python-agent-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-centos-9-buildimage-overcloud-hardened-uefi-full-wallaby
+    parent: periodic-tripleo-centos-9-buildimage-overcloud-hardened-uefi-full-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
