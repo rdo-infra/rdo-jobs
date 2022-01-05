@@ -43,8 +43,9 @@
 
 - name: Build collection
   shell: >-
-    ~/build_collection.sh > ~/{{ artg_change.project|replace('/', '-') }}-build_rpm-err.log 2>&1 || true;
-    ~/build_collection.sh > ~/{{ artg_change.project|replace('/', '-') }}-build_rpm.log 2>&1
+    mkdir -p ~/logs;
+    ~/build_collection.sh > ~/logs/{{ artg_change.project|replace('/', '-') }}-build_rpm-err.log 2>&1 || true;
+    ~/build_collection.sh > ~/logs/{{ artg_change.project|replace('/', '-') }}-build_rpm.log 2>&1;
   args:
     chdir: "{{ collection_path }}"
   changed_when: true

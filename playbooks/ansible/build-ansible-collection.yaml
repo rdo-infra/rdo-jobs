@@ -20,26 +20,58 @@
       tags:
         - skip_ansible_lint
 
-    # TODO(sshnaidm): change URL according to host distro
-    - name: Install delorean deps for Ansible and collection deps
-      become: true
-      get_url:
-        url: https://trunk.rdoproject.org/centos8-master/delorean-deps.repo
-        dest: /etc/yum.repos.d/delorean-deps.repo
-      retries: 5
-      delay: 5
-      register: result
-      until: result is success
+    - name: Check if ansible-core is installed
+      command: rpm -q ansible-core
+      register: ansible_core_installed
+      failed_when: false
+      changed_when: false
+      tags:
+        - skip_ansible_lint
 
-    - when: ansible_installed.rc != 0
-      become: true
+    - when:
+        - ansible_distribution_major_version is version(8, '==')
       block:
+        - name: Install delorean deps for Ansible and collection deps
+          become: true
+          get_url:
+            url: https://trunk.rdoproject.org/centos8-master/delorean-deps.repo
+            dest: /etc/yum.repos.d/delorean-deps.repo
+          retries: 5
+          delay: 5
+          register: result
+          until: result is success
 
-        - name: Install ansible
-          package:
-            name:
-              - ansible
-            update_cache: true
+        - when: ansible_installed.rc != 0
+          become: true
+          block:
+
+            - name: Install ansible
+              package:
+                name:
+                  - ansible
+                update_cache: true
+    - when:
+        - ansible_distribution_major_version is version(9, '==')
+      block:
+        - name: Install delorean deps for Ansible and collection deps
+          become: true
+          get_url:
+            url: https://trunk.rdoproject.org/centos9-master/delorean-deps.repo
+            dest: /etc/yum.repos.d/delorean-deps.repo
+          retries: 5
+          delay: 5
+          register: result
+          until: result is success
+
+        - when: ansible_core_installed.rc != 0
+          become: true
+          block:
+
+            - name: Install ansible-core
+              package:
+                name:
+                  - ansible-core
+                update_cache: true
 
     - name: Install packages
       package:

@@ -1,7 +1,7 @@
 ---
 - name: Download delorean-deps
   get_url:
-    url: https://trunk.rdoproject.org/centos8-master/delorean-deps.repo
+    url: https://trunk.rdoproject.org/centos{{ ansible_distribution_major_version }}-master/delorean-deps.repo
     dest: /etc/yum.repos.d/
   become: true
 
