@@ -434,12 +434,42 @@
         nodes: []
 
 - nodeset:
+    name: single-centos-9-stream-no-update-node-vexxhost
+    nodes:
+      - name: primary
+        label: cloud-centos-9-stream-tripleo-no-update-vexxhost
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
+
+- nodeset:
     name: two-centos-9-nodes-vexxhost
     nodes:
       - name: primary
         label: cloud-centos-9-stream-tripleo-vexxhost
       - name: secondary
         label: cloud-centos-9-stream-tripleo-vexxhost
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes:
+          - secondary
+      - name: subnodes
+        nodes:
+          - secondary
+
+- nodeset:
+    name: two-centos-9-no-update-nodes-vexxhost
+    nodes:
+      - name: primary
+        label: cloud-centos-9-stream-tripleo-no-update-vexxhost
+      - name: secondary
+        label: cloud-centos-9-stream-tripleo-no-update-vexxhost
     groups:
       - name: switch
         nodes:
