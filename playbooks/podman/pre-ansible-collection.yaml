@@ -23,8 +23,11 @@
       changed_when: false
       tags:
         - skip_ansible_lint
+      when: ansible_distribution_major_version is version(8, '==')
 
-    - when: ansible_installed.rc != 0
+    - when:
+        - ansible_installed.rc != 0
+        - ansible_distribution_major_version is version(8, '==')
       become: true
       block:
 
@@ -45,6 +48,12 @@
             name:
               - epel-release
             state: absent
+
+    - name: Install ansible-core for CentOS 9
+      package:
+        name:
+          - ansible-core
+      when: ansible_distribution_major_version is version(9, '==')
 
     - name: Install packages
       package:
