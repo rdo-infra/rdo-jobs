@@ -1,0 +1,8 @@
+---
+# Centos9 stream wallaby jobs
+## promote to tripleo-ci-testing
+- job:
+    name: periodic-tripleo-centos-9-wallaby-promote-promoted-components-to-tripleo-ci-testing
+    parent: periodic-tripleo-centos-9-master-promote-promoted-components-to-tripleo-ci-testing
+    vars:
+      release: wallaby

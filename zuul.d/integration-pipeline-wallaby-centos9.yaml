@@ -1,0 +1,8 @@
+---
+# master integration pipeline
+- project-template:
+    name: integration-pipeline-wallaby-centos9
+    openstack-periodic-integration-stable1-cs9:
+      jobs:
+        ##### wallaby #####
+        - periodic-tripleo-centos-9-wallaby-promote-promoted-components-to-tripleo-ci-testing
