@@ -20,20 +20,20 @@
           mkdir -p $WORKSPACE/logs
           cat << EOF | sudo tee /etc/yum.repos.d/opstools-build.repo
           [centos-opstools-collectd-5-testing]
-          name=CentOS-8 - OpsTools collectd-5 - testing repo
-          baseurl=https://buildlogs.centos.org/centos/\$releasever/opstools/\$basearch/collectd-5
+          name=CentOS-8-Stream - OpsTools collectd-5 - testing repo
+          baseurl=https://buildlogs.centos.org/centos/\$releasever-stream/opstools/\$basearch/collectd-5
           gpgcheck=0
           enabled=1
 
           [centos-messaging-qpid-proton-testing]
-          name=CentOS-8 - Messaging QPID proton - testing repo
-          baseurl=https://buildlogs.centos.org/centos/\$releasever/messaging/\$basearch/qpid-proton
+          name=CentOS-8-Stream - Messaging QPID proton - testing repo
+          baseurl=https://buildlogs.centos.org/centos/\$releasever-stream/messaging/\$basearch/qpid-proton
           gpgcheck=0
           enabled=1
 
           [centos-cloud]
-          name=CentOS-8 - OpenStack Train testing repository
-          baseurl=https://buildlogs.centos.org/centos/\$releasever/cloud/\$basearch/openstack-train/
+          name=CentOS-Stream - OpenStack Yoga testing repository
+          baseurl=https://buildlogs.centos.org/centos/\$releasever-stream/cloud/\$basearch/openstack-yoga/
           gpgcheck=0
           enabled=1
           EOF
