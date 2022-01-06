@@ -18,6 +18,12 @@
       containers_base_image: quay.io/centos/centos:stream9
       promote_source: tripleo-ci-testing
 
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-composes-dependency-latest-master
+    parent: periodic-tripleo-ci-centos-9-standalone-composes-dependency-master
+    vars:
+      centos_compose_url: https://odcs.stream.centos.org/production/latest-CentOS-Stream/compose/
+
 ### centos 8 multiple dependency jobs
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-multiple-dependency-master
