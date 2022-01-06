@@ -709,3 +709,72 @@
     parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-component-master
     vars:
       component: security
+
+
+## Update and Upgrade jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-master
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-master
+    abstract: true
+    vars: &component_vars_multinode_updates
+      component: component
+      release: master
+      dlrn_server_url: "trunk.rdoproject.org"
+      promote_source: component-ci-testing
+      add_repos:
+        - type: generic
+          reponame: "{{ component }}"
+          filename: "{{ component }}-component.repo"
+          priority: 1
+          baseurl: "https://{{ dlrn_server_url }}/centos8-{{ release }}/component/{{ component }}/component-ci-testing"
+          update_container: true
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-baremetal-master
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      component: baremetal
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-clients-master
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      component: clients
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-cloudops-master
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-common-master
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-network-master
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-security-master
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      component: security
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-tripleo-master
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-tempest-master
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-master
+    vars:
+      component: tempest
+
