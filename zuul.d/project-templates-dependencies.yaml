@@ -3,6 +3,16 @@
 #############################################################
 - project-template:
     name: dependencies-pipeline-main
+
+    openstack-dependencies-latest-compose:
+      jobs:
+        - periodic-tripleo-ci-centos-9-standalone-composes-dependency-latest-master:
+            dependencies:
+              - periodic-tripleo-ci-centos-9-standalone-master
+        - periodic-tripleo-ci-centos-9-standalone-master:
+            vars:
+              force_periodic: false
+
     openstack-dependencies-containertools:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-container-tools-container-build-master:
