@@ -16,3 +16,12 @@
       release: wallaby
       branch_override: 'stable/wallaby'
       registry_namespace: tripleowallabycentos9
+
+## standalone
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: "stable/wallaby"
