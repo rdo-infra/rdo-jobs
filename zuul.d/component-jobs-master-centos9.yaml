@@ -688,3 +688,24 @@
     parent: create-scenario010-trigger-for-downstream-component-master
     vars:
       component: octavia
+
+
+## standalone-on-multinode-ipa jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-component-master
+    parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-master
+    abstract: true
+    vars: *component_vars_standalone
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-master
+    parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-component-master
+    vars:
+      component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-security-master
+    parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-component-master
+    vars:
+      component: security
