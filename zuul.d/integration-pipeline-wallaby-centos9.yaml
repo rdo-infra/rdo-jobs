@@ -6,6 +6,10 @@
       jobs:
         ##### wallaby #####
         - periodic-tripleo-centos-9-wallaby-promote-promoted-components-to-tripleo-ci-testing
-        - periodic-tripleo-ci-build-containers-centos-9-push-wallaby: &promoted_comp_to_ci_testing_master
+        - periodic-tripleo-ci-build-containers-centos-9-push-wallaby: &cs9_promoted_comp_to_ci_testing_wallaby
             dependencies:
               - periodic-tripleo-centos-9-wallaby-promote-promoted-components-to-tripleo-ci-testing
+        - periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-master: &build_con_cs_9_push_wallaby
+            dependencies: &dep_build_con_ubi_9_push_wallaby
+              - periodic-tripleo-ci-build-containers-centos-9-push-wallaby
+        - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-master: *build_con_cs_9_push_wallaby
