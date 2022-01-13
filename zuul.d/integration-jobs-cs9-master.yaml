@@ -118,3 +118,13 @@
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset035-master
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-master
     nodeset: tripleo-ovb-centos-9-primary-vexxhost
+
+- job:
+    name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-master
+    nodeset: tripleo-ovb-centos-9-primary-vexxhost
+
+- job:
+    name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset064-master
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset064-master
+    nodeset: tripleo-ovb-centos-9-primary-vexxhost
