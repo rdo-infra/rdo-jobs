@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "82ce39dd_8802d36e",
+        "filename": "zuul.d/integration-pipeline-wallaby-centos9.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2022-01-13T12:30:47Z",
+      "side": 1,
+      "message": "It should depends on periodic-tripleo-ci-build-containers-centos-9-push-wallaby (it builds the containers and push it to rdo registry) and standalone job will consume those containers from build containers jobs.\n\nWe can edit that line 12 like this:\n```\n- periodic-tripleo-ci-centos-9-standalone-wallaby:\n    dependencies:\n      - periodic-tripleo-ci-build-containers-centos-9-push-wallaby\n```\nhttps://zuul-ci.org/docs/zuul/3.15.0/reference/job_def.html#attr-job.dependencies\n\nMore example is here: https://github.com/rdo-infra/rdo-jobs/blob/master/zuul.d/integration-pipeline-wallaby.yaml#L9",
+      "range": {
+        "startLine": 12,
+        "startChar": 10,
+        "endLine": 12,
+        "endChar": 57
+      },
+      "revId": "c5fa09e55e2db8cb8317fc5a0c687c6490d5cbc4",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    }
+  ]
+}
