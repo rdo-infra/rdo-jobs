@@ -1,0 +1,6 @@
+- hosts: all
+  tasks:
+    - shell:
+        cmd: "WORKSPACE={{ ansible_user_dir }} ./pkg-export.sh opstools7-fluentd-012-el7 cbs"
+        chdir: "{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}"
+      environment: '{{ zuul | zuul_legacy_vars }}'

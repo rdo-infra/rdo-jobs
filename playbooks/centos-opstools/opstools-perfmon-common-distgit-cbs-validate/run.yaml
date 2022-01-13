@@ -1,0 +1,42 @@
+- hosts: all
+  tasks:
+    - shell:
+        cmd: "WORKSPACE={{ ansible_user_dir }} ./pkg-validate.sh opstools8-collectd-5-el8s cbs"
+        chdir: "{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}"
+      environment: '{{ zuul | zuul_legacy_vars }}'
+      changed_when: true
+
+    - shell:
+        cmd: |
+          if [ $(rpm -qa|grep -c openstack-macros) -eq 1 ]; then
+            sudo dnf uninstall openstack-macros
+          fi
+        changed_when: true
+
+    - shell:
+        cmd: "WORKSPACE={{ ansible_user_dir }} ./pkg-validate.sh opstools9s-collectd-5-el9s cbs"
+        chdir: "{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}"
+      environment: '{{ zuul | zuul_legacy_vars }}'
+      changed_when: true
+
+    - name: validate step
+      shell:
+        cmd: |
+          # First, we create a chroot to be used in the installation
+          sudo mkdir -p /tmp/root/var/lib/rpm
+          sudo rpm --root /tmp/root --initdb
+          sudo dnf -y install dnf-utils
+          dnf download centos-release
+          sudo rpm --root /tmp/root -ivh --nodeps centos-release-*.rpm
+          # rpmfactory-temp-release-1.0-1 is built by the base-pkg-validation builder
+          # It defines two repositories: the newton one (from CBS) and the temporary CBS one that contains
+          # packages we freshly built within that Koji task
+          sudo rpm --root /tmp/root -i {{ ansible_user_dir }}/rpmbuild/RPMS/noarch/rpmfactory-temp-release-1.0-1.noarch.rpm
+          # Packages in the temp repository contained only the packages fetched from CBS
+          # This should list the packages we just build in that Koji task
+          sudo dnf --installroot=/tmp/root --disablerepo='*' --enablerepo='temp' list available
+          pkgs=$(sudo dnf --installroot=/tmp/root --disablerepo='*' --enablerepo='temp' --exclude='*.src' list available | grep -v 'aarch64' | grep -v 'ppc64le' | awk '/temp$/ {printf "%s ", $1}')
+          # Force installation of python-setuptools as is required for some packages (ansible)
+          sudo dnf install --installroot=/tmp/root --disableexcludes=all -y python3-setuptools
+          # Here we install locally the kust built packages
+          sudo dnf install --installroot=/tmp/root -y $pkgs
