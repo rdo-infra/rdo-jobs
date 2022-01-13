@@ -248,6 +248,136 @@
     nodeset: rdo-centos-8
 
 - job:
+    name: opstools-common-distgit-cbs-validate
+    description: |
+      A job to validate opstools-common cbs builds.
+    final: true
+    pre-run: playbooks/centos-opstools/opstools-common-distgit-cbs-validate/pre.yaml
+    run: playbooks/centos-opstools/opstools-common-distgit-cbs-validate/run.yaml
+    required-projects:
+      - name: gating_scripts
+    nodeset: rdo-centos-7
+    secrets:
+      - cbs_opstools
+
+- job:
+    name: opstools-common-distgit-cbs-final-build
+    description: |
+      A job to validate opstools-common cbs final builds.
+    final: true
+    pre-run: playbooks/centos-opstools/opstools-common-distgit-cbs-validate/pre.yaml
+    run: playbooks/centos-opstools/opstools-common-distgit-cbs-final-build/run.yaml
+    required-projects:
+      - name: gating_scripts
+    nodeset: rdo-centos-7
+    secrets:
+      - cbs_opstools
+
+- job:
+    name: opstools-fluentd-012-distgit-cbs-validate
+    description: |
+      A job to validate opstools-fluentd-012 cbs builds.
+    final: true
+    pre-run: playbooks/centos-opstools/opstools-common-distgit-cbs-validate/pre.yaml
+    run: playbooks/centos-opstools/opstools-fluentd-012-distgit-cbs-validate/run.yaml
+    required-projects:
+      - name: gating_scripts
+    nodeset: rdo-centos-7
+    secrets:
+      - cbs_opstools
+
+- job:
+    name: opstools-fluentd-012-distgit-cbs-final-build
+    description: |
+      A job to validate opstools-fluentd-012 cbs final builds.
+    final: true
+    pre-run: playbooks/centos-opstools/opstools-common-distgit-cbs-validate/pre.yaml
+    run: playbooks/centos-opstools/opstools-fluentd-012-distgit-cbs-final-build/run.yaml
+    required-projects:
+      - name: gating_scripts
+    nodeset: rdo-centos-7
+    secrets:
+      - cbs_opstools
+
+- job:
+    name: opstools-perfmon-common-distgit-cbs-validate
+    description: |
+      A job to validate opstools-perfmon-common cbs builds.
+    final: true
+    pre-run: playbooks/centos-opstools/opstools-common-distgit-cbs-validate/pre.yaml
+    run: playbooks/centos-opstools/opstools-perfmon-common-distgit-cbs-validate/run.yaml
+    required-projects:
+      - name: gating_scripts
+    nodeset: rdo-centos-8
+    secrets:
+      - cbs_opstools
+
+- job:
+    name: opstools-perfmon-common-distgit-cbs-final-build
+    description: |
+      A job to validate opstools-perfmon-common cbs final builds.
+    final: true
+    pre-run: playbooks/centos-opstools/opstools-common-distgit-cbs-validate/pre.yaml
+    run: playbooks/centos-opstools/opstools-perfmon-common-distgit-cbs-final-build/run.yaml
+    required-projects:
+      - name: gating_scripts
+    nodeset: rdo-centos-8
+    secrets:
+      - cbs_opstools
+
+- job:
+    name: opstools-sensu-110-distgit-cbs-validate
+    description: |
+      A job to validate opstools-sensu-110 cbs builds.
+    final: true
+    pre-run: playbooks/centos-opstools/opstools-common-distgit-cbs-validate/pre.yaml
+    run: playbooks/centos-opstools/opstools-sensu-110-distgit-cbs-validate/run.yaml
+    required-projects:
+      - name: gating_scripts
+    nodeset: rdo-centos-7
+    secrets:
+      - cbs_opstools
+
+- job:
+    name: opstools-sensu-110-distgit-cbs-final-build
+    description: |
+      A job to validate opstools-sensu-110 cbs final builds.
+    final: true
+    pre-run: playbooks/centos-opstools/opstools-common-distgit-cbs-validate/pre.yaml
+    run: playbooks/centos-opstools/opstools-sensu-110-distgit-cbs-final-build/run.yaml
+    required-projects:
+      - name: gating_scripts
+    nodeset: rdo-centos-7
+    secrets:
+      - cbs_opstools
+
+- job:
+    name: opstools-sensu-common-distgit-cbs-validate
+    description: |
+      A job to validate opstools-sensu-common cbs builds.
+    final: true
+    pre-run: playbooks/centos-opstools/opstools-common-distgit-cbs-validate/pre.yaml
+    run: playbooks/centos-opstools/opstools-sensu-common-distgit-cbs-validate/run.yaml
+    required-projects:
+      - name: gating_scripts
+    nodeset: rdo-centos-7
+    secrets:
+      - cbs_opstools
+
+- job:
+    name: opstools-sensu-common-distgit-cbs-final-build
+    description: |
+      A job to validate opstools-sensu-common cbs final builds.
+    final: true
+    pre-run: playbooks/centos-opstools/opstools-common-distgit-cbs-validate/pre.yaml
+    run: playbooks/centos-opstools/opstools-sensu-common-distgit-cbs-final-build/run.yaml
+    required-projects:
+      - name: gating_scripts
+    nodeset: rdo-centos-7
+    secrets:
+      - cbs_opstools
+
+- job:
     name: weirdo-base-promote-consistent-to-puppet-ci-testing
     parent: weirdo-base-promote-dlrn
     abstract: true
