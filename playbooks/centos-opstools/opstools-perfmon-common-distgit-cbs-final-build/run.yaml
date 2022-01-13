@@ -1,0 +1,13 @@
+- hosts: all
+  tasks:
+    - shell:
+        cmd: "WORKSPACE={{ ansible_user_dir }} ./pkg-export.sh opstools8-collectd-5-el8s cbs"
+        chdir: "{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}"
+      environment: '{{ zuul | zuul_legacy_vars }}'
+      changed_when: true
+
+    - shell:
+        cmd: "WORKSPACE={{ ansible_user_dir }} ./pkg-export.sh opstools9s-collectd-5-el9s cbs"
+        chdir: "{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}"
+      environment: '{{ zuul | zuul_legacy_vars }}'
+      changed_when: true
