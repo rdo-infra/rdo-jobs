@@ -248,6 +248,40 @@
     nodeset: rdo-centos-8
 
 - job:
+    name: opstools-deprecated-warning
+    description: |
+      A job to warn developers that the package is no longer published.
+    final: true
+    run: playbooks/centos-opstools/opstools-deprecated-warning/run.yaml
+    nodeset: rdo-centos-8
+
+- job:
+    name: opstools-perfmon-common-distgit-cbs-validate
+    description: |
+      A job to validate opstools-perfmon-common cbs builds.
+    final: true
+    pre-run: playbooks/centos-opstools/opstools-perfmon-common-distgit-cbs-validate/pre.yaml
+    run: playbooks/centos-opstools/opstools-perfmon-common-distgit-cbs-validate/run.yaml
+    required-projects:
+      - name: gating_scripts
+    nodeset: rdo-centos-8-stream
+    secrets:
+      - cbs_opstools
+
+- job:
+    name: opstools-perfmon-common-distgit-cbs-final-build
+    description: |
+      A job to validate opstools-perfmon-common cbs final builds.
+    final: true
+    pre-run: playbooks/centos-opstools/opstools-perfmon-common-distgit-cbs-validate/pre.yaml
+    run: playbooks/centos-opstools/opstools-perfmon-common-distgit-cbs-final-build/run.yaml
+    required-projects:
+      - name: gating_scripts
+    nodeset: rdo-centos-8-stream
+    secrets:
+      - cbs_opstools
+
+- job:
     name: weirdo-base-promote-consistent-to-puppet-ci-testing
     parent: weirdo-base-promote-dlrn
     abstract: true
