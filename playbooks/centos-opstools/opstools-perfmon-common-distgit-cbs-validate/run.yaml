@@ -1,16 +1,16 @@
 - hosts: all
   tasks:
     - shell:
-        cmd: "WORKSPACE={{ ansible_user_dir }} ./pkg-validate.sh opstools8s-collectd-5-el8s cbs"
+        cmd: "WORKSPACE={{ ansible_user_dir }} ./pkg-validate.sh opstools{{ distro_ver }}-collectd-5-el{{ distro_ver }} cbs"
         chdir: "{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}"
       environment: '{{ zuul | zuul_legacy_vars }}'
       changed_when: true
 
-    - shell:
-        cmd: "WORKSPACE={{ ansible_user_dir }} ./pkg-validate.sh opstools9s-collectd-5-el9s cbs"
-        chdir: "{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}"
-      environment: '{{ zuul | zuul_legacy_vars }}'
-      changed_when: true
+#    - shell:
+#        cmd: "WORKSPACE={{ ansible_user_dir }} ./pkg-validate.sh opstools9s-collectd-5-el9s cbs"
+#        chdir: "{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}"
+#      environment: '{{ zuul | zuul_legacy_vars }}'
+#      changed_when: true
 
     - name: validate step
       shell:
