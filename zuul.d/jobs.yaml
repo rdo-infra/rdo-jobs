@@ -255,6 +255,7 @@
     run: playbooks/centos-opstools/opstools-deprecated-warning/run.yaml
     nodeset: rdo-centos-8
 
+# For testing, this will retain the name, eventually, it'll be renamed to ...-centos-8-stream
 - job:
     name: opstools-perfmon-common-distgit-cbs-validate
     description: |
@@ -264,7 +265,24 @@
     run: playbooks/centos-opstools/opstools-perfmon-common-distgit-cbs-validate/run.yaml
     required-projects:
       - name: gating_scripts
-    nodeset: rdo-centos-8-stream
+    vars:
+      distro_ver: 9s
+    nodeset: rdo-centos-9-stream
+    secrets:
+      - cbs_opstools
+
+- job:
+    name: opstools-perfmon-common-distgit-cbs-validate-centos9stream
+    description: |
+      A job to validate opstools-perfmon-common cbs builds.
+    final: true
+    pre-run: playbooks/centos-opstools/opstools-perfmon-common-distgit-cbs-validate/pre.yaml
+    run: playbooks/centos-opstools/opstools-perfmon-common-distgit-cbs-validate/run.yaml
+    required-projects:
+      - name: gating_scripts
+    vars:
+      distro_ver: 9s
+    nodeset: rdo-centos-9-stream
     secrets:
       - cbs_opstools
 
