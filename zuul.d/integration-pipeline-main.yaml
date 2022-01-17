@@ -1,8 +1,8 @@
 ---
-# master integration pipeline
+# master integration pipeline for CentOS Stream 8
 - project-template:
-    name: integration-pipeline-main
-    openstack-periodic-integration-main:
+    name: integration-pipeline-main-centos8
+    openstack-periodic-integration-main-centos8:
       jobs:
         ##### master #####
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-master: &ovb_dep_master

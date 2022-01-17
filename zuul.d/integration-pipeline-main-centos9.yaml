@@ -1,8 +1,8 @@
 ---
 # master integration pipeline
 - project-template:
-    name: integration-pipeline-main-centos9
-    openstack-periodic-integration-main-cs9:
+    name: integration-pipeline-main
+    openstack-periodic-integration-main:
       jobs:
         ##### master #####
         - periodic-tripleo-ci-centos-9-containers-multinode-master: &build_con_cs_9_push_master
