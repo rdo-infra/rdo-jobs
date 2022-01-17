@@ -7,6 +7,15 @@
       changed_when: true
 
     - shell:
+        cmd: |
+          if [ $(rpm -qa|grep -c openstack-macros) -eq 1 ]; then
+            sudo dnf remove openstack-macros
+          fi
+        chdir: "{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}"
+      environment: '{{ zuul | zuul_legacy_vars }}'
+      changed_when: true
+
+    - shell:
         cmd: "WORKSPACE={{ ansible_user_dir }} ./pkg-export.sh opstools9s-collectd-5-el9s cbs"
         chdir: "{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}"
       environment: '{{ zuul | zuul_legacy_vars }}'
