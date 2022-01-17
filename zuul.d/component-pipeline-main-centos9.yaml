@@ -95,7 +95,7 @@
             dependencies:
               - periodic-tripleo-centos-9-master-component-security-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-containers-multinode-security-master: *cs9_comp_security_to_ci_testing_master
-        - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-security-master: *cs9_comp_security_to_ci_testing_master
+        - periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-security-master: *cs9_comp_security_to_ci_testing_master
         - periodic-tripleo-centos-9-master-component-security-promote-consistent-to-component-ci-testing
     openstack-component-swift:
       jobs:
@@ -112,7 +112,7 @@
         - periodic-tripleo-ci-centos-9-containers-multinode-tripleo-master: *cs9_comp_tripleo_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-containers-multinode-tripleo-master-validation: *cs9_comp_tripleo_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-scenario004-standalone-tripleo-master: *cs9_comp_tripleo_to_ci_testing_master
-        - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-master: *cs9_comp_tripleo_to_ci_testing_master
+        - periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-tripleo-master: *cs9_comp_tripleo_to_ci_testing_master
         - periodic-tripleo-centos-9-master-component-tripleo-promote-consistent-to-component-ci-testing
     openstack-component-tempest:
       jobs:
