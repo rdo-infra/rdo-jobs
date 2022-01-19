@@ -239,13 +239,13 @@
     parent: base
     run: playbooks/centos-opstools/rpmbuild/run.yaml
     post-run: playbooks/centos-opstools/rpmbuild/post.yaml
-    nodeset: rdo-centos-8
+    nodeset: rdo-centos-8-stream
 
 - job:
     name: centos-opstools-rpmlint
     parent: base
     run: playbooks/centos-opstools/rpmlint/run.yaml
-    nodeset: rdo-centos-8
+    nodeset: rdo-centos-8-stream
 
 - job:
     name: opstools-deprecated-warning
@@ -254,6 +254,58 @@
     final: true
     run: playbooks/centos-opstools/opstools-deprecated-warning/run.yaml
     nodeset: rdo-centos-8-stream
+
+- job:
+    name: opstools-collectd-5-distgit-cbs-validate
+    description: |
+      A job to validate opstools-collectd-5 cbs builds.
+    parent: opstools-distgit-cbs-base
+    abstract: true
+    run: playbooks/centos-opstools/opstools-collectd-5-distgit-cbs-validate/run.yaml
+    required-projects:
+      - name: gating_scripts
+
+- job:
+    name: opstools-collectd-5-distgit-cbs-final-build
+    description: |
+      A job to validate opstools-collectd-5 cbs final builds.
+    parent: opstools-distgit-cbs-base
+    abstract: true
+    run: playbooks/centos-opstools/opstools-collectd-5-distgit-cbs-final-build/run.yaml
+    required-projects:
+      - name: gating_scripts
+
+- job:
+    name: opstools-collectd-5-distgit-cbs-validate-centos8s
+    description: |
+      A job to validate opstools-collectd-5 cbs build on CentOS 8 Stream
+    parent: opstools-collectd-5-distgit-cbs-validate
+    final: true
+    nodeset: rdo-centos-8-stream
+
+- job:
+    name: opstools-collectd-5-distgit-cbs-validate-centos9s
+    description: |
+      A job to validate opstools-collectd-5 cbs build on CentOS 9 Stream
+    parent: opstools-collectd-5-distgit-cbs-validate
+    final: true
+    nodeset: rdo-centos-9-stream
+
+- job:
+    name: opstools-collectd-5-distgit-cbs-final-build-centos8s
+    description: |
+      A job to validate opstools-collectd-5 cbs final builds on CentOS 8 Stream
+    parent: opstools-collectd-5-distgit-cbs-final-build
+    final: true
+    nodeset: rdo-centos-8-stream
+
+- job:
+    name: opstools-collectd-5-distgit-cbs-final-build-centos9s
+    description: |
+      A job to validate opstools-collectd-5 cbs final builds on CentOS 9 Stream.
+    parent: opstools-collectd-5-distgit-cbs-final-build
+    final: true
+    nodeset: rdo-centos-9-stream
 
 - job:
     name: weirdo-base-promote-consistent-to-puppet-ci-testing
