@@ -231,23 +231,6 @@
       nodes: 1ctlr_2comp
       featureset: '020'
 
-- job:
-    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-train-branch
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^master$
-    override-checkout: "stable/train"
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '001'
-      branch_override: "stable/train"
-
-- job:
-    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-vexxhost
-    parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
-    timeout: 18000
-    vars:
-      cloud_name: vexxhost
-
 # =================  C E N T O S  8  C H E C K  J O B S
 
 - job:
