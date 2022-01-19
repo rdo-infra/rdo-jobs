@@ -256,6 +256,58 @@
     nodeset: rdo-centos-8
 
 - job:
+    name: opstools-perfmon-common-distgit-cbs-validate
+    description: |
+      A job to validate opstools-perfmon-common cbs builds.
+    parent: opstools-distgit-cbs-base
+    abstract: true
+    run: playbooks/centos-opstools/opstools-perfmon-common-distgit-cbs-validate/run.yaml
+    required-projects:
+      - name: gating_scripts
+
+- job:
+    name: opstools-perfmon-common-distgit-cbs-final-build
+    description: |
+      A job to validate opstools-perfmon-common cbs final builds.
+    parent: opstools-distgit-cbs-base
+    abstract: true
+    run: playbooks/centos-opstools/opstools-perfmon-common-distgit-cbs-final-build/run.yaml
+    required-projects:
+      - name: gating_scripts
+
+- job:
+    name: opstools-perfmon-common-distgit-cbs-validate-centos8s
+    description: |
+      A job to validate opstools-perfmon-common cbs build on CentOS 8 Stream
+    parent: opstools-perfmon-common-distgit-cbs-validate
+    final: true
+    nodeset: rdo-centos-8-stream
+
+- job:
+    name: opstools-perfmon-common-distgit-cbs-validate-centos9s
+    description: |
+      A job to validate opstools-perfmon-common cbs build on CentOS 9 Stream
+    parent: opstools-perfmon-common-distgit-cbs-validate
+    final: true
+    nodeset: rdo-centos-9-stream
+
+- job:
+    name: opstools-perfmon-common-distgit-cbs-final-build-centos8s
+    description: |
+      A job to validate opstools-perfmon-common cbs final builds on CentOS 8 Stream
+    parent: opstools-perfmon-common-distgit-cbs-final-build
+    final: true
+    nodeset: rdo-centos-8-stream
+
+- job:
+    name: opstools-perfmon-common-distgit-cbs-final-build-centos9s
+    description: |
+      A job to validate opstools-perfmon-common cbs final builds on CentOS 9 Stream.
+    parent: opstools-perfmon-common-distgit-cbs-final-build
+    final: true
+    nodeset: rdo-centos-9-stream
+
+- job:
     name: weirdo-base-promote-consistent-to-puppet-ci-testing
     parent: weirdo-base-promote-dlrn
     abstract: true
