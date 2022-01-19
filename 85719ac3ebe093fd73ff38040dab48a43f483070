@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f1d77ae_bc0981f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2022-01-19T10:07:37Z",
+      "side": 1,
+      "message": "Minor comment(but not a blocker from my side), rest looks good to me.",
+      "revId": "85719ac3ebe093fd73ff38040dab48a43f483070",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ebec37c_417ab35d",
+        "filename": "zuul.d/ovb-jobs.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2022-01-19T10:07:37Z",
+      "side": 1,
+      "message": "Imho.. we can drop mentioning these branches as they are already eol(Atleast for new jobs), But I am all okay if we want to cleanup these in a single go whenever we will do cleanup in future.",
+      "range": {
+        "startLine": 59,
+        "startChar": 26,
+        "endLine": 59,
+        "endChar": 44
+      },
+      "revId": "85719ac3ebe093fd73ff38040dab48a43f483070",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
