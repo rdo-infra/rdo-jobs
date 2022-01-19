@@ -248,6 +248,14 @@
     nodeset: rdo-centos-8
 
 - job:
+    name: opstools-deprecated-warning
+    description: |
+      A job to warn developers that the package is no longer published.
+    final: true
+    run: playbooks/centos-opstools/opstools-deprecated-warning/run.yaml
+    nodeset: rdo-centos-8
+
+- job:
     name: weirdo-base-promote-consistent-to-puppet-ci-testing
     parent: weirdo-base-promote-dlrn
     abstract: true

@@ -1,0 +1,5 @@
+- hosts: all
+  tasks:
+    - shell:
+        cmd: "echo 'This package is no longer published'"
+      failed_when: true
