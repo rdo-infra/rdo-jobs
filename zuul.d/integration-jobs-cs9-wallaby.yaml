@@ -50,6 +50,46 @@
       release: wallaby
       branch_override: "stable/wallaby"
 
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario001-standalone-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario001-standalone-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: "stable/wallaby"
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario002-standalone-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario002-standalone-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: "stable/wallaby"
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario003-standalone-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario003-standalone-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: "stable/wallaby"
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario004-standalone-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario004-standalone-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: "stable/wallaby"
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario012-standalone-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario012-standalone-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: "stable/wallaby"
+
 ## multinode
 - job:
     name: periodic-tripleo-ci-centos-9-containers-multinode-wallaby
