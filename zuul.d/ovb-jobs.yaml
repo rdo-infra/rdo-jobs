@@ -8,7 +8,7 @@
 - job:
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001
     parent: tripleo-ci-base-ovb-rdo-centos-9
-    branches: ^(?!stable/(queens|rocky|stein|train|wallaby)).*$
+    branches: ^(?!stable/(train|ussuri|victoria)).*$
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
@@ -16,7 +16,7 @@
 - job:
     name: tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset001
     parent: tripleo-ci-base-ovb-rdo-centos-9
-    branches: ^(?!stable/(queens|rocky|stein|train|wallaby)).*$
+    branches: ^(?!stable/(train|ussuri|victoria)).*$
     vars:
       nodes: 1ctlr_1comp
       featureset: '001'
@@ -24,7 +24,7 @@
 - job:
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset035
     parent: tripleo-ci-base-ovb-rdo-centos-9
-    branches: ^(?!stable/(queens|rocky|stein|train|wallaby)).*$
+    branches: ^(?!stable/(train|ussuri|victoria)).*$
     vars:
       nodes: 3ctlr_1comp
       featureset: '035'
@@ -32,7 +32,7 @@
 - job:
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039
     parent: tripleo-ci-base-ovb-rdo-centos-9
-    branches: ^(?!stable/(queens|rocky|stein|train|wallaby)).*$
+    branches: ^(?!stable/(train|ussuri|victoria)).*$
     vars: &fs39_vars
       nodes: 3ctlr_1comp_1supp
       featureset: '039'
@@ -47,7 +47,7 @@
 - job:
     name: tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset002-upload
     parent: tripleo-ci-base-ovb-rdo-centos-9
-    branches: ^(?!stable/(queens|rocky|stein|train|wallaby)).*$
+    branches: ^(?!stable/(train|ussuri|victoria)).*$
     vars:
       nodes: 1ctlr_1comp
       featureset: '002'
@@ -56,10 +56,61 @@
     name: tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020
     parent: tripleo-ci-base-ovb-rdo-centos-9
     timeout: 18000
-    branches: ^(?!stable/(queens|rocky|stein|train|wallaby)).*$
+    branches: ^(?!stable/(train|ussuri|victoria)).*$
     vars:
       nodes: 1ctlr_2comp
       featureset: '020'
+
+# Jobs with -master should run on OVB repository
+- job:
+    name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-ovb-master
+    parent: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001
+    branches: ^master$
+    required-projects:
+      - opendev.org/openstack/openstack-virtual-baremetal
+
+- job:
+    name: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-ovb-master
+    parent: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039
+    branches: ^master$
+    required-projects:
+      - opendev.org/openstack/openstack-virtual-baremetal
+
+########## C E N T O S 9 WALLABY branchful Check  ####################
+
+- job:
+    name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-wallaby-branch
+    parent: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001
+    override-checkout: "stable/wallaby"
+    branches: ^master$
+    vars:
+      branch_override: "stable/wallaby"
+
+- job:
+    name: tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset002-upload-wallaby
+    parent: tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset002-upload
+    branches: ^master$
+    override-checkout: "stable/wallaby"
+    vars:
+      branch_override: "stable/wallaby"
+      release: wallaby
+
+- job:
+    name: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-wallaby-branch
+    parent: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039
+    branches: ^master$
+    override-checkout: "stable/wallaby"
+    vars:
+      branch_override: "stable/wallaby"
+
+- job:
+    name: tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020-wallaby
+    parent: tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020
+    branches: ^master$
+    override-checkout: "stable/wallaby"
+    vars:
+      branch_override: "stable/wallaby"
+      release: wallaby
 
 
 # =================  C E N T O S  8  C H E C K  J O B S
