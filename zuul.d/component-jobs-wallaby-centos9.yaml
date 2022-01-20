@@ -197,3 +197,144 @@
     parent: periodic-tripleo-centos-9-master-component-validation-promote-to-promoted-components
     vars:
       release: wallaby
+
+## standalone component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-component-wallaby-validation
+    parent: periodic-tripleo-ci-centos-9-standalone-component-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      enable_validation: true
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-baremetal-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-baremetal-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-cinder-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-cinder-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-clients-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-clients-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-cloudops-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-cloudops-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-common-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-common-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-compute-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-compute-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-glance-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-glance-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-manila-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-manila-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-network-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-network-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-octavia-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-octavia-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-security-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-security-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-swift-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-swift-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-tempest-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-tempest-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-tripleo-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-tripleo-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-ui-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-ui-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-validation-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-validation-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-compute-wallaby-validation
+    parent: periodic-tripleo-ci-centos-9-standalone-component-wallaby-validation
+    vars:
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-network-wallaby-validation
+    parent: periodic-tripleo-ci-centos-9-standalone-component-wallaby-validation
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-tripleo-wallaby-validation
+    parent: periodic-tripleo-ci-centos-9-standalone-component-wallaby-validation
+    vars:
+      component: tripleo
