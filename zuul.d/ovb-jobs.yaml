@@ -587,3 +587,13 @@
     vars:
       branch_override: "stable/wallaby"
       release: wallaby
+
+- job:
+    name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-wallaby-branch
+    parent: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035
+    override-checkout: "stable/wallaby"
+    branches: ^master$
+    voting: false
+    vars:
+      branch_override: "stable/wallaby"
+      release: wallaby
