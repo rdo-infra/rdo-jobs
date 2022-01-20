@@ -79,7 +79,7 @@
 ########## C E N T O S 9 WALLABY branchful Check  ####################
 
 - job:
-    name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-wallaby-branch
+    name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-wallaby
     parent: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001
     override-checkout: "stable/wallaby"
     branches: ^master$
@@ -96,7 +96,7 @@
       release: wallaby
 
 - job:
-    name: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-wallaby-branch
+    name: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-wallaby
     parent: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039
     branches: ^master$
     override-checkout: "stable/wallaby"
@@ -438,7 +438,7 @@
 ########## C E N T O S 8 TRAIN Check  ####################
 
 - job:
-    name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-train-branch
+    name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-train
     parent: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
     override-checkout: "stable/train"
     branches: ^master$
@@ -457,7 +457,7 @@
       release: train
 
 - job:
-    name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-train-branch
+    name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-train
     parent: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039
     branches: ^master$
     override-checkout: "stable/train"
@@ -476,7 +476,7 @@
 
 ########## C E N T O S 8 USSURI Check  ####################
 - job:
-    name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-ussuri-branch
+    name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-ussuri
     parent: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
     override-checkout: "stable/ussuri"
     branches: ^master$
@@ -495,7 +495,7 @@
       release: ussuri
 
 - job:
-    name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-ussuri-branch
+    name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-ussuri
     parent: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039
     branches: ^master$
     override-checkout: "stable/ussuri"
@@ -514,7 +514,7 @@
 
 ########## C E N T O S 8 VICTORIA Check  ####################
 - job:
-    name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-victoria-branch
+    name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-victoria
     parent: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
     override-checkout: "stable/victoria"
     branches: ^master$
@@ -533,7 +533,7 @@
       release: victoria
 
 - job:
-    name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-victoria-branch
+    name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-victoria
     parent: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039
     branches: ^master$
     override-checkout: "stable/victoria"
@@ -552,7 +552,7 @@
 
 ########## C E N T O S 8 WALLABY Check  ####################
 - job:
-    name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby-branch
+    name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby
     parent: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
     override-checkout: "stable/wallaby"
     branches: ^master$
@@ -571,7 +571,7 @@
       release: wallaby
 
 - job:
-    name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-wallaby-branch
+    name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-wallaby
     parent: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039
     branches: ^master$
     override-checkout: "stable/wallaby"
@@ -584,6 +584,16 @@
     parent: tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020
     branches: ^master$
     override-checkout: "stable/wallaby"
+    vars:
+      branch_override: "stable/wallaby"
+      release: wallaby
+
+- job:
+    name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-wallaby
+    parent: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035
+    override-checkout: "stable/wallaby"
+    branches: ^master$
+    voting: false
     vars:
       branch_override: "stable/wallaby"
       release: wallaby
