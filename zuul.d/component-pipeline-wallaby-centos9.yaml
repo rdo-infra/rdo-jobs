@@ -14,6 +14,7 @@
         - periodic-tripleo-ci-centos-9-standalone-cinder-wallaby: &comp_cinder_to_ci_testing_wallaby_cs9
             dependencies:
               - periodic-tripleo-centos-9-wallaby-component-cinder-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-scenario001-standalone-cinder-wallaby: *comp_cinder_to_ci_testing_wallaby_cs9
         - periodic-tripleo-centos-9-wallaby-component-cinder-promote-consistent-to-component-ci-testing
     openstack-component-clients:
       jobs:
@@ -26,12 +27,14 @@
         - periodic-tripleo-ci-centos-9-standalone-cloudops-wallaby: &comp_cloudops_to_ci_testing_wallaby_cs9
             dependencies:
               - periodic-tripleo-centos-9-wallaby-component-cloudops-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-scenario001-standalone-cloudops-wallaby: *comp_cinder_to_ci_testing_wallaby_cs9
         - periodic-tripleo-centos-9-wallaby-component-cloudops-promote-consistent-to-component-ci-testing
     openstack-component-common:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-common-wallaby: &comp_common_to_ci_testing_wallaby_cs9
             dependencies:
               - periodic-tripleo-centos-9-wallaby-component-common-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-scenario001-standalone-common-wallaby: *comp_cinder_to_ci_testing_wallaby_cs9
         - periodic-tripleo-centos-9-wallaby-component-common-promote-consistent-to-component-ci-testing
     openstack-component-compute:
       jobs:
@@ -44,6 +47,7 @@
         - periodic-tripleo-ci-centos-9-standalone-glance-wallaby: &comp_glance_to_ci_testing_wallaby_cs9
             dependencies:
               - periodic-tripleo-centos-9-wallaby-component-glance-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-scenario001-standalone-glance-wallaby: *comp_common_to_ci_testing_wallaby_cs9
         - periodic-tripleo-centos-9-wallaby-component-glance-promote-consistent-to-component-ci-testing
     openstack-component-manila:
       jobs:
