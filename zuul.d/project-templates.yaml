@@ -172,9 +172,9 @@
         - tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039
         - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
         - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
-        - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby-branch
-        - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-ussuri-branch
-        - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-train-branch
+        - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby
+        - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-ussuri
+        - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-train
 
 - project-template:
     name: ovb-001-experimental
@@ -205,7 +205,7 @@
     name: ovb-branchless
     openstack-check:
       jobs:
-        - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-victoria-branch:
+        - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-victoria:
             irrelevant-files: &fs01_irrelevant_files
               - ^.*\.md$
               - ^.*\.rst$
