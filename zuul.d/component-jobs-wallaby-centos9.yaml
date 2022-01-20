@@ -368,3 +368,51 @@
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
+
+
+## scenario002-standalone-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario002-standalone-cloudops-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario002-standalone-cloudops-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario002-standalone-common-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario002-standalone-common-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario002-standalone-glance-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario002-standalone-glance-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario002-standalone-swift-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario002-standalone-swift-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+
+## scenario003-standalone-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario003-standalone-common-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario003-standalone-common-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario003-standalone-glance-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario003-standalone-glance-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
