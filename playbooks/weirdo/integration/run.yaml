@@ -19,12 +19,6 @@
           {% endfor %}
       changed_when: true
 
-    - name: Install python2-devel
-      package:
-        name: python2-devel
-        state: present
-      become: true
-
     - name: Run weirdo scenario
       shell:
         cmd: |
