@@ -9,6 +9,13 @@
       set_fact:
         centos_release: "centos{{ ansible_distribution_major_version | default('7') }}"
 
+    - name: install tox in CentOS 9
+      shell:
+        cmd: |
+          # tox is not in CentOS 9 and it is not in base image. Doing this workaround until we have tox in the image
+          sudo pip install tox
+      when: centos_release == "centos9"
+
     - name: Setup weirdo roles
       shell:
         cmd: |
@@ -18,12 +25,6 @@
             ln -s "{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/ansible-role-weirdo-' + project].src_dir }}" $WBASE/playbooks/roles/{{ project }};  # noqa 204
           {% endfor %}
       changed_when: true
-
-    - name: Install python2-devel
-      package:
-        name: python2-devel
-        state: present
-      become: true
 
     - name: Run weirdo scenario
       shell:
@@ -68,7 +69,7 @@
           cd "{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/weirdo'].src_dir }}"
           # Prepare Ansible inventory to use localhost
           cat <<EOF >hosts
-          localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python{{ '3' if centos_release == "centos8" else '2' }}
+          localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python{{ '2' if centos_release == "centos7" else '3' }}
           [openstack_nodes]
           localhost log_destination=/var/log/weirdo
           EOF
