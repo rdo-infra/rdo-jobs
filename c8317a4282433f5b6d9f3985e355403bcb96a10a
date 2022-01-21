@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "91ce02b3_ac29d435",
+        "filename": "zuul.d/jobs.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 718
+      },
+      "writtenOn": "2022-01-21T14:57:37Z",
+      "side": 1,
+      "message": "That can be updated",
+      "parentUuid": "12de3976_6b067bdd",
+      "revId": "c8317a4282433f5b6d9f3985e355403bcb96a10a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "db758969_b7fd7e61",
         "filename": "zuul.d/jobs.yaml",
         "patchSetId": 11
@@ -48,6 +66,24 @@
       "writtenOn": "2022-01-21T07:29:51Z",
       "side": 1,
       "message": "so, while we are here, can we please name these jobs like opstools-collectd-5-distgut-cbs-validate?\n\nThere is no perfmon (performance monitoring) buildroot and no common buildroot anymore?",
+      "revId": "c8317a4282433f5b6d9f3985e355403bcb96a10a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c7a756c_a7225cc6",
+        "filename": "zuul.d/jobs.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 718
+      },
+      "writtenOn": "2022-01-21T14:57:37Z",
+      "side": 1,
+      "message": "Yes, we can.\n\nI could also make the buildroot a parameter, in case we add in more later (like maybe collectd-6). But also, there might be enough going on for now.",
+      "parentUuid": "f7633cd0_c4409fc4",
       "revId": "c8317a4282433f5b6d9f3985e355403bcb96a10a",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
