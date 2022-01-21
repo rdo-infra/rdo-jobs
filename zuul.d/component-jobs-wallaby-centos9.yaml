@@ -469,3 +469,61 @@
       component: baremetal
       release: wallaby
       branch_override: 'stable/wallaby'
+
+
+## standalone-full-tempest-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-full-tempest-compute-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-compute-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-full-tempest-tempest-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-tempest-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+
+## standalone-full-tempest-api-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-compute-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-compute-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-network-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-network-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-tempest-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-tempest-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+
+## standalone-full-tempest-scenario-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-compute-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-compute-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-tempest-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-tempest-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
