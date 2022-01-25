@@ -823,8 +823,48 @@
       branch_override: "stable/wallaby"
 
 - job:
+    name: rdoinfo-tripleo-wallaby-testing-centos-8-scenario002-standalone
+    parent: rdoinfo-tripleo-master-testing-centos-8-scenario002-standalone
+    override-checkout: "stable/wallaby"
+    vars:
+      rdoinfo_release: wallaby
+      release: wallaby
+      rdoinfo_phase: testing
+      branch_override: "stable/wallaby"
+
+- job:
+    name: rdoinfo-tripleo-wallaby-testing-centos-8-scenario003-standalone
+    parent: rdoinfo-tripleo-master-testing-centos-8-scenario003-standalone
+    override-checkout: "stable/wallaby"
+    vars:
+      rdoinfo_release: wallaby
+      release: wallaby
+      rdoinfo_phase: testing
+      branch_override: "stable/wallaby"
+
+- job:
+    name: rdoinfo-tripleo-wallaby-testing-centos-8-scenario004-standalone
+    parent: rdoinfo-tripleo-master-testing-centos-8-scenario004-standalone
+    override-checkout: "stable/wallaby"
+    vars:
+      rdoinfo_release: wallaby
+      release: wallaby
+      rdoinfo_phase: testing
+      branch_override: "stable/wallaby"
+
+- job:
     name: rdoinfo-tripleo-wallaby-testing-centos-8-scenario007-standalone
     parent: rdoinfo-tripleo-master-testing-centos-8-scenario007-standalone
+    override-checkout: "stable/wallaby"
+    vars:
+      rdoinfo_release: wallaby
+      release: wallaby
+      rdoinfo_phase: testing
+      branch_override: "stable/wallaby"
+
+- job:
+    name: rdoinfo-tripleo-wallaby-testing-centos-8-scenario010-standalone
+    parent: rdoinfo-tripleo-master-testing-centos-8-scenario010-standalone
     override-checkout: "stable/wallaby"
     vars:
       rdoinfo_release: wallaby
