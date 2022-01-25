@@ -3,7 +3,7 @@
     - name: Run pkg-validate.sh
       shell:
         cmd: |
-          WORKSPACE={{ ansible_user_dir }} ./pkg-validate.sh opstools{{ distro }}-{{ buildroot | default ('collectd-5') }}-el{{ distro }} cbs
+          WORKSPACE={{ ansible_user_dir }} TARGET={{ distro[0] }} ./pkg-validate.sh opstools{{ distro }}-{{ buildroot | default ('collectd-5') }}-el{{ distro }} cbs
         chdir: "{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}"
       environment: '{{ zuul | zuul_legacy_vars }}'
       changed_when: true
