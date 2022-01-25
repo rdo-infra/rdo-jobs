@@ -89,6 +89,12 @@
           {% endfor %}
       changed_when: true
 
+    - name: install tox in CentOS 9
+      shell:
+        cmd: |
+          sudo pip install tox
+      when: centos_release == "centos9"
+
     - name: Run weirdo for the desired project and scenario
       shell:
         cmd: |
@@ -148,7 +154,7 @@
           # Prepare Ansible inventory to use localhost
           pushd {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/weirdo'].src_dir }}
           cat <<EOF >hosts
-          localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python{{ '3' if centos_release == "centos8" else '2' }}
+          localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python{{ '2' if centos_release == "centos7" else '3' }}
           [openstack_nodes]
           localhost log_destination=/var/log/weirdo
           EOF
