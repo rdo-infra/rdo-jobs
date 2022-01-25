@@ -14,13 +14,27 @@
     vars:
       selinux_enforcing: "false"
       periodic_job: true
-    nodeset: rdo-centos-8
+    nodeset: rdo-centos-8-stream
 
 - job:
     name: periodic-cloudsig-victoria-release-centos8-base
     parent: weirdo-cloudsig-periodic-base
     vars:
       rdoinfo_release: victoria
+      rdoinfo_phase: release
+
+- job:
+    name: periodic-cloudsig-wallaby-release-centos8-base
+    parent: weirdo-cloudsig-periodic-base
+    vars:
+      rdoinfo_release: wallaby
+      rdoinfo_phase: release
+
+- job:
+    name: periodic-cloudsig-xena-release-centos8-base
+    parent: weirdo-cloudsig-periodic-base
+    vars:
+      rdoinfo_release: xena
       rdoinfo_phase: release
 
 - job:
@@ -66,99 +80,85 @@
       scenario: scenario003
 
 - job:
-    name: periodic-cloudsig-ussuri-release-centos8-base
-    parent: weirdo-cloudsig-periodic-base
-    vars:
-      rdoinfo_release: ussuri
-      rdoinfo_phase: release
-
-- job:
-    name: periodic-cloudsig-ussuri-release-puppet-scenario001-centos8
-    parent: periodic-cloudsig-ussuri-release-centos8-base
+    name: periodic-cloudsig-wallaby-release-puppet-scenario001-centos8
+    parent: periodic-cloudsig-wallaby-release-centos8-base
     vars:
       scenario: scenario001
 
 - job:
-    name: periodic-cloudsig-ussuri-release-puppet-scenario002-centos8
-    parent: periodic-cloudsig-ussuri-release-centos8-base
+    name: periodic-cloudsig-wallaby-release-puppet-scenario002-centos8
+    parent: periodic-cloudsig-wallaby-release-centos8-base
     vars:
       scenario: scenario002
 
 - job:
-    name: periodic-cloudsig-ussuri-release-puppet-scenario003-centos8
-    parent: periodic-cloudsig-ussuri-release-centos8-base
+    name: periodic-cloudsig-wallaby-release-puppet-scenario003-centos8
+    parent: periodic-cloudsig-wallaby-release-centos8-base
     vars:
       scenario: scenario003
 
 - job:
-    name: periodic-cloudsig-ussuri-release-puppet-scenario004-centos8
-    parent: periodic-cloudsig-ussuri-release-centos8-base
+    name: periodic-cloudsig-wallaby-release-puppet-scenario004-centos8
+    parent: periodic-cloudsig-wallaby-release-centos8-base
     vars:
       scenario: scenario004
 
 - job:
-    name: periodic-cloudsig-ussuri-release-packstack-scenario001-centos8
-    parent: periodic-cloudsig-ussuri-release-centos8-base
+    name: periodic-cloudsig-wallaby-release-packstack-scenario001-centos8
+    parent: periodic-cloudsig-wallaby-release-centos8-base
     vars:
       scenario: scenario001
 
 - job:
-    name: periodic-cloudsig-ussuri-release-packstack-scenario002-centos8
-    parent: periodic-cloudsig-ussuri-release-centos8-base
+    name: periodic-cloudsig-wallaby-release-packstack-scenario002-centos8
+    parent: periodic-cloudsig-wallaby-release-centos8-base
     vars:
       scenario: scenario002
 
 - job:
-    name: periodic-cloudsig-ussuri-release-packstack-scenario003-centos8
-    parent: periodic-cloudsig-ussuri-release-centos8-base
+    name: periodic-cloudsig-wallaby-release-packstack-scenario003-centos8
+    parent: periodic-cloudsig-wallaby-release-centos8-base
     vars:
       scenario: scenario003
 
 - job:
-    name: periodic-cloudsig-train-release-centos8-base
-    parent: weirdo-cloudsig-periodic-base
-    vars:
-      rdoinfo_release: train
-      rdoinfo_phase: release
-
-- job:
-    name: periodic-cloudsig-train-release-puppet-scenario001-centos8
-    parent: periodic-cloudsig-train-release-centos8-base
+    name: periodic-cloudsig-xena-release-puppet-scenario001-centos8
+    parent: periodic-cloudsig-xena-release-centos8-base
     vars:
       scenario: scenario001
 
 - job:
-    name: periodic-cloudsig-train-release-puppet-scenario002-centos8
-    parent: periodic-cloudsig-train-release-centos8-base
+    name: periodic-cloudsig-xena-release-puppet-scenario002-centos8
+    parent: periodic-cloudsig-xena-release-centos8-base
     vars:
       scenario: scenario002
 
 - job:
-    name: periodic-cloudsig-train-release-puppet-scenario003-centos8
-    parent: periodic-cloudsig-train-release-centos8-base
+    name: periodic-cloudsig-xena-release-puppet-scenario003-centos8
+    parent: periodic-cloudsig-xena-release-centos8-base
     vars:
       scenario: scenario003
 
 - job:
-    name: periodic-cloudsig-train-release-puppet-scenario004-centos8
-    parent: periodic-cloudsig-train-release-centos8-base
+    name: periodic-cloudsig-xena-release-puppet-scenario004-centos8
+    parent: periodic-cloudsig-xena-release-centos8-base
     vars:
       scenario: scenario004
 
 - job:
-    name: periodic-cloudsig-train-release-packstack-scenario001-centos8
-    parent: periodic-cloudsig-train-release-centos8-base
+    name: periodic-cloudsig-xena-release-packstack-scenario001-centos8
+    parent: periodic-cloudsig-xena-release-centos8-base
     vars:
       scenario: scenario001
 
 - job:
-    name: periodic-cloudsig-train-release-packstack-scenario002-centos8
-    parent: periodic-cloudsig-train-release-centos8-base
+    name: periodic-cloudsig-xena-release-packstack-scenario002-centos8
+    parent: periodic-cloudsig-xena-release-centos8-base
     vars:
       scenario: scenario002
 
 - job:
-    name: periodic-cloudsig-train-release-packstack-scenario003-centos8
-    parent: periodic-cloudsig-train-release-centos8-base
+    name: periodic-cloudsig-xena-release-packstack-scenario003-centos8
+    parent: periodic-cloudsig-xena-release-centos8-base
     vars:
       scenario: scenario003
