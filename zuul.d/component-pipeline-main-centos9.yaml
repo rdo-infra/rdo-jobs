@@ -10,6 +10,7 @@
               - periodic-tripleo-centos-9-master-component-baremetal-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-scenario012-standalone-baremetal-master: *cs9_comp_baremetal_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-baremetal-master: *cs9_comp_baremetal_to_ci_testing_master
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-baremetal-master: *cs9_comp_baremetal_to_ci_testing_master
         - periodic-tripleo-centos-9-master-component-baremetal-promote-consistent-to-component-ci-testing
     openstack-component-cinder:
       jobs:
@@ -26,6 +27,7 @@
               - periodic-tripleo-centos-9-master-component-clients-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-containers-multinode-clients-master: *cs9_comp_clients_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-clients-master: *cs9_comp_clients_to_ci_testing_master
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-clients-master: *cs9_comp_clients_to_ci_testing_master
         - periodic-tripleo-centos-9-master-component-clients-promote-consistent-to-component-ci-testing
     openstack-component-cloudops:
       jobs:
@@ -35,6 +37,7 @@
               - periodic-tripleo-centos-9-master-component-cloudops-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-scenario001-standalone-cloudops-master: *cs9_comp_cloudops_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-scenario002-standalone-cloudops-master: *cs9_comp_cloudops_to_ci_testing_master
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-cloudops-master: *cs9_comp_cloudops_to_ci_testing_master
     openstack-component-common:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-common-master: &cs9_comp_common_to_ci_testing_master
@@ -45,6 +48,7 @@
         - periodic-tripleo-ci-centos-9-scenario003-standalone-common-master: *cs9_comp_common_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-containers-multinode-common-master: *cs9_comp_common_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-scenario004-standalone-common-master: *cs9_comp_common_to_ci_testing_master
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-common-master: *cs9_comp_common_to_ci_testing_master
         - periodic-tripleo-centos-9-master-component-common-promote-consistent-to-component-ci-testing
     openstack-component-compute:
       jobs:
@@ -83,6 +87,7 @@
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-network-master: *cs9_comp_network_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-containers-multinode-network-master: *cs9_comp_network_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-network-master: *cs9_comp_network_to_ci_testing_master
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-network-master: *cs9_comp_network_to_ci_testing_master
         - periodic-tripleo-centos-9-master-component-network-promote-consistent-to-component-ci-testing
     openstack-component-octavia:
       jobs:
@@ -100,6 +105,7 @@
         - periodic-tripleo-ci-centos-9-containers-multinode-security-master: *cs9_comp_security_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-security-master: *cs9_comp_security_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-security-master: *cs9_comp_security_to_ci_testing_master
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-security-master: *cs9_comp_security_to_ci_testing_master
         - periodic-tripleo-centos-9-master-component-security-promote-consistent-to-component-ci-testing
     openstack-component-swift:
       jobs:
@@ -118,6 +124,7 @@
         - periodic-tripleo-ci-centos-9-scenario004-standalone-tripleo-master: *cs9_comp_tripleo_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-tripleo-master: *cs9_comp_tripleo_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-tripleo-master: *cs9_comp_tripleo_to_ci_testing_master
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-tripleo-master: *cs9_comp_tripleo_to_ci_testing_master
         - periodic-tripleo-centos-9-master-component-tripleo-promote-consistent-to-component-ci-testing
     openstack-component-tempest:
       jobs:
@@ -126,6 +133,7 @@
               - periodic-tripleo-centos-9-master-component-tempest-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-tempest-master: *cs9_comp_tempest_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-tempest-master: *cs9_comp_tempest_to_ci_testing_master
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-tempest-master: *cs9_comp_tempest_to_ci_testing_master
         - periodic-tripleo-centos-9-master-component-tempest-promote-consistent-to-component-ci-testing
     openstack-component-ui:
       jobs:
