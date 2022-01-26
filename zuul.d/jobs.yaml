@@ -395,6 +395,20 @@
       release: wallaby
 
 - job:
+    name: weirdo-train-promote-consistent-to-puppet-ci-testing-centos-stream-8
+    parent: weirdo-base-promote-consistent-to-puppet-ci-testing
+    vars:
+      release: train
+      centos_release: centos8
+
+- job:
+    name: weirdo-train-promote-puppet-ci-testing-to-puppet-passed-ci-centos-stream-8
+    parent: weirdo-base-promote-puppet-ci-testing-to-puppet-passed-ci
+    vars:
+      release: train
+      centos_release: centos8
+
+- job:
     name: weirdo-promote-base-centos9
     parent: base
     run: playbooks/rdoinfo/weirdo-periodic.yaml
@@ -616,4 +630,53 @@
     parent: weirdo-promote-base-centos9
     vars:
       rdoinfo_release: wallaby
+      scenario: scenario003
+
+- job:
+    name: weirdo-train-promote-puppet-scenario001-centos-stream-8
+    parent: weirdo-promote-base-centos8
+    vars:
+      rdoinfo_release: train
+      scenario: scenario001
+
+- job:
+    name: weirdo-train-promote-puppet-scenario002-centos-stream-8
+    parent: weirdo-promote-base-centos8
+    vars:
+      rdoinfo_release: train
+      scenario: scenario002
+
+- job:
+    name: weirdo-train-promote-puppet-scenario003-centos-stream-8
+    parent: weirdo-promote-base-centos8
+    vars:
+      rdoinfo_release: train
+      scenario: scenario003
+
+- job:
+    name: weirdo-train-promote-puppet-scenario004-centos-stream-8
+    parent: weirdo-promote-base-centos8
+    vars:
+      rdoinfo_release: train
+      scenario: scenario004
+
+- job:
+    name: weirdo-train-promote-packstack-scenario001-centos-stream-8
+    parent: weirdo-promote-base-centos8
+    vars:
+      rdoinfo_release: train
+      scenario: scenario001
+
+- job:
+    name: weirdo-train-promote-packstack-scenario002-centos-stream-8
+    parent: weirdo-promote-base-centos8
+    vars:
+      rdoinfo_release: train
+      scenario: scenario002
+
+- job:
+    name: weirdo-train-promote-packstack-scenario003-centos-stream-8
+    parent: weirdo-promote-base-centos8
+    vars:
+      rdoinfo_release: train
       scenario: scenario003
