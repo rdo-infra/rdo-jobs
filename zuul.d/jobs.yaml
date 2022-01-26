@@ -237,9 +237,19 @@
 - job:
     name: centos-opstools-rpmbuild
     parent: base
+    abstract: true
     run: playbooks/centos-opstools/rpmbuild/run.yaml
     post-run: playbooks/centos-opstools/rpmbuild/post.yaml
+
+- job:
+    name: centos-opstools-rpmbuild-centos8s
+    parent: centos-opstools-rpmbuild
     nodeset: rdo-centos-8-stream
+
+- job:
+    name: centos-opstools-rpmbuild-centos9s
+    parent: centos-opstools-rpmbuild
+    nodeset: rdo-centos-9-stream
 
 - job:
     name: centos-opstools-rpmlint
