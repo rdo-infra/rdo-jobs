@@ -383,6 +383,20 @@
       release: xena
 
 - job:
+    name: weirdo-xena-promote-consistent-to-puppet-ci-testing-centos-stream-8
+    parent: weirdo-base-promote-consistent-to-puppet-ci-testing
+    vars:
+      release: xena
+      centos_release: centos8
+
+- job:
+    name: weirdo-xena-promote-puppet-ci-testing-to-puppet-passed-ci-centos-stream-8
+    parent: weirdo-base-promote-puppet-ci-testing-to-puppet-passed-ci
+    vars:
+      release: xena
+      centos_release: centos8
+
+- job:
     name: weirdo-wallaby-promote-consistent-to-puppet-ci-testing
     parent: weirdo-base-promote-consistent-to-puppet-ci-testing
     vars:
@@ -565,6 +579,55 @@
 - job:
     name: weirdo-xena-promote-packstack-scenario003-centos-stream-9
     parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: xena
+      scenario: scenario003
+
+- job:
+    name: weirdo-xena-promote-puppet-scenario001-centos-stream-8
+    parent: weirdo-promote-base-centos8
+    vars:
+      rdoinfo_release: xena
+      scenario: scenario001
+
+- job:
+    name: weirdo-xena-promote-puppet-scenario002-centos-stream-8
+    parent: weirdo-promote-base-centos8
+    vars:
+      rdoinfo_release: xena
+      scenario: scenario002
+
+- job:
+    name: weirdo-xena-promote-puppet-scenario003-centos-stream-8
+    parent: weirdo-promote-base-centos8
+    vars:
+      rdoinfo_release: xena
+      scenario: scenario003
+
+- job:
+    name: weirdo-xena-promote-puppet-scenario004-centos-stream-8
+    parent: weirdo-promote-base-centos8
+    vars:
+      rdoinfo_release: xena
+      scenario: scenario004
+
+- job:
+    name: weirdo-xena-promote-packstack-scenario001-centos-stream-8
+    parent: weirdo-promote-base-centos8
+    vars:
+      rdoinfo_release: xena
+      scenario: scenario001
+
+- job:
+    name: weirdo-xena-promote-packstack-scenario002-centos-stream-8
+    parent: weirdo-promote-base-centos8
+    vars:
+      rdoinfo_release: xena
+      scenario: scenario002
+
+- job:
+    name: weirdo-xena-promote-packstack-scenario003-centos-stream-8
+    parent: weirdo-promote-base-centos8
     vars:
       rdoinfo_release: xena
       scenario: scenario003

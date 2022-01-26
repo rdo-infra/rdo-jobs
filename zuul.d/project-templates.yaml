@@ -584,6 +584,42 @@
               - weirdo-xena-promote-packstack-scenario003-centos-stream-9
 
 - project-template:
+    name: weirdo-xena-promotion-pipeline-centos-stream-8
+    openstack-periodic-integration-stable3:
+      jobs:
+        - weirdo-xena-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-xena-promote-puppet-scenario001-centos-stream-8:
+            dependencies:
+              - weirdo-xena-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-xena-promote-puppet-scenario002-centos-stream-8:
+            dependencies:
+              - weirdo-xena-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-xena-promote-puppet-scenario003-centos-stream-8:
+            dependencies:
+              - weirdo-xena-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-xena-promote-puppet-scenario004-centos-stream-8:
+            dependencies:
+              - weirdo-xena-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-xena-promote-packstack-scenario001-centos-stream-8:
+            dependencies:
+              - weirdo-xena-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-xena-promote-packstack-scenario002-centos-stream-8:
+            dependencies:
+              - weirdo-xena-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-xena-promote-packstack-scenario003-centos-stream-8:
+            dependencies:
+              - weirdo-xena-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-xena-promote-puppet-ci-testing-to-puppet-passed-ci-centos-stream-8:
+            dependencies:
+              - weirdo-xena-promote-puppet-scenario001-centos-stream-8
+              - weirdo-xena-promote-puppet-scenario002-centos-stream-8
+              - weirdo-xena-promote-puppet-scenario003-centos-stream-8
+              - weirdo-xena-promote-puppet-scenario004-centos-stream-8
+              - weirdo-xena-promote-packstack-scenario001-centos-stream-8
+              - weirdo-xena-promote-packstack-scenario002-centos-stream-8
+              - weirdo-xena-promote-packstack-scenario003-centos-stream-8
+
+- project-template:
     name: weirdo-wallaby-promotion-pipeline
     openstack-periodic-integration-stable2:
       jobs:
