@@ -656,6 +656,42 @@
               - weirdo-wallaby-promote-packstack-scenario003-centos-stream-9
 
 - project-template:
+    name: weirdo-wallaby-promotion-pipeline-centos-stream-8
+    openstack-periodic-integration-stable2:
+      jobs:
+        - weirdo-wallaby-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-wallaby-promote-puppet-scenario001-centos-stream-8:
+            dependencies:
+              - weirdo-wallaby-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-wallaby-promote-puppet-scenario002-centos-stream-8:
+            dependencies:
+              - weirdo-wallaby-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-wallaby-promote-puppet-scenario003-centos-stream-8:
+            dependencies:
+              - weirdo-wallaby-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-wallaby-promote-puppet-scenario004-centos-stream-8:
+            dependencies:
+              - weirdo-wallaby-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-wallaby-promote-packstack-scenario001-centos-stream-8:
+            dependencies:
+              - weirdo-wallaby-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-wallaby-promote-packstack-scenario002-centos-stream-8:
+            dependencies:
+              - weirdo-wallaby-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-wallaby-promote-packstack-scenario003-centos-stream-8:
+            dependencies:
+              - weirdo-wallaby-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-wallaby-promote-puppet-ci-testing-to-puppet-passed-ci-centos-stream-8:
+            dependencies:
+              - weirdo-wallaby-promote-puppet-scenario001-centos-stream-8
+              - weirdo-wallaby-promote-puppet-scenario002-centos-stream-8
+              - weirdo-wallaby-promote-puppet-scenario003-centos-stream-8
+              - weirdo-wallaby-promote-puppet-scenario004-centos-stream-8
+              - weirdo-wallaby-promote-packstack-scenario001-centos-stream-8
+              - weirdo-wallaby-promote-packstack-scenario002-centos-stream-8
+              - weirdo-wallaby-promote-packstack-scenario003-centos-stream-8
+
+- project-template:
     name: centos-opstools
     description: |
       Jobs that are used by opstools projects.
