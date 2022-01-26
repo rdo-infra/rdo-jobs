@@ -46,7 +46,7 @@
 - job:
     name: rdo-tox-molecule
     parent: tripleo-tox-molecule
-    nodeset: rdo-centos-8
+    nodeset: rdo-centos-8-stream
     # default tox based job timeout of 1800 is far too low for functional testing on some
     # repositories.
     timeout: 3600
@@ -70,7 +70,7 @@
 - job:
     name: rdo-tox-molecule-delegated-centos-8
     parent: rdo-tox-molecule
-    nodeset: rdo-centos-8
+    nodeset: rdo-centos-8-stream
     run: playbooks/tox/run.yml
     vars:
       tox_environment:
@@ -149,7 +149,7 @@
     timeout: 10800
     run: playbooks/DLRN/rpmbuild-rpm-packaging-centos-8.yaml
     post-run: playbooks/DLRN/post.yaml
-    nodeset: rdo-centos-8
+    nodeset: rdo-centos-8-stream
     required-projects:
       - openstack/rpm-packaging
       - DLRN
@@ -190,7 +190,7 @@
     dependencies:
       - DLRN-rpmbuild
     branches: ^rpm-master$
-    nodeset: rdo-centos-8
+    nodeset: rdo-centos-8-stream
 
 - job:
     name: rdoinfo-DLRN-check
@@ -208,7 +208,7 @@
     timeout: 18000
     vars:
       centos_version: centos8
-    nodeset: rdo-centos-8
+    nodeset: rdo-centos-8-stream
 
 - job:
     name: rdoinfo-DLRN-check-centos9
@@ -216,14 +216,14 @@
     timeout: 18000
     vars:
       centos_version: centos9
-    nodeset: rdo-centos-8
+    nodeset: rdo-centos-8-stream
 
 - job:
     name: validate-buildsys-tags
     parent: base
     run: playbooks/validate-buildsys-tags/run.yaml
     post-run: playbooks/validate-buildsys-tags/post.yaml
-    nodeset: rdo-centos-8
+    nodeset: rdo-centos-8-stream
     required-projects:
       - review.rdoproject.org/gating_scripts
     timeout: 10800
