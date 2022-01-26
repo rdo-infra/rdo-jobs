@@ -11,6 +11,9 @@ PROJECT_DISTRO_BRANCH="rpm-master"
 if [ "$CENTOS_VERSION" = "centos7" ];then
     target="centos"
     PYTHON_VERSION="py27"
+elif [ "$CENTOS_VERSION" = "centos8" ];then
+    target="centos8-stream"
+    PYTHON_VERSION="py36"
 else
     target=${CENTOS_VERSION}
     PYTHON_VERSION="py36"
