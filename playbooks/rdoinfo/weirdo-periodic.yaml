@@ -85,6 +85,7 @@
               -e trunk_repositories=$REPOS_URL \
               {% if 'puppet' in zuul.job -%}
               -e repository="file://{{ ansible_user_dir }}/{{ zuul.projects['opendev.org/openstack/puppet-openstack-integration'].src_dir }}"
+              -e version="{{ rdoinfo_release }}"
               {% endif %}
 
       changed_when: true
