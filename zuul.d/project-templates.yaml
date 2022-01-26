@@ -512,6 +512,42 @@
               - weirdo-yoga-promote-packstack-scenario003-centos-stream-9
 
 - project-template:
+    name: weirdo-master-promotion-pipeline-centos-stream-8
+    check:
+      jobs:
+        - weirdo-yoga-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-yoga-promote-puppet-scenario001-centos-stream-8:
+            dependencies:
+              - weirdo-yoga-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-yoga-promote-puppet-scenario002-centos-stream-8:
+            dependencies:
+              - weirdo-yoga-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-yoga-promote-puppet-scenario003-centos-stream-8:
+            dependencies:
+              - weirdo-yoga-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-yoga-promote-puppet-scenario004-centos-stream-8:
+            dependencies:
+              - weirdo-yoga-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-yoga-promote-packstack-scenario001-centos-stream-8:
+            dependencies:
+              - weirdo-yoga-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-yoga-promote-packstack-scenario002-centos-stream-8:
+            dependencies:
+              - weirdo-yoga-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-yoga-promote-packstack-scenario003-centos-stream-8:
+            dependencies:
+              - weirdo-yoga-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-yoga-promote-puppet-ci-testing-to-puppet-passed-ci-centos-stream-8:
+            dependencies:
+              - weirdo-yoga-promote-puppet-scenario001-centos-stream-8
+              - weirdo-yoga-promote-puppet-scenario002-centos-stream-8
+              - weirdo-yoga-promote-puppet-scenario003-centos-stream-8
+              - weirdo-yoga-promote-puppet-scenario004-centos-stream-8
+              - weirdo-yoga-promote-packstack-scenario001-centos-stream-8
+              - weirdo-yoga-promote-packstack-scenario002-centos-stream-8
+              - weirdo-yoga-promote-packstack-scenario003-centos-stream-8
+
+- project-template:
     name: weirdo-xena-promotion-pipeline
     openstack-periodic-daily:
       jobs:
