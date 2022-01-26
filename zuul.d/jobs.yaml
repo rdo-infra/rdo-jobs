@@ -409,6 +409,20 @@
       release: wallaby
 
 - job:
+    name: weirdo-wallaby-promote-consistent-to-puppet-ci-testing-centos-stream-8
+    parent: weirdo-base-promote-consistent-to-puppet-ci-testing
+    vars:
+      release: wallaby
+      centos_release: centos8
+
+- job:
+    name: weirdo-wallaby-promote-puppet-ci-testing-to-puppet-passed-ci-centos-stream-8
+    parent: weirdo-base-promote-puppet-ci-testing-to-puppet-passed-ci
+    vars:
+      release: wallaby
+      centos_release: centos8
+
+- job:
     name: weirdo-promote-base-centos9
     parent: base
     run: playbooks/rdoinfo/weirdo-periodic.yaml
@@ -442,7 +456,6 @@
       - rdo-infra/ansible-role-weirdo-logs
       - rdo-infra/ansible-role-weirdo-packstack
       - rdo-infra/ansible-role-weirdo-puppet-openstack
-      - opendev.org/openstack/puppet-openstack-integration
     vars:
       selinux_enforcing: "false"
       rdoinfo_release: yoga
@@ -677,6 +690,67 @@
 - job:
     name: weirdo-wallaby-promote-packstack-scenario003-centos-stream-9
     parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: wallaby
+      scenario: scenario003
+
+- job:
+    name: weirdo-wallaby-promote-puppet-scenario001-centos-stream-8
+    parent: weirdo-promote-base-centos8
+    required-projects:
+      - name: opendev.org/openstack/puppet-openstack-integration
+        override-checkout: stable/wallaby
+    vars:
+      rdoinfo_release: wallaby
+      scenario: scenario001
+
+- job:
+    name: weirdo-wallaby-promote-puppet-scenario002-centos-stream-8
+    parent: weirdo-promote-base-centos8
+    required-projects:
+      - name: opendev.org/openstack/puppet-openstack-integration
+        override-checkout: stable/wallaby
+    vars:
+      rdoinfo_release: wallaby
+      scenario: scenario002
+
+- job:
+    name: weirdo-wallaby-promote-puppet-scenario003-centos-stream-8
+    parent: weirdo-promote-base-centos8
+    required-projects:
+      - name: opendev.org/openstack/puppet-openstack-integration
+        override-checkout: stable/wallaby
+    vars:
+      rdoinfo_release: wallaby
+      scenario: scenario003
+
+- job:
+    name: weirdo-wallaby-promote-puppet-scenario004-centos-stream-8
+    parent: weirdo-promote-base-centos8
+    required-projects:
+      - name: opendev.org/openstack/puppet-openstack-integration
+        override-checkout: stable/wallaby
+    vars:
+      rdoinfo_release: wallaby
+      scenario: scenario004
+
+- job:
+    name: weirdo-wallaby-promote-packstack-scenario001-centos-stream-8
+    parent: weirdo-promote-base-centos8
+    vars:
+      rdoinfo_release: wallaby
+      scenario: scenario001
+
+- job:
+    name: weirdo-wallaby-promote-packstack-scenario002-centos-stream-8
+    parent: weirdo-promote-base-centos8
+    vars:
+      rdoinfo_release: wallaby
+      scenario: scenario002
+
+- job:
+    name: weirdo-wallaby-promote-packstack-scenario003-centos-stream-8
+    parent: weirdo-promote-base-centos8
     vars:
       rdoinfo_release: wallaby
       scenario: scenario003
