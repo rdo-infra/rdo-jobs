@@ -692,6 +692,42 @@
               - weirdo-wallaby-promote-packstack-scenario003-centos-stream-8
 
 - project-template:
+    name: weirdo-victoria-promotion-pipeline-centos-stream-8
+    openstack-periodic-integration-stable2:
+      jobs:
+        - weirdo-victoria-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-victoria-promote-puppet-scenario001-centos-stream-8:
+            dependencies:
+              - weirdo-victoria-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-victoria-promote-puppet-scenario002-centos-stream-8:
+            dependencies:
+              - weirdo-victoria-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-victoria-promote-puppet-scenario003-centos-stream-8:
+            dependencies:
+              - weirdo-victoria-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-victoria-promote-puppet-scenario004-centos-stream-8:
+            dependencies:
+              - weirdo-victoria-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-victoria-promote-packstack-scenario001-centos-stream-8:
+            dependencies:
+              - weirdo-victoria-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-victoria-promote-packstack-scenario002-centos-stream-8:
+            dependencies:
+              - weirdo-victoria-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-victoria-promote-packstack-scenario003-centos-stream-8:
+            dependencies:
+              - weirdo-victoria-promote-consistent-to-puppet-ci-testing-centos-stream-8
+        - weirdo-victoria-promote-puppet-ci-testing-to-puppet-passed-ci-centos-stream-8:
+            dependencies:
+              - weirdo-victoria-promote-puppet-scenario001-centos-stream-8
+              - weirdo-victoria-promote-puppet-scenario002-centos-stream-8
+              - weirdo-victoria-promote-puppet-scenario003-centos-stream-8
+              - weirdo-victoria-promote-puppet-scenario004-centos-stream-8
+              - weirdo-victoria-promote-packstack-scenario001-centos-stream-8
+              - weirdo-victoria-promote-packstack-scenario002-centos-stream-8
+              - weirdo-victoria-promote-packstack-scenario003-centos-stream-8
+
+- project-template:
     name: centos-opstools
     description: |
       Jobs that are used by opstools projects.
