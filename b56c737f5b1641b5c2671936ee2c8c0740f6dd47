@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "daca11c8_396c303c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-01-26T16:05:41Z",
+      "side": 1,
+      "message": "i think we have to merge the depends-on first \n\n\u003e Patch Set 1: Verified-1\n\u003e \n\u003e Zuul encountered a syntax error while parsing its configuration in the\n\u003e repo config on branch master.  The error was:\n\u003e \n\u003e   The project template \"integration-pipeline-main-centos8\" was not\n\u003e   found.\n\u003e \n\u003e The error appears in the following project stanza:\n\u003e \n\u003e   project:\n\u003e       name: opendev.org/openstack/tripleo-ci\n\u003e       templates:\n\u003e         - integration-pipeline-main-centos8\n\u003e         - integration-pipeline-main\n\u003e         - integration-pipeline-train\n\u003e         - integration-pipeline-train-centos7\n\u003e         - integration-pipeline-ussuri\n\u003e         - integration-pipeline-victoria\n\u003e         - integration-pipeline-wallaby\n\u003e         - integration-pipeline-wallaby-centos9\n\u003e         - component-pipeline-master-centos9\n\u003e         - component-pipeline-master\n\u003e         - component-pipeline-wallaby\n\u003e         - component-pipeline-victoria\n\u003e         - component-pipeline-ussuri\n\u003e         - component-pipeline-train\n\u003e         - dependencies-pipeline-main\n\u003e         - dependencies-pipeline-victoria\n\u003e         - dependencies-pipeline-ussuri\n\u003e         - dependencies-pipeline-train\n\u003e         - ovb-branchless\n\u003e         - ovb-experimental\n\u003e         - system-required\n\u003e         - tripleo-ovb\n\u003e         - ci-config-molecule-python\n\u003e         - tempest-skiplist-integration-pipeline\n\u003e       openstack-regular:\n\u003e         jobs:\n\u003e           - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-train-branch:\n\u003e               vars:\n\u003e                 force_non_periodic: true\n\u003e           - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-victoria-branch:\n\u003e               vars:\n\u003e                 force_non_periodic: true\n\u003e           - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby-branch:\n\u003e               vars:\n\u003e                 force_non_periodic: true\n\u003e           - tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-wallaby-branch:\n\u003e               vars:\n\u003e                 force_non_periodic: true\n\u003e           - tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001:\n\u003e               vars:\n\u003e                 force_non_periodic: true\n\u003e           - tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset035:\n\u003e               vars:\n\u003e                 force_non_periodic: true\n\u003e \n\u003e   in \"config/zuul.d/tripleo.yaml@master\", line 10, column 3\n\ni think ",
+      "revId": "b56c737f5b1641b5c2671936ee2c8c0740f6dd47",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
