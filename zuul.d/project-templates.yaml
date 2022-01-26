@@ -589,14 +589,16 @@
     check:
       jobs:
         - centos-opstools-rpmlint
-        - centos-opstools-rpmbuild
+        - centos-opstools-rpmbuild-centos8s
+        - centos-opstools-rpmbuild-centos9s
         - centos-opstools-collectd-5-distgit-cbs-validate-centos8s
         - centos-opstools-collectd-5-distgit-cbs-validate-centos9s
     gate:
       queue: centos-release-opstools
       jobs:
         - centos-opstools-rpmlint
-        - centos-opstools-rpmbuild
+        - centos-opstools-rpmbuild-centos8s
+        - centos-opstools-rpmbuild-centos9s
         - centos-opstools-collectd-5-distgit-cbs-final-build-centos8s
         - centos-opstools-collectd-5-distgit-cbs-final-build-centos9s
 
