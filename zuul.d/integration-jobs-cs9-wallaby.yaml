@@ -116,3 +116,20 @@
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
+
+# OVB jobs
+- job:
+    name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-wallaby
+    parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: "stable/wallaby"
+
+- job:
+    name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset064-wallaby
+    parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset064-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: "stable/wallaby"
