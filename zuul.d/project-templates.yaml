@@ -581,3 +581,31 @@
               - weirdo-wallaby-promote-packstack-scenario001-centos-stream-9
               - weirdo-wallaby-promote-packstack-scenario002-centos-stream-9
               - weirdo-wallaby-promote-packstack-scenario003-centos-stream-9
+
+- project-template:
+    name: centos-opstools
+    description: |
+      Jobs that are used by opstools projects.
+    check:
+      jobs:
+        - centos-opstools-rpmlint
+        - centos-opstools-rpmbuild
+        - centos-opstools-collectd-5-distgit-cbs-validate-centos8s
+        - centos-opstools-collectd-5-distgit-cbs-validate-centos9s
+    gate:
+      queue: centos-release-opstools
+      jobs:
+        - centos-opstools-rpmlint
+        - centos-opstools-rpmbuild
+        - centos-opstools-collectd-5-distgit-cbs-final-build-centos8s
+        - centos-opstools-collectd-5-distgit-cbs-final-build-centos9s
+
+- project-template:
+    name: centos-opstools-unsupported
+    check:
+      jobs:
+        - opstools-deprecated-warning
+    gate:
+      queue: centos-release-opstools
+      jobs:
+        - opstools-deprecated-warning
