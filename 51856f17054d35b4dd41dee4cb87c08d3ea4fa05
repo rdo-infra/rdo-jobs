@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c5b8d2f_fd33b594",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 718
+      },
+      "writtenOn": "2022-01-27T16:45:44Z",
+      "side": 1,
+      "message": "This is the patch that add the centos-opstools template and makes this job run: https://review.rdoproject.org/r/c/config/+/38651\n\n(patch to config is once off, adding new jobs later will just look like this patch i.e. playbook, job definition and attaching the job to appropriate projects)\n\nThis will mean we can test new jobs by adding a review and then using Depends-On in one of the projects that uses the job (e.g. centos-opstools/collectd )\n\n",
+      "revId": "51856f17054d35b4dd41dee4cb87c08d3ea4fa05",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
