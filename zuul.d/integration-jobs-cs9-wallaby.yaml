@@ -106,6 +106,14 @@
       release: wallaby
       branch_override: "stable/wallaby"
 
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: "stable/wallaby"
+
 ## undercloud
 
 - job:
@@ -123,7 +131,7 @@
     override-checkout: "stable/wallaby"
     vars:
       release: wallaby
-      branch_override: 'stable/wallaby'
+      branch_override: "stable/wallaby"
 
 - job:
     name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-wallaby
@@ -131,7 +139,7 @@
     override-checkout: "stable/wallaby"
     vars:
       release: wallaby
-      branch_override: 'stable/wallaby'
+      branch_override: "stable/wallaby"
 
 - job:
     name: periodic-tripleo-ci-centos-9-scenario007-multinode-oooq-container-wallaby
@@ -139,7 +147,7 @@
     override-checkout: "stable/wallaby"
     vars:
       release: wallaby
-      branch_override: 'stable/wallaby'
+      branch_override: "stable/wallaby"
 
 # standalone full tempest api and scenario jobs
 
