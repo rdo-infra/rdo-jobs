@@ -90,6 +90,14 @@
       release: wallaby
       branch_override: "stable/wallaby"
 
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario010-ovn-provider-standalone-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario010-ovn-provider-standalone-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: "stable/wallaby"
+
 ## multinode
 - job:
     name: periodic-tripleo-ci-centos-9-containers-multinode-wallaby
