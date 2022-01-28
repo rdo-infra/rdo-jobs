@@ -11,10 +11,10 @@
 - job:
     name: periodic-tripleo-ci-build-containers-centos-9-push-wallaby
     parent: periodic-tripleo-ci-build-containers-centos-9-push-master
-    override-checkout: 'stable/wallaby'
+    override-checkout: "stable/wallaby"
     vars:
       release: wallaby
-      branch_override: 'stable/wallaby'
+      branch_override: "stable/wallaby"
       registry_namespace: tripleowallabycentos9
 
 - job:
@@ -23,7 +23,7 @@
     override-checkout: "stable/wallaby"
     vars:
       release: wallaby
-      branch_override: 'stable/wallaby'
+      branch_override: "stable/wallaby"
 
 - job:
     name: periodic-tripleo-centos-9-buildimage-ironic-python-agent-wallaby
@@ -31,7 +31,7 @@
     override-checkout: "stable/wallaby"
     vars:
       release: wallaby
-      branch_override: 'stable/wallaby'
+      branch_override: "stable/wallaby"
 
 - job:
     name: periodic-tripleo-centos-9-buildimage-overcloud-hardened-uefi-full-wallaby
@@ -39,7 +39,7 @@
     override-checkout: "stable/wallaby"
     vars:
       release: wallaby
-      branch_override: 'stable/wallaby'
+      branch_override: "stable/wallaby"
 
 ## standalone
 - job:
@@ -106,6 +106,14 @@
       release: wallaby
       branch_override: "stable/wallaby"
 
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: "stable/wallaby"
+
 ## undercloud
 
 - job:
@@ -139,7 +147,7 @@
     override-checkout: "stable/wallaby"
     vars:
       release: wallaby
-      branch_override: 'stable/wallaby'
+      branch_override: "stable/wallaby"
 
 # standalone full tempest api and scenario jobs
 
