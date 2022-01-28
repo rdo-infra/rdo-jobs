@@ -13,6 +13,8 @@
             dependencies:
               - periodic-tripleo-ci-build-containers-centos-9-push-wallaby
         - periodic-tripleo-ci-centos-9-containers-multinode-wallaby: *build_containers_cs_9_push_wallaby
+        - periodic-tripleo-ci-centos-9-scenario007-multinode-oooq-container-wallaby: *build_containers_cs_9_push_wallaby
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-wallaby: *build_containers_cs_9_push_wallaby
         - periodic-tripleo-ci-centos-9-scenario001-standalone-wallaby: *build_containers_cs_9_push_wallaby
         - periodic-tripleo-ci-centos-9-scenario002-standalone-wallaby: *build_containers_cs_9_push_wallaby
         - periodic-tripleo-ci-centos-9-scenario003-standalone-wallaby: *build_containers_cs_9_push_wallaby
