@@ -510,3 +510,62 @@
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
+
+
+## multinode component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-clients-wallaby
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-clients-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-common-wallaby
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-common-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-network-wallaby
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-network-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-octavia-wallaby
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-octavia-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-security-wallaby
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-security-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-tripleo-wallaby
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-tripleo-master
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-validation-wallaby
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-validation-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-tripleo-wallaby-validation
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-validation-wallaby
+    vars:
+      component: tripleo
