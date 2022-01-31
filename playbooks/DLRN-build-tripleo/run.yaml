@@ -80,11 +80,7 @@
             mock_cfg=centos.cfg
           else
             repository="${logs}/centos8/current"
-            if [ ${branch} = "master" ]||[ ${branch} = "wallaby" ]; then
-              mock_cfg=centos8-stream.cfg
-            else
-              mock_cfg=centos8.cfg
-            fi
+            mock_cfg=centos8-stream.cfg
           fi
           baseurl="https://trunk.rdoproject.org/${CENTOS_VERS}-${branch}/"
 
