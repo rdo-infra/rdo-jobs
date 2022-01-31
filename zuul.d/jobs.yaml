@@ -46,7 +46,7 @@
 - job:
     name: rdo-tox-molecule
     parent: tripleo-tox-molecule
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-8
     # default tox based job timeout of 1800 is far too low for functional testing on some
     # repositories.
     timeout: 3600
