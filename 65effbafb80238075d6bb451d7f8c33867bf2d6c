@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "3646cfe9_e95114c4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-01-31T07:58:29Z",
+      "side": 1,
+      "message": "please add references to \n\nhttps://review.rdoproject.org/r/c/rdo-jobs/+/36893\n\nand test at https://review.rdoproject.org/r/c/testproject/+/38236 (do you have a c9 test too ?)",
+      "revId": "65effbafb80238075d6bb451d7f8c33867bf2d6c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "7de018d2_cadd722e",
@@ -32,6 +49,29 @@
       "side": 1,
       "message": "Correct link for Centos9 job results: https://review.rdoproject.org/r/c/testproject/+/36727/41#message-42d3c0100588ce661ed6db5bcf80f580b6b373fd",
       "parentUuid": "7de018d2_cadd722e",
+      "revId": "65effbafb80238075d6bb451d7f8c33867bf2d6c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e897a84_9c38b95f",
+        "filename": "zuul.d/dependencies-jobs.yaml",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-01-31T07:58:29Z",
+      "side": 1,
+      "message": "where is that i can\u0027t quickly find it e.g. there https://github.com/rdo-infra/rdo-jobs/tree/master/playbooks/dependency\n\n[EDIT]: found it via testproject there https://review.rdoproject.org/r/c/rdo-jobs/+/36893 so we need depends-on here\n\n[EDIT2]: k so it is same repo... needs to be the parent review I think it needs a rebase?",
+      "range": {
+        "startLine": 11,
+        "startChar": 29,
+        "endLine": 11,
+        "endChar": 48
+      },
       "revId": "65effbafb80238075d6bb451d7f8c33867bf2d6c",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
