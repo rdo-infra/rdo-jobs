@@ -23,6 +23,7 @@
         - periodic-tripleo-ci-centos-9-standalone-clients-wallaby: &comp_clients_to_ci_testing_wallaby_cs9
             dependencies:
               - periodic-tripleo-centos-9-wallaby-component-clients-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-containers-multinode-clients-wallaby: *comp_clients_to_ci_testing_wallaby_cs9
         - periodic-tripleo-centos-9-wallaby-component-clients-promote-consistent-to-component-ci-testing
     openstack-component-cloudops:
       jobs:
@@ -41,6 +42,7 @@
         - periodic-tripleo-ci-centos-9-scenario002-standalone-common-wallaby: *comp_common_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-scenario003-standalone-common-wallaby: *comp_common_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-scenario004-standalone-common-wallaby: *comp_common_to_ci_testing_wallaby_cs9
+        - periodic-tripleo-ci-centos-9-containers-multinode-common-wallaby: *comp_common_to_ci_testing_wallaby_cs9
         - periodic-tripleo-centos-9-wallaby-component-common-promote-consistent-to-component-ci-testing
     openstack-component-compute:
       jobs:
@@ -72,18 +74,21 @@
         - periodic-tripleo-ci-centos-9-standalone-network-wallaby: &comp_network_to_ci_testing_wallaby_cs9
             dependencies:
               - periodic-tripleo-centos-9-wallaby-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-containers-multinode-network-wallaby: *comp_network_to_ci_testing_wallaby_cs9
         - periodic-tripleo-centos-9-wallaby-component-network-promote-consistent-to-component-ci-testing
     openstack-component-octavia:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-octavia-wallaby: &comp_octavia_to_ci_testing_wallaby_cs9
             dependencies:
               - periodic-tripleo-centos-9-wallaby-component-octavia-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-containers-multinode-octavia-wallaby: *comp_octavia_to_ci_testing_wallaby_cs9
         - periodic-tripleo-centos-9-wallaby-component-octavia-promote-consistent-to-component-ci-testing
     openstack-component-security:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-security-wallaby: &comp_security_to_ci_testing_wallaby_cs9
             dependencies:
               - periodic-tripleo-centos-9-wallaby-component-security-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-containers-multinode-security-wallaby: *comp_security_to_ci_testing_wallaby_cs9
         - periodic-tripleo-centos-9-wallaby-component-security-promote-consistent-to-component-ci-testing
     openstack-component-swift:
       jobs:
@@ -98,6 +103,8 @@
             dependencies:
               - periodic-tripleo-centos-9-wallaby-component-tripleo-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-scenario004-standalone-tripleo-wallaby: *comp_tripleo_to_ci_testing_wallaby_cs9
+        - periodic-tripleo-ci-centos-9-containers-multinode-tripleo-wallaby: *comp_tripleo_to_ci_testing_wallaby_cs9
+        - periodic-tripleo-ci-centos-9-containers-multinode-tripleo-wallaby-validation: *comp_tripleo_to_ci_testing_wallaby_cs9
         - periodic-tripleo-centos-9-wallaby-component-tripleo-promote-consistent-to-component-ci-testing
     openstack-component-tempest:
       jobs:
@@ -116,6 +123,8 @@
         - periodic-tripleo-ci-centos-9-standalone-validation-wallaby: &comp_validation_to_ci_testing_wallaby_cs9
             dependencies:
               - periodic-tripleo-centos-9-wallaby-component-validation-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-containers-multinode-validation-wallaby: *comp_validation_to_ci_testing_wallaby_cs9
+        - periodic-tripleo-ci-centos-9-containers-multinode-1ctlr-1comp-validation-wallaby: *comp_validation_to_ci_testing_wallaby_cs9
         - periodic-tripleo-centos-9-wallaby-component-validation-promote-consistent-to-component-ci-testing
     openstack-promote-component:
       jobs:
