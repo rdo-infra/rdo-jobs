@@ -38,6 +38,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "ef01cff4_5faa13c0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 739
+      },
+      "writtenOn": "2022-01-31T11:36:16Z",
+      "side": 1,
+      "message": "I think that we forgot this comment here, since was everything together in one change before, and now we splitted in 2.\n\n36893 is the parent change, I usually use \"Relation chain\" to assist me in reviews. but yeah, a ref in commit message is always good.\n\nI was adding testproject results as comments, as soon we get green on runs:\nC8: https://review.rdoproject.org/r/c/rdo-jobs/+/37788/9#message-3cf6ef1a56bce0a3261080971900774e1910a058\nC9: https://review.rdoproject.org/r/c/rdo-jobs/+/37788/9#message-38bbb4ce29e1715bc18904fa872215846fc70322",
+      "parentUuid": "50d303dc_440dae8f",
+      "revId": "65effbafb80238075d6bb451d7f8c33867bf2d6c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "7de018d2_cadd722e",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 9
@@ -71,6 +89,23 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c270cc84_0adb2b85",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 739
+      },
+      "writtenOn": "2022-01-31T11:36:16Z",
+      "side": 1,
+      "message": "Thank you for your reviews.",
+      "revId": "65effbafb80238075d6bb451d7f8c33867bf2d6c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e897a84_9c38b95f",
@@ -84,6 +119,30 @@
       "writtenOn": "2022-01-31T07:58:29Z",
       "side": 1,
       "message": "where is that i can\u0027t quickly find it e.g. there https://github.com/rdo-infra/rdo-jobs/tree/master/playbooks/dependency\n\n[EDIT]: found it via testproject there https://review.rdoproject.org/r/c/rdo-jobs/+/36893 so we need depends-on here\n\n[EDIT2]: k so it is same repo... needs to be the parent review I think it needs a rebase?",
+      "range": {
+        "startLine": 11,
+        "startChar": 29,
+        "endLine": 11,
+        "endChar": 48
+      },
+      "revId": "65effbafb80238075d6bb451d7f8c33867bf2d6c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9360fe8_97ee2fea",
+        "filename": "zuul.d/dependencies-jobs.yaml",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 739
+      },
+      "writtenOn": "2022-01-31T11:36:16Z",
+      "side": 1,
+      "message": "It is a parent review already, \"Parent\" or \"Relation chain\" should link to it.",
+      "parentUuid": "7e897a84_9c38b95f",
       "range": {
         "startLine": 11,
         "startChar": 29,
