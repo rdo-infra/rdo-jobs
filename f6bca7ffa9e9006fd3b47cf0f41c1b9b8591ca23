@@ -33,6 +33,46 @@
       "message": "Two consecutives successful runs:\n\nhttps://review.rdoproject.org/zuul/builds?job_name\u003dperiodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-wallaby\u0026job_name\u003dperiodic-tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset002-wallaby",
       "revId": "f6bca7ffa9e9006fd3b47cf0f41c1b9b8591ca23",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f11167cb_2523df7b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-02-01T07:24:04Z",
+      "side": 1,
+      "message": "inline nit otherwise lgtm ",
+      "revId": "f6bca7ffa9e9006fd3b47cf0f41c1b9b8591ca23",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91bf2270_f9aa3fde",
+        "filename": "zuul.d/integration-pipeline-wallaby-centos9.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-02-01T07:24:04Z",
+      "side": 1,
+      "message": "should be ovb_dep_cs_9_wallaby",
+      "range": {
+        "startLine": 32,
+        "startChar": 79,
+        "endLine": 32,
+        "endChar": 100
+      },
+      "revId": "f6bca7ffa9e9006fd3b47cf0f41c1b9b8591ca23",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
