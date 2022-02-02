@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c47f4ccf_8e42ff08",
+        "filename": "zuul.d/component-jobs-wallaby-centos9.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 670
+      },
+      "writtenOn": "2022-02-02T12:45:26Z",
+      "side": 1,
+      "message": "thanks for pointing that out. Removed as we are not using this job any where. If we see at cs8 wallaby component line https://github.com/rdo-infra/rdo-jobs/blob/master/zuul.d/component-jobs-wallaby.yaml#L343 it\u0027s added there as well but never used any where https://review.rdoproject.org/codesearch/?q\u003dperiodic-tripleo-ci-centos-8-containers-multinode-1ctlr-1comp-validation-wallaby\u0026i\u003dnope\u0026files\u003d\u0026repos\u003d will need to remove from there as well.",
+      "parentUuid": "0d3feb44_e9290de8",
+      "range": {
+        "startLine": 570,
+        "startChar": 14,
+        "endLine": 570,
+        "endChar": 18
+      },
+      "revId": "84b56fad5d24d5263a98127f968e76d06e8194d7",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "567d1ab4_e36b09a8",
         "filename": "zuul.d/component-pipeline-wallaby-centos9.yaml",
         "patchSetId": 3
@@ -54,6 +78,30 @@
       "writtenOn": "2022-02-02T07:24:17Z",
       "side": 1,
       "message": "this is abstract in its definition?",
+      "range": {
+        "startLine": 132,
+        "startChar": 10,
+        "endLine": 132,
+        "endChar": 18
+      },
+      "revId": "84b56fad5d24d5263a98127f968e76d06e8194d7",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ce45934_ffe35edb",
+        "filename": "zuul.d/component-pipeline-wallaby-centos9.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 670
+      },
+      "writtenOn": "2022-02-02T12:45:26Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "567d1ab4_e36b09a8",
       "range": {
         "startLine": 132,
         "startChar": 10,
