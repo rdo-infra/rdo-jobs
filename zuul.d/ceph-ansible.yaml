@@ -32,10 +32,10 @@
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: stable/train
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
     vars:
       dist: "el8"
-      mock_config: "epel-8-x86_64"
+      mock_config: "centos+epel-8-x86_64"
 
 # CentOS 8 jobs
 
@@ -67,7 +67,7 @@
     required-projects:
       # without options, the branch of the PR is used for the required-projects
       - name: opendev.org/openstack/tripleo-heat-templates
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-6.0
 
 - job:
@@ -76,7 +76,7 @@
     branches: ^(stable-6.0|master).*$
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-6.0
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
@@ -91,11 +91,11 @@
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: stable/wallaby
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-6.0
     vars:
       dist: "el8"
-      mock_config: "epel-8-x86_64"
+      mock_config: "centos+epel-8-x86_64"
 
 - job:
     name: tripleo-centos-8-ceph-ansible-integration-wallaby
@@ -104,7 +104,7 @@
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: stable/wallaby
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-6.0
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
@@ -119,11 +119,11 @@
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: stable/victoria
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-4.0
     vars:
       dist: "el8"
-      mock_config: "epel-8-x86_64"
+      mock_config: "centos+epel-8-x86_64"
 
 - job:
     name: tripleo-centos-8-ceph-ansible-integration-victoria
@@ -132,7 +132,7 @@
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: stable/victoria
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-4.0
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
@@ -148,11 +148,11 @@
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: stable/ussuri
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-4.0
     vars:
       dist: "el8"
-      mock_config: "epel-8-x86_64"
+      mock_config: "centos+epel-8-x86_64"
 
 - job:
     name: tripleo-centos-8-ceph-ansible-integration-ussuri
@@ -161,7 +161,7 @@
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: stable/ussuri
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-4.0
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
@@ -177,11 +177,11 @@
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: stable/train
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-4.0
     vars:
       dist: "el8"
-      mock_config: "epel-8-x86_64"
+      mock_config: "centos+epel-8-x86_64"
 
 - job:
     name: tripleo-centos-8-ceph-ansible-integration-train
@@ -190,7 +190,7 @@
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: stable/train
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-4.0
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
@@ -205,7 +205,7 @@
     run: playbooks/run-rpm-build.yaml
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
     vars:
       featureset: '052'
       standalone_ceph: true
@@ -218,7 +218,7 @@
     branches: ^(stable-5.0|master).*$
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-5.0
     vars:
       release: master
@@ -236,7 +236,7 @@
     branches: ^(stable-5.0|master).*$
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-5.0
     vars:
       featureset_override: &scenario004
@@ -255,7 +255,7 @@
     branches: ^(stable-6.0|master).*$
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-6.0
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
@@ -269,7 +269,7 @@
     branches: ^(stable-6.0|master).*$
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-6.0
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
@@ -285,7 +285,7 @@
     run: playbooks/run-rpm-build.yaml
     override-checkout: "stable/wallaby"
     required-projects:
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-6.0
     vars:
       release: wallaby
@@ -317,7 +317,7 @@
     branches: ^(stable-6.0|master).*$
     override-checkout: "stable/wallaby"
     required-projects:
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-6.0
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
@@ -332,7 +332,7 @@
     branches: ^(stable-6.0|master).*$
     override-checkout: "stable/wallaby"
     required-projects:
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-6.0
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
@@ -348,7 +348,7 @@
     run: playbooks/run-rpm-build.yaml
     override-checkout: "stable/victoria"
     required-projects:
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-4.0
     vars:
       release: victoria
@@ -376,7 +376,7 @@
     branches: ^(stable-4.0|master).*$
     override-checkout: "stable/victoria"
     required-projects:
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-4.0
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
@@ -391,7 +391,7 @@
     branches: ^(stable-4.0|master).*$
     override-checkout: "stable/victoria"
     required-projects:
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-4.0
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
@@ -408,7 +408,7 @@
     run: playbooks/run-rpm-build.yaml
     override-checkout: "stable/ussuri"
     required-projects:
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-4.0
     vars:
       release: ussuri
@@ -440,7 +440,7 @@
     branches: ^(stable-4.0|master).*$
     override-checkout: "stable/ussuri"
     required-projects:
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-4.0
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
@@ -455,7 +455,7 @@
     branches: ^(stable-4.0|master).*$
     override-checkout: "stable/ussuri"
     required-projects:
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-4.0
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
@@ -474,7 +474,7 @@
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: stable/train
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-4.0
     vars:
       release: train
@@ -491,7 +491,7 @@
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: stable/train
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-4.0
     voting: false
     vars:
@@ -504,7 +504,7 @@
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: stable/train
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-4.0
     voting: false
     vars:
@@ -518,7 +518,7 @@
     branches: ^(stable-4.0|master).*$
     override-checkout: "stable/train"
     required-projects:
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-4.0
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
@@ -534,7 +534,7 @@
     branches: ^(stable-4.0|master).*$
     override-checkout: "stable/train"
     required-projects:
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-4.0
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
@@ -558,7 +558,7 @@
     run: playbooks/run-rpm-build.yaml
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
     vars:
       featureset: '052'
       standalone_ceph: true
@@ -588,7 +588,7 @@
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
         override-checkout: master
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-5.0
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
@@ -626,7 +626,7 @@
     run: playbooks/run-rpm-build.yaml
     override-checkout: "stable/victoria"
     required-projects:
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-4.0
     vars:
       featureset: '052'
@@ -657,7 +657,7 @@
     abstract: true
     override-checkout: "stable/victoria"
     required-projects:
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-4.0
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
@@ -697,7 +697,7 @@
     run: playbooks/run-rpm-build.yaml
     override-checkout: "stable/wallaby"
     required-projects:
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-6.0
     vars:
       featureset: '052'
@@ -728,7 +728,7 @@
     abstract: true
     override-checkout: "stable/wallaby"
     required-projects:
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-6.0
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
@@ -767,7 +767,7 @@
     run: playbooks/run-rpm-build.yaml
     override-checkout: "stable/ussuri"
     required-projects:
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-4.0
     vars:
       featureset: '052'
@@ -798,7 +798,7 @@
     abstract: true
     override-checkout: "stable/ussuri"
     required-projects:
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-4.0
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
@@ -837,7 +837,7 @@
     run: playbooks/run-rpm-build.yaml
     override-checkout: "stable/train"
     required-projects:
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-4.0
     vars:
       featureset: '052'
@@ -868,7 +868,7 @@
     override-checkout: "stable/train"
     abstract: true
     required-projects:
-      - name: github.com/ceph/ceph-ansible
+      - name: github.com/jcapiitao/ceph-ansible
         override-checkout: stable-4.0
       - name: github.com/ansible/ansible
         override-checkout: stable-2.9
