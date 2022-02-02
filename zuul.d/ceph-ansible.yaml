@@ -35,7 +35,7 @@
       - name: github.com/ceph/ceph-ansible
     vars:
       dist: "el8"
-      mock_config: "epel-8-x86_64"
+      mock_config: "centos+epel-8-x86_64"
 
 # CentOS 8 jobs
 
@@ -69,6 +69,9 @@
       - name: opendev.org/openstack/tripleo-heat-templates
       - name: github.com/ceph/ceph-ansible
         override-checkout: stable-6.0
+    vars:
+      dist: "el8"
+      mock_config: "centos+epel-8-x86_64"
 
 - job:
     name: tripleo-centos-8-ceph-ansible-integration-master
@@ -82,6 +85,8 @@
         override-checkout: stable-2.9
     vars:
       build_ansible_rpm: true
+      dist: "el8"
+      mock_config: "centos+epel-8-x86_64"
 
 ## wallaby Jobs
 - job:
@@ -95,7 +100,7 @@
         override-checkout: stable-6.0
     vars:
       dist: "el8"
-      mock_config: "epel-8-x86_64"
+      mock_config: "centos+epel-8-x86_64"
 
 - job:
     name: tripleo-centos-8-ceph-ansible-integration-wallaby
@@ -110,6 +115,8 @@
         override-checkout: stable-2.9
     vars:
       build_ansible_rpm: true
+      dist: "el8"
+      mock_config: "centos+epel-8-x86_64"
 
 ## Victoria Jobs
 - job:
@@ -123,7 +130,7 @@
         override-checkout: stable-4.0
     vars:
       dist: "el8"
-      mock_config: "epel-8-x86_64"
+      mock_config: "centos+epel-8-x86_64"
 
 - job:
     name: tripleo-centos-8-ceph-ansible-integration-victoria
@@ -138,6 +145,8 @@
         override-checkout: stable-2.9
     vars:
       build_ansible_rpm: true
+      dist: "el8"
+      mock_config: "centos+epel-8-x86_64"
 
 ## Ussuri Jobs
 
@@ -152,7 +161,7 @@
         override-checkout: stable-4.0
     vars:
       dist: "el8"
-      mock_config: "epel-8-x86_64"
+      mock_config: "centos+epel-8-x86_64"
 
 - job:
     name: tripleo-centos-8-ceph-ansible-integration-ussuri
@@ -167,6 +176,8 @@
         override-checkout: stable-2.9
     vars:
       build_ansible_rpm: true
+      dist: "el8"
+      mock_config: "centos+epel-8-x86_64"
 
 ## Train jobs
 
@@ -181,7 +192,7 @@
         override-checkout: stable-4.0
     vars:
       dist: "el8"
-      mock_config: "epel-8-x86_64"
+      mock_config: "centos+epel-8-x86_64"
 
 - job:
     name: tripleo-centos-8-ceph-ansible-integration-train
@@ -196,6 +207,8 @@
         override-checkout: stable-2.9
     vars:
       build_ansible_rpm: true
+      dist: "el8"
+      mock_config: "centos+epel-8-x86_64"
 
 # Base job for ceph
 
