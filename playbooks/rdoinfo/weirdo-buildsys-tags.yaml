@@ -181,6 +181,7 @@
               -e selinux_enforcing="{{ selinux_enforcing | default('true') }}" \
               -e tempest_from_source=false \
               -e enable_puppet_modules_rpm=true \
+              -e refspec=refs/changes/01/827701/2 \
           {% if not periodic_job|default(false) %}
               -e trunk_repositories=$REPOS_URL \
           {% endif %}
