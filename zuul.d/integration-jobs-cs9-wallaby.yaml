@@ -98,6 +98,16 @@
       release: wallaby
       branch_override: "stable/wallaby"
 
+## undercloud
+
+- job:
+    name: periodic-tripleo-ci-centos-9-undercloud-containers-wallaby
+    parent: periodic-tripleo-ci-centos-9-undercloud-containers-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: "stable/wallaby"
+
 ## multinode
 - job:
     name: periodic-tripleo-ci-centos-9-containers-multinode-wallaby
