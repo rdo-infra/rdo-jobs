@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b903d92b_557eb9f1",
+        "filename": "zuul.d/component-jobs-master-centos9.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 670
+      },
+      "writtenOn": "2022-02-03T04:38:49Z",
+      "side": 1,
+      "message": "where we are using this job?",
+      "range": {
+        "startLine": 672,
+        "startChar": 10,
+        "endLine": 672,
+        "endChar": 71
+      },
+      "revId": "18ff388fa3536f8580d58f4ec8eab1ec7390f875",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3ca9c01_75e856d1",
+        "filename": "zuul.d/component-jobs-master-centos9.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 670
+      },
+      "writtenOn": "2022-02-03T04:38:49Z",
+      "side": 1,
+      "message": "parenting this job will use the distro - c8 if we see the defination https://github.com/rdo-infra/rdo-jobs/blob/master/zuul.d/component-jobs-master.yaml#L1067  . I think we should use this job https://review.rdoproject.org/r/c/rdo-jobs/+/37457/4/zuul.d/component-jobs-master-centos9.yaml#672 as parent.",
+      "range": {
+        "startLine": 682,
+        "startChar": 12,
+        "endLine": 682,
+        "endChar": 70
+      },
+      "revId": "18ff388fa3536f8580d58f4ec8eab1ec7390f875",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1db4b22_ffb9d82e",
+        "filename": "zuul.d/component-jobs-master-centos9.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 687,
+      "author": {
+        "id": 670
+      },
+      "writtenOn": "2022-02-03T04:38:49Z",
+      "side": 1,
+      "message": "ditto.\nwhere these jobs are triggered in the pipeline? i dont see any reference here : https://github.com/rdo-infra/rdo-jobs/blob/master/zuul.d/component-pipeline-main-centos9.yaml",
+      "range": {
+        "startLine": 687,
+        "startChar": 10,
+        "endLine": 687,
+        "endChar": 69
+      },
+      "revId": "18ff388fa3536f8580d58f4ec8eab1ec7390f875",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
