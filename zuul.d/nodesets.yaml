@@ -475,6 +475,18 @@
       - name: peers
         nodes: []
 
+- nodeset:
+    name: single-centos-9-node-nested-virt
+    nodes:
+      - name: primary
+        label: cloud-centos-9-stream-tripleo-vexxhost
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
+
 # Fake nodesets to resolve puppet jobs
 - nodeset:
     name: ubuntu-focal
