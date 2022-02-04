@@ -173,7 +173,6 @@
     name: DLRN-rpmbuild-centos9
     parent: DLRN-rpmbuild-base
     branches: ^(rpm-master)|(xena-rdo)|(wallaby-rdo)$
-    voting: false
     vars:
       centos_version: 'centos9'
     nodeset: rdo-centos-8-stream
