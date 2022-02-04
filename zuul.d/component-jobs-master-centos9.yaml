@@ -691,13 +691,13 @@
 
 - job:
     name: create-scenario010-trigger-for-downstream-network-master-c9
-    parent: create-scenario010-trigger-for-downstream-component-master
+    parent: create-scenario010-trigger-for-downstream-component-master-c9
     vars:
       component: network
 
 - job:
     name: create-scenario010-trigger-for-downstream-octavia-master-c9
-    parent: create-scenario010-trigger-for-downstream-component-master
+    parent: create-scenario010-trigger-for-downstream-component-master-c9
     vars:
       component: octavia
 
