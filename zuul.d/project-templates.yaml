@@ -513,7 +513,7 @@
 
 - project-template:
     name: weirdo-master-promotion-pipeline-centos-stream-8
-    check:
+    openstack-periodic-integration-main:
       jobs:
         - weirdo-yoga-promote-consistent-to-puppet-ci-testing-centos-stream-8
         - weirdo-yoga-promote-puppet-scenario001-centos-stream-8:
