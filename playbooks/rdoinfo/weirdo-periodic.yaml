@@ -83,9 +83,6 @@
               -e tempest_from_source=false \
               -e enable_puppet_modules_rpm=${enable_puppet_modules_rpm} \
               -e trunk_repositories=$REPOS_URL \
-              {% if 'puppet' in zuul.job -%}
-              -e repository="file://{{ ansible_user_dir }}/{{ zuul.projects['opendev.org/openstack/puppet-openstack-integration'].src_dir }}"
-              {% endif %}
 
       changed_when: true
       environment:
