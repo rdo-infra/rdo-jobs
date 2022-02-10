@@ -421,7 +421,6 @@
       - rdo-infra/ansible-role-weirdo-logs
       - rdo-infra/ansible-role-weirdo-packstack
       - rdo-infra/ansible-role-weirdo-puppet-openstack
-      - opendev.org/openstack/puppet-openstack-integration
     vars:
       selinux_enforcing: "false"
       rdoinfo_release: yoga
@@ -442,7 +441,6 @@
       - rdo-infra/ansible-role-weirdo-logs
       - rdo-infra/ansible-role-weirdo-packstack
       - rdo-infra/ansible-role-weirdo-puppet-openstack
-      - opendev.org/openstack/puppet-openstack-integration
     vars:
       selinux_enforcing: "false"
       rdoinfo_release: yoga
@@ -453,24 +451,32 @@
 - job:
     name: weirdo-yoga-promote-puppet-scenario001-centos-stream-9
     parent: weirdo-promote-base-centos9
+    required-projects:
+      - opendev.org/openstack/puppet-openstack-integration
     vars:
       scenario: scenario001
 
 - job:
     name: weirdo-yoga-promote-puppet-scenario002-centos-stream-9
     parent: weirdo-promote-base-centos9
+    required-projects:
+      - opendev.org/openstack/puppet-openstack-integration
     vars:
       scenario: scenario002
 
 - job:
     name: weirdo-yoga-promote-puppet-scenario003-centos-stream-9
     parent: weirdo-promote-base-centos9
+    required-projects:
+      - opendev.org/openstack/puppet-openstack-integration
     vars:
       scenario: scenario003
 
 - job:
     name: weirdo-yoga-promote-puppet-scenario004-centos-stream-9
     parent: weirdo-promote-base-centos9
+    required-projects:
+      - opendev.org/openstack/puppet-openstack-integration
     vars:
       scenario: scenario004
 
@@ -495,24 +501,32 @@
 - job:
     name: weirdo-yoga-promote-puppet-scenario001-centos-stream-8
     parent: weirdo-promote-base-centos8
+    required-projects:
+      - opendev.org/openstack/puppet-openstack-integration
     vars:
       scenario: scenario001
 
 - job:
     name: weirdo-yoga-promote-puppet-scenario002-centos-stream-8
     parent: weirdo-promote-base-centos8
+    required-projects:
+      - opendev.org/openstack/puppet-openstack-integration
     vars:
       scenario: scenario002
 
 - job:
     name: weirdo-yoga-promote-puppet-scenario003-centos-stream-8
     parent: weirdo-promote-base-centos8
+    required-projects:
+      - opendev.org/openstack/puppet-openstack-integration
     vars:
       scenario: scenario003
 
 - job:
     name: weirdo-yoga-promote-puppet-scenario004-centos-stream-8
     parent: weirdo-promote-base-centos8
+    required-projects:
+      - opendev.org/openstack/puppet-openstack-integration
     vars:
       scenario: scenario004
 
@@ -537,6 +551,9 @@
 - job:
     name: weirdo-xena-promote-puppet-scenario001-centos-stream-9
     parent: weirdo-promote-base-centos9
+    required-projects:
+      - name: opendev.org/openstack/puppet-openstack-integration
+        override-checkout: stable/xena
     vars:
       rdoinfo_release: xena
       scenario: scenario001
@@ -544,6 +561,9 @@
 - job:
     name: weirdo-xena-promote-puppet-scenario002-centos-stream-9
     parent: weirdo-promote-base-centos9
+    required-projects:
+      - name: opendev.org/openstack/puppet-openstack-integration
+        override-checkout: stable/xena
     vars:
       rdoinfo_release: xena
       scenario: scenario002
@@ -551,6 +571,9 @@
 - job:
     name: weirdo-xena-promote-puppet-scenario003-centos-stream-9
     parent: weirdo-promote-base-centos9
+    required-projects:
+      - name: opendev.org/openstack/puppet-openstack-integration
+        override-checkout: stable/xena
     vars:
       rdoinfo_release: xena
       scenario: scenario003
@@ -558,6 +581,9 @@
 - job:
     name: weirdo-xena-promote-puppet-scenario004-centos-stream-9
     parent: weirdo-promote-base-centos9
+    required-projects:
+      - name: opendev.org/openstack/puppet-openstack-integration
+        override-checkout: stable/xena
     vars:
       rdoinfo_release: xena
       scenario: scenario004
@@ -586,6 +612,9 @@
 - job:
     name: weirdo-xena-promote-puppet-scenario001-centos-stream-8
     parent: weirdo-promote-base-centos8
+    required-projects:
+      - name: opendev.org/openstack/puppet-openstack-integration
+        override-checkout: stable/xena
     vars:
       rdoinfo_release: xena
       scenario: scenario001
@@ -593,6 +622,9 @@
 - job:
     name: weirdo-xena-promote-puppet-scenario002-centos-stream-8
     parent: weirdo-promote-base-centos8
+    required-projects:
+      - name: opendev.org/openstack/puppet-openstack-integration
+        override-checkout: stable/xena
     vars:
       rdoinfo_release: xena
       scenario: scenario002
@@ -600,6 +632,9 @@
 - job:
     name: weirdo-xena-promote-puppet-scenario003-centos-stream-8
     parent: weirdo-promote-base-centos8
+    required-projects:
+      - name: opendev.org/openstack/puppet-openstack-integration
+        override-checkout: stable/xena
     vars:
       rdoinfo_release: xena
       scenario: scenario003
@@ -607,6 +642,9 @@
 - job:
     name: weirdo-xena-promote-puppet-scenario004-centos-stream-8
     parent: weirdo-promote-base-centos8
+    required-projects:
+      - name: opendev.org/openstack/puppet-openstack-integration
+        override-checkout: stable/xena
     vars:
       rdoinfo_release: xena
       scenario: scenario004
@@ -635,6 +673,9 @@
 - job:
     name: weirdo-wallaby-promote-puppet-scenario001-centos-stream-9
     parent: weirdo-promote-base-centos9
+    required-projects:
+      - name: opendev.org/openstack/puppet-openstack-integration
+        override-checkout: stable/wallaby
     vars:
       rdoinfo_release: wallaby
       scenario: scenario001
@@ -642,6 +683,9 @@
 - job:
     name: weirdo-wallaby-promote-puppet-scenario002-centos-stream-9
     parent: weirdo-promote-base-centos9
+    required-projects:
+      - name: opendev.org/openstack/puppet-openstack-integration
+        override-checkout: stable/wallaby
     vars:
       rdoinfo_release: wallaby
       scenario: scenario002
@@ -649,6 +693,9 @@
 - job:
     name: weirdo-wallaby-promote-puppet-scenario003-centos-stream-9
     parent: weirdo-promote-base-centos9
+    required-projects:
+      - name: opendev.org/openstack/puppet-openstack-integration
+        override-checkout: stable/wallaby
     vars:
       rdoinfo_release: wallaby
       scenario: scenario003
@@ -656,6 +703,9 @@
 - job:
     name: weirdo-wallaby-promote-puppet-scenario004-centos-stream-9
     parent: weirdo-promote-base-centos9
+    required-projects:
+      - name: opendev.org/openstack/puppet-openstack-integration
+        override-checkout: stable/wallaby
     vars:
       rdoinfo_release: wallaby
       scenario: scenario004
