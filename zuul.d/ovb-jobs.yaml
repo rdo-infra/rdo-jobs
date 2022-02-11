@@ -86,11 +86,6 @@
     vars:
       branch_override: "stable/wallaby"
 
-# TODO(dviroel): delete after updating config repo
-- job:
-    name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-wallaby-branch
-    parent: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-wallaby
-
 - job:
     name: tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset002-upload-wallaby
     parent: tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset002-upload
@@ -107,11 +102,6 @@
     override-checkout: "stable/wallaby"
     vars:
       branch_override: "stable/wallaby"
-
-# TODO(dviroel): delete after updating config repo
-- job:
-    name: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-wallaby-branch
-    parent: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-wallaby
 
 - job:
     name: tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020-wallaby
@@ -457,11 +447,6 @@
       branch_override: "stable/train"
       release: train
 
-# TODO(dviroel): delete after updating config repo
-- job:
-    name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-train-branch
-    parent: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-train
-
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-train
     parent: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-upload
@@ -479,11 +464,6 @@
     vars:
       branch_override: "stable/train"
       release: train
-
-# TODO(dviroel): delete after updating config repo
-- job:
-    name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-train-branch
-    parent: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-train
 
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-train
@@ -505,11 +485,6 @@
       branch_override: "stable/ussuri"
       release: ussuri
 
-# TODO(dviroel): delete after updating config repo
-- job:
-    name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-ussuri-branch
-    parent: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-ussuri
-
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-ussuri
     parent: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-upload
@@ -527,11 +502,6 @@
     vars:
       branch_override: "stable/ussuri"
       release: ussuri
-
-# TODO(dviroel): delete after updating config repo
-- job:
-    name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-ussuri-branch
-    parent: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-ussuri
 
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-ussuri
@@ -553,11 +523,6 @@
       branch_override: "stable/victoria"
       release: victoria
 
-# TODO(dviroel): delete after updating config repo
-- job:
-    name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-victoria-branch
-    parent: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-victoria
-
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-victoria
     parent: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-upload
@@ -575,11 +540,6 @@
     vars:
       branch_override: "stable/victoria"
       release: victoria
-
-# TODO(dviroel): delete after updating config repo
-- job:
-    name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-victoria-branch
-    parent: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-victoria
 
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-victoria
@@ -601,11 +561,6 @@
       branch_override: "stable/wallaby"
       release: wallaby
 
-# TODO(dviroel): delete after updating config repo
-- job:
-    name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby-branch
-    parent: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby
-
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-wallaby
     parent: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-upload
@@ -623,11 +578,6 @@
     vars:
       branch_override: "stable/wallaby"
       release: wallaby
-
-# TODO(dviroel): delete after updating config repo
-- job:
-    name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-wallaby-branch
-    parent: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-wallaby
 
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-wallaby
