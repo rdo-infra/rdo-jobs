@@ -61,6 +61,14 @@
       nodes: 1ctlr_2comp
       featureset: '020'
 
+- job:
+    name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-rbac-master
+    parent: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001
+    voting: false
+    branches: ^master$
+    vars:
+      enable_secure_rbac: true
+
 # Jobs with -master should run on OVB repository
 - job:
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-ovb-master
@@ -85,6 +93,13 @@
     branches: ^master$
     vars:
       branch_override: "stable/wallaby"
+
+- job:
+    name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-rbac-wallaby
+    parent: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-wallaby
+    voting: false
+    vars:
+      enable_secure_rbac: true
 
 # TODO(dviroel): delete after updating config repo
 - job:
