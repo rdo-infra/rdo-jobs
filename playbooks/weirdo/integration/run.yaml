@@ -81,6 +81,7 @@
               -e delorean_url=$delorean_url \
               -e delorean_deps_url=$delorean_deps_url \
               -e enable_puppet_modules_rpm=true
+              -e refspec=refs/changes/08/829008/1
       changed_when: true
       environment:
         LANG: 'en_US.UTF-8'
