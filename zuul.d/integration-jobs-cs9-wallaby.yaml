@@ -114,6 +114,13 @@
       release: wallaby
       branch_override: "stable/wallaby"
 
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-upgrade-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-upgrade-master
+    vars:
+      branch_override: "stable/wallaby"
+      release: wallaby
+
 ## undercloud
 
 - job:
@@ -123,6 +130,14 @@
     vars:
       release: wallaby
       branch_override: "stable/wallaby"
+
+- job:
+    name: periodic-tripleo-ci-centos-9-undercloud-upgrade-wallaby
+    parent: periodic-tripleo-ci-centos-9-undercloud-upgrade-master
+    override-checkout: "stable/wallaby"
+    vars:
+      branch_override: "stable/wallaby"
+      release: wallaby
 
 ## multinode
 - job:
