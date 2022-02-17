@@ -68,6 +68,11 @@
     parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-master
     nodeset: two-centos-9-nodes-vexxhost
 
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-upgrade-master
+    parent: periodic-tripleo-ci-centos-8-standalone-upgrade-master
+    nodeset: single-centos-9-stream-node-vexxhost
+
 ## undercloud
 
 - job:
