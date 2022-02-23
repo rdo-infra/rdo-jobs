@@ -916,3 +916,18 @@
     parent: periodic-tripleo-ci-centos-9-undercloud-upgrade-component-master
     vars:
       component: tripleo
+
+# standalone upgrade jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-upgrade-component-master
+    parent: periodic-tripleo-ci-centos-9-standalone-upgrade-master
+    abstract: true
+    vars: *component_vars_standalone
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-upgrade-tripleo-master
+    parent: periodic-tripleo-ci-centos-9-standalone-upgrade-component-master
+    vars:
+      release: master
+      component: tripleo
