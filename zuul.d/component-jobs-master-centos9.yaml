@@ -866,3 +866,53 @@
     parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-master
     vars:
       component: tempest
+
+# Undercloud upgrade jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-undercloud-upgrade-component-master
+    parent: periodic-tripleo-ci-centos-9-undercloud-upgrade-master
+    abstract: true
+    vars: *component_vars_standalone
+
+- job:
+    name: periodic-tripleo-ci-centos-9-undercloud-upgrade-baremetal-master
+    parent: periodic-tripleo-ci-centos-9-undercloud-upgrade-component-master
+    vars:
+      component: baremetal
+
+- job:
+    name: periodic-tripleo-ci-centos-9-undercloud-upgrade-clients-master
+    parent: periodic-tripleo-ci-centos-9-undercloud-upgrade-component-master
+    vars:
+      component: clients
+
+- job:
+    name: periodic-tripleo-ci-centos-9-undercloud-upgrade-cloudops-master
+    parent: periodic-tripleo-ci-centos-9-undercloud-upgrade-component-master
+    vars:
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-ci-centos-9-undercloud-upgrade-common-master
+    parent: periodic-tripleo-ci-centos-9-undercloud-upgrade-component-master
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-9-undercloud-upgrade-network-master
+    parent: periodic-tripleo-ci-centos-9-undercloud-upgrade-component-master
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-9-undercloud-upgrade-security-master
+    parent: periodic-tripleo-ci-centos-9-undercloud-upgrade-component-master
+    vars:
+      component: security
+
+- job:
+    name: periodic-tripleo-ci-centos-9-undercloud-upgrade-tripleo-master
+    parent: periodic-tripleo-ci-centos-9-undercloud-upgrade-component-master
+    vars:
+      component: tripleo
