@@ -10,6 +10,7 @@
               - periodic-tripleo-centos-9-wallaby-component-baremetal-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-scenario012-standalone-baremetal-wallaby: *comp_baremetal_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-baremetal-wallaby: *comp_baremetal_to_ci_testing_wallaby_cs9
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-baremetal-wallaby: *comp_baremetal_to_ci_testing_wallaby_cs9
         - periodic-tripleo-centos-9-wallaby-component-baremetal-promote-consistent-to-component-ci-testing
     openstack-component-cinder:
       jobs:
@@ -26,6 +27,7 @@
               - periodic-tripleo-centos-9-wallaby-component-clients-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-containers-multinode-clients-wallaby: *comp_clients_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-clients-wallaby: *comp_clients_to_ci_testing_wallaby_cs9
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-clients-wallaby: *comp_clients_to_ci_testing_wallaby_cs9
         - periodic-tripleo-centos-9-wallaby-component-clients-promote-consistent-to-component-ci-testing
     openstack-component-cloudops:
       jobs:
@@ -34,6 +36,7 @@
               - periodic-tripleo-centos-9-wallaby-component-cloudops-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-scenario001-standalone-cloudops-wallaby: *comp_cloudops_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-scenario002-standalone-cloudops-wallaby: *comp_cloudops_to_ci_testing_wallaby_cs9
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-cloudops-wallaby: *comp_cloudops_to_ci_testing_wallaby_cs9
         - periodic-tripleo-centos-9-wallaby-component-cloudops-promote-consistent-to-component-ci-testing
     openstack-component-common:
       jobs:
@@ -45,6 +48,7 @@
         - periodic-tripleo-ci-centos-9-scenario003-standalone-common-wallaby: *comp_common_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-scenario004-standalone-common-wallaby: *comp_common_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-containers-multinode-common-wallaby: *comp_common_to_ci_testing_wallaby_cs9
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-common-wallaby: *comp_common_to_ci_testing_wallaby_cs9
         - periodic-tripleo-centos-9-wallaby-component-common-promote-consistent-to-component-ci-testing
     openstack-component-compute:
       jobs:
@@ -83,6 +87,7 @@
         - periodic-tripleo-ci-centos-9-containers-multinode-network-wallaby: *comp_network_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-network-wallaby: *comp_network_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-scenario007-standalone-network-wallaby: *comp_network_to_ci_testing_wallaby_cs9
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-network-wallaby: *comp_network_to_ci_testing_wallaby_cs9
         - periodic-tripleo-centos-9-wallaby-component-network-promote-consistent-to-component-ci-testing
     openstack-component-octavia:
       jobs:
@@ -100,6 +105,7 @@
         - periodic-tripleo-ci-centos-9-containers-multinode-security-wallaby: *comp_security_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-security-wallaby: *comp_security_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-security-wallaby: *comp_security_to_ci_testing_wallaby_cs9
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-security-wallaby: *comp_security_to_ci_testing_wallaby_cs9
         - periodic-tripleo-centos-9-wallaby-component-security-promote-consistent-to-component-ci-testing
     openstack-component-swift:
       jobs:
@@ -116,8 +122,10 @@
         - periodic-tripleo-ci-centos-9-scenario004-standalone-tripleo-wallaby: *comp_tripleo_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-containers-multinode-tripleo-wallaby: *comp_tripleo_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-containers-multinode-tripleo-wallaby-validation: *comp_tripleo_to_ci_testing_wallaby_cs9
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-tripleo-wallaby: *comp_tripleo_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-tripleo-wallaby: *comp_tripleo_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-tripleo-wallaby: *comp_tripleo_to_ci_testing_wallaby_cs9
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-tripleo-wallaby: *comp_tripleo_to_ci_testing_wallaby_cs9
         - periodic-tripleo-centos-9-wallaby-component-tripleo-promote-consistent-to-component-ci-testing
     openstack-component-tempest:
       jobs:
@@ -126,6 +134,7 @@
               - periodic-tripleo-centos-9-wallaby-component-tempest-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-tempest-wallaby: *comp_tempest_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-tempest-wallaby: *comp_tempest_to_ci_testing_wallaby_cs9
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-tempest-wallaby: *comp_tempest_to_ci_testing_wallaby_cs9
         - periodic-tripleo-centos-9-wallaby-component-tempest-promote-consistent-to-component-ci-testing
     openstack-component-ui:
       jobs:
