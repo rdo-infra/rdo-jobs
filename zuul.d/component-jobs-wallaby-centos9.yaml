@@ -250,13 +250,6 @@
       branch_override: 'stable/wallaby'
 
 - job:
-    name: periodic-tripleo-ci-centos-9-standalone-manila-wallaby
-    parent: periodic-tripleo-ci-centos-9-standalone-manila-master
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
     name: periodic-tripleo-ci-centos-9-standalone-network-wallaby
     parent: periodic-tripleo-ci-centos-9-standalone-network-master
     vars:

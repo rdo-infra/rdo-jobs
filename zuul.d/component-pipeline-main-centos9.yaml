@@ -75,17 +75,15 @@
         - periodic-tripleo-centos-9-master-component-glance-promote-consistent-to-component-ci-testing
     openstack-component-manila:
       jobs:
-        - periodic-tripleo-ci-centos-9-standalone-manila-master: &cs9_comp_manila_to_ci_testing_master
+        - periodic-tripleo-ci-centos-9-scenario004-standalone-manila-master: &cs9_comp_manila_to_ci_testing_master
             dependencies:
               - periodic-tripleo-centos-9-master-component-manila-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-9-scenario004-standalone-manila-master: *cs9_comp_manila_to_ci_testing_master
         - periodic-tripleo-centos-9-master-component-manila-promote-consistent-to-component-ci-testing
     openstack-component-network:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-network-master: &cs9_comp_network_to_ci_testing_master
             dependencies:
               - periodic-tripleo-centos-9-master-component-network-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-network-master: *cs9_comp_network_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-scenario007-standalone-network-master: *cs9_comp_network_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-containers-multinode-network-master: *cs9_comp_network_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-network-master: *cs9_comp_network_to_ci_testing_master
@@ -116,10 +114,9 @@
         - periodic-tripleo-centos-9-master-component-security-promote-consistent-to-component-ci-testing
     openstack-component-swift:
       jobs:
-        - periodic-tripleo-ci-centos-9-standalone-swift-master: &cs9_comp_swift_to_ci_testing_master
+        - periodic-tripleo-ci-centos-9-scenario002-standalone-swift-master: &cs9_comp_swift_to_ci_testing_master
             dependencies:
               - periodic-tripleo-centos-9-master-component-swift-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-9-scenario002-standalone-swift-master: *cs9_comp_swift_to_ci_testing_master
         - periodic-tripleo-centos-9-master-component-swift-promote-consistent-to-component-ci-testing
     openstack-component-tripleo:
       jobs:

@@ -281,12 +281,6 @@
       component: glance
 
 - job:
-    name: periodic-tripleo-ci-centos-9-standalone-manila-master
-    parent: periodic-tripleo-ci-centos-9-standalone-component-master
-    vars:
-      component: manila
-
-- job:
     name: periodic-tripleo-ci-centos-9-standalone-network-master
     parent: periodic-tripleo-ci-centos-9-standalone-component-master
     vars:
@@ -309,12 +303,6 @@
     parent: periodic-tripleo-ci-centos-9-standalone-component-master
     vars:
       component: security
-
-- job:
-    name: periodic-tripleo-ci-centos-9-standalone-swift-master
-    parent: periodic-tripleo-ci-centos-9-standalone-component-master
-    vars:
-      component: swift
 
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-tempest-master
