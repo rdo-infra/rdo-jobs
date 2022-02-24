@@ -722,3 +722,14 @@
     parent: create-scenario010-trigger-for-downstream-component-wallaby-c9
     vars:
       component: octavia
+
+# Updates Jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-tripleo-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-tripleo-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      component: tripleo
