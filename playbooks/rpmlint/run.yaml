@@ -285,6 +285,8 @@
           addFilter("python3-tripleo-repos.noarch: W: conffile-without-noreplace-flag /etc/tripleo_get_hash/config.yaml")
           addFilter("python3-tripleo-repos.noarch: E: non-executable-script /usr/lib/python3.6/site-packages/tripleo_repos/.*")
           addFilter("python3-tripleo-repos.noarch: E: wrong-script-interpreter /usr/lib/python3.6/site-packages/tripleo_repos/.*")
+          # Exceptions for octavia
+          addFilter("python3-octavia.noarch: E: non-executable-script /usr/lib/python3.6/site-packages/octavia/cmd/prometheus_proxy.py.*")
           EOF
 
 
