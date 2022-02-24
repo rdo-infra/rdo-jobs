@@ -722,3 +722,61 @@
     parent: create-scenario010-trigger-for-downstream-component-wallaby-c9
     vars:
       component: octavia
+
+# Updates Jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-master
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-baremetal-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-wallaby
+    vars:
+      component: baremetal
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-clients-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-wallaby
+    vars:
+      component: clients
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-cloudops-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-wallaby
+    vars:
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-common-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-wallaby
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-network-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-wallaby
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-security-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-wallaby
+    vars:
+      component: security
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-tripleo-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-wallaby
+    vars:
+      component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-tempest-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-wallaby
+    vars:
+      component: tempest
