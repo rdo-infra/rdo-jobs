@@ -905,7 +905,6 @@
 - job:
     name: validate-buildsys-tags-yoga-testing-centos8-base
     parent: weirdo-validate-buildsys-tags-base
-    voting: false
     vars:
       rdoinfo_release: yoga
       rdoinfo_phase: testing
