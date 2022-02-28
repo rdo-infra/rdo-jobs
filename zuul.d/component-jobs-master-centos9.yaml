@@ -239,6 +239,24 @@
       enable_validation: true
 
 - job:
+    name: periodic-tripleo-ci-centos-9-standalone-compute-master-validation
+    parent: periodic-tripleo-ci-centos-9-standalone-component-master-validation
+    vars:
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-network-master-validation
+    parent: periodic-tripleo-ci-centos-9-standalone-component-master-validation
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-tripleo-master-validation
+    parent: periodic-tripleo-ci-centos-9-standalone-component-master-validation
+    vars:
+      component: tripleo
+
+- job:
     name: periodic-tripleo-ci-centos-9-standalone-baremetal-master
     parent: periodic-tripleo-ci-centos-9-standalone-component-master
     vars:
