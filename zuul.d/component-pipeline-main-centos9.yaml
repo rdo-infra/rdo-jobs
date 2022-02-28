@@ -59,6 +59,7 @@
         - periodic-tripleo-ci-centos-9-standalone-compute-master: &cs9_comp_compute_to_ci_testing_master
             dependencies:
               - periodic-tripleo-centos-9-master-component-compute-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-standalone-compute-master-validation: *cs9_comp_compute_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-scenario012-standalone-compute-master: *cs9_comp_compute_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-compute-master: *cs9_comp_compute_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-compute-master: *cs9_comp_compute_to_ci_testing_master
@@ -84,6 +85,7 @@
         - periodic-tripleo-ci-centos-9-standalone-network-master: &cs9_comp_network_to_ci_testing_master
             dependencies:
               - periodic-tripleo-centos-9-master-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-standalone-network-master-validation: *cs9_comp_network_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-scenario007-standalone-network-master: *cs9_comp_network_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-containers-multinode-network-master: *cs9_comp_network_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-network-master: *cs9_comp_network_to_ci_testing_master
@@ -123,6 +125,7 @@
         - periodic-tripleo-ci-centos-9-standalone-tripleo-master: &cs9_comp_tripleo_to_ci_testing_master
             dependencies:
               - periodic-tripleo-centos-9-master-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-standalone-tripleo-master-validation: *cs9_comp_tripleo_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-containers-multinode-tripleo-master: *cs9_comp_tripleo_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-containers-multinode-tripleo-master-validation: *cs9_comp_tripleo_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-scenario004-standalone-tripleo-master: *cs9_comp_tripleo_to_ci_testing_master
