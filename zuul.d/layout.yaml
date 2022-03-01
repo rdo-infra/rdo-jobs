@@ -1,14 +1,13 @@
 - project:
     check:
       jobs: &jobs
-        # Place all individual molecule jobs here, rdo-tox-molecule will soon be removed
-        - rdo-mol-container-login:
-            files:
-              - .*molecule.*
-              - .*container-login.*
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^molecule-requirements.txt
-              - ^tox.ini$
+        - periodic-tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020-rbac-master:
+            vars:
+              enable_secure_rbac: true
+              featureset_override:
+                tempest_test_whitelist:
+                  - 'glance_tempest_plugin.tests.rbac.v2'
+                tempest_plugins:
+                  - python-glance-test-tempest
     gate:
       jobs: *jobs
