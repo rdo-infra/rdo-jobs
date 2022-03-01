@@ -55,6 +55,7 @@
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-compute-wallaby: *comp_compute_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-compute-wallaby: *comp_compute_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-compute-wallaby: *comp_compute_to_ci_testing_wallaby_cs9
+        - periodic-tripleo-ci-centos-9-standalone-compute-wallaby-validation: *comp_compute_to_ci_testing_wallaby_cs9
         - periodic-tripleo-centos-9-wallaby-component-compute-promote-consistent-to-component-ci-testing
     openstack-component-glance:
       jobs:
@@ -78,6 +79,7 @@
         - periodic-tripleo-ci-centos-9-standalone-network-wallaby: &comp_network_to_ci_testing_wallaby_cs9
             dependencies:
               - periodic-tripleo-centos-9-wallaby-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-standalone-network-wallaby-validation: *comp_network_to_ci_testing_wallaby_cs9
         - create-scenario010-trigger-for-downstream-network-master-c9: *comp_network_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-network-wallaby: *comp_network_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-containers-multinode-network-wallaby: *comp_network_to_ci_testing_wallaby_cs9
@@ -114,6 +116,7 @@
             dependencies:
               - periodic-tripleo-centos-9-wallaby-component-tripleo-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-scenario004-standalone-tripleo-wallaby: *comp_tripleo_to_ci_testing_wallaby_cs9
+        - periodic-tripleo-ci-centos-9-standalone-tripleo-wallaby-validation: *comp_tripleo_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-containers-multinode-tripleo-wallaby: *comp_tripleo_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-containers-multinode-tripleo-wallaby-validation: *comp_tripleo_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-tripleo-wallaby: *comp_tripleo_to_ci_testing_wallaby_cs9
