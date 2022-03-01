@@ -152,3 +152,6 @@
     voting: false
     vars:
       enable_secure_rbac: true
+      featureset_override:
+        tempest_test_whitelist:
+          - 'glance-tempest-plugin.glance_tempest_plugin.tests.rbac.v2'
