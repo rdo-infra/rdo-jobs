@@ -4,6 +4,16 @@
 # It contains all the jobs using deployed-servers in nodepool.
 
 - job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-master
+    parent: tripleo-ci-base-multinode-periodic-centos-9
+    vars:
+      nodes: 1ctlr
+      featureset: '010'
+      release: master
+      playbooks:
+        - multinode.yml
+
+- job:
     name: periodic-tripleo-ci-centos-8-containers-multinode-master
     parent: tripleo-ci-base-multinode-periodic-centos-8
     vars:
@@ -22,6 +32,16 @@
       featureset: '010'
       release: train
       branch_override: "stable/train"
+      playbooks:
+        - multinode.yml
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario007-multinode-oooq-container-master
+    parent: tripleo-ci-base-multinode-periodic-centos-9
+    vars:
+      nodes: 1ctlr
+      featureset: '030'
+      release: master
       playbooks:
         - multinode.yml
 
@@ -54,6 +74,19 @@
     vars:
       branch_override: "stable/train"
       release: train
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-master
+    parent: tripleo-ci-base-multinode-periodic-centos-9
+    vars:
+      nodes: 1ctlr
+      featureset: '037'
+      release: master
+      # Note (dmsimard): This enforces a minimum TTL for DNS records, see
+      # https://review.opendev.org/#/c/523178/ for context
+      unbound_cache_min_ttl: 900
+      extra_tags:
+        - overcloud-update
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-master
