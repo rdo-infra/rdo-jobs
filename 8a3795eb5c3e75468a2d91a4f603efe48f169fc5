@@ -16,6 +16,24 @@
       "message": "Note that this setting is usually used by a speculative changes. For example, by including a .zuul.yaml change with:\n\n  - project:\n       pipeline-name:\n          debug: true\n\nThat way Zuul should on the review comment the job freeze process debug. I don\u0027t know if this is going to work for periodic pipeline, where zuul is going to report the debug?\n\n\nPS: It\u0027s odd, the adding CC completion can\u0027t find my primary account.",
       "revId": "8a3795eb5c3e75468a2d91a4f603efe48f169fc5",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06b39943_71460e29",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2022-03-04T12:26:13Z",
+      "side": 1,
+      "message": "Thanks you Tristan for the quick Review. Based on the docs I was understanding the same. But I thought since check/gate is also a pipeline name. SO the option might work there?\n\nThe debug will be reported in the zuul scheduler logs when run zuul enqueue-ref command is runned .\n\nSorry for the other email addition in the cc list.",
+      "parentUuid": "7e86fde6_6257c938",
+      "revId": "8a3795eb5c3e75468a2d91a4f603efe48f169fc5",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
