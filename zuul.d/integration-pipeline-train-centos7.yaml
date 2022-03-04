@@ -3,6 +3,7 @@
 - project-template:
     name: integration-pipeline-train-centos7
     openstack-periodic-integration-stable4-centos7:
+      debug: true
       jobs:
         ##### stable/train #####
         - periodic-tripleo-ci-centos-7-containers-multinode-train:

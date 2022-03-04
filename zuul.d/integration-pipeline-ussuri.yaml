@@ -3,6 +3,7 @@
 - project-template:
     name: integration-pipeline-ussuri
     openstack-periodic-integration-stable3:
+      debug: true
       jobs:
         ## standalone
         - periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-ussuri: &build_con_ubi_8_push_ussuri
