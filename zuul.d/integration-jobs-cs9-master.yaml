@@ -9,13 +9,10 @@
 ## containers/images
 - job:
     name: periodic-tripleo-ci-build-containers-centos-9-push-master
-    parent: periodic-tripleo-ci-build-containers-ubi-8-push
-    nodeset: cloud-centos-9-stream-vexxhost
+    parent: tripleo-ci-build-containers-base-rdo-centos-9
     vars:
       buildcontainers_override_repos: centos9-master
-      containers_base_image: quay.io/centos/centos:stream9
       registry_namespace: tripleomastercentos9
-      promote_source: tripleo-ci-testing
 
 ## standalone
 - job:
