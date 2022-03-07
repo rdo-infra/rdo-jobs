@@ -106,7 +106,7 @@
 - job:
     name: DLRN-build-tripleo-centos8
     parent: DLRN-build-tripleo-base
-    branches: ^((rpm-master)|(^(?!queens|rocky|stein|xena)(\w+)-rdo))$
+    branches: ^((rpm-master)|(^(?!queens|rocky|stein|xena|yoga)(\w+)-rdo))$
     dependencies:
       - DLRN-rpmbuild-centos8
     vars:
@@ -172,7 +172,7 @@
 - job:
     name: DLRN-rpmbuild-centos9
     parent: DLRN-rpmbuild-base
-    branches: ^(rpm-master)|(xena-rdo)|(wallaby-rdo)$
+    branches: ^(rpm-master)|(yoga-rdo)|(xena-rdo)|(wallaby-rdo)$
     vars:
       centos_version: 'centos9'
     nodeset: rdo-centos-8-stream
