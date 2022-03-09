@@ -178,6 +178,30 @@
             voting: false
             files:
               - ^buildsys-tags/cloud8s-openstack-wallaby-testing.yml$
+        - distgit-tripleo-wallaby-testing-centos-9-standalone-scenario001:
+            dependencies:
+              - rdoinfo-DLRN-check-centos9
+            voting: false
+            files:
+              - ^tags/wallaby.yml$
+        - distgit-tripleo-wallaby-testing-centos-9-standalone-scenario002:
+            dependencies:
+              - rdoinfo-DLRN-check-centos9
+            voting: false
+            files:
+              - ^tags/wallaby.yml$
+        - distgit-tripleo-wallaby-testing-centos-9-standalone-scenario003:
+            dependencies:
+              - rdoinfo-DLRN-check-centos9
+            voting: false
+            files:
+              - ^tags/wallaby.yml$
+        - distgit-tripleo-wallaby-testing-centos-9-standalone-scenario004:
+            dependencies:
+              - rdoinfo-DLRN-check-centos9
+            voting: false
+            files:
+              - ^tags/wallaby.yml$
     experimental:
       jobs:
         - rdoinfo-tripleo-wallaby-testing-centos-8-scenario007-standalone:
@@ -186,6 +210,18 @@
             voting: false
             files:
               - ^buildsys-tags/cloud8s-openstack-wallaby-testing.yml$
+        - distgit-tripleo-ci-centos-9-standalone-full-tempest-scenario-wallaby:
+            dependencies:
+              - rdoinfo-DLRN-check-centos9
+            voting: false
+            files:
+              - ^tags/wallaby.yml$
+        - distgit-tripleo-ci-centos-9-standalone-full-tempest-api-wallaby:
+            dependencies:
+              - rdoinfo-DLRN-check-centos9
+            voting: false
+            files:
+              - ^tags/wallaby.yml$
 
 - project-template:
     name: rdoinfo-xena-release-tripleo-jobs
