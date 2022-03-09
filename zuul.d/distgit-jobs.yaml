@@ -112,6 +112,140 @@
           'share.capability_create_share_from_snapshot_support': 'False'
         test_white_regex: ''
 
+
+# CENTOS-9 JOBS
+- job:
+    name: distgit-tripleo-master-testing-centos-9-standalone
+    parent: tripleo-ci-centos-9-standalone
+    nodeset: single-centos-9-stream-node-vexxhost
+    run: playbooks/run-distgit.yaml
+    vars:
+      release: master
+
+- job:
+    name: distgit-tripleo-ci-centos-9-content-provider
+    parent: tripleo-ci-centos-9-content-provider
+    nodeset: single-centos-9-stream-node-vexxhost
+
+- job:
+    name: distgit-tripleo-master-testing-centos-9-standalone-scenario001
+    parent: tripleo-ci-centos-9-scenario001-standalone
+    nodeset: single-centos-9-stream-node-vexxhost
+    run: playbooks/run-distgit.yaml
+    vars:
+      release: master
+
+- job:
+    name: distgit-tripleo-master-testing-centos-9-standalone-scenario002
+    parent: tripleo-ci-centos-9-scenario002-standalone
+    nodeset: single-centos-9-stream-node-vexxhost
+    run: playbooks/run-distgit.yaml
+    vars:
+      release: master
+
+- job:
+    name: distgit-tripleo-master-testing-centos-9-standalone-scenario003
+    parent: tripleo-ci-centos-9-scenario003-standalone
+    nodeset: single-centos-9-stream-node-vexxhost
+    run: playbooks/run-distgit.yaml
+    vars:
+      release: master
+
+- job:
+    name: distgit-tripleo-master-testing-centos-9-standalone-scenario004
+    parent: tripleo-ci-centos-9-scenario004-standalone
+    nodeset: single-centos-9-stream-node-vexxhost
+    run: playbooks/run-distgit.yaml
+    vars:
+      release: master
+
+- job:
+    name: distgit-tripleo-master-testing-centos-9-standalone-full-temepst-api
+    parent: distgit-tripleo-master-testing-centos-9-standalone
+    nodeset: single-centos-9-stream-node-vexxhost
+    timeout: 14400
+    vars:
+      featureset: '052'
+      release: master
+      featureset_override:
+        run_tempest: false
+        tempest_run_concurrency: 4
+        tempest_services:
+          - cinder
+          - horizon
+          - neutron
+        tempest_test_whitelist:
+          - 'api'
+        use_os_tempest: true
+
+- job:
+    name: distgit-tripleo-master-testing-centos-9-standalone-full-temepst-scenario
+    parent: distgit-tripleo-master-testing-centos-9-standalone
+    nodeset: single-centos-9-stream-node-vexxhost
+    run: playbooks/run-distgit.yaml
+    timeout: 14400
+    vars:
+      featureset: '052'
+      release: master
+      force_periodic: true
+      featureset_override:
+        run_tempest: false
+        tempest_run_concurrency: 4
+        tempest_services:
+          - cinder
+          - horizon
+          - neutron
+        tempest_test_whitelist:
+          - 'scenario'
+        use_os_tempest: true
+
+- job:
+    name: distgit-tripleo-master-testing-centos-9-standalone-scenario007
+    parent: tripleo-ci-centos-9-scenario007-standalone
+    nodeset: single-centos-9-stream-node-vexxhost
+    run: playbooks/run-distgit.yaml
+    vars:
+      release: master
+
+# Centos 9 wallaby jobs
+
+- job:
+    name: distgit-tripleo-ci-centos-9-standalone-full-tempest-scenario-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-master
+    override-checkout: "stable/wallaby"
+    nodeset: single-centos-9-stream-node-vexxhost
+    run: playbooks/run-distgit.yaml
+    vars:
+      branch_override: "stable/wallaby"
+      force_periodic: true
+      release: wallaby
+
+- job:
+    name: distgit-tripleo-ci-centos-9-standalone-full-tempest-api-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-master
+    override-checkout: "stable/wallaby"
+    nodeset: single-centos-9-stream-node-vexxhost
+    run: playbooks/run-distgit.yaml
+    vars:
+      branch_override: "stable/wallaby"
+      force_periodic: true
+      release: wallaby
+
+
+- job:
+    name: distgit-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-wallaby
+    parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-wallaby
+    run: playbooks/run-distgit.yaml
+    vars:
+      force_periodic: true
+
+- job:
+    name: distgit-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset035-wallaby
+    parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset035-wallaby
+    run: playbooks/run-distgit.yaml
+    vars:
+      force_periodic: true
+
 ##################################
 #        CENTOS-8 JOBS           #
 ##################################
