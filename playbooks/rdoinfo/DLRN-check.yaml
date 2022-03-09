@@ -96,6 +96,12 @@
                   if [[ -n $(echo "$line" | grep -w $CURRENT_MASTER_TAG) ]]; then
                       PACKAGES_UPDATED_MASTER="$PACKAGES_UPDATED_MASTER $PKGNAME"
                   fi
+                  if [[ -n $(echo "$line" | grep -w xena) ]]; then
+                      PACKAGES_UPDATED_XENA="$PACKAGES_UPDATED_XENA $PKGNAME"
+                  fi
+                  if [[ -n $(echo "$line" | grep -w wallaby) ]]; then
+                      PACKAGES_UPDATED_WALLABY="$PACKAGES_UPDATED_WALLABY $PKGNAME"
+                  fi
               fi
               if [ "${CENTOS_VERS}" = "centos8" ]; then
                   if [[ -n $(echo "$line" | grep -w $CURRENT_MASTER_TAG) ]]; then
@@ -120,15 +126,6 @@
               if [ "${CENTOS_VERS}" = "centos7" ]; then
                   if [[ -n $(echo "$line" | grep -w train) ]]; then
                       PACKAGES_UPDATED_TRAIN="$PACKAGES_UPDATED_TRAIN $PKGNAME"
-                  fi
-                  if [[ -n $(echo "$line" | grep -w stein) ]]; then
-                      PACKAGES_UPDATED_STEIN="$PACKAGES_UPDATED_STEIN $PKGNAME"
-                  fi
-                  if [[ -n $(echo "$line" | grep -w rocky) ]]; then
-                      PACKAGES_UPDATED_ROCKY="$PACKAGES_UPDATED_ROCKY $PKGNAME"
-                  fi
-                  if [[ -n $(echo "$line" | grep -w queens) ]]; then
-                      PACKAGES_UPDATED_QUEENS="$PACKAGES_UPDATED_QUEENS $PKGNAME"
                   fi
               fi
           done <<< "${TAGS_DIFF}"
