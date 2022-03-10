@@ -287,6 +287,8 @@
           addFilter("python3-tripleo-repos.noarch: E: wrong-script-interpreter /usr/lib/python3.6/site-packages/tripleo_repos/.*")
           # Exceptions for octavia
           addFilter("python3-octavia.noarch: E: non-executable-script /usr/lib/python3.6/site-packages/octavia/cmd/prometheus_proxy.py.*")
+          # Exceptions for octavia
+          addFilter("ovn-bgp-agent.noarch: W: non-conffile-in-etc /etc/sudoers.d/ovn-bgp-agent.*")
           EOF
 
 
