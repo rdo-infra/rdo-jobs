@@ -4,6 +4,35 @@
 # It contains all the jobs related to standalone installer testing.
 
 
+#############################
+# Standalone Jobs Parenting #
+#############################
+
+- job:
+    name: tripleo-ci-base-standalone-rdo
+    abstract: true
+    description: |
+      Base abstract job for standalone in RDO CI zuulv3 jobs
+    parent: tripleo-ci-base-rdo-standalone-required-projects
+    nodeset: single-centos-7-node-vexxhost
+
+- job:
+    name: tripleo-ci-base-standalone-rdo-centos-8
+    abstract: true
+    description: |
+      Base abstract job for standalone in RDO CI zuulv3 jobs
+    parent: tripleo-ci-base-rdo-standalone-required-projects
+    nodeset: single-centos-8-node-vexxhost
+
+- job:
+    name: tripleo-ci-base-standalone-rdo-centos-9
+    abstract: true
+    description: |
+      Base abstract job for standalone in RDO CI zuulv3 jobs
+    parent: tripleo-ci-base-rdo-standalone-required-projects
+    nodeset: single-centos-9-node-vexxhost
+
+
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-master
     parent: tripleo-ci-base-standalone-periodic
