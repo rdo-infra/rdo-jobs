@@ -33,8 +33,6 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - distgit-cbs-validate:
-            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
     gate:
@@ -42,8 +40,6 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - distgit-cbs-final-build:
-            branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-final-build-centos8
         - distgit-cbs-final-build-centos9
 
