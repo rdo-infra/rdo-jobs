@@ -16,6 +16,24 @@
       "message": "Here we can keep this only\n- job:\n    name: tripleo-ci-standalone-required-projects-rdo\n    abstract: true\n    description: |\n      Base abstract job for standalone projects in RDO CI zuulv3 jobs\n    parent: tripleo-ci-base-standalone-standard\n    roles:\n      - zuul: opendev.org/openstack/ansible-role-container-registry\n      - zuul: opendev.org/openstack/tripleo-ansible\n      - zuul: rdo-infra/ci-config\n    required-projects:\n      - opendev.org/openstack/ansible-role-container-registry\n      - opendev.org/openstack/tripleo-ansible\n      - rdo-infra/ci-config",
       "revId": "bb3065446d3a01fa957cc081643d05d3486edae2",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4c6977b_62421a0e",
+        "filename": "zuul.d/standalone-jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 673
+      },
+      "writtenOn": "2022-03-10T13:03:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aac92fae_0919dd7e",
+      "revId": "bb3065446d3a01fa957cc081643d05d3486edae2",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
