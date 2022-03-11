@@ -22,10 +22,32 @@
       - opendev.org/openstack/ansible-role-container-registry
       - opendev.org/openstack/tripleo-ansible
       - rdo-infra/ci-config
+# Distro Jobs
+- job:
+    name: periodic-tripleo-ci-standalone-rdo-centos-7
+    abstract: true
+    parent: periodic-tripleo-ci-standalone-rdo-dlrn
+    nodeset: single-centos-7-node-vexxhost
+
+- job:
+    name: periodic-tripleo-ci-standalone-rdo-centos-8
+    abstract: true
+    parent: periodic-tripleo-ci-standalone-rdo-dlrn
+    nodeset: single-centos-8-node-vexxhost
+    vars:
+      promote_source: tripleo-ci-testing
+
+- job:
+    name: periodic-tripleo-ci-standalone-rdo-centos-9
+    abstract: true
+    parent: periodic-tripleo-ci-standalone-rdo-dlrn
+    nodeset: single-centos-9-stream-node-vexxhost
+    vars:
+      promote_source: tripleo-ci-testing
 
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-master
-    parent: tripleo-ci-base-standalone-periodic
+    parent: periodic-tripleo-ci-standalone-rdo-centos-7
     vars: &standalone_vars
       featureset: '052'
       release: master
@@ -94,7 +116,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-scenario001-standalone-master
-    parent: tripleo-ci-base-standalone-periodic
+    parent: periodic-tripleo-ci-standalone-rdo-centos-7
     vars: &scen1_standalone_vars
       featureset: '052'
       release: master
@@ -118,7 +140,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-scenario002-standalone-master
-    parent: tripleo-ci-base-standalone-periodic
+    parent: periodic-tripleo-ci-standalone-rdo-centos-7
     vars: &scen2_standalone_vars
       featureset: '052'
       release: master
@@ -142,7 +164,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-scenario003-standalone-master
-    parent: tripleo-ci-base-standalone-periodic
+    parent: periodic-tripleo-ci-standalone-rdo-centos-7
     vars: &scen3_standalone_vars
       featureset: '052'
       release: master
@@ -164,7 +186,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-scenario004-standalone-master
-    parent: tripleo-ci-base-standalone-periodic
+    parent: periodic-tripleo-ci-standalone-rdo-centos-7
     vars: &scen4_standalone_vars
       featureset: '052'
       release: master
@@ -190,7 +212,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-scenario007-standalone-master
-    parent: tripleo-ci-base-standalone-periodic
+    parent: periodic-tripleo-ci-standalone-rdo-centos-7
     vars: &scen7_standalone_vars
       featureset: '052'
       release: master
@@ -210,7 +232,7 @@
 ### CentOS-8 Jobs
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-master
-    parent: tripleo-ci-base-standalone-periodic-centos-8
+    parent: periodic-tripleo-ci-standalone-rdo-centos-8
     vars:
       featureset: '052'
       release: master
@@ -272,7 +294,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario001-standalone-master
-    parent: tripleo-ci-base-standalone-periodic-centos-8
+    parent: periodic-tripleo-ci-standalone-rdo-centos-8
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario001-standalone-master
@@ -282,7 +304,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario002-standalone-master
-    parent: tripleo-ci-base-standalone-periodic-centos-8
+    parent: periodic-tripleo-ci-standalone-rdo-centos-8
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario002-standalone-master
@@ -292,7 +314,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario003-standalone-master
-    parent: tripleo-ci-base-standalone-periodic-centos-8
+    parent: periodic-tripleo-ci-standalone-rdo-centos-8
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario003-standalone-master
@@ -302,7 +324,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-master
-    parent: tripleo-ci-base-standalone-periodic-centos-8
+    parent: periodic-tripleo-ci-standalone-rdo-centos-8
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-master
@@ -312,7 +334,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario007-standalone-master
-    parent: tripleo-ci-base-standalone-periodic-centos-8
+    parent: periodic-tripleo-ci-standalone-rdo-centos-8
     vars:
       featureset: '052'
       release: master
@@ -331,7 +353,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario010-standalone-master
-    parent: tripleo-ci-base-standalone-periodic-centos-8
+    parent: periodic-tripleo-ci-standalone-rdo-centos-8
     timeout: 14400
     vars:
       tags:
@@ -350,7 +372,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master
-    parent: tripleo-ci-base-standalone-periodic-centos-8
+    parent: periodic-tripleo-ci-standalone-rdo-centos-8
     nodeset: single-centos-8-node-psi
     vars:
       tags:
@@ -403,7 +425,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-scenario012-standalone-master
     voting: false
-    parent: tripleo-ci-base-standalone-periodic-centos-8
+    parent: periodic-tripleo-ci-standalone-rdo-centos-8
     vars:
       featureset: '060'
       standalone_ceph: true
@@ -441,7 +463,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-master
-    parent: tripleo-ci-base-standalone-periodic-centos-8
+    parent: periodic-tripleo-ci-standalone-rdo-centos-8
     nodeset: two-centos-8-nodes-vexxhost
     required-projects:
       - opendev.org/x/tripleo-ipa
@@ -683,7 +705,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-scenario001-standalone-stein
-    parent: tripleo-ci-base-standalone-periodic
+    parent: periodic-tripleo-ci-standalone-rdo-centos-7
     override-checkout: "stable/stein"
     vars:
       featureset: '052'
@@ -708,7 +730,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-scenario002-standalone-stein
-    parent: tripleo-ci-base-standalone-periodic
+    parent: periodic-tripleo-ci-standalone-rdo-centos-7
     override-checkout: "stable/stein"
     vars:
       featureset: '052'
@@ -735,7 +757,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-scenario003-standalone-stein
-    parent: tripleo-ci-base-standalone-periodic
+    parent: periodic-tripleo-ci-standalone-rdo-centos-7
     override-checkout: "stable/stein"
     vars:
       featureset: '052'
@@ -757,7 +779,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-7-scenario004-standalone-stein
-    parent: tripleo-ci-base-standalone-periodic
+    parent: periodic-tripleo-ci-standalone-rdo-centos-7
     override-checkout: "stable/stein"
     vars:
       featureset: '052'
@@ -785,6 +807,6 @@
 # avoid duplication https://tree.taiga.io/project/tripleo-ci-board/us/1228
 - job:
     name: tripleo-ci-centos-7-standalone-rdo
-    parent: tripleo-ci-base-standalone-rdo
+    parent: periodic-tripleo-ci-standalone-rdo-centos-7
     vars:
       featureset: '052'
