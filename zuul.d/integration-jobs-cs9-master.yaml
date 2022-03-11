@@ -17,56 +17,7 @@
       registry_namespace: tripleomastercentos9
       promote_source: tripleo-ci-testing
 
-## standalone
-- job:
-    name: periodic-tripleo-ci-centos-9-standalone-master
-    parent: periodic-tripleo-ci-centos-8-standalone-master
-    nodeset: single-centos-9-stream-node-vexxhost
-
-- job:
-    name: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-master
-    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-master
-    nodeset: single-centos-9-stream-node-vexxhost
-
-- job:
-    name: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-master
-    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-master
-    nodeset: single-centos-9-stream-node-vexxhost
-
-- job:
-    name: periodic-tripleo-ci-centos-9-scenario001-standalone-master
-    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-master
-    nodeset: single-centos-9-stream-node-vexxhost
-
-- job:
-    name: periodic-tripleo-ci-centos-9-scenario002-standalone-master
-    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-master
-    nodeset: single-centos-9-stream-node-vexxhost
-
-- job:
-    name: periodic-tripleo-ci-centos-9-scenario003-standalone-master
-    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-master
-    nodeset: single-centos-9-stream-node-vexxhost
-
-- job:
-    name: periodic-tripleo-ci-centos-9-scenario007-standalone-master
-    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-master
-    nodeset: single-centos-9-stream-node-vexxhost
-
-- job:
-    name: periodic-tripleo-ci-centos-9-scenario012-standalone-master
-    parent: periodic-tripleo-ci-centos-8-scenario012-standalone-master
-    nodeset: single-centos-9-stream-node-vexxhost
-
-- job:
-    name: periodic-tripleo-ci-centos-9-scenario004-standalone-master
-    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-master
-    nodeset: single-centos-9-stream-node-vexxhost
-
-- job:
-    name: periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-master
-    parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-master
-    nodeset: two-centos-9-nodes-vexxhost
+# Standalone Upgrade
 
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-upgrade-master
