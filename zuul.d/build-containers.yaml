@@ -40,3 +40,11 @@
       promote_source: tripleo-ci-testing
       push_registry: trunk.registry.rdoproject.org
       featureset: containers-build
+
+# CentOS 9
+- job:
+    name: periodic-tripleo-ci-build-containers-centos-9-push-master
+    parent: periodic-tripleo-ci-build-containers-rdo-centos-9
+    vars:
+      buildcontainers_override_repos: centos9-master
+      registry_namespace: tripleomastercentos9
