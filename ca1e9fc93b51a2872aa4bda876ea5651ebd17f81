@@ -50,6 +50,24 @@
       "message": "k... taking one as an example to check\n\nused to parent from https://github.com/rdo-infra/review.rdoproject.org-config/blob/8e487473f8bcacc47a07dbdeb908c7253de32287/zuul.d/tripleo-rdo-base.yaml#L388\n\n- job:\n    name: tripleo-ci-base-standalone-periodic-centos-8\n    parent: tripleo-ci-base-standalone-rdo-centos-8\n    pre-run: playbooks/tripleo-ci-periodic-base/pre.yaml\n    post-run: playbooks/tripleo-ci-periodic-base/post.yaml\n    required-projects:\n      - config\n      - rdo-infra/ci-config\n    roles:\n      - zuul: rdo-infra/ci-config\n    vars:\n      promote_source: tripleo-ci-testing\n    secrets:\n      - dlrnapi\n\n\nNow parent from https://github.com/rdo-infra/review.rdoproject.org-config/blob/8e487473f8bcacc47a07dbdeb908c7253de32287/zuul.d/tripleo-rdo-base.yaml#L653\n\n\n- job:\n    name: periodic-tripleo-ci-standalone-rdo-centos-8\n    abstract: true\n    parent: periodic-tripleo-ci-standalone-rdo-dlrn\n    nodeset: single-centos-8-node-vexxhost\n    pre-run: playbooks/tripleo-ci-periodic-base/pre.yaml\n    post-run: playbooks/tripleo-ci-periodic-base/post.yaml\n    required-projects:\n      - config\n      - rdo-infra/ci-config\n    roles:\n      - zuul: rdo-infra/ci-config\n    vars:\n      promote_source: tripleo-ci-testing\n    secrets:\n      - dlrnapi\n\n\nI think lgtm/same pre/post and project/roles/secrets",
       "revId": "ca1e9fc93b51a2872aa4bda876ea5651ebd17f81",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8a6332f_06e85ab4",
+        "filename": "zuul.d/standalone-jobs.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-03-17T14:12:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2219fe6_9bc83e28",
+      "revId": "ca1e9fc93b51a2872aa4bda876ea5651ebd17f81",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
