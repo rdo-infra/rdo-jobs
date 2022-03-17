@@ -5,6 +5,7 @@
 # Job Inheritance Structure from Upstream
 # * tripleo-ci-base-singlenode-standard
 # * tripleo-ci-base-containers-standard
+# * tripleo-ci-containers-rdo-upstream-pre
 # * tripleo-ci-build-containers-required-projects-rdo (required
 #   projects from rdo and upstream, playbooks)
 
@@ -18,7 +19,7 @@
     abstract: true
     description: |
         Base abstract container build job for singlenode in RDO CI zuulv3 jobs
-    parent: tripleo-ci-base-containers-standard
+    parent: tripleo-ci-containers-rdo-upstream-pre
     required-projects:
       # Upstream required projects
       - opendev.org/openstack/ansible-role-container-registry
