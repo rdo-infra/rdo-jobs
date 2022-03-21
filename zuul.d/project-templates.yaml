@@ -478,6 +478,42 @@
     name: weirdo-master-promotion-pipeline
     openstack-periodic-integration-main:
       jobs:
+        - weirdo-zed-promote-consistent-to-puppet-ci-testing
+        - weirdo-zed-promote-puppet-scenario001-centos-stream-9:
+            dependencies:
+              - weirdo-zed-promote-consistent-to-puppet-ci-testing
+        - weirdo-zed-promote-puppet-scenario002-centos-stream-9:
+            dependencies:
+              - weirdo-zed-promote-consistent-to-puppet-ci-testing
+        - weirdo-zed-promote-puppet-scenario003-centos-stream-9:
+            dependencies:
+              - weirdo-zed-promote-consistent-to-puppet-ci-testing
+        - weirdo-zed-promote-puppet-scenario004-centos-stream-9:
+            dependencies:
+              - weirdo-zed-promote-consistent-to-puppet-ci-testing
+        - weirdo-zed-promote-packstack-scenario001-centos-stream-9:
+            dependencies:
+              - weirdo-zed-promote-consistent-to-puppet-ci-testing
+        - weirdo-zed-promote-packstack-scenario002-centos-stream-9:
+            dependencies:
+              - weirdo-zed-promote-consistent-to-puppet-ci-testing
+        - weirdo-zed-promote-packstack-scenario003-centos-stream-9:
+            dependencies:
+              - weirdo-zed-promote-consistent-to-puppet-ci-testing
+        - weirdo-zed-promote-puppet-ci-testing-to-puppet-passed-ci:
+            dependencies:
+              - weirdo-zed-promote-puppet-scenario001-centos-stream-9
+              - weirdo-zed-promote-puppet-scenario002-centos-stream-9
+              - weirdo-zed-promote-puppet-scenario003-centos-stream-9
+              - weirdo-zed-promote-puppet-scenario004-centos-stream-9
+              - weirdo-zed-promote-packstack-scenario001-centos-stream-9
+              - weirdo-zed-promote-packstack-scenario002-centos-stream-9
+              - weirdo-zed-promote-packstack-scenario003-centos-stream-9
+
+- project-template:
+    name: weirdo-yoga-promotion-pipeline
+    openstack-periodic-integration-main:
+      jobs:
         - weirdo-yoga-promote-consistent-to-puppet-ci-testing
         - weirdo-yoga-promote-puppet-scenario001-centos-stream-9:
             dependencies:

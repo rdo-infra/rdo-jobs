@@ -355,29 +355,41 @@
       promote_target: puppet-passed-ci
 
 - job:
-    name: weirdo-yoga-promote-consistent-to-puppet-ci-testing
+    name: weirdo-zed-promote-consistent-to-puppet-ci-testing
     parent: weirdo-base-promote-consistent-to-puppet-ci-testing
     vars:
       release: master
 
 - job:
-    name: weirdo-yoga-promote-puppet-ci-testing-to-puppet-passed-ci
+    name: weirdo-zed-promote-puppet-ci-testing-to-puppet-passed-ci
     parent: weirdo-base-promote-puppet-ci-testing-to-puppet-passed-ci
     vars:
       release: master
 
 - job:
+    name: weirdo-yoga-promote-consistent-to-puppet-ci-testing
+    parent: weirdo-base-promote-consistent-to-puppet-ci-testing
+    vars:
+      release: yoga
+
+- job:
+    name: weirdo-yoga-promote-puppet-ci-testing-to-puppet-passed-ci
+    parent: weirdo-base-promote-puppet-ci-testing-to-puppet-passed-ci
+    vars:
+      release: yoga
+
+- job:
     name: weirdo-yoga-promote-consistent-to-puppet-ci-testing-centos-stream-8
     parent: weirdo-base-promote-consistent-to-puppet-ci-testing
     vars:
-      release: master
+      release: yoga
       centos_release: centos8
 
 - job:
     name: weirdo-yoga-promote-puppet-ci-testing-to-puppet-passed-ci-centos-stream-8
     parent: weirdo-base-promote-puppet-ci-testing-to-puppet-passed-ci
     vars:
-      release: master
+      release: yoga
       centos_release: centos8
 
 - job:
@@ -501,45 +513,94 @@
     nodeset: rdo-centos-8-stream
 
 - job:
+    name: weirdo-zed-promote-puppet-scenario001-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      scenario: scenario001
+
+- job:
+    name: weirdo-zed-promote-puppet-scenario002-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      scenario: scenario002
+
+- job:
+    name: weirdo-zed-promote-puppet-scenario003-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      scenario: scenario003
+
+- job:
+    name: weirdo-zed-promote-puppet-scenario004-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      scenario: scenario004
+
+- job:
+    name: weirdo-zed-promote-packstack-scenario001-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      scenario: scenario001
+
+- job:
+    name: weirdo-zed-promote-packstack-scenario002-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      scenario: scenario002
+
+- job:
+    name: weirdo-zed-promote-packstack-scenario003-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      scenario: scenario003
+
+- job:
     name: weirdo-yoga-promote-puppet-scenario001-centos-stream-9
     parent: weirdo-promote-base-centos9
     vars:
+      rdoinfo_release: yoga
       scenario: scenario001
 
 - job:
     name: weirdo-yoga-promote-puppet-scenario002-centos-stream-9
     parent: weirdo-promote-base-centos9
     vars:
+      rdoinfo_release: yoga
       scenario: scenario002
 
 - job:
     name: weirdo-yoga-promote-puppet-scenario003-centos-stream-9
     parent: weirdo-promote-base-centos9
     vars:
+      rdoinfo_release: yoga
       scenario: scenario003
 
 - job:
     name: weirdo-yoga-promote-puppet-scenario004-centos-stream-9
     parent: weirdo-promote-base-centos9
     vars:
+      rdoinfo_release: yoga
       scenario: scenario004
 
 - job:
     name: weirdo-yoga-promote-packstack-scenario001-centos-stream-9
     parent: weirdo-promote-base-centos9
     vars:
+      rdoinfo_release: yoga
       scenario: scenario001
 
 - job:
     name: weirdo-yoga-promote-packstack-scenario002-centos-stream-9
     parent: weirdo-promote-base-centos9
     vars:
+      rdoinfo_release: yoga
       scenario: scenario002
 
 - job:
     name: weirdo-yoga-promote-packstack-scenario003-centos-stream-9
     parent: weirdo-promote-base-centos9
     vars:
+      rdoinfo_release: yoga
       scenario: scenario003
 
 - job:
