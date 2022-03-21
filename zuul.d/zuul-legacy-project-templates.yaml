@@ -20,6 +20,7 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
+        - DLRN-build-tripleo-centos9
         - weirdo-dlrn-master-packstack-scenario003-centos8
         - weirdo-dlrn-master-puppet-scenario001-centos8
         - DLRN-rpmbuild-centos8
@@ -54,6 +55,7 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
+        - DLRN-build-tripleo-centos9
         - weirdo-dlrn-master-puppet-scenario002-centos8
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
@@ -86,6 +88,7 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
+        - DLRN-build-tripleo-centos9
         - weirdo-dlrn-master-packstack-scenario003-centos8
         - weirdo-dlrn-master-puppet-scenario001-centos8
         - DLRN-rpmbuild-centos8
@@ -120,6 +123,7 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
+        - DLRN-build-tripleo-centos9
         - weirdo-dlrn-master-packstack-scenario001-centos8
         - weirdo-dlrn-master-puppet-scenario001-centos8
         - weirdo-dlrn-master-puppet-scenario002-centos8
@@ -156,6 +160,7 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
+        - DLRN-build-tripleo-centos9
         - weirdo-dlrn-master-packstack-scenario001-centos8
         - weirdo-dlrn-master-puppet-scenario001-centos8
         - weirdo-dlrn-master-puppet-scenario002-centos8
@@ -198,6 +203,9 @@
         - DLRN-build-tripleo-centos8:
             dependencies:
               - DLRN-rpmbuild-centos8-pinned
+        - DLRN-build-tripleo-centos9:
+            dependencies:
+              - DLRN-rpmbuild-centos9-pinned
         - weirdo-dlrn-master-packstack-scenario003-centos8:
             dependencies:
               - DLRN-rpmbuild-centos8-pinned
@@ -244,6 +252,7 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
+        - DLRN-build-tripleo-centos9
         - weirdo-dlrn-master-packstack-scenario003-centos8
         - weirdo-dlrn-master-puppet-scenario003-centos8
         - DLRN-rpmbuild-centos8
@@ -278,6 +287,7 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
+        - DLRN-build-tripleo-centos9
         - weirdo-dlrn-master-puppet-scenario003-centos8
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
@@ -310,6 +320,7 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
+        - DLRN-build-tripleo-centos9
         - weirdo-dlrn-master-packstack-scenario001-centos8
         - weirdo-dlrn-master-puppet-scenario003-centos8
         - DLRN-rpmbuild-centos8
@@ -344,6 +355,7 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
+        - DLRN-build-tripleo-centos9
         - weirdo-dlrn-master-puppet-scenario004-centos8
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
@@ -376,6 +388,7 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
+        - DLRN-build-tripleo-centos9
         - weirdo-dlrn-master-packstack-scenario001-centos8
         - weirdo-dlrn-master-puppet-scenario001-centos8
         - weirdo-dlrn-master-puppet-scenario003-centos8
@@ -412,6 +425,7 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
+        - DLRN-build-tripleo-centos9
         - weirdo-dlrn-master-packstack-scenario001-centos8
         - weirdo-dlrn-master-puppet-scenario001-centos8
         - DLRN-rpmbuild-centos8
@@ -446,6 +460,7 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
+        - DLRN-build-tripleo-centos9
         - weirdo-dlrn-master-packstack-scenario002-centos8
         - weirdo-dlrn-master-puppet-scenario001-centos8
         - weirdo-dlrn-master-puppet-scenario003-centos8
@@ -482,6 +497,7 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
+        - DLRN-build-tripleo-centos9
         - weirdo-dlrn-master-puppet-scenario004-centos8
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
@@ -514,6 +530,7 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
+        - DLRN-build-tripleo-centos9
         - weirdo-dlrn-master-puppet-scenario002-centos8
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
