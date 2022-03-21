@@ -35,6 +35,10 @@
     required-projects:
       - opendev.org/openstack/ansible-role-container-registry
       - opendev.org/openstack/tripleo-ansible
+    vars:
+      promote_source: tripleo-ci-testing
+      featureset_override:
+        tempest_run_concurrency: 2
 
 - job:
     name: periodic-tripleo-ci-centos-7-standalone-master
