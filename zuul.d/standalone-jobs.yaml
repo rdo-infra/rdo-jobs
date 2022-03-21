@@ -24,6 +24,19 @@
       - rdo-infra/ci-config
 
 - job:
+    name: tripleo-ci-standalone-upgrade-required-projects-rdo
+    abstract: true
+    description: |
+      Base abstract job for standalone upgrade in RDO CI zuulv3 jobs
+    parent: tripleo-ci-base-standalone-upgrade-standard
+    roles:
+      - zuul: opendev.org/openstack/ansible-role-container-registry
+      - zuul: opendev.org/openstack/tripleo-ansible
+    required-projects:
+      - opendev.org/openstack/ansible-role-container-registry
+      - opendev.org/openstack/tripleo-ansible
+
+- job:
     name: periodic-tripleo-ci-centos-7-standalone-master
     parent: periodic-tripleo-ci-standalone-rdo-centos-7
     vars: &standalone_vars
