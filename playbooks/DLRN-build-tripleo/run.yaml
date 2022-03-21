@@ -78,6 +78,9 @@
           if [ "$CENTOS_VERS" = "centos7" ]; then
             repository="${logs}/centos/current"
             mock_cfg=centos.cfg
+          elif [ "$CENTOS_VERS" = "centos9" ]; then
+            repository="${logs}/centos9/current"
+            mock_cfg=centos9-stream.cfg
           else
             repository="${logs}/centos8/current"
             mock_cfg=centos8-stream.cfg
