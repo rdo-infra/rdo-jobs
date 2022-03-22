@@ -22,7 +22,7 @@
 
 - job:
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001
-    parent: tripleo-ci-base-ovb-rdo-centos-9
+    parent: tripleo-ci-ovb-rdo-centos-9
     branches: ^(?!stable/(train|ussuri|victoria)).*$
     vars:
       nodes: 3ctlr_1comp
@@ -30,7 +30,7 @@
 
 - job:
     name: tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset001
-    parent: tripleo-ci-base-ovb-rdo-centos-9
+    parent: tripleo-ci-ovb-rdo-centos-9
     branches: ^(?!stable/(train|ussuri|victoria)).*$
     vars:
       nodes: 1ctlr_1comp
@@ -38,7 +38,7 @@
 
 - job:
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset035
-    parent: tripleo-ci-base-ovb-rdo-centos-9
+    parent: tripleo-ci-ovb-rdo-centos-9
     branches: ^(?!stable/(train|ussuri|victoria)).*$
     vars:
       nodes: 3ctlr_1comp
@@ -46,7 +46,7 @@
 
 - job:
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039
-    parent: tripleo-ci-base-ovb-rdo-centos-9
+    parent: tripleo-ci-ovb-rdo-centos-9
     branches: ^(?!stable/(train|ussuri|victoria)).*$
     vars: &fs39_vars
       nodes: 3ctlr_1comp_1supp
@@ -61,7 +61,7 @@
 
 - job:
     name: tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset002-upload
-    parent: tripleo-ci-base-ovb-rdo-centos-9
+    parent: tripleo-ci-ovb-rdo-centos-9
     branches: ^(?!stable/(train|ussuri|victoria)).*$
     vars:
       nodes: 1ctlr_1comp
@@ -69,7 +69,7 @@
 
 - job:
     name: tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020
-    parent: tripleo-ci-base-ovb-rdo-centos-9
+    parent: tripleo-ci-ovb-rdo-centos-9
     timeout: 18000
     branches: ^(?!stable/(train|ussuri|victoria)).*$
     vars:
@@ -132,7 +132,7 @@
 
 - job:
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
-    parent: tripleo-ci-base-ovb-rdo-centos-8
+    parent: tripleo-ci-ovb-rdo-centos-8
     branches: ^(stable/(train|wallaby)).*$
     vars:
       nodes: 3ctlr_1comp
@@ -148,7 +148,7 @@
 
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset001
-    parent: tripleo-ci-base-ovb-rdo-centos-8
+    parent: tripleo-ci-ovb-rdo-centos-8
     branches: ^(stable/(train|wallaby)).*$
     vars:
       nodes: 1ctlr_1comp
@@ -185,7 +185,7 @@
 
 - job:
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035
-    parent: tripleo-ci-base-ovb-rdo-centos-8
+    parent: tripleo-ci-ovb-rdo-centos-8
     branches: ^(stable/(train|wallaby)).*$
     vars:
       nodes: 3ctlr_1comp
@@ -206,7 +206,7 @@
 # Job for testing featureset002 changes
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-upload
-    parent: tripleo-ci-base-ovb-rdo-centos-8
+    parent: tripleo-ci-ovb-rdo-centos-8
     branches: ^(stable/(train|wallaby)).*$
     vars:
       nodes: 1ctlr_1comp
@@ -239,7 +239,7 @@
 
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020
-    parent: tripleo-ci-base-ovb-rdo-centos-8
+    parent: tripleo-ci-ovb-rdo-centos-8
     timeout: 18000
     branches: ^(stable/(train|wallaby)).*$
     vars:
@@ -250,13 +250,13 @@
 
 - job:
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039
-    parent: tripleo-ci-base-ovb-rdo-centos-8
+    parent: tripleo-ci-ovb-rdo-centos-8
     branches: ^(stable/(train|wallaby)).*$
     vars: *fs39_vars
 
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_1cellctrl_1comp-featureset063
-    parent: tripleo-ci-base-ovb-rdo-centos-8
+    parent: tripleo-ci-ovb-rdo-centos-8
     branches: ^(stable/(train|wallaby)).*$
     timeout: 12600
     vars:
@@ -290,7 +290,7 @@
 # legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-master
-    parent: tripleo-ci-base-ovb-periodic-upload-centos-8
+    parent: periodic-tripleo-ci-ovb-rdo-centos-8
     vars:
       nodes: 1ctlr_1comp
       featureset: '002'
@@ -353,7 +353,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master
-    parent: tripleo-ci-base-ovb-periodic-centos-8
+    parent: periodic-tripleo-ci-ovb-rdo-centos-8
     # Bumping to 5hours for fs1 to run *api* tempest see
     # https://tree.taiga.io/project/tripleo-ci-board/task/1383
     timeout: 18000
@@ -373,7 +373,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-master
-    parent: tripleo-ci-base-ovb-periodic-centos-8
+    parent: periodic-tripleo-ci-ovb-rdo-centos-8
     timeout: 18000
     vars:
       nodes: 1ctlr_2comp
@@ -391,7 +391,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-master
-    parent: tripleo-ci-base-ovb-periodic-centos-8
+    parent: periodic-tripleo-ci-ovb-rdo-centos-8
     vars:
       nodes: 3ctlr_1comp
       featureset: '035'
@@ -401,7 +401,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-master
-    parent: tripleo-ci-base-ovb-periodic-centos-8
+    parent: periodic-tripleo-ci-ovb-rdo-centos-8
     vars:
       <<: *fs39_vars
       release: master
@@ -410,7 +410,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-1ctlr_1cellctrl_1comp-featureset063-master
-    parent: tripleo-ci-base-ovb-rdo-centos-8
+    parent: periodic-tripleo-ci-ovb-rdo-centos-8
     timeout: 12600
     vars:
       nodes: 1ctlr_1cellctrl_1comp
