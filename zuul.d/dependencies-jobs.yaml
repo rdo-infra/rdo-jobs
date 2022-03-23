@@ -7,39 +7,10 @@
     name: periodic-tripleo-ci-centos-9-standalone-compose-master
     parent: periodic-tripleo-ci-centos-9-standalone-master
     abstract: true
-    pre-run:
-      - playbooks/dependency/setup-compose-repos.yml
     vars:
-      featureset: '052'
       dependency: centos-compose
       build_container_images: true
       containers_base_image: quay.io/centos/centos:stream9
-      promote_source: tripleo-ci-testing
-
-- job:
-    name: periodic-tripleo-ci-centos-9-standalone-compose-latest-master
-    parent: periodic-tripleo-ci-centos-9-standalone-compose-master
-    vars:
-      centos_compose_url: https://odcs.stream.centos.org/production/latest-CentOS-Stream/compose/
-
-### CentOS Stream 8 jobs
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-compose-master
-    parent: periodic-tripleo-ci-centos-8-standalone-master
-    abstract: true
-    pre-run:
-      - playbooks/dependency/setup-compose-repos.yml
-    vars:
-      featureset: '052'
-      dependency: centos-compose
-      build_container_images: true
-      promote_source: tripleo-ci-testing
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-compose-latest-master
-    parent: periodic-tripleo-ci-centos-8-standalone-compose-master
-    vars:
-      centos_compose_url: https://composes.centos.org/latest-CentOS-Stream-8/compose/
 
 ### centos 8 multiple dependency jobs
 - job:
