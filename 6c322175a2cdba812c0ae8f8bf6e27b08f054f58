@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b44cd09_1e696ed1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2022-03-23T11:53:03Z",
+      "side": 1,
+      "message": "p-o-i and puppet modules doesn\u0027t have stable/yoga branch yet so i think we still don\u0027t need to create promotion pipeline for yoga. We can wait a bit.\n\nAlso, i think we\u0027d need to update MASTER in:\n\nhttps://github.com/rdo-infra/rdo-jobs/blob/master/playbooks/rdoinfo/weirdo-periodic.yaml#L40",
+      "revId": "6c322175a2cdba812c0ae8f8bf6e27b08f054f58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
