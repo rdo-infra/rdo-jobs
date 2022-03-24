@@ -22,34 +22,39 @@
       - opendev.org/openstack/tripleo-ansible
       - rdo-infra/ci-config
 
+# CentOS 9
+
+- job:
+    name: periodic-tripleo-ci-centos-9-undercloud-containers-master
+    parent: periodic-tripleo-ci-undercloud-rdo-centos-9
+    vars: &uc_vars
+      featureset: '027'
+      release: master
+
+# CentOS 8
+
 - job:
     name: periodic-tripleo-ci-centos-8-undercloud-containers-master
-    parent: tripleo-ci-base-singlenode-periodic-centos-8
-    vars:
-      featureset: '027'
-      release: master
+    parent: periodic-tripleo-ci-undercloud-rdo-centos-8
+    vars: *uc_vars
 
-# legacy-periodic-tripleo-ci-centos-7-undercloud-containers-master
-- job:
-    name: periodic-tripleo-ci-centos-7-undercloud-containers-master
-    parent: tripleo-ci-base-singlenode-periodic
-    vars:
-      featureset: '027'
-      release: master
-
-- job:
-    name: periodic-tripleo-ci-centos-7-undercloud-containers-train
-    parent: periodic-tripleo-ci-centos-7-undercloud-containers-master
-    vars:
-      branch_override: "stable/train"
-      release: train
-
-
-################ C E N T O S 8 T R A I N #############################################
 - job:
     name: periodic-tripleo-ci-centos-8-undercloud-containers-train
     parent: periodic-tripleo-ci-centos-8-undercloud-containers-master
     override-checkout: 'stable/train'
+    vars:
+      branch_override: "stable/train"
+      release: train
+
+# CentOS 7
+- job:
+    name: periodic-tripleo-ci-centos-7-undercloud-containers-master
+    parent: periodic-tripleo-ci-undercloud-rdo-centos-7
+    vars: *uc_vars
+
+- job:
+    name: periodic-tripleo-ci-centos-7-undercloud-containers-train
+    parent: periodic-tripleo-ci-centos-7-undercloud-containers-master
     vars:
       branch_override: "stable/train"
       release: train
