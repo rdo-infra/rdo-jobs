@@ -3,6 +3,25 @@
 # Zuul layout for TripleO RDO Cloud related undercloud jobs.
 # It contains all the jobs related to undercloud testing.
 
+#############################
+# Undercloud Jobs Parenting #
+#############################
+
+- job:
+    name: tripleo-ci-undercloud-required-projects-rdo
+    abstract: true
+    description: |
+      Base abstract job for undercloud in RDO CI zuulv3 jobs
+    parent: tripleo-ci-base-singlenode-standard
+    roles:
+      - zuul: opendev.org/openstack/ansible-role-container-registry
+      - zuul: opendev.org/openstack/tripleo-ansible
+      - zuul: rdo-infra/ci-config
+    required-projects:
+      - opendev.org/openstack/ansible-role-container-registry
+      - opendev.org/openstack/tripleo-ansible
+      - rdo-infra/ci-config
+
 - job:
     name: periodic-tripleo-ci-centos-8-undercloud-containers-master
     parent: tripleo-ci-base-singlenode-periodic-centos-8
