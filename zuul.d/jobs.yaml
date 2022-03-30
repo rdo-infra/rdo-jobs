@@ -116,7 +116,7 @@
 - job:
     name: DLRN-build-tripleo-centos9
     parent: DLRN-build-tripleo-base
-    branches: ^((rpm-master)|(^(?!train|ussuri|victoria)(\w+)-rdo))$
+    branches: ^(rpm-master|wallaby-rdo)$
     dependencies:
       - DLRN-rpmbuild-centos9
     vars:
