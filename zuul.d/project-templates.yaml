@@ -158,7 +158,6 @@
     openstack-experimental:
       jobs:
         - tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039
-        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
         - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
         - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby
         - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-ussuri
@@ -168,7 +167,6 @@
     name: ovb-001-experimental
     openstack-experimental:
       jobs:
-        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
         - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
         - tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001
 
@@ -176,8 +174,6 @@
     name: ovb-001-check
     openstack-check:
       jobs:
-        - tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001:
-            irrelevant-files: *fs001_irrelevant_files
         - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001:
             irrelevant-files: *fs001_irrelevant_files
         - tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001:
@@ -187,8 +183,6 @@
     name: ovb-001-lite
     openstack-check:
       jobs:
-        - tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset001:
-            irrelevant-files: *fs001_irrelevant_files
         - tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset001:
             irrelevant-files: *fs001_irrelevant_files
         - tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset001:
