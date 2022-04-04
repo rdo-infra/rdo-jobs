@@ -77,7 +77,7 @@
 
           export CENTOS_VERS="{{  centos_version | default('centos7') }}"
 
-          CURRENT_MASTER_TAG="yoga-uc"
+          CURRENT_MASTER_TAG="zed-uc"
 
           PACKAGES_UPDATED_MASTER=""
           PACKAGES_UPDATED_QUEENS=""
@@ -96,6 +96,9 @@
                   if [[ -n $(echo "$line" | grep -w $CURRENT_MASTER_TAG) ]]; then
                       PACKAGES_UPDATED_MASTER="$PACKAGES_UPDATED_MASTER $PKGNAME"
                   fi
+                  if [[ -n $(echo "$line" | grep -w yoga) ]]; then
+                      PACKAGES_UPDATED_YOGA="$PACKAGES_UPDATED_YOGA $PKGNAME"
+                  fi
                   if [[ -n $(echo "$line" | grep -w xena) ]]; then
                       PACKAGES_UPDATED_XENA="$PACKAGES_UPDATED_XENA $PKGNAME"
                   fi
@@ -106,6 +109,9 @@
               if [ "${CENTOS_VERS}" = "centos8" ]; then
                   if [[ -n $(echo "$line" | grep -w $CURRENT_MASTER_TAG) ]]; then
                       PACKAGES_UPDATED_MASTER="$PACKAGES_UPDATED_MASTER $PKGNAME"
+                  fi
+                  if [[ -n $(echo "$line" | grep -w yoga) ]]; then
+                      PACKAGES_UPDATED_YOGA="$PACKAGES_UPDATED_YOGA $PKGNAME"
                   fi
                   if [[ -n $(echo "$line" | grep -w xena) ]]; then
                       PACKAGES_UPDATED_XENA="$PACKAGES_UPDATED_XENA $PKGNAME"
@@ -137,6 +143,16 @@
           TIMEOUT="{{ zuul.timeout | default('10800') }}"
           if [ -n "${PACKAGES_UPDATED_MASTER}" ]; then
               timeout --signal=SIGKILL $TIMEOUT  {{ ansible_user_dir }}/rdoinfo-DLRN.sh $CURRENT_MASTER_TAG "${PACKAGES_UPDATED_MASTER}" "${CENTOS_VERS}"
+              ret1=$?
+              if [ $ret1 -ne 0 ]; then
+                  ret=$ret1
+              fi
+              # The data/ contents have been archived already, remove to avoid issues with the next branch
+              rm -rf data
+              sudo rm -rf /var/cache/mock/*
+          fi
+          if [ -n "${PACKAGES_UPDATED_YOGA}" ]; then
+              timeout --signal=SIGKILL $TIMEOUT  {{ ansible_user_dir }}/rdoinfo-DLRN.sh yoga "${PACKAGES_UPDATED_YOGA}" "${CENTOS_VERS}"
               ret1=$?
               if [ $ret1 -ne 0 ]; then
                   ret=$ret1
