@@ -87,6 +87,8 @@
           PACKAGES_UPDATED_USSURI=""
           PACKAGES_UPDATED_VICTORIA=""
           PACKAGES_UPDATED_WALLABY=""
+          PACKAGES_UPDATED_XENA=""
+          PACKAGES_UPDATED_YOGA=""
 
           TAGS_DIFF=$(rdopkg info-tags-diff .)
 
@@ -97,6 +99,9 @@
                       PACKAGES_UPDATED_MASTER="$PACKAGES_UPDATED_MASTER $PKGNAME"
                   fi
                   if [[ -n $(echo "$line" | grep -w yoga) ]]; then
+                      PACKAGES_UPDATED_YOGA="$PACKAGES_UPDATED_YOGA $PKGNAME"
+                  fi
+                  if [[ -n $(echo "$line" | grep -w xena) ]]; then
                       PACKAGES_UPDATED_YOGA="$PACKAGES_UPDATED_YOGA $PKGNAME"
                   fi
                   if [[ -n $(echo "$line" | grep -w xena) ]]; then
@@ -111,6 +116,9 @@
                       PACKAGES_UPDATED_MASTER="$PACKAGES_UPDATED_MASTER $PKGNAME"
                   fi
                   if [[ -n $(echo "$line" | grep -w yoga) ]]; then
+                      PACKAGES_UPDATED_YOGA="$PACKAGES_UPDATED_YOGA $PKGNAME"
+                  fi
+                  if [[ -n $(echo "$line" | grep -w xena) ]]; then
                       PACKAGES_UPDATED_YOGA="$PACKAGES_UPDATED_YOGA $PKGNAME"
                   fi
                   if [[ -n $(echo "$line" | grep -w xena) ]]; then
