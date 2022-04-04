@@ -956,6 +956,59 @@
       scenario: scenario003
 
 - job:
+    name: validate-buildsys-tags-yoga-release-centos8-base
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: yoga
+      rdoinfo_phase: release
+      centos_releasever: 8s
+    nodeset: rdo-centos-8-stream
+    files:
+      - ^buildsys-tags/cloud8s-openstack-yoga-release.yml$
+
+- job:
+    name: validate-buildsys-tags-yoga-release-puppet-scenario001-centos8
+    parent: validate-buildsys-tags-yoga-release-centos8-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-yoga-release-puppet-scenario002-centos8
+    parent: validate-buildsys-tags-yoga-release-centos8-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-yoga-release-puppet-scenario003-centos8
+    parent: validate-buildsys-tags-yoga-release-centos8-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: validate-buildsys-tags-yoga-release-puppet-scenario004-centos8
+    parent: validate-buildsys-tags-yoga-release-centos8-base
+    vars:
+      scenario: scenario004
+
+- job:
+    name: validate-buildsys-tags-yoga-release-packstack-scenario001-centos8
+    parent: validate-buildsys-tags-yoga-release-centos8-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-yoga-release-packstack-scenario002-centos8
+    parent: validate-buildsys-tags-yoga-release-centos8-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-yoga-release-packstack-scenario003-centos8
+    parent: validate-buildsys-tags-yoga-release-centos8-base
+    vars:
+      scenario: scenario003
+
+- job:
     name: validate-buildsys-tags-yoga-testing-centos9-base
     parent: weirdo-validate-buildsys-tags-base
     vars:
@@ -1005,6 +1058,112 @@
 - job:
     name: validate-buildsys-tags-yoga-testing-packstack-scenario003-centos9
     parent: validate-buildsys-tags-yoga-testing-centos9-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: validate-buildsys-tags-yoga-release-centos9-base
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: yoga
+      rdoinfo_phase: release
+      centos_releasever: 9s
+    nodeset: rdo-centos-9-stream
+    files:
+      - ^buildsys-tags/cloud9s-openstack-yoga-release.yml$
+
+- job:
+    name: validate-buildsys-tags-yoga-release-puppet-scenario001-centos9
+    parent: validate-buildsys-tags-yoga-release-centos9-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-yoga-release-puppet-scenario002-centos9
+    parent: validate-buildsys-tags-yoga-release-centos9-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-yoga-release-puppet-scenario003-centos9
+    parent: validate-buildsys-tags-yoga-release-centos9-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: validate-buildsys-tags-yoga-release-puppet-scenario004-centos9
+    parent: validate-buildsys-tags-yoga-release-centos9-base
+    vars:
+      scenario: scenario004
+
+- job:
+    name: validate-buildsys-tags-yoga-release-packstack-scenario001-centos9
+    parent: validate-buildsys-tags-yoga-release-centos9-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-yoga-release-packstack-scenario002-centos9
+    parent: validate-buildsys-tags-yoga-release-centos9-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-yoga-release-packstack-scenario003-centos9
+    parent: validate-buildsys-tags-yoga-release-centos9-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: validate-buildsys-tags-zed-testing-centos9-base
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: zed
+      rdoinfo_phase: testing
+      centos_releasever: 9s
+    nodeset: rdo-centos-9-stream
+    files:
+      - ^buildsys-tags/cloud9s-openstack-zed-testing.yml$
+
+- job:
+    name: validate-buildsys-tags-zed-testing-puppet-scenario001-centos9
+    parent: validate-buildsys-tags-zed-testing-centos9-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-zed-testing-puppet-scenario002-centos9
+    parent: validate-buildsys-tags-zed-testing-centos9-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-zed-testing-puppet-scenario003-centos9
+    parent: validate-buildsys-tags-zed-testing-centos9-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: validate-buildsys-tags-zed-testing-puppet-scenario004-centos9
+    parent: validate-buildsys-tags-zed-testing-centos9-base
+    vars:
+      scenario: scenario004
+
+- job:
+    name: validate-buildsys-tags-zed-testing-packstack-scenario001-centos9
+    parent: validate-buildsys-tags-zed-testing-centos9-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-zed-testing-packstack-scenario002-centos9
+    parent: validate-buildsys-tags-zed-testing-centos9-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-zed-testing-packstack-scenario003-centos9
+    parent: validate-buildsys-tags-zed-testing-centos9-base
     vars:
       scenario: scenario003
 
