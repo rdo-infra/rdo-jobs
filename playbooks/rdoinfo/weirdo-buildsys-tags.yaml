@@ -100,7 +100,7 @@
         cmd: |
           set -e -x
 
-          MASTER="yoga"
+          MASTER="zed"
           RELEASE="{{ rdoinfo_release }}"
           PHASE="{{ rdoinfo_phase }}"
           PROJECT="{{ zuul.project.name }}"
