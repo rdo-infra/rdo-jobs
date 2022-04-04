@@ -593,19 +593,19 @@
       - opendev.org/openstack/tripleo-repos
 
 - job:
-    name: rdoinfo-tripleo-master-testing-centos-8-standalone
-    parent: tripleo-ci-centos-8-standalone
-    nodeset: single-centos-8-node-vexxhost
+    name: rdoinfo-tripleo-master-testing-centos-9-standalone
+    parent: tripleo-ci-centos-9-standalone
+    nodeset: single-centos-9-stream-node-vexxhost
     run: playbooks/run-rdoinfo.yaml
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
-      centos_releasever: 8s
+      centos_releasever: 9s
 
 - job:
-    name: rdoinfo-tripleo-master-testing-centos-8-scenario001-standalone
-    parent: tripleo-ci-centos-8-scenario001-standalone
-    nodeset: single-centos-8-node-vexxhost
+    name: rdoinfo-tripleo-master-testing-centos-9-scenario001-standalone
+    parent: tripleo-ci-centos-9-scenario001-standalone
+    nodeset: single-centos-9-stream-node-vexxhost
     run: playbooks/run-rdoinfo.yaml
     post-run: playbooks/post-rdoinfo.yaml
     roles:
@@ -613,12 +613,12 @@
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
-      centos_releasever: 8s
+      centos_releasever: 9s
       rdoinfo_build_containers: false
       build_container_images: true
       use_buildah: true
       kolla_base_pull: true
-      kolla_base_tag: 8
+      kolla_base_tag: 9
       kolla_base_image: centos
       push_registry_port: 8787
       push_registry: 127.0.0.1:8787
@@ -636,171 +636,173 @@
       - opendev.org/openstack/tripleo-repos
 
 - job:
-    name: rdoinfo-tripleo-master-release-centos-8-scenario001-standalone
-    parent: rdoinfo-tripleo-master-testing-centos-8-scenario001-standalone
+    name: rdoinfo-tripleo-master-release-centos-9-scenario001-standalone
+    parent: rdoinfo-tripleo-master-testing-centos-9-scenario001-standalone
     vars:
       rdoinfo_phase: release
-      centos_releasever: 8
+      centos_releasever: 9
 
 - job:
-    name: rdoinfo-tripleo-master-release-centos-8-scenario002-standalone
-    parent: rdoinfo-tripleo-master-testing-centos-8-scenario002-standalone
+    name: rdoinfo-tripleo-master-release-centos-9-scenario002-standalone
+    parent: rdoinfo-tripleo-master-testing-centos-9-scenario002-standalone
     vars:
       rdoinfo_phase: release
-      centos_releasever: 8
+      centos_releasever: 9
 
 - job:
-    name: rdoinfo-tripleo-master-release-centos-8-scenario003-standalone
-    parent: rdoinfo-tripleo-master-testing-centos-8-scenario003-standalone
+    name: rdoinfo-tripleo-master-release-centos-9-scenario003-standalone
+    parent: rdoinfo-tripleo-master-testing-centos-9-scenario003-standalone
     vars:
       rdoinfo_phase: release
-      centos_releasever: 8
+      centos_releasever: 9
 
 - job:
-    name: rdoinfo-tripleo-master-release-centos-8-scenario004-standalone
-    parent: rdoinfo-tripleo-master-testing-centos-8-scenario004-standalone
+    name: rdoinfo-tripleo-master-release-centos-9-scenario004-standalone
+    parent: rdoinfo-tripleo-master-testing-centos-9-scenario004-standalone
     vars:
       rdoinfo_phase: release
-      centos_releasever: 8
+      centos_releasever: 9
 
 - job:
-    name: rdoinfo-tripleo-master-release-centos-8-scenario007-standalone
-    parent: rdoinfo-tripleo-master-testing-centos-8-scenario007-standalone
+    name: rdoinfo-tripleo-master-release-centos-9-scenario007-standalone
+    parent: rdoinfo-tripleo-master-testing-centos-9-scenario007-standalone
     vars:
       rdoinfo_phase: release
-      centos_releasever: 8
+      centos_releasever: 9
 
 - job:
-    name: rdoinfo-tripleo-master-release-centos-8-undercloud-containers
-    parent: rdoinfo-tripleo-master-testing-centos-8-undercloud-containers
+    name: rdoinfo-tripleo-master-release-centos-9-undercloud-containers
+    parent: rdoinfo-tripleo-master-testing-centos-9-undercloud-containers
     vars:
       rdoinfo_phase: release
-      centos_releasever: 8
+      centos_releasever: 9
 
 - job:
-    name: rdoinfo-tripleo-master-release-centos-8-containers-multinode
-    parent: rdoinfo-tripleo-master-testing-centos-8-containers-multinode
+    name: rdoinfo-tripleo-master-release-centos-9-containers-multinode
+    parent: rdoinfo-tripleo-master-testing-centos-9-containers-multinode
     vars:
       rdoinfo_phase: release
-      centos_releasever: 8
+      centos_releasever: 9
 
 - job:
-    name: rdoinfo-tripleo-master-testing-centos-8-scenario002-standalone
-    parent: tripleo-ci-centos-8-scenario002-standalone
-    nodeset: single-centos-8-node-vexxhost
+    name: rdoinfo-tripleo-master-testing-centos-9-scenario002-standalone
+    parent: tripleo-ci-centos-9-scenario002-standalone
+    nodeset: single-centos-9-stream-node-vexxhost
     run: playbooks/run-rdoinfo.yaml
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
-      centos_releasever: 8s
+      centos_releasever: 9s
 
 - job:
-    name: rdoinfo-tripleo-master-testing-centos-8-scenario003-standalone
-    parent: tripleo-ci-centos-8-scenario003-standalone
-    nodeset: single-centos-8-node-vexxhost
+    name: rdoinfo-tripleo-master-testing-centos-9-scenario003-standalone
+    parent: tripleo-ci-centos-9-scenario003-standalone
+    nodeset: single-centos-9-stream-node-vexxhost
     run: playbooks/run-rdoinfo.yaml
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
-      centos_releasever: 8s
+      centos_releasever: 9s
 
 - job:
-    name: rdoinfo-tripleo-master-testing-centos-8-scenario004-standalone
-    parent: tripleo-ci-centos-8-scenario004-standalone
-    nodeset: single-centos-8-node-vexxhost
+    name: rdoinfo-tripleo-master-testing-centos-9-scenario004-standalone
+    parent: tripleo-ci-centos-9-scenario004-standalone
+    nodeset: single-centos-9-stream-node-vexxhost
     run: playbooks/run-rdoinfo.yaml
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
-      centos_releasever: 8s
+      centos_releasever: 9s
 
 - job:
-    name: rdoinfo-tripleo-master-testing-centos-8-scenario007-standalone
-    parent: tripleo-ci-centos-8-scenario007-standalone
-    nodeset: single-centos-8-node-vexxhost
+    name: rdoinfo-tripleo-master-testing-centos-9-scenario007-standalone
+    parent: tripleo-ci-centos-9-scenario007-standalone
+    nodeset: single-centos-9-stream-node-vexxhost
     run: playbooks/run-rdoinfo.yaml
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
-      centos_releasever: 8s
+      centos_releasever: 9s
 
 - job:
-    name: rdoinfo-tripleo-master-testing-centos-8-scenario010-standalone
-    parent: tripleo-ci-centos-8-scenario010-standalone
-    nodeset: single-centos-8-node-vexxhost
+    name: rdoinfo-tripleo-master-testing-centos-9-scenario010-standalone
+    parent: tripleo-ci-centos-9-scenario010-standalone
+    nodeset: single-centos-9-stream-node-vexxhost
     run: playbooks/run-rdoinfo.yaml
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
-      centos_releasever: 8s
+      centos_releasever: 9s
 
 - job:
-    name: rdoinfo-tripleo-master-testing-centos-8-undercloud-containers
-    parent: tripleo-ci-centos-8-undercloud-containers
-    nodeset: single-centos-8-node-vexxhost
+    name: rdoinfo-tripleo-master-testing-centos-9-undercloud-containers
+    parent: tripleo-ci-centos-9-undercloud-containers
+    nodeset: single-centos-9-stream-node-vexxhost
     run: playbooks/run-rdoinfo.yaml
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
-      centos_releasever: 8s
+      centos_releasever: 9s
 
 - job:
-    name: rdoinfo-tripleo-master-testing-centos-8-containers-multinode
-    parent: tripleo-ci-centos-8-containers-multinode
-    nodeset: two-centos-8-nodes-vexxhost
+    name: rdoinfo-tripleo-master-testing-centos-9-containers-multinode
+    parent: tripleo-ci-centos-9-containers-multinode
+    nodeset: two-centos-9-nodes-vexxhost
     run: playbooks/run-rdoinfo.yaml
     vars:
       rdoinfo_release: master
       rdoinfo_phase: testing
-      centos_releasever: 8s
+      centos_releasever: 9s
 
-- job:
-    name: rdoinfo-tripleo-master-testing-centos-8-ovb-3ctlr_1comp-featureset001
-    parent: tripleo-ci-base-ovb-rdo-centos-8
-    nodeset: tripleo-ovb-centos-8-primary-vexxhost
-    run: playbooks/run-rdoinfo.yaml
-    timeout: 18000
-    vars:
-      cloud_name: vexxhost
-      nodes: 3ctlr_1comp
-      featureset: '001'
-      rdoinfo_release: master
-      rdoinfo_phase: testing
-      centos_releasever: 8s
-      featureset_override:
-        to_build: false
-
-- job:
-    name: rdoinfo-tripleo-master-testing-centos-8-ovb-3ctlr_1comp-featureset035
-    parent: tripleo-ci-base-ovb-rdo-centos-8
-    nodeset: tripleo-ovb-centos-8-primary-vexxhost
-    run: playbooks/run-rdoinfo.yaml
-    timeout: 18000
-    vars:
-      cloud_name: vexxhost
-      nodes: 3ctlr_1comp
-      featureset: '035'
-      rdoinfo_release: master
-      rdoinfo_phase: testing
-      centos_releasever: 8s
-      featureset_override:
-        to_build: false
-
-- job:
-    name: rdoinfo-tripleo-master-testing-centos-8-ovb-1ctlr_2comp-featureset020
-    parent: tripleo-ci-base-ovb-rdo-centos-8
-    nodeset: tripleo-ovb-centos-8-primary-vexxhost
-    timeout: 18000
-    run: playbooks/run-rdoinfo.yaml
-    vars:
-      cloud_name: vexxhost
-      nodes: 1ctlr_2comp
-      featureset: '020'
-      rdoinfo_release: master
-      rdoinfo_phase: testing
-      centos_releasever: 8s
-      featureset_override:
-        to_build: false
+#TODO: enable it when tripleo-ci-base-ovb-centos9 is defined in
+#      https://github.com/openstack/tripleo-ci/blob/master/zuul.d/base.yaml
+#- job:
+#    name: rdoinfo-tripleo-master-testing-centos-9-ovb-3ctlr_1comp-featureset001
+#    parent: tripleo-ci-base-ovb-rdo-centos-9
+#    nodeset: tripleo-ovb-centos-9-primary-vexxhost
+#    run: playbooks/run-rdoinfo.yaml
+#    timeout: 18000
+#    vars:
+#      cloud_name: vexxhost
+#      nodes: 3ctlr_1comp
+#      featureset: '001'
+#      rdoinfo_release: master
+#      rdoinfo_phase: testing
+#      centos_releasever: 9s
+#      featureset_override:
+#        to_build: false
+#
+#- job:
+#    name: rdoinfo-tripleo-master-testing-centos-9-ovb-3ctlr_1comp-featureset035
+#    parent: tripleo-ci-base-ovb-rdo-centos-9
+#    nodeset: tripleo-ovb-centos-9-primary-vexxhost
+#    run: playbooks/run-rdoinfo.yaml
+#    timeout: 18000
+#    vars:
+#      cloud_name: vexxhost
+#      nodes: 3ctlr_1comp
+#      featureset: '035'
+#      rdoinfo_release: master
+#      rdoinfo_phase: testing
+#      centos_releasever: 9s
+#      featureset_override:
+#        to_build: false
+#
+#- job:
+#    name: rdoinfo-tripleo-master-testing-centos-9-ovb-1ctlr_2comp-featureset020
+#    parent: tripleo-ci-base-ovb-rdo-centos-9
+#    nodeset: tripleo-ovb-centos-9-primary-vexxhost
+#    timeout: 18000
+#    run: playbooks/run-rdoinfo.yaml
+#    vars:
+#      cloud_name: vexxhost
+#      nodes: 1ctlr_2comp
+#      featureset: '020'
+#      rdoinfo_release: master
+#      rdoinfo_phase: testing
+#      centos_releasever: 9s
+#      featureset_override:
+#        to_build: false
 
 - job:
     name: rdoinfo-tripleo-wallaby-testing-centos-8-standalone
