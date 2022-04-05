@@ -86,3 +86,12 @@
     voting: false
     vars:
       enable_secure_rbac: true
+
+## Quay
+
+- job:
+    name: periodic-tripleo-build-containers-base-c9-quay-master
+    parent: periodic-tripleo-build-containers-quay-centos-9
+    vars:
+      release: master
+      registry_namespace: tripleomastercentos9
