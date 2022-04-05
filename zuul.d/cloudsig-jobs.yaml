@@ -1,6 +1,6 @@
 - job:
     name: cloudsig-victoria-release-centos-8-scenario001-standalone
-    parent: tripleo-ci-centos-8-scenario001-standalone
+    parent: tripleo-ci-base-standalone-standard
     nodeset: single-centos-8-node-vexxhost
     pre-run: playbooks/mirror.yaml
     roles:
