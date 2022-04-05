@@ -48,3 +48,25 @@
     vars:
       buildcontainers_override_repos: centos9-master
       registry_namespace: tripleomastercentos9
+
+- job:
+    name: periodic-tripleo-build-containers-base-c9-quay-master
+    parent: periodic-tripleo-build-containers-quay-centos-9-secrets
+    vars:
+      release: master
+      registry_namespace: tripleomastercentos9
+    attempts: 1
+
+- job:
+    name: periodic-tripleo-build-containers-base-c8-quay-train
+    parent: periodic-tripleo-build-containers-quay-centos-8-secrets
+    override-checkout: 'stable/train'
+    secrets:
+      - rdo_registry
+      - dlrnapi
+      - quay_rdoproject_train_secret
+    vars:
+      release: train
+      branch_override: 'stable/train'
+      registry_namespace: tripleotraincentos8
+    attempts: 1
