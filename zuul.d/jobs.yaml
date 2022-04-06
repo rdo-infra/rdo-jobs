@@ -176,7 +176,7 @@
     name: DLRN-rpmbuild-centos8-pinned
     parent: DLRN-rpmbuild-centos8
     vars:
-      tag: 'yoga-uc'
+      tag: 'yoga'
       centos_version: 'centos8'
 
 - job:
@@ -191,7 +191,7 @@
     name: DLRN-rpmbuild-centos9-pinned
     parent: DLRN-rpmbuild-centos9
     vars:
-      tag: 'yoga-uc'
+      tag: 'yoga'
 
 - job:
     name: rpmlint
