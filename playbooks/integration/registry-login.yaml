@@ -58,6 +58,17 @@
             fail_msg: Docker daemon is missing
             success_msg: Docker deamon correctly running
 
+    - name: test dpawlik
+      no_log: true
+      copy:
+        content: |
+          logins {{ tripleo_container_registry_logins }}
+          login {{ registry_login_podman }}
+          password {{ tripleo_container_registry_logins['quay.rdoproject.org']['tripleomastercentos9+tripleomastercentos9'] }}
+          REGISTRY_USERNAME {{ lookup('dict', item.value).key }}
+          REGISTRY_PASSWORD {{ lookup('dict', item.value).value }}
+          REGISTRY {{ item.key }}
+        dest: /tmp/quay
 
     - name: Assert role has worked in (CentOS|RedHat) 8
       when:
