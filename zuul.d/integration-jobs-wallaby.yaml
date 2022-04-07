@@ -270,3 +270,16 @@
     vars:
       branch_override: "stable/wallaby"
       release: wallaby
+
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-ffu
+    parent: tripleo-ci-base-singlenode-periodic-centos-8
+    override-checkout: "stable/wallaby"
+    vars:
+      featureset: '065'
+      branch_override: "stable/wallaby"
+      release: wallaby
+      featureset_override:
+        validate_services: false
+      extra_tags:
+        - undercloud-upgrade
