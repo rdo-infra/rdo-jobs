@@ -144,7 +144,9 @@
           {% endif %}
 
           # Release RPM name is different for el7 and el8
-          if [[ ${DIST_VER} = 8* ]]; then
+          if [[ ${DIST_VER} = 9* ]]; then
+              export RELEASE_RPM="rdo-release-${RELEASE}.el9s.rpm"
+          elif [[ ${DIST_VER} = 8* ]]; then
               export RELEASE_RPM="rdo-release-${RELEASE}.el8.rpm"
           else
               export RELEASE_RPM="rdo-release-${RELEASE}.rpm"
