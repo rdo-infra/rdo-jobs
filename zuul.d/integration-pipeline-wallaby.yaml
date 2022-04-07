@@ -46,6 +46,7 @@
         ## undercloud
         - periodic-tripleo-ci-centos-8-undercloud-containers-wallaby: *build_containers_ubi_8_push_wallaby
         - periodic-tripleo-ci-centos-8-undercloud-upgrade-wallaby: *build_containers_ubi_8_push_wallaby
+        - periodic-tripleo-ci-centos-8-undercloud-upgrade-ffu-wallaby: *build_containers_ubi_8_push_wallaby
         ## containers/images
         - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby: &promoted_comp_to_ci_testing_wallaby
             dependencies:
