@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f424f0ee_f71b5c2d",
+        "filename": "zuul.d/integration-jobs-wallaby.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-04-08T15:06:39Z",
+      "side": 1,
+      "message": "test looks good @ https://review.rdoproject.org/r/c/testproject/+/41664/1#message-a4144fc35e6439dbb100a3a73b3a81e15f2ee32a\n\ninstalls train\n        * https://logserver.rdoproject.org/64/41664/1/check/periodic-tripleo-ci-centos-8-undercloud-upgrade-ffu-wallaby/48d97a5/logs/undercloud/home/zuul/undercloud_install.log.txt.gz\n        * 2022-04-07 15:48:58.302067 | fa163eb3-9159-9ee9-99b5-000000000eb0 |    CHANGED | Pre-fetch all the containers | undercloud | item\u003d192.168.24.1:8787/tripleotraincentos8/centos-binary-haproxy:1fd5d5ebfa4e9361fa55b00f759a028e-updated-20220407152050\n\n\nupgrades to wallaby:\n        * https://logserver.rdoproject.org/64/41664/1/check/periodic-tripleo-ci-centos-8-undercloud-upgrade-ffu-wallaby/48d97a5/logs/undercloud/home/zuul/ffu_undercloud_upgrade.log.txt.gz\n        * 2022-04-07 16:38:55 | 2022-04-07 16:38:55.720996 | fa163eb3-9159-c034-cd6e-0000000012c8 |         OK | Pre-fetch all the containers | undercloud | item\u003d192.168.24.1:8787/tripleowallaby/openstack-haproxy:fa0d0bbf4a946a21021b09222c754315-updated-20220407152050",
+      "revId": "1d2a18eed785d76892fa271e853db19bc93b046c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
