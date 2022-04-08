@@ -33,6 +33,138 @@
       "message": "are we agreed on adding this to the master line?",
       "revId": "96bd229477547628dbb05aa9468b976fbb3c5811",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcc873b0_571dd5ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-04-08T06:21:53Z",
+      "side": 1,
+      "message": "looks OK and I assume this is all tested (is that the testproject? https://logserver.rdoproject.org/28/41528/4/check/periodic-tripleo-build-containers-base-c9-quay-master/d5d7041/job-output.txt - would be nice to add it in the commit message link to test review )\n\nnot +2 because I really don\u0027t like the name but I won\u0027t block on it ;)",
+      "revId": "96bd229477547628dbb05aa9468b976fbb3c5811",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dc68c79_673c4497",
+        "filename": "zuul.d/integration-jobs-cs9-master.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-04-08T06:21:53Z",
+      "side": 1,
+      "message": "current job is called \n\nperiodic-tripleo-ci-build-containers-centos-9-push-master\n\nI think we should call this one\n\nperiodic-tripleo-ci-build-containers-centos-9-quay-master\n\n\ni.e. just s/push/quay \n\nmy 2c.",
+      "range": {
+        "startLine": 93,
+        "startChar": 19,
+        "endLine": 93,
+        "endChar": 26
+      },
+      "revId": "96bd229477547628dbb05aa9468b976fbb3c5811",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6f69796_5bf407a8",
+        "filename": "zuul.d/integration-jobs-cs9-master.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-04-08T06:21:53Z",
+      "side": 1,
+      "message": "please lets keep it consistent with what we already have (centos-9 everywhere else)",
+      "range": {
+        "startLine": 93,
+        "startChar": 49,
+        "endLine": 93,
+        "endChar": 51
+      },
+      "revId": "96bd229477547628dbb05aa9468b976fbb3c5811",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf3728c5_e0c93158",
+        "filename": "zuul.d/integration-jobs-cs9-master.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-04-08T06:21:53Z",
+      "side": 1,
+      "message": "please remove \u0027base\u0027 from the name - this is not a base job?",
+      "range": {
+        "startLine": 93,
+        "startChar": 44,
+        "endLine": 93,
+        "endChar": 48
+      },
+      "revId": "96bd229477547628dbb05aa9468b976fbb3c5811",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5435c54_34304844",
+        "filename": "zuul.d/integration-jobs-cs9-master.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-04-08T06:21:53Z",
+      "side": 1,
+      "message": "k looks like all the needed vars/secrets etc are defined on the parent there https://github.com/rdo-infra/review.rdoproject.org-config/blob/4b2ec90d5260121c2b9b8ccbe42b88555e9a6bdc/zuul.d/tripleoci.yaml#L430",
+      "range": {
+        "startLine": 94,
+        "startChar": 4,
+        "endLine": 94,
+        "endChar": 10
+      },
+      "revId": "96bd229477547628dbb05aa9468b976fbb3c5811",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dee9d966_78daeb20",
+        "filename": "zuul.d/integration-pipeline-main.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-04-08T06:21:53Z",
+      "side": 1,
+      "message": "Is there a testproject so we can see it running?",
+      "range": {
+        "startLine": 51,
+        "startChar": 10,
+        "endLine": 51,
+        "endChar": 18
+      },
+      "revId": "96bd229477547628dbb05aa9468b976fbb3c5811",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
