@@ -35,14 +35,6 @@
       branch_override: 'stable/wallaby'
 
 - job:
-    name: periodic-tripleo-centos-8-buildimage-overcloud-hardened-full-wallaby
-    parent: periodic-tripleo-centos-8-buildimage-overcloud-hardened-full-master
-    override-checkout: "stable/wallaby"
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
     name: periodic-tripleo-centos-8-buildimage-overcloud-hardened-uefi-full-wallaby
     parent: periodic-tripleo-centos-8-buildimage-overcloud-hardened-uefi-full-master
     override-checkout: "stable/wallaby"
@@ -59,155 +51,10 @@
       branch_override: "stable/wallaby"
       release: wallaby
 
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario001-standalone-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario002-standalone-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario003-standalone-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario004-standalone-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario007-standalone-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario010-standalone-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario010-standalone-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario012-standalone-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario012-standalone-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-upgrade-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-upgrade-master
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-## multinode
-- job:
-    name: periodic-tripleo-ci-centos-8-containers-multinode-wallaby
-    parent: periodic-tripleo-ci-centos-8-containers-multinode-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario007-multinode-oooq-container-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario007-multinode-oooq-container-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-wallaby
-    parent: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
 ## ovb
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-rbac-wallaby
-    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-rbac-master
-    voting: false
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-wallaby
-    parent: periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-master
     override-checkout: "stable/wallaby"
     vars:
       branch_override: "stable/wallaby"
@@ -221,56 +68,7 @@
       branch_override: "stable/wallaby"
       release: wallaby
 
-- job:
-    name: periodic-tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-wallaby
-    parent: periodic-tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-rbac-wallaby
-    parent: periodic-tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-rbac-master
-    voting: false
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-wallaby
-    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset064-wallaby
-    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset064-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
 ## undercloud
-- job:
-    name: periodic-tripleo-ci-centos-8-undercloud-containers-wallaby
-    parent: periodic-tripleo-ci-centos-8-undercloud-containers-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-wallaby
-    parent: periodic-tripleo-ci-centos-8-undercloud-upgrade-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
 - job:
     name: periodic-tripleo-ci-centos-8-undercloud-upgrade-ffu-wallaby
     parent: tripleo-ci-base-singlenode-periodic-centos-8
