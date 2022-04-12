@@ -7,24 +7,8 @@
         ##### wallaby #####
         ## standalone
         - periodic-tripleo-ci-centos-8-standalone-wallaby: &build_containers_ubi_8_push_wallaby
-            dependencies: &dep_build_containers_ubi_8_push_wallaby
+            dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
-        - periodic-tripleo-ci-centos-8-scenario001-standalone-wallaby: *build_containers_ubi_8_push_wallaby
-        - periodic-tripleo-ci-centos-8-scenario002-standalone-wallaby: *build_containers_ubi_8_push_wallaby
-        - periodic-tripleo-ci-centos-8-scenario003-standalone-wallaby: *build_containers_ubi_8_push_wallaby
-        - periodic-tripleo-ci-centos-8-scenario004-standalone-wallaby: *build_containers_ubi_8_push_wallaby
-        - periodic-tripleo-ci-centos-8-scenario007-standalone-wallaby: *build_containers_ubi_8_push_wallaby
-        - periodic-tripleo-ci-centos-8-scenario012-standalone-wallaby: *build_containers_ubi_8_push_wallaby
-        - periodic-tripleo-ci-centos-8-standalone-full-tempest-api-wallaby: *build_containers_ubi_8_push_wallaby
-        - periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-wallaby: *build_containers_ubi_8_push_wallaby
-        - periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-wallaby: *build_containers_ubi_8_push_wallaby
-        - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-wallaby: *build_containers_ubi_8_push_wallaby
-        - periodic-tripleo-ci-centos-8-standalone-upgrade-wallaby: *build_containers_ubi_8_push_wallaby
-        - create-scenario010-trigger-for-downstream:
-            vars:
-              trigger_branch: wallaby
-              trigger_os_distro: centos_8
-            dependencies: *dep_build_containers_ubi_8_push_wallaby
         ## ovb
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby: &ovb_deps_wallaby
             dependencies:
@@ -32,20 +16,8 @@
               - periodic-tripleo-centos-8-buildimage-overcloud-full-wallaby
               - periodic-tripleo-centos-8-buildimage-overcloud-hardened-uefi-full-wallaby
               - periodic-tripleo-centos-8-buildimage-ironic-python-agent-wallaby
-        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-wallaby: *ovb_deps_wallaby
         - periodic-tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-wallaby: *ovb_deps_wallaby
-        - periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-wallaby: *build_containers_ubi_8_push_wallaby
-        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-wallaby: *ovb_deps_wallaby
-        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset064-wallaby: *ovb_deps_wallaby
-        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-rbac-wallaby: *ovb_deps_wallaby
-        - periodic-tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-rbac-wallaby: *ovb_deps_wallaby
-        ## multinode
-        - periodic-tripleo-ci-centos-8-scenario007-multinode-oooq-container-wallaby: *build_containers_ubi_8_push_wallaby
-        - periodic-tripleo-ci-centos-8-containers-multinode-wallaby: *build_containers_ubi_8_push_wallaby
-        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-wallaby: *build_containers_ubi_8_push_wallaby
         ## undercloud
-        - periodic-tripleo-ci-centos-8-undercloud-containers-wallaby: *build_containers_ubi_8_push_wallaby
-        - periodic-tripleo-ci-centos-8-undercloud-upgrade-wallaby: *build_containers_ubi_8_push_wallaby
         - periodic-tripleo-ci-centos-8-undercloud-upgrade-ffu-wallaby: *build_containers_ubi_8_push_wallaby
         ## containers/images
         - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby: &promoted_comp_to_ci_testing_wallaby
