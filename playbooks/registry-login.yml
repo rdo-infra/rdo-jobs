@@ -1,0 +1,16 @@
+---
+- hosts: all
+  tasks:
+    - name: Perform container registry login(s) with podman
+      become: true
+      shell: |-
+        podman login --username=$REGISTRY_USERNAME \
+                     --password=$REGISTRY_PASSWORD \
+                     --tls-verify={{ tripleo_podman_tls_verify }} \
+                     $REGISTRY | tee /tmp/dump-login
+      environment:
+        REGISTRY_USERNAME: "{{ lookup('dict', item.value).key }}"
+        REGISTRY_PASSWORD: "{{ lookup('dict', item.value).value }}"
+        REGISTRY: "{{ item.key }}"
+      no_log: true
+      loop: "{{ query('dict', tripleo_container_registry_logins) }}"
