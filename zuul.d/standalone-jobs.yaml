@@ -317,82 +317,83 @@
 - job:
     name: periodic-tripleo-ci-centos-8-scenario001-standalone-master
     parent: periodic-tripleo-ci-standalone-rdo-centos-8
+    vars:
+      release: master
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario001-standalone-master
-    parent: tripleo-ci-scenario001-standalone-options
+    parent: tripleo-ci-scenario001-standalone-standard
+
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario001-standalone-master
+    parent: periodic-tripleo-ci-standalone-rdo-centos-9
     vars:
       release: master
 
 - job:
     name: periodic-tripleo-ci-centos-9-scenario001-standalone-master
-    parent: periodic-tripleo-ci-standalone-rdo-centos-9
+    parent: tripleo-ci-scenario001-standalone-standard
 
 - job:
-    name: periodic-tripleo-ci-centos-9-scenario001-standalone-master
-    parent: tripleo-ci-scenario001-standalone-options
+    name: periodic-tripleo-ci-centos-8-scenario002-standalone-master
+    parent: periodic-tripleo-ci-standalone-rdo-centos-8
     vars:
       release: master
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario002-standalone-master
-    parent: periodic-tripleo-ci-standalone-rdo-centos-8
+    parent: tripleo-ci-scenario002-standalone-standard
 
 - job:
-    name: periodic-tripleo-ci-centos-8-scenario002-standalone-master
-    parent: tripleo-ci-scenario002-standalone-options
+    name: periodic-tripleo-ci-centos-9-scenario002-standalone-master
+    parent: periodic-tripleo-ci-standalone-rdo-centos-9
     vars:
       release: master
 
 - job:
     name: periodic-tripleo-ci-centos-9-scenario002-standalone-master
-    parent: periodic-tripleo-ci-standalone-rdo-centos-9
+    parent: tripleo-ci-scenario002-standalone-standard
 
 - job:
-    name: periodic-tripleo-ci-centos-9-scenario002-standalone-master
-    parent: tripleo-ci-scenario002-standalone-options
+    name: periodic-tripleo-ci-centos-8-scenario003-standalone-master
+    parent: periodic-tripleo-ci-standalone-rdo-centos-8
     vars:
       release: master
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario003-standalone-master
-    parent: periodic-tripleo-ci-standalone-rdo-centos-8
+    parent: tripleo-ci-scenario003-standalone-standard
 
 - job:
-    name: periodic-tripleo-ci-centos-8-scenario003-standalone-master
-    parent: tripleo-ci-scenario003-standalone-options
+    name: periodic-tripleo-ci-centos-9-scenario003-standalone-master
+    parent: periodic-tripleo-ci-standalone-rdo-centos-9
     vars:
       release: master
 
 - job:
     name: periodic-tripleo-ci-centos-9-scenario003-standalone-master
-    parent: periodic-tripleo-ci-standalone-rdo-centos-9
-
-- job:
-    name: periodic-tripleo-ci-centos-9-scenario003-standalone-master
-    parent: tripleo-ci-scenario003-standalone-options
-    vars:
-      release: master
+    parent: tripleo-ci-scenario003-standalone-standard
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-master
     parent: periodic-tripleo-ci-standalone-rdo-centos-8
+    vars:
+      release: master
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-master
-    parent: tripleo-ci-scenario004-standalone-options
-    vars:
-      release: master
+    parent: tripleo-ci-scenario004-standalone-standard
 
 - job:
     name: periodic-tripleo-ci-centos-9-scenario004-standalone-master
     parent: periodic-tripleo-ci-standalone-rdo-centos-9
+    vars:
+      release: master
 
 - job:
     name: periodic-tripleo-ci-centos-9-scenario004-standalone-master
-    parent: tripleo-ci-scenario004-standalone-options
-    vars:
-      release: master
+    parent: tripleo-ci-scenario004-standalone-standard
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario007-standalone-master
