@@ -48,6 +48,7 @@
     vars:
       buildcontainers_override_repos: centos9-master
       registry_namespace: tripleomastercentos9
+    pre-run: playbooks/registry-login.yml
 
 - job:
     name: periodic-tripleo-build-containers-base-c9-quay-master
