@@ -320,7 +320,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario001-standalone-master
-    parent: tripleo-ci-scenario001-standalone-options
+    parent: tripleo-ci-scenario001-standalone-standard
     vars:
       release: master
 
@@ -330,7 +330,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-9-scenario001-standalone-master
-    parent: tripleo-ci-scenario001-standalone-options
+    parent: tripleo-ci-scenario001-standalone-standard
     vars:
       release: master
 
@@ -340,7 +340,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario002-standalone-master
-    parent: tripleo-ci-scenario002-standalone-options
+    parent: tripleo-ci-scenario002-standalone-standard
     vars:
       release: master
 
@@ -350,7 +350,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-9-scenario002-standalone-master
-    parent: tripleo-ci-scenario002-standalone-options
+    parent: tripleo-ci-scenario002-standalone-standard
     vars:
       release: master
 
@@ -360,7 +360,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario003-standalone-master
-    parent: tripleo-ci-scenario003-standalone-options
+    parent: tripleo-ci-scenario003-standalone-standard
     vars:
       release: master
 
@@ -370,7 +370,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-9-scenario003-standalone-master
-    parent: tripleo-ci-scenario003-standalone-options
+    parent: tripleo-ci-scenario003-standalone-standard
     vars:
       release: master
 
@@ -380,7 +380,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario004-standalone-master
-    parent: tripleo-ci-scenario004-standalone-options
+    parent: tripleo-ci-scenario004-standalone-standard
     vars:
       release: master
 
@@ -390,7 +390,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-9-scenario004-standalone-master
-    parent: tripleo-ci-scenario004-standalone-options
+    parent: tripleo-ci-scenario004-standalone-standard
     vars:
       release: master
 
