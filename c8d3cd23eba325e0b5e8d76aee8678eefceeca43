@@ -16,6 +16,29 @@
       "message": "Thank you marios for working on this! Looks good. On overall scan, removed criteria jobs are removed from here.",
       "revId": "c8d3cd23eba325e0b5e8d76aee8678eefceeca43",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be2e02f8_cad3f2bc",
+        "filename": "zuul.d/component-pipeline-wallaby.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2022-04-18T10:46:19Z",
+      "side": 1,
+      "message": "I don\u0027t think its worth to keep even standalone for some components, for example we don\u0027t test octavia in vanilla standalone..\n\nSame for manilla, baremetal , validations.",
+      "range": {
+        "startLine": 67,
+        "startChar": 10,
+        "endLine": 67,
+        "endChar": 65
+      },
+      "revId": "c8d3cd23eba325e0b5e8d76aee8678eefceeca43",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
