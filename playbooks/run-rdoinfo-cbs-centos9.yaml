@@ -1,0 +1,258 @@
+---
+- hosts: primary
+  vars:
+    master_release: zed
+  tasks:
+    - name: Run pre-quickstart role
+      import_role:
+        name: ci-common-vars
+
+    - name: check for correct import
+      debug:
+        var: tripleo_root
+
+    - name: set workspace
+      set_fact:
+        workspace: "{{ ansible_user_dir }}/workspace"
+
+    - name: ensure workspace presence
+      file:
+        path: "{{ workspace }}"
+        state: directory
+
+    - name: Ensure legacy logs directory
+      file:
+        path: '{{ workspace }}/logs'
+        state: directory
+
+    - name: Check if job needs to be run or not based on changes
+      shell:
+        cmd: |
+          # This builder, when run from a child job of validate-buildsys-tags
+          # configures the temporary repositories created by it
+          # This allows to install the packages in that repository and test
+          # them.
+          set +e -x
+          # This job requires variables 'rdoinfo_release' and 'rdoinfo_phase' to be defined.
+
+          REQUIRED=0
+          CREPOS_FILE=changed_repos.txt
+
+          if [ -z "{{ rdoinfo_phase|default("") }}" -o -z "{{ rdoinfo_release|default("") }}" ]; then
+              echo "ERROR in job definition"
+              exit 1
+          fi
+
+          # Set log path
+          if [ -z "{{ buildset_artifacts_url|default("") }}" ]; then
+              echo "buildset_artifacts_url is not defined, job needs to be run with parent job:- validate-buildsys-tags"
+              exit 1
+          fi
+          logs={{ buildset_artifacts_url }}
+
+          # If we could not find a working repository, give up
+          curl -o $CREPOS_FILE -sf "$logs/repos/changed_repos.txt" || exit 1
+
+          if ! grep -q -E "({{ rdoinfo_release }}|openvswitch-2)-{{ rdoinfo_phase }}" $CREPOS_FILE; then
+              echo "INFO: this test is not required"| tee not_required
+              exit 0
+          fi
+
+        chdir: '{{ ansible_user_dir }}/workspace'
+      environment: '{{ zuul | zuul_legacy_vars }}'
+      changed_when: true
+
+    - name: Detect if we created the file to stop quickstart run
+      stat:
+        path: "{{ workspace }}/not_required"
+      register: stop_file
+
+    - name: Rename CloudSIG repos name to include delorean in name as build-containers role rely on it
+      become: true
+      shell: |
+        set -ex
+        # for puppet for some rubygem
+        dnf config-manager --enable cbr
+        # for pcs
+        dnf config-manager --enable highavailability
+      when:
+        - ansible_distribution == "CentOS"
+        - ansible_distribution_major_version == '9'
+
+    - name: Set ip addr
+      set_fact:
+        ipv4_addr: "{{ ansible_default_ipv4.address }}"
+        ipv4_prefix: "{{ ansible_default_ipv4.prefix | default('24') }}"
+    - name: Create centos_releasever fact
+      set_fact:
+        centos_releasever: "{{ ansible_distribution_major_version | default('7') }}"
+      when: centos_releasever is not defined
+    - name: Set repo facts
+      set_fact:
+        buildsys_tag: "cloud{{ centos_releasever }}-openstack-{{ rdoinfo_release }}-{{ rdoinfo_phase }}"
+    - name: Handle master release buildsys_tags
+      set_fact:
+        buildsys_tag: "cloud{{ centos_releasever }}-openstack-{{ master_release }}-{{ rdoinfo_phase }}"
+      when: rdoinfo_release == "master"
+    - name: Detect tag change is nfv8 or nfv8s
+      slurp:
+        src: "{{ ansible_user_dir }}/workspace/changed_repos.txt"
+      register: changed_repos_output
+      when: zuul.project.name == "nfvinfo"
+    - name: set fact for nfv tags
+      set_fact:
+        nfv_dist: "{{ '8s' if 'nfv8s' in changed_repos_output.content | b64decode else '8' }}"
+      when: zuul.project.name == "nfvinfo"
+    - name: Set buildsys tag fact for nfv
+      set_fact:
+        buildsys_tag: "nfv{{ nfv_dist }}-openvswitch-2-{{ rdoinfo_phase }}"
+      when: zuul.project.name == "nfvinfo"
+    - name: set url
+      set_fact:
+        extra_repo_url: "{{ buildset_artifacts_url | default('') }}/repos/{{ buildsys_tag }}/temp-{{ buildsys_tag }}.repo"
+      when: buildset_artifacts_url is defined
+      # To use packages included in the gating repo in build-containers role
+    - name: install temp-buildys repo
+      become: true
+      get_url:
+        url: "{{ extra_repo_url }}"
+        dest: "/etc/yum.repos.d/temp-{{ buildsys_tag }}.repo"
+      when: not stop_file.stat.exists
+
+    - name: Build containers using build-containers role
+      when:
+        - not stop_file.stat.exists
+        - rdoinfo_build_containers|default(false)
+      block:
+        - name: Setup CentOS CloudSIG repo
+          become: true
+          package:
+            name: "centos-release-openstack-{{ rdoinfo_release }}"
+            state: present
+        - name: Rename CloudSIG repos name to include delorean in name as build-containers role rely on it
+          become: true
+          shell: |
+            set -ex
+            # due to https://review.opendev.org/#/c/692513/
+            sed -i 's/gpgcheck.*/gpgcheck=0/' /etc/yum.repos.d/CentOS-OpenStack-{{ rdoinfo_release }}.repo
+            sed -i 's/gpgcheck.*/gpgcheck=0/' /etc/yum.repos.d/CentOS-Messaging-rabbitmq.repo
+            sed -i 's/gpgcheck.*/gpgcheck=0/' /etc/yum.repos.d/CentOS-Ceph-*.repo
+            mv /etc/yum.repos.d/CentOS-OpenStack-{{ rdoinfo_release }}.repo /etc/yum.repos.d/delorean-CentOS-OpenStack-{{ rdoinfo_release }}.repo
+            mv /etc/yum.repos.d/CentOS-Ceph-*.repo /etc/yum.repos.d/delorean-ceph.repo
+            mv /etc/yum.repos.d/CentOS-Messaging-rabbitmq.repo /etc/yum.repos.d/delorean-messaging.repo
+        - name: Set repo facts
+          set_fact:
+            delorean_repos: "http://{{ ipv4_addr }}/delorean-CentOS-OpenStack-{{ rdoinfo_release }}.repo,http://{{ ipv4_addr }}/delorean-messaging.repo,http://{{ ipv4_addr }}/delorean-advirt.repo,http://{{ ipv4_addr }}/delorean-ceph.repo"  # noqa 204
+        - name: Install deps using bindep role
+          include_role:
+            name: bindep
+          vars:
+            bindep_dir: "{{ ansible_user_dir }}/{{ zuul.projects['opendev.org/openstack/python-tripleoclient'].src_dir }}"
+        - name: Run build containers pre tasks
+          include_role:
+            name: build-containers
+            tasks_from: pre
+          vars:
+            push_registry: "{{ ipv4_addr }}:{{ push_registry_port | default('8787') }}"
+            # for docker registry
+            container_registry_host: "{{ ipv4_addr }}"
+            # for image serve registry
+            tripleo_container_registry_host: "{{ ipv4_addr }}"
+        - name: Remove insecure registry block
+          become: true
+          ini_file:
+            path: /etc/containers/registries.conf
+            section: 'registries.insecure'
+            state: absent
+        - name: Configure insecure registry
+          become: true
+          ini_file:
+            path: /etc/containers/registries.conf
+            section: '[registry]'
+            option: prefix
+            value: '"{{ ipv4_addr }}:{{ push_registry_port }}"'
+        - name: Configure insecure registry
+          become: true
+          ini_file:
+            path: /etc/containers/registries.conf
+            section: '[registry]'
+            option: location
+            value: '"{{ ipv4_addr }}:{{ push_registry_port }}"'
+        - name: Set insecure
+          become: true
+          ini_file:
+            path: /etc/containers/registries.conf
+            section: '[registry]'
+            option: insecure
+            value: "false"
+        - name: Build Containers
+          include_role:
+            name: build-containers
+          vars:
+            buildcontainers_rpm_setup_config: "{{ delorean_repos }},{{ extra_repo_url | default('') }}"
+            push_registry: "{{ ipv4_addr }}:{{ push_registry_port | default('8787') }}"
+        - name: Push built containers (CentOS8)
+          changed_when: true
+          when:
+            - ansible_distribution == "CentOS"
+            - ansible_distribution_major_version == '9'
+          shell:
+            chdir: '{{ ansible_user_dir }}/workspace'
+            cmd: |
+                set +e -x
+                TAG="{{ buildcontainers_version_hash | default('cloudsig-' + rdoinfo_release) }}"
+                IMAGE_LIST=$(sudo buildah images|grep $TAG|awk  '{print $1}'|grep -v base|tac)
+                # python3-urllib3-1.25.7 not work with old six from base
+                # fails with InvalidURL: Failed to parse: https://127.0.0.1:8787/v2/
+                # AttributeError: module 'urllib3.packages.six' has no attribute 'ensure_text'
+                sudo dnf update -y python3-six
+                for image in $IMAGE_LIST; do sudo openstack tripleo container image push --registry-url "{{ ipv4_addr }}:{{ push_registry_port | default('8787') }}" --local $image:$TAG;done  # noqa 204
+
+
+    - name: Execute mirror info role
+      import_role:
+        name: mirror-info-fork
+      vars:
+        mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
+      when:
+        - not stop_file.stat.exists
+        - ansible_distribution != "Fedora" or (ansible_distribution == "Fedora" and ansible_distribution_major_version|int > 28)
+
+    - name: set role variables
+      set_fact:
+        role_vars:
+          docker_registry_namespace: "tripleo{{ rdoinfo_release }}"
+          container_prep_additional_repos: temp-*
+          enable_opstools_repo: true
+          add_repos:
+            - type: file
+              filename: delorean-0.repo
+              down_url: "{{ extra_repo_url }}"
+        optional_role_vars:
+          push_registry: "{{ 'trunk.registry.rdoproject.org' if not build_container_images|default(false)|bool else omit }}"
+          update_containers: "{{ true if not build_container_images|default(false)|bool else omit }}"
+          standalone_container_prep_updates: "{{ true if not build_container_images|default(false)|bool else omit }}"
+          docker_image_tag: "{{ 'current-tripleo' if not build_container_images|default(false)|bool else omit }}"
+      when: not stop_file.stat.exists
+
+    - name: Dump package list in job from repo being tested
+      changed_when: true
+      when:
+        - buildset_artifacts_url is defined
+        - not stop_file.stat.exists
+      shell:
+        cmd: |
+          # Collect the list of updated packages in a log file
+          UPDATED_PKGS=$(curl "{{ buildset_artifacts_url }}/repos/{{ buildsys_tag }}.content.txt" |rev|awk -F'/' '{printf $1","}'|rev)
+          if [ ! -d /var/log/extra/ ]; then
+              sudo mkdir /var/log/extra/
+          fi
+          echo "{{ buildsys_tag }}${UPDATED_PKGS}" |sudo tee -a /var/log/extra/tested_pkgs_updates.txt
+
+    - name: Run quickstart
+      include_role:
+        name: run-test
+      vars:
+        release: "{{ rdoinfo_release }}"
+        run_test_role_vars: "{{ role_vars | combine(optional_role_vars) }}"
+      when: not stop_file.stat.exists
