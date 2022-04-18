@@ -40,6 +40,15 @@
     run: playbooks/run-rdoinfo.yaml
     post-run: playbooks/post-rdoinfo.yaml
     vars:
+      bridge_name: br-ex
+      bridge_address_prefix: 172.16.1
+      bridge_address_subnet: 24
+      bridge_address_offset: 2
+      bridge_mtu: 1350
+      undercloud: 127.0.0.2
+      environment_infra: osinfra
+      environment_type: standalone
+      common_featureset: featureset-multinode-common.yml
       featureset: '052'
       rdoinfo_release: master
       rdoinfo_phase: testing
@@ -52,6 +61,12 @@
       push_containers: true
       buildcontainers_override_repos: current-tripleo
       standalone_ceph: true
+      playbooks:
+        - quickstart.yml
+        - multinode-standalone.yml
+      tags:
+        - build
+        - standalone
       featureset_override:
         standalone_container_cli: docker
         standalone_environment_files:
@@ -75,6 +90,9 @@
       - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/tripleo-common
       - opendev.org/openstack/tripleo-repos
+      - opendev.org/openstack/tripleo-ci
+      - opendev.org/openstack/tripleo-quickstart
+      - opendev.org/openstack/tripleo-quickstart-extras
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset010
@@ -174,6 +192,9 @@
       - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/tripleo-common
       - opendev.org/openstack/tripleo-repos
+      - opendev.org/openstack/tripleo-ci
+      - opendev.org/openstack/tripleo-quickstart
+      - opendev.org/openstack/tripleo-quickstart-extras
 
 - job:
     name: rdoinfo-tripleo-train-testing-centos-7-multinode-1ctlr-featureset010
@@ -270,6 +291,15 @@
       - zuul: opendev.org/openstack/tripleo-ansible
     override-checkout: "stable/victoria"
     vars:
+      bridge_name: br-ex
+      bridge_address_prefix: 172.16.1
+      bridge_address_subnet: 24
+      bridge_address_offset: 2
+      bridge_mtu: 1350
+      undercloud: 127.0.0.2
+      environment_infra: osinfra
+      environment_type: standalone
+      common_featureset: featureset-multinode-common.yml
       featureset: '052'
       rdoinfo_release: victoria
       rdoinfo_phase: release
@@ -288,6 +318,12 @@
       buildcontainers_venv: false
       # push in centos8 needs to be handled differently
       push_containers: false
+      playbooks:
+        - quickstart.yml
+        - multinode-standalone.yml
+      tags:
+        - build
+        - standalone
       featureset_override:
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
@@ -310,6 +346,9 @@
       - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/tripleo-common
       - opendev.org/openstack/tripleo-repos
+      - opendev.org/openstack/tripleo-ci
+      - opendev.org/openstack/tripleo-quickstart
+      - opendev.org/openstack/tripleo-quickstart-extras
 
 - job:
     name: rdoinfo-tripleo-wallaby-release-centos-8-scenario001-standalone
@@ -330,11 +369,26 @@
     post-run: playbooks/post-rdoinfo.yaml
     override-checkout: "stable/xena"
     vars:
+      bridge_name: br-ex
+      bridge_address_prefix: 172.16.1
+      bridge_address_subnet: 24
+      bridge_address_offset: 2
+      bridge_mtu: 1350
+      undercloud: 127.0.0.2
+      environment_infra: osinfra
+      environment_type: standalone
+      common_featureset: featureset-multinode-common.yml
       rdoinfo_release: xena
       rdoinfo_phase: release
       branch_override: "cloudsig/xena"
       build_container_images: true
       centos_releasever: 8s
+      playbooks:
+        - quickstart.yml
+        - multinode-standalone.yml
+      tags:
+        - build
+        - standalone
 
 - job:
     name: rdoinfo-tripleo-xena-release-centos-8-scenario002-standalone
@@ -505,6 +559,15 @@
       - zuul: opendev.org/openstack/tripleo-ansible
     override-checkout: "stable/ussuri"
     vars:
+      bridge_name: br-ex
+      bridge_address_prefix: 172.16.1
+      bridge_address_subnet: 24
+      bridge_address_offset: 2
+      bridge_mtu: 1350
+      undercloud: 127.0.0.2
+      environment_infra: osinfra
+      environment_type: standalone
+      common_featureset: featureset-multinode-common.yml
       featureset: '052'
       rdoinfo_release: ussuri
       rdoinfo_phase: release
@@ -523,6 +586,12 @@
       buildcontainers_venv: false
       # push in centos8 needs to be handled differently
       push_containers: false
+      playbooks:
+        - quickstart.yml
+        - multinode-standalone.yml
+      tags:
+        - build
+        - standalone
       featureset_override:
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
@@ -545,6 +614,9 @@
       - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/tripleo-common
       - opendev.org/openstack/tripleo-repos
+      - opendev.org/openstack/tripleo-ci
+      - opendev.org/openstack/tripleo-quickstart
+      - opendev.org/openstack/tripleo-quickstart-extras
 
 - job:
     name: rdoinfo-tripleo-train-release-centos-7-scenario001-standalone
@@ -591,6 +663,9 @@
       - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/tripleo-common
       - opendev.org/openstack/tripleo-repos
+      - opendev.org/openstack/tripleo-ci
+      - opendev.org/openstack/tripleo-quickstart
+      - opendev.org/openstack/tripleo-quickstart-extras
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-standalone
@@ -598,19 +673,21 @@
     nodeset: single-centos-8-node-vexxhost
     run: playbooks/run-rdoinfo.yaml
     vars:
+      featureset: '052'
       rdoinfo_release: master
       rdoinfo_phase: testing
       centos_releasever: 8s
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-scenario001-standalone
-    parent: tripleo-ci-centos-8-scenario001-standalone
+    parent: tripleo-ci-base-standalone-standard
     nodeset: single-centos-8-node-vexxhost
     run: playbooks/run-rdoinfo.yaml
     post-run: playbooks/post-rdoinfo.yaml
     roles:
       - zuul: opendev.org/openstack/tripleo-ansible
     vars:
+      featureset: '052'
       rdoinfo_release: master
       rdoinfo_phase: testing
       centos_releasever: 8s
@@ -628,12 +705,14 @@
       buildcontainers_venv: false
     required-projects:
       - opendev.org/openstack/ansible-role-container-registry
-      - opendev.org/openstack/kolla
       - opendev.org/openstack/python-tripleoclient
       - opendev.org/openstack/requirements
       - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/tripleo-common
       - opendev.org/openstack/tripleo-repos
+      - opendev.org/openstack/tripleo-ci
+      - opendev.org/openstack/tripleo-quickstart
+      - opendev.org/openstack/tripleo-quickstart-extras
 
 - job:
     name: rdoinfo-tripleo-master-release-centos-8-scenario001-standalone
@@ -951,3 +1030,72 @@
       rdoinfo_release: train
       rdoinfo_phase: testing
       branch_override: "stable/train"
+
+- job:
+    name: rdoinfo-tripleo-yoga-release-centos-9-scenario001-standalone
+    parent: tripleo-ci-base-standalone-centos-9
+    run: playbooks/run-rdoinfo-cbs-centos9.yaml
+    post-run: playbooks/post-rdoinfo.yaml
+    override-checkout: "stable/yoga"
+    vars:
+      featureset: '052'
+      rdoinfo_release: yoga
+      rdoinfo_phase: release
+      branch_override: "cloudsig/yoga"
+      build_container_images: true
+      centos_releasever: 9s
+      buildcontainers_override_repos: current-tripleo
+      buildcontainers_version_hash: cloudsig-train
+      buildcontainers_venv: false
+      setup_docker_registry: true
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario001-standalone.yaml'
+
+- job:
+    name: rdoinfo-tripleo-yoga-release-centos-9-scenario002-standalone
+    parent: rdoinfo-tripleo-yoga-release-centos-9-scenario001-standalone
+    vars:
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario002-standalone.yaml'
+- job:
+    name: rdoinfo-tripleo-yoga-release-centos-9-scenario003-standalone
+    parent: rdoinfo-tripleo-yoga-release-centos-9-scenario001-standalone
+    vars:
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario002-standalone.yaml'
+
+- job:
+    name: rdoinfo-tripleo-yoga-release-centos-9-scenario004-standalone
+    parent: rdoinfo-tripleo-yoga-release-centos-9-scenario001-standalone
+    vars:
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario004-standalone.yaml'
+
+- job:
+    name: rdoinfo-tripleo-yoga-release-centos-9-scenario007-standalone
+    parent: rdoinfo-tripleo-yoga-release-centos-9-scenario001-standalone
+    vars:
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario007-standalone.yaml'
+
+- job:
+    name: rdoinfo-tripleo-yoga-release-centos-9-undercloud-containers
+    parent: tripleo-ci-centos-9-undercloud-containers:
+    run: playbooks/run-rdoinfo-cbs-centos9.yaml
+    override-checkout: "stable/yoga"
+    vars:
+      rdoinfo_release: yoga
+      rdoinfo_phase: release
+      branch_override: "cloudsig/yoga"
+      build_container_images: true
+      centos_releasever: 9s
