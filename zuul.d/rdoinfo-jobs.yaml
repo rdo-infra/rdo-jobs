@@ -40,6 +40,15 @@
     run: playbooks/run-rdoinfo.yaml
     post-run: playbooks/post-rdoinfo.yaml
     vars:
+      bridge_name: br-ex
+      bridge_address_prefix: 172.16.1
+      bridge_address_subnet: 24
+      bridge_address_offset: 2
+      bridge_mtu: 1350
+      undercloud: 127.0.0.2
+      environment_infra: osinfra
+      environment_type: standalone
+      common_featureset: featureset-multinode-common.yml
       featureset: '052'
       rdoinfo_release: master
       rdoinfo_phase: testing
@@ -75,6 +84,9 @@
       - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/tripleo-common
       - opendev.org/openstack/tripleo-repos
+      - opendev.org/openstack/tripleo-ci
+      - opendev.org/openstack/tripleo-quickstart
+      - opendev.org/openstack/tripleo-quickstart-extras
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-7-multinode-1ctlr-featureset010
@@ -174,6 +186,9 @@
       - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/tripleo-common
       - opendev.org/openstack/tripleo-repos
+      - opendev.org/openstack/tripleo-ci
+      - opendev.org/openstack/tripleo-quickstart
+      - opendev.org/openstack/tripleo-quickstart-extras
 
 - job:
     name: rdoinfo-tripleo-train-testing-centos-7-multinode-1ctlr-featureset010
@@ -270,6 +285,15 @@
       - zuul: opendev.org/openstack/tripleo-ansible
     override-checkout: "stable/victoria"
     vars:
+      bridge_name: br-ex
+      bridge_address_prefix: 172.16.1
+      bridge_address_subnet: 24
+      bridge_address_offset: 2
+      bridge_mtu: 1350
+      undercloud: 127.0.0.2
+      environment_infra: osinfra
+      environment_type: standalone
+      common_featureset: featureset-multinode-common.yml
       featureset: '052'
       rdoinfo_release: victoria
       rdoinfo_phase: release
@@ -310,6 +334,9 @@
       - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/tripleo-common
       - opendev.org/openstack/tripleo-repos
+      - opendev.org/openstack/tripleo-ci
+      - opendev.org/openstack/tripleo-quickstart
+      - opendev.org/openstack/tripleo-quickstart-extras
 
 - job:
     name: rdoinfo-tripleo-wallaby-release-centos-8-scenario001-standalone
@@ -330,6 +357,15 @@
     post-run: playbooks/post-rdoinfo.yaml
     override-checkout: "stable/xena"
     vars:
+      bridge_name: br-ex
+      bridge_address_prefix: 172.16.1
+      bridge_address_subnet: 24
+      bridge_address_offset: 2
+      bridge_mtu: 1350
+      undercloud: 127.0.0.2
+      environment_infra: osinfra
+      environment_type: standalone
+      common_featureset: featureset-multinode-common.yml
       rdoinfo_release: xena
       rdoinfo_phase: release
       branch_override: "cloudsig/xena"
@@ -505,6 +541,15 @@
       - zuul: opendev.org/openstack/tripleo-ansible
     override-checkout: "stable/ussuri"
     vars:
+      bridge_name: br-ex
+      bridge_address_prefix: 172.16.1
+      bridge_address_subnet: 24
+      bridge_address_offset: 2
+      bridge_mtu: 1350
+      undercloud: 127.0.0.2
+      environment_infra: osinfra
+      environment_type: standalone
+      common_featureset: featureset-multinode-common.yml
       featureset: '052'
       rdoinfo_release: ussuri
       rdoinfo_phase: release
@@ -545,6 +590,9 @@
       - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/tripleo-common
       - opendev.org/openstack/tripleo-repos
+      - opendev.org/openstack/tripleo-ci
+      - opendev.org/openstack/tripleo-quickstart
+      - opendev.org/openstack/tripleo-quickstart-extras
 
 - job:
     name: rdoinfo-tripleo-train-release-centos-7-scenario001-standalone
@@ -591,6 +639,9 @@
       - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/tripleo-common
       - opendev.org/openstack/tripleo-repos
+      - opendev.org/openstack/tripleo-ci
+      - opendev.org/openstack/tripleo-quickstart
+      - opendev.org/openstack/tripleo-quickstart-extras
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-standalone
@@ -611,6 +662,15 @@
     roles:
       - zuul: opendev.org/openstack/tripleo-ansible
     vars:
+      bridge_name: br-ex
+      bridge_address_prefix: 172.16.1
+      bridge_address_subnet: 24
+      bridge_address_offset: 2
+      bridge_mtu: 1350
+      undercloud: 127.0.0.2
+      environment_infra: osinfra
+      environment_type: standalone
+      common_featureset: featureset-multinode-common.yml
       rdoinfo_release: master
       rdoinfo_phase: testing
       centos_releasever: 8s
@@ -634,6 +694,9 @@
       - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/tripleo-common
       - opendev.org/openstack/tripleo-repos
+      - opendev.org/openstack/tripleo-ci
+      - opendev.org/openstack/tripleo-quickstart
+      - opendev.org/openstack/tripleo-quickstart-extras
 
 - job:
     name: rdoinfo-tripleo-master-release-centos-8-scenario001-standalone
