@@ -20,6 +20,11 @@
         path: "{{ workspace }}"
         state: directory
 
+    - name: Ensure legacy logs directory
+      file:
+        path: '{{ workspace }}/logs'
+        state: directory
+
     - name: Check whether to run or skip jobs
       changed_when: true
       shell:
