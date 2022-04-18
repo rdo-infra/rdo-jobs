@@ -7,6 +7,10 @@
       import_role:
         name: ci-common-vars
 
+    - name: Run pre-quickstart role
+      import_role:
+        name: prepare-node
+
     - name: check for correct import
       debug:
         var: tripleo_root
