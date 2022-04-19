@@ -1044,10 +1044,12 @@
       branch_override: "cloudsig/yoga"
       build_container_images: true
       centos_releasever: 9s
+      containers_base_image: quay.io/centos/centos:stream9
       buildcontainers_override_repos: current-tripleo
-      buildcontainers_version_hash: cloudsig-train
+      buildcontainers_version_hash: cloudsig-yoga
       buildcontainers_venv: false
       setup_docker_registry: true
+      standalone_ceph: true
       featureset_override:
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
@@ -1057,6 +1059,7 @@
     name: rdoinfo-tripleo-yoga-release-centos-9-scenario002-standalone
     parent: rdoinfo-tripleo-yoga-release-centos-9-scenario001-standalone
     vars:
+      standalone_ceph: false
       featureset_override:
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
@@ -1065,6 +1068,7 @@
     name: rdoinfo-tripleo-yoga-release-centos-9-scenario003-standalone
     parent: rdoinfo-tripleo-yoga-release-centos-9-scenario001-standalone
     vars:
+      standalone_ceph: false
       featureset_override:
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
@@ -1083,6 +1087,7 @@
     name: rdoinfo-tripleo-yoga-release-centos-9-scenario007-standalone
     parent: rdoinfo-tripleo-yoga-release-centos-9-scenario001-standalone
     vars:
+      standalone_ceph: false
       featureset_override:
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
@@ -1098,4 +1103,5 @@
       rdoinfo_phase: release
       branch_override: "cloudsig/yoga"
       build_container_images: true
+      containers_base_image: quay.io/centos/centos:stream9
       centos_releasever: 9s
