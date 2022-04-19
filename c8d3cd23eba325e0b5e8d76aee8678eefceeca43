@@ -56,6 +56,30 @@
       },
       "revId": "c8d3cd23eba325e0b5e8d76aee8678eefceeca43",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9322cedf_704d5ada",
+        "filename": "zuul.d/component-pipeline-wallaby.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-04-19T13:03:57Z",
+      "side": 1,
+      "message": "o/ did some digging there today to remove but for most of these the standalone is the only job running there.\n\nit means we\u0027ll effectively kill those components. WDYT? \n\neg https://github.com/rdo-infra/ci-config/blob/e2de0612447851a06e551a3deb5d516fee2b8c05/ci-scripts/dlrnapi_promoter/config/CentOS-8/component/wallaby.yaml#L37\n\nlets discuss it can be a task for this coming sprint to remove those from criteria kill those jobs and the related component lines.",
+      "parentUuid": "be2e02f8_cad3f2bc",
+      "range": {
+        "startLine": 67,
+        "startChar": 10,
+        "endLine": 67,
+        "endChar": 65
+      },
+      "revId": "c8d3cd23eba325e0b5e8d76aee8678eefceeca43",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
