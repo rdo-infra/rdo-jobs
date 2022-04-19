@@ -94,18 +94,14 @@
       set_fact:
         buildsys_tag: "cloud{{ centos_releasever }}-openstack-{{ master_release }}-{{ rdoinfo_phase }}"
       when: rdoinfo_release == "master"
-    - name: Detect tag change is nfv8 or nfv8s
+    - name: Detect tag change is nfv9 or nfv9s
       slurp:
         src: "{{ ansible_user_dir }}/workspace/changed_repos.txt"
       register: changed_repos_output
       when: zuul.project.name == "nfvinfo"
-    - name: set fact for nfv tags
-      set_fact:
-        nfv_dist: "{{ '8s' if 'nfv8s' in changed_repos_output.content | b64decode else '8' }}"
-      when: zuul.project.name == "nfvinfo"
     - name: Set buildsys tag fact for nfv
       set_fact:
-        buildsys_tag: "nfv{{ nfv_dist }}-openvswitch-2-{{ rdoinfo_phase }}"
+        buildsys_tag: "nfv9s-openvswitch-2-{{ rdoinfo_phase }}"
       when: zuul.project.name == "nfvinfo"
     - name: set url
       set_fact:
@@ -191,7 +187,7 @@
           vars:
             buildcontainers_rpm_setup_config: "{{ delorean_repos }},{{ extra_repo_url | default('') }}"
             push_registry: "{{ ipv4_addr }}:{{ push_registry_port | default('8787') }}"
-        - name: Push built containers (CentOS8)
+        - name: Push built containers (CentOS9)
           changed_when: true
           when:
             - ansible_distribution == "CentOS"
@@ -205,7 +201,6 @@
                 # python3-urllib3-1.25.7 not work with old six from base
                 # fails with InvalidURL: Failed to parse: https://127.0.0.1:8787/v2/
                 # AttributeError: module 'urllib3.packages.six' has no attribute 'ensure_text'
-                sudo dnf update -y python3-six
                 for image in $IMAGE_LIST; do sudo openstack tripleo container image push --registry-url "{{ ipv4_addr }}:{{ push_registry_port | default('8787') }}" --local $image:$TAG;done  # noqa 204
 
 
@@ -216,7 +211,6 @@
         mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
       when:
         - not stop_file.stat.exists
-        - ansible_distribution != "Fedora" or (ansible_distribution == "Fedora" and ansible_distribution_major_version|int > 28)
 
     - name: set role variables
       set_fact:
