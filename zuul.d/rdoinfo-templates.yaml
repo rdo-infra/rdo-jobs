@@ -2,6 +2,18 @@
     name: rdoinfo-master-testing-tripleo-jobs
     check:
       jobs:
+        - rdoinfo-tripleo-yoga-release-centos-9-scenario001-standalone:
+            dependencies:
+              - validate-buildsys-tags
+            voting: false
+            files:
+              - ^buildsys-tags/cloud9s-openstack-yoga-release.yml$
+        - rdoinfo-tripleo-yoga-release-centos-9-undercloud-containers:
+            dependencies:
+              - validate-buildsys-tags
+            voting: false
+            files:
+              - ^buildsys-tags/cloud9s-openstack-yoga-release.yml$
         - rdoinfo-tripleo-master-testing-centos-8-standalone:
             dependencies:
               - validate-buildsys-tags
@@ -76,6 +88,30 @@
             files:
               - ^buildsys-tags/cloud8s-openstack-yoga-testing.yml$
             voting: false
+        - rdoinfo-tripleo-yoga-release-centos-9-scenario002-standalone:
+            dependencies:
+              - validate-buildsys-tags
+            voting: false
+            files:
+              - ^buildsys-tags/cloud9s-openstack-yoga-release.yml$
+        - rdoinfo-tripleo-yoga-release-centos-9-scenario003-standalone:
+            dependencies:
+              - validate-buildsys-tags
+            voting: false
+            files:
+              - ^buildsys-tags/cloud9s-openstack-yoga-release.yml$
+        - rdoinfo-tripleo-yoga-release-centos-9-scenario004-standalone:
+            dependencies:
+              - validate-buildsys-tags
+            voting: false
+            files:
+              - ^buildsys-tags/cloud9s-openstack-yoga-release.yml$
+        - rdoinfo-tripleo-yoga-release-centos-9-scenario007-standalone:
+            dependencies:
+              - validate-buildsys-tags
+            voting: false
+            files:
+              - ^buildsys-tags/cloud9s-openstack-yoga-release.yml$
 
 - project-template:
     name: rdoinfo-victoria-testing-tripleo-jobs
