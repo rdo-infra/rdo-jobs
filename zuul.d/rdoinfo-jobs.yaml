@@ -1044,6 +1044,7 @@
       branch_override: "cloudsig/yoga"
       build_container_images: true
       centos_releasever: 9s
+      containers_base_image: quay.io/centos/centos:stream9
       buildcontainers_override_repos: current-tripleo
       buildcontainers_version_hash: cloudsig-train
       buildcontainers_venv: false
@@ -1098,4 +1099,5 @@
       rdoinfo_phase: release
       branch_override: "cloudsig/yoga"
       build_container_images: true
+      containers_base_image: quay.io/centos/centos:stream9
       centos_releasever: 9s
