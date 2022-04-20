@@ -1106,3 +1106,79 @@
       build_container_images: true
       containers_base_image: quay.io/centos/centos:stream9
       centos_releasever: 9s
+
+- job:
+    name: rdoinfo-tripleo-yoga-release-centos-8-scenario001-standalone
+    parent: tripleo-ci-base-standalone-centos-8
+    run: playbooks/run-rdoinfo-cbs-centos8.yaml
+    post-run: playbooks/post-rdoinfo.yaml
+    override-checkout: "stable/yoga"
+    vars:
+      featureset: '052'
+      rdoinfo_release: yoga
+      rdoinfo_phase: release
+      branch_override: "cloudsig/yoga"
+      build_container_images: true
+      centos_releasever: 8s
+      buildcontainers_override_repos: current-tripleo
+      buildcontainers_version_hash: cloudsig-yoga
+      buildcontainers_venv: false
+      setup_docker_registry: true
+      containers_base_image: ubi8
+      standalone_ceph: true
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario001-standalone.yaml'
+
+- job:
+    name: rdoinfo-tripleo-yoga-release-centos-8-scenario002-standalone
+    parent: rdoinfo-tripleo-yoga-release-centos-8-scenario001-standalone
+    vars:
+      standalone_ceph: false
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario002-standalone.yaml'
+- job:
+    name: rdoinfo-tripleo-yoga-release-centos-8-scenario003-standalone
+    parent: rdoinfo-tripleo-yoga-release-centos-8-scenario001-standalone
+    vars:
+      standalone_ceph: false
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario003-standalone.yaml'
+
+- job:
+    name: rdoinfo-tripleo-yoga-release-centos-8-scenario004-standalone
+    parent: rdoinfo-tripleo-yoga-release-centos-8-scenario001-standalone
+    vars:
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario004-standalone.yaml'
+
+- job:
+    name: rdoinfo-tripleo-yoga-release-centos-8-scenario007-standalone
+    parent: rdoinfo-tripleo-yoga-release-centos-8-scenario001-standalone
+    vars:
+      standalone_ceph: false
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario007-standalone.yaml'
+        tempest_private_net_provider_type: 'vxlan'
+
+- job:
+    name: rdoinfo-tripleo-yoga-release-centos-8-undercloud-containers
+    parent: tripleo-ci-centos-8-undercloud-containers
+    run: playbooks/run-rdoinfo-cbs-centos8.yaml
+    override-checkout: "stable/yoga"
+    vars:
+      rdoinfo_release: yoga
+      rdoinfo_phase: release
+      branch_override: "cloudsig/yoga"
+      build_container_images: true
+      containers_base_image: ubi8
+      centos_releasever: 8s
