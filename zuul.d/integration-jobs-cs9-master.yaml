@@ -40,31 +40,38 @@
     name: periodic-tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset002-master
     parent: periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-master
     nodeset: tripleo-ovb-centos-9-primary-vexxhost
+    vars: &master-uefi
+      baremetal_image_name: "ipxe-uefi"
 
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-master
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master
     nodeset: tripleo-ovb-centos-9-primary-vexxhost
+    vars: *master-uefi
 
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020-master
     parent: periodic-tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-master
     nodeset: tripleo-ovb-centos-9-primary-vexxhost
+    vars: *master-uefi
 
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset035-master
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-master
     nodeset: tripleo-ovb-centos-9-primary-vexxhost
+    vars: *master-uefi
 
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-master
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-master
     nodeset: tripleo-ovb-centos-9-primary-vexxhost
+    vars: *master-uefi
 
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset064-master
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset064-master
     nodeset: tripleo-ovb-centos-9-primary-vexxhost
+    vars: *master-uefi
 
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-rbac-master
