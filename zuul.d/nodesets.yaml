@@ -409,6 +409,19 @@
       - name: peers
         nodes: []
 
+# Fake nodeset for CentOS 9 defaulting to tripleo
+
+- nodeset:
+    name: centos-9-stream
+    nodes:
+      - name: primary
+        label: cloud-centos-9-stream-tripleo-vexxhost
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
 # Centos 9 Stream nodesets
 - nodeset:
     name: cloud-centos-9-stream-vexxhost
