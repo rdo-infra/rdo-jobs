@@ -43,6 +43,12 @@
               exit 1
           fi
 
+          if [ "{{ rdoinfo_release }}" = "master" ]; then
+              RELEASE="{{ master_release }}"
+          else
+              RELEASE="{{ rdoinfo_release }}"
+          fi
+
           # Set log path
           if [ -z "{{ buildset_artifacts_url|default("") }}" ]; then
               echo "buildset_artifacts_url is not defined, job needs to be run with parent job:- validate-buildsys-tags"
@@ -53,7 +59,7 @@
           # If we could not find a working repository, give up
           curl -o $CREPOS_FILE -sf "$logs/repos/changed_repos.txt" || exit 1
 
-          if ! grep -q -E "({{ rdoinfo_release }}|openvswitch-2)-{{ rdoinfo_phase }}" $CREPOS_FILE; then
+          if ! grep -q -E "($RELEASE|openvswitch-2)-{{ rdoinfo_phase }}" $CREPOS_FILE; then
               echo "INFO: this test is not required"| tee not_required
               exit 0
           fi
@@ -67,7 +73,7 @@
         path: "{{ workspace }}/not_required"
       register: stop_file
 
-    - name: Rename CloudSIG repos name to include delorean in name as build-containers role rely on it
+    - name: Enable required repositories for CS9
       become: true
       shell: |
         set -ex
@@ -83,10 +89,6 @@
       set_fact:
         ipv4_addr: "{{ ansible_default_ipv4.address }}"
         ipv4_prefix: "{{ ansible_default_ipv4.prefix | default('24') }}"
-    - name: Create centos_releasever fact
-      set_fact:
-        centos_releasever: "{{ ansible_distribution_major_version | default('7') }}"
-      when: centos_releasever is not defined
     - name: Set repo facts
       set_fact:
         buildsys_tag: "cloud{{ centos_releasever }}-openstack-{{ rdoinfo_release }}-{{ rdoinfo_phase }}"
@@ -114,95 +116,6 @@
         url: "{{ extra_repo_url }}"
         dest: "/etc/yum.repos.d/temp-{{ buildsys_tag }}.repo"
       when: not stop_file.stat.exists
-
-    - name: Build containers using build-containers role
-      when:
-        - not stop_file.stat.exists
-        - rdoinfo_build_containers|default(false)
-      block:
-        - name: Setup CentOS CloudSIG repo
-          become: true
-          package:
-            name: "centos-release-openstack-{{ rdoinfo_release }}"
-            state: present
-        - name: Rename CloudSIG repos name to include delorean in name as build-containers role rely on it
-          become: true
-          shell: |
-            set -ex
-            # due to https://review.opendev.org/#/c/692513/
-            sed -i 's/gpgcheck.*/gpgcheck=0/' /etc/yum.repos.d/CentOS-OpenStack-{{ rdoinfo_release }}.repo
-            sed -i 's/gpgcheck.*/gpgcheck=0/' /etc/yum.repos.d/CentOS-Messaging-rabbitmq.repo
-            sed -i 's/gpgcheck.*/gpgcheck=0/' /etc/yum.repos.d/CentOS-Ceph-*.repo
-            mv /etc/yum.repos.d/CentOS-OpenStack-{{ rdoinfo_release }}.repo /etc/yum.repos.d/delorean-CentOS-OpenStack-{{ rdoinfo_release }}.repo
-            mv /etc/yum.repos.d/CentOS-Ceph-*.repo /etc/yum.repos.d/delorean-ceph.repo
-            mv /etc/yum.repos.d/CentOS-Messaging-rabbitmq.repo /etc/yum.repos.d/delorean-messaging.repo
-        - name: Set repo facts
-          set_fact:
-            delorean_repos: "http://{{ ipv4_addr }}/delorean-CentOS-OpenStack-{{ rdoinfo_release }}.repo,http://{{ ipv4_addr }}/delorean-messaging.repo,http://{{ ipv4_addr }}/delorean-advirt.repo,http://{{ ipv4_addr }}/delorean-ceph.repo"  # noqa 204
-        - name: Install deps using bindep role
-          include_role:
-            name: bindep
-          vars:
-            bindep_dir: "{{ ansible_user_dir }}/{{ zuul.projects['opendev.org/openstack/python-tripleoclient'].src_dir }}"
-        - name: Run build containers pre tasks
-          include_role:
-            name: build-containers
-            tasks_from: pre
-          vars:
-            push_registry: "{{ ipv4_addr }}:{{ push_registry_port | default('8787') }}"
-            # for docker registry
-            container_registry_host: "{{ ipv4_addr }}"
-            # for image serve registry
-            tripleo_container_registry_host: "{{ ipv4_addr }}"
-        - name: Remove insecure registry block
-          become: true
-          ini_file:
-            path: /etc/containers/registries.conf
-            section: 'registries.insecure'
-            state: absent
-        - name: Configure insecure registry
-          become: true
-          ini_file:
-            path: /etc/containers/registries.conf
-            section: '[registry]'
-            option: prefix
-            value: '"{{ ipv4_addr }}:{{ push_registry_port }}"'
-        - name: Configure insecure registry
-          become: true
-          ini_file:
-            path: /etc/containers/registries.conf
-            section: '[registry]'
-            option: location
-            value: '"{{ ipv4_addr }}:{{ push_registry_port }}"'
-        - name: Set insecure
-          become: true
-          ini_file:
-            path: /etc/containers/registries.conf
-            section: '[registry]'
-            option: insecure
-            value: "false"
-        - name: Build Containers
-          include_role:
-            name: build-containers
-          vars:
-            buildcontainers_rpm_setup_config: "{{ delorean_repos }},{{ extra_repo_url | default('') }}"
-            push_registry: "{{ ipv4_addr }}:{{ push_registry_port | default('8787') }}"
-        - name: Push built containers (CentOS9)
-          changed_when: true
-          when:
-            - ansible_distribution == "CentOS"
-            - ansible_distribution_major_version == '9'
-          shell:
-            chdir: '{{ ansible_user_dir }}/workspace'
-            cmd: |
-                set +e -x
-                TAG="{{ buildcontainers_version_hash | default('cloudsig-' + rdoinfo_release) }}"
-                IMAGE_LIST=$(sudo buildah images|grep $TAG|awk  '{print $1}'|grep -v base|tac)
-                # python3-urllib3-1.25.7 not work with old six from base
-                # fails with InvalidURL: Failed to parse: https://127.0.0.1:8787/v2/
-                # AttributeError: module 'urllib3.packages.six' has no attribute 'ensure_text'
-                for image in $IMAGE_LIST; do sudo openstack tripleo container image push --registry-url "{{ ipv4_addr }}:{{ push_registry_port | default('8787') }}" --local $image:$TAG;done  # noqa 204
-
 
     - name: Execute mirror info role
       import_role:
