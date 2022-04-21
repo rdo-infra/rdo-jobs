@@ -38,6 +38,12 @@
               exit 1
           fi
 
+          if [ "{{ rdoinfo_release }}" = "master" ]; then
+              RELEASE="{{ master_release }}"
+          else
+              RELEASE="{{ rdoinfo_release }}"
+          fi
+
           # Set log path
           if [ -z "{{ buildset_artifacts_url|default("") }}" ]; then
               echo "buildset_artifacts_url is not defined, job needs to be run with parent job:- validate-buildsys-tags"
@@ -48,7 +54,7 @@
           # If we could not find a working repository, give up
           curl -o $CREPOS_FILE -sf "$logs/repos/changed_repos.txt" || exit 1
 
-          if ! grep -q -E "({{ rdoinfo_release }}|openvswitch-2)-{{ rdoinfo_phase }}" $CREPOS_FILE; then
+          if ! grep -q -E "($RELEASE|openvswitch-2)-{{ rdoinfo_phase }}" $CREPOS_FILE; then
               echo "INFO: this test is not required"| tee not_required
               exit 0
           fi
@@ -62,7 +68,7 @@
         path: "{{ workspace }}/not_required"
       register: stop_file
 
-    - name: Rename CloudSIG repos name to include delorean in name as build-containers role rely on it
+    - name: Enable required repositories for CentOS Stream 8
       become: true
       shell: |
         set -ex
@@ -78,10 +84,6 @@
       set_fact:
         ipv4_addr: "{{ ansible_default_ipv4.address }}"
         ipv4_prefix: "{{ ansible_default_ipv4.prefix | default('24') }}"
-    - name: Create centos_releasever fact
-      set_fact:
-        centos_releasever: "{{ ansible_distribution_major_version | default('7') }}"
-      when: centos_releasever is not defined
     - name: Set repo facts
       set_fact:
         buildsys_tag: "cloud{{ centos_releasever }}-openstack-{{ rdoinfo_release }}-{{ rdoinfo_phase }}"
@@ -94,13 +96,9 @@
         src: "{{ ansible_user_dir }}/workspace/changed_repos.txt"
       register: changed_repos_output
       when: zuul.project.name == "nfvinfo"
-    - name: set fact for nfv tags
-      set_fact:
-        nfv_dist: "{{ '8s' if 'nfv8s' in changed_repos_output.content | b64decode else '8' }}"
-      when: zuul.project.name == "nfvinfo"
     - name: Set buildsys tag fact for nfv
       set_fact:
-        buildsys_tag: "nfv{{ nfv_dist }}-openvswitch-2-{{ rdoinfo_phase }}"
+        buildsys_tag: "nfv8s-openvswitch-2-{{ rdoinfo_phase }}"
       when: zuul.project.name == "nfvinfo"
     - name: set url
       set_fact:
@@ -114,6 +112,7 @@
         dest: "/etc/yum.repos.d/temp-{{ buildsys_tag }}.repo"
       when: not stop_file.stat.exists
 
+    #TODO(amoralej) I think we can remove all this block, check later.
     - name: Build containers using build-containers role
       when:
         - not stop_file.stat.exists
