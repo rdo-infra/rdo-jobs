@@ -352,112 +352,96 @@
 
 - job:
     name: rdoinfo-tripleo-wallaby-release-centos-8-scenario001-standalone
-    parent: rdoinfo-tripleo-victoria-release-centos-8-scenario001-standalone
+    parent: tripleo-ci-base-standalone-centos-8
+    run: playbooks/run-rdoinfo-cbs-centos8.yaml
+    post-run: playbooks/post-rdoinfo.yaml
     override-checkout: "stable/wallaby"
     vars:
+      featureset: '052'
       rdoinfo_release: wallaby
-      release: wallaby
+      rdoinfo_phase: release
       branch_override: "cloudsig/wallaby"
-      buildcontainers_version_hash: cloudsig-wallaby
+      build_container_images: true
       centos_releasever: 8s
+      buildcontainers_override_repos: current-tripleo
+      buildcontainers_version_hash: cloudsig-wallaby
+      buildcontainers_venv: false
+      setup_docker_registry: true
+      containers_base_image: ubi8
+      standalone_ceph: true
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario001-standalone.yaml'
 
 - job:
     name: rdoinfo-tripleo-xena-release-centos-8-scenario001-standalone
-    parent: tripleo-ci-centos-8-scenario001-standalone
-    nodeset: single-centos-8-node-vexxhost
+    parent: tripleo-ci-base-standalone-centos-8
     run: playbooks/run-rdoinfo-cbs-centos8.yaml
     post-run: playbooks/post-rdoinfo.yaml
     override-checkout: "stable/xena"
     vars:
-      bridge_name: br-ex
-      bridge_address_prefix: 172.16.1
-      bridge_address_subnet: 24
-      bridge_address_offset: 2
-      bridge_mtu: 1350
-      undercloud: 127.0.0.2
-      environment_infra: osinfra
-      environment_type: standalone
-      common_featureset: featureset-multinode-common.yml
+    vars:
+      featureset: '052'
       rdoinfo_release: xena
       rdoinfo_phase: release
       branch_override: "cloudsig/xena"
       build_container_images: true
       centos_releasever: 8s
-      playbooks:
-        - quickstart.yml
-        - multinode-standalone.yml
-      tags:
-        - build
-        - standalone
+      buildcontainers_override_repos: current-tripleo
+      buildcontainers_version_hash: cloudsig-xena
+      buildcontainers_venv: false
+      setup_docker_registry: true
+      containers_base_image: ubi8
+      standalone_ceph: true
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario001-standalone.yaml'
 
 - job:
     name: rdoinfo-tripleo-xena-release-centos-8-scenario002-standalone
-    parent: tripleo-ci-centos-8-scenario002-standalone
-    nodeset: single-centos-8-node-vexxhost
-    run: playbooks/run-rdoinfo-cbs-centos8.yaml
-    post-run: playbooks/post-rdoinfo.yaml
-    roles:
-      - zuul: opendev.org/openstack/tripleo-ansible
-    override-checkout: "stable/xena"
+    parent: rdoinfo-tripleo-xena-release-centos-8-scenario001-standalone
     vars:
-      rdoinfo_release: xena
-      rdoinfo_phase: release
-      branch_override: "cloudsig/xena"
-      build_container_images: true
-      centos_releasever: 8s
+      standalone_ceph: false
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario002-standalone.yaml'
 
 - job:
     name: rdoinfo-tripleo-xena-release-centos-8-scenario003-standalone
-    parent: tripleo-ci-centos-8-scenario003-standalone
-    nodeset: single-centos-8-node-vexxhost
-    run: playbooks/run-rdoinfo-cbs-centos8.yaml
-    post-run: playbooks/post-rdoinfo.yaml
-    roles:
-      - zuul: opendev.org/openstack/tripleo-ansible
-    override-checkout: "stable/xena"
+    parent: rdoinfo-tripleo-xena-release-centos-8-scenario001-standalone
     vars:
-      rdoinfo_release: xena
-      rdoinfo_phase: release
-      branch_override: "cloudsig/xena"
-      build_container_images: true
-      centos_releasever: 8s
+      standalone_ceph: false
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario003-standalone.yaml'
 
 - job:
     name: rdoinfo-tripleo-xena-release-centos-8-scenario004-standalone
-    parent: tripleo-ci-centos-8-scenario004-standalone
-    nodeset: single-centos-8-node-vexxhost
-    run: playbooks/run-rdoinfo-cbs-centos8.yaml
-    post-run: playbooks/post-rdoinfo.yaml
-    roles:
-      - zuul: opendev.org/openstack/tripleo-ansible
-    override-checkout: "stable/xena"
+    parent: rdoinfo-tripleo-xena-release-centos-8-scenario001-standalone
     vars:
-      rdoinfo_release: xena
-      rdoinfo_phase: release
-      branch_override: "cloudsig/xena"
-      build_container_images: true
-      centos_releasever: 8s
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario004-standalone.yaml'
 
 - job:
     name: rdoinfo-tripleo-xena-release-centos-8-scenario007-standalone
-    parent: tripleo-ci-centos-8-scenario007-standalone
-    nodeset: single-centos-8-node-vexxhost
-    run: playbooks/run-rdoinfo-cbs-centos8.yaml
-    post-run: playbooks/post-rdoinfo.yaml
-    roles:
-      - zuul: opendev.org/openstack/tripleo-ansible
-    override-checkout: "stable/xena"
+    parent: rdoinfo-tripleo-xena-release-centos-8-scenario001-standalone
     vars:
-      rdoinfo_release: xena
-      rdoinfo_phase: release
-      branch_override: "cloudsig/xena"
-      build_container_images: true
-      centos_releasever: 8s
+      standalone_ceph: false
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario007-standalone.yaml'
+        tempest_private_net_provider_type: 'vxlan'
 
 - job:
     name: rdoinfo-tripleo-xena-release-centos-8-undercloud-containers
     parent: tripleo-ci-centos-8-undercloud-containers
-    nodeset: single-centos-8-node-vexxhost
     run: playbooks/run-rdoinfo-cbs-centos8.yaml
     override-checkout: "stable/xena"
     vars:
@@ -465,6 +449,7 @@
       rdoinfo_phase: release
       branch_override: "cloudsig/xena"
       build_container_images: true
+      containers_base_image: ubi8
       centos_releasever: 8s
 
 - job:
