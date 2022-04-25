@@ -22,7 +22,7 @@
 # job definition kept around because of parenting so adding abstract: true
 - job:
     name: periodic-tripleo-ci-centos-8-containers-undercloud-minion-master
-    parent: tripleo-ci-base-multinode-periodic-centos-8
+    parent: periodic-tripleo-ci-undercloud-rdo-centos-8
     abstract: true
     vars:
       nodes: 1minion
