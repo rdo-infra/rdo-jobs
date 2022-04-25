@@ -58,3 +58,23 @@
     vars:
       branch_override: "stable/train"
       release: train
+
+# Undercloud Upgrade jobs
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-master
+    parent: periodic-tripleo-ci-undercloud-rdo-centos-8
+    voting: false
+    vars: *uc_upgrade_vars
+
+- job:
+    name: periodic-tripleo-ci-centos-9-undercloud-upgrade-master
+    parent: periodic-tripleo-ci-undercloud-rdo-centos-9
+    voting: false
+    vars: &uc_upgrade_vars
+      featureset: '050'
+      release: master
+      featureset_override:
+        validate_services: false
+      extra_tags:
+        - undercloud-upgrade
+
