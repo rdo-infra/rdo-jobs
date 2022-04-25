@@ -532,18 +532,6 @@
           - 'environments/podman.yaml'
 
 - job:
-    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-master
-    parent: tripleo-ci-base-singlenode-periodic-centos-8
-    voting: false
-    vars:
-      featureset: '050'
-      release: master
-      featureset_override:
-        validate_services: false
-      extra_tags:
-        - undercloud-upgrade
-
-- job:
     name: periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-master
     parent: periodic-tripleo-ci-standalone-rdo-centos-8
     nodeset: two-centos-8-nodes-vexxhost
