@@ -321,58 +321,6 @@
       scenario: scenario003
 
 - job:
-    name: validate-buildsys-tags-train-release-centos7-base
-    parent: weirdo-validate-buildsys-tags-base
-    vars:
-      rdoinfo_release: train
-      rdoinfo_phase: release
-    nodeset: rdo-centos-7
-    files:
-      - ^buildsys-tags/cloud7-openstack-train-release.yml$
-
-- job:
-    name: validate-buildsys-tags-train-release-puppet-scenario001-centos7
-    parent: validate-buildsys-tags-train-release-centos7-base
-    vars:
-      scenario: scenario001
-
-- job:
-    name: validate-buildsys-tags-train-release-puppet-scenario002-centos7
-    parent: validate-buildsys-tags-train-release-centos7-base
-    vars:
-      scenario: scenario002
-
-- job:
-    name: validate-buildsys-tags-train-release-puppet-scenario003-centos7
-    parent: validate-buildsys-tags-train-release-centos7-base
-    vars:
-      scenario: scenario003
-
-- job:
-    name: validate-buildsys-tags-train-release-puppet-scenario004-centos7
-    parent: validate-buildsys-tags-train-release-centos7-base
-    vars:
-      scenario: scenario004
-
-- job:
-    name: validate-buildsys-tags-train-release-packstack-scenario001-centos7
-    parent: validate-buildsys-tags-train-release-centos7-base
-    vars:
-      scenario: scenario001
-
-- job:
-    name: validate-buildsys-tags-train-release-packstack-scenario002-centos7
-    parent: validate-buildsys-tags-train-release-centos7-base
-    vars:
-      scenario: scenario002
-
-- job:
-    name: validate-buildsys-tags-train-release-packstack-scenario003-centos7
-    parent: validate-buildsys-tags-train-release-centos7-base
-    vars:
-      scenario: scenario003
-
-- job:
     name: validate-buildsys-tags-train-testing-centos8-stream-base
     parent: weirdo-validate-buildsys-tags-base
     vars:
@@ -426,59 +374,6 @@
       scenario: scenario003
 
 - job:
-    name: validate-buildsys-tags-train-release-centos8-stream-base
-    parent: weirdo-validate-buildsys-tags-base
-    vars:
-      rdoinfo_release: train
-      rdoinfo_phase: release
-      centos_releasever: 8s
-    nodeset: rdo-centos-8-stream
-    files:
-      - ^buildsys-tags/cloud8s-openstack-train-release.yml$
-
-- job:
-    name: validate-buildsys-tags-train-release-puppet-scenario001-centos8-stream
-    parent: validate-buildsys-tags-train-release-centos8-stream-base
-    vars:
-      scenario: scenario001
-
-- job:
-    name: validate-buildsys-tags-train-release-puppet-scenario002-centos8-stream
-    parent: validate-buildsys-tags-train-release-centos8-stream-base
-    vars:
-      scenario: scenario002
-
-- job:
-    name: validate-buildsys-tags-train-release-puppet-scenario003-centos8-stream
-    parent: validate-buildsys-tags-train-release-centos8-stream-base
-    vars:
-      scenario: scenario003
-
-- job:
-    name: validate-buildsys-tags-train-release-puppet-scenario004-centos8-stream
-    parent: validate-buildsys-tags-train-release-centos8-stream-base
-    vars:
-      scenario: scenario004
-
-- job:
-    name: validate-buildsys-tags-train-release-packstack-scenario001-centos8-stream
-    parent: validate-buildsys-tags-train-release-centos8-stream-base
-    vars:
-      scenario: scenario001
-
-- job:
-    name: validate-buildsys-tags-train-release-packstack-scenario002-centos8-stream
-    parent: validate-buildsys-tags-train-release-centos8-stream-base
-    vars:
-      scenario: scenario002
-
-- job:
-    name: validate-buildsys-tags-train-release-packstack-scenario003-centos8-stream
-    parent: validate-buildsys-tags-train-release-centos8-stream-base
-    vars:
-      scenario: scenario003
-
-- job:
     name: validate-buildsys-tags-ussuri-testing-centos8-stream-base
     parent: weirdo-validate-buildsys-tags-base
     vars:
@@ -528,59 +423,6 @@
 - job:
     name: validate-buildsys-tags-ussuri-testing-packstack-scenario003-centos8-stream
     parent: validate-buildsys-tags-ussuri-testing-centos8-stream-base
-    vars:
-      scenario: scenario003
-
-- job:
-    name: validate-buildsys-tags-ussuri-release-centos8-stream-base
-    parent: weirdo-validate-buildsys-tags-base
-    vars:
-      rdoinfo_release: ussuri
-      rdoinfo_phase: release
-      centos_releasever: 8s
-    nodeset: rdo-centos-8-stream
-    files:
-      - ^buildsys-tags/cloud8s-openstack-ussuri-release.yml$
-
-- job:
-    name: validate-buildsys-tags-ussuri-release-puppet-scenario001-centos8-stream
-    parent: validate-buildsys-tags-ussuri-release-centos8-stream-base
-    vars:
-      scenario: scenario001
-
-- job:
-    name: validate-buildsys-tags-ussuri-release-puppet-scenario002-centos8-stream
-    parent: validate-buildsys-tags-ussuri-release-centos8-stream-base
-    vars:
-      scenario: scenario002
-
-- job:
-    name: validate-buildsys-tags-ussuri-release-puppet-scenario003-centos8-stream
-    parent: validate-buildsys-tags-ussuri-release-centos8-stream-base
-    vars:
-      scenario: scenario003
-
-- job:
-    name: validate-buildsys-tags-ussuri-release-puppet-scenario004-centos8-stream
-    parent: validate-buildsys-tags-ussuri-release-centos8-stream-base
-    vars:
-      scenario: scenario004
-
-- job:
-    name: validate-buildsys-tags-ussuri-release-packstack-scenario001-centos8-stream
-    parent: validate-buildsys-tags-ussuri-release-centos8-stream-base
-    vars:
-      scenario: scenario001
-
-- job:
-    name: validate-buildsys-tags-ussuri-release-packstack-scenario002-centos8-stream
-    parent: validate-buildsys-tags-ussuri-release-centos8-stream-base
-    vars:
-      scenario: scenario002
-
-- job:
-    name: validate-buildsys-tags-ussuri-release-packstack-scenario003-centos8-stream
-    parent: validate-buildsys-tags-ussuri-release-centos8-stream-base
     vars:
       scenario: scenario003
 
