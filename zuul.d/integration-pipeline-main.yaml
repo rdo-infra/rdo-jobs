@@ -32,6 +32,8 @@
               trigger_branch: master
               trigger_os_distro: centos_9
             dependencies: *dep_build_con_ubi_9_push_master
+        - create-baremetal-trigger-for-downstream:
+            dependencies: *ovb_dep_cs_9_master
         - periodic-tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset002-master: *build_con_cs_9_push_master
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-master: &ovb_dep_cs_9_master
             dependencies:
