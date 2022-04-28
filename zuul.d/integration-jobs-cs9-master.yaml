@@ -95,3 +95,14 @@
     vars:
       release: master
       registry_namespace: tripleomastercentos9
+
+## Baremetal trigger job
+
+- job:
+    name: create-baremetal-trigger-for-downstream
+    parent: create-scenario010-trigger-for-downstream
+    vars:
+      trigger_branch: master
+      trigger_os_distro: centos_9
+      trigger_job_name: baremetal
+      trigger_commit_msg: "Trigger for baremetal-job"
