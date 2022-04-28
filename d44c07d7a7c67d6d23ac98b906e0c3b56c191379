@@ -33,6 +33,63 @@
       "message": "Looks good, holding my +2 to see green run.\n\nTestproject failed with container unavailability, i have rerun the testproject.",
       "revId": "d44c07d7a7c67d6d23ac98b906e0c3b56c191379",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2dc3845_cd6e9c4e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-04-28T07:41:28Z",
+      "side": 1,
+      "message": "ack waiting on green runs from testproject https://review.rdoproject.org/r/c/testproject/+/42319/1#message-f2102588602ddab88770ffbcf0ac242786a35055",
+      "revId": "d44c07d7a7c67d6d23ac98b906e0c3b56c191379",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "110918a3_ea3c4bac",
+        "filename": "zuul.d/integration-jobs-wallaby.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-04-28T07:41:28Z",
+      "side": 1,
+      "message": "nice thanks for adding the anchor on these",
+      "revId": "d44c07d7a7c67d6d23ac98b906e0c3b56c191379",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f74b1d5_13ae0d5d",
+        "filename": "zuul.d/integration-jobs-wallaby.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-04-28T07:41:28Z",
+      "side": 1,
+      "message": "so unless we pass this, default is to use legacy? (i.e. the jobs above for which you added the anchor)",
+      "range": {
+        "startLine": 55,
+        "startChar": 6,
+        "endLine": 55,
+        "endChar": 26
+      },
+      "revId": "d44c07d7a7c67d6d23ac98b906e0c3b56c191379",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
