@@ -8,18 +8,4 @@
     name: registry-login-rdo-integration
     openstack-check:
       jobs:
-        - registry-login-rdo-integration-centos-7
         - registry-login-rdo-integration-redhat-8
-
-- job:
-    name: registry-login-rdo-integration-centos-7
-    parent: tripleo-ci-base-singlenode-rdo
-    run: playbooks/integration/registry-login.yaml
-    voting: false
-    required-projects:
-      - opendev.org/openstack/ansible-role-container-registry
-    roles:
-      - zuul: opendev.org/openstack/ansible-role-container-registry
-    vars:
-      rdo_registry:
-        token: fakeauth
