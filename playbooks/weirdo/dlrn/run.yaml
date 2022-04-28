@@ -30,6 +30,8 @@
           repository="${logs}/centos/current"
           if [ ${CENTOS_RELEASE} = "centos8" ]; then
             repository="${logs}/centos8/current"
+          elif [ ${CENTOS_RELEASE} = "centos9" ]; then
+            repository="${logs}/centos9/current"
           fi
 
           # The rdoinfo-DLRN-check job may create different repos (centos-rpm-master, centos-pike-rdo)

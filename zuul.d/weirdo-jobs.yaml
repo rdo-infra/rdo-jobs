@@ -250,6 +250,67 @@
       centos_releasever: 8s
 
 - job:
+    name: weirdo-dlrn-base-centos-9
+    parent: weirdo-dlrn-base
+    nodeset: rdo-centos-9-stream
+    vars:
+      centos_releasever: 9s
+    dependencies:
+      - DLRN-rpmbuild-centos9
+
+- job:
+    name: weirdo-dlrn-master-packstack-scenario001-centos9
+    parent: weirdo-dlrn-base-centos-9
+    vars:
+      openstack_release: master
+      scenario: scenario001
+      selinux_enforcing: "false"
+
+- job:
+    name: weirdo-dlrn-master-packstack-scenario002-centos9
+    parent: weirdo-dlrn-base-centos-9
+    vars:
+      openstack_release: master
+      scenario: scenario002
+      selinux_enforcing: "false"
+
+- job:
+    name: weirdo-dlrn-master-packstack-scenario003-centos9
+    parent: weirdo-dlrn-base-centos-9
+    vars:
+      openstack_release: master
+      scenario: scenario003
+      selinux_enforcing: "false"
+
+- job:
+    name: weirdo-dlrn-master-puppet-scenario001-centos9
+    parent: weirdo-dlrn-base-centos-9
+    vars:
+      openstack_release: master
+      scenario: scenario001
+
+- job:
+    name: weirdo-dlrn-master-puppet-scenario002-centos9
+    parent: weirdo-dlrn-base-centos-9
+    vars:
+      openstack_release: master
+      scenario: scenario002
+
+- job:
+    name: weirdo-dlrn-master-puppet-scenario003-centos9
+    parent: weirdo-dlrn-base-centos-9
+    vars:
+      openstack_release: master
+      scenario: scenario003
+
+- job:
+    name: weirdo-dlrn-master-puppet-scenario004-centos9
+    parent: weirdo-dlrn-base-centos-9
+    vars:
+      openstack_release: master
+      scenario: scenario004
+
+- job:
     name: weirdo-validate-buildsys-tags-base
     parent: base
     run: playbooks/rdoinfo/weirdo-buildsys-tags.yaml
