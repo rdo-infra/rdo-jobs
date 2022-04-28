@@ -30,6 +30,8 @@
           repository="${logs}/centos/current"
           if [ ${CENTOS_RELEASE} = "centos8" ]; then
             repository="${logs}/centos8/current"
+          elif [ ${CENTOS_RELEASE} = "centos9" ]; then
+            repository="${logs}/centos9/current"
           fi
 
           # The rdoinfo-DLRN-check job may create different repos (centos-rpm-master, centos-pike-rdo)
@@ -73,6 +75,8 @@
           repository="${logs}/centos/current"
           if [ ${CENTOS_RELEASE} = "centos8" ]; then
             repository="${logs}/centos8/current"
+          elif [ ${CENTOS_RELEASE} = "centos9" ]; then
+            repository="${logs}/centos9/current"
           fi
 
           # The rdoinfo-DLRN-check job may create different repos (centos-rpm-master, centos-pike-rdo)
@@ -148,7 +152,7 @@
           cd "{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/weirdo'].src_dir }}"
           # Prepare Ansible inventory to use localhost
           cat <<EOF >hosts
-          localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python{{ '3' if centos_release == "centos8" else '2' }}
+          localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python{{ '3' if centos_release == "centos8" or centos_release == "centos9" else '2' }}
           [openstack_nodes]
           localhost log_destination=/var/log/weirdo
           EOF
