@@ -994,7 +994,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-undercloud-upgrade-component-master
-    parent: tripleo-ci-base-singlenode-periodic-centos-8
+    parent: periodic-tripleo-ci-undercloud-rdo-centos-9
     abstract: true
     vars:
       <<: *component_vars_standalone
