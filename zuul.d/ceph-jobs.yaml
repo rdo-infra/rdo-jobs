@@ -1,0 +1,6 @@
+---
+- job:
+    name: tripleo-ci-ceph-daemon-get-latest-stable-tag
+    timeout: 3000
+    nodeset: single-centos-9-stream-node-vexxhost
+    run: playbooks/ceph/run-get-latest-ceph-daemon-tag.yml
