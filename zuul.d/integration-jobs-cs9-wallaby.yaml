@@ -165,7 +165,11 @@
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-wallaby
     parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-master
     override-checkout: "stable/wallaby"
-    vars: *wallaby_uefi_vars
+    vars:
+      release: wallaby
+      branch_override: "stable/wallaby"
+      baremetal_image_name: "ipxe-boot"
+      tripleo_image_type: overcloud-full
 
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset064-wallaby
