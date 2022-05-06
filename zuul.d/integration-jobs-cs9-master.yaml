@@ -87,6 +87,14 @@
     vars:
       enable_secure_rbac: true
 
+## OVB Legacy BIOS
+- job:
+    name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-master-legacy
+    name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-master
+    vars:
+      baremetal_image_name: "ipxe-boot"
+      tripleo_image_type: overcloud-hardened-uefi-full
+
 ## Quay
 
 - job:
