@@ -150,7 +150,10 @@
     name: periodic-tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020-wallaby
     parent: periodic-tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020-master
     override-checkout: "stable/wallaby"
-    vars: *wallaby_vars
+    vars:
+      <<: *wallaby_vars
+      baremetal_image_name: "ipxe-boot"
+      tripleo_image_type: overcloud-full
 
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset035-wallaby
@@ -183,6 +186,8 @@
     voting: false
     vars:
       enable_secure_rbac: true
+      baremetal_image_name: "ipxe-uefi"
+      tripleo_image_type: overcloud-hardened-uefi-full
 
 ## Quay
 
