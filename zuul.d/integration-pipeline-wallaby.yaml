@@ -17,6 +17,8 @@
               - periodic-tripleo-centos-8-buildimage-overcloud-hardened-uefi-full-wallaby
               - periodic-tripleo-centos-8-buildimage-ironic-python-agent-wallaby
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-wallaby: *ovb_deps_wallaby
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby-legacy: *ovb_deps_wallaby
+
         ## undercloud
         - periodic-tripleo-ci-centos-8-undercloud-upgrade-ffu-wallaby: *build_containers_ubi_8_push_wallaby
         ## containers/images

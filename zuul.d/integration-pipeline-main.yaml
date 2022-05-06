@@ -47,6 +47,8 @@
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset035-master: *ovb_dep_cs_9_master
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-master: *ovb_dep_cs_9_master
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset064-master: *ovb_dep_cs_9_master
+        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-master-legacy: *ovb_dep_cs_9_master
+
         - periodic-tripleo-ci-build-containers-centos-9-push-master: &cs9_promoted_comp_to_ci_testing_master
             dependencies:
               - periodic-tripleo-centos-9-master-promote-promoted-components-to-tripleo-ci-testing
