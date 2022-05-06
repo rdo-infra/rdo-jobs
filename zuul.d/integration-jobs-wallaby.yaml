@@ -61,6 +61,14 @@
     override-checkout: "stable/wallaby"
     vars: *wallaby_uefi_vars
 
+## OVB Legacy BIOS
+- job:
+    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby-legacy
+    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby
+    vars:
+      baremetal_image_name: "ipxe-boot"
+      tripleo_image_type: overcloud-full
+
 ## undercloud
 - job:
     name: periodic-tripleo-ci-centos-8-undercloud-upgrade-ffu-wallaby
