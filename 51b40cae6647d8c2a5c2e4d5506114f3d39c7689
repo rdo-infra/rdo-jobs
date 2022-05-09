@@ -16,6 +16,46 @@
       "message": "TestProject results:\nhttps://review.rdoproject.org/r/c/testproject/+/36489/55#message-c0f9100e27f3173c23d8855dedca4db43a1318dc\n\ntripleo-ci-ceph-daemon-get-latest-stable-tag https://review.rdoproject.org/zuul/build/9e43d0fa0a0f434da1e22601ef337473 : SUCCESS in 2m 24s\n...\n\n2022-05-06 17:44:50.060872 | Ceph daemon tag found: v6.0.7-stable-6.0-pacific-centos-stream8-x86_64\n",
       "revId": "51b40cae6647d8c2a5c2e4d5506114f3d39c7689",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "176fe4c6_97d900fb",
+        "filename": "playbooks/ceph/run-get-latest-ceph-daemon-tag.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-05-09T06:17:35Z",
+      "side": 1,
+      "message": "looks good in the \u0027child\u0027 job  @ https://logserver.rdoproject.org/89/36489/50/check/tripleo-ci-ceph-daemon-promote-latest-stable-tag/53c4df4/zuul-info/inventory.yaml\n\n      promote_ceph_tag: v6.0.7-stable-6.0-pacific-centos-stream8-x86_64",
+      "revId": "51b40cae6647d8c2a5c2e4d5506114f3d39c7689",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24a8d3de_c7addc6f",
+        "filename": "zuul.d/ceph-jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-05-09T06:17:35Z",
+      "side": 1,
+      "message": "seems a bit excessive? maybe more like 600 seconds/10 minutes?\n\n[EDIT]: ah... this has to include the job run time for the child job ? in that case it it long enough 50 minutes? ... yes looking at https://review.rdoproject.org/r/c/testproject/+/36489/50#message-bff063dd83e9b9b2c4d85991d412baca02ecc754 only takes 2 minutes so ... maybe 50 minutes *is* too much",
+      "range": {
+        "startLine": 4,
+        "startChar": 13,
+        "endLine": 4,
+        "endChar": 17
+      },
+      "revId": "51b40cae6647d8c2a5c2e4d5506114f3d39c7689",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
