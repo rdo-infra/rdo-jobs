@@ -12,13 +12,6 @@
     required-projects:
       - name: review.rdoproject.org/rdo-infra/ci-config
 
-# mol-get_hash-centos-7
-- job:
-    name: periodic-mol-get_hash-centos-7
-    parent: mol-get_hash-centos-7
-    required-projects:
-      - name: review.rdoproject.org/rdo-infra/ci-config
-
 # mol-get_hash-centos-8
 - job:
     name: periodic-mol-get_hash-centos-8
