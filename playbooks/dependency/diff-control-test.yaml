@@ -14,7 +14,7 @@
       when: python_cmd is not defined
 
     - name: Check if virtualenv is in the system
-      command: "{{ python_cmd }} -m virtualenv --version"
+      command: "{{ python_cmd }} -m venv -h"
       args:
         warn: false
       register: virtualenv_exist
@@ -38,6 +38,7 @@
       pip:
         name: pip
         virtualenv: "{{ ansible_user_dir }}/diff-rpm-venv"
+        virtualenv_command: "/usr/bin/{{ python_cmd }} -m venv"
         state: latest
         extra_args: --upgrade
 
@@ -45,6 +46,7 @@
       pip:
         name: "{{ item }}"
         virtualenv: "{{ ansible_user_dir }}/diff-rpm-venv"
+        virtualenv_command: "/usr/bin/{{ python_cmd }} -m venv"
         state: present
       with_items:
         - requests
