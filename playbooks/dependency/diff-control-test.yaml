@@ -13,31 +13,12 @@
         cacheable: true
       when: python_cmd is not defined
 
-    - name: Check if virtualenv is in the system
-      command: "{{ python_cmd }} -m virtualenv --version"
-      args:
-        warn: false
-      register: virtualenv_exist
-      changed_when: false
-      failed_when: false
-
-    - when: virtualenv_exist.rc != 0
-      name: Install virtualenv
-      become: true
-      package:
-        state: present
-        name: >
-          {% if ansible_python.version.major == 3 %}
-          python3-virtualenv
-          {% else %}
-          python-virtualenv
-          {% endif %}
-
     - name: Install and update pip
       # noqa 403
       pip:
         name: pip
         virtualenv: "{{ ansible_user_dir }}/diff-rpm-venv"
+        virtualenv_command: "/usr/bin/{{ python_cmd }} -m venv"
         state: latest
         extra_args: --upgrade
 
@@ -45,6 +26,7 @@
       pip:
         name: "{{ item }}"
         virtualenv: "{{ ansible_user_dir }}/diff-rpm-venv"
+        virtualenv_command: "/usr/bin/{{ python_cmd }} -m venv"
         state: present
       with_items:
         - requests
