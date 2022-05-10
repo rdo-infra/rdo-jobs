@@ -31,7 +31,21 @@
         | sort | uniq | tee -a  {{ ansible_user_dir }}/test_repoquery_list.log
       with_items: "{{ add_repos }}"
       changed_when: false
-      when: add_repos is defined
+      when:
+        - add_repos is defined
+        - dependency != 'centos-compose'
+
+      - name: get repoquery list by repoid using centos-compose 'compose_repo_variants_list'
+        become: true
+        shell: >
+          set -o pipefail &&
+          repoquery --repoid={{ item|lower }} -q -a --nvr \
+          --latest-limit 1 | sort | uniq | tee -a  {{ ansible_user_dir }}/control_repoquery_list.log
+        with_items: "{{ compose_repo_variants_list }}"
+        changed_when: false
+        when:
+          - dependency == 'centos-compose'
+          - compose_repo_variants_list is defined
 
     - when: dependency_override_repos is defined
       block:
