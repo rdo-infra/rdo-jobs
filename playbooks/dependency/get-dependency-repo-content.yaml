@@ -31,7 +31,21 @@
         | sort | uniq | tee -a  {{ ansible_user_dir }}/test_repoquery_list.log
       with_items: "{{ add_repos }}"
       changed_when: false
-      when: add_repos is defined
+      when:
+        - add_repos is defined
+        - dependency != 'centos-compose'
+
+    - name: get repoquery list by repoid using centos-compose 'compose_repo_variants_list'
+      become: true
+      shell: >
+        set -o pipefail &&
+        repoquery --repoid={{ item|lower }} -q -a --nvr \
+        --latest-limit 1 | sort | uniq | tee -a  {{ ansible_user_dir }}/control_repoquery_list.log
+      with_items: "{{ compose_repo_variants_list }}"
+      changed_when: false
+      when:
+        - dependency == 'centos-compose'
+        - compose_repo_variants_list is defined
 
     - when: dependency_override_repos is defined
       block:
@@ -52,10 +66,19 @@
         - name: include original repo vars
           include_vars: "{{ original_repo_file_path }}"
 
+        - name: set default centos mirror based on distribution
+          set_fact:
+            centos_mirror: >-
+              {% if ansible_distribution_major_version|int >= 9 -%}
+              'http://mirror.stream.centos.org'
+              {%- else -%}
+              'http://mirror.centos.org/centos'
+              {%- endif -%}
+
         - name: get control repoquery list when control repos defined in release file
           become: true
           shell: |
-            export NODEPOOL_CENTOS_MIRROR='http://mirror.centos.org/centos'
+            export NODEPOOL_CENTOS_MIRROR={{ centos_mirror }}
             export NODEPOOL_RDO_PROXY=https://trunk.rdoproject.org
             set -o pipefail &&
             repoquery  --repofrompath={{ item.filename|replace('.repo','') }},{{ item.baseurl|default('') }} \
