@@ -7,8 +7,9 @@
     name: periodic-tripleo-ci-centos-9-standalone-compose-master
     parent: periodic-tripleo-ci-centos-9-standalone-master
     abstract: true
-    pre-run:
-      - playbooks/dependency/setup-compose-repos.yml
+    post-run:
+      - playbooks/dependency/get-dependency-repo-content.yaml
+      - playbooks/dependency/diff-control-test.yaml
     vars:
       featureset: '052'
       dependency: centos-compose
