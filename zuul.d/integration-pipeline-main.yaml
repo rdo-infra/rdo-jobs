@@ -39,8 +39,10 @@
               - periodic-tripleo-centos-9-buildimage-overcloud-hardened-uefi-full-master
               - periodic-tripleo-centos-9-buildimage-overcloud-full-master
               - periodic-tripleo-centos-9-buildimage-ironic-python-agent-master
-        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-rbac-master: *ovb_dep_cs_9_master
-        - periodic-tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020-rbac-master: *ovb_dep_cs_9_master
+        # Temporary stop rbac jobs, node provisioning failing, suspecting high load on vexxhost
+        # https://bugs.launchpad.net/bugs/1970400
+        # - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-rbac-master: *ovb_dep_cs_9_master
+        # - periodic-tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020-rbac-master: *ovb_dep_cs_9_master
         - periodic-tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020-master: *ovb_dep_cs_9_master
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset035-master: *ovb_dep_cs_9_master
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-master: *ovb_dep_cs_9_master
