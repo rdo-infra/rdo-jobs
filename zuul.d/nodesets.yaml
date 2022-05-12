@@ -580,3 +580,25 @@
       - name: subnodes
         nodes:
           - secondary
+
+- nodeset:
+    name: two-centos-9-one-centos-8-nodes
+    nodes:
+      - name: primary
+        label: cloud-centos-9-stream-tripleo-vexxhost
+      - name: secondary-1
+        label: cloud-centos-9-stream-tripleo-vexxhost
+      - name: secondary-2
+        label: upstream-centos-8-stream
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes:
+          - secondary-1
+          - secondary-2
+      - name: subnodes
+        nodes:
+          - secondary-1
+          - secondary-2
