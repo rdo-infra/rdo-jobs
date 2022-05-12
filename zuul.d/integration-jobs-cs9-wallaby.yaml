@@ -186,3 +186,14 @@
     voting: false
     vars:
       enable_secure_rbac: true
+
+## Quay
+
+- job:
+    name: periodic-tripleo-ci-build-containers-centos-9-quay-wallaby
+    parent: periodic-tripleo-build-containers-quay-centos-9-secrets
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: "stable/wallaby"
+      registry_namespace: tripleowallabycentos9

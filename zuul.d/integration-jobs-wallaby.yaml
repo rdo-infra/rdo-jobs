@@ -74,3 +74,14 @@
         validate_services: false
       extra_tags:
         - undercloud-upgrade
+
+## Quay
+
+- job:
+    name: periodic-tripleo-ci-build-containers-centos-8-quay-wallaby
+    parent: periodic-tripleo-build-containers-quay-centos-8-secrets
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: "stable/wallaby"
+      registry_namespace: tripleowallabycentos8
