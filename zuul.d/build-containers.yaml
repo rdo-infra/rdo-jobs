@@ -48,3 +48,23 @@
     vars:
       buildcontainers_override_repos: centos9-master
       registry_namespace: tripleomastercentos9
+
+- job:
+    name: periodic-tripleo-build-containers-base-c9-quay-wallaby
+    parent: periodic-tripleo-build-containers-quay-centos-9-secrets
+    override-checkout: 'stable/wallaby'
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      registry_namespace: tripleowallabycentos9
+    attempts: 1
+
+- job:
+    name: periodic-tripleo-build-containers-base-c8-quay-wallaby
+    parent: periodic-tripleo-build-containers-quay-centos-8-secrets
+    override-checkout: 'stable/wallaby'
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
+      registry_namespace: tripleowallabycentos8
+    attempts: 1
