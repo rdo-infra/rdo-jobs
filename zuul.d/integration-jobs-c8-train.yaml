@@ -64,3 +64,14 @@
     vars:
       branch_override: "stable/train"
       release: train
+
+## Quay
+
+- job:
+    name: periodic-tripleo-ci-build-containers-centos-8-quay-push-train
+    parent: periodic-tripleo-build-containers-quay-centos-8-secrets
+    override-checkout: 'stable/train'
+    vars:
+      release: train
+      branch_override: 'stable/train'
+      registry_namespace: tripleotraincentos8

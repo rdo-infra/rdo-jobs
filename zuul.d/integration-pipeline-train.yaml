@@ -11,6 +11,7 @@
               - periodic-tripleo-centos-8-train-promote-promoted-components-to-tripleo-ci-testing
         - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train: *promoted_comp_to_ci_testing_train
         - periodic-tripleo-ci-build-containers-ubi-8-push-train: *promoted_comp_to_ci_testing_train
+        - periodic-tripleo-ci-build-containers-centos-8-quay-push-train: *promoted_comp_to_ci_testing_train
         - periodic-tripleo-centos-8-buildimage-overcloud-hardened-full-train: *promoted_comp_to_ci_testing_train
         - periodic-tripleo-ci-centos-8-standalone-train: &build_con_ubi_8_push_train
             dependencies: &dep_build_con_ubi_8_push_train
