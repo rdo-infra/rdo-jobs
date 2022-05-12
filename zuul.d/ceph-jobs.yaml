@@ -4,3 +4,29 @@
     timeout: 3000
     nodeset: single-centos-9-stream-node-vexxhost
     run: playbooks/ceph/run-get-latest-ceph-daemon-tag.yml
+
+- job:
+    name: tripleo-ci-centos-9-scenario001-standalone-ceph-updates
+    parent: tripleo-ci-centos-9-scenario001-standalone
+    vars: &ceph_updates_vars
+      standalone_container_ceph_updates: true
+
+- job:
+    name: tripleo-ci-centos-9-scenario004-standalone-ceph-updates
+    parent: tripleo-ci-centos-9-scenario004-standalone
+    vars: *ceph_updates_vars
+
+- project-template:
+    name: ceph-daemon-promotion-pipeline-main
+    periodic-promote-ceph-daemon-main:
+      jobs:
+        - tripleo-ci-ceph-daemon-get-latest-stable-tag
+        - tripleo-ci-centos-9-scenario001-standalone-ceph-updates: &scn001_ceph_updates
+            dependencies:
+              - tripleo-ci-ceph-daemon-get-latest-stable-tag
+        - tripleo-ci-centos-9-scenario004-standalone-ceph-updates: *scn001_ceph_updates
+        - tripleo-ci-promote-ceph-daemon-tag-to-current-ceph-master:
+            dependencies:
+              - tripleo-ci-ceph-daemon-get-latest-stable-tag
+              - tripleo-ci-centos-9-scenario001-standalone-ceph-updates
+              - tripleo-ci-centos-9-scenario004-standalone-ceph-updates
