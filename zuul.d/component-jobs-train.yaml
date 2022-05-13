@@ -209,6 +209,7 @@
       component: baremetal
       release: train
       branch_override: 'stable/train'
+      baremetal_image_name: "ipxe-boot"
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-train
@@ -218,6 +219,7 @@
       component: tripleo
       release: train
       branch_override: 'stable/train'
+      baremetal_image_name: "ipxe-boot"
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-train
@@ -227,6 +229,7 @@
       component: clients
       release: train
       branch_override: 'stable/train'
+      baremetal_image_name: "ipxe-boot"
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-train
@@ -236,6 +239,7 @@
       component: network
       release: train
       branch_override: 'stable/train'
+      baremetal_image_name: "ipxe-boot"
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-train
@@ -245,6 +249,7 @@
       component: security
       release: train
       branch_override: 'stable/train'
+      baremetal_image_name: "ipxe-boot"
 
 
 ## multinode component jobs

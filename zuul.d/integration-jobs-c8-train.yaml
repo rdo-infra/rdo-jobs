@@ -23,6 +23,7 @@
     vars:
       branch_override: "stable/train"
       release: train
+      baremetal_image_name: "ipxe-boot"
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-train
@@ -55,6 +56,7 @@
     vars:
       branch_override: "stable/train"
       release: train
+      baremetal_image_name: "ipxe-boot"
 
 - job:
     name: periodic-tripleo-ci-centos-8-containers-undercloud-minion-train
