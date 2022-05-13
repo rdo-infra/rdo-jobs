@@ -208,6 +208,7 @@
       component: baremetal
       release: victoria
       branch_override: 'stable/victoria'
+      baremetal_image_name: "ipxe-boot"
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-victoria
@@ -216,6 +217,7 @@
       component: clients
       release: victoria
       branch_override: 'stable/victoria'
+      baremetal_image_name: "ipxe-boot"
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-victoria
@@ -224,6 +226,7 @@
       component: network
       release: victoria
       branch_override: 'stable/victoria'
+      baremetal_image_name: "ipxe-boot"
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-victoria
@@ -232,6 +235,7 @@
       component: security
       release: victoria
       branch_override: 'stable/victoria'
+      baremetal_image_name: "ipxe-boot"
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-victoria
@@ -240,6 +244,7 @@
       component: tripleo
       release: victoria
       branch_override: 'stable/victoria'
+      baremetal_image_name: "ipxe-boot"
 
 
 ## multinode component jobs
