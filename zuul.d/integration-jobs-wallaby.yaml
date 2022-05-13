@@ -22,7 +22,7 @@
     name: periodic-tripleo-centos-8-buildimage-overcloud-full-wallaby
     parent: periodic-tripleo-centos-8-buildimage-overcloud-full-master
     override-checkout: "stable/wallaby"
-    vars: &wallaby_vars
+    vars:
       release: wallaby
       branch_override: 'stable/wallaby'
 
@@ -30,36 +30,43 @@
     name: periodic-tripleo-centos-8-buildimage-ironic-python-agent-wallaby
     parent: periodic-tripleo-centos-8-buildimage-ironic-python-agent-master
     override-checkout: "stable/wallaby"
-    vars: *wallaby_vars
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
 
 - job:
     name: periodic-tripleo-centos-8-buildimage-overcloud-hardened-uefi-full-wallaby
     parent: periodic-tripleo-centos-8-buildimage-overcloud-hardened-uefi-full-master
     override-checkout: "stable/wallaby"
-    vars: *wallaby_vars
+    vars:
+      release: wallaby
+      branch_override: 'stable/wallaby'
 
 ## standalone
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-wallaby
     parent: periodic-tripleo-ci-centos-8-standalone-master
     override-checkout: "stable/wallaby"
-    vars: *wallaby_vars
+    vars:
+      branch_override: "stable/wallaby"
+      release: wallaby
 
 ## ovb
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master
     override-checkout: "stable/wallaby"
-    vars: &wallaby_uefi_vars
+    vars:
       branch_override: "stable/wallaby"
-      baremetal_image_name: "ipxe-uefi"
       release: wallaby
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-wallaby
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-master
     override-checkout: "stable/wallaby"
-    vars: *wallaby_uefi_vars
+    vars:
+      branch_override: "stable/wallaby"
+      release: wallaby
 
 ## undercloud
 - job:
