@@ -444,25 +444,22 @@
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-train
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master
     override-checkout: "stable/train"
-    vars:
+    vars: &vars_train
       branch_override: "stable/train"
       release: train
+      baremetal_image_name: "ipxe-boot"
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-train
     parent: periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-master
     override-checkout: "stable/train"
-    vars:
-      branch_override: "stable/train"
-      release: train
+    vars: *vars_train
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-train
     parent: periodic-tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-master
     override-checkout: "stable/train"
-    vars:
-      branch_override: "stable/train"
-      release: train
+    vars: *vars_train
 
 ########## C E N T O S 8 TRAIN Check  ####################
 
@@ -472,36 +469,28 @@
     override-checkout: "stable/train"
     branches: ^master$
     voting: false
-    vars:
-      branch_override: "stable/train"
-      release: train
+    vars: *vars_train
 
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-train
     parent: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-upload
     branches: ^master$
     override-checkout: "stable/train"
-    vars:
-      branch_override: "stable/train"
-      release: train
+    vars: *vars_train
 
 - job:
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-train
     parent: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039
     branches: ^master$
     override-checkout: "stable/train"
-    vars:
-      branch_override: "stable/train"
-      release: train
+    vars: *vars_train
 
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-train
     parent: tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020
     branches: ^master$
     override-checkout: "stable/train"
-    vars:
-      branch_override: "stable/train"
-      release: train
+    vars: *vars_train
 
 ########## C E N T O S 8 USSURI Check  ####################
 - job:
@@ -510,36 +499,31 @@
     override-checkout: "stable/ussuri"
     branches: ^master$
     voting: false
-    vars:
+    vars: &vars_ussuri
       branch_override: "stable/ussuri"
       release: ussuri
+      baremetal_image_name: "ipxe-boot"
 
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-ussuri
     parent: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-upload
     branches: ^master$
     override-checkout: "stable/ussuri"
-    vars:
-      branch_override: "stable/ussuri"
-      release: ussuri
+    vars: *vars_ussuri
 
 - job:
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-ussuri
     parent: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039
     branches: ^master$
     override-checkout: "stable/ussuri"
-    vars:
-      branch_override: "stable/ussuri"
-      release: ussuri
+    vars: *vars_ussuri
 
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-ussuri
     parent: tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020
     branches: ^master$
     override-checkout: "stable/ussuri"
-    vars:
-      branch_override: "stable/ussuri"
-      release: ussuri
+    vars: *vars_ussuri
 
 ########## C E N T O S 8 VICTORIA Check  ####################
 - job:
@@ -548,36 +532,31 @@
     override-checkout: "stable/victoria"
     branches: ^master$
     voting: false
-    vars:
+    vars: &vars_victoria
       branch_override: "stable/victoria"
       release: victoria
+      baremetal_image_name: "ipxe-boot"
 
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-victoria
     parent: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-upload
     branches: ^master$
     override-checkout: "stable/victoria"
-    vars:
-      branch_override: "stable/victoria"
-      release: victoria
+    vars: *vars_victoria
 
 - job:
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-victoria
     parent: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039
     branches: ^master$
     override-checkout: "stable/victoria"
-    vars:
-      branch_override: "stable/victoria"
-      release: victoria
+    vars: *vars_victoria
 
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-victoria
     parent: tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020
     branches: ^master$
     override-checkout: "stable/victoria"
-    vars:
-      branch_override: "stable/victoria"
-      release: victoria
+    vars: *vars_victoria
 
 ########## C E N T O S 8 WALLABY Check  ####################
 - job:

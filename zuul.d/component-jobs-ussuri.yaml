@@ -208,6 +208,7 @@
       component: baremetal
       release: ussuri
       branch_override: 'stable/ussuri'
+      baremetal_image_name: "ipxe-boot"
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-ussuri
@@ -216,6 +217,7 @@
       component: tripleo
       release: ussuri
       branch_override: 'stable/ussuri'
+      baremetal_image_name: "ipxe-boot"
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-ussuri
@@ -224,6 +226,7 @@
       component: clients
       release: ussuri
       branch_override: 'stable/ussuri'
+      baremetal_image_name: "ipxe-boot"
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-ussuri
@@ -232,6 +235,7 @@
       component: network
       release: ussuri
       branch_override: 'stable/ussuri'
+      baremetal_image_name: "ipxe-boot"
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-ussuri
@@ -240,6 +244,7 @@
       component: security
       release: ussuri
       branch_override: 'stable/ussuri'
+      baremetal_image_name: "ipxe-boot"
 
 
 ## multinode component jobs
