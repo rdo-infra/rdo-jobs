@@ -27,7 +27,6 @@
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
-      baremetal_image_name: "ipxe-uefi"
 
 - job:
     name: tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset001
@@ -36,7 +35,6 @@
     vars:
       nodes: 1ctlr_1comp
       featureset: '001'
-      baremetal_image_name: "ipxe-uefi"
 
 - job:
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset035
@@ -45,7 +43,6 @@
     vars:
       nodes: 3ctlr_1comp
       featureset: '035'
-      baremetal_image_name: "ipxe-uefi"
 
 - job:
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039
@@ -54,7 +51,6 @@
     vars: &fs39_vars
       nodes: 3ctlr_1comp_1supp
       featureset: '039'
-      baremetal_image_name: "ipxe-uefi"
       playbooks:
         - ovb-setup.yml
         - baremetal-full-freeipa.yml
@@ -70,7 +66,6 @@
     vars:
       nodes: 1ctlr_1comp
       featureset: '002'
-      baremetal_image_name: "ipxe-uefi"
 
 - job:
     name: tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020
@@ -80,7 +75,6 @@
     vars:
       nodes: 1ctlr_2comp
       featureset: '020'
-      baremetal_image_name: "ipxe-uefi"
 
 # Jobs with -master should run on OVB repository
 - job:
@@ -89,8 +83,6 @@
     branches: ^master$
     required-projects:
       - opendev.org/openstack/openstack-virtual-baremetal
-    vars:
-      baremetal_image_name: "ipxe-uefi"
 
 - job:
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-ovb-master
@@ -98,8 +90,6 @@
     branches: ^master$
     required-projects:
       - opendev.org/openstack/openstack-virtual-baremetal
-    vars:
-      baremetal_image_name: "ipxe-uefi"
 
 ########## C E N T O S 9 WALLABY branchful Check  ####################
 
@@ -110,7 +100,6 @@
     branches: ^master$
     vars:
       branch_override: "stable/wallaby"
-      baremetal_image_name: "ipxe-uefi"
 
 - job:
     name: tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset002-upload-wallaby
@@ -120,7 +109,6 @@
     vars:
       branch_override: "stable/wallaby"
       release: wallaby
-      baremetal_image_name: "ipxe-uefi"
 
 - job:
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-wallaby
@@ -129,7 +117,6 @@
     override-checkout: "stable/wallaby"
     vars:
       branch_override: "stable/wallaby"
-      baremetal_image_name: "ipxe-uefi"
 
 - job:
     name: tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020-wallaby
@@ -139,7 +126,6 @@
     vars:
       branch_override: "stable/wallaby"
       release: wallaby
-      baremetal_image_name: "ipxe-uefi"
 
 
 # =================  C E N T O S  8  C H E C K  J O B S
