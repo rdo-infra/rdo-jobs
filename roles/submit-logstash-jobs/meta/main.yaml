@@ -1,11 +1,2 @@
-galaxy_info:
-  author: Red Hat
-  description: Submit a log processing job to the logstash workers.
-  license: MIT
-  min_ansible_version: 2.7
-  platforms:
-    - name: CentOS
-    - name: Fedora
-    - name: RHEL
 dependencies:
   - role: submit-log-processor-jobs

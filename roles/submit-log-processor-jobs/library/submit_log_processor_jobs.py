@@ -18,11 +18,12 @@
 import os
 import json
 import re
+import traceback
 
 from ansible.module_utils.six.moves import urllib
-from ansible.module_utils.basic import AnsibleModule, get_exception
+from ansible.module_utils.basic import AnsibleModule
 
-import gear
+import ansible.module_utils.gear as gear
 
 
 class FileMatcher(object):
@@ -38,16 +39,7 @@ class FileMatcher(object):
 
 class File(object):
     def __init__(self, name, tags):
-        # Note that even if we upload a .gz we want to use the logical
-        # non compressed name for handling (it is easier on humans).
-        # The reason we can get away with this is that this name is used
-        # to construct the log_url below. The server serving that
-        # log_url treats foo.txt and foo.txt.gz as being the same content
-        # and serves both paths from the same backend content.
-        if name.endswith('.gz'):
-            self._name = name[:-3]
-        else:
-            self._name = name
+        self._name = name
         self._tags = tags
 
     @property
@@ -128,8 +120,12 @@ class LogMatcher(object):
     def makeEvent(self, file_object):
         out_event = {}
         out_event["fields"] = self.makeFields(file_object.name)
-        out_event["tags"] = [os.path.basename(file_object.name)] + \
-            file_object.tags
+        basename = os.path.basename(file_object.name)
+        out_event["tags"] = [basename] + file_object.tags
+        if basename.endswith(".gz"):
+            # Backward compat for e-r which relies on tag values
+            # without the .gx suffix
+            out_event["tags"].append(basename[:-3])
         return out_event
 
     def makeFields(self, filename):
@@ -141,9 +137,14 @@ class LogMatcher(object):
         fields["build_status"] = self.success and 'SUCCESS' or 'FAILURE'
         # TODO: this is too simplistic for zuul v3 multinode jobs
         if hosts:
-            fields["build_node"] = hosts[0]['nodepool']['label']
+            node = hosts[0]
+            fields["build_node"] = node['nodepool']['label']
+            fields["build_hostids"] = [h['nodepool']['host_id'] for h in hosts
+                                       if 'host_id' in h['nodepool']]
+            fields["node_provider"] = node['nodepool']['provider']
         else:
             fields["build_node"] = 'zuul-executor'
+            fields["node_provider"] = 'local'
         # TODO: should be build_executor, or removed completely
         fields["build_master"] = zuul['executor']['hostname']
 
@@ -165,14 +166,12 @@ class LogMatcher(object):
             fields["build_patchset"] = zuul['patchset']
         elif 'newrev' in zuul:
             fields["build_newrev"] = zuul.get('newrev', 'UNKNOWN')
-        if hosts:
-            fields["node_provider"] = hosts[0]['nodepool']['provider']
-        else:
-            fields["node_provider"] = 'local'
         log_url = urllib.parse.urljoin(self.log_url, filename)
         fields["log_url"] = log_url
         if 'executor' in zuul and 'hostname' in zuul['executor']:
             fields["zuul_executor"] = zuul['executor']['hostname']
+        if 'attempts' in zuul:
+            fields["zuul_attempts"] = zuul['attempts']
         return fields
 
 
@@ -207,9 +206,9 @@ def main():
             results['jobs'].append(handle)
         module.exit_json(**results)
     except Exception:
-        e = get_exception()
+        tb = traceback.format_exc()
         module.fail_json(msg='Unknown error',
-                         details=repr(e),
+                         details=tb,
                          **results)
 
 
