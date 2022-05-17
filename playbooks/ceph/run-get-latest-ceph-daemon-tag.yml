@@ -5,7 +5,7 @@
   vars:
     ceph_latest_namespace: "{{ ceph_daemon_latest_tag_namespace | default('quay.io/ceph')}}"
     ceph_latest_image: "{{ ceph_daemon_latest_tag_image | default('daemon')}}"
-    ceph_latest_regex: "{{ ceph_daemon_latest_tag_regex | default('^v.*stable.*x86_64$') }}"
+    ceph_latest_regex: "{{ ceph_daemon_latest_tag_regex | default('^v(\\d+\\.\\d+\\.\\d+).*stable.*x86_64$') }}"
   tasks:
     - name: Install jq to parse list-tags output
       become: true
@@ -15,8 +15,11 @@
         state: present
 
     - name: Get latest tag from ceph namespace
+      vars:
+        select_tags: 'select(.|test("{{ ceph_latest_regex }}")?)'
+        sort_by_semantic_version: 'sort_by(match("{{ ceph_latest_regex }}").captures[0].string|split(".")|map(tonumber))'
       shell: >-
-        skopeo list-tags docker://"{{ ceph_latest_namespace }}/{{ ceph_latest_image }}" | jq -r '[.Tags[] | select(.|test("{{ ceph_latest_regex }}")?)]|sort|last'
+        skopeo list-tags docker://"{{ ceph_latest_namespace }}/{{ ceph_latest_image }}" |  jq -r '[.Tags[] | {{ select_tags }}] | {{ sort_by_semantic_version }} | last'
       retries: 3
       register: result
       until: result is success
