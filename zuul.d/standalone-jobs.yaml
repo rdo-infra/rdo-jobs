@@ -447,7 +447,7 @@
     name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master
     parent: periodic-tripleo-ci-standalone-rdo-centos-8
     nodeset: single-centos-8-node-psi
-    vars:
+    vars: &vars_standalone_010_kvm
       tags:
         - build
         - nested_virt
@@ -492,6 +492,13 @@
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
           - 'ci/environments/scenario010-standalone.yaml'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-master
+    parent: periodic-tripleo-ci-standalone-rdo-centos-9
+    nodeset: single-centos-9-node-nested-virt
+    timeout: 14400
+    vars: *vars_standalone_010_kvm
 
 - job:
     name: periodic-tripleo-ci-centos-9-scenario010-ovn-provider-standalone-master

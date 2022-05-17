@@ -18,6 +18,7 @@
         - periodic-tripleo-ci-centos-9-scenario004-standalone-master: *build_con_cs_9_push_master
         - periodic-tripleo-ci-centos-9-scenario007-standalone-master: *build_con_cs_9_push_master
         - periodic-tripleo-ci-centos-9-scenario010-ovn-provider-standalone-master: *build_con_cs_9_push_master
+        - periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-master: *build_con_cs_9_push_master
         - periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-master: *build_con_cs_9_push_master
         # Note(chandankumar): Once these bugs https://bugs.launchpad.net/tripleo/+bug/1961966 and
         # https://bugs.launchpad.net/tripleo/+bug/1947959/ fixed, The job will be added back to the
