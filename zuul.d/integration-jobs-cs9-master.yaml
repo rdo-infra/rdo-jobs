@@ -90,7 +90,7 @@
 ## Quay
 
 - job:
-    name: periodic-tripleo-ci-build-containers-centos-9-quay-master
+    name: periodic-tripleo-ci-build-containers-centos-9-quay-push-master
     parent: periodic-tripleo-build-containers-quay-centos-9-secrets
     vars:
       release: master
