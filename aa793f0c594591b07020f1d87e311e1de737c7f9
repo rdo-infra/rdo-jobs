@@ -33,6 +33,23 @@
       "message": "recheck",
       "revId": "aa793f0c594591b07020f1d87e311e1de737c7f9",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4a7b832_57539d4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2022-05-17T12:23:13Z",
+      "side": 1,
+      "message": "the cirobot user was created after that repo got repositories. The robot user does not have assigned any repository, that it got access to. \nI added default permissions in that organization and assign write permissions for that robot.\nIf it does not help, I will iterate on all repositories and add permission to that robot.",
+      "revId": "aa793f0c594591b07020f1d87e311e1de737c7f9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
