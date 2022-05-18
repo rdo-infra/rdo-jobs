@@ -4,6 +4,8 @@
     timeout: 3000
     nodeset: single-centos-9-stream-node-vexxhost
     run: playbooks/ceph/run-get-latest-ceph-daemon-tag.yml
+    vars:
+      ceph_daemon_latest_tag_regex: '^v(\\d+\\.\\d+\\.\\d+)-stable.*pacific.*x86_64$'
 
 - job:
     name: tripleo-ci-centos-9-scenario001-standalone-ceph-updates-master
@@ -30,3 +32,46 @@
               - tripleo-ci-ceph-daemon-get-latest-stable-tag-master
               - tripleo-ci-centos-9-scenario001-standalone-ceph-updates-master
               - tripleo-ci-centos-9-scenario004-standalone-ceph-updates-master
+
+# Wallaby Jobs
+- job:
+    name: tripleo-ci-ceph-daemon-get-latest-stable-tag-wallaby
+    parent: tripleo-ci-ceph-daemon-get-latest-stable-tag-master
+    var:
+      ceph_daemon_latest_tag_regex: '^v(\\d+\\.\\d+\\.\\d+)-stable.*pacific.*x86_64$'
+
+- job:
+    name: tripleo-ci-centos-9-scenario001-standalone-ceph-updates-wallaby
+    parent: tripleo-ci-centos-9-scenario001-standalone-ceph-updates-master
+    override-checkout: "stable/wallaby"
+    vars: &wallaby_vars
+      release: wallaby
+      branch_override: "stable/wallaby"
+
+- job:
+    name: tripleo-ci-centos-9-scenario004-standalone-ceph-updates-wallaby
+    parent: tripleo-ci-centos-9-scenario004-standalone-ceph-updates-master
+    override-checkout: "stable/wallaby"
+    vars: *wallaby_vars
+
+- job:
+    name: tripleo-ci-promote-ceph-daemon-tag-to-current-ceph-wallaby
+    parent: tripleo-ci-promote-ceph-daemon-tag-to-current-ceph
+    vars:
+      release: wallaby
+      remote_working_dir: "/var/www/html/images/ceph/daemon/wallaby"
+
+- project-template:
+    name: ceph-daemon-promotion-pipeline-wallaby
+    periodic-promote-ceph-daemon:
+      jobs:
+        - ripleo-ci-ceph-daemon-get-latest-stable-tag-wallaby
+        - tripleo-ci-centos-9-scenario001-standalone-ceph-updates-wallaby: &scn001_ceph_updates_wallaby
+            dependencies:
+              - tripleo-ci-ceph-daemon-get-latest-stable-tag-wallaby
+        - tripleo-ci-centos-9-scenario004-standalone-ceph-updates-wallaby: *scn001_ceph_updates_wallaby
+        - tripleo-ci-promote-ceph-daemon-tag-to-current-ceph-wallaby:
+            dependencies:
+              - tripleo-ci-ceph-daemon-get-latest-stable-tag-wallaby
+              - tripleo-ci-centos-9-scenario001-standalone-ceph-updates-wallaby
+              - tripleo-ci-centos-9-scenario004-standalone-ceph-updates-wallaby
