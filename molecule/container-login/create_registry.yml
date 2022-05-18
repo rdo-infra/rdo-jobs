@@ -1,0 +1,32 @@
+---
+- name: Ensure registry doesn't exist
+  containers.podman.podman_container:
+    name: registry{{ item }}
+    state: absent
+
+- name: Create auth directory
+  file:
+    state: directory
+    path: "{{ ansible_user_dir }}/auth{{ item }}"
+
+- name: Create registry users and passwords
+  shell: |-
+    podman run --entrypoint htpasswd registry:2.7.0 -Bbn testuser{{ item }} testpassword{{ item }} > {{ ansible_user_dir }}/auth{{ item }}/htpasswd
+  args:
+    executable: /bin/bash
+  changed_when: true
+
+- name: Create registry
+  containers.podman.podman_container:
+    name: registry{{ item }}
+    image: "registry:2.7.0"
+    restart_policy: always
+    detach: true
+    ports:
+      - "500{{ item }}:5000"
+    volume:
+      - "{{ ansible_user_dir }}/auth{{ item }}:/auth"
+    env:
+      REGISTRY_AUTH: "htpasswd"
+      REGISTRY_AUTH_HTPASSWD_REALM: "Registry Realm"
+      REGISTRY_AUTH_HTPASSWD_PATH: "/auth/htpasswd"
