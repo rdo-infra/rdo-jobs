@@ -1,0 +1,68 @@
+- hosts: all
+  gather_facts: true
+  pre_tasks:
+    - name: set basic user fact
+      set_fact:
+        ansible_user: "{{ lookup('env', 'USER') }}"
+      when:
+        - ansible_user is undefined
+    - name: set basic home fact
+      set_fact:
+        ansible_user_dir: "{{ lookup('env', 'HOME') }}"
+      when:
+        - ansible_user_dir is undefined
+
+  tasks:
+    - name: Enable container-tools and disable rhel-modules on CentOS 8
+      become: true
+      shell:
+        cmd: |
+          set -e -x
+          dnf module disable container-tools:rhel8 -y;
+          dnf module enable container-tools:3.0 -y;
+      changed_when: true
+      when:
+        - ansible_distribution_major_version is version(8, '==')
+
+    - name: Install podman
+      become: true
+      package:
+        name: podman
+        state: present
+
+    - name: Disable SELinux
+      become: true
+      selinux:
+        state: disabled
+
+    - name: Ensure registry doesn't exist
+      containers.podman.podman_container:
+        name: registry
+        state: absent
+
+    - name: Create auth directory
+      file:
+        state: directory
+        path: "{{ ansible_user_dir }}/auth"
+
+    - name: Create registry user/password
+      shell: |-
+        podman run --entrypoint htpasswd registry:2.7.0 -Bbn testuser testpassword > {{ ansible_user_dir }}/auth/htpasswd
+      args:
+        executable: /bin/bash
+      changed_when: true
+
+    - name: Create registry
+      containers.podman.podman_container:
+        name: registry
+        image: "registry:2.7.0"
+        restart_policy: always
+        detach: true
+        ports:
+          - "5000:5000"
+        volume:
+          - "{{ ansible_user_dir }}/auth:/auth"
+        env:
+          REGISTRY_AUTH: "htpasswd"
+          REGISTRY_AUTH_HTPASSWD_REALM: "Registry Realm"
+          REGISTRY_AUTH_HTPASSWD_PATH: "/auth/htpasswd"
