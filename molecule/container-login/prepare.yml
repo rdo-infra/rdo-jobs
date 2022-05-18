@@ -1,0 +1,29 @@
+- hosts: all
+  gather_facts: true
+  pre_tasks:
+    - name: set basic user fact
+      set_fact:
+        ansible_user: "{{ lookup('env', 'USER') }}"
+      when:
+        - ansible_user is undefined
+    - name: set basic home fact
+      set_fact:
+        ansible_user_dir: "{{ lookup('env', 'HOME') }}"
+      when:
+        - ansible_user_dir is undefined
+
+  tasks:
+    - name: Install podman
+      become: true
+      package:
+        name: podman
+        state: present
+
+    - name: Disable SELinux
+      become: true
+      selinux:
+        state: disabled
+
+    - name: Create registries
+      include_tasks: create_registry.yml
+      with_sequence: start=0 end=1

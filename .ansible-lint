@@ -2,11 +2,15 @@ parseable: true
 quiet: false
 exclude_paths:
     - playbooks/legacy
+    - molecule/container-login/create_registry.yml # couldn't resolve module/action 'containers.podman.podman_container'
+    - molecule/container-login/destroy.yml # couldn't resolve module/action 'containers.podman.podman_container'
+    - molecule/container-login/prepare.yml # couldn't resolve module/action 'selinux'
 skip_list:
     - risky-file-permissions
     - package-latest
     - role-name
     - experimental
+    - unnamed-task
 verbosity: 1
 mock_roles:
   - common
