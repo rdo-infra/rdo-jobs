@@ -1,0 +1,6 @@
+- hosts: all
+  tasks:
+    - name: Remove registry
+      containers.podman.podman_container:
+        name: registry
+        state: absent
