@@ -1,0 +1,9 @@
+---
+roles:
+  - name: tripleo_ansible
+    src: git+https://opendev.org/openstack/tripleo-ansible
+
+collections:
+  - containers.podman
+  - community.general
+  - ansible.posix

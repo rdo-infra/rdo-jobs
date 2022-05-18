@@ -1,0 +1,24 @@
+---
+driver:
+  name: delegated
+log: true
+platforms:
+  - name: instance
+provisioner:
+  name: ansible
+  env:
+    # tripleo_ansible is not a single role repo
+    ANSIBLE_ROLES_PATH: "../../roles:${MOLECULE_EPHEMERAL_DIRECTORY}/roles/tripleo_ansible/tripleo_ansible/roles/"
+
+dependency:
+  name: galaxy
+  options:
+    role-file: molecule/container-login/collections.yml
+    requirements-file: molecule/container-login/collections.yml
+
+scenario:
+  test_sequence:
+    - dependency
+    - prepare
+    - converge
+    - destroy
