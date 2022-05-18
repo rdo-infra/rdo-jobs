@@ -1,12 +1,13 @@
 - project:
     check:
       jobs: &jobs
-        - rdo-tox-molecule-delegated-centos-8: &molecule
+        - rdo-mol-container-login:
             files:
               - .*molecule.*
-              - ^roles
+              - .*container-login.*
               - ^requirements.txt
               - ^test-requirements.txt
+              - ^molecule-requirements.txt
               - ^tox.ini$
     gate:
       jobs: *jobs

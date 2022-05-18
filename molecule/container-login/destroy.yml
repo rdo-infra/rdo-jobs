@@ -1,0 +1,7 @@
+- hosts: all
+  tasks:
+    - name: Remove registries
+      containers.podman.podman_container:
+        name: registry{{ item }}
+        state: absent
+      with_sequence: start=0 end=1

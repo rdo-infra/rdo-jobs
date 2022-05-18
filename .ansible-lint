@@ -2,11 +2,14 @@ parseable: true
 quiet: false
 exclude_paths:
     - playbooks/legacy
+    - molecule/container-login/cleanup.yml # module not found 'containers.podman.podman_container'
+    - molecule/container-login/prepare.yml # module not found 'selinux'
 skip_list:
     - risky-file-permissions
     - package-latest
     - role-name
     - experimental
+    - unnamed-task
 verbosity: 1
 mock_roles:
   - common
