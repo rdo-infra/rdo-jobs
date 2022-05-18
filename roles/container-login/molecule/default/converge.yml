@@ -1,0 +1,12 @@
+- hosts: all
+  tasks:
+    - name: Testing container-login role
+      include_role:
+        name: container-login
+      vars:
+        tripleo_podman_tls_verify: false
+        registry_secrets:
+          localhost:5000: "test_secret"
+        test_secret:
+          username: "testuser"
+          password: "testpassword"
