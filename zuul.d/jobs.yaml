@@ -77,6 +77,21 @@
         PYTEST_ADDOPTS: -m "delegated"
 
 - job:
+    name: rdo-molecule-base
+    abstract: true
+    parent: mol
+    vars:
+      tox_extra_args: "-- -s {{ mol_scenario }}"
+      zuul_work_dir: "{{ zuul.projects['review.rdoproject.org/rdo-infra/rdo-jobs'].src_dir }}"
+
+- job:
+    name: rdo-mol-container-login
+    description: Tests container-login role.
+    parent: rdo-molecule-base
+    vars:
+      mol_scenario: container-login
+
+- job:
     name: rdopkg-reqcheck
     description: |
       Dependency check with "rdopkg reqcheck"
