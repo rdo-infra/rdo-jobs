@@ -1,0 +1,16 @@
+---
+- name: Populate the list of registries and logins
+  set_fact:
+    registry_login_list: "{{ registry_login_list|default([]) + new_registry_info }}"
+  vars:
+    secret_name: "{{ lookup('vars', item.value) }}"
+    login_info:
+      - key: "{{ secret_name.username | default(secret_name.user) }}"
+        value: "{{ secret_name.passwd | default(secret_name.password) | default(secret_name.token) }}"
+    new_registry_info:
+      - key: "{{ item.key }}"
+        value: "{{ login_info | items2dict }}"
+
+- name: Build our container_registry_logins map from previous updated list
+  set_fact:
+    container_registry_logins: "{{ registry_login_list | items2dict }}"

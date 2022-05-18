@@ -1,0 +1,78 @@
+---
+- name: Enable container-tools and disable rhel-modules on CentOS 8
+  become: true
+  shell:
+    cmd: |
+      set -e -x
+      dnf module disable container-tools:rhel8 -y;
+      dnf module enable container-tools:3.0 -y;
+  changed_when: true
+  when:
+    - ansible_distribution_major_version is version(8, '==')
+
+- name: Build a dict with regitry and login information
+  no_log: true
+  include_tasks: build_registry_login.yaml
+  with_items: "{{ registry_secrets | dict2items }}"
+
+- name: Registry login
+  no_log: true
+  vars:
+    tripleo_container_registry_logins: "{{ container_registry_logins }}"
+    tripleo_podman_buildah_login: "{{ push_containers|default(false)|bool }}"
+  block:
+    - name: Set tripleo podman role name for train
+      no_log: false
+      set_fact:
+        tripleo_podman_role_name: tripleo-podman
+      when:
+        (release is defined and release == 'train')
+         or (branch_override is defined and branch_override == 'stable/train')
+         or (zuul.branch is defined and zuul.branch == 'stable/train')
+
+    - name: Load vars and install podman
+      no_log: false
+      block:
+        - name: Load var file for Installing and configuring podman
+          include_role:
+            name: "{{ tripleo_podman_role_name | default('tripleo_podman') }}"
+            tasks_from: load_vars.yaml
+
+        - name: Install podman
+          include_role:
+            name: "{{ tripleo_podman_role_name | default('tripleo_podman') }}"
+            tasks_from: tripleo_podman_install.yml
+            vars_from: "{{ ansible_os_family | lower }}.yml"
+      when:
+        - ansible_distribution == "CentOS"
+        - ansible_distribution_major_version is version(8, '>=')
+
+    - include_role:
+        name: "{{ tripleo_podman_role_name | default('tripleo_podman') }}"
+        tasks_from: tripleo_podman_login.yml
+      when:
+        (ansible_distribution == "CentOS" and ansible_distribution_major_version is version(8, '>='))
+         or (ansible_distribution == "RedHat" and ansible_lsb.major_release is version(8, '>='))
+
+    - include_role:
+        name: "{{ tripleo_podman_role_name | default('tripleo_podman') }}"
+        tasks_from: tripleo_podman_buildah_login.yml
+      when:
+        - tripleo_podman_buildah_login | bool
+        - (ansible_distribution == "CentOS" and ansible_distribution_major_version is version(8, '>='))
+           or (ansible_distribution == "RedHat" and ansible_lsb.major_release is version(8, '>='))
+
+  always:
+    - name: Assert role has worked in (CentOS|RedHat) 8
+      no_log: false
+      loop: "{{ registry_login_podman.results }}"
+      when:
+        - (ansible_distribution == "CentOS" and ansible_distribution_major_version is version(8, '>='))
+          or (ansible_distribution == "RedHat" and ansible_lsb.major_release is version(8, '>='))
+        - registry_login_podman is defined
+        - item.rc != 0
+      assert:
+        that:
+          - item.rc == 0
+        success_msg: Role got to the authentication phase and correctly failed
+        fail_msg: Role failed authentication with {{ item.stderr }}
