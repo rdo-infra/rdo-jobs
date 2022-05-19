@@ -99,3 +99,22 @@
       trigger_os_distro: centos_9
       trigger_job_name: baremetal
       trigger_commit_msg: "Trigger for baremetal-job"
+
+## Temporary trigger jobs till vexxhost is stable
+
+- job:
+    name: create-fs035-master-c9-trigger-for-downstream
+    parent: create-scenario010-trigger-for-downstream
+    vars:
+      trigger_branch: master
+      trigger_os_distro: centos_9
+      trigger_job_name: fs035
+      trigger_commit_msg: "Trigger for fs035 master c9 job"
+- job:
+    name: create-fs001-master-c9-trigger-for-downstream
+    parent: create-scenario010-trigger-for-downstream
+    vars:
+      trigger_branch: master
+      trigger_os_distro: centos_9
+      trigger_job_name: fs001
+      trigger_commit_msg: "Trigger for fs001 master c9 job"

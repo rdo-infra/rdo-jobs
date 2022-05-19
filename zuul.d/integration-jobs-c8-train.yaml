@@ -77,3 +77,23 @@
       release: train
       branch_override: 'stable/train'
       registry_namespace: tripleotraincentos8
+
+## Temporary trigger jobs till vexxhost is stable
+
+- job:
+    name: create-fs035-train-c8-trigger-for-downstream
+    parent: create-scenario010-trigger-for-downstream
+    vars:
+      trigger_branch: train
+      trigger_os_distro: centos_8
+      trigger_job_name: fs035
+      trigger_commit_msg: "Trigger for fs035 train c8 job"
+
+- job:
+    name: create-fs001-train-c8-trigger-for-downstream
+    parent: create-scenario010-trigger-for-downstream
+    vars:
+      trigger_branch: train
+      trigger_os_distro: centos_8
+      trigger_job_name: fs001
+      trigger_commit_msg: "Trigger for fs001 train c8 job"
