@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1db3b932_663d3a18",
+        "filename": "zuul.d/ceph-jobs.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-05-20T08:11:27Z",
+      "side": 1,
+      "message": "looks to be the same as line 8 above? if so please consider using an anchor? especially since it is a regex easy to break it if we have updates\n\ni.e.\n\n\n\nceph_daemon_latest_tag_regex: \u0026ceph_regex \u0027^v(\\\\d+\\\\.\\\\d+\\\\.\\\\d+)-stable.*pacific.*x86_64$\u0027\n\n\nthen later\n\nceph_daemon_latest_tag_regex: *ceph_regex",
+      "range": {
+        "startLine": 41,
+        "startChar": 36,
+        "endLine": 41,
+        "endChar": 85
+      },
+      "revId": "e8b43429a5484762540c11d23389326e85644718",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a0335776_fb24b69c",
         "filename": "zuul.d/ceph-jobs.yaml",
         "patchSetId": 4
