@@ -33,6 +33,29 @@
       "message": "Failures are caused by tempest, looks unrelated to the change",
       "revId": "6c69674e2c4b3c3f3624a5230c523a0e6819d3f1",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f28d0b4_324eb6ef",
+        "filename": "zuul.d/integration-jobs-cs9-wallaby.yaml",
+        "patchSetId": 16
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-05-23T05:56:22Z",
+      "side": 1,
+      "message": "why do we need these here though if this is already default?\n\n[EDIT]: ok because of the parenting so we need to override what the parent is setting.",
+      "range": {
+        "startLine": 189,
+        "startChar": 8,
+        "endLine": 190,
+        "endChar": 8
+      },
+      "revId": "6c69674e2c4b3c3f3624a5230c523a0e6819d3f1",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
