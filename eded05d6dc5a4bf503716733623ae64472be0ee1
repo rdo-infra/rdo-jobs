@@ -16,6 +16,29 @@
       "message": "stared for a bit :) cant spot something",
       "revId": "eded05d6dc5a4bf503716733623ae64472be0ee1",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e96d06b9_d59c783a",
+        "filename": "zuul.d/ovb-jobs.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-05-24T07:37:53Z",
+      "side": 1,
+      "message": "since we\u0027re not running these any more we should probably move them over to some deprecated file and avoid making these updates\n\nlike we should only have and update fs1 and fs35 here if that is all we are running for wallaby8 these days\n\n(not related to this it should be new task just adding comment for the discussion)",
+      "range": {
+        "startLine": 292,
+        "startChar": 43,
+        "endLine": 292,
+        "endChar": 54
+      },
+      "revId": "eded05d6dc5a4bf503716733623ae64472be0ee1",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
