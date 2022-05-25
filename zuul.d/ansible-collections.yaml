@@ -31,6 +31,13 @@
         override-checkout: main
 
 - job:
+    name: periodic-tripleo-collection-integration-centos-8-standalone-ansible-utils
+    parent: tripleo-collection-integration-centos-8-standalone
+    required-projects:
+      - name: github.com/ansible-collections/ansible.utils
+        override-checkout: main
+
+- job:
     name: periodic-tripleo-collection-integration-centos-9-standalone-community-general
     parent: periodic-tripleo-collection-integration-centos-8-standalone-community-general
     nodeset: single-centos-9-stream-node-vexxhost
@@ -43,4 +50,9 @@
 - job:
     name: periodic-tripleo-collection-integration-centos-9-standalone-ansible-posix
     parent: periodic-tripleo-collection-integration-centos-8-standalone-ansible-posix
+    nodeset: single-centos-9-stream-node-vexxhost
+
+- job:
+    name: periodic-tripleo-collection-integration-centos-9-standalone-ansible-utils
+    parent: periodic-tripleo-collection-integration-centos-8-standalone-ansible-utils
     nodeset: single-centos-9-stream-node-vexxhost
