@@ -507,23 +507,23 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario012-standalone-master
+    parent: tripleo-ci-scenario012-standalone-options
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario012-standalone-master
     voting: false
     parent: periodic-tripleo-ci-standalone-rdo-centos-8
-    vars: &vars_standalone_012
-      featureset: '060'
-      standalone_ceph: true
+    vars:
       release: master
-      featureset_override:
-        validate_services: false
-        standalone_environment_files:
-          - 'environments/low-memory-usage.yaml'
-          - 'ci/environments/scenario012-standalone.yaml'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario012-standalone-master
+    parent: tripleo-ci-scenario012-standalone-options
 
 - job:
     name: periodic-tripleo-ci-centos-9-scenario012-standalone-master
     voting: false
     parent: periodic-tripleo-ci-standalone-rdo-centos-9
-    vars: *vars_standalone_012
 
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-upgrade-master
