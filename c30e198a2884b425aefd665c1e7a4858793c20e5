@@ -35,6 +35,23 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04d6738b_e287f567",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 739
+      },
+      "writtenOn": "2022-05-25T14:44:57Z",
+      "side": 1,
+      "message": "Thanks dasm!",
+      "revId": "c30e198a2884b425aefd665c1e7a4858793c20e5",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52ebb91f_0e73673e",
@@ -48,6 +65,24 @@
       "writtenOn": "2022-05-25T14:37:38Z",
       "side": 1,
       "message": "Nothing against that, but I would expect to see some better way of handling SELinux than disabling it.",
+      "revId": "c30e198a2884b425aefd665c1e7a4858793c20e5",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "780c4fbb_4f62e64d",
+        "filename": "molecule/container-login/prepare.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 739
+      },
+      "writtenOn": "2022-05-25T14:44:57Z",
+      "side": 1,
+      "message": "yeah, but since it is just a fake environment to test a specific role action (login into a registry), I don\u0027t think that is a problem.",
+      "parentUuid": "52ebb91f_0e73673e",
       "revId": "c30e198a2884b425aefd665c1e7a4858793c20e5",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
