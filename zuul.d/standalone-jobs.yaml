@@ -237,82 +237,58 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-master
+    parent: tripleo-ci-standalone-full-tempest-options
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-master
     parent: periodic-tripleo-ci-centos-8-standalone-master
     timeout: 14400
     vars:
-      featureset: '052'
       release: master
-      featureset_override:
-        run_tempest: false
-        tempest_run_concurrency: 4
-        tempest_services:
-          - cinder
-          - horizon
-          - neutron
-        tempest_test_whitelist:
-          - 'api'
-          - 'scenario'
-        use_os_tempest: true
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-master
+    parent: tripleo-ci-standalone-full-tempest-api-options
 
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-api-master
     parent: periodic-tripleo-ci-centos-8-standalone-master
     timeout: 14400
     vars:
-      featureset: '052'
       release: master
-      featureset_override:
-        run_tempest: false
-        tempest_run_concurrency: 4
-        tempest_services:
-          - cinder
-          - horizon
-          - neutron
-        tempest_test_whitelist:
-          - 'api'
-        use_os_tempest: true
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-master
+    parent: tripleo-ci-standalone-full-tempest-api-options
 
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-master
     parent: periodic-tripleo-ci-centos-9-standalone-master
     timeout: 14400
     vars:
-      featureset: '052'
       release: master
-      featureset_override:
-        run_tempest: false
-        tempest_run_concurrency: 4
-        tempest_services:
-          - cinder
-          - horizon
-          - neutron
-        tempest_test_whitelist:
-          - 'api'
-        use_os_tempest: true
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-master
+    parent: tripleo-ci-standalone-full-tempest-scenario-options
 
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-master
     parent: periodic-tripleo-ci-centos-8-standalone-master
     timeout: 14400
-    vars: &vars_tempest_scenario
-      featureset: '052'
+    vars:
       release: master
-      featureset_override:
-        run_tempest: false
-        tempest_run_concurrency: 4
-        tempest_services:
-          - cinder
-          - horizon
-          - neutron
-        tempest_test_whitelist:
-          - 'scenario'
-        use_os_tempest: true
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-master
+    parent: tripleo-ci-standalone-full-tempest-scenario-options
 
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-master
     parent: periodic-tripleo-ci-centos-9-standalone-master
     timeout: 14400
-    vars: *vars_tempest_scenario
+    vars:
+      release: master
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario001-standalone-master
