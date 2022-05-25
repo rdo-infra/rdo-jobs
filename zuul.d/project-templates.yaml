@@ -333,27 +333,6 @@
         - validate-buildsys-tags-zed-testing-packstack-scenario003-centos9
 
 - project-template:
-    name: periodic-centos-stream
-    description: |
-     Periodic jobs to validate centos-stream with weirdo on RDO Trunk
-    periodic:
-      jobs:
-        - periodic-wallaby-packstack-scenario001-centos-stream
-        - periodic-wallaby-packstack-scenario002-centos-stream
-        - periodic-wallaby-packstack-scenario003-centos-stream
-        - periodic-wallaby-puppet-scenario001-centos-stream
-        - periodic-wallaby-puppet-scenario002-centos-stream
-        - periodic-wallaby-puppet-scenario003-centos-stream
-        - periodic-wallaby-puppet-scenario004-centos-stream
-        - periodic-victoria-packstack-scenario001-centos-stream
-        - periodic-victoria-packstack-scenario002-centos-stream
-        - periodic-victoria-packstack-scenario003-centos-stream
-        - periodic-victoria-puppet-scenario001-centos-stream
-        - periodic-victoria-puppet-scenario002-centos-stream
-        - periodic-victoria-puppet-scenario003-centos-stream
-        - periodic-victoria-puppet-scenario004-centos-stream
-
-- project-template:
     name: periodic-cloudsig-jobs
     description: |
      Periodic jobs to validate CloudSIG repos
@@ -361,6 +340,13 @@
       jobs:
         - cloudsig-wallaby-release-centos-8-scenario001-standalone
         - cloudsig-victoria-release-centos-8-scenario001-standalone
+        - periodic-cloudsig-yoga-release-puppet-scenario001-centos8
+        - periodic-cloudsig-yoga-release-puppet-scenario002-centos8
+        - periodic-cloudsig-yoga-release-puppet-scenario003-centos8
+        - periodic-cloudsig-yoga-release-puppet-scenario004-centos8
+        - periodic-cloudsig-yoga-release-packstack-scenario001-centos8
+        - periodic-cloudsig-yoga-release-packstack-scenario002-centos8
+        - periodic-cloudsig-yoga-release-packstack-scenario003-centos8
         - periodic-cloudsig-xena-release-puppet-scenario001-centos8
         - periodic-cloudsig-xena-release-puppet-scenario002-centos8
         - periodic-cloudsig-xena-release-puppet-scenario003-centos8
