@@ -162,3 +162,52 @@
     parent: periodic-cloudsig-xena-release-centos8-base
     vars:
       scenario: scenario003
+
+- job:
+    name: periodic-cloudsig-yoga-release-centos8-base
+    parent: weirdo-cloudsig-periodic-base
+    vars:
+      rdoinfo_release: yoga
+      rdoinfo_phase: release
+
+- job:
+    name: periodic-cloudsig-yoga-release-puppet-scenario001-centos8
+    parent: periodic-cloudsig-yoga-release-centos8-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: periodic-cloudsig-yoga-release-puppet-scenario002-centos8
+    parent: periodic-cloudsig-yoga-release-centos8-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: periodic-cloudsig-yoga-release-puppet-scenario003-centos8
+    parent: periodic-cloudsig-yoga-release-centos8-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: periodic-cloudsig-yoga-release-puppet-scenario004-centos8
+    parent: periodic-cloudsig-yoga-release-centos8-base
+    vars:
+      scenario: scenario004
+
+- job:
+    name: periodic-cloudsig-yoga-release-packstack-scenario001-centos8
+    parent: periodic-cloudsig-yoga-release-centos8-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: periodic-cloudsig-yoga-release-packstack-scenario002-centos8
+    parent: periodic-cloudsig-yoga-release-centos8-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: periodic-cloudsig-yoga-release-packstack-scenario003-centos8
+    parent: periodic-cloudsig-yoga-release-centos8-base
+    vars:
+      scenario: scenario003
