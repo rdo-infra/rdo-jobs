@@ -207,7 +207,6 @@
     # `go get github.com/cpuguy83/go-md2man` fails due to old git.
     github-check:
       jobs:
-        # - podman-package-centos-7
         - podman-package-centos-8
         - tripleo-podman-integration-centos-8-standalone:
             dependencies:
