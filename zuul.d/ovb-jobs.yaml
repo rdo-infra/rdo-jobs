@@ -139,35 +139,12 @@
       featureset: '001'
 
 - job:
-    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset001
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^(stable/train).*$
-    vars:
-      nodes: 1ctlr_1comp
-      featureset: '001'
-
-- job:
     name: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset001
     parent: tripleo-ci-ovb-rdo-centos-8
     branches: ^(stable/(train|wallaby)).*$
     vars:
       nodes: 1ctlr_1comp
       featureset: '001'
-
-- job:
-    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^(stable/(train)).*$
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '001'
-
-- job:
-    name: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-ovb-master
-    parent: tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001
-    branches: ^master$
-    required-projects:
-      - opendev.org/openstack/openstack-virtual-baremetal
 
 - job:
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-ovb-master
@@ -192,17 +169,6 @@
       featureset: '035'
       cloud_name: vexxhost
 
-- job:
-    name: tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-train
-    parent: tripleo-ci-base-ovb-rdo
-    branches: ^master$
-    override-checkout: "stable/train"
-    timeout: 18000
-    vars:
-      nodes: 1ctlr_2comp
-      featureset: '020'
-      branch_override: "stable/train"
-
 # Job for testing featureset002 changes
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-upload
@@ -211,31 +177,6 @@
     vars:
       nodes: 1ctlr_1comp
       featureset: '002'
-
-- job:
-    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload
-    parent: tripleo-ci-base-ovb-rdo
-    branches: "^.*$"
-    vars:
-      nodes: 1ctlr_1comp
-      featureset: '002'
-
-- job:
-    name: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload-train
-    parent: tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-upload
-    override-checkout: "stable/train"
-    vars:
-      branch_override: "stable/train"
-
-
-- job:
-    name: tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020
-    parent: tripleo-ci-base-ovb-rdo
-    timeout: 18000
-    branches: ^(stable/(train)).*$
-    vars:
-      nodes: 1ctlr_2comp
-      featureset: '020'
 
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020
@@ -263,28 +204,6 @@
       nodes: 1ctlr_1cellctrl_1comp
       featureset: '063'
 
-
-# =================  C E N T O S  7  P E R I O D I C   J O B S
-# legacy-periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
-    parent: tripleo-ci-base-ovb-periodic
-    # Bumping to 5hours for fs1 to run *api* tempest see
-    # https://tree.taiga.io/project/tripleo-ci-board/task/1383
-    timeout: 18000
-    vars:
-      nodes: 3ctlr_1comp
-      featureset: '001'
-      release: master
-
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-train
-    parent: periodic-tripleo-ci-centos-7-ovb-3ctlr_1comp-featureset001-master
-    override-checkout: "stable/train"
-    vars:
-      branch_override: "stable/train"
-      release: train
-
 # Note(chkumar): Use RHEL/CentOS parent from master job
 
 # legacy-periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload
@@ -296,56 +215,6 @@
       featureset: '002'
       release: master
       image_upload: false
-
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload
-    parent: tripleo-ci-base-ovb-periodic-upload
-    vars:
-      nodes: 1ctlr_1comp
-      featureset: '002'
-      release: master
-
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-train-upload
-    parent: periodic-tripleo-ci-centos-7-ovb-1ctlr_1comp-featureset002-master-upload
-    override-checkout: "stable/train"
-    vars:
-      branch_override: "stable/train"
-      release: train
-
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-master
-    parent: tripleo-ci-base-ovb-periodic
-    timeout: 18000
-    vars:
-      nodes: 1ctlr_2comp
-      featureset: '020'
-      release: master
-
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-train
-    parent: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset020-master
-    override-checkout: "stable/train"
-    vars:
-      branch_override: "stable/train"
-      release: train
-
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-master
-    parent: tripleo-ci-base-ovb-periodic
-    timeout: 18000
-    vars:
-      nodes: 1ctlr_2comp
-      featureset: '021'
-      release: master
-
-- job:
-    name: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-train
-    parent: periodic-tripleo-ci-centos-7-ovb-1ctlr_2comp-featureset021-master
-    override-checkout: "stable/train"
-    vars:
-      branch_override: "stable/train"
-      release: train
 
 ##################################################################
 #################### CENTOS-8 PERIODIC JOBS ######################
