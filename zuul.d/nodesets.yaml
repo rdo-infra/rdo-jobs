@@ -5,25 +5,23 @@
       - name: container
         label: pod-python-f33
 
-# Dib centos
-- nodeset:
-    name: dib-centos-7
-    nodes:
-      - name: dib-centos-7
-        label: dib-centos-7
-
-- nodeset:
-    name: legacy-upstream-centos-7
-    nodes:
-      - name: primary
-        label: upstream-centos-7
-
 - nodeset:
     # status: recommended
     name: rdo-centos-7
     nodes:
       - name: rdo-centos-7
         label: rdo-centos-7-vexxhost
+
+- nodeset:
+    name: upstream-centos-7-vexxhost
+    nodes:
+      - name: primary
+        label: upstream-centos-7-vexxhost
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
 
 - nodeset:
     # status: recommended
@@ -83,23 +81,6 @@
         label: cloud-fedora-rawhide-vexxhost
 
 - nodeset:
-    name: tripleo-ovb-centos-7
-    nodes:
-      - name: tripleo-ovb-centos-7
-        label: tripleo-ovb-centos-7
-
-- nodeset:
-    name: tripleo-ovb-centos-7-primary
-    nodes:
-      - name: primary
-        label: upstream-centos-7-vexxhost
-    groups:
-      - name: switch
-        nodes: []
-      - name: peers
-        nodes: []
-
-- nodeset:
     name: tripleo-ovb-fedora-28-primary
     nodes:
       - name: primary
@@ -107,89 +88,6 @@
     groups:
       - name: switch
         nodes: []
-      - name: peers
-        nodes: []
-
-- nodeset:
-    name: upstream-centos-7-vexxhost
-    nodes:
-      - name: primary
-        label: upstream-centos-7-vexxhost
-    groups:
-      - name: switch
-        nodes: []
-      - name: peers
-        nodes: []
-
-- nodeset:
-    name: single-centos-7-node-vexxhost
-    nodes:
-      - name: primary
-        label: upstream-centos-7-vexxhost
-    groups:
-      - name: switch
-        nodes:
-          - primary
-      - name: peers
-        nodes: []
-
-- nodeset:
-    name: two-centos-7-nodes-vexxhost
-    nodes:
-      - name: primary
-        label: upstream-centos-7-vexxhost
-      - name: secondary
-        label: upstream-centos-7-vexxhost
-    groups:
-      - name: switch
-        nodes:
-          - primary
-      - name: peers
-        nodes:
-          - secondary
-      - name: subnodes
-        nodes:
-          - secondary
-
-- nodeset:
-    name: upstream-centos-7-2-node
-    nodes:
-      - name: primary
-        label: upstream-centos-7-vexxhost
-      - name: secondary
-        label: upstream-centos-7-vexxhost
-    groups:
-      - name: subnodes
-        nodes:
-          - secondary
-
-- nodeset:
-    name: two-centos-7-nodes
-    nodes:
-      - name: primary
-        label: upstream-centos-7-vexxhost
-      - name: secondary
-        label: upstream-centos-7-vexxhost
-    groups:
-      - name: switch
-        nodes:
-          - primary
-      - name: peers
-        nodes:
-          - secondary
-      - name: subnodes
-        nodes:
-          - secondary
-
-- nodeset:
-    name: single-centos-7-node
-    nodes:
-      - name: primary
-        label: upstream-centos-7-vexxhost
-    groups:
-      - name: switch
-        nodes:
-          - primary
       - name: peers
         nodes: []
 
@@ -268,13 +166,6 @@
         nodes: []
 
 - nodeset:
-    name: centos-7
-    # status: deprecated, use rdo-centos-7 instead
-    nodes:
-      - name: upstream-centos-7
-        label: upstream-centos-7-vexxhost
-
-- nodeset:
     name: centos-8
     # status: deprecated, use rdo-centos-8 instead
     nodes:
@@ -287,17 +178,6 @@
     nodes:
       - name: primary
         label: upstream-centos-8-stream
-    groups:
-      - name: switch
-        nodes: []
-      - name: peers
-        nodes: []
-
-- nodeset:
-    name: upstream-centos-7-psi-public
-    nodes:
-      - name: primary
-        label: upstream-centos-7-psi-public
     groups:
       - name: switch
         nodes: []
@@ -580,3 +460,4 @@
       - name: subnodes
         nodes:
           - secondary
+
