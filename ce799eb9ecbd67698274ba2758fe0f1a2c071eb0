@@ -22,6 +22,30 @@
       },
       "revId": "ce799eb9ecbd67698274ba2758fe0f1a2c071eb0",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "730a4e33_2b68cf52",
+        "filename": "tox.ini",
+        "patchSetId": 19
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 739
+      },
+      "writtenOn": "2022-05-26T11:33:02Z",
+      "side": 0,
+      "message": "Most of them are needed when using pytest to run molecule jobs. But in this repo, we were not running any molecule job until now.\n\nDocker is needed when parenting from upstream \"tox-molecule\", since it always installs docker, but this was bringing issue to install podman, due to conflicting dependencies.\n\nWe can just call \u0027molecule\u0027 to run an specific scenario at each job we want. Same thing that we are doing in \u0027ci-config\u0027 and \u0027tripleo-repos\u0027.",
+      "parentUuid": "6a0cf639_c464959e",
+      "range": {
+        "startLine": 59,
+        "startChar": 5,
+        "endLine": 60,
+        "endChar": 4
+      },
+      "revId": "ce799eb9ecbd67698274ba2758fe0f1a2c071eb0",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
