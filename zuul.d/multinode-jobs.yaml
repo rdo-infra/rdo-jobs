@@ -24,18 +24,6 @@
         - multinode.yml
 
 - job:
-    name: periodic-tripleo-ci-centos-7-containers-multinode-train
-    parent: tripleo-ci-base-multinode-periodic
-    override-checkout: "stable/train"
-    vars:
-      nodes: 1ctlr
-      featureset: '010'
-      release: train
-      branch_override: "stable/train"
-      playbooks:
-        - multinode.yml
-
-- job:
     name: periodic-tripleo-ci-centos-9-scenario007-multinode-oooq-container-master
     parent: tripleo-ci-base-multinode-periodic-centos-9
     vars:
@@ -54,18 +42,6 @@
       release: master
       playbooks:
         - multinode.yml
-
-- job:
-    name: periodic-tripleo-ci-centos-7-scenario007-multinode-oooq-container-train
-    parent: tripleo-ci-base-multinode-periodic
-    override-checkout: "stable/train"
-    vars:
-      nodes: 1ctlr
-      featureset: '030'
-      branch_override: "stable/train"
-      playbooks:
-        - multinode.yml
-      release: train
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-train
