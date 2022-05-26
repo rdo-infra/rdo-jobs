@@ -19,11 +19,6 @@
       - name: github.com/containers/podman
 
 - job:
-    name: podman-package-centos-7
-    parent: podman-package-centos-8
-    nodeset: centos-7
-
-- job:
     name: podman-package-centos-9
     parent: podman-package-centos-8
     nodeset: single-centos-9-stream-node-vexxhost
