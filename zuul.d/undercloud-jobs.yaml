@@ -46,18 +46,6 @@
       branch_override: "stable/train"
       release: train
 
-# CentOS 7
-- job:
-    name: periodic-tripleo-ci-centos-7-undercloud-containers-master
-    parent: periodic-tripleo-ci-undercloud-rdo-centos-7
-    vars: *uc_vars
-
-- job:
-    name: periodic-tripleo-ci-centos-7-undercloud-containers-train
-    parent: periodic-tripleo-ci-centos-7-undercloud-containers-master
-    vars:
-      branch_override: "stable/train"
-      release: train
 
 # Undercloud Upgrade jobs
 - job:

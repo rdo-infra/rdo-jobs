@@ -22,13 +22,7 @@
     parent: nodeset-validator-base
     nodeset: rdo-centos-8-stream
 
-- job:
-    name: nodeset-validator-rdo-centos-7
-    parent: nodeset-validator-base
-    nodeset: rdo-centos-7
-
 - project:
     check:
       jobs:
-        - nodeset-validator-rdo-centos-7
         - nodeset-validator-rdo-centos-8
