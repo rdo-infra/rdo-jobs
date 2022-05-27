@@ -86,6 +86,69 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e6629ed_690d5f0e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-05-27T06:32:07Z",
+      "side": 1,
+      "message": "ok another pass- minor comments inline for consideration thanks\n\n",
+      "revId": "c30e198a2884b425aefd665c1e7a4858793c20e5",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0653ee2_3181dec8",
+        "filename": "molecule/container-login/create_registry.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-05-27T06:32:07Z",
+      "side": 1,
+      "message": "do we want to add this in the role vars/defaults?",
+      "range": {
+        "startLine": 22,
+        "startChar": 12,
+        "endLine": 22,
+        "endChar": 27
+      },
+      "revId": "c30e198a2884b425aefd665c1e7a4858793c20e5",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1464c442_fafea083",
+        "filename": "molecule/container-login/create_registry.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-05-27T06:32:07Z",
+      "side": 1,
+      "message": "😊\n\nports: 5000:5000 vs 5001:5000 ?",
+      "range": {
+        "startLine": 26,
+        "startChar": 15,
+        "endLine": 26,
+        "endChar": 19
+      },
+      "revId": "c30e198a2884b425aefd665c1e7a4858793c20e5",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52ebb91f_0e73673e",
@@ -135,6 +198,69 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "780c4fbb_4f62e64d",
+      "revId": "c30e198a2884b425aefd665c1e7a4858793c20e5",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eecca7dc_2876294f",
+        "filename": "molecule/container-login/prepare.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-05-27T06:32:07Z",
+      "side": 1,
+      "message": "so we will have registry0 and registry1? \n\n[EDIT]: OK this is molecule testing i was confused initially I thought you were doing this for rdo and quay (registry0/registry1) but not this is just testing",
+      "range": {
+        "startLine": 29,
+        "startChar": 21,
+        "endLine": 29,
+        "endChar": 34
+      },
+      "revId": "c30e198a2884b425aefd665c1e7a4858793c20e5",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c9d7677_0006e7ce",
+        "filename": "roles/container-login/defaults/main.yaml",
+        "patchSetId": 19
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-05-27T06:32:07Z",
+      "side": 1,
+      "message": "registry_secrets: \"\" ?",
+      "revId": "c30e198a2884b425aefd665c1e7a4858793c20e5",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31862afa_9780a989",
+        "filename": "roles/container-login/tasks/build_registry_login.yaml",
+        "patchSetId": 19
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-05-27T06:32:07Z",
+      "side": 1,
+      "message": "maybe add some words in the README about these \u0027acceptable\u0027 values for the secret.passwd and .user/username etc\n\npersonally I would avoid this altogether and make it work only with \u0027username\u0027 and \u0027password\u0027 but in both cases we should document it (whether you want to be strict or to accept more values as you have above)",
+      "range": {
+        "startLine": 9,
+        "startChar": 31,
+        "endLine": 9,
+        "endChar": 68
+      },
       "revId": "c30e198a2884b425aefd665c1e7a4858793c20e5",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
