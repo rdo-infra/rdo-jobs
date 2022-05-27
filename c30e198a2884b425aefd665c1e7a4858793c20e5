@@ -126,6 +126,30 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff122d67_5a1b32ea",
+        "filename": "molecule/container-login/create_registry.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 739
+      },
+      "writtenOn": "2022-05-27T12:38:27Z",
+      "side": 1,
+      "message": "not as a role default, because this is being used only to test using molecule. Can be a var on this playbook.",
+      "parentUuid": "a0653ee2_3181dec8",
+      "range": {
+        "startLine": 22,
+        "startChar": 12,
+        "endLine": 22,
+        "endChar": 27
+      },
+      "revId": "c30e198a2884b425aefd665c1e7a4858793c20e5",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1464c442_fafea083",
@@ -139,6 +163,30 @@
       "writtenOn": "2022-05-27T06:32:07Z",
       "side": 1,
       "message": "😊\n\nports: 5000:5000 vs 5001:5000 ?",
+      "range": {
+        "startLine": 26,
+        "startChar": 15,
+        "endLine": 26,
+        "endChar": 19
+      },
+      "revId": "c30e198a2884b425aefd665c1e7a4858793c20e5",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a6a4901_8fd52999",
+        "filename": "molecule/container-login/create_registry.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 739
+      },
+      "writtenOn": "2022-05-27T12:38:27Z",
+      "side": 1,
+      "message": "Yep, this is mapping container port 5000 (registry default) to host 5000 and 5001. So we can use both as 2 different registries in this test.",
+      "parentUuid": "1464c442_fafea083",
       "range": {
         "startLine": 26,
         "startChar": 15,
@@ -225,6 +273,30 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d4c4790_ea29729d",
+        "filename": "molecule/container-login/prepare.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 739
+      },
+      "writtenOn": "2022-05-27T12:38:27Z",
+      "side": 1,
+      "message": "Correct, this is just a molecule test. The test itself starts 2 registries and have one user/password configured each. The idea is to test the container login only.",
+      "parentUuid": "eecca7dc_2876294f",
+      "range": {
+        "startLine": 29,
+        "startChar": 21,
+        "endLine": 29,
+        "endChar": 34
+      },
+      "revId": "c30e198a2884b425aefd665c1e7a4858793c20e5",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c9d7677_0006e7ce",
@@ -244,6 +316,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4f4a4583_7a7b25a0",
+        "filename": "roles/container-login/defaults/main.yaml",
+        "patchSetId": 19
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 739
+      },
+      "writtenOn": "2022-05-27T12:38:27Z",
+      "side": 1,
+      "message": "Hum, make sense? This default would break the role. It is mandaoty to provide at least on registry+secret in order to use the role.",
+      "parentUuid": "7c9d7677_0006e7ce",
+      "revId": "c30e198a2884b425aefd665c1e7a4858793c20e5",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "31862afa_9780a989",
         "filename": "roles/container-login/tasks/build_registry_login.yaml",
         "patchSetId": 19
@@ -255,6 +345,30 @@
       "writtenOn": "2022-05-27T06:32:07Z",
       "side": 1,
       "message": "maybe add some words in the README about these \u0027acceptable\u0027 values for the secret.passwd and .user/username etc\n\npersonally I would avoid this altogether and make it work only with \u0027username\u0027 and \u0027password\u0027 but in both cases we should document it (whether you want to be strict or to accept more values as you have above)",
+      "range": {
+        "startLine": 9,
+        "startChar": 31,
+        "endLine": 9,
+        "endChar": 68
+      },
+      "revId": "c30e198a2884b425aefd665c1e7a4858793c20e5",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45194a55_b2b955cb",
+        "filename": "roles/container-login/tasks/build_registry_login.yaml",
+        "patchSetId": 19
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 739
+      },
+      "writtenOn": "2022-05-27T12:38:27Z",
+      "side": 1,
+      "message": "You are right about documentation. I don\u0027t want to restrict these values here because I would need to update our secrets in \u0027config\u0027 repo. This could break things since there are some hardcoded code there using those secrets.",
+      "parentUuid": "31862afa_9780a989",
       "range": {
         "startLine": 9,
         "startChar": 31,
