@@ -67,6 +67,24 @@
       "message": "do we need a nodeset if it\u0027s off a 9 parent?",
       "revId": "d0c08115f2d42df5eab32ed17043b38f6fa2364a",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73a363fc_77c56a30",
+        "filename": "zuul.d/integration-jobs-cs9-master.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2022-05-30T10:47:00Z",
+      "side": 1,
+      "message": "Nodeset is already defined here: https://github.com/rdo-infra/review.rdoproject.org-config/blob/master/zuul.d/tripleo-rdo-base.yaml#L636 for ovb and same goes for upgrade: https://github.com/rdo-infra/review.rdoproject.org-config/blob/master/zuul.d/tripleo-rdo-base.yaml#L692\n\nPlease remove the nodeset and rest looks ok.",
+      "parentUuid": "27834f6a_35718b44",
+      "revId": "d0c08115f2d42df5eab32ed17043b38f6fa2364a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
