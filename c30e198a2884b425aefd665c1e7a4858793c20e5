@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "1a24cfe0_cbf71d9c",
+        "filename": ".ansible-lint",
+        "patchSetId": 19
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-06-01T07:58:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09fa00a9_00faaa5c",
+      "revId": "c30e198a2884b425aefd665c1e7a4858793c20e5",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "958c3826_4e4497fb",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 19
@@ -328,6 +346,24 @@
       "side": 1,
       "message": "Hum, make sense? This default would break the role. It is mandaoty to provide at least on registry+secret in order to use the role.",
       "parentUuid": "7c9d7677_0006e7ce",
+      "revId": "c30e198a2884b425aefd665c1e7a4858793c20e5",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "342734f5_f097ddeb",
+        "filename": "roles/container-login/defaults/main.yaml",
+        "patchSetId": 19
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-06-01T07:58:06Z",
+      "side": 1,
+      "message": "ack thanks. I thought we might get away with \n\nregistry_secrets:\n\nbut even then \u0027is defined\u0027 is true. \n\nthe main benefit to having it here would be documenting the var i.e. you have to pass this thing but the check and fail will cover that in any case",
+      "parentUuid": "4f4a4583_7a7b25a0",
       "revId": "c30e198a2884b425aefd665c1e7a4858793c20e5",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
