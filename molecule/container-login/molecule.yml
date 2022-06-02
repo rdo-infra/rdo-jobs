@@ -7,6 +7,7 @@ platforms:
 provisioner:
   name: ansible
   env:
+    ANSIBLE_STDOUT_CALLBACK: yaml
     # tripleo_ansible is not a single role repo
     ANSIBLE_ROLES_PATH: "../../roles:${MOLECULE_EPHEMERAL_DIRECTORY}/roles/tripleo_ansible/tripleo_ansible/roles/"
 

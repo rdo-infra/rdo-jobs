@@ -1,5 +1,6 @@
 - project:
     check:
+      debug: true
       jobs: &jobs
         - rdo-mol-container-login:
             files:

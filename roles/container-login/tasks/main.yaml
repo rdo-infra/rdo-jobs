@@ -67,7 +67,7 @@
 
   always:
     - name: Assert which issue happened in login step
-      no_log: false
+      no_log: true
       loop: "{{ registry_login_podman.results }}"
       when:
         - registry_login_podman is defined
