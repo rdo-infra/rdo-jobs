@@ -200,15 +200,6 @@
             irrelevant-files: *fs001_irrelevant_files
 
 - project-template:
-    name: rdo-tox-molecule
-    description: |
-      Runs tox molecule job on RDO. Should be identical to upstream version
-      named openstack-tox-molecule
-    openstack-check:
-      jobs:
-        - rdo-tox-molecule
-
-- project-template:
     name: podman-jobs
     description: |
       3rd party job to gate podman
