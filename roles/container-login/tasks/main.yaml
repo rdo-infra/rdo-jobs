@@ -50,7 +50,6 @@
             tasks_from: tripleo_podman_install.yml
             vars_from: "{{ ansible_os_family | lower }}.yml"
       when:
-        - ansible_distribution == "CentOS"
         - ansible_distribution_major_version is version(8, '>=')
 
     - name: Perform podman login
