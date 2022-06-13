@@ -33,3 +33,22 @@
       extra_tags:
         - undercloud-minion-setup
         - undercloud-minion-deploy
+
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-master
+    parent: periodic-tripleo-ci-centos-8-standalone-master
+    timeout: 14400
+    vars:
+      featureset: '052'
+      release: master
+      featureset_override:
+        run_tempest: false
+        tempest_run_concurrency: 4
+        tempest_services:
+          - cinder
+          - horizon
+          - neutron
+        tempest_test_whitelist:
+          - 'api'
+          - 'scenario'
+        use_os_tempest: true
