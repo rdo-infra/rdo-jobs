@@ -803,27 +803,6 @@
       component: baremetal
 
 
-## standalone-full-tempest-component jobs
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-component-master
-    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-master
-    abstract: true
-    vars: *component_vars_standalone
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-compute-master
-    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-component-master
-    vars:
-      component: compute
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-tempest-master
-    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-component-master
-    vars:
-      component: tempest
-
-
 ## standalone-full-tempest-api-component jobs
 
 - job:

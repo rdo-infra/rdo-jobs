@@ -607,23 +607,6 @@
       branch_override: 'stable/victoria'
 
 
-## standalone-full-tempest-component jobs
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-compute-victoria
-    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-compute-master
-    vars:
-      release: victoria
-      branch_override: 'stable/victoria'
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-full-tempest-tempest-victoria
-    parent: periodic-tripleo-ci-centos-8-standalone-full-tempest-tempest-master
-    vars:
-      release: victoria
-      branch_override: 'stable/victoria'
-
-
 ## standalone-full-tempest-api-component jobs
 
 - job:
