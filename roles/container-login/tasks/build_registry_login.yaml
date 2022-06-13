@@ -1,5 +1,6 @@
 ---
 - name: Populate the list of registries and logins
+  no_log: true
   set_fact:
     registry_login_list: "{{ registry_login_list|default([]) + new_registry_info }}"
   vars:
@@ -12,5 +13,6 @@
         value: "{{ login_info | items2dict }}"
 
 - name: Build our container_registry_logins map from previous updated list
+  no_log: true
   set_fact:
     container_registry_logins: "{{ registry_login_list | items2dict }}"
