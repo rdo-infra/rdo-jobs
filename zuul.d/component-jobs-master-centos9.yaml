@@ -257,6 +257,12 @@
       component: tripleo
 
 - job:
+    name: periodic-tripleo-ci-centos-9-standalone-clients-master-validation
+    parent: periodic-tripleo-ci-centos-9-standalone-component-master-validation
+    vars:
+      component: clients
+
+- job:
     name: periodic-tripleo-ci-centos-9-standalone-baremetal-master
     parent: periodic-tripleo-ci-centos-9-standalone-component-master
     vars:
@@ -683,6 +689,30 @@
     parent: periodic-tripleo-ci-centos-9-containers-multinode-validation-master
     vars:
       component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-baremetal-master-validation
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-validation-master
+    vars:
+      component: baremetal
+
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-clients-master-validation
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-validation-master
+    vars:
+      component: clients
+
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-compute-master-validation
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-validation-master
+    vars:
+      component: compute
+
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-network-master-validation
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-validation-master
+    vars:
+      component: network
 
 # trigger jobs for scenario010
 
