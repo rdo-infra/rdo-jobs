@@ -17,7 +17,6 @@
     - ansible_distribution_major_version is version(8, '==')
 
 - name: Build a dict with regitry and login information
-  no_log: true
   include_tasks: build_registry_login.yaml
   with_items: "{{ registry_secrets | dict2items }}"
 
