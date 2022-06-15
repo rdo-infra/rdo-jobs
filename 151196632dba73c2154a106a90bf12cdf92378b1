@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "643d4809_12e5074f",
+        "filename": "zuul.d/deprecated-jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2022-06-15T11:46:43Z",
+      "side": 1,
+      "message": "We are running api and scenario separetely for train as well\n\n\nperiodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-train\nperiodic-tripleo-ci-centos-8-standalone-full-tempest-api-compute-train\n\nIf we are not running combined tempest job anywhere, We can get rid of this combined job and not move to deprecated.",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 69
+      },
+      "revId": "151196632dba73c2154a106a90bf12cdf92378b1",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
