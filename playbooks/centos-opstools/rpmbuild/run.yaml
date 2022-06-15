@@ -3,7 +3,7 @@
   name: centos-opstools-rpmbuild playbook
   tasks:
     - name: Install required packages
-      package:
+      yum:
         name:
           - "rpm-build"
           - "rpmdevtools"
@@ -11,6 +11,7 @@
           - "@Development Tools"
         state: present
       become: true
+      disable_gpg_check: yes
 
     - name: dnf update
       shell:
