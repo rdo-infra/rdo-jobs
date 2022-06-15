@@ -2,12 +2,16 @@
 - hosts: all
   name: centos-opstools-rpmbuild playbook
   tasks:
+    - name: Install CentOS release opstools
+      shell:
+        cmd: dnf -y install centos-release-opstools
+      become: true
+
     - name: Install required packages
       package:
         name:
           - "rpm-build"
           - "rpmdevtools"
-          - "centos-release-opstools"
           - "@Development Tools"
         state: present
       become: true
