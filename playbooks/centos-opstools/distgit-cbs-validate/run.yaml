@@ -15,8 +15,16 @@
           sudo mkdir -p /tmp/root/var/lib/rpm
           sudo rpm --root /tmp/root --initdb
           sudo dnf -y install dnf-utils
-          dnf download centos-release
-          sudo rpm --root /tmp/root -ivh --nodeps centos-release-*.rpm
+
+          {% if distro == '9s' %}
+          sudo dnf install --installroot=/tmp/root --releasever 9 --nogpgcheck -y --repofrompath=tmp,http://mirror.stream.centos.org/9-stream/BaseOS/x86_64/os/ --disablerepo=* --enablerepo=tmp* centos-stream-release centos-stream-repos
+          {% else %}
+          dnf download centos-stream-release
+          sudo rpm --root /tmp/root -ivh --nodeps centos-stream-release-*.rpm
+          dnf download centos-stream-repos
+          sudo rpm --root /tmp/root -ivh --nodeps centos-stream-repos-*.rpm
+          {% endif %}
+
           # rpmfactory-temp-release-1.0-1 is built by the base-pkg-validation builder
           # It defines two repositories: the newton one (from CBS) and the temporary CBS one that contains
           # packages we freshly built within that Koji task
