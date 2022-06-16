@@ -22,6 +22,30 @@
       },
       "revId": "05d2e9d04d59b96045e604ad3818c66f1712634c",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d1a247d_7ebd4648",
+        "filename": "zuul.d/standalone-jobs.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 670
+      },
+      "writtenOn": "2022-06-16T09:15:43Z",
+      "side": 0,
+      "message": "Hi Pooja,\n\nWe are no longer running cs8 master jobs that\u0027s why you will see all the jobs last ran on 14th feb, but we are keeping the cs8 master jobs definitions because those are the parents of all the other branches jobs like victoria and train.\n\nWe are running full-tempest-api and full-tempest-scenario jobs and not the full-tempest job because iif you see the definition of full-tempest-job then that contains the api and scenario so imo, there is no sense to run the full-tempest-job. And if you see we have full-tempest-job in cs8 master only and not othe other branches.",
+      "parentUuid": "8ab1ce10_ed71f0af",
+      "range": {
+        "startLine": 258,
+        "startChar": 10,
+        "endLine": 258,
+        "endChar": 73
+      },
+      "revId": "05d2e9d04d59b96045e604ad3818c66f1712634c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
