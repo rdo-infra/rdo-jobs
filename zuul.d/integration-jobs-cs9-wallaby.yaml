@@ -192,7 +192,7 @@
 ## Quay
 
 - job:
-    name: periodic-tripleo-ci-build-containers-centos-9-quay-push-wallaby
+    name: periodic-tripleo-ci-build-containers-ubi-9-quay-push-wallaby
     parent: periodic-tripleo-build-containers-quay-centos-9-secrets
     override-checkout: "stable/wallaby"
     vars:
