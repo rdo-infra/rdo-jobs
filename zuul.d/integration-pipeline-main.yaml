@@ -7,7 +7,7 @@
         ##### master #####
         - periodic-tripleo-ci-centos-9-containers-multinode-master: &build_con_cs_9_push_master
             dependencies: &dep_build_con_ubi_9_push_master
-              - periodic-tripleo-ci-build-containers-centos-9-quay-push-master
+              - periodic-tripleo-ci-build-containers-ubi-9-quay-push-master
         - periodic-tripleo-ci-centos-9-standalone-master: *build_con_cs_9_push_master
         - periodic-tripleo-ci-centos-9-scenario001-standalone-master: *build_con_cs_9_push_master
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-master: *build_con_cs_9_push_master
@@ -36,7 +36,7 @@
         - periodic-tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset002-master: *build_con_cs_9_push_master
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-master: &ovb_dep_cs_9_master
             dependencies:
-              - periodic-tripleo-ci-build-containers-centos-9-quay-push-master
+              - periodic-tripleo-ci-build-containers-ubi-9-quay-push-master
               - periodic-tripleo-centos-9-buildimage-overcloud-hardened-uefi-full-master
               - periodic-tripleo-centos-9-buildimage-overcloud-full-master
               - periodic-tripleo-centos-9-buildimage-ironic-python-agent-master
@@ -53,7 +53,7 @@
         - periodic-tripleo-ci-build-containers-centos-9-push-master: &cs9_promoted_comp_to_ci_testing_master
             dependencies:
               - periodic-tripleo-centos-9-master-promote-promoted-components-to-tripleo-ci-testing
-        - periodic-tripleo-ci-build-containers-centos-9-quay-push-master: *cs9_promoted_comp_to_ci_testing_master
+        - periodic-tripleo-ci-build-containers-ubi-9-quay-push-master: *cs9_promoted_comp_to_ci_testing_master
         - periodic-tripleo-centos-9-buildimage-overcloud-hardened-uefi-full-master: *cs9_promoted_comp_to_ci_testing_master
         - periodic-tripleo-centos-9-buildimage-overcloud-full-master: *cs9_promoted_comp_to_ci_testing_master
         - periodic-tripleo-centos-9-buildimage-ironic-python-agent-master: *cs9_promoted_comp_to_ci_testing_master
