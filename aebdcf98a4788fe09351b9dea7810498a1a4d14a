@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "95a75dc0_8662192b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 670
+      },
+      "writtenOn": "2022-06-28T09:36:13Z",
+      "side": 1,
+      "message": "Here sc010-ovn-provider is passing: https://review.rdoproject.org/r/c/testproject/+/39932/30#message-30be349ed7787116ed17c9b073b8aa072796905c\n\nAnd for sc010 here https://review.rdoproject.org/r/c/testproject/+/39932/30#message-063a139875eb11cd32f2328280d3cd21cd227ee3 the job result is failing due to some ceph failure. I have rechecked it let\u0027s see.",
+      "parentUuid": "8e0aa05e_4e1935fa",
+      "range": {
+        "startLine": 9,
+        "startChar": 69,
+        "endLine": 9,
+        "endChar": 72
+      },
+      "revId": "aebdcf98a4788fe09351b9dea7810498a1a4d14a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "04aa6d80_7c235f9d",
         "filename": "zuul.d/standalone-jobs.yaml",
         "patchSetId": 5
@@ -37,6 +61,30 @@
       "writtenOn": "2022-06-28T07:33:19Z",
       "side": 1,
       "message": "sanity check... so these jobs don\u0027t require the tags:  ? \n\nyou used to have these on the standalone-options jobs but latest upstream revision has removed them i.e. diff v19 to v20:\n\nhttps://review.opendev.org/c/openstack/tripleo-ci/+/842976/19..20/zuul.d/standalone-jobs.yaml\n\n\nso do you need to add them here now?",
+      "range": {
+        "startLine": 433,
+        "startChar": 48,
+        "endLine": 433,
+        "endChar": 66
+      },
+      "revId": "aebdcf98a4788fe09351b9dea7810498a1a4d14a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3805dc4a_da8181cb",
+        "filename": "zuul.d/standalone-jobs.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 670
+      },
+      "writtenOn": "2022-06-28T09:36:13Z",
+      "side": 1,
+      "message": "I think we dont need to add the tags here because @ line 437 (below) the parent is \"periodic-tripleo-ci-centos-8-scenario010-standalone-master\" which contains tags here https://review.rdoproject.org/r/c/rdo-jobs/+/43146/5/zuul.d/standalone-jobs.yaml#437",
+      "parentUuid": "04aa6d80_7c235f9d",
       "range": {
         "startLine": 433,
         "startChar": 48,
