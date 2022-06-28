@@ -1,483 +1,131 @@
 ---
-# It contains pipeline definition
 - project-template:
     name: tempest-skiplist-integration-pipeline
     openstack-periodic-weekend:
       jobs:
-        # master jobs
-        - periodic-tripleo-ci-centos-8-standalone-skipped-tempest-master:
+        # Centos 8 - Train
+        - periodic-tripleo-ci-centos-8-skipped-standalone-train: &periodic
             vars:
               force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario001-skipped-tempest-master:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario002-skipped-tempest-master:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario003-skipped-tempest-master:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario004-skipped-tempest-master:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario007-skipped-tempest-master:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario010-skipped-tempest-master:
-            vars:
-              force_periodic: true
-        # wallaby jobs
-        - periodic-tripleo-ci-centos-8-standalone-skipped-tempest-wallaby:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario001-skipped-tempest-wallaby:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario002-skipped-tempest-wallaby:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario003-skipped-tempest-wallaby:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario004-skipped-tempest-wallaby:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario007-skipped-tempest-wallaby:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario010-skipped-tempest-wallaby:
-            vars:
-              force_periodic: true
-        # victoria jobs
-        - periodic-tripleo-ci-centos-8-standalone-skipped-tempest-victoria:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario001-skipped-tempest-victoria:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario002-skipped-tempest-victoria:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario003-skipped-tempest-victoria:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario004-skipped-tempest-victoria:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario007-skipped-tempest-victoria:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario010-skipped-tempest-victoria:
-            vars:
-              force_periodic: true
-        # ussuri jobs
-        - periodic-tripleo-ci-centos-8-standalone-skipped-tempest-ussuri:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario001-skipped-tempest-ussuri:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario002-skipped-tempest-ussuri:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario003-skipped-tempest-ussuri:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario004-skipped-tempest-ussuri:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario007-skipped-tempest-ussuri:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario010-skipped-tempest-ussuri:
-            vars:
-              force_periodic: true
-        # train jobs
-        - periodic-tripleo-ci-centos-8-standalone-skipped-tempest-train:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario001-skipped-tempest-train:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario002-skipped-tempest-train:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario003-skipped-tempest-train:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario004-skipped-tempest-train:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario007-skipped-tempest-train:
-            vars:
-              force_periodic: true
-        - periodic-tripleo-ci-centos-8-standalone-scenario010-skipped-tempest-train:
-            vars:
-              force_periodic: true
+              tempest_run_skipped: true
 
-# It contains standalone based tempest scenario jobs
-# where tempest skipped list tempest tests will be
-# triggered in a seperate pipeline.
+        - periodic-tripleo-ci-centos-8-skipped-scenario001-standalone-train: *periodic
+        - periodic-tripleo-ci-centos-8-skipped-scenario002-standalone-train: *periodic
+        - periodic-tripleo-ci-centos-8-skipped-scenario003-standalone-train: *periodic
+        - periodic-tripleo-ci-centos-8-skipped-scenario004-standalone-train: *periodic
+        - periodic-tripleo-ci-centos-8-skipped-scenario007-standalone-train: *periodic
+        - periodic-tripleo-ci-centos-8-skipped-scenario012-standalone-train: *periodic
 
-# Master Job
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-skipped-tempest-master
-    parent: periodic-tripleo-ci-centos-8-standalone-master
-    timeout: 13500
-    vars:
-      featureset_override:
-        run_tempest: false
-        tempest_run_concurrency: 2
-        tempest_services:
-          - cinder
-          - horizon
-          - neutron
-        use_os_tempest: true
-        tempest_run_skipped: true
+        # Centos 8 - Wallaby
+        - periodic-tripleo-ci-centos-8-skipped-standalone-wallaby: *periodic
+
+        # Centos 9 - Wallaby
+        - periodic-tripleo-ci-centos-9-skipped-scenario001-standalone-wallaby: *periodic
+        - periodic-tripleo-ci-centos-9-skipped-scenario002-standalone-wallaby: *periodic
+        - periodic-tripleo-ci-centos-9-skipped-scenario003-standalone-wallaby: *periodic
+        - periodic-tripleo-ci-centos-9-skipped-scenario004-standalone-wallaby: *periodic
+        - periodic-tripleo-ci-centos-9-skipped-scenario007-standalone-wallaby: *periodic
+        - periodic-tripleo-ci-centos-9-skipped-scenario012-standalone-wallaby: *periodic
+        - periodic-tripleo-ci-centos-9-skipped-standalone-wallaby: *periodic
+
+        # Centos 9 - Master
+        - periodic-tripleo-ci-centos-9-skipped-scenario001-standalone-master: *periodic
+        - periodic-tripleo-ci-centos-9-skipped-scenario002-standalone-master: *periodic
+        - periodic-tripleo-ci-centos-9-skipped-scenario003-standalone-master: *periodic
+        - periodic-tripleo-ci-centos-9-skipped-scenario004-standalone-master: *periodic
+        - periodic-tripleo-ci-centos-9-skipped-scenario007-standalone-master: *periodic
+        - periodic-tripleo-ci-centos-9-skipped-scenario010-standalone-master: *periodic
+        - periodic-tripleo-ci-centos-9-skipped-scenario012-standalone-master: *periodic
+        - periodic-tripleo-ci-centos-9-skipped-standalone-master: *periodic
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario001-skipped-tempest-master
-    parent: periodic-tripleo-ci-centos-8-standalone-skipped-tempest-master
-    timeout: 13500
-    vars:
-      standalone_ceph: true
-      featureset_override:
-        tempest_run_skipped: true
-        standalone_environment_files:
-          - 'environments/low-memory-usage.yaml'
-          - 'ci/environments/scenario001-standalone.yaml'
-        tempest_services:
-          - aodh
-        run_tempest: false
-        use_os_tempest: true
-        tempest_run_concurrency: 1
-        tempest_tempest_conf_overrides:
-          telemetry.alarm_granularity: '60'
-          auth.tempest_roles: "Member"
+    name: periodic-tripleo-ci-centos-8-skipped-standalone-train
+    parent: periodic-tripleo-ci-centos-8-standalone-train
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario002-skipped-tempest-master
-    parent: periodic-tripleo-ci-centos-8-standalone-skipped-tempest-master
-    timeout: 13500
-    vars:
-      standalone_ceph: true
-      featureset_override:
-        tempest_run_skipped: true
-        run_tempest: false
-        standalone_environment_files:
-          - 'environments/low-memory-usage.yaml'
-          - 'ci/environments/scenario002-standalone.yaml'
-        tempest_services:
-          - barbican
-          - ceilometer
-          - aodh
-        tempest_tempest_conf_overrides:
-          auth.tempest_roles: "'Member, creator'"
-          telemetry.alarm_granularity: '60'
-        use_os_tempest: true
+    name: periodic-tripleo-ci-centos-8-skipped-scenario001-standalone-train
+    parent: periodic-tripleo-ci-centos-8-scenario001-standalone-train
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario003-skipped-tempest-master
-    parent: periodic-tripleo-ci-centos-8-standalone-skipped-tempest-master
-    timeout: 13500
-    vars:
-      standalone_ceph: true
-      featureset_override:
-        tempest_run_skipped: true
-        run_tempest: false
-        standalone_environment_files:
-          - 'environments/low-memory-usage.yaml'
-          - 'ci/environments/scenario003-standalone.yaml'
-        tempest_services:
-          - sahara
-          - mistral
-        tempest_tempest_conf_overrides:
-          auth.tempest_roles: "Member"
-        use_os_tempest: true
+    name: periodic-tripleo-ci-centos-8-skipped-scenario002-standalone-train
+    parent: periodic-tripleo-ci-centos-8-scenario002-standalone-train
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario004-skipped-tempest-master
-    parent: periodic-tripleo-ci-centos-8-standalone-skipped-tempest-master
-    timeout: 13500
-    vars:
-      standalone_ceph: true
-      featureset_override:
-        tempest_run_skipped: true
-        run_tempest: false
-        standalone_container_cli: podman
-        standalone_environment_files:
-          - 'environments/low-memory-usage.yaml'
-          - 'ci/environments/scenario004-standalone.yaml'
-          - 'environments/podman.yaml'
-        tempest_services:
-          - manila
-        tempest_tempest_conf_overrides:
-          'auth.tempest_roles': 'Member'
-          'share.multitenancy_enabled': 'False'
-          'share.enable_protocols': 'cephfs'
-          'share.capability_snapshot_support': 'False'
-          'share.capability_create_share_from_snapshot_support': 'False'
-        use_os_tempest: true
+    name: periodic-tripleo-ci-centos-8-skipped-scenario003-standalone-train
+    parent: periodic-tripleo-ci-centos-8-scenario003-standalone-train
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario007-skipped-tempest-master
-    parent: periodic-tripleo-ci-centos-8-standalone-skipped-tempest-master
-    timeout: 13500
-    vars:
-      featureset: '052'
-      featureset_override:
-        tempest_run_skipped: true
-        run_tempest: false
-        standalone_environment_files:
-          - 'environments/low-memory-usage.yaml'
-          - 'ci/environments/scenario007-standalone.yaml'
-        tempest_services:
-          - neutron
-        tempest_private_net_provider_type: 'vxlan'
-        use_os_tempest: true
+    name: periodic-tripleo-ci-centos-8-skipped-scenario004-standalone-train
+    parent: periodic-tripleo-ci-centos-8-scenario004-standalone-train
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario010-skipped-tempest-master
-    parent: periodic-tripleo-ci-centos-8-standalone-skipped-tempest-master
-    timeout: 13500
-    vars:
-      tags:
-        - build
-        - standalone
-        - octavia
-      featureset: '062'
-      standalone_ceph: true
-      featureset_override:
-        tempest_run_skipped: true
-        validate_services: false
-        standalone_environment_files:
-          - 'environments/low-memory-usage.yaml'
-          - 'ci/environments/scenario010-standalone.yaml'
-
-# wallaby jobs
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-skipped-tempest-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-skipped-tempest-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
+    name: periodic-tripleo-ci-centos-8-skipped-scenario007-standalone-train
+    parent: periodic-tripleo-ci-centos-8-scenario007-standalone-train
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario001-skipped-tempest-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario001-skipped-tempest-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
+    name: periodic-tripleo-ci-centos-8-skipped-scenario012-standalone-train
+    parent: periodic-tripleo-ci-centos-8-scenario012-standalone-train
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario002-skipped-tempest-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario002-skipped-tempest-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
+    name: periodic-tripleo-ci-centos-8-skipped-standalone-wallaby
+    parent: periodic-tripleo-ci-centos-8-standalone-wallaby
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario003-skipped-tempest-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario003-skipped-tempest-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
+    name: periodic-tripleo-ci-centos-9-skipped-standalone-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-wallaby
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario004-skipped-tempest-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario004-skipped-tempest-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
+    name: periodic-tripleo-ci-centos-9-skipped-scenario001-standalone-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario001-standalone-wallaby
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario007-skipped-tempest-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario007-skipped-tempest-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
+    name: periodic-tripleo-ci-centos-9-skipped-scenario002-standalone-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario002-standalone-wallaby
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario010-skipped-tempest-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario010-skipped-tempest-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-# victoria jobs
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-skipped-tempest-victoria
-    parent: periodic-tripleo-ci-centos-8-standalone-skipped-tempest-master
-    override-checkout: "stable/victoria"
-    vars:
-      branch_override: "stable/victoria"
-      release: victoria
+    name: periodic-tripleo-ci-centos-9-skipped-scenario003-standalone-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario003-standalone-wallaby
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario001-skipped-tempest-victoria
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario001-skipped-tempest-master
-    override-checkout: "stable/victoria"
-    vars:
-      branch_override: "stable/victoria"
-      release: victoria
+    name: periodic-tripleo-ci-centos-9-skipped-scenario004-standalone-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario004-standalone-wallaby
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario002-skipped-tempest-victoria
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario002-skipped-tempest-master
-    override-checkout: "stable/victoria"
-    vars:
-      branch_override: "stable/victoria"
-      release: victoria
+    name: periodic-tripleo-ci-centos-9-skipped-scenario007-standalone-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario007-standalone-wallaby
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario003-skipped-tempest-victoria
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario003-skipped-tempest-master
-    override-checkout: "stable/victoria"
-    vars:
-      branch_override: "stable/victoria"
-      release: victoria
+    name: periodic-tripleo-ci-centos-9-skipped-scenario012-standalone-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario012-standalone-wallaby
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario004-skipped-tempest-victoria
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario004-skipped-tempest-master
-    override-checkout: "stable/victoria"
-    vars:
-      branch_override: "stable/victoria"
-      release: victoria
+    name: periodic-tripleo-ci-centos-9-skipped-standalone-master
+    parent: periodic-tripleo-ci-centos-9-standalone-master
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario007-skipped-tempest-victoria
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario007-skipped-tempest-master
-    override-checkout: "stable/victoria"
-    vars:
-      branch_override: "stable/victoria"
-      release: victoria
+    name: periodic-tripleo-ci-centos-9-skipped-scenario001-standalone-master
+    parent: periodic-tripleo-ci-centos-9-scenario001-standalone-master
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario010-skipped-tempest-victoria
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario010-skipped-tempest-master
-    override-checkout: "stable/victoria"
-    vars:
-      branch_override: "stable/victoria"
-      release: victoria
-
-# ussuri jobs
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-skipped-tempest-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-skipped-tempest-master
-    override-checkout: "stable/ussuri"
-    vars:
-      branch_override: "stable/ussuri"
-      release: ussuri
+    name: periodic-tripleo-ci-centos-9-skipped-scenario002-standalone-master
+    parent: periodic-tripleo-ci-centos-9-scenario002-standalone-master
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario001-skipped-tempest-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario001-skipped-tempest-master
-    override-checkout: "stable/ussuri"
-    vars:
-      branch_override: "stable/ussuri"
-      release: ussuri
+    name: periodic-tripleo-ci-centos-9-skipped-scenario003-standalone-master
+    parent: periodic-tripleo-ci-centos-9-scenario003-standalone-master
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario002-skipped-tempest-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario002-skipped-tempest-master
-    override-checkout: "stable/ussuri"
-    vars:
-      branch_override: "stable/ussuri"
-      release: ussuri
+    name: periodic-tripleo-ci-centos-9-skipped-scenario004-standalone-master
+    parent: periodic-tripleo-ci-centos-9-scenario004-standalone-master
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario003-skipped-tempest-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario003-skipped-tempest-master
-    override-checkout: "stable/ussuri"
-    vars:
-      branch_override: "stable/ussuri"
-      release: ussuri
+    name: periodic-tripleo-ci-centos-9-skipped-scenario007-standalone-master
+    parent: periodic-tripleo-ci-centos-9-scenario007-standalone-master
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario004-skipped-tempest-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario004-skipped-tempest-master
-    override-checkout: "stable/ussuri"
-    vars:
-      branch_override: "stable/ussuri"
-      release: ussuri
+    name: periodic-tripleo-ci-centos-9-skipped-scenario010-standalone-master
+    parent: periodic-tripleo-ci-centos-9-scenario010-standalone-master
 
 - job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario007-skipped-tempest-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario007-skipped-tempest-master
-    override-checkout: "stable/ussuri"
-    vars:
-      branch_override: "stable/ussuri"
-      release: ussuri
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario010-skipped-tempest-ussuri
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario010-skipped-tempest-master
-    override-checkout: "stable/ussuri"
-    vars:
-      branch_override: "stable/ussuri"
-      release: ussuri
-
-# train jobs
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-skipped-tempest-train
-    parent: periodic-tripleo-ci-centos-8-standalone-skipped-tempest-master
-    override-checkout: "stable/train"
-    vars:
-      branch_override: "stable/train"
-      release: train
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario001-skipped-tempest-train
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario001-skipped-tempest-master
-    override-checkout: "stable/train"
-    vars:
-      branch_override: "stable/train"
-      release: train
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario002-skipped-tempest-train
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario002-skipped-tempest-master
-    override-checkout: "stable/train"
-    vars:
-      branch_override: "stable/train"
-      release: train
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario003-skipped-tempest-train
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario003-skipped-tempest-master
-    override-checkout: "stable/train"
-    vars:
-      branch_override: "stable/train"
-      release: train
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario004-skipped-tempest-train
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario004-skipped-tempest-master
-    override-checkout: "stable/train"
-    vars:
-      branch_override: "stable/train"
-      release: train
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario007-skipped-tempest-train
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario007-skipped-tempest-master
-    override-checkout: "stable/train"
-    vars:
-      branch_override: "stable/train"
-      release: train
-
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-scenario010-skipped-tempest-train
-    parent: periodic-tripleo-ci-centos-8-standalone-scenario010-skipped-tempest-master
-    override-checkout: "stable/train"
-    vars:
-      branch_override: "stable/train"
-      release: train
+    name: periodic-tripleo-ci-centos-9-skipped-scenario012-standalone-master
+    parent: periodic-tripleo-ci-centos-9-scenario012-standalone-master
