@@ -289,6 +289,8 @@
           addFilter("python3-octavia.noarch: E: non-executable-script /usr/lib/python3.6/site-packages/octavia/cmd/prometheus_proxy.py.*")
           # Exceptions for octavia
           addFilter("ovn-bgp-agent.noarch: W: non-conffile-in-etc /etc/sudoers.d/ovn-bgp-agent.*")
+          # Exceptions for cinderlib
+          addFilter("python3-cinderlib.noarch: E: wrong-script-interpreter /usr/lib/python3.6/site-packages/cinderlib/bin/venv-privsep-helper.*")
           EOF
 
 
