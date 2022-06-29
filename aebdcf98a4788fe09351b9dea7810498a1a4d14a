@@ -48,6 +48,30 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "c98d57a9_9eae12a3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-06-29T06:20:58Z",
+      "side": 1,
+      "message": "thanks\n\ni don\u0027t see periodic-tripleo-ci-centos-9-scenario010-ovn-provider-standalone-master in the first link you posted i only see the c8-train one.\n\nalso you should probably get a more recent run that is from the 9th June but the upstream patch changed a lot since then?",
+      "parentUuid": "95a75dc0_8662192b",
+      "range": {
+        "startLine": 9,
+        "startChar": 69,
+        "endLine": 9,
+        "endChar": 72
+      },
+      "revId": "aebdcf98a4788fe09351b9dea7810498a1a4d14a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "bf0b997d_3ff5b354",
@@ -102,6 +126,30 @@
       "side": 1,
       "message": "I think we dont need to add the tags here because @ line 437 (below) the parent is \"periodic-tripleo-ci-centos-8-scenario010-standalone-master\" which contains tags here https://review.rdoproject.org/r/c/rdo-jobs/+/43146/5/zuul.d/standalone-jobs.yaml#437",
       "parentUuid": "04aa6d80_7c235f9d",
+      "range": {
+        "startLine": 433,
+        "startChar": 48,
+        "endLine": 433,
+        "endChar": 66
+      },
+      "revId": "aebdcf98a4788fe09351b9dea7810498a1a4d14a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0669e125_4c67b542",
+        "filename": "zuul.d/standalone-jobs.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-06-29T06:20:58Z",
+      "side": 1,
+      "message": "ok thanks i see them at https://github.com/rdo-infra/rdo-jobs/blob/95bdf0d58b195c7c1e92687a5d27dc0afdc71282/zuul.d/standalone-jobs.yaml#L391-L394",
+      "parentUuid": "3805dc4a_da8181cb",
       "range": {
         "startLine": 433,
         "startChar": 48,
