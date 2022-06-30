@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a2e799d_a4688bb9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-06-30T06:14:59Z",
+      "side": 1,
+      "message": "inline question otherwise lgtm ",
+      "revId": "348746b7a1b9416fbb72f54d45c33816b291d18e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efc31213_2d955476",
+        "filename": "zuul.d/integration-pipeline-main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-06-30T06:14:59Z",
+      "side": 1,
+      "message": "why are we keeping this one - the \u0027quay-push-master\u0027 one is the primary container build job now right? \n\ncould be a followup patch ?",
+      "range": {
+        "startLine": 53,
+        "startChar": 40,
+        "endLine": 53,
+        "endChar": 65
+      },
+      "revId": "348746b7a1b9416fbb72f54d45c33816b291d18e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "167418f3_5bf926e7",
+        "filename": "zuul.d/integration-pipeline-wallaby-centos9.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-06-30T06:14:59Z",
+      "side": 1,
+      "message": "do we need to substitute this one too? is this the old non quay one?",
+      "range": {
+        "startLine": 40,
+        "startChar": 45,
+        "endLine": 40,
+        "endChar": 73
+      },
+      "revId": "348746b7a1b9416fbb72f54d45c33816b291d18e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
