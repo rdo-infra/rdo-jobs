@@ -68,6 +68,24 @@
       "message": "Parenting centos-9 jobs off centos-8 is not a great pattern",
       "revId": "080eade4338ed7a43809f602cb5510facd6842d9",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30bfaf44_5a9e813a",
+        "filename": "zuul.d/ansible-collections.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-07-01T07:29:58Z",
+      "side": 1,
+      "message": "yes +1 but it needs some work to make it so - could be follow up/planned \n\nyou\u0027d have to add a new tripleo-collection-integration-centos-9-standalone @ https://github.com/rdo-infra/rdo-jobs/blob/f0efcecb2db0dd0d744a35ad2f007e968cb93a7b/zuul.d/ansible-collections.yaml#L3\n\nbut it\u0027s parent tripleo-ci-base-standalone-periodic-centos-8 doesn\u0027t have a 9 equivalent either afaics @ https://github.com/rdo-infra/review.rdoproject.org-config/blob/06f8ddab11ec2123787b5f03d42ec8ea83606920/zuul.d/tripleo-rdo-base.yaml#L264",
+      "parentUuid": "4f031b48_23cc46e0",
+      "revId": "080eade4338ed7a43809f602cb5510facd6842d9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
