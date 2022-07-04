@@ -99,7 +99,6 @@
               - periodic-tripleo-centos-8-train-component-security-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-train: *comp_security_to_ci_testing_train
         - periodic-tripleo-ci-centos-8-containers-multinode-security-train: *comp_security_to_ci_testing_train
-        - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-security-train: *comp_security_to_ci_testing_train
         - periodic-tripleo-centos-8-train-component-security-promote-consistent-to-component-ci-testing
     openstack-component-swift:
       jobs:
@@ -116,7 +115,6 @@
         - periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-train: *comp_tripleo_to_ci_testing_train
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-train: *comp_tripleo_to_ci_testing_train
         - periodic-tripleo-ci-centos-8-containers-multinode-tripleo-train: *comp_tripleo_to_ci_testing_train
-        - periodic-tripleo-ci-centos-8-standalone-on-multinode-ipa-tripleo-train: *comp_tripleo_to_ci_testing_train
         - periodic-tripleo-centos-8-train-component-tripleo-promote-consistent-to-component-ci-testing
     openstack-component-tempest:
       jobs:
