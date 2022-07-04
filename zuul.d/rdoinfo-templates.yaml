@@ -26,12 +26,6 @@
             voting: false
             files:
               - ^buildsys-tags/cloud8s-openstack-yoga-release.yml$
-        - rdoinfo-tripleo-master-testing-centos-8-scenario001-standalone:
-            dependencies:
-              - validate-buildsys-tags
-            voting: false
-            files:
-              - ^buildsys-tags/cloud8s-openstack-zed-testing.yml$
         - rdoinfo-tripleo-master-testing-centos-9-scenario001-standalone:
             dependencies:
               - validate-buildsys-tags

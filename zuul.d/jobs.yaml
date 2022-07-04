@@ -149,7 +149,7 @@
 - job:
     name: DLRN-rpmbuild-centos8
     parent: DLRN-rpmbuild-base
-    branches: ^((rpm-master)|((train|ussuri|victoria|wallaby|xena|yoga)-rdo))$
+    branches: ^((train|ussuri|victoria|wallaby|xena|yoga)-rdo))$
     vars:
       centos_version: 'centos8'
     nodeset: rdo-centos-8-stream

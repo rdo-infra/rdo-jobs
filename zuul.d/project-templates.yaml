@@ -26,7 +26,7 @@
             branches: ^rpm-master$
         - rpmlint:
             dependencies:
-              - DLRN-rpmbuild-centos8
+              - DLRN-rpmbuild-centos9
             branches: ^rpm-master$
         - DLRN-build-tripleo
         - DLRN-build-tripleo-centos8
@@ -48,9 +48,9 @@
     name: package-distgit-tripleo-check-jobs
     check:
       jobs:
-        - distgit-tripleo-master-testing-centos-8-standalone:
+        - distgit-tripleo-master-testing-centos-9-standalone:
             dependencies:
-              - DLRN-rpmbuild-centos8
+              - DLRN-rpmbuild-centos9
             voting: false
             branches: ^rpm-master$
 

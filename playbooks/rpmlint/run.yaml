@@ -20,11 +20,7 @@
           # Use the latest repository hash
           # If DLRN built multiple packages, there will be multiple repositories.
           # We want the latest repository which contains all of the packages that were just built.
-          if [ $(echo {{ buildset_artifacts_url }}| grep -c centos8) -ne 0 ]; then
-              repository="${logs}/centos8/current"
-          else
-              repository="${logs}/centos/current"
-          fi
+          repository="${logs}/centos9/current"
 
           # The rdoinfo-DLRN-check job may create different repos (centos-rpm-master, centos-pike-rdo)
           # when it builds packages for more than one release. In that case, let us try to find the
@@ -81,7 +77,7 @@
           rm -f *.src.rpm
 
           # get the packages for the same srpm from previous repository
-          URL=https://trunk.rdoproject.org/centos8/current
+          URL=https://trunk.rdoproject.org/centos9/current
           component_repos=$(curl -s -S $URL/delorean.repo|grep ^baseurl| sed 's/baseurl=//g')
 
           mkdir -p old
