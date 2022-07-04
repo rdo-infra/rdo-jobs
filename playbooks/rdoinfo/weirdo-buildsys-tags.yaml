@@ -168,7 +168,7 @@
           ;;
           release)
               if [ $RELEASE = $MASTER ]; then
-                  REPOS_URL="http://trunk.rdoproject.org/centos8-master/puppet-passed-ci/delorean.repo,https://trunk.rdoproject.org/centos8-master/delorean-deps.repo{% if not periodic_job|default(false) %},$TEMP_REPO_URL{% endif %}" # noqa 204
+                  REPOS_URL="http://trunk.rdoproject.org/{{ centos_release }}-master/puppet-passed-ci/delorean.repo,https://trunk.rdoproject.org/{{ centos_release }}-master/delorean-deps.repo{% if not periodic_job|default(false) %},$TEMP_REPO_URL{% endif %}" # noqa 204
                   ADDITIONAL_OPTS=""
               else
                   REPOS_URL="$TEMP_REPO_URL"
