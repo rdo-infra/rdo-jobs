@@ -1,4 +1,8 @@
 - hosts: all
+  roles:
+    - mirror-info
+
+- hosts: all
   tasks:
 
     - name: Create workspace directory
