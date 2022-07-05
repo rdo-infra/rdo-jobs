@@ -158,6 +158,16 @@
     nodeset: rdo-centos-9-stream
 
 - job:
+    name: weirdo-integration-master-packstack-scenario002-centos9
+    parent: weirdo-integration-base
+    vars:
+      openstack_release: master
+      scenario: scenario002
+      selinux_enforcing: "false"
+      centos_releasever: 9
+    nodeset: rdo-centos-9-stream
+
+- job:
     name: weirdo-integration-master-packstack-scenario003-centos9
     parent: weirdo-integration-base
     vars:
