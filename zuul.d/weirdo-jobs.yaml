@@ -54,10 +54,40 @@
     nodeset: rdo-centos-8-stream
 
 - job:
+    name: weirdo-integration-yoga-packstack-scenario001-centos8
+    parent: weirdo-integration-base
+    vars:
+      openstack_release: yoga
+      scenario: scenario001
+      selinux_enforcing: "false"
+      centos_releasever: 8s
+    nodeset: rdo-centos-8-stream
+
+- job:
+    name: weirdo-integration-xena-packstack-scenario001-centos8
+    parent: weirdo-integration-base
+    vars:
+      openstack_release: xena
+      scenario: scenario001
+      selinux_enforcing: "false"
+      centos_releasever: 8s
+    nodeset: rdo-centos-8-stream
+
+- job:
     name: weirdo-integration-master-packstack-scenario003-centos8
     parent: weirdo-integration-base
     vars:
       openstack_release: master
+      scenario: scenario003
+      selinux_enforcing: "false"
+      centos_releasever: 8s
+    nodeset: rdo-centos-8-stream
+
+- job:
+    name: weirdo-integration-yoga-packstack-scenario003-centos8
+    parent: weirdo-integration-base
+    vars:
+      openstack_release: yoga
       scenario: scenario003
       selinux_enforcing: "false"
       centos_releasever: 8s
@@ -73,6 +103,15 @@
     nodeset: rdo-centos-8-stream
 
 - job:
+    name: weirdo-integration-yoga-puppet-scenario001-centos8
+    parent: weirdo-integration-base
+    vars:
+      openstack_release: yoga
+      scenario: scenario001
+      centos_releasever: 8s
+    nodeset: rdo-centos-8-stream
+
+- job:
     name: weirdo-integration-master-puppet-scenario003-centos8
     parent: weirdo-integration-base
     vars:
@@ -82,10 +121,28 @@
     nodeset: rdo-centos-8-stream
 
 - job:
+    name: weirdo-integration-yoga-puppet-scenario003-centos8
+    parent: weirdo-integration-base
+    vars:
+      openstack_release: yoga
+      scenario: scenario003
+      centos_releasever: 8s
+    nodeset: rdo-centos-8-stream
+
+- job:
     name: weirdo-integration-master-puppet-scenario004-centos8
     parent: weirdo-integration-base
     vars:
       openstack_release: master
+      scenario: scenario004
+      centos_releasever: 8s
+    nodeset: rdo-centos-8-stream
+
+- job:
+    name: weirdo-integration-wallaby-puppet-scenario004-centos8
+    parent: weirdo-integration-base
+    vars:
+      openstack_release: wallaby
       scenario: scenario004
       centos_releasever: 8s
     nodeset: rdo-centos-8-stream
@@ -116,6 +173,15 @@
     vars:
       openstack_release: master
       scenario: scenario001
+      centos_releasever: 9
+    nodeset: rdo-centos-9-stream
+
+- job:
+    name: weirdo-integration-master-puppet-scenario002-centos9
+    parent: weirdo-integration-base
+    vars:
+      openstack_release: master
+      scenario: scenario002
       centos_releasever: 9
     nodeset: rdo-centos-9-stream
 
