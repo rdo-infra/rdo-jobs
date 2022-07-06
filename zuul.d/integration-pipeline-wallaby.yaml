@@ -16,7 +16,6 @@
               - periodic-tripleo-centos-8-buildimage-overcloud-full-wallaby
               - periodic-tripleo-centos-8-buildimage-overcloud-hardened-uefi-full-wallaby
               - periodic-tripleo-centos-8-buildimage-ironic-python-agent-wallaby
-        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-wallaby: *ovb_deps_wallaby
         - create-fs001-wallaby-c8-trigger-for-downstream: *ovb_deps_wallaby
         - create-fs035-wallaby-c8-trigger-for-downstream: *ovb_deps_wallaby
         ## undercloud
