@@ -50,6 +50,23 @@
       "message": "ack looks good as discussed yesterday\n\nstared for a bit - looks right ;) would like another pass and also waiting to hear/see the testing ",
       "revId": "382d848289d14f71fda40eaa92818940d3a76b4f",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93b419e9_a70c9246",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2022-07-06T10:35:48Z",
+      "side": 1,
+      "message": "Based on TP, Here is the list of skipped tests: https://logserver.rdoproject.org/67/41367/13/check/periodic-tripleo-ci-centos-9-skipped-standalone-master/2e686b8/logs/undercloud/home/zuul/tempest/etc/tempest_excludelist.txt.gz\n\nand it does not matches with the tempest_run.log\n\nhttps://logserver.rdoproject.org/67/41367/13/check/periodic-tripleo-ci-centos-9-skipped-standalone-master/2e686b8/logs/undercloud/var/log/tempest/tempest_run.log.txt.gz\n\nMay be something is wrong on skiplist side. Needs investigation. Adding -1 for further debug.",
+      "revId": "382d848289d14f71fda40eaa92818940d3a76b4f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
