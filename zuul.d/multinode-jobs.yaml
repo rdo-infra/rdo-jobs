@@ -7,21 +7,21 @@
     name: periodic-tripleo-ci-centos-9-containers-multinode-master
     parent: tripleo-ci-base-multinode-periodic-centos-9
     vars:
-      nodes: 1ctlr
-      featureset: '010'
       release: master
-      playbooks:
-        - multinode.yml
+
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-master
+    parent: tripleo-ci-containers-multinode-options
 
 - job:
     name: periodic-tripleo-ci-centos-8-containers-multinode-master
     parent: tripleo-ci-base-multinode-periodic-centos-8
     vars:
-      nodes: 1ctlr
-      featureset: '010'
       release: master
-      playbooks:
-        - multinode.yml
+
+- job:
+    name: periodic-tripleo-ci-centos-8-containers-multinode-master
+    parent: tripleo-ci-containers-multinode-options
 
 - job:
     name: periodic-tripleo-ci-centos-9-scenario007-multinode-oooq-container-master
