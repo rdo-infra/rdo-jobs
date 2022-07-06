@@ -38,7 +38,7 @@
           pushd {{ ansible_user_dir }}/{{ zuul.project.src_dir }}
           git remote add upstream {{ upstream.stdout }}
           git fetch upstream
-          rdopkg reqcheck --strict
+          rdopkg reqcheck --strict -p 3.9
           popd
       args:
         chdir: "{{ ansible_user_dir }}"
