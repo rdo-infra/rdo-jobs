@@ -16,6 +16,29 @@
       "message": "Actually, you are adding validate-buildsys-tags-zed-testing-puppet-scenario005-centos9 but not weirdo-dlrn-master-puppet-scenario005-centos9 but the integration one (which is good to add). Also, note that you need to add weirdo-zed-promote-puppet-scenario005-centos-stream-9 to add it to the puppet promotion pipeline:\n\nhttps://github.com/rdo-infra/rdo-jobs/blob/d648cedec0506d196d4707b1a1ba6efa94408a69/zuul.d/project-templates.yaml#L371-L404\n\n",
       "revId": "08e7918d01e8b50eaab9a7c5190888c63fb830fa",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a492c5a_356338f0",
+        "filename": "zuul.d/zuul-legacy-project-templates.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2022-07-07T12:03:47Z",
+      "side": 1,
+      "message": "I think this template is not longer used. jobs are assigned to weirdo repos in config project, so you can ignore or remove this template.",
+      "range": {
+        "startLine": 542,
+        "startChar": 10,
+        "endLine": 542,
+        "endChar": 26
+      },
+      "revId": "08e7918d01e8b50eaab9a7c5190888c63fb830fa",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
