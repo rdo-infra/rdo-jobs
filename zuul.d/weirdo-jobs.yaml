@@ -213,6 +213,14 @@
       centos_releasever: 9
     nodeset: rdo-centos-9-stream
 
+- job:
+    name: weirdo-integration-master-puppet-scenario005-centos9
+    parent: weirdo-integration-base
+    vars:
+      openstack_release: master
+      scenario: scenario005
+      centos_releasever: 9
+    nodeset: rdo-centos-9-stream
 
 - job:
     name: weirdo-integration-train-packstack-scenario001
@@ -1068,6 +1076,12 @@
     parent: validate-buildsys-tags-zed-testing-centos9-base
     vars:
       scenario: scenario004
+
+- job:
+    name: validate-buildsys-tags-zed-testing-puppet-scenario005-centos9
+    parent: validate-buildsys-tags-zed-testing-centos9-base
+    vars:
+      scenario: scenario005
 
 - job:
     name: validate-buildsys-tags-zed-testing-packstack-scenario001-centos9
