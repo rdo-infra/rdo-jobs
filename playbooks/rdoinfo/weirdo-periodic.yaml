@@ -32,6 +32,12 @@
           {% endfor %}
       changed_when: true
 
+    - name: Execute mirror info role
+      import_role:
+        name: mirror-info-fork
+      vars:
+        mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
+
     - name: Run weirdo for the desired project and scenario
       shell:
         cmd: |
