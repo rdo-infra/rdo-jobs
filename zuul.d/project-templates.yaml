@@ -319,6 +319,7 @@
         - validate-buildsys-tags-zed-testing-puppet-scenario002-centos9
         - validate-buildsys-tags-zed-testing-puppet-scenario003-centos9
         - validate-buildsys-tags-zed-testing-puppet-scenario004-centos9
+        - validate-buildsys-tags-zed-testing-puppet-scenario005-centos9
         - validate-buildsys-tags-zed-testing-packstack-scenario001-centos9
         - validate-buildsys-tags-zed-testing-packstack-scenario002-centos9
         - validate-buildsys-tags-zed-testing-packstack-scenario003-centos9
@@ -384,6 +385,9 @@
         - weirdo-zed-promote-puppet-scenario004-centos-stream-9:
             dependencies:
               - weirdo-zed-promote-consistent-to-puppet-ci-testing
+        - weirdo-zed-promote-puppet-scenario005-centos-stream-9:
+            dependencies:
+              - weirdo-zed-promote-consistent-to-puppet-ci-testing
         - weirdo-zed-promote-packstack-scenario001-centos-stream-9:
             dependencies:
               - weirdo-zed-promote-consistent-to-puppet-ci-testing
@@ -399,6 +403,7 @@
               - weirdo-zed-promote-puppet-scenario002-centos-stream-9
               - weirdo-zed-promote-puppet-scenario003-centos-stream-9
               - weirdo-zed-promote-puppet-scenario004-centos-stream-9
+              - weirdo-zed-promote-puppet-scenario005-centos-stream-9
               - weirdo-zed-promote-packstack-scenario001-centos-stream-9
               - weirdo-zed-promote-packstack-scenario002-centos-stream-9
               - weirdo-zed-promote-packstack-scenario003-centos-stream-9
