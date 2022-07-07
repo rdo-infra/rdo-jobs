@@ -523,6 +523,13 @@
       scenario: scenario004
 
 - job:
+    name: weirdo-zed-promote-puppet-scenario005-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: zed
+      scenario: scenario005
+
+- job:
     name: weirdo-zed-promote-packstack-scenario001-centos-stream-9
     parent: weirdo-promote-base-centos9
     vars:
