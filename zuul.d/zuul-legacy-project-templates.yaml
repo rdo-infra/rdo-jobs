@@ -165,6 +165,7 @@
         - weirdo-dlrn-master-puppet-scenario001-centos9
         - weirdo-dlrn-master-puppet-scenario002-centos9
         - weirdo-dlrn-master-puppet-scenario004-centos9
+        - weirdo-dlrn-master-puppet-scenario005-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
         - DLRN-rpmbuild
@@ -176,6 +177,7 @@
         - weirdo-dlrn-master-puppet-scenario001-centos9
         - weirdo-dlrn-master-puppet-scenario002-centos9
         - weirdo-dlrn-master-puppet-scenario004-centos9
+        - weirdo-dlrn-master-puppet-scenario005-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
     gate:
@@ -345,6 +347,7 @@
         - DLRN-build-tripleo-centos8
         - DLRN-build-tripleo-centos9
         - weirdo-dlrn-master-puppet-scenario004-centos9
+        - weirdo-dlrn-master-puppet-scenario005-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
         - DLRN-rpmbuild
@@ -353,6 +356,7 @@
     experimental:
       jobs:
         - weirdo-dlrn-master-puppet-scenario004-centos9
+        - weirdo-dlrn-master-puppet-scenario005-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
     gate:
@@ -487,6 +491,7 @@
         - DLRN-build-tripleo-centos8
         - DLRN-build-tripleo-centos9
         - weirdo-dlrn-master-puppet-scenario004-centos9
+        - weirdo-dlrn-master-puppet-scenario005-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
         - DLRN-rpmbuild
@@ -495,6 +500,7 @@
     experimental:
       jobs:
         - weirdo-dlrn-master-puppet-scenario004-centos9
+        - weirdo-dlrn-master-puppet-scenario005-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
     gate:
@@ -537,35 +543,3 @@
         - DLRN-rpmbuild-centos9
         - distgit-cbs-final-build-centos8
         - distgit-cbs-final-build-centos9
-
-- project-template:
-    name: weirdo-gate-jobs
-    check:
-      jobs:
-        - weirdo-ansible-lint
-        - weirdo-docs:
-            files:
-              - ^docs/.*$
-              - ^.*\.rst$
-        - weirdo-integration-queens-packstack-scenario001
-        - weirdo-integration-rocky-packstack-scenario002
-        - weirdo-integration-master-packstack-scenario003-centos9
-        - weirdo-integration-queens-puppet-scenario001
-        - weirdo-integration-rocky-puppet-scenario002
-        - weirdo-integration-master-puppet-scenario003-centos9
-        - weirdo-integration-master-puppet-scenario004-centos9
-    experimental:
-      jobs:
-        - weirdo-integration-queens-packstack-scenario003
-        - weirdo-integration-rocky-packstack-scenario002
-        - weirdo-integration-master-packstack-scenario001-centos9
-        - weirdo-integration-queens-puppet-scenario003
-        - weirdo-integration-rocky-puppet-scenario002
-        - weirdo-integration-master-puppet-scenario001-centos9
-    gate:
-      jobs:
-        - weirdo-ansible-lint
-        - weirdo-docs:
-            files:
-              - ^docs/.*$
-              - ^.*\.rst$
