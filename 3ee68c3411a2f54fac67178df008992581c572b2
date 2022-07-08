@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2837cf79_25833534",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2022-07-08T08:56:44Z",
+      "side": 1,
+      "message": "Some suggestions about usage of scenario005 in distgits repos.",
+      "revId": "3ee68c3411a2f54fac67178df008992581c572b2",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dffb5457_33b17f0d",
+        "filename": "zuul.d/zuul-legacy-project-templates.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2022-07-08T08:56:44Z",
+      "side": 1,
+      "message": "I think we have enough coverage for glance with three jobs. I\u0027d suggest to replace one of the existing jobs, i.e. scenario004 by scenario005 instead of adding it.",
+      "range": {
+        "startLine": 168,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 2
+      },
+      "revId": "3ee68c3411a2f54fac67178df008992581c572b2",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "159b8446_63003150",
+        "filename": "zuul.d/zuul-legacy-project-templates.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2022-07-08T08:56:44Z",
+      "side": 1,
+      "message": "As the purpose of scenario005 is to test ovn neutron backend i\u0027d add it here to gate changes in neutron",
+      "range": {
+        "startLine": 386,
+        "startChar": 0,
+        "endLine": 386,
+        "endChar": 2
+      },
+      "revId": "3ee68c3411a2f54fac67178df008992581c572b2",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0608e6ef_a756234f",
+        "filename": "zuul.d/zuul-legacy-project-templates.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2022-07-08T08:56:44Z",
+      "side": 1,
+      "message": "Let\u0027s use scenario005 to gate nova too. It\u0027s different networking backend so it can have more relation to nova.",
+      "range": {
+        "startLine": 422,
+        "startChar": 0,
+        "endLine": 422,
+        "endChar": 2
+      },
+      "revId": "3ee68c3411a2f54fac67178df008992581c572b2",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13ec2aaa_b7626c40",
+        "filename": "zuul.d/zuul-legacy-project-templates.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2022-07-08T08:56:44Z",
+      "side": 1,
+      "message": "watcher doesn\u0027t run in scenario005 so there is no point in adding it to this template.",
+      "range": {
+        "startLine": 494,
+        "startChar": 0,
+        "endLine": 494,
+        "endChar": 2
+      },
+      "revId": "3ee68c3411a2f54fac67178df008992581c572b2",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
