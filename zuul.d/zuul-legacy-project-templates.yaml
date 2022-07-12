@@ -203,7 +203,7 @@
               - DLRN-rpmbuild-pinned
         - DLRN-build-tripleo-centos8:
             dependencies:
-              - DLRN-rpmbuild-centos8-pinned
+              - DLRN-rpmbuild-centos8
         - DLRN-build-tripleo-centos9:
             dependencies:
               - DLRN-rpmbuild-centos9-pinned
@@ -213,8 +213,12 @@
         - weirdo-dlrn-master-puppet-scenario001-centos9:
             dependencies:
               - DLRN-rpmbuild-centos9-pinned
-        - DLRN-rpmbuild-centos8-pinned
-        - DLRN-rpmbuild-centos9-pinned
+        - DLRN-rpmbuild-centos8:
+            branches: ^(train|ussuri|victoria|wallaby|xena|yoga)-rdo$
+        - DLRN-rpmbuild-centos9:
+            branches: ^(wallaby|xena|yoga)-rdo$
+        - DLRN-rpmbuild-centos9-pinne:
+            branches: ^rpm-master$
         - DLRN-rpmbuild-pinned:
             branches: ^(queens|rocky|stein|train)-rdo$
         - distgit-cbs-validate-centos8-stream
