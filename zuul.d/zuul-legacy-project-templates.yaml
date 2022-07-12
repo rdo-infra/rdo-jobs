@@ -200,10 +200,10 @@
             branches: ^rpm-master$
         - DLRN-build-tripleo:
             dependencies:
-              - DLRN-rpmbuild-pinned
+              - DLRN-rpmbuild
         - DLRN-build-tripleo-centos8:
             dependencies:
-              - DLRN-rpmbuild-centos8-pinned
+              - DLRN-rpmbuild-centos8
         - DLRN-build-tripleo-centos9:
             dependencies:
               - DLRN-rpmbuild-centos9-pinned
@@ -213,18 +213,22 @@
         - weirdo-dlrn-master-puppet-scenario001-centos9:
             dependencies:
               - DLRN-rpmbuild-centos9-pinned
-        - DLRN-rpmbuild-centos8-pinned
-        - DLRN-rpmbuild-centos9-pinned
-        - DLRN-rpmbuild-pinned:
-            branches: ^(queens|rocky|stein|train)-rdo$
+        - DLRN-rpmbuild-centos8
+        - DLRN-rpmbuild-centos9:
+            branches: ^((?!rpm-master)|(^(?!train|ussuri|victoria)(\w+)-rdo))$
+        - DLRN-rpmbuild-centos9-pinned:
+            branches: ^rpm-master$
+        - DLRN-rpmbuild
         - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
     gate:
       jobs:
-        - DLRN-rpmbuild-centos8-pinned
-        - DLRN-rpmbuild-centos9-pinned
-        - DLRN-rpmbuild:
-            branches: ^(queens|rocky|stein|train)-rdo$
+        - DLRN-rpmbuild-centos8
+        - DLRN-rpmbuild-centos9:
+            branches: ^((?!rpm-master)|(^(?!train|ussuri|victoria)(\w+)-rdo))$
+        - DLRN-rpmbuild-centos9-pinned:
+            branches: ^rpm-master$
+        - DLRN-rpmbuild
         - distgit-cbs-final-build-centos8
         - distgit-cbs-final-build-centos9
 
