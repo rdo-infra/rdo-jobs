@@ -592,6 +592,9 @@
       validations are broken.
       Validations are executed from the undercloud host, with inventory set by
       the 'validations_inventory' variable.
+    required-projects:
+      - name: opendev.org/openstack/openstack-virtual-baremetal
+        override-checkout: stable/2.0
     vars:
       component: baremetal
       release: wallaby
@@ -602,6 +605,9 @@
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-clients-wallaby
     parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-master
+    required-projects:
+      - name: opendev.org/openstack/openstack-virtual-baremetal
+        override-checkout: stable/2.0
     vars:
       component: clients
       release: wallaby
@@ -614,6 +620,9 @@
       OVB job for Wallaby with 3 controller and 1 compute for Network component.
       Validations are enabled and executed from the undercloud host, with
       inventory set by the 'validations_inventory' variable.
+    required-projects:
+      - name: opendev.org/openstack/openstack-virtual-baremetal
+        override-checkout: stable/2.0
     vars:
       component: network
       release: wallaby
@@ -636,6 +645,9 @@
       OVB job for Wallaby with 3 controller and 1 compute for Tripleo component.
       Validations are enabled and executed from the undercloud host, with
       inventory set by the 'validations_inventory' variable.
+    required-projects:
+      - name: opendev.org/openstack/openstack-virtual-baremetal
+        override-checkout: stable/2.0
     vars:
       component: tripleo
       release: wallaby
@@ -650,6 +662,9 @@
       OVB job for Wallaby with 3 controller and 1 compute for Compute component.
       Validations are enabled and executed from the undercloud host, with
       inventory set by the 'validations_inventory' variable.
+    required-projects:
+      - name: opendev.org/openstack/openstack-virtual-baremetal
+        override-checkout: stable/2.0
     vars:
       component: compute
       release: wallaby
@@ -665,6 +680,9 @@
     description: |
       VF OVB job for wallaby branch. Inheriting from the master job and overriding release
       specifying parameters.
+    required-projects:
+      - name: opendev.org/openstack/openstack-virtual-baremetal
+        override-checkout: stable/2.0
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'

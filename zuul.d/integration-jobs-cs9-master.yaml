@@ -38,6 +38,8 @@
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-master
     parent: periodic-tripleo-ci-ovb-rdo-centos-9
+    required-projects:
+      - opendev.org/openstack/openstack-virtual-baremetal
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
