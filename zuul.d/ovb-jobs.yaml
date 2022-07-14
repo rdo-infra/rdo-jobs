@@ -24,6 +24,8 @@
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001
     parent: tripleo-ci-ovb-rdo-centos-9
     branches: ^(?!stable/(train|ussuri|victoria)).*$
+    required-projects:
+      - opendev.org/openstack/openstack-virtual-baremetal
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
@@ -48,6 +50,8 @@
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039
     parent: tripleo-ci-ovb-rdo-centos-9
     branches: ^(?!stable/(train|ussuri|victoria)).*$
+    required-projects:
+      - opendev.org/openstack/openstack-virtual-baremetal
     vars: &fs39_vars
       nodes: 3ctlr_1comp_1supp
       featureset: '039'
@@ -81,15 +85,11 @@
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-ovb-master
     parent: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001
     branches: ^master$
-    required-projects:
-      - opendev.org/openstack/openstack-virtual-baremetal
 
 - job:
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-ovb-master
     parent: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039
     branches: ^master$
-    required-projects:
-      - opendev.org/openstack/openstack-virtual-baremetal
 
 ########## C E N T O S 9 WALLABY branchful Check  ####################
 
@@ -98,6 +98,9 @@
     parent: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001
     override-checkout: "stable/wallaby"
     branches: ^master$
+    required-projects:
+      - name: opendev.org/openstack/openstack-virtual-baremetal
+        override-checkout: stable/2.0
     vars:
       branch_override: "stable/wallaby"
 
@@ -115,6 +118,9 @@
     parent: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039
     branches: ^master$
     override-checkout: "stable/wallaby"
+    required-projects:
+      - name: opendev.org/openstack/openstack-virtual-baremetal
+        override-checkout: stable/2.0
     vars:
       branch_override: "stable/wallaby"
 
