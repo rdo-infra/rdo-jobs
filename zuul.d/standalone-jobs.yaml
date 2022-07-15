@@ -267,6 +267,11 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario010-ovn-provider-standalone-master
     parent: periodic-tripleo-ci-centos-9-scenario010-standalone-master
+    vars:
+      tags:
+        - build
+        - standalone
+        - octavia
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario012-standalone-master
