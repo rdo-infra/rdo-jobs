@@ -35,6 +35,7 @@
         - periodic-tripleo-ci-centos-9-undercloud-containers-wallaby: *build_containers_cs_9_push_wallaby
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-wallaby: *build_containers_cs_9_push_wallaby
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-wallaby: *build_containers_cs_9_push_wallaby
+        - periodic-tripleo-ci-centos-8-9-multinode-mixed-os: *build_containers_cs_9_push_wallaby
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-wallaby: &ovb_dep_cs_9_wallaby
             dependencies:
               - periodic-tripleo-ci-build-containers-centos-9-push-wallaby
