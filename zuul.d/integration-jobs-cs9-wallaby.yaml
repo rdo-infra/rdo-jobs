@@ -119,6 +119,15 @@
     override-checkout: "stable/wallaby"
     vars: *wallaby_vars
 
+# multinode-mixed-os Centos 8/9 jobs
+- job:
+    name: periodic-tripleo-ci-centos-8-9-multinode-mixed-os
+    parent: tripleo-ci-base-required-projects-multinode-mixed-os-rdo
+    override-checkout: "stable/wallaby"
+    vars:
+      <<: *wallaby_vars
+      featureset: '066'
+
 # standalone full tempest api and scenario jobs
 
 - job:
