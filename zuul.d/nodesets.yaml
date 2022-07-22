@@ -602,3 +602,56 @@
         nodes:
           - secondary-1
           - secondary-2
+
+# IBM cloud nodeset
+- nodeset:
+    name: cloud-centos-9-stream-ibm
+    nodes:
+      - name: primary
+        label: ibm-cloud-centos-9-stream-tripleo
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: single-centos-9-stream-node-ibm
+    nodes:
+      - name: primary
+        label: ibm-cloud-centos-9-stream-tripleo
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: two-centos-9-nodes-ibm
+    nodes:
+      - name: primary
+        label: ibm-cloud-centos-9-stream-tripleo
+      - name: secondary
+        label: ibm-cloud-centos-9-stream-tripleo
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes:
+          - secondary
+      - name: subnodes
+        nodes:
+          - secondary
+
+- nodeset:
+    name: tripleo-ovb-centos-9-primary-ibm
+    nodes:
+      - name: primary
+        label: ibm-cloud-centos-9-stream-tripleo
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
