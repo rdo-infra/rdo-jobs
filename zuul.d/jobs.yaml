@@ -246,7 +246,7 @@
     name: centos-opstools-rpmlint
     parent: base
     run: playbooks/centos-opstools/rpmlint/run.yaml
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
 
 - job:
     name: opstools-deprecated-warning
