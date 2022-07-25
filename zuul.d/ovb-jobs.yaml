@@ -16,38 +16,55 @@
     required-projects:
       - opendev.org/openstack/ansible-role-container-registry
       - opendev.org/openstack/tripleo-ansible
+      - opendev.org/openstack/openstack-virtual-baremetal
 
 
 # =================  C E N T O S  9  C H E C K  J O B S
+- job:
+    name: tripleo-ci-ovb-rdo-centos-9-master
+    parent: tripleo-ci-ovb-rdo-centos-9
+    abstract: true
+    branches: ^(?!stable/(train|ussuri|victoria)).*$
 
 - job:
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001
-    parent: tripleo-ci-ovb-rdo-centos-9
-    branches: ^(?!stable/(train|ussuri|victoria)).*$
+    parent: tripleo-ci-ovb-rdo-centos-9-master
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
 
 - job:
     name: tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset001
-    parent: tripleo-ci-ovb-rdo-centos-9
-    branches: ^(?!stable/(train|ussuri|victoria)).*$
+    parent: tripleo-ci-ovb-rdo-centos-9-master
     vars:
       nodes: 1ctlr_1comp
       featureset: '001'
 
 - job:
+    name: tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset002-upload
+    parent: tripleo-ci-ovb-rdo-centos-9-master
+    vars:
+      nodes: 1ctlr_1comp
+      featureset: '002'
+
+- job:
+    name: tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020
+    parent: tripleo-ci-ovb-rdo-centos-9-master
+    timeout: 18000
+    vars:
+      nodes: 1ctlr_2comp
+      featureset: '020'
+
+- job:
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset035
-    parent: tripleo-ci-ovb-rdo-centos-9
-    branches: ^(?!stable/(train|ussuri|victoria)).*$
+    parent: tripleo-ci-ovb-rdo-centos-9-master
     vars:
       nodes: 3ctlr_1comp
       featureset: '035'
 
 - job:
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039
-    parent: tripleo-ci-ovb-rdo-centos-9
-    branches: ^(?!stable/(train|ussuri|victoria)).*$
+    parent: tripleo-ci-ovb-rdo-centos-9-master
     vars: &fs39_vars
       nodes: 3ctlr_1comp_1supp
       featureset: '039'
@@ -59,74 +76,55 @@
         - baremetal-full-overcloud.yml
         - baremetal-full-overcloud-validate.yml
 
-- job:
-    name: tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset002-upload
-    parent: tripleo-ci-ovb-rdo-centos-9
-    branches: ^(?!stable/(train|ussuri|victoria)).*$
-    vars:
-      nodes: 1ctlr_1comp
-      featureset: '002'
-
-- job:
-    name: tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020
-    parent: tripleo-ci-ovb-rdo-centos-9
-    timeout: 18000
-    branches: ^(?!stable/(train|ussuri|victoria)).*$
-    vars:
-      nodes: 1ctlr_2comp
-      featureset: '020'
-
 # Jobs with -master should run on OVB repository
 - job:
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-ovb-master
     parent: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001
     branches: ^master$
-    required-projects:
-      - opendev.org/openstack/openstack-virtual-baremetal
 
 - job:
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-ovb-master
     parent: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039
     branches: ^master$
-    required-projects:
-      - opendev.org/openstack/openstack-virtual-baremetal
 
 ########## C E N T O S 9 WALLABY branchful Check  ####################
+- job:
+    name: tripleo-ci-ovb-rdo-centos-9-wallaby
+    parent: tripleo-ci-ovb-rdo-centos-9
+    abstract: true
+    branches: ^master$
+    override-checkout: "stable/wallaby"
+    vars:
+      branch_override: "stable/wallaby"
+      release: wallaby
 
 - job:
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-wallaby
-    parent: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001
-    override-checkout: "stable/wallaby"
-    branches: ^master$
+    parent: tripleo-ci-ovb-rdo-centos-9-wallaby
     vars:
-      branch_override: "stable/wallaby"
+      nodes: 3ctlr_1comp
+      featureset: '001'
 
 - job:
     name: tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset002-upload-wallaby
-    parent: tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset002-upload
-    branches: ^master$
-    override-checkout: "stable/wallaby"
+    parent: tripleo-ci-ovb-rdo-centos-9-wallaby
     vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-- job:
-    name: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-wallaby
-    parent: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039
-    branches: ^master$
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
+      nodes: 1ctlr_1comp
+      featureset: '002'
 
 - job:
     name: tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020-wallaby
-    parent: tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020
-    branches: ^master$
-    override-checkout: "stable/wallaby"
+    parent: tripleo-ci-ovb-rdo-centos-9-wallaby
+    timeout: 18000
     vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
+      nodes: 1ctlr_2comp
+      featureset: '020'
 
+- job:
+    name: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-wallaby
+    parent: tripleo-ci-ovb-rdo-centos-9-wallaby
+    vars:
+      <<: *fs39_vars
 
 # =================  C E N T O S  8  C H E C K  J O B S
 
