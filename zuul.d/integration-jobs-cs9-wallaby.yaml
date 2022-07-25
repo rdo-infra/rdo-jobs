@@ -135,43 +135,84 @@
 
 # OVB jobs
 - job:
+    name: periodic-tripleo-ci-ovb-required-project-rdo-centos-9-wallaby
+    parent: periodic-tripleo-ci-ovb-rdo-centos-9
+    abstract: true
+    required-projects:
+      - name: opendev.org/openstack/openstack-virtual-baremetal
+        override-checkout: stable/2.0
+
+- job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-wallaby
-    parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-master
-    override-checkout: "stable/wallaby"
-    vars: *wallaby_vars
-
-- job:
-    name: periodic-tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset002-wallaby
-    parent: periodic-tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset002-master
-    override-checkout: "stable/wallaby"
-    vars: *wallaby_vars
-
-- job:
-    name: periodic-tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020-wallaby
-    parent: periodic-tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020-master
+    parent: periodic-tripleo-ci-ovb-required-project-rdo-centos-9-wallaby
     override-checkout: "stable/wallaby"
     vars:
       <<: *wallaby_vars
+      nodes: 3ctlr_1comp
+      featureset: '001'
+      featureset_override:
+        to_build: false
+
+
+- job:
+    name: periodic-tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset002-wallaby
+    parent: periodic-tripleo-ci-ovb-required-project-rdo-centos-9-wallaby
+    override-checkout: "stable/wallaby"
+    vars:
+      <<: *wallaby_vars
+      nodes: 1ctlr_1comp
+      featureset: '002'
+      image_upload: false
+
+- job:
+    name: periodic-tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020-wallaby
+    parent: periodic-tripleo-ci-ovb-required-project-rdo-centos-9-wallaby
+    override-checkout: "stable/wallaby"
+    vars:
+      <<: *wallaby_vars
+      nodes: 1ctlr_2comp
+      featureset: '020'
+      featureset_override:
+        to_build: false
       baremetal_image_name: "ipxe-boot"
       tripleo_image_type: overcloud-full
 
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset035-wallaby
-    parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset035-master
+    parent: periodic-tripleo-ci-ovb-required-project-rdo-centos-9-wallaby
     override-checkout: "stable/wallaby"
-    vars: *wallaby_vars
+    vars:
+      <<: *wallaby_vars
+      nodes: 3ctlr_1comp
+      featureset: '035'
+      featureset_override:
+        to_build: false
+
 
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-wallaby
-    parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-master
+    parent: periodic-tripleo-ci-ovb-required-project-rdo-centos-9-wallaby
     override-checkout: "stable/wallaby"
-    vars: *wallaby_vars
+    vars:
+      <<: *wallaby_vars
+      nodes: 3ctlr_1comp_1supp
+      featureset: '039'
+      featureset_override:
+        to_build: false
+      playbooks:
+        - ovb-setup.yml
+        - baremetal-full-freeipa.yml
+        - baremetal-full-undercloud.yml
+        - baremetal-full-overcloud-prep.yml
+        - baremetal-full-overcloud.yml
+        - baremetal-full-overcloud-validate.yml
+
 
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset064-wallaby
-    parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset064-master
-    override-checkout: "stable/wallaby"
-    vars: *wallaby_vars
+    parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-wallaby
+    vars:
+      featureset: '064'
 
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-rbac-wallaby
