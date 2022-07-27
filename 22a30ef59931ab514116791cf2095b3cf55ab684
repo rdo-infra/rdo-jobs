@@ -33,6 +33,23 @@
       "message": "recheck \n\nthe zuul error should clear now we merged the depends-on",
       "revId": "22a30ef59931ab514116791cf2095b3cf55ab684",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09f26279_19931be1",
+        "filename": "zuul.d/integration-jobs-cs9-wallaby.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-07-27T15:20:58Z",
+      "side": 1,
+      "message": "and also needs nodes: 1ctlr_1comp_mixed_os\n\nupstream we have it in the job at https://opendev.org/openstack/tripleo-ci/src/commit/77d9ebffe63e74d9052f2dcfe87ea29b52e3d983/zuul.d/multinode-jobs.yaml#L372\n\n\nfailing with missing topology_map_control @ \n        * https://logserver.rdoproject.org/34/44234/1/check/periodic-tripleo-ci-centos-8-9-multinode-mixed-os/82beabf/job-output.txt\n        * 2022-07-27 09:56:06.379062 | primary | TASK [overcloud-deploy : extract the number of controllers to be deployed] *****\n2022-07-27 09:56:06.379080 | primary | Wednesday 27 July 2022  13:56:06 +0000 (0:00:00.044)       0:00:00.680 ********\n2022-07-27 09:56:06.399919 | primary | fatal: [undercloud]: FAILED! \u003d\u003e {\"msg\": \"The conditional check \u0027topology_map is not defined\u0027 failed. The error was: error while evaluating conditional (topology_map is not defined): {{ topology_map_control }}: \u0027topology_map_control\u0027 is undefined\\n\\nThe error appears to be in \u0027/home/zuul/workspace/.quickstart/usr/local/share/ansible/roles/overcloud-deploy/tasks/pre-deploy.yml\u0027: line 128, column 3, but may\\nbe elsewhere in the file depending on the exact syntax problem.\\n\\nThe offending line appears to be:\\n\\n\\n- name: extract the number of controllers to be deployed\\n  ^ here\\n\"}",
+      "revId": "22a30ef59931ab514116791cf2095b3cf55ab684",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
