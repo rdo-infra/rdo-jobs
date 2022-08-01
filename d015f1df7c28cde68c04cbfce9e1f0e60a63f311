@@ -67,6 +67,69 @@
       "message": "We discussed this in the community call and agreed to switch all C9 jobs (wallaby + master) to use ovb master(Provided that works and wallaby can work with ovb master - need testing) to avoid redefining jobs for wallaby to override ovb branch.",
       "revId": "d015f1df7c28cde68c04cbfce9e1f0e60a63f311",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5df0679_145f6b69",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 673
+      },
+      "writtenOn": "2022-08-01T05:55:22Z",
+      "side": 1,
+      "message": "Minor changes.",
+      "revId": "d015f1df7c28cde68c04cbfce9e1f0e60a63f311",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "283947a1_a5c123bd",
+        "filename": "zuul.d/ovb-jobs.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 673
+      },
+      "writtenOn": "2022-08-01T05:55:22Z",
+      "side": 1,
+      "message": "Move this to: tripleo-ci-base-ovb-required-projects-rdo job on line no:19.",
+      "range": {
+        "startLine": 27,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 57
+      },
+      "revId": "d015f1df7c28cde68c04cbfce9e1f0e60a63f311",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53e1136d_71d6d794",
+        "filename": "zuul.d/ovb-jobs.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 673
+      },
+      "writtenOn": "2022-08-01T05:55:22Z",
+      "side": 1,
+      "message": "It\u0027s defined in parent job. You can remove it from here. and same for the following jobs.",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 39
+      },
+      "revId": "d015f1df7c28cde68c04cbfce9e1f0e60a63f311",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
