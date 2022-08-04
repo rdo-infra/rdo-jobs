@@ -562,6 +562,59 @@
     vars:
       component: tripleo
 
+# Mixed OS Component jobs
+- job:
+    name: periodic-tripleo-ci-centos-9-8-multinode-mixed-os-component-wallaby
+    parent: periodic-tripleo-ci-centos-9-8-multinode-mixed-os
+    abstract: true
+    vars: &component_vars_multinode
+      component: component
+      release: wallaby
+      dlrn_server_url: "trunk.rdoproject.org"
+      promote_source: component-ci-testing
+      add_repos:
+        - type: generic
+          reponame: "{{ component }}"
+          filename: "{{ component }}-component.repo"
+          priority: 1
+          baseurl: "https://{{ dlrn_server_url }}/centos9-{{ release }}/component/{{ component }}/component-ci-testing"
+          update_container: true
+
+- job:
+    name: periodic-tripleo-ci-centos-9-8-multinode-mixed-os-compute-wallaby
+    parent: periodic-tripleo-ci-centos-9-8-multinode-mixed-os-component-wallaby
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: "stable/wallaby"
+      component: compute
+      mixed_os_stable_version: "8"
+      mixed_os_stable_label: "current-tripleo"
+      mixed_os_current_label: "current-tripleo"
+
+- job:
+    name: periodic-tripleo-ci-centos-9-8-multinode-mixed-os-tripleo-wallaby
+    parent: periodic-tripleo-ci-centos-9-8-multinode-mixed-os-component-wallaby
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: "stable/wallaby"
+      component: tripleo
+      mixed_os_stable_version: "8"
+      mixed_os_stable_label: "current-tripleo"
+      mixed_os_current_label: "current-tripleo"
+
+- job:
+    name: periodic-tripleo-ci-centos-9-8-multinode-mixed-os-common-wallaby
+    parent: periodic-tripleo-ci-centos-9-8-multinode-mixed-os-component-wallaby
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: "stable/wallaby"
+      component: common
+      mixed_os_stable_version: "8"
+      mixed_os_stable_label: "current-tripleo"
+      mixed_os_current_label: "current-tripleo"
 
 ## standalone-on-multinode-ipa jobs
 
