@@ -732,6 +732,59 @@
       scenario: scenario003
 
 - job:
+    name: validate-buildsys-tags-wallaby-testing-centos9-base
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: wallaby
+      rdoinfo_phase: testing
+      centos_releasever: 9s
+    nodeset: rdo-centos-9-stream
+    files:
+      - ^buildsys-tags/cloud9s-openstack-wallaby-testing.yml$
+
+- job:
+    name: validate-buildsys-tags-wallaby-testing-puppet-scenario001-centos9
+    parent: validate-buildsys-tags-wallaby-testing-centos9-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-wallaby-testing-puppet-scenario002-centos9
+    parent: validate-buildsys-tags-wallaby-testing-centos9-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-wallaby-testing-puppet-scenario003-centos9
+    parent: validate-buildsys-tags-wallaby-testing-centos9-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: validate-buildsys-tags-wallaby-testing-puppet-scenario004-centos9
+    parent: validate-buildsys-tags-wallaby-testing-centos9-base
+    vars:
+      scenario: scenario004
+
+- job:
+    name: validate-buildsys-tags-wallaby-testing-packstack-scenario001-centos9
+    parent: validate-buildsys-tags-wallaby-testing-centos9-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-wallaby-testing-packstack-scenario002-centos9
+    parent: validate-buildsys-tags-wallaby-testing-centos9-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-wallaby-testing-packstack-scenario003-centos9
+    parent: validate-buildsys-tags-wallaby-testing-centos9-base
+    vars:
+      scenario: scenario003
+
+- job:
     name: validate-buildsys-tags-xena-testing-centos8-base
     parent: weirdo-validate-buildsys-tags-base
     vars:
