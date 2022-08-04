@@ -588,6 +588,14 @@
           update_container: true
 
 - job:
+    name: periodic-tripleo-ci-centos-8-9-multinode-mixed-os-component-master
+    parent: periodic-tripleo-ci-centos-8-9-multinode-mixed-os
+    abstract: true
+    vars:
+      <<: *component_vars_multinode
+      release: wallaby
+
+- job:
     name: periodic-tripleo-ci-centos-9-containers-multinode-clients-master
     parent: periodic-tripleo-ci-centos-9-containers-multinode-component-master
     vars:
