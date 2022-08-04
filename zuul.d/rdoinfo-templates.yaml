@@ -2,6 +2,12 @@
     name: rdoinfo-master-testing-tripleo-jobs
     check:
       jobs:
+        - rdoinfo-tripleo-wallaby-testing-centos-9-scenario001-standalone:
+            dependencies:
+              - validate-buildsys-tags
+            voting: false
+            files:
+              - ^buildsys-tags/cloud9s-openstack-wallaby-testing.yml$
         - rdoinfo-tripleo-yoga-release-centos-9-scenario001-standalone:
             dependencies:
               - validate-buildsys-tags
