@@ -562,6 +562,22 @@
     vars:
       component: tripleo
 
+- job:
+    name: periodic-tripleo-ci-centos-8-9-multinode-mixed-os-component-wallaby
+    parent: periodic-tripleo-ci-centos-8-9-multinode-mixed-os
+    abstract: true
+    vars:
+      <<: *component_vars_multinode
+      release: wallaby
+
+- job:
+    name: periodic-tripleo-ci-centos-8-9-multinode-mixed-os-compute-wallaby
+    parent: periodic-tripleo-ci-centos-8-9-multinode-mixed-os-component-wallaby
+    override-checkout: "stable/wallaby"
+    vars:
+      release: wallaby
+      branch_override: "stable/wallaby"
+      component: compute
 
 ## standalone-on-multinode-ipa jobs
 
