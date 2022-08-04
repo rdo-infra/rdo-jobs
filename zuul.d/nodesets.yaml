@@ -604,6 +604,61 @@
           - secondary-2
 
 # IBM cloud nodeset
+
+# CentOS 8
+- nodeset:
+    name: cloud-centos-8-stream-ibm
+    nodes:
+      - name: primary
+        label: ibm-cloud-centos-8-stream-tripleo
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: single-centos-8-stream-node-ibm
+    nodes:
+      - name: primary
+        label: ibm-cloud-centos-8-stream-tripleo
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: two-centos-8-nodes-ibm
+    nodes:
+      - name: primary
+        label: ibm-cloud-centos-8-stream-tripleo
+      - name: secondary
+        label: ibm-cloud-centos-8-stream-tripleo
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes:
+          - secondary
+      - name: subnodes
+        nodes:
+          - secondary
+
+- nodeset:
+    name: tripleo-ovb-centos-8-primary-ibm
+    nodes:
+      - name: primary
+        label: ibm-cloud-centos-8-stream-tripleo
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
+# CentOS 9
 - nodeset:
     name: cloud-centos-9-stream-ibm
     nodes:
