@@ -893,6 +893,30 @@
       branch_override: "stable/train"
 
 - job:
+    name: rdoinfo-tripleo-wallaby-testing-centos-9-scenario001-standalone
+    parent: tripleo-ci-base-standalone-centos-9
+    run: playbooks/run-rdoinfo.yaml
+    post-run: playbooks/post-rdoinfo.yaml
+    override-checkout: "stable/wallaby"
+    vars:
+      featureset: '052'
+      rdoinfo_release: wallaby
+      rdoinfo_phase: testing
+      branch_override: "stable/wallaby"
+      build_container_images: true
+      centos_releasever: 9s
+      containers_base_image: quay.io/centos/centos:stream9
+      buildcontainers_override_repos: current-tripleo
+      buildcontainers_version_hash: stable-wallaby
+      buildcontainers_venv: false
+      setup_docker_registry: true
+      standalone_ceph: true
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario001-standalone.yaml'
+
+- job:
     name: rdoinfo-tripleo-yoga-release-centos-9-scenario001-standalone
     parent: tripleo-ci-base-standalone-centos-9
     run: playbooks/run-rdoinfo-cbs-centos9.yaml
