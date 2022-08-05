@@ -9,6 +9,7 @@
         - periodic-tripleo-ci-centos-8-standalone-wallaby: &build_containers_ubi_8_push_wallaby
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+            nodeset: cloud-centos-8-stream-ibm
         ## ovb
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby: &ovb_deps_wallaby
             dependencies:
@@ -16,6 +17,9 @@
               - periodic-tripleo-centos-8-buildimage-overcloud-full-wallaby
               - periodic-tripleo-centos-8-buildimage-overcloud-hardened-uefi-full-wallaby
               - periodic-tripleo-centos-8-buildimage-ironic-python-agent-wallaby
+            vars:
+              cloud_name: ibm-bm2-nodepool
+            nodeset: tripleo-ovb-centos-8-primary-ibm
         - create-fs001-wallaby-c8-trigger-for-downstream: *ovb_deps_wallaby
         - create-fs035-wallaby-c8-trigger-for-downstream: *ovb_deps_wallaby
         ## undercloud
@@ -24,8 +28,12 @@
         - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby: &promoted_comp_to_ci_testing_wallaby
             dependencies:
               - periodic-tripleo-centos-8-wallaby-promote-promoted-components-to-tripleo-ci-testing
+            nodeset: single-centos-8-stream-node-ibm
         - periodic-tripleo-ci-build-containers-centos-8-quay-push-wallaby: *promoted_comp_to_ci_testing_wallaby
         - periodic-tripleo-centos-8-buildimage-overcloud-hardened-uefi-full-wallaby: *promoted_comp_to_ci_testing_wallaby
         - periodic-tripleo-centos-8-buildimage-overcloud-full-wallaby: *promoted_comp_to_ci_testing_wallaby
         - periodic-tripleo-centos-8-buildimage-ironic-python-agent-wallaby: *promoted_comp_to_ci_testing_wallaby
-        - periodic-tripleo-centos-8-wallaby-promote-promoted-components-to-tripleo-ci-testing
+        - periodic-tripleo-centos-8-wallaby-promote-promoted-components-to-tripleo-ci-testing:
+            nodeset: cloud-centos-8-stream-ibm
+            vars:
+              release: wallaby
