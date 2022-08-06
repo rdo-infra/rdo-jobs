@@ -9,7 +9,7 @@
         - periodic-tripleo-ci-centos-8-standalone-wallaby: &build_containers_ubi_8_push_wallaby
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
-            nodeset: cloud-centos-8-stream-ibm
+            nodeset: single-centos-8-stream-node-ibm
         ## ovb
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby: &ovb_deps_wallaby
             dependencies:
