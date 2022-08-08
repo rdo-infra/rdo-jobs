@@ -121,6 +121,41 @@
       "message": "This patch is ready to be merged. Patches mentioned by Steve are merged already.",
       "revId": "abd7cc338af51efab808890e1858597db2b8cb04",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f8a3dd7_7fe30f02",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-08-08T06:58:17Z",
+      "side": 1,
+      "message": "re-adding +2 but note we don\u0027t have green testproject yet and latest fails are unrelated  ",
+      "revId": "abd7cc338af51efab808890e1858597db2b8cb04",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2708b473_7e3920cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-08-08T06:58:17Z",
+      "side": 1,
+      "message": "ok thanks for the info.\nIt seems someone else put it in the review list on your behalf then.\n\njust checked the testproject but cant see any green runs there at least not recent.\n\nThe latest is failing on something that i think must be unrelated \n\n\nhttps://review.rdoproject.org/zuul/build/fc119063f78b49dcae772b6d4d88b9bf\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\n??\n\nthen the earlier one like \n\nhttps://review.rdoproject.org/zuul/build/a05bf4fedfaf4d498498a139f01a5d9a\nerror: Curl error (6): Couldn\u0027t resolve host name for http://mirror.regionone.vexxhost-nodepool-tripleo.rdoproject.org/centos-stream/9-stream/BaseOS/x86_64/os/repodata/repomd.xml [Could not resolve host: mirror.regionone.vexxhost-nodepool-tripleo.rdoproject.org] (http://mirror.regionone.vexxhost-nodepool-tripleo.rdoproject.org/centos-stream/9-stream/BaseOS/x86_64/os/repodata/repomd.xml).\n\n\nthis second one i have seen a lot of today in rdo/vexx seems to be an issue with vexx/infra not sure yet",
+      "parentUuid": "0f7418d5_49bffa80",
+      "revId": "abd7cc338af51efab808890e1858597db2b8cb04",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
