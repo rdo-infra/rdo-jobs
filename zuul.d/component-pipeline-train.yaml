@@ -8,149 +8,209 @@
         - periodic-tripleo-ci-centos-8-standalone-baremetal-train: &comp_baremetal_to_ci_testing_train
             dependencies:
               - periodic-tripleo-centos-8-train-component-baremetal-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-baremetal-train: *comp_baremetal_to_ci_testing_train
+            nodeset: single-centos-8-stream-node-ibm
+        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-baremetal-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-baremetal-promote-consistent-to-component-ci-testing
+            nodeset: tripleo-ovb-centos-8-primary-ibm
+            vars:
+              cloud_name: ibm-bm2-nodepool
         - periodic-tripleo-ci-centos-8-scenario012-standalone-baremetal-train: *comp_baremetal_to_ci_testing_train
-        - periodic-tripleo-centos-8-train-component-baremetal-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-baremetal-promote-consistent-to-component-ci-testing: &component_node
+            nodeset: cloud-centos-8-stream-ibm
     openstack-component-cinder:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-cinder-train: &comp_cinder_to_ci_testing_train
             dependencies:
               - periodic-tripleo-centos-8-train-component-cinder-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-8-stream-node-ibm
         - periodic-tripleo-ci-centos-8-scenario001-standalone-cinder-train: *comp_cinder_to_ci_testing_train
         - periodic-tripleo-ci-centos-8-scenario004-standalone-cinder-train: *comp_cinder_to_ci_testing_train
-        - periodic-tripleo-centos-8-train-component-cinder-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-cinder-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-clients:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-clients-train: &comp_clients_to_ci_testing_train
             dependencies:
               - periodic-tripleo-centos-8-train-component-clients-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-8-stream-node-ibm
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-train: *comp_clients_to_ci_testing_train
-        - periodic-tripleo-ci-centos-8-containers-multinode-clients-train: *comp_clients_to_ci_testing_train
-        - periodic-tripleo-centos-8-train-component-clients-promote-consistent-to-component-ci-testing
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-clients-promote-consistent-to-component-ci-testing
+            nodeset: tripleo-ovb-centos-8-primary-ibm
+            vars:
+              cloud_name: ibm-bm2-nodepool
+        - periodic-tripleo-ci-centos-8-containers-multinode-clients-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-clients-promote-consistent-to-component-ci-testing
+            nodeset: two-centos-8-nodes-ibm
+        - periodic-tripleo-centos-8-train-component-clients-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-cloudops:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-cloudops-train: &comp_cloudops_to_ci_testing_train
             dependencies:
               - periodic-tripleo-centos-8-train-component-cloudops-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-8-stream-node-ibm
         - periodic-tripleo-ci-centos-8-scenario001-standalone-cloudops-train: *comp_cloudops_to_ci_testing_train
         - periodic-tripleo-ci-centos-8-scenario002-standalone-cloudops-train: *comp_cloudops_to_ci_testing_train
-        - periodic-tripleo-centos-8-train-component-cloudops-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-cloudops-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-common:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-common-train: &comp_common_to_ci_testing_train
             dependencies:
               - periodic-tripleo-centos-8-train-component-common-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-8-stream-node-ibm
         - periodic-tripleo-ci-centos-8-scenario001-standalone-common-train: *comp_common_to_ci_testing_train
         - periodic-tripleo-ci-centos-8-scenario002-standalone-common-train: *comp_common_to_ci_testing_train
         - periodic-tripleo-ci-centos-8-scenario003-standalone-common-train: *comp_common_to_ci_testing_train
         - periodic-tripleo-ci-centos-8-scenario004-standalone-common-train: *comp_common_to_ci_testing_train
-        - periodic-tripleo-ci-centos-8-containers-multinode-common-train: *comp_common_to_ci_testing_train
-        - periodic-tripleo-centos-8-train-component-common-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-8-containers-multinode-common-train:
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-common-promote-consistent-to-component-ci-testing
+            nodeset: two-centos-8-nodes-ibm
+       - periodic-tripleo-centos-8-train-component-common-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-compute:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-compute-train: &comp_compute_to_ci_testing_train
             dependencies:
               - periodic-tripleo-centos-8-train-component-compute-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-8-stream-node-ibm
         - periodic-tripleo-ci-centos-8-standalone-full-tempest-api-compute-train: *comp_compute_to_ci_testing_train
         - periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-compute-train: *comp_compute_to_ci_testing_train
         - periodic-tripleo-ci-centos-8-scenario012-standalone-compute-train: *comp_compute_to_ci_testing_train
-        - periodic-tripleo-centos-8-train-component-compute-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-compute-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-glance:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-glance-train: &comp_glance_to_ci_testing_train
             dependencies:
               - periodic-tripleo-centos-8-train-component-glance-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-8-stream-node-ibm
         - periodic-tripleo-ci-centos-8-scenario001-standalone-glance-train: *comp_glance_to_ci_testing_train
         - periodic-tripleo-ci-centos-8-scenario002-standalone-glance-train: *comp_glance_to_ci_testing_train
         - periodic-tripleo-ci-centos-8-scenario003-standalone-glance-train: *comp_glance_to_ci_testing_train
         - periodic-tripleo-ci-centos-8-scenario004-standalone-glance-train: *comp_glance_to_ci_testing_train
-        - periodic-tripleo-centos-8-train-component-glance-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-glance-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-manila:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-manila-train: &comp_manila_to_ci_testing_train
             dependencies:
               - periodic-tripleo-centos-8-train-component-manila-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-8-stream-node-ibm
         - periodic-tripleo-ci-centos-8-scenario004-standalone-manila-train: *comp_manila_to_ci_testing_train
-        - periodic-tripleo-centos-8-train-component-manila-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-manila-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-network:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-network-train: &comp_network_to_ci_testing_train
             dependencies:
               - periodic-tripleo-centos-8-train-component-network-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-8-stream-node-ibm
         - periodic-tripleo-ci-centos-8-scenario007-standalone-network-train: *comp_network_to_ci_testing_train
         - create-scenario010-trigger-for-downstream-network-train: *comp_network_to_ci_testing_train
         - periodic-tripleo-ci-centos-8-standalone-full-tempest-api-network-train: *comp_network_to_ci_testing_train
         - periodic-tripleo-ci-centos-8-containers-multinode-network-train: *comp_network_to_ci_testing_train
-        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-train: *comp_network_to_ci_testing_train
-        - periodic-tripleo-centos-8-train-component-network-promote-consistent-to-component-ci-testing
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-network-promote-consistent-to-component-ci-testing
+            nodeset: two-centos-8-nodes-ibm
+      - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-train: *comp_network_to_ci_testing_train
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-network-promote-consistent-to-component-ci-testing
+            nodeset: tripleo-ovb-centos-8-primary-ibm
+            vars:
+              cloud_name: ibm-bm2-nodepool
+        - periodic-tripleo-centos-8-train-component-network-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-octavia:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-octavia-train: &comp_octavia_to_ci_testing_train
             dependencies: &dep_comp_octavia_to_ci_testing_train
               - periodic-tripleo-centos-8-train-component-octavia-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-8-stream-node-ibm
         - periodic-tripleo-ci-centos-8-scenario007-standalone-octavia-train: *comp_octavia_to_ci_testing_train
         - create-scenario010-trigger-for-downstream-octavia-train: *comp_octavia_to_ci_testing_train
         - periodic-tripleo-ci-centos-8-containers-multinode-octavia-train: *comp_octavia_to_ci_testing_train
-        - periodic-tripleo-centos-8-train-component-octavia-promote-consistent-to-component-ci-testing
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-octavia-promote-consistent-to-component-ci-testing
+            nodeset: two-centos-8-nodes-ibm
+      - periodic-tripleo-centos-8-train-component-octavia-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-security:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-security-train: &comp_security_to_ci_testing_train
             dependencies:
               - periodic-tripleo-centos-8-train-component-security-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-8-stream-node-ibm
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-security-train: *comp_security_to_ci_testing_train
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-security-promote-consistent-to-component-ci-testing
+            nodeset: tripleo-ovb-centos-8-primary-ibm
+            vars:
+              cloud_name: ibm-bm2-nodepool
         - periodic-tripleo-ci-centos-8-containers-multinode-security-train: *comp_security_to_ci_testing_train
-        - periodic-tripleo-centos-8-train-component-security-promote-consistent-to-component-ci-testing
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-security-promote-consistent-to-component-ci-testing
+            nodeset: two-centos-8-nodes-ibm
+      - periodic-tripleo-centos-8-train-component-security-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-swift:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-swift-train: &comp_swift_to_ci_testing_train
             dependencies:
               - periodic-tripleo-centos-8-train-component-swift-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-8-stream-node-ibm
         - periodic-tripleo-ci-centos-8-scenario002-standalone-swift-train: *comp_swift_to_ci_testing_train
-        - periodic-tripleo-centos-8-train-component-swift-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-swift-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-tripleo:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-tripleo-train: &comp_tripleo_to_ci_testing_train
             dependencies:
               - periodic-tripleo-centos-8-train-component-tripleo-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-8-stream-node-ibm
         - periodic-tripleo-ci-centos-8-scenario004-standalone-tripleo-train: *comp_tripleo_to_ci_testing_train
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-train: *comp_tripleo_to_ci_testing_train
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-tripleo-promote-consistent-to-component-ci-testing
+            nodeset: tripleo-ovb-centos-8-primary-ibm
+            vars:
+              cloud_name: ibm-bm2-nodepool
         - periodic-tripleo-ci-centos-8-containers-multinode-tripleo-train: *comp_tripleo_to_ci_testing_train
-        - periodic-tripleo-centos-8-train-component-tripleo-promote-consistent-to-component-ci-testing
+            dependencies:
+              - periodic-tripleo-centos-8-train-component-tripleo-promote-consistent-to-component-ci-testing
+            nodeset: two-centos-8-nodes-ibm
+       - periodic-tripleo-centos-8-train-component-tripleo-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-tempest:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-tempest-train: &comp_tempest_to_ci_testing_train
             dependencies:
               - periodic-tripleo-centos-8-train-component-tempest-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-8-stream-node-ibm
         - periodic-tripleo-ci-centos-8-standalone-full-tempest-api-tempest-train: *comp_tempest_to_ci_testing_train
         - periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-tempest-train: *comp_tempest_to_ci_testing_train
-        - periodic-tripleo-centos-8-train-component-tempest-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-8-train-component-tempest-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-ui:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-ui-train: &comp_ui_to_ci_testing_train
             dependencies:
               - periodic-tripleo-centos-8-train-component-ui-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-centos-8-train-component-ui-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-8-stream-node-ibm
+        - periodic-tripleo-centos-8-train-component-ui-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-validation:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-validation-train: &comp_validation_to_ci_testing_train
             dependencies:
               - periodic-tripleo-centos-8-train-component-validation-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-centos-8-train-component-validation-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-8-stream-node-ibm
+        - periodic-tripleo-centos-8-train-component-validation-promote-consistent-to-component-ci-testing: *component_node
     openstack-promote-component:
       jobs:
-        - periodic-tripleo-centos-8-train-component-baremetal-promote-to-promoted-components
-        - periodic-tripleo-centos-8-train-component-cinder-promote-to-promoted-components
-        - periodic-tripleo-centos-8-train-component-clients-promote-to-promoted-components
-        - periodic-tripleo-centos-8-train-component-cloudops-promote-to-promoted-components
-        - periodic-tripleo-centos-8-train-component-common-promote-to-promoted-components
-        - periodic-tripleo-centos-8-train-component-compute-promote-to-promoted-components
-        - periodic-tripleo-centos-8-train-component-glance-promote-to-promoted-components
-        - periodic-tripleo-centos-8-train-component-manila-promote-to-promoted-components
-        - periodic-tripleo-centos-8-train-component-network-promote-to-promoted-components
-        - periodic-tripleo-centos-8-train-component-octavia-promote-to-promoted-components
-        - periodic-tripleo-centos-8-train-component-security-promote-to-promoted-components
-        - periodic-tripleo-centos-8-train-component-swift-promote-to-promoted-components
-        - periodic-tripleo-centos-8-train-component-tripleo-promote-to-promoted-components
-        - periodic-tripleo-centos-8-train-component-tempest-promote-to-promoted-components
-        - periodic-tripleo-centos-8-train-component-ui-promote-to-promoted-components
-        - periodic-tripleo-centos-8-train-component-validation-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-baremetal-promote-to-promoted-components: *component_node
+        - periodic-tripleo-centos-8-train-component-cinder-promote-to-promoted-components: *component_node
+        - periodic-tripleo-centos-8-train-component-clients-promote-to-promoted-components: *component_node
+        - periodic-tripleo-centos-8-train-component-cloudops-promote-to-promoted-components: *component_node
+        - periodic-tripleo-centos-8-train-component-common-promote-to-promoted-components: *component_node
+        - periodic-tripleo-centos-8-train-component-compute-promote-to-promoted-components: *component_node
+        - periodic-tripleo-centos-8-train-component-glance-promote-to-promoted-components: *component_node
+        - periodic-tripleo-centos-8-train-component-manila-promote-to-promoted-components: *component_node
+        - periodic-tripleo-centos-8-train-component-network-promote-to-promoted-components: *component_node
+        - periodic-tripleo-centos-8-train-component-octavia-promote-to-promoted-components: *component_node
+        - periodic-tripleo-centos-8-train-component-security-promote-to-promoted-components: *component_node
+        - periodic-tripleo-centos-8-train-component-swift-promote-to-promoted-components: *component_node
+        - periodic-tripleo-centos-8-train-component-tripleo-promote-to-promoted-components: *component_node
+        - periodic-tripleo-centos-8-train-component-tempest-promote-to-promoted-components: *component_node
+        - periodic-tripleo-centos-8-train-component-ui-promote-to-promoted-components: *component_node
+        - periodic-tripleo-centos-8-train-component-validation-promote-to-promoted-components: *component_node
