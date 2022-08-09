@@ -12,7 +12,7 @@
             nodeset: single-centos-8-stream-node-ibm
         ## ovb
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby: &ovb_deps_wallaby
-            dependencies:
+            dependencies: &ovb_deps
               - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
               - periodic-tripleo-centos-8-buildimage-overcloud-full-wallaby
               - periodic-tripleo-centos-8-buildimage-overcloud-hardened-uefi-full-wallaby
@@ -20,8 +20,9 @@
             vars:
               cloud_name: ibm-bm2-nodepool
             nodeset: tripleo-ovb-centos-8-primary-ibm
-        - create-fs001-wallaby-c8-trigger-for-downstream: *ovb_deps_wallaby
-        - create-fs035-wallaby-c8-trigger-for-downstream: *ovb_deps_wallaby
+        - create-fs001-wallaby-c8-trigger-for-downstream: &downstream_trigger
+            dependencies: *ovb_deps
+        - create-fs035-wallaby-c8-trigger-for-downstream: *downstream_trigger
         ## undercloud
         - periodic-tripleo-ci-centos-8-undercloud-upgrade-ffu-wallaby: *build_containers_ubi_8_push_wallaby
         ## containers/images
