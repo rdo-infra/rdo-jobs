@@ -160,6 +160,10 @@
           addFilter("puppet-ceph.noarch: E: explicit-lib-dependency puppet-stdlib")
           addFilter("puppet-ceph.noarch: E: non-executable-script /usr/share/openstack-puppet/modules/ceph/setup.py 0644L /usr/bin/env")
 
+          # Exceptions for puppet-ceph
+          addFilter("puppet-horizon.noarch: E: explicit-lib-dependency puppet-openstacklib")
+          addFilter("puppet-horizon.noarch: E: explicit-lib-dependency puppet-stdlib")
+
           # Exceptions for horizon
           addFilter("python-django-horizon.noarch: E: non-executable-script \
           /usr/lib/python2.7/site-packages/openstack_auth/tests/run_tests.py 0644L /usr/bin/env")
@@ -289,17 +293,18 @@
           addFilter("python3-cinderlib.noarch: E: wrong-script-interpreter /usr/lib/python3.6/site-packages/cinderlib/bin/venv-privsep-helper.*")
           EOF
 
+          RPMLINT_CMD="rpmlint -f $HOME/.rpmlintrc"
 
           # if there is no previous package, it means that is new
           # packages so just run rpmlint on the packages and exit
           if [ $(find old -name "*.rpm"| wc -l) -eq 0 ];then
-              rpmlint *.rpm | tee rpmlint.new.txt
+              ${RPMLINT_CMD} *.rpm | tee rpmlint.new.txt
               exit 0
           fi
 
           # run rpmlint on old and new packages
-          rpmlint *.rpm | sort | tee rpmlint.new.txt
-          rpmlint old/*.rpm | sort | tee rpmlint.old.txt
+          ${RPMLINT_CMD}  *.rpm | sort | tee rpmlint.new.txt
+          ${RPMLINT_CMD} old/*.rpm | sort | tee rpmlint.old.txt
 
           # check that we have the same number of packages else we
           # cannot really compare and we just exit gracefully
