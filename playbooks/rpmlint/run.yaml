@@ -160,6 +160,10 @@
           addFilter("puppet-ceph.noarch: E: explicit-lib-dependency puppet-stdlib")
           addFilter("puppet-ceph.noarch: E: non-executable-script /usr/share/openstack-puppet/modules/ceph/setup.py 0644L /usr/bin/env")
 
+          # Exceptions for puppet-horizon
+          addFilter("puppet-horizon.noarch: E: explicit-lib-dependency puppet-openstacklib.*")
+          addFilter("puppet-horizon.noarch: E: explicit-lib-dependency puppet-stdlib.*")
+
           # Exceptions for horizon
           addFilter("python-django-horizon.noarch: E: non-executable-script \
           /usr/lib/python2.7/site-packages/openstack_auth/tests/run_tests.py 0644L /usr/bin/env")
