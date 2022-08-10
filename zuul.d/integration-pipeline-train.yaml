@@ -5,10 +5,12 @@
     openstack-periodic-integration-stable4:
       jobs:
         ##### stable/train centos-8 #####
-        - periodic-tripleo-centos-8-train-promote-promoted-components-to-tripleo-ci-testing
+        - periodic-tripleo-centos-8-train-promote-promoted-components-to-tripleo-ci-testing:
+            nodeset: cloud-centos-8-stream-ibm
         - periodic-tripleo-centos-8-buildimage-overcloud-full-train: &promoted_comp_to_ci_testing_train
             dependencies:
               - periodic-tripleo-centos-8-train-promote-promoted-components-to-tripleo-ci-testing
+            nodeset: single-centos-8-stream-node-ibm
         - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train: *promoted_comp_to_ci_testing_train
         - periodic-tripleo-ci-build-containers-ubi-8-push-train: *promoted_comp_to_ci_testing_train
         - periodic-tripleo-ci-build-containers-centos-8-quay-push-train: *promoted_comp_to_ci_testing_train
@@ -16,6 +18,7 @@
         - periodic-tripleo-ci-centos-8-standalone-train: &build_con_ubi_8_push_train
             dependencies: &dep_build_con_ubi_8_push_train
               - periodic-tripleo-ci-build-containers-ubi-8-push-train
+            nodeset: single-centos-8-stream-node-ibm
         - periodic-tripleo-ci-centos-8-standalone-full-tempest-api-train: *build_con_ubi_8_push_train
         - periodic-tripleo-ci-centos-8-standalone-full-tempest-scenario-train: *build_con_ubi_8_push_train
         - periodic-tripleo-ci-centos-8-scenario001-standalone-train: *build_con_ubi_8_push_train
@@ -24,25 +27,35 @@
         - periodic-tripleo-ci-centos-8-scenario004-standalone-train: *build_con_ubi_8_push_train
         - periodic-tripleo-ci-centos-8-scenario007-standalone-train: *build_con_ubi_8_push_train
         - periodic-tripleo-ci-centos-8-scenario012-standalone-train: *build_con_ubi_8_push_train
-        - periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-train: *build_con_ubi_8_push_train
+        - periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-train:
+            dependencies: *dep_build_con_ubi_8_push_train
+            vars:
+              cloud_name: ibm-bm2-nodepool
+            nodeset: tripleo-ovb-centos-8-primary-ibm
         - periodic-tripleo-ci-centos-8-undercloud-containers-train: *build_con_ubi_8_push_train
-        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-train: *build_con_ubi_8_push_train
+        - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-train: &multinode
+            dependencies: *dep_build_con_ubi_8_push_train
+            nodeset: two-centos-8-nodes-ibm
         - periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-train: *build_con_ubi_8_push_train
         - create-scenario010-trigger-for-downstream:
             vars:
               trigger_branch: train
               trigger_os_distro: centos_8
             dependencies: *dep_build_con_ubi_8_push_train
-        - periodic-tripleo-ci-centos-8-containers-multinode-train: *build_con_ubi_8_push_train
-        - periodic-tripleo-ci-centos-8-scenario007-multinode-oooq-container-train: *build_con_ubi_8_push_train
+        - periodic-tripleo-ci-centos-8-containers-multinode-train: *multinode
+        - periodic-tripleo-ci-centos-8-scenario007-multinode-oooq-container-train: *multinode
         - periodic-tripleo-ci-centos-8-containers-undercloud-minion-train: *build_con_ubi_8_push_train
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-train: &ovb_deps_train
-            dependencies:
+            dependencies: &ovb_deps
               - periodic-tripleo-centos-8-buildimage-overcloud-full-train
               - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train
               - periodic-tripleo-ci-build-containers-ubi-8-push-train
+            vars:
+              cloud_name: ibm-bm2-nodepool
+            nodeset: tripleo-ovb-centos-8-primary-ibm
         - periodic-tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020-train: *ovb_deps_train
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-train: *ovb_deps_train
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-train: *ovb_deps_train
-        - create-fs001-train-c8-trigger-for-downstream: *ovb_deps_train
-        - create-fs035-train-c8-trigger-for-downstream: *ovb_deps_train
+        - create-fs001-train-c8-trigger-for-downstream: &trigger_deps
+            dependencies: *ovb_deps
+        - create-fs035-train-c8-trigger-for-downstream: *trigger_deps
