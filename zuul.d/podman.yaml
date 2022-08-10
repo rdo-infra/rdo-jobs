@@ -27,7 +27,7 @@
 
 - job:
     name: tripleo-podman-integration-centos-8-standalone
-    parent: tripleo-ci-base-standalone-periodic-centos-8
+    parent: periodic-tripleo-ci-standalone-rdo-centos-8
     branches: ^master$
     voting: false
     run: playbooks/podman/install-podman-rpm.yaml
