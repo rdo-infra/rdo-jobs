@@ -5,7 +5,7 @@
     nodeset: single-centos-9-stream-node-vexxhost
     run: playbooks/ceph/run-get-latest-ceph-daemon-tag.yml
     vars:
-      ceph_daemon_latest_tag_regex: &ceph_regex_pacific '^v(\\d+\\.\\d+\\.\\d+)-stable.*pacific.*x86_64$'
+      ceph_daemon_latest_tag_regex: &ceph_regex_quincy '^v(\\d+\\.\\d+\\.\\d+)-stable.*quincy.*x86_64$'
 
 - job:
     name: tripleo-ci-centos-9-scenario001-standalone-ceph-updates-master
@@ -38,7 +38,7 @@
     name: tripleo-ci-ceph-daemon-get-latest-stable-tag-wallaby
     parent: tripleo-ci-ceph-daemon-get-latest-stable-tag-master
     vars:
-      ceph_daemon_latest_tag_regex: *ceph_regex_pacific
+      ceph_daemon_latest_tag_regex: &ceph_regex_pacific '^v(\\d+\\.\\d+\\.\\d+)-stable.*pacific.*x86_64$'
 
 - job:
     name: tripleo-ci-centos-9-scenario001-standalone-ceph-updates-wallaby
