@@ -39,7 +39,7 @@
           # right one
           curl -o /dev/null -sIf "${repository}"
           if [ $? -ne 0 ]; then
-            releases="rpm-master train-rdo stein-rdo rocky-rdo queens-rdo pike-rdo ocata-rdo"
+            releases="rpm-master yoga-rdo xena-rdo wallaby-rdo train-rdo"
             for release in $releases; do
                 repository="${logs}/centos-${release}/current"
                 curl -o /dev/null -sIf "${repository}" || continue
@@ -84,7 +84,7 @@
           # right one
           curl -o /dev/null -sIf "${repository}"
           if [ $? -ne 0 ]; then
-            releases="rpm-master train-rdo stein-rdo rocky-rdo queens-rdo pike-rdo ocata-rdo"
+            releases="rpm-master yoga-rdo xena-rdo wallaby-rdo train-rdo"
             for release in $releases; do
                 repository="${logs}/centos-${release}/current"
                 curl -o /dev/null -sIf "${repository}" || continue
@@ -159,7 +159,7 @@
           elif [[ "{{ openstack_release }}" == "master" ]]; then
               delorean_url="https://trunk.rdoproject.org/{{ centos_release }}-{{ openstack_release }}/puppet-passed-ci/delorean.repo"
           else
-              delorean_url="https://trunk.rdoproject.org/{{ centos_release }}-{{ openstack_release }}/current-passed-ci/delorean.repo"
+              delorean_url="https://trunk.rdoproject.org/{{ centos_release }}-{{ openstack_release }}/consistent/delorean.repo"
           fi
 
           cd "{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/weirdo'].src_dir }}"
