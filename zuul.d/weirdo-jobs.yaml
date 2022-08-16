@@ -343,6 +343,58 @@
       scenario: scenario005
 
 - job:
+    name: weirdo-dlrn-wallaby-packstack-scenario001-centos8
+    parent: weirdo-dlrn-base
+    vars:
+      openstack_release: wallaby
+      scenario: scenario001
+      selinux_enforcing: "false"
+
+- job:
+    name: weirdo-dlrn-wallaby-packstack-scenario002-centos8
+    parent: weirdo-dlrn-base
+    vars:
+      openstack_release: wallaby
+      scenario: scenario002
+      selinux_enforcing: "false"
+
+- job:
+    name: weirdo-dlrn-wallaby-packstack-scenario003-centos8
+    parent: weirdo-dlrn-base
+    vars:
+      openstack_release: wallaby
+      scenario: scenario003
+      selinux_enforcing: "false"
+
+- job:
+    name: weirdo-dlrn-wallaby-puppet-scenario001-centos8
+    parent: weirdo-dlrn-base
+    vars:
+      openstack_release: wallaby
+      scenario: scenario001
+
+- job:
+    name: weirdo-dlrn-wallaby-puppet-scenario002-centos8
+    parent: weirdo-dlrn-base
+    vars:
+      openstack_release: wallaby
+      scenario: scenario002
+
+- job:
+    name: weirdo-dlrn-wallaby-puppet-scenario003-centos8
+    parent: weirdo-dlrn-base
+    vars:
+      openstack_release: wallaby
+      scenario: scenario003
+
+- job:
+    name: weirdo-dlrn-wallaby-puppet-scenario004-centos8
+    parent: weirdo-dlrn-base
+    vars:
+      openstack_release: wallaby
+      scenario: scenario004
+
+- job:
     name: weirdo-validate-buildsys-tags-base
     parent: base
     run: playbooks/rdoinfo/weirdo-buildsys-tags.yaml
