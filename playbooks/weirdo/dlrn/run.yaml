@@ -39,7 +39,7 @@
           # right one
           curl -o /dev/null -sIf "${repository}"
           if [ $? -ne 0 ]; then
-            releases="rpm-master train-rdo stein-rdo rocky-rdo queens-rdo pike-rdo ocata-rdo"
+            releases="rpm-master yoga-rdo xena-rdo wallaby-rdo train-rdo"
             for release in $releases; do
                 repository="${logs}/centos-${release}/current"
                 curl -o /dev/null -sIf "${repository}" || continue
