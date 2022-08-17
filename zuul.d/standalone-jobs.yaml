@@ -290,7 +290,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-upgrade-master
-    parent: tripleo-ci-base-standalone-upgrade-periodic-centos-8
+    parent: periodic-tripleo-ci-rdo-standalone-upgrade-centos-8
     voting: false
     vars:
       featureset: '056'

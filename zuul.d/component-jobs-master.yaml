@@ -944,7 +944,7 @@
 
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-upgrade-component-master
-    parent: tripleo-ci-base-standalone-upgrade-periodic-centos-8
+    parent: periodic-tripleo-ci-rdo-standalone-upgrade-centos-8
     abstract: true
     vars:
       <<: *component_vars_standalone
