@@ -5,7 +5,7 @@
 
 - job:
     name: rdoinfo-tripleo-centos-7-base
-    parent: tripleo-ci-base-standalone-rdo
+    parent: periodic-tripleo-ci-standalone-rdo-dlrn
     nodeset: single-centos-7-node-vexxhost
 
 - job:
@@ -696,7 +696,7 @@
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-ovb-3ctlr_1comp-featureset001
-    parent: tripleo-ci-base-ovb-rdo-centos-8
+    parent: tripleo-ci-ovb-rdo-centos-8
     nodeset: tripleo-ovb-centos-8-primary-vexxhost
     run: playbooks/run-rdoinfo.yaml
     timeout: 18000
@@ -712,7 +712,7 @@
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-ovb-3ctlr_1comp-featureset035
-    parent: tripleo-ci-base-ovb-rdo-centos-8
+    parent: tripleo-ci-ovb-rdo-centos-8
     nodeset: tripleo-ovb-centos-8-primary-vexxhost
     run: playbooks/run-rdoinfo.yaml
     timeout: 18000
@@ -728,7 +728,7 @@
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-ovb-1ctlr_2comp-featureset020
-    parent: tripleo-ci-base-ovb-rdo-centos-8
+    parent: tripleo-ci-ovb-rdo-centos-8
     nodeset: tripleo-ovb-centos-8-primary-vexxhost
     timeout: 18000
     run: playbooks/run-rdoinfo.yaml
