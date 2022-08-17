@@ -201,7 +201,7 @@
 
 - job:
     name: tripleo-ceph-integration-centos-8-scenarios-standalone
-    parent: tripleo-ci-base-standalone-rdo-centos-8
+    parent: periodic-tripleo-ci-standalone-rdo-dlrn-centos-8
     run: playbooks/run-rpm-build.yaml
     required-projects:
       - name: opendev.org/openstack/tripleo-heat-templates
@@ -281,7 +281,7 @@
 
 - job:
     name: tripleo-ceph-integration-centos-8-scenarios-standalone-wallaby
-    parent: tripleo-ci-base-standalone-rdo-centos-8
+    parent: periodic-tripleo-ci-standalone-rdo-dlrn-centos-8
     run: playbooks/run-rpm-build.yaml
     override-checkout: "stable/wallaby"
     required-projects:
@@ -344,7 +344,7 @@
 # jobs for ceph on victoria
 - job:
     name: tripleo-ceph-integration-centos-8-scenarios-standalone-victoria
-    parent: tripleo-ci-base-standalone-rdo-centos-8
+    parent: periodic-tripleo-ci-standalone-rdo-dlrn-centos-8
     run: playbooks/run-rpm-build.yaml
     override-checkout: "stable/victoria"
     required-projects:
@@ -404,7 +404,7 @@
 
 - job:
     name: tripleo-ceph-integration-centos-8-scenarios-standalone-ussuri
-    parent: tripleo-ci-base-standalone-rdo-centos-8
+    parent: periodic-tripleo-ci-standalone-rdo-dlrn-centos-8
     run: playbooks/run-rpm-build.yaml
     override-checkout: "stable/ussuri"
     required-projects:
@@ -468,7 +468,7 @@
 
 - job:
     name: tripleo-ceph-integration-centos-8-scenarios-standalone-train
-    parent: tripleo-ci-base-standalone-rdo-centos-8
+    parent: periodic-tripleo-ci-standalone-rdo-dlrn-centos-8
     run: playbooks/run-rpm-build.yaml
     override-checkout: "stable/train"
     required-projects:
