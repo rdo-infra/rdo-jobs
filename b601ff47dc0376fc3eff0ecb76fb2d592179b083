@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "dbfb7814_b98371d4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 673
+      },
+      "writtenOn": "2022-08-18T11:46:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac87e578_58d56352",
+      "revId": "b601ff47dc0376fc3eff0ecb76fb2d592179b083",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "34651368_d55e362b",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -52,6 +70,24 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e199cf06_5d97400f",
+        "filename": "zuul.d/component-jobs-master-centos9.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 673
+      },
+      "writtenOn": "2022-08-18T11:46:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb6fbbfb_7ee2fb7a",
+      "revId": "b601ff47dc0376fc3eff0ecb76fb2d592179b083",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0ef8f50_edc90c2f",
@@ -77,6 +113,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3f2dc4c1_d2bef78b",
+        "filename": "zuul.d/component-jobs-master-centos9.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 673
+      },
+      "writtenOn": "2022-08-18T11:46:45Z",
+      "side": 1,
+      "message": "main reason adding this here is to use components_vars_multinode vars. If job name is misleading then we can change it.",
+      "parentUuid": "b0ef8f50_edc90c2f",
+      "range": {
+        "startLine": 592,
+        "startChar": 10,
+        "endLine": 592,
+        "endChar": 18
+      },
+      "revId": "b601ff47dc0376fc3eff0ecb76fb2d592179b083",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "468e40aa_7c80dbf4",
         "filename": "zuul.d/component-jobs-wallaby-centos9.yaml",
         "patchSetId": 2
@@ -88,6 +148,24 @@
       "writtenOn": "2022-08-18T10:53:55Z",
       "side": 1,
       "message": "I think you should parent this directly from periodic-tripleo-ci-centos-8-9-multinode-mixed-os and avoid abstract master wdyt?",
+      "revId": "b601ff47dc0376fc3eff0ecb76fb2d592179b083",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02b4b815_1ebbaa15",
+        "filename": "zuul.d/component-jobs-wallaby-centos9.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 673
+      },
+      "writtenOn": "2022-08-18T11:46:45Z",
+      "side": 1,
+      "message": "- If naming is not proper we can change it. \n- If i directly inherited periodic-tripleo-ci-centos-8-9-multinode-mixed-os then we need to add all the component multinode vars to this job which are defined in periodic-tripleo-ci-centos-8-9-multinode-mixed-os-component-master.\n- So keeping one job with vars and make it abstract will reduce complexity. \n- This is the structure which is followed everywhere i mean in Reparenting.",
+      "parentUuid": "468e40aa_7c80dbf4",
       "revId": "b601ff47dc0376fc3eff0ecb76fb2d592179b083",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
