@@ -67,6 +67,23 @@
       "message": "\u003e Patch Set 7: Verified-2\n\u003e \n\u003e Build failed (gate pipeline).  For information on how to proceed, see\n\u003e http://docs.openstack.org/infra/manual/developers.html#automated-testing\n\u003e \n\u003e \n\u003e \n\u003e Warning:\n\u003e   Change 853167 in project openstack/tripleo-quickstart-extras does not share a change queue with 44067 in project rdo-jobs\n\n13:24 \u003c marios\u003e ack yeah looks like depends-on blocked it thanks for reveiw and w+\n13:24 \u003c marios\u003e we can recheck once the depends-on merges \n13:24 \u003c marios\u003e thank you\n",
       "revId": "fe14d80f14b8ac96427f8590571070fd71ec1ed7",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa971aef_a19ebe08",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 739
+      },
+      "writtenOn": "2022-08-18T19:58:00Z",
+      "side": 1,
+      "message": "recheck - depends-on change merged",
+      "revId": "fe14d80f14b8ac96427f8590571070fd71ec1ed7",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
