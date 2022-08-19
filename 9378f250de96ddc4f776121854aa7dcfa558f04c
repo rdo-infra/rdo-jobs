@@ -16,6 +16,24 @@
       "message": "this needs some vars?",
       "revId": "9378f250de96ddc4f776121854aa7dcfa558f04c",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c947ccc2_0296178b",
+        "filename": "zuul.d/integration-pipeline-wallaby.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 673
+      },
+      "writtenOn": "2022-08-19T18:37:54Z",
+      "side": 1,
+      "message": "Since it is independent job. I think we don\u0027t need vars. All required vars are added in job definition[1].\n\n[1] https://review.rdoproject.org/r/c/rdo-jobs/+/44591/5/zuul.d/integration-jobs-wallaby.yaml#116",
+      "parentUuid": "2e6d8b46_1445bb2e",
+      "revId": "9378f250de96ddc4f776121854aa7dcfa558f04c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
