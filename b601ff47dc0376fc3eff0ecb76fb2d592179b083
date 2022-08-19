@@ -137,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d37f4ab1_4264927e",
+        "filename": "zuul.d/component-jobs-master-centos9.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-08-19T08:09:57Z",
+      "side": 1,
+      "message": "as discussed today in our call lets move this to where it is used and not call it -master",
+      "parentUuid": "3f2dc4c1_d2bef78b",
+      "range": {
+        "startLine": 592,
+        "startChar": 10,
+        "endLine": 592,
+        "endChar": 18
+      },
+      "revId": "b601ff47dc0376fc3eff0ecb76fb2d592179b083",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "468e40aa_7c80dbf4",
         "filename": "zuul.d/component-jobs-wallaby-centos9.yaml",
         "patchSetId": 2
@@ -166,6 +190,24 @@
       "side": 1,
       "message": "- If naming is not proper we can change it. \n- If i directly inherited periodic-tripleo-ci-centos-8-9-multinode-mixed-os then we need to add all the component multinode vars to this job which are defined in periodic-tripleo-ci-centos-8-9-multinode-mixed-os-component-master.\n- So keeping one job with vars and make it abstract will reduce complexity. \n- This is the structure which is followed everywhere i mean in Reparenting.",
       "parentUuid": "468e40aa_7c80dbf4",
+      "revId": "b601ff47dc0376fc3eff0ecb76fb2d592179b083",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4152a01b_7ea72565",
+        "filename": "zuul.d/component-jobs-wallaby-centos9.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-08-19T08:09:57Z",
+      "side": 1,
+      "message": "ack as discussed today lets move the abstract job here then",
+      "parentUuid": "02b4b815_1ebbaa15",
       "revId": "b601ff47dc0376fc3eff0ecb76fb2d592179b083",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
