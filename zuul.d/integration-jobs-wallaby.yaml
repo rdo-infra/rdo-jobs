@@ -112,3 +112,14 @@
       trigger_os_distro: centos_8
       trigger_job_name: fs001
       trigger_commit_msg: "Trigger for fs001 wallaby c8 job"
+
+# multinode-mixed-os Centos 8/9 jobs
+- job:
+    name: periodic-tripleo-ci-centos-8-9-multinode-mixed-os
+    parent: tripleo-ci-base-required-projects-multinode-mixed-os-rdo
+    override-checkout: "stable/wallaby"
+    vars:
+      <<: *wallaby_vars
+      featureset: '066'
+      nodes: 1ctlr_1comp_mixed_os
+      mixed_os_stable_version: '9'
