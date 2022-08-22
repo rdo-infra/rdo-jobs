@@ -147,7 +147,7 @@
         - periodic-tripleo-centos-9-wallaby-component-ui-promote-consistent-to-component-ci-testing
     openstack-component-validation:
       jobs:
-        - periodic-tripleo-ci-centos-9-standalone-validation-wallaby: &comp_validation_to_ci_testing_wallaby_cs9
+        - periodic-tripleo-ci-centos-9-standalone-component-wallaby-validation: &comp_validation_to_ci_testing_wallaby_cs9
             dependencies:
               - periodic-tripleo-centos-9-wallaby-component-validation-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-containers-multinode-validation-wallaby: *comp_validation_to_ci_testing_wallaby_cs9
