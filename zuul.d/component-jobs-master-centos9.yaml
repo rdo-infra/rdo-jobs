@@ -305,12 +305,6 @@
       component: network
 
 - job:
-    name: periodic-tripleo-ci-centos-9-standalone-network-master-validation
-    parent: periodic-tripleo-ci-centos-9-standalone-component-master-validation
-    vars:
-      component: network
-
-- job:
     name: periodic-tripleo-ci-centos-9-standalone-octavia-master
     parent: periodic-tripleo-ci-centos-9-standalone-component-master
     vars:
