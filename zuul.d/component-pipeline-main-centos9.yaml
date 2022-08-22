@@ -154,7 +154,7 @@
         - periodic-tripleo-centos-9-master-component-ui-promote-consistent-to-component-ci-testing
     openstack-component-validation:
       jobs:
-        - periodic-tripleo-ci-centos-9-standalone-validation-master: &cs9_comp_validation_to_ci_testing_master
+        - periodic-tripleo-ci-centos-9-standalone-component-master-validation: &cs9_comp_validation_to_ci_testing_master
             dependencies:
               - periodic-tripleo-centos-9-master-component-validation-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-containers-multinode-validation-master: *cs9_comp_validation_to_ci_testing_master
