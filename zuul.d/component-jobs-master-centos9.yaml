@@ -235,7 +235,11 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-component-master-validation
     parent: periodic-tripleo-ci-centos-9-standalone-component-master
+    description: |
+      Ancestor job for all standolone component pipeline jobs using
+      Validation Framework, and standalone component job for VF itself.
     vars:
+      component: validation
       enable_validation: true
 
 - job:
