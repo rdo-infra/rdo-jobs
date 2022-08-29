@@ -11,7 +11,10 @@
               - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
             nodeset: single-centos-8-stream-node-ibm
         ## Multinode mixed os jobs
-        - periodic-tripleo-ci-centos-8-9-multinode-mixed-os: *build_containers_ubi_8_push_wallaby
+        - periodic-tripleo-ci-centos-8-9-multinode-mixed-os:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
+            nodeset: two-centos-9-one-centos-8-nodes-ibm
         ## ovb
         - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby: &ovb_deps_wallaby
             dependencies: &ovb_deps
