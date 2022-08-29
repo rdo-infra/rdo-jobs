@@ -123,8 +123,10 @@
           # Find out if it is puppet or packstack and scenario
           if [[ "{{ zuul.job }}" == *"puppet"* ]]; then
               project="puppet-openstack"
+              REFSPEC="-e refspec=refs/changes/92/854992/1"
           else
               project="packstack"
+              REFSPEC=""
           fi
           scenario="{{ scenario }}"
 
@@ -169,7 +171,7 @@
 
           case $PHASE in
           testing)
-              REPOS_URL="http://trunk.rdoproject.org/{{ centos_release }}-${O_RELEASE}/puppet-passed-ci/delorean.repo,https://trunk.rdoproject.org/{{ centos_release }}-${O_RELEASE}/delorean-deps.repo{% if not periodic_job|default(false) %},$TEMP_REPO_URL{% endif %}" # noqa 204
+              REPOS_URL="http://trunk.rdoproject.org/{{ centos_release }}-${O_RELEASE}/consistent/delorean.repo,https://trunk.rdoproject.org/{{ centos_release }}-${O_RELEASE}/delorean-deps.repo,https://ykarel.fedorapeople.org/temp-wallaby.repo{% if not periodic_job|default(false) %},$TEMP_REPO_URL{% endif %}" # noqa 204
               ADDITIONAL_OPTS=""
           ;;
           release)
@@ -192,7 +194,7 @@
           {% if not periodic_job|default(false) %}
               -e trunk_repositories=$REPOS_URL \
           {% endif %}
-              $ADDITIONAL_OPTS
+              $ADDITIONAL_OPTS ${REFSPEC}
 
       changed_when: true
       environment:
