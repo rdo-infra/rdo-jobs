@@ -169,7 +169,7 @@
 
           case $PHASE in
           testing)
-              REPOS_URL="http://trunk.rdoproject.org/{{ centos_release }}-${O_RELEASE}/puppet-passed-ci/delorean.repo,https://trunk.rdoproject.org/{{ centos_release }}-${O_RELEASE}/delorean-deps.repo{% if not periodic_job|default(false) %},$TEMP_REPO_URL{% endif %}" # noqa 204
+              REPOS_URL="http://trunk.rdoproject.org/{{ centos_release }}-${O_RELEASE}/puppet-passed-ci/delorean.repo,https://trunk.rdoproject.org/{{ centos_release }}-${O_RELEASE}/delorean-deps.repo,https://ykarel.fedorapeople.org/temp-wallaby.repo{% if not periodic_job|default(false) %},$TEMP_REPO_URL{% endif %}" # noqa 204
               ADDITIONAL_OPTS=""
           ;;
           release)
