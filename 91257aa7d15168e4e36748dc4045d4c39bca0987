@@ -16,6 +16,23 @@
       "message": "Thanks Chandan!!",
       "revId": "91257aa7d15168e4e36748dc4045d4c39bca0987",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f827fc61_8a5bc760",
+        "filename": "zuul.d/nodesets.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 734,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2022-08-29T11:37:53Z",
+      "side": 1,
+      "message": "In accordance with nodeset we have on vexx\n\n~~~\n- nodeset:\n    name: two-centos-9-one-centos-8-nodes\n    nodes:\n      - name: primary\n        label: cloud-centos-9-stream-tripleo-vexxhost\n      - name: secondary-1\n        label: cloud-centos-9-stream-tripleo-vexxhost\n      - name: secondary-2\n        label: upstream-centos-8-stream\n    groups:\n      - name: switch\n        nodes:\n          - primary\n      - name: peers\n        nodes:\n          - secondary-1\n          - secondary-2\n      - name: subnodes\n        nodes:\n          - secondary-1\n          - secondary-2\n~~~",
+      "revId": "91257aa7d15168e4e36748dc4045d4c39bca0987",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
