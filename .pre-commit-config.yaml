@@ -13,7 +13,7 @@ repos:
       - id: check-yaml
         files: .*\.(yaml|yml)$
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.18.0
+    rev: v1.27.0
     hooks:
       - id: yamllint
         files: \.(yaml|yml)$
@@ -39,7 +39,7 @@ repos:
           - zuul
           - 'ansible-core<=2.12'
   - repo: https://github.com/openstack-dev/bashate.git
-    rev: 0.6.0
+    rev: 1.0.0
     hooks:
       - id: bashate
         entry: bashate --error . --ignore=E006,E040
