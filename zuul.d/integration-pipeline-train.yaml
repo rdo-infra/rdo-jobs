@@ -27,6 +27,7 @@
         - periodic-tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-train: *build_con_ubi_8_push_train
         - periodic-tripleo-ci-centos-8-undercloud-containers-train: *build_con_ubi_8_push_train
         - periodic-tripleo-ci-centos-8-scenario000-multinode-oooq-container-updates-train: *build_con_ubi_8_push_train
+        - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-train: *build_con_ubi_8_push_train
         - periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-train: *build_con_ubi_8_push_train
         - create-scenario010-trigger-for-downstream:
             vars:
