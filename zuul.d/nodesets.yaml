@@ -732,3 +732,58 @@
         nodes:
           - secondary-1
           - secondary-2
+
+# FIPS nodes
+# CentOS-9
+
+- nodeset:
+    name: cloud-centos-9-stream-fips-vexxhost
+    nodes:
+      - name: primary
+        label: cloud-centos-9-stream-tripleo-fips-vexxhost
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: single-centos-9-stream-node-fips-vexxhost
+    nodes:
+      - name: primary
+        label: cloud-centos-9-stream-tripleo-fips-vexxhost
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: two-centos-9-nodes-fips-vexxhost
+    nodes:
+      - name: primary
+        label: cloud-centos-9-stream-tripleo-fips-vexxhost
+      - name: secondary
+        label: cloud-centos-9-stream-tripleo-fips-vexxhost
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes:
+          - secondary
+      - name: subnodes
+        nodes:
+          - secondary
+
+- nodeset:
+    name: tripleo-ovb-centos-9-primary-fips-vexxhost
+    nodes:
+      - name: primary
+        label: cloud-centos-9-stream-tripleo-fips-vexxhost
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
