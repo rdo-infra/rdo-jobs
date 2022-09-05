@@ -62,6 +62,23 @@
       },
       "revId": "00d210904b551dfd0b459db7d0bfd160fb2ed560",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a054d363_6c6ad184",
+        "filename": "zuul.d/component-jobs-wallaby.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-09-05T07:18:50Z",
+      "side": 1,
+      "message": "looking at the test in https://logserver.rdoproject.org/99/44499/8/check/periodic-tripleo-ci-centos-8-9-multinode-mixed-os-compute-wallaby/eaa56f3/job-output.txt\nit looks like they are both (8/subnode2 and 9/subnode1) using current-tripleo which is not what we want right?\n\ni think we discussed using component-ci-testing for 8 and current-tripleo for 9 in this job and the other way around for the 9-8 job\n\n        * https://logserver.rdoproject.org/99/44499/8/check/periodic-tripleo-ci-centos-8-9-multinode-mixed-os-compute-wallaby/eaa56f3/job-output.txt\n        * 2022-09-01 07:30:37.855071 | primary | TASK [repo-setup : include_tasks] **********************************************\n2022-09-01 07:30:37.855154 | primary | Thursday 01 September 2022  07:30:37 -0400 (0:00:00.067)       0:00:11.628 ****\n2022-09-01 07:30:37.927300 | primary | included: /home/zuul/src/opendev.org/openstack/tripleo-quickstart/roles/repo-setup/tasks/tripleo-get-hash-set-fact.yml for subnode-2\n        * 2022-09-01 07:30:38.049487 | primary | TASK [repo-setup : tripleo-get-hash current-tripleo for wallaby on centos8 from https://trunk.rdoproject.org] ***",
+      "revId": "00d210904b551dfd0b459db7d0bfd160fb2ed560",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
