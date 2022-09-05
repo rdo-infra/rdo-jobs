@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "c80362c4_455b4bd3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-09-05T07:07:05Z",
+      "side": 1,
+      "message": "i cannot see what you changed from the existing dependency though? please see other comment inline",
+      "range": {
+        "startLine": 9,
+        "startChar": 35,
+        "endLine": 11,
+        "endChar": 9
+      },
+      "revId": "ad76d70b96c81e228872b12283e16b011a9bbfcd",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "1bb5e126_91853bbe",
@@ -14,6 +37,29 @@
       "writtenOn": "2022-08-30T06:07:14Z",
       "side": 1,
       "message": "Testproject: https://review.rdoproject.org/r/c/testproject/+/44684",
+      "revId": "ad76d70b96c81e228872b12283e16b011a9bbfcd",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5841c887_f3287070",
+        "filename": "zuul.d/integration-pipeline-wallaby.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-09-05T07:07:05Z",
+      "side": 1,
+      "message": "per the commit message, it sounds like this was causing a problem (\"using anchors\nfrom standalone job\" ) but you are using the same dependency.\n\nthe main change here is adding the nodeset override right?",
+      "range": {
+        "startLine": 16,
+        "startChar": 16,
+        "endLine": 16,
+        "endChar": 71
+      },
       "revId": "ad76d70b96c81e228872b12283e16b011a9bbfcd",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
