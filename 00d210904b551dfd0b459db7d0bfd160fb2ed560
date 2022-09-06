@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "58addcb3_e487bf80",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 673
+      },
+      "writtenOn": "2022-09-06T11:49:04Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "cfdc0227_6e085b23",
+      "range": {
+        "startLine": 15,
+        "startChar": 1,
+        "endLine": 15,
+        "endChar": 3
+      },
+      "revId": "00d210904b551dfd0b459db7d0bfd160fb2ed560",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "0f451f9a_b739a537",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 13
@@ -64,6 +88,30 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4baac7eb_8fcca00a",
+        "filename": "zuul.d/component-jobs-wallaby-centos9.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 673
+      },
+      "writtenOn": "2022-09-06T11:49:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c336b4f0_ecab3382",
+      "range": {
+        "startLine": 590,
+        "startChar": 0,
+        "endLine": 590,
+        "endChar": 4
+      },
+      "revId": "00d210904b551dfd0b459db7d0bfd160fb2ed560",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9c85e17_68ef9cdc",
@@ -87,6 +135,30 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c28ff94_4a1a4848",
+        "filename": "zuul.d/component-jobs-wallaby-centos9.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 673
+      },
+      "writtenOn": "2022-09-06T11:49:04Z",
+      "side": 1,
+      "message": "Yes. That\u0027s right. In older patchset[1] i was trying to override with different labels. If we want to use `current-tripleo` we don\u0027t need to specify anything. \n\n[1] https://review.rdoproject.org/r/c/rdo-jobs/+/44415/7..13/zuul.d/component-jobs-wallaby-centos9.yaml",
+      "parentUuid": "b9c85e17_68ef9cdc",
+      "range": {
+        "startLine": 591,
+        "startChar": 30,
+        "endLine": 591,
+        "endChar": 45
+      },
+      "revId": "00d210904b551dfd0b459db7d0bfd160fb2ed560",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a054d363_6c6ad184",
@@ -100,6 +172,24 @@
       "writtenOn": "2022-09-05T07:18:50Z",
       "side": 1,
       "message": "looking at the test in https://logserver.rdoproject.org/99/44499/8/check/periodic-tripleo-ci-centos-8-9-multinode-mixed-os-compute-wallaby/eaa56f3/job-output.txt\nit looks like they are both (8/subnode2 and 9/subnode1) using current-tripleo which is not what we want right?\n\ni think we discussed using component-ci-testing for 8 and current-tripleo for 9 in this job and the other way around for the 9-8 job\n\n        * https://logserver.rdoproject.org/99/44499/8/check/periodic-tripleo-ci-centos-8-9-multinode-mixed-os-compute-wallaby/eaa56f3/job-output.txt\n        * 2022-09-01 07:30:37.855071 | primary | TASK [repo-setup : include_tasks] **********************************************\n2022-09-01 07:30:37.855154 | primary | Thursday 01 September 2022  07:30:37 -0400 (0:00:00.067)       0:00:11.628 ****\n2022-09-01 07:30:37.927300 | primary | included: /home/zuul/src/opendev.org/openstack/tripleo-quickstart/roles/repo-setup/tasks/tripleo-get-hash-set-fact.yml for subnode-2\n        * 2022-09-01 07:30:38.049487 | primary | TASK [repo-setup : tripleo-get-hash current-tripleo for wallaby on centos8 from https://trunk.rdoproject.org] ***",
+      "revId": "00d210904b551dfd0b459db7d0bfd160fb2ed560",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52af5e98_c7eafdc7",
+        "filename": "zuul.d/component-jobs-wallaby.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 673
+      },
+      "writtenOn": "2022-09-06T11:49:04Z",
+      "side": 1,
+      "message": "Removed labels.",
+      "parentUuid": "a054d363_6c6ad184",
       "revId": "00d210904b551dfd0b459db7d0bfd160fb2ed560",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
