@@ -71,7 +71,7 @@
       shell:
         cmd: |
           set +e -x
-          virtualenv --system-site-packages .venv
+          virtualenv --system-site-packages -p /usr/bin/python3 .venv
           . .venv/bin/activate
           pip install rdopkg
 
