@@ -196,6 +196,15 @@
           addFilter("python2-os-xenapi.noarch: E: non-executable-script /usr/lib/python2.7/site-packages/os_xenapi/utils/xapi_plugin.py 0644L /usr/bin/env")
           addFilter("python2-os-xenapi.noarch: E: non-executable-script /usr/lib/python2.7/site-packages/os_xenapi/utils/xenapi_facts.py 0644L /usr/bin/env")
           addFilter("python2-os-xenapi.noarch: E: non-executable-script /usr/lib/python2.7/site-packages/os_xenapi/utils/consoles.py 0644L /usr/bin/env")
+`
+          addFilter("python3-os-xenapi.noarch: E: non-executable-script /usr/lib/python3.9/site-packages/os_xenapi/utils/himn.py 644 /usr/bin/env")
+          addFilter("python3-os-xenapi.noarch: E: non-executable-script /usr/lib/python3.9/site-packages/os_xenapi/utils/iptables.py 644 /usr/bin/env")
+          addFilter("python3-os-xenapi.noarch: E: non-executable-script \
+          /usr/lib/python3.9/site-packages/os_xenapi/utils/shell_tools/install_conntrack.sh 644 /bin/bash")
+          addFilter("python3-os-xenapi.noarch: E: non-executable-script /usr/lib/python3.9/site-packages/os_xenapi/utils/xapi_plugin.py 644 /usr/bin/env")
+          addFilter("python3-os-xenapi.noarch: E: non-executable-script /usr/lib/python3.9/site-packages/os_xenapi/utils/xenapi_facts.py 644 /usr/bin/env")
+          addFilter("python3-os-xenapi.noarch: E: non-executable-script /usr/lib/python3.9/site-packages/os_xenapi/utils/consoles.py 644 /usr/bin/env")
+
 
           # Exceptions for openstack-tripleo-heat-templates-compat
           addFilter("openstack-tripleo-heat-templates-compat.noarch: E: description-line-too-long \
