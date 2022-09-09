@@ -57,6 +57,9 @@
             nodeset: single-centos-8-stream-node-ibm
         - periodic-tripleo-ci-centos-8-standalone-compute-wallaby-validation: *comp_compute_to_ci_testing_wallaby
         - periodic-tripleo-centos-8-wallaby-component-compute-promote-consistent-to-component-ci-testing: *component_node
+        - periodic-tripleo-ci-centos-8-9-multinode-mixed-os-compute-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-component-compute-promote-consistent-to-component-ci-testing
     openstack-component-glance:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-glance-wallaby:

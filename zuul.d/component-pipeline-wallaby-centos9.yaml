@@ -60,6 +60,9 @@
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-compute-wallaby: *comp_compute_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-compute-wallaby: *comp_compute_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-standalone-compute-wallaby-validation: *comp_compute_to_ci_testing_wallaby_cs9
+        - periodic-tripleo-ci-centos-9-8-multinode-mixed-os-compute-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-9-wallaby-component-compute-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-9-wallaby-component-compute-promote-consistent-to-component-ci-testing
     openstack-component-glance:
       jobs:
