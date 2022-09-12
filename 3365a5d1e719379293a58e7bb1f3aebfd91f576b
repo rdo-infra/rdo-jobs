@@ -16,6 +16,69 @@
       "message": "Thanks Amol!",
       "revId": "3365a5d1e719379293a58e7bb1f3aebfd91f576b",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71f03c1b_56e2b20d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-09-12T06:15:21Z",
+      "side": 1,
+      "message": "inline comment about \u0027release\u0027 but Amol please:\n\nif/when we add new component jobs for this, lets make sure we remove release: from the child jobs and only keep it in the parent",
+      "revId": "3365a5d1e719379293a58e7bb1f3aebfd91f576b",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "920eb76f_f0ebbc47",
+        "filename": "zuul.d/component-jobs-wallaby-centos9.yaml",
+        "patchSetId": 16
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-09-12T06:15:21Z",
+      "side": 1,
+      "message": "same as the other file this should not be necessary we get it from the parent",
+      "range": {
+        "startLine": 587,
+        "startChar": 6,
+        "endLine": 587,
+        "endChar": 22
+      },
+      "revId": "3365a5d1e719379293a58e7bb1f3aebfd91f576b",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acff7cfc_a1e9da0b",
+        "filename": "zuul.d/component-jobs-wallaby.yaml",
+        "patchSetId": 16
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-09-12T06:15:21Z",
+      "side": 1,
+      "message": "this should be redundant as it exists on the parent\n\nif/when we add another component job we should not duplicate it",
+      "range": {
+        "startLine": 455,
+        "startChar": 8,
+        "endLine": 455,
+        "endChar": 19
+      },
+      "revId": "3365a5d1e719379293a58e7bb1f3aebfd91f576b",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
