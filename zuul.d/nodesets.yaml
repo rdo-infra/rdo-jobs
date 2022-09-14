@@ -787,3 +787,56 @@
         nodes: []
       - name: peers
         nodes: []
+
+# DIB based Centos 9 Stream nodesets
+- nodeset:
+    name: upstream-centos-9-stream
+    nodes:
+      - name: primary
+        label: upstream-centos-9-stream
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: single-upstream-centos-9-stream-node
+    nodes:
+      - name: primary
+        label: upstream-centos-9-stream
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: two-upstream-centos-9-nodes
+    nodes:
+      - name: primary
+        label: upstream-centos-9-stream
+      - name: secondary
+        label: upstream-centos-9-stream
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes:
+          - secondary
+      - name: subnodes
+        nodes:
+          - secondary
+
+- nodeset:
+    name: tripleo-ovb-upstream-centos-9-primary
+    nodes:
+      - name: primary
+        label: upstream-centos-9-stream
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
