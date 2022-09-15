@@ -1,8 +1,24 @@
 - hosts: all
+  roles:
+    - role: add-authorized-keys
+      public_keys:
+        - public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0I8QqQx0Az2ysJt2JuffucLijhBqnsXKEIx5GyHwxVULROa8VtNFXUDH6ZKZavhiMcmfHB2+TBTda+lDP4FldYj06dGmzCY+IYGa+uDRdxHNGYjvCfLFcmLlzRK6fNbTcui+KlUFUdKe0fb9CRoGKyhlJD5GRkM1Dv+Yb6Bj+RNnmm1fVGYxzmrD2utvffYEb0SZGWxq2R9gefx1q/3wCGjeqvufEV+AskPhVGc5T7t9eyZ4qmslkLh1/nMuaIBFcr9AUACRajsvk6mXrAN1g3HlBf2gQlhi1UEyfbqIQvzzFtsbLDlSum/KmKjy818GzvWjERfQ0VkGzCd9bSLVL"
   tasks:
-    - block:
-        - include_role: name=prepare-workspace
-      when: "ansible_connection != 'kubectl'"
+    - name: Start zuul_console daemon.
+      zuul_console:
+
+    - name: Synchronize src repos to workspace directory.
+      register: files
+      synchronize:
+        delete: true
+        compress: false
+        dest: "{{ zuul_workspace_root|default('.')}}"
+        recursive: true
+        src: "{{ zuul.executor.src_root }}"
+        owner: no
+        group: no
+        rsync_opts: ["--rsh='/usr/bin/ssh -S none -c aes256-ctr -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'"]
+        #use_ssh_args: true
 
     - import_role: name=ensure-output-dirs
       when: ansible_user_dir is defined
