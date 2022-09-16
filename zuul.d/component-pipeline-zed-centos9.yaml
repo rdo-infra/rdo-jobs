@@ -1,0 +1,72 @@
+---
+## zed
+#############################################################
+- project-template:
+    name: component-pipeline-zed-centos9
+    openstack-component-baremetal:
+      jobs:
+        - periodic-tripleo-centos-9-zed-component-baremetal-promote-consistent-to-component-ci-testing
+    openstack-component-cinder:
+      jobs:
+        - periodic-tripleo-centos-9-zed-component-cinder-promote-consistent-to-component-ci-testing
+    openstack-component-clients:
+      jobs:
+        - periodic-tripleo-centos-9-zed-component-clients-promote-consistent-to-component-ci-testing
+    openstack-component-cloudops:
+      jobs:
+        - periodic-tripleo-centos-9-zed-component-cloudops-promote-consistent-to-component-ci-testing
+    openstack-component-common:
+      jobs:
+        - periodic-tripleo-centos-9-zed-component-common-promote-consistent-to-component-ci-testing
+    openstack-component-compute:
+      jobs:
+        - periodic-tripleo-centos-9-zed-component-compute-promote-consistent-to-component-ci-testing
+    openstack-component-glance:
+      jobs:
+        - periodic-tripleo-centos-9-zed-component-glance-promote-consistent-to-component-ci-testing
+    openstack-component-manila:
+      jobs:
+        - periodic-tripleo-centos-9-zed-component-manila-promote-consistent-to-component-ci-testing
+    openstack-component-network:
+      jobs:
+        - periodic-tripleo-centos-9-zed-component-network-promote-consistent-to-component-ci-testing
+    openstack-component-octavia:
+      jobs:
+        - periodic-tripleo-centos-9-zed-component-octavia-promote-consistent-to-component-ci-testing
+    openstack-component-security:
+      jobs:
+        - periodic-tripleo-centos-9-zed-component-security-promote-consistent-to-component-ci-testing
+    openstack-component-swift:
+      jobs:
+        - periodic-tripleo-centos-9-zed-component-swift-promote-consistent-to-component-ci-testing
+    openstack-component-tripleo:
+      jobs:
+        - periodic-tripleo-centos-9-zed-component-tripleo-promote-consistent-to-component-ci-testing
+    openstack-component-tempest:
+      jobs:
+        - periodic-tripleo-centos-9-zed-component-tempest-promote-consistent-to-component-ci-testing
+    openstack-component-ui:
+      jobs:
+        - periodic-tripleo-centos-9-zed-component-ui-promote-consistent-to-component-ci-testing
+    openstack-component-validation:
+      jobs:
+        - periodic-tripleo-centos-9-zed-component-validation-promote-consistent-to-component-ci-testing
+    openstack-promote-component:
+      jobs:
+        # CentOS 9 zed jobs
+        - periodic-tripleo-centos-9-zed-component-baremetal-promote-to-promoted-components
+        - periodic-tripleo-centos-9-zed-component-cinder-promote-to-promoted-components
+        - periodic-tripleo-centos-9-zed-component-clients-promote-to-promoted-components
+        - periodic-tripleo-centos-9-zed-component-cloudops-promote-to-promoted-components
+        - periodic-tripleo-centos-9-zed-component-common-promote-to-promoted-components
+        - periodic-tripleo-centos-9-zed-component-compute-promote-to-promoted-components
+        - periodic-tripleo-centos-9-zed-component-glance-promote-to-promoted-components
+        - periodic-tripleo-centos-9-zed-component-manila-promote-to-promoted-components
+        - periodic-tripleo-centos-9-zed-component-network-promote-to-promoted-components
+        - periodic-tripleo-centos-9-zed-component-octavia-promote-to-promoted-components
+        - periodic-tripleo-centos-9-zed-component-security-promote-to-promoted-components
+        - periodic-tripleo-centos-9-zed-component-swift-promote-to-promoted-components
+        - periodic-tripleo-centos-9-zed-component-tripleo-promote-to-promoted-components
+        - periodic-tripleo-centos-9-zed-component-tempest-promote-to-promoted-components
+        - periodic-tripleo-centos-9-zed-component-ui-promote-to-promoted-components
+        - periodic-tripleo-centos-9-zed-component-validation-promote-to-promoted-components
