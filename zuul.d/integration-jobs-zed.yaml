@@ -1,0 +1,37 @@
+---
+# Centos9 stream zed jobs
+## promote to tripleo-ci-testing
+- job:
+    name: periodic-tripleo-centos-9-zed-promote-promoted-components-to-tripleo-ci-testing
+    parent: periodic-tripleo-centos-9-master-promote-promoted-components-to-tripleo-ci-testing
+    vars:
+      release: zed
+
+## build push containers
+- job:
+    name: periodic-tripleo-ci-build-containers-ubi-9-quay-push-zed
+    parent: periodic-tripleo-build-containers-quay-centos-9-secrets
+    vars:
+      release: zed
+      registry_namespace: tripleozedcentos9
+
+## overcloud deploy images
+- job:
+    name: periodic-tripleo-centos-9-buildimage-overcloud-full-zed
+    parent: periodic-tripleo-centos-9-buildimage-overcloud-full-master
+    override-checkout: "stable/zed"
+    vars: &zed_vars
+      release: zed
+      branch_override: "stable/zed"
+
+- job:
+    name: periodic-tripleo-centos-9-buildimage-ironic-python-agent-zed
+    parent: periodic-tripleo-centos-9-buildimage-ironic-python-agent-master
+    override-checkout: "stable/zed"
+    vars: *zed_vars
+
+- job:
+    name: periodic-tripleo-centos-9-buildimage-overcloud-hardened-uefi-full-zed
+    parent: periodic-tripleo-centos-9-buildimage-overcloud-hardened-uefi-full-master
+    override-checkout: "stable/zed"
+    vars: *zed_vars
