@@ -1,0 +1,16 @@
+---
+# zed integration pipeline
+- project-template:
+    name: integration-pipeline-zed-centos9
+    # TODO(marios): change this to openstack-periodic-integration-zed-centos9
+    # after we merge it
+    openstack-periodic-integration-stable1:
+      jobs:
+        - periodic-tripleo-ci-build-containers-centos-9-push-zed: &cs9_promoted_comp_to_ci_testing_zed
+            dependencies:
+              - periodic-tripleo-centos-9-zed-promote-promoted-components-to-tripleo-ci-testing
+        - periodic-tripleo-ci-build-containers-ubi-9-quay-push-zed: *cs9_promoted_comp_to_ci_testing_zed
+        - periodic-tripleo-centos-9-buildimage-overcloud-hardened-uefi-full-zed: *cs9_promoted_comp_to_ci_testing_zed
+        - periodic-tripleo-centos-9-buildimage-overcloud-full-zed: *cs9_promoted_comp_to_ci_testing_zed
+        - periodic-tripleo-centos-9-buildimage-ironic-python-agent-zed: *cs9_promoted_comp_to_ci_testing_zed
+        - periodic-tripleo-centos-9-zed-promote-promoted-components-to-tripleo-ci-testing
