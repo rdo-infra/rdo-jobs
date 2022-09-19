@@ -17,6 +17,30 @@
         name: configure-mirrors
       vars:
         mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
+        configure_mirrors_components_9_stream:
+          baseos: true
+          baseos-debug: false
+          baseos-source: false
+          appstream: true
+          appstream-debug: false
+          appstream-source: false
+          crb: true
+          crb-debug: false
+          crb-source: false
+          highavailability: true
+          highavailability-debug: false
+          highavailability-source: false
+          nfv: true
+          nfv-debug: true
+          nfv-source: false
+          rt: true
+          rt-debug: false
+          rt-source: false
+          resilientstorage: true
+          resilientstorage-debug: false
+          resilientstorage-source: false
+          extras-common: true
+          extras-common-source: false
       when:
         - ansible_connection != 'kubectl'
         - _worker_is_sudoer.rc == 0
