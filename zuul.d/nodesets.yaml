@@ -415,7 +415,7 @@
     name: centos-9-stream
     nodes:
       - name: primary
-        label: cloud-centos-9-stream-tripleo-vexxhost
+        label: upstream-centos-9-stream
     groups:
       - name: switch
         nodes: []
@@ -427,7 +427,7 @@
     name: cloud-centos-9-stream-vexxhost
     nodes:
       - name: primary
-        label: cloud-centos-9-stream-tripleo-vexxhost
+        label: upstream-centos-9-stream
     groups:
       - name: switch
         nodes: []
@@ -438,7 +438,7 @@
     name: single-centos-9-stream-node-vexxhost
     nodes:
       - name: primary
-        label: cloud-centos-9-stream-tripleo-vexxhost
+        label: upstream-centos-9-stream
     groups:
       - name: switch
         nodes:
@@ -450,9 +450,9 @@
     name: two-centos-9-nodes-vexxhost
     nodes:
       - name: primary
-        label: cloud-centos-9-stream-tripleo-vexxhost
+        label: upstream-centos-9-stream
       - name: secondary
-        label: cloud-centos-9-stream-tripleo-vexxhost
+        label: upstream-centos-9-stream
     groups:
       - name: switch
         nodes:
@@ -468,7 +468,7 @@
     name: tripleo-ovb-centos-9-primary-vexxhost
     nodes:
       - name: primary
-        label: cloud-centos-9-stream-tripleo-vexxhost
+        label: upstream-centos-9-stream
     groups:
       - name: switch
         nodes: []
@@ -492,7 +492,7 @@
     name: single-centos-9-node-nested-virt
     nodes:
       - name: primary
-        label: cloud-centos-9-stream-tripleo-vexxhost
+        label: upstream-centos-9-stream
     groups:
       - name: switch
         nodes:
@@ -554,7 +554,7 @@
     name: single-centos-9-node
     nodes:
       - name: primary
-        label: cloud-centos-9-stream-tripleo-vexxhost
+        label: upstream-centos-9-stream
     groups:
       - name: switch
         nodes:
@@ -567,9 +567,9 @@
     name: two-centos-9-nodes
     nodes:
       - name: primary
-        label: cloud-centos-9-stream-tripleo-vexxhost
+        label: upstream-centos-9-stream
       - name: secondary
-        label: cloud-centos-9-stream-tripleo-vexxhost
+        label: upstream-centos-9-stream
     groups:
       - name: switch
         nodes:
@@ -585,9 +585,9 @@
     name: two-centos-9-one-centos-8-nodes
     nodes:
       - name: primary
-        label: cloud-centos-9-stream-tripleo-vexxhost
+        label: upstream-centos-9-stream
       - name: secondary-1
-        label: cloud-centos-9-stream-tripleo-vexxhost
+        label: upstream-centos-9-stream
       - name: secondary-2
         label: upstream-centos-8-stream
     groups:
