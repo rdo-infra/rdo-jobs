@@ -10,4 +10,21 @@
         - periodic-tripleo-centos-9-buildimage-overcloud-hardened-uefi-full-zed: *cs9_promoted_comp_to_ci_testing_zed
         - periodic-tripleo-centos-9-buildimage-overcloud-full-zed: *cs9_promoted_comp_to_ci_testing_zed
         - periodic-tripleo-centos-9-buildimage-ironic-python-agent-zed: *cs9_promoted_comp_to_ci_testing_zed
+        - periodic-tripleo-ci-centos-9-standalone-zed: &build_containers_cs_9_push_zed
+            dependencies: &dep_build_containers_cs_9_push_zed
+              - periodic-tripleo-ci-build-containers-ubi-9-quay-push-zed
+        - periodic-tripleo-ci-centos-9-containers-multinode-zed: *build_containers_cs_9_push_zed
+        - periodic-tripleo-ci-centos-9-scenario001-standalone-zed: *build_containers_cs_9_push_zed
+        - periodic-tripleo-ci-centos-9-scenario002-standalone-zed: *build_containers_cs_9_push_zed
+        - periodic-tripleo-ci-centos-9-scenario003-standalone-zed: *build_containers_cs_9_push_zed
+        - periodic-tripleo-ci-centos-9-scenario004-standalone-zed: *build_containers_cs_9_push_zed
+        - periodic-tripleo-ci-centos-9-scenario007-standalone-zed: *build_containers_cs_9_push_zed
+        - periodic-tripleo-ci-centos-9-scenario012-standalone-zed: *build_containers_cs_9_push_zed
+        - periodic-tripleo-ci-centos-9-scenario010-ovn-provider-standalone-zed: *build_containers_cs_9_push_zed
+        - create-scenario010-trigger-for-downstream:
+            vars:
+              trigger_branch: zed
+              trigger_os_distro: centos_9
+            dependencies: *dep_build_containers_cs_9_push_zed
+        - periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-zed: *build_containers_cs_9_push_zed
         - periodic-tripleo-centos-9-zed-promote-promoted-components-to-tripleo-ci-testing
