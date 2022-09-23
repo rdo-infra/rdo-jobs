@@ -35,3 +35,73 @@
     parent: periodic-tripleo-centos-9-buildimage-overcloud-hardened-uefi-full-master
     override-checkout: "stable/zed"
     vars: *zed_vars
+
+## standalone
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-zed
+    parent: periodic-tripleo-ci-centos-9-standalone-master
+    override-checkout: "stable/zed"
+    vars: *zed_vars
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario001-standalone-zed
+    parent: periodic-tripleo-ci-centos-9-scenario001-standalone-master
+    override-checkout: "stable/zed"
+    vars: *zed_vars
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario002-standalone-zed
+    parent: periodic-tripleo-ci-centos-9-scenario002-standalone-master
+    override-checkout: "stable/zed"
+    vars: *zed_vars
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario003-standalone-zed
+    parent: periodic-tripleo-ci-centos-9-scenario003-standalone-master
+    override-checkout: "stable/zed"
+    vars: *zed_vars
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario004-standalone-zed
+    parent: periodic-tripleo-ci-centos-9-scenario004-standalone-master
+    override-checkout: "stable/zed"
+    vars: *zed_vars
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario007-standalone-zed
+    parent: periodic-tripleo-ci-centos-9-scenario007-standalone-master
+    override-checkout: "stable/zed"
+    vars: *zed_vars
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario012-standalone-zed
+    parent: periodic-tripleo-ci-centos-9-scenario012-standalone-master
+    override-checkout: "stable/zed"
+    vars: *zed_vars
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario010-ovn-provider-standalone-zed
+    parent: periodic-tripleo-ci-centos-9-scenario010-ovn-provider-standalone-master
+    override-checkout: "stable/zed"
+    vars: *zed_vars
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-zed
+    parent: periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-master
+    override-checkout: "stable/zed"
+    vars: *zed_vars
+
+## undercloud
+
+- job:
+    name: periodic-tripleo-ci-centos-9-undercloud-containers-zed
+    parent: periodic-tripleo-ci-centos-9-undercloud-containers-master
+    override-checkout: "stable/zed"
+    vars: *zed_vars
+
+## multinode
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-zed
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-master
+    override-checkout: "stable/zed"
+    vars: *zed_vars
