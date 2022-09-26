@@ -33,6 +33,49 @@
               - tripleo-ci-centos-9-scenario001-standalone-ceph-updates-master
               - tripleo-ci-centos-9-scenario004-standalone-ceph-updates-master
 
+# zed Jobs
+- job:
+    name: tripleo-ci-ceph-daemon-get-latest-stable-tag-zed
+    parent: tripleo-ci-ceph-daemon-get-latest-stable-tag-master
+    vars:
+      ceph_daemon_latest_tag_regex: *ceph_regex_quincy
+
+- job:
+    name: tripleo-ci-centos-9-scenario001-standalone-ceph-updates-zed
+    parent: tripleo-ci-centos-9-scenario001-standalone-ceph-updates-master
+    override-checkout: "stable/zed"
+    vars: &zed_vars
+      release: zed
+      branch_override: "stable/zed"
+
+- job:
+    name: tripleo-ci-centos-9-scenario004-standalone-ceph-updates-zed
+    parent: tripleo-ci-centos-9-scenario004-standalone-ceph-updates-master
+    override-checkout: "stable/zed"
+    vars: *zed_vars
+
+- job:
+    name: tripleo-ci-promote-ceph-daemon-tag-to-current-ceph-zed
+    parent: tripleo-ci-promote-ceph-daemon-tag-to-current-ceph
+    vars:
+      release: zed
+      remote_working_dir: "/var/www/html/images/ceph/daemon/zed"
+
+- project-template:
+    name: ceph-daemon-promotion-pipeline-zed
+    periodic-promote-ceph-daemon:
+      jobs:
+        - tripleo-ci-ceph-daemon-get-latest-stable-tag-zed
+        - tripleo-ci-centos-9-scenario001-standalone-ceph-updates-zed: &scn_ceph_updates_zed
+            dependencies:
+              - tripleo-ci-ceph-daemon-get-latest-stable-tag-zed
+        - tripleo-ci-centos-9-scenario004-standalone-ceph-updates-zed: *scn_ceph_updates_zed
+        - tripleo-ci-promote-ceph-daemon-tag-to-current-ceph-zed:
+            dependencies:
+              - tripleo-ci-ceph-daemon-get-latest-stable-tag-zed
+              - tripleo-ci-centos-9-scenario001-standalone-ceph-updates-zed
+              - tripleo-ci-centos-9-scenario004-standalone-ceph-updates-zed
+
 # Wallaby Jobs
 - job:
     name: tripleo-ci-ceph-daemon-get-latest-stable-tag-wallaby
