@@ -13,6 +13,17 @@
       changed_when: false
       register: _worker_is_sudoer
 
+    - name: Use vexxhost nameserver
+      become: true
+      when: nodepool.cloud in ["vexxhost-nodepool-tripleo"]
+      shell: |
+        echo "nameserver {{ item }}" >> /etc/resolv.conf
+      with_items:
+        - 38.102.83.3
+        - 38.102.83.2
+        - 38.102.83.68
+
+
     - import_role:
         name: configure-mirrors
       vars:
