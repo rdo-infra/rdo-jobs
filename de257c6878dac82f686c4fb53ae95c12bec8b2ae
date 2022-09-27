@@ -16,6 +16,23 @@
       "message": "Looks correct, thanks.\nSecret was added here:\nhttps://review.rdoproject.org/r/c/config/+/45188/1/zuul.d/tripleoci.yaml#198",
       "revId": "de257c6878dac82f686c4fb53ae95c12bec8b2ae",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f1429d1_49220351",
+        "filename": "zuul.d/ceph-jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2022-09-27T16:11:47Z",
+      "side": 1,
+      "message": "IIUC, you don\u0027t need that [0], because you\u0027re inheriting that.\nBut it doesn\u0027t change anything.\n\n[0]: https://review.rdoproject.org/r/c/rdo-jobs/+/45273/1/zuul.d/ceph-jobs.yaml#8",
+      "revId": "de257c6878dac82f686c4fb53ae95c12bec8b2ae",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
