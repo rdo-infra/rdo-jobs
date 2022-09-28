@@ -33,6 +33,24 @@
       "message": "IIUC, you don\u0027t need that [0], because you\u0027re inheriting that.\nBut it doesn\u0027t change anything.\n\n[0]: https://review.rdoproject.org/r/c/rdo-jobs/+/45273/1/zuul.d/ceph-jobs.yaml#8",
       "revId": "de257c6878dac82f686c4fb53ae95c12bec8b2ae",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9f93fd7_cb00cb4d",
+        "filename": "zuul.d/ceph-jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-09-28T05:31:07Z",
+      "side": 1,
+      "message": "yes you\u0027re right about that but I\u0027d rather leave it as it is. The main reason is for visibility, since it tells us the version of the ceph daemon that this pipeline will be pulling and tagging (instead of having to rely on checking the inheritance to find that out). Also at some point master and zed will diverge (currently master/zed on quincy and wallaby is on pacific).",
+      "parentUuid": "0f1429d1_49220351",
+      "revId": "de257c6878dac82f686c4fb53ae95c12bec8b2ae",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
