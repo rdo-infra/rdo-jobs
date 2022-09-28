@@ -378,6 +378,46 @@
     name: weirdo-master-promotion-pipeline
     openstack-periodic-integration-main:
       jobs:
+        - weirdo-antelope-promote-consistent-to-puppet-ci-testing
+        - weirdo-antelope-promote-puppet-scenario001-centos-stream-9:
+            dependencies:
+              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
+        - weirdo-antelope-promote-puppet-scenario002-centos-stream-9:
+            dependencies:
+              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
+        - weirdo-antelope-promote-puppet-scenario003-centos-stream-9:
+            dependencies:
+              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
+        - weirdo-antelope-promote-puppet-scenario004-centos-stream-9:
+            dependencies:
+              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
+        - weirdo-antelope-promote-puppet-scenario005-centos-stream-9:
+            dependencies:
+              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
+        - weirdo-antelope-promote-packstack-scenario001-centos-stream-9:
+            dependencies:
+              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
+        - weirdo-antelope-promote-packstack-scenario002-centos-stream-9:
+            dependencies:
+              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
+        - weirdo-antelope-promote-packstack-scenario003-centos-stream-9:
+            dependencies:
+              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
+        - weirdo-antelope-promote-puppet-ci-testing-to-puppet-passed-ci:
+            dependencies:
+              - weirdo-antelope-promote-puppet-scenario001-centos-stream-9
+              - weirdo-antelope-promote-puppet-scenario002-centos-stream-9
+              - weirdo-antelope-promote-puppet-scenario003-centos-stream-9
+              - weirdo-antelope-promote-puppet-scenario004-centos-stream-9
+              - weirdo-antelope-promote-puppet-scenario005-centos-stream-9
+              - weirdo-antelope-promote-packstack-scenario001-centos-stream-9
+              - weirdo-antelope-promote-packstack-scenario002-centos-stream-9
+              - weirdo-antelope-promote-packstack-scenario003-centos-stream-9
+
+- project-template:
+    name: weirdo-zed-promotion-pipeline
+    openstack-periodic-integration-main:
+      jobs:
         - weirdo-zed-promote-consistent-to-puppet-ci-testing
         - weirdo-zed-promote-puppet-scenario001-centos-stream-9:
             dependencies:
