@@ -81,6 +81,50 @@ for PACKAGE in ${PACKAGES_TO_BUILD}; do
         git checkout $PROJECT_DISTRO_BRANCH
         popd
         mv data/$PROJECT_DISTRO data/$PROJECT_DISTRO_DIR
+
+        # Lookup if we need to extract an upstream review
+        pushd data/${PROJECT_DISTRO_DIR}
+        UPSTREAM_ID=$(git log -1|sed -ne 's/\s*Upstream-Id: //p')
+        git log -1
+        popd
+
+        if [ -n "$UPSTREAM_ID" ]; then
+            # Get upstream URL
+            UPSTREAM_URL=$(echo "$PACKAGE_INFO" | awk '/^upstream:/ {print $2}')
+            UPSTREAM_URL_REDIRECTED=$(curl -Ls -w %{url_effective} -o /dev/null ${UPSTREAM_URL})
+            UPSTREAM_PROJECT_NAME=${UPSTREAM_URL_REDIRECTED/https:\/\/opendev.org\//}
+            # Only build in the check pipeline to avoid merging a change
+            # in packaging that is dependent of an non merged upstream
+            # change
+            if [ "${ZUUL_PIPELINE}" == "check" ]; then
+                rm -rf data/${PROJECT_TO_BUILD_MAPPED}
+                git clone ${UPSTREAM_URL_REDIRECTED} "data/${PROJECT_TO_BUILD_MAPPED}"
+
+                # We cannot run git review -d because we don't have an
+                # available account. So we do the same using curl, jq and git.
+                if [ "$branch" != "" ]; then
+                    REVIEW_BRANCH="stable%2F$branch"
+                else
+                    REVIEW_BRANCH="master"
+                fi
+
+                JSON=$(curl -s -L https://review.opendev.org/changes/${UPSTREAM_PROJECT_NAME/\//%2F}~$REVIEW_BRANCH~$UPSTREAM_ID/revisions/current/review|sed 1d)
+                # If it fails to get info for the review we may be in a branchless project, fallback to try to fetch without branch
+                if [ -z $JSON ]; then
+                JSON=$(curl -s -L https://review.opendev.org/changes/$UPSTREAM_ID/revisions/current/review|sed 1d)
+                fi
+                COMMIT=$(python -c 'import json;import sys; s = json.loads(sys.stdin.read(-1)); print(s["current_revision"])' <<< $JSON)
+                REF=$(python -c "import json;import sys; s = json.loads(sys.stdin.read(-1)); print(s['revisions']['$COMMIT']['ref'])" <<< $JSON)
+                GERRIT_URL=$(python -c "import json;import sys; s = json.loads(sys.stdin.read(-1)); print(s['revisions']['$COMMIT']['fetch']['anonymous http']['url'])" <<< $JSON)
+                pushd data/${PROJECT_TO_BUILD_MAPPED}
+                if [ -n "$REF" -a "$REF" != null ]; then
+                    git fetch ${GERRIT_URL} $REF
+                    git checkout FETCH_HEAD
+                fi
+                git log -1
+                popd
+            fi
+        fi
     else
         # We re outside the gate, just do a regular git clone
         pushd data/
@@ -106,7 +150,7 @@ trap copy_logs ERR EXIT
 # Force to use system-provided CA bundle instead of the one installed with pip in certifi.
 export REQUESTS_CA_BUNDLE=/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt
 # Run DLRN
-dlrn --config-file projects.ini --head-only $PACKAGE_LINE --dev --info-repo /tmp/rdoinfo
+dlrn --config-file projects.ini --head-only $PACKAGE_LINE --dev --local --info-repo /tmp/rdoinfo
 # For componentized builds we need to consolidate all updates in a single repodata
 if [ -d data/repos/component ] && [ -d data/repos/current ]; then
     mv data/repos/component data/repos/current/
