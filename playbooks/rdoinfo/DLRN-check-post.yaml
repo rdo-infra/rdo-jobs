@@ -6,3 +6,16 @@
         dest: '{{ zuul.executor.log_root }}/buildset'
         mode: pull
         verify_host: true
+
+    - name: Check if taskid file exist
+      stat:
+        path: /tmp/upstream_ids
+      register: upstream_ids_file
+
+    - name: report upstream IDs being built to review
+      zuul_return:
+        data:
+          zuul:
+            warnings:
+              - "Upstream IDs were fetched and built in {{zuul.job }} : {{ lookup('file', '/tmp/upstream_ids') }}"
+      when: upstream_ids_file.stat.exists
