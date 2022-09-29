@@ -56,3 +56,28 @@
     name: periodic-tripleo-collection-integration-centos-9-standalone-ansible-utils
     parent: periodic-tripleo-collection-integration-centos-8-standalone-ansible-utils
     nodeset: single-centos-9-stream-node-vexxhost
+
+# ansible-collections-openstack jobs
+- job:
+    name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-aco
+    parent: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001
+    required-projects: &aco_required_projs
+      - name: opendev.org/openstack/ansible-collections-openstack
+        override-checkout: master
+    # force dlrn to build master branch of sdk and collections
+    vars: &aco_vars
+      artg_change_list:
+        - host: "https://opendev.org"
+          project: "openstack/openstacksdk"
+          branch: "master"
+          refspec: "+refs/heads/*:refs/remotes/origin/*"
+        - host: "https://opendev.org"
+          project: "openstack/ansible-collections-openstack"
+          branch: "master"
+          refspec: "+refs/heads/*:refs/remotes/origin/*"
+
+- job:
+    name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset035-aco
+    parent: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset035
+    required-projects: *aco_required_projs
+    vars: *aco_vars
