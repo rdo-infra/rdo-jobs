@@ -17,7 +17,8 @@
       - opendev.org/openstack/ansible-role-container-registry
       - opendev.org/openstack/tripleo-ansible
       - opendev.org/openstack/openstack-virtual-baremetal
-      - opendev.org/openstack/requirements
+      - name: opendev.org/openstack/requirements
+        override-checkout: stable/wallaby
 
 
 # =================  C E N T O S  9  C H E C K  J O B S
