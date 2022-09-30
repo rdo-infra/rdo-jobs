@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "398946cf_07c576ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-09-30T08:45:57Z",
+      "side": 1,
+      "message": "i think we are good to go with this\n\nlatest test @ https://review.rdoproject.org/r/c/testproject/+/45037/6#message-82ac2a6b5092f25edf1e79b85cd37b47329ba4d2\n\nstill a couple of issue to work through:\n\n1. for scen10 -\u003e need octavia image in https://images.rdoproject.org/octavia/zed/  (actually now done amoralej++)\n\n2. for skiplist - we need to duplicate all of the \u0027master\u0027 entries and add \u0027zed\u0027 entries too. For example, \n\nhttps://logserver.rdoproject.org/37/45037/6/check/periodic-tripleo-ci-centos-9-scenario012-standalone-zed/9b35a00/logs/undercloud/var/log/tempest/stestr_results.html.gz   \n\nshould be skipped:\n\nhttps://opendev.org/openstack/openstack-tempest-skiplist/src/commit/c26ed9998964b4897e88a603211b45142bbcf4e1/roles/validate-tempest/vars/tempest_skip.yml#L649\n\nso we need the zed entries there. Arx is working on that.\n\n\nSo we should merge these job definitions and we can block adding to criteria until the issues are resolved.",
+      "revId": "1c5ad9a783de7f098cf4da28f56c0bffc3845d5e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
