@@ -48,6 +48,8 @@
           else
             mkdir $PWD/rdo-repos
             cp /etc/yum.repos.d/delorean.repo /etc/yum.repos.d/delorean-deps.repo $PWD/rdo-repos/
+            # Also add PowerTools repo required by hdf5
+            cp /etc/yum.repos.d/CentOS-Stream-PowerTools.repo $PWD/rdo-repos/
             export DIB_YUM_MINIMAL_EXTRA_REPOS=$PWD/rdo-repos
           fi
           # ansible_distribution_* don't specify if it's centos-8 or
