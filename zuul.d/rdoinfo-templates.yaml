@@ -37,44 +37,44 @@
               - validate-buildsys-tags
             voting: false
             files:
-              - ^buildsys-tags/cloud9s-openstack-zed-testing.yml$
+              - ^buildsys-tags/cloud9s-openstack-antelope-testing.yml$
         - rdoinfo-tripleo-master-testing-centos-9-undercloud-containers:
             dependencies:
               - validate-buildsys-tags
             voting: false
             files:
-              - ^buildsys-tags/cloud9s-openstack-zed-testing.yml$
+              - ^buildsys-tags/cloud9s-openstack-antelope-testing.yml$
     experimental:
       jobs:
         - rdoinfo-tripleo-master-testing-centos-9-scenario002-standalone:
             dependencies:
               - validate-buildsys-tags
             files:
-              - ^buildsys-tags/cloud9s-openstack-zed-testing.yml$
+              - ^buildsys-tags/cloud9s-openstack-antelope-testing.yml$
             voting: false
         - rdoinfo-tripleo-master-testing-centos-9-scenario003-standalone:
             dependencies:
               - validate-buildsys-tags
             files:
-              - ^buildsys-tags/cloud9s-openstack-zed-testing.yml$
+              - ^buildsys-tags/cloud9s-openstack-antelope-testing.yml$
             voting: false
         - rdoinfo-tripleo-master-testing-centos-9-scenario004-standalone:
             dependencies:
               - validate-buildsys-tags
             files:
-              - ^buildsys-tags/cloud9s-openstack-zed-testing.yml$
+              - ^buildsys-tags/cloud9s-openstack-antelope-testing.yml$
             voting: false
         - rdoinfo-tripleo-master-testing-centos-9-scenario007-standalone:
             dependencies:
               - validate-buildsys-tags
             files:
-              - ^buildsys-tags/cloud9s-openstack-zed-testing.yml$
+              - ^buildsys-tags/cloud9s-openstack-antelope-testing.yml$
             voting: false
         - rdoinfo-tripleo-master-testing-centos-9-scenario010-standalone:
             dependencies:
               - validate-buildsys-tags
             files:
-              - ^buildsys-tags/cloud9s-openstack-zed-testing.yml$
+              - ^buildsys-tags/cloud9s-openstack-antelope-testing.yml$
             voting: false
         - rdoinfo-tripleo-yoga-release-centos-9-scenario002-standalone:
             dependencies:
