@@ -1103,6 +1103,65 @@
       scenario: scenario003
 
 - job:
+    name: validate-buildsys-tags-antelope-testing-centos9-base
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: antelope
+      rdoinfo_phase: testing
+      centos_releasever: 9s
+    nodeset: rdo-centos-9-stream
+    files:
+      - ^buildsys-tags/cloud9s-openstack-antelope-testing.yml$
+
+- job:
+    name: validate-buildsys-tags-antelope-testing-puppet-scenario001-centos9
+    parent: validate-buildsys-tags-antelope-testing-centos9-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-antelope-testing-puppet-scenario002-centos9
+    parent: validate-buildsys-tags-antelope-testing-centos9-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-antelope-testing-puppet-scenario003-centos9
+    parent: validate-buildsys-tags-antelope-testing-centos9-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: validate-buildsys-tags-antelope-testing-puppet-scenario004-centos9
+    parent: validate-buildsys-tags-antelope-testing-centos9-base
+    vars:
+      scenario: scenario004
+
+- job:
+    name: validate-buildsys-tags-antelope-testing-puppet-scenario005-centos9
+    parent: validate-buildsys-tags-antelope-testing-centos9-base
+    vars:
+      scenario: scenario005
+
+- job:
+    name: validate-buildsys-tags-antelope-testing-packstack-scenario001-centos9
+    parent: validate-buildsys-tags-antelope-testing-centos9-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-antelope-testing-packstack-scenario002-centos9
+    parent: validate-buildsys-tags-antelope-testing-centos9-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-antelope-testing-packstack-scenario003-centos9
+    parent: validate-buildsys-tags-antelope-testing-centos9-base
+    vars:
+      scenario: scenario003
+
+- job:
     name: validate-buildsys-tags-zed-testing-centos9-base
     parent: weirdo-validate-buildsys-tags-base
     vars:
