@@ -16,6 +16,92 @@
       "message": "Definitions look good - some failures and retry\u0027s in testproject",
       "revId": "03f76d1553fb788e04bffba834c8333e8fba3316",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e17144aa_1c6b312c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2022-10-04T18:27:44Z",
+      "side": 1,
+      "message": "LGTM. I didn\u0027t spot any issues. Thanks.\n",
+      "revId": "03f76d1553fb788e04bffba834c8333e8fba3316",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a8fa483_863c3104",
+        "filename": "zuul.d/component-pipeline-zed-centos9.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2022-10-04T18:27:44Z",
+      "side": 1,
+      "message": "Superfluous use of anchor. It does not prevent from working. It\u0027s corresponding to main config [0]\n\n[0]: https://github.com/rdo-infra/rdo-jobs/blob/master/zuul.d/component-pipeline-main-centos9.yaml#L79",
+      "range": {
+        "startLine": 69,
+        "startChar": 75,
+        "endLine": 69,
+        "endChar": 108
+      },
+      "revId": "03f76d1553fb788e04bffba834c8333e8fba3316",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d08c7b8_fcee8092",
+        "filename": "zuul.d/component-pipeline-zed-centos9.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2022-10-04T18:27:44Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 100,
+        "startChar": 73,
+        "endLine": 100,
+        "endChar": 106
+      },
+      "revId": "03f76d1553fb788e04bffba834c8333e8fba3316",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97708519_021dd1a2",
+        "filename": "zuul.d/component-pipeline-zed-centos9.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2022-10-04T18:27:44Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 125,
+        "startChar": 59,
+        "endLine": 125,
+        "endChar": 88
+      },
+      "revId": "03f76d1553fb788e04bffba834c8333e8fba3316",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
