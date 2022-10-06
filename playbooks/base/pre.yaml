@@ -1,5 +1,8 @@
 - hosts: all
   tasks:
+    - import_role:
+        name: configure-ssh-config-fips
+
     - block:
         - include_role: name=prepare-workspace
       when: "ansible_connection != 'kubectl'"
