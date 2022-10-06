@@ -1,3 +1,8 @@
+- hosts: localhost
+  tasks:
+    - import_role:
+        name: configure-ssh-config-fips
+
 - hosts: all
   tasks:
     - block:
