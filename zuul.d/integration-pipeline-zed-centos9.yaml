@@ -31,4 +31,19 @@
               trigger_os_distro: centos_9
             dependencies: *dep_build_containers_cs_9_push_zed
         - periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-zed: *build_containers_cs_9_push_zed
+        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-zed: &ovb_dep_cs_9_zed
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-9-quay-push-zed
+              - periodic-tripleo-centos-9-buildimage-overcloud-full-zed
+              - periodic-tripleo-centos-9-buildimage-overcloud-hardened-uefi-full-zed
+              - periodic-tripleo-centos-9-buildimage-ironic-python-agent-zed
+        # TODO(marios) clarify if we need -rbac jobs on zed - disabled on master
+        # https://github.com/rdo-infra/rdo-jobs/blob/cb613fcfff935c95a7aba97eea6d71d949f8ccc4/zuul.d/integration-pipeline-main.yaml#L45-L48
+        # - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-rbac-zed: *ovb_dep_cs_9_zed
+        # - periodic-tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020-rbac-zed: *ovb_dep_cs_9_zed
+        - periodic-tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset002-zed: *build_containers_cs_9_push_zed
+        - periodic-tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020-zed: *ovb_dep_cs_9_zed
+        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset035-zed: *ovb_dep_cs_9_zed
+        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-zed: *ovb_dep_cs_9_zed
+        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset064-zed: *ovb_dep_cs_9_zed
         - periodic-tripleo-centos-9-zed-promote-promoted-components-to-tripleo-ci-testing
