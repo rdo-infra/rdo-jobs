@@ -1,5 +1,20 @@
+- hosts: localhost
+  tasks:
+    - import_role:
+        name: configure-ssh-config-fips
+
 - hosts: all
   tasks:
+    - name: Try synchronize
+      synchronize:
+        delete: true
+        compress: false
+        dest: "{{ zuul_workspace_root|default('.')}}"
+        recursive: true
+        src: "{{ zuul.executor.src_root }}"
+        owner: no
+        group: no
+
     - block:
         - include_role: name=prepare-workspace
       when: "ansible_connection != 'kubectl'"
