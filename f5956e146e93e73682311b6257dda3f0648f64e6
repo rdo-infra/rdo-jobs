@@ -16,6 +16,23 @@
       "message": "Thanks,\nLGTM",
       "revId": "f5956e146e93e73682311b6257dda3f0648f64e6",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe0e9660_54ec397e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-10-06T08:15:19Z",
+      "side": 1,
+      "message": "I think we are good to merge these\n\nlatest test results at https://review.rdoproject.org/r/c/testproject/+/45451/2#message-ee3a6641d027a6a6390d133cbd637f72c508a24f\n\nthe scenario2 jobs are now green (they were failing for tempest tests that should have been skipped... that is now fixed with the depends-on https://review.opendev.org/c/openstack/openstack-tempest-skiplist/+/860403 )\n\nthe rest of the fails are all transient as far as i can see (mirror issue?/downloading packages)... for example:\n\n        * https://logserver.rdoproject.org/51/45451/2/check/periodic-tripleo-ci-centos-9-standalone-security-zed/83411b5/job-output.txt\n        * 2022-10-05 13:56:24.440393 | primary |   \"msg\": \"Failed to download metadata for repo \u0027RDO-CentOS9-stream-deps\u0027: Cannot download repomd.xml: Cannot download repodata/repomd.xml: All mirrors were tried\",\n\n        * https://logserver.rdoproject.org/51/45451/2/check/periodic-tripleo-ci-centos-9-containers-multinode-security-zed/9388a91/job-output.txt\n2022-10-05 14:33:03.034912 | primary |   \"msg\": \"Failed to download metadata for repo \u0027RDO-CentOS9-stream-deps\u0027: Cannot download repomd.xml: Cannot download repodata/repomd.xml: All mirrors were tried\",\n\n        * https://logserver.rdoproject.org/51/45451/2/check/periodic-tripleo-ci-centos-9-standalone-full-tempest-api-network-zed/aa911ad/job-output.txt\n        * 2022-10-05 14:23:29.513140 | primary |   \"msg\": \"Failed to download metadata for repo \u0027RDO-CentOS9-stream-deps\u0027: Cannot download repomd.xml: Cannot download repodata/repomd.xml: All mirrors were tried\",",
+      "revId": "f5956e146e93e73682311b6257dda3f0648f64e6",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
