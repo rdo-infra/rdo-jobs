@@ -135,18 +135,22 @@
 - job:
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
     parent: tripleo-ci-ovb-rdo-centos-8
+    nodeset: tripleo-ovb-centos-8-primary-ibm
     branches: ^(stable/(train|wallaby)).*$
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
+      cloud_name: ibm-bm2-nodepool
 
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset001
     parent: tripleo-ci-ovb-rdo-centos-8
+    nodeset: tripleo-ovb-centos-8-primary-ibm
     branches: ^(stable/(train|wallaby)).*$
     vars:
       nodes: 1ctlr_1comp
       featureset: '001'
+      cloud_name: ibm-bm2-nodepool
 
 - job:
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-ovb-master
@@ -165,46 +169,56 @@
 - job:
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035
     parent: tripleo-ci-ovb-rdo-centos-8
+    nodeset: tripleo-ovb-centos-8-primary-ibm
     branches: ^(stable/(train|wallaby)).*$
     vars:
       nodes: 3ctlr_1comp
       featureset: '035'
-      cloud_name: vexxhost
+      cloud_name: ibm-bm2-nodepool
 
 # Job for testing featureset002 changes
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset002-upload
     parent: tripleo-ci-ovb-rdo-centos-8
+    nodeset: tripleo-ovb-centos-8-primary-ibm
     branches: ^(stable/(train|wallaby)).*$
     vars:
       nodes: 1ctlr_1comp
       featureset: '002'
+      cloud_name: ibm-bm2-nodepool
 
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_2comp-featureset020
     parent: tripleo-ci-ovb-rdo-centos-8
+    nodeset: tripleo-ovb-centos-8-primary-ibm
     timeout: 18000
     branches: ^(stable/(train|wallaby)).*$
     vars:
       nodes: 1ctlr_2comp
       featureset: '020'
+      cloud_name: ibm-bm2-nodepool
 
 # =================  C E N T O S  8  C H E C K  J O B S
 
 - job:
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039
     parent: tripleo-ci-ovb-rdo-centos-8
+    nodeset: tripleo-ovb-centos-8-primary-ibm
     branches: ^(stable/(train|wallaby)).*$
-    vars: *fs39_vars
+    vars:
+      <<: *fs39_vars
+      cloud_name: ibm-bm2-nodepool
 
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_1cellctrl_1comp-featureset063
     parent: tripleo-ci-ovb-rdo-centos-8
+    nodeset: tripleo-ovb-centos-8-primary-ibm
     branches: ^(stable/(train|wallaby)).*$
     timeout: 12600
     vars:
       nodes: 1ctlr_1cellctrl_1comp
       featureset: '063'
+      cloud_name: ibm-bm2-nodepool
 
 # Note(chkumar): Use RHEL/CentOS parent from master job
 
