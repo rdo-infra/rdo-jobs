@@ -438,3 +438,187 @@
     vars:
       branch_override: "stable/zed"
       release: zed
+
+# FIPS Jobs - CentOS 9 Stream
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-fips-master
+    parent: periodic-tripleo-ci-centos-9-standalone-master
+    nodeset: &cs9_fips_single_node single-centos-9-stream-node-fips-vexxhost
+    vars: &fips_vars
+      featureset_override:
+        enable_fips: true
+        standalone_environment_files:
+          - 'environments/fips.yaml'
+        tempest_tempestconf_profile_overrides:
+          validation.ssh_key_type: 'ecdsa'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario001-standalone-fips-master
+    parent: periodic-tripleo-ci-centos-9-scenario001-standalone-master
+    nodeset: *cs9_fips_single_node
+    vars:
+      <<: *fips_vars
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario001-standalone.yaml'
+          - 'environments/fips.yaml'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario002-standalone-fips-master
+    parent: periodic-tripleo-ci-centos-9-scenario002-standalone-master
+    nodeset: *cs9_fips_single_node
+    vars:
+      <<: *fips_vars
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario002-standalone.yaml'
+          - 'environments/fips.yaml'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario003-standalone-fips-master
+    parent: periodic-tripleo-ci-centos-9-scenario003-standalone-master
+    nodeset: *cs9_fips_single_node
+    vars:
+      <<: *fips_vars
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario003-standalone.yaml'
+          - 'environments/fips.yaml'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario004-standalone-fips-master
+    parent: periodic-tripleo-ci-centos-9-scenario004-standalone-master
+    nodeset: *cs9_fips_single_node
+    vars:
+      <<: *fips_vars
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario004-standalone.yaml'
+          - 'environments/podman.yaml'
+          - 'environments/fips.yaml'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario007-standalone-fips-master
+    parent: periodic-tripleo-ci-centos-9-scenario007-standalone-master
+    nodeset: *cs9_fips_single_node
+    vars:
+      <<: *fips_vars
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario007-standalone.yaml'
+          - 'environments/fips.yaml'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario010-ovn-provider-standalone-fips-master
+    parent: periodic-tripleo-ci-centos-9-scenario010-ovn-provider-standalone-master
+    nodeset: *cs9_fips_single_node
+    vars:
+      <<: *fips_vars
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario010-standalone.yaml'
+          - 'environments/fips.yaml'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-fips-master
+    parent: periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-master
+    nodeset: *cs9_fips_single_node
+    vars:
+      <<: *fips_vars
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario010-standalone.yaml'
+          - 'ci/environments/octavia-kvm.yaml'
+          - 'environments/fips.yaml'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario012-standalone-fips-master
+    parent: periodic-tripleo-ci-centos-9-scenario012-standalone-master
+    nodeset: *cs9_fips_single_node
+    vars:
+      <<: *fips_vars
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario012-standalone.yaml'
+          - 'environments/fips.yaml'
+
+# FIPS - stable/wallaby jobs
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-fips-wallaby
+    parent: periodic-tripleo-ci-centos-9-standalone-fips-master
+    branches: master
+    override-checkout: stable/wallaby
+    vars:
+      branch_override: stable/wallaby
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario001-standalone-fips-wallby
+    parent: periodic-tripleo-ci-centos-9-scenario001-standalone-fips-master
+    branches: master
+    override-checkout: stable/wallaby
+    vars:
+      branch_override: stable/wallaby
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario002-standalone-fips-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario002-standalone-fips-master
+    branches: master
+    override-checkout: stable/wallaby
+    vars:
+      branch_override: stable/wallaby
+
+- job:
+    name: tperiodic-tripleo-ci-centos-9-scenario003-standalone-fips-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario003-standalone-fips-master
+    branches: master
+    override-checkout: stable/wallaby
+    vars:
+      branch_override: stable/wallaby
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario004-standalone-fips-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario004-standalone-fips-master
+    branches: master
+    override-checkout: stable/wallaby
+    vars:
+      branch_override: stable/wallaby
+
+- job:
+    name: tperiodic-tripleo-ci-centos-9-scenario007-standalone-fips-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario007-standalone-fips-master
+    branches: master
+    override-checkout: stable/wallaby
+    vars:
+      branch_override: stable/wallaby
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario010-ovn-provider-standalone-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario010-ovn-provider-standalone-master
+    branches: master
+    override-checkout: stable/wallaby
+    vars:
+      branch_override: stable/wallaby
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-fips-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-fips-master
+    branches: master
+    override-checkout: stable/wallaby
+    vars:
+      branch_override: stable/wallaby
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario012-standalone-fips-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario012-standalone-fips-master
+    branches: master
+    override-checkout: stable/wallaby
+    vars:
+      branch_override: stable/wallaby
