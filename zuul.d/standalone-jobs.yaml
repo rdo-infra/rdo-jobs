@@ -421,3 +421,55 @@
     vars:
       branch_override: "stable/train"
       release: train
+
+# FIPS Jobs - CentOS 9 Stream only
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-fips-master
+    parent: periodic-tripleo-ci-centos-9-standalone-master
+    nodeset: &cs9_fips_single_node single-centos-9-stream-node-fips-vexxhost
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario001-standalone-fips-master
+    parent: periodic-tripleo-ci-centos-9-scenario001-standalone-master
+    nodeset: *cs9_fips_single_node
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario002-standalone-fips-master
+    parent: periodic-tripleo-ci-centos-9-scenario002-standalone-master
+    nodeset: *cs9_fips_single_node
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario003-standalone-fips-master
+    parent: periodic-tripleo-ci-centos-9-scenario003-standalone-master
+    nodeset: *cs9_fips_single_node
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario004-standalone-fips-master
+    parent: periodic-tripleo-ci-centos-9-scenario004-standalone-master
+    nodeset: *cs9_fips_single_node
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario007-standalone-fips-master
+    parent: periodic-tripleo-ci-centos-9-scenario007-standalone-master
+    nodeset: *cs9_fips_single_node
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario010-ovn-provider-standalone-fips-master
+    parent: periodic-tripleo-ci-centos-9-scenario010-ovn-provider-standalone-master
+    nodeset: *cs9_fips_single_node
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-fips-master
+    parent: periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-master
+    nodeset: *cs9_fips_single_node
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-fips-master
+    parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-master
+    nodeset: *cs9_fips_single_node
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-fips-master
+    parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-master
+    nodeset: *cs9_fips_single_node
