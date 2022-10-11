@@ -9,6 +9,8 @@
             dependencies:
               - periodic-tripleo-centos-9-zed-component-baremetal-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-scenario012-standalone-baremetal-zed: *comp_baremetal_to_ci_testing_zed_cs9
+        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-baremetal-zed: *comp_baremetal_to_ci_testing_zed_cs9
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-baremetal-zed: *comp_baremetal_to_ci_testing_zed_cs9
         - periodic-tripleo-centos-9-zed-component-baremetal-promote-consistent-to-component-ci-testing
     openstack-component-cinder:
       jobs:
@@ -24,6 +26,8 @@
             dependencies:
               - periodic-tripleo-centos-9-zed-component-clients-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-containers-multinode-clients-zed: *comp_clients_to_ci_testing_zed_cs9
+        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-clients-zed: *comp_clients_to_ci_testing_zed_cs9
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-clients-zed: *comp_clients_to_ci_testing_zed_cs9
         - periodic-tripleo-centos-9-zed-component-clients-promote-consistent-to-component-ci-testing
     openstack-component-cloudops:
       jobs:
@@ -32,6 +36,7 @@
               - periodic-tripleo-centos-9-zed-component-cloudops-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-scenario001-standalone-cloudops-zed: *comp_cloudops_to_ci_testing_zed_cs9
         - periodic-tripleo-ci-centos-9-scenario002-standalone-cloudops-zed: *comp_cloudops_to_ci_testing_zed_cs9
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-cloudops-zed: *comp_cloudops_to_ci_testing_zed_cs9
         - periodic-tripleo-centos-9-zed-component-cloudops-promote-consistent-to-component-ci-testing
     openstack-component-common:
       jobs:
@@ -43,6 +48,7 @@
         - periodic-tripleo-ci-centos-9-scenario003-standalone-common-zed: *comp_common_to_ci_testing_zed_cs9
         - periodic-tripleo-ci-centos-9-scenario004-standalone-common-zed: *comp_common_to_ci_testing_zed_cs9
         - periodic-tripleo-ci-centos-9-containers-multinode-common-zed: *comp_common_to_ci_testing_zed_cs9
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-common-zed: *comp_common_to_ci_testing_zed_cs9
         - periodic-tripleo-centos-9-zed-component-common-promote-consistent-to-component-ci-testing
     openstack-component-compute:
       jobs:
@@ -52,6 +58,7 @@
         - periodic-tripleo-ci-centos-9-scenario012-standalone-compute-zed: *comp_compute_to_ci_testing_zed_cs9
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-compute-zed: *comp_compute_to_ci_testing_zed_cs9
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-compute-zed: *comp_compute_to_ci_testing_zed_cs9
+        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-compute-zed: *comp_compute_to_ci_testing_zed_cs9
         - periodic-tripleo-ci-centos-9-standalone-compute-zed-validation: *comp_compute_to_ci_testing_zed_cs9
         - periodic-tripleo-centos-9-zed-component-compute-promote-consistent-to-component-ci-testing
     openstack-component-glance:
@@ -77,15 +84,21 @@
             dependencies:
               - periodic-tripleo-centos-9-zed-component-network-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-standalone-network-zed-validation: *comp_network_to_ci_testing_zed_cs9
+        - create-scenario010-trigger-for-downstream-network-zed-c9: *comp_network_to_ci_testing_zed_cs9
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-network-zed: *comp_network_to_ci_testing_zed_cs9
         - periodic-tripleo-ci-centos-9-containers-multinode-network-zed: *comp_network_to_ci_testing_zed_cs9
+        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-network-zed: *comp_network_to_ci_testing_zed_cs9
+        - periodic-tripleo-ci-centos-9-scenario007-standalone-network-zed: *comp_network_to_ci_testing_zed_cs9
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-network-zed: *comp_network_to_ci_testing_zed_cs9
         - periodic-tripleo-centos-9-zed-component-network-promote-consistent-to-component-ci-testing
     openstack-component-octavia:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-octavia-zed: &comp_octavia_to_ci_testing_zed_cs9
             dependencies:
               - periodic-tripleo-centos-9-zed-component-octavia-promote-consistent-to-component-ci-testing
+        - create-scenario010-trigger-for-downstream-octavia-zed-c9: *comp_octavia_to_ci_testing_zed_cs9
         - periodic-tripleo-ci-centos-9-containers-multinode-octavia-zed: *comp_octavia_to_ci_testing_zed_cs9
+        - periodic-tripleo-ci-centos-9-scenario007-standalone-octavia-zed: *comp_octavia_to_ci_testing_zed_cs9
         - periodic-tripleo-centos-9-zed-component-octavia-promote-consistent-to-component-ci-testing
     openstack-component-security:
       jobs:
@@ -94,6 +107,8 @@
               - periodic-tripleo-centos-9-zed-component-security-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-containers-multinode-security-zed: *comp_security_to_ci_testing_zed_cs9
         - periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-security-zed: *comp_security_to_ci_testing_zed_cs9
+        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-security-zed: *comp_security_to_ci_testing_zed_cs9
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-security-zed: *comp_security_to_ci_testing_zed_cs9
         - periodic-tripleo-centos-9-zed-component-security-promote-consistent-to-component-ci-testing
     openstack-component-swift:
       jobs:
@@ -110,7 +125,9 @@
         - periodic-tripleo-ci-centos-9-standalone-tripleo-zed-validation: *comp_tripleo_to_ci_testing_zed_cs9
         - periodic-tripleo-ci-centos-9-containers-multinode-tripleo-zed: *comp_tripleo_to_ci_testing_zed_cs9
         - periodic-tripleo-ci-centos-9-containers-multinode-tripleo-zed-validation: *comp_tripleo_to_ci_testing_zed_cs9
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-tripleo-zed: *comp_tripleo_to_ci_testing_zed_cs9
         - periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-tripleo-zed: *comp_tripleo_to_ci_testing_zed_cs9
+        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-tripleo-zed: *comp_tripleo_to_ci_testing_zed_cs9
         - periodic-tripleo-centos-9-zed-component-tripleo-promote-consistent-to-component-ci-testing
     openstack-component-tempest:
       jobs:
@@ -119,6 +136,7 @@
               - periodic-tripleo-centos-9-zed-component-tempest-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-tempest-zed: *comp_tempest_to_ci_testing_zed_cs9
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-tempest-zed: *comp_tempest_to_ci_testing_zed_cs9
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-tempest-zed: *comp_tempest_to_ci_testing_zed_cs9
         - periodic-tripleo-centos-9-zed-component-tempest-promote-consistent-to-component-ci-testing
     openstack-component-ui:
       jobs:
@@ -132,6 +150,7 @@
             dependencies:
               - periodic-tripleo-centos-9-zed-component-validation-promote-consistent-to-component-ci-testing
         - periodic-tripleo-ci-centos-9-containers-multinode-validation-zed: *comp_validation_to_ci_testing_zed_cs9
+        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-zed-validation: *comp_validation_to_ci_testing_zed_cs9
         - periodic-tripleo-centos-9-zed-component-validation-promote-consistent-to-component-ci-testing
     openstack-promote-component:
       jobs:
