@@ -576,3 +576,190 @@
     vars:
       release: zed
       branch_override: 'stable/zed'
+
+## ovb component promotion jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-baremetal-zed
+    parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-master
+    description: |
+      OVB job for zed with 3 controller and 1 compute for Baremetal
+      component.
+      Validations are explicitly disabled on this component because some
+      validations are broken.
+      Validations are executed from the undercloud host, with inventory set by
+      the 'validations_inventory' variable.
+    vars:
+      component: baremetal
+      release: zed
+      branch_override: 'stable/zed'
+      enable_validation: false
+      validations_inventory: /home/zuul/config-download/overcloud/tripleo-ansible-inventory.yaml
+
+- job:
+    name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-clients-zed
+    parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-master
+    vars:
+      component: clients
+      release: zed
+      branch_override: 'stable/zed'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-network-zed
+    parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-master
+    description: |
+      OVB job for zed with 3 controller and 1 compute for Network component.
+      Validations are enabled and executed from the undercloud host, with
+      inventory set by the 'validations_inventory' variable.
+    vars:
+      component: network
+      release: zed
+      branch_override: 'stable/zed'
+      enable_validation: true
+      validations_inventory: /home/zuul/config-download/overcloud/tripleo-ansible-inventory.yaml
+
+- job:
+    name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-security-zed
+    parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-security-master
+    vars:
+      component: security
+      release: zed
+      branch_override: 'stable/zed'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-tripleo-zed
+    parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-master
+    description: |
+      OVB job for zed with 3 controller and 1 compute for Tripleo component.
+      Validations are enabled and executed from the undercloud host, with
+      inventory set by the 'validations_inventory' variable.
+    vars:
+      component: tripleo
+      release: zed
+      branch_override: 'stable/zed'
+      enable_validation: true
+      validations_inventory: /home/zuul/config-download/overcloud/tripleo-ansible-inventory.yaml
+
+- job:
+    name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-compute-zed
+    parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-master
+    description: |
+      OVB job for zed with 3 controller and 1 compute for Compute component.
+      Validations are enabled and executed from the undercloud host, with
+      inventory set by the 'validations_inventory' variable.
+    vars:
+      component: compute
+      release: zed
+      branch_override: 'stable/zed'
+      enable_validation: true
+      validations_inventory: /home/zuul/config-download/overcloud/tripleo-ansible-inventory.yaml
+
+## validation ovb jobs:
+
+- job:
+    name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-zed-validation
+    parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-master-validation
+    description: |
+      VF OVB job for zed branch. Inheriting from the master job and overriding release
+      specifying parameters.
+    vars:
+      release: zed
+      branch_override: 'stable/zed'
+
+
+## scenario007-standalone-component jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario007-standalone-network-zed
+    parent: periodic-tripleo-ci-centos-9-scenario007-standalone-network-master
+    vars:
+      release: zed
+      branch_override: 'stable/zed'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario007-standalone-octavia-zed
+    parent: periodic-tripleo-ci-centos-9-scenario007-standalone-octavia-master
+    vars:
+      release: zed
+      branch_override: 'stable/zed'
+
+# trigger jobs for scenario010
+
+- job:
+    name: create-scenario010-trigger-for-downstream-component-zed-c9
+    parent: create-scenario010-trigger-for-downstream
+    abstract: true
+    vars:
+      trigger_branch: zed
+      trigger_component: "{{ component }}"
+      trigger_os_distro: centos_9
+
+- job:
+    name: create-scenario010-trigger-for-downstream-network-zed-c9
+    parent: create-scenario010-trigger-for-downstream-component-zed-c9
+    vars:
+      component: network
+
+- job:
+    name: create-scenario010-trigger-for-downstream-octavia-zed-c9
+    parent: create-scenario010-trigger-for-downstream-component-zed-c9
+    vars:
+      component: octavia
+
+# Updates Jobs
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-zed
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-master
+    override-checkout: "stable/zed"
+    vars:
+      release: zed
+      branch_override: 'stable/zed'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-baremetal-zed
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-zed
+    vars:
+      component: baremetal
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-clients-zed
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-zed
+    vars:
+      component: clients
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-cloudops-zed
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-zed
+    vars:
+      component: cloudops
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-common-zed
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-zed
+    vars:
+      component: common
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-network-zed
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-zed
+    vars:
+      component: network
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-security-zed
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-zed
+    vars:
+      component: security
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-tripleo-zed
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-zed
+    vars:
+      component: tripleo
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-tempest-zed
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-component-zed
+    vars:
+      component: tempest
