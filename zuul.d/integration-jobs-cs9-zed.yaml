@@ -195,3 +195,37 @@
       enable_secure_rbac: true
       baremetal_image_name: "ipxe-uefi"
       tripleo_image_type: overcloud-hardened-uefi-full
+
+## Temporary trigger jobs till vexxhost is stable
+- job:
+    name: create-fs035-zed-c9-trigger-for-downstream
+    parent: create-scenario010-trigger-for-downstream
+    vars:
+      trigger_branch: zed
+      trigger_os_distro: centos_9
+      trigger_job_name: fs035
+      trigger_commit_msg: "Trigger for fs035 zed c9 job"
+- job:
+    name: create-fs001-zed-c9-trigger-for-downstream
+    parent: create-scenario010-trigger-for-downstream
+    vars:
+      trigger_branch: zed
+      trigger_os_distro: centos_9
+      trigger_job_name: fs001
+      trigger_commit_msg: "Trigger for fs001 zed c9 job"
+- job:
+    name: create-fs039-zed-c9-trigger-for-downstream
+    parent: create-scenario010-trigger-for-downstream
+    vars:
+      trigger_branch: zed
+      trigger_os_distro: centos_9
+      trigger_job_name: fs039
+      trigger_commit_msg: "Trigger for fs039 zed c9 job"
+- job:
+    name: create-fs064-zed-c9-trigger-for-downstream
+    parent: create-scenario010-trigger-for-downstream
+    vars:
+      trigger_branch: zed
+      trigger_os_distro: centos_9
+      trigger_job_name: fs064
+      trigger_commit_msg: "Trigger for fs064 zed c9 job"
