@@ -140,3 +140,20 @@
       trigger_os_distro: centos_9
       trigger_job_name: fs001
       trigger_commit_msg: "Trigger for fs001 master c9 job"
+
+- job:
+    name: create-fs039-master-c9-trigger-for-downstream
+    parent: create-scenario010-trigger-for-downstream
+    vars:
+      trigger_branch: master
+      trigger_os_distro: centos_9
+      trigger_job_name: fs039
+      trigger_commit_msg: "Trigger for fs039 master c9 job"
+- job:
+    name: create-fs064-master-c9-trigger-for-downstream
+    parent: create-scenario010-trigger-for-downstream
+    vars:
+      trigger_branch: master
+      trigger_os_distro: centos_9
+      trigger_job_name: fs064
+      trigger_commit_msg: "Trigger for fs064 master c9 job"
