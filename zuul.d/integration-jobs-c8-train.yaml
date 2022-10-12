@@ -68,6 +68,14 @@
       branch_override: 'stable/train'
       registry_namespace: tripleotraincentos8
 
+## Standalone
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-train
+    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master
+    override-checkout: "stable/train"
+    vars: *train_vars
+
 ## Temporary trigger jobs till vexxhost is stable
 
 - job:
@@ -88,11 +96,11 @@
       trigger_job_name: fs001
       trigger_commit_msg: "Trigger for fs001 train c8 job"
 
-
-## Standalone
-
 - job:
-    name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-train
-    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master
-    override-checkout: "stable/train"
-    vars: *train_vars
+    name: create-fs039-train-c8-trigger-for-downstream
+    parent: create-scenario010-trigger-for-downstream
+    vars:
+      trigger_branch: train
+      trigger_os_distro: centos_8
+      trigger_job_name: fs039
+      trigger_commit_msg: "Trigger for fs039 train c8 job"
