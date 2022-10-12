@@ -97,3 +97,13 @@
       trigger_os_distro: centos_8
       trigger_job_name: fs001
       trigger_commit_msg: "Trigger for fs001 train c8 job"
+
+- job:
+    name: create-fs039-train-c8-trigger-for-downstream
+    parent: create-scenario010-trigger-for-downstream
+    vars:
+      trigger_branch: train
+      trigger_os_distro: centos_8
+      trigger_job_name: fs039
+      trigger_commit_msg: "Trigger for fs039 train c8 job"
+
