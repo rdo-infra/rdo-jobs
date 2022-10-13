@@ -349,6 +349,7 @@
       - opendev.org/openstack/tripleo-ci
       - opendev.org/openstack/tripleo-quickstart
       - opendev.org/openstack/tripleo-quickstart-extras
+      - rdopkg
 
 - job:
     name: rdoinfo-tripleo-wallaby-release-centos-8-scenario001-standalone
@@ -373,6 +374,8 @@
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
           - 'ci/environments/scenario001-standalone.yaml'
+    required-projects:
+      - rdopkg
 
 - job:
     name: rdoinfo-tripleo-xena-release-centos-8-scenario001-standalone
@@ -397,6 +400,8 @@
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
           - 'ci/environments/scenario001-standalone.yaml'
+    required-projects:
+      - rdopkg
 
 - job:
     name: rdoinfo-tripleo-xena-release-centos-8-scenario002-standalone
@@ -450,6 +455,8 @@
       build_container_images: true
       containers_base_image: ubi8
       centos_releasever: 8s
+    required-projects:
+      - rdopkg
 
 - job:
     name: rdoinfo-tripleo-victoria-release-centos-8-scenario002-standalone
@@ -465,6 +472,8 @@
       rdoinfo_release: victoria
       rdoinfo_phase: release
       branch_override: "cloudsig/victoria"
+    required-projects:
+      - rdopkg
 
 - job:
     name: rdoinfo-tripleo-victoria-release-centos-8-scenario003-standalone
@@ -480,6 +489,8 @@
       rdoinfo_release: victoria
       rdoinfo_phase: release
       branch_override: "cloudsig/victoria"
+    required-projects:
+      - rdopkg
 
 - job:
     name: rdoinfo-tripleo-victoria-release-centos-8-scenario004-standalone
@@ -495,6 +506,8 @@
       rdoinfo_release: victoria
       rdoinfo_phase: release
       branch_override: "cloudsig/victoria"
+    required-projects:
+      - rdopkg
 
 - job:
     name: rdoinfo-tripleo-victoria-release-centos-8-scenario007-standalone
@@ -510,6 +523,8 @@
       rdoinfo_release: victoria
       rdoinfo_phase: release
       branch_override: "cloudsig/victoria"
+    required-projects:
+      - rdopkg
 
 - job:
     name: rdoinfo-tripleo-victoria-release-centos-8-undercloud-containers
@@ -521,6 +536,8 @@
       rdoinfo_release: victoria
       rdoinfo_phase: release
       branch_override: "cloudsig/victoria"
+    required-projects:
+      - rdopkg
 
 - job:
     name: rdoinfo-tripleo-victoria-release-centos-8-containers-multinode
@@ -532,6 +549,8 @@
       rdoinfo_release: victoria
       rdoinfo_phase: release
       branch_override: "cloudsig/victoria"
+    required-projects:
+      - rdopkg
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-standalone
@@ -543,6 +562,8 @@
       rdoinfo_release: master
       rdoinfo_phase: testing
       centos_releasever: 8s
+    required-projects:
+      - rdopkg
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-scenario001-standalone
@@ -683,6 +704,8 @@
       rdoinfo_release: master
       rdoinfo_phase: testing
       centos_releasever: 8s
+    required-projects:
+      - rdopkg
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-containers-multinode
@@ -693,6 +716,8 @@
       rdoinfo_release: master
       rdoinfo_phase: testing
       centos_releasever: 8s
+    required-projects:
+      - rdopkg
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-ovb-3ctlr_1comp-featureset001
@@ -939,6 +964,8 @@
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
           - 'ci/environments/scenario001-standalone.yaml'
+    required-projects:
+      - rdopkg
 
 - job:
     name: rdoinfo-tripleo-yoga-release-centos-9-scenario002-standalone
@@ -991,6 +1018,8 @@
       build_container_images: true
       containers_base_image: quay.io/centos/centos:stream9
       centos_releasever: 9s
+    required-projects:
+      - rdopkg
 
 - job:
     name: rdoinfo-tripleo-yoga-release-centos-8-scenario001-standalone
@@ -1015,6 +1044,8 @@
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
           - 'ci/environments/scenario001-standalone.yaml'
+    required-projects:
+      - rdopkg
 
 - job:
     name: rdoinfo-tripleo-yoga-release-centos-8-scenario002-standalone
@@ -1067,6 +1098,8 @@
       build_container_images: true
       containers_base_image: ubi8
       centos_releasever: 8s
+    required-projects:
+      - rdopkg
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-9-scenario001-standalone
@@ -1149,3 +1182,5 @@
       build_container_images: true
       containers_base_image: quay.io/centos/centos:stream9
       centos_releasever: 9s
+    required-projects:
+      - rdopkg
