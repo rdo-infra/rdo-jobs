@@ -59,13 +59,11 @@
             cp /etc/yum.repos.d/delorean.repo /etc/yum.repos.d/delorean-deps.repo $PWD/rdo-repos/
             export DIB_YUM_MINIMAL_EXTRA_REPOS=$PWD/rdo-repos
           fi
-          # ansible_distribution_* don't specify if it's centos-8 or
-          # centos-8-stream.
-          # we may need to update this block for centos-9-stream.
-          if [ "{{ centos_release }}" == "8" ]; then
-            amphora_distrib_release=8-stream
-          else
+          # ansible_distribution_* don't specify if it's centos-8 or centos-8-stream.
+          if [ "{{ centos_release }}" == "7" ]; then
             amphora_distrib_release="{{ centos_release }}"
+          else
+            amphora_distrib_release="{{ centos_release }}-stream"
           fi
           sudo --preserve-env=DIB_LOCAL_IMAGE,DIB_YUM_MINIMAL_EXTRA_REPOS \
                 /usr/bin/octavia-diskimage-create.sh -s 3 -d "$amphora_distrib_release" -p -i centos -o amphora-x64-haproxy-centos.qcow2
