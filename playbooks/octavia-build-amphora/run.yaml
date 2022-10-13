@@ -1,6 +1,15 @@
 - hosts: all
   name: Job to periodically build an Octavia amphora
   tasks:
+    # Workaround for Red Hat like distros: SELinux prevents diskimage-builder
+    # from creating a RPM DB dir in a chroot on Centos 9 Stream
+    - name: Disable SELinux on Red Hat distributions
+      selinux:
+        state: disabled
+      become: yes
+      when:
+        - ansible_os_family == 'RedHat'
+
     - name: Gather CentOS version
       set_fact:
         centos_release: "{{ ansible_distribution_major_version }}"
