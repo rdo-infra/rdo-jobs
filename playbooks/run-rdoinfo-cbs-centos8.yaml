@@ -1,7 +1,5 @@
 ---
 - hosts: primary
-  vars:
-    master_release: zed
   tasks:
     - name: Run pre-quickstart role
       import_role:
@@ -19,6 +17,23 @@
       file:
         path: "{{ workspace }}"
         state: directory
+
+    - name: install rdopkg
+      changed_when: true
+      shell:
+        cmd: |
+          sudo pip install rdopkg
+
+    - name: getting master release
+      changed_when: true
+      shell:
+        cmd: |
+          rdopkg info | grep -e "in development phase" | awk '{print $1}'
+      register: rdopkg_master_content
+
+    - name: set master_release
+      set_fact:
+        master_release: "{{ rdopkg_master_content.stdout }}"
 
     - name: Check if job needs to be run or not based on changes
       shell:
