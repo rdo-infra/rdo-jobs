@@ -1,7 +1,5 @@
 ---
 - hosts: primary
-  vars:
-    master_release: zed
   tasks:
     - name: Run pre-quickstart role
       import_role:
@@ -25,6 +23,12 @@
         path: '{{ workspace }}/logs'
         state: directory
 
+    - name: install rdopkg
+      changed_when: true
+      shell:
+        cmd: |
+          sudo pip install {{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/rdopkg'].src_dir }}
+
     - name: Check if job needs to be run or not based on changes
       shell:
         cmd: |
@@ -40,8 +44,9 @@
           PROJECT="{{ zuul.project.name }}"
           DIST_VER="{{ centos_releasever }}"
 
+          MASTER_RELEASE="$(rdopkg info | grep -e "in development phase" | awk '{print $1}')"
           if [ "{{ rdoinfo_release }}" = "master" ]; then
-              RELEASE="{{ master_release }}"
+              RELEASE="$MASTER_RELEASE"
           else
               RELEASE="{{ rdoinfo_release }}"
           fi

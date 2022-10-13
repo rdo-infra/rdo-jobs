@@ -95,6 +95,11 @@
           sudo pip install tox
       when: centos_release == "centos9"
 
+    - name: install rdopkg
+      shell:
+        cmd: |
+          sudo pip install {{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/rdopkg'].src_dir }}
+
     - name: Execute mirror info role
       import_role:
         name: mirror-info-fork
@@ -106,7 +111,7 @@
         cmd: |
           set -e -x
 
-          MASTER="antelope"
+          MASTER="$(rdopkg info | grep -e "in development phase" | awk '{print $1}')"
           RELEASE="{{ rdoinfo_release }}"
           PHASE="{{ rdoinfo_phase }}"
           PROJECT="{{ zuul.project.name }}"
