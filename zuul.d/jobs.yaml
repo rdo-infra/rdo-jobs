@@ -34,6 +34,11 @@
     post-run: playbooks/octavia-build-amphora/post.yaml
 
 - job:
+    name: octavia-build-amphora-centos9
+    parent: octavia-build-amphora
+    nodeset: rdo-centos-9-stream
+
+- job:
     name: octavia-build-amphora-centos8
     parent: octavia-build-amphora
     nodeset: rdo-centos-8-stream
