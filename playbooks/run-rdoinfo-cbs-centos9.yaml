@@ -1,7 +1,5 @@
 ---
 - hosts: primary
-  vars:
-    master_release: zed
   tasks:
     - name: Run pre-quickstart role
       import_role:
@@ -24,6 +22,33 @@
       file:
         path: '{{ workspace }}/logs'
         state: directory
+
+    - name: install rdopkg dependencies
+      become: true
+      shell:
+        cmd: |
+          dnf install -y python3-pip python3-pyOpenSSL rpmlint python3-rpm
+
+    - name: pip install rdopkg
+      # noqa 403
+      pip:
+        name: rdopkg
+        virtualenv: "{{ ansible_user_dir }}/rdopkg-venv"
+        virtualenv_command: "/usr/bin/python{{ ansible_python.version.major }} -m venv"
+        virtualenv_site_packages: yes
+        state: latest
+
+    - name: getting master release
+      changed_when: true
+      shell:
+        cmd: |
+          source '{{ ansible_user_dir }}/rdopkg-venv/bin/activate' >/dev/null
+          rdopkg info | grep -e "in development phase" | awk '{print $1}'
+      register: rdopkg_master_content
+
+    - name: set master_release
+      set_fact:
+        master_release: "{{ rdopkg_master_content.stdout }}"
 
     - name: Check if job needs to be run or not based on changes
       shell:
