@@ -39,6 +39,30 @@
       },
       "revId": "0d1ae2dd00a60bc6b602960aec4e5a5ffbe5d394",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5f563ff_68d07cea",
+        "filename": "zuul.d/integration-pipeline-zed-centos9.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-10-13T08:57:19Z",
+      "side": 1,
+      "message": "ack - as discussed yesterday we need to get some clarification around these.\n\nI think to move this forward for now, we can keep the job definitions and I can comment out these -rbac jobs from this run layout so they aren\u0027t running for now.\n\nWe can either enable them here or remove the definitions altogether once we get more info.",
+      "parentUuid": "f96592e3_0dbc0a31",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 95
+      },
+      "revId": "0d1ae2dd00a60bc6b602960aec4e5a5ffbe5d394",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
