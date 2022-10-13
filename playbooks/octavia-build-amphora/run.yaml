@@ -31,6 +31,7 @@
           fi
           sudo wget -O /etc/yum.repos.d/delorean.repo https://trunk.rdoproject.org/centos{{ centos_release }}-${RELEASE}/current/delorean.repo
           sudo wget -O /etc/yum.repos.d/delorean-deps.repo https://trunk.rdoproject.org/centos{{ centos_release }}-${RELEASE}/delorean-deps.repo
+          echo -e [test]\\nname=test\\nbaseurl=https://logserver.rdoproject.org/39/45639/1/check/DLRN-rpmbuild-centos9/842ca56/buildset/centos9/repos/current/\\nenabled=1\\ngpgcheck=0\\npriority=1 | sudo tee -a /etc/yum.repos.d/delorean.repo
 
           if [ "{{ centos_release }}" == "7" ]; then
             # NOTE(jpena): python36-distro, a mock requirement, conflicts with python2-distro
