@@ -37,16 +37,27 @@
 
           REQUIRED=0
           CREPOS_FILE=changed_repos.txt
-
-          if [ -z "{{ rdoinfo_phase|default("") }}" -o -z "{{ rdoinfo_release|default("") }}" ]; then
-              echo "ERROR in job definition"
-              exit 1
-          fi
+          PROJECT="{{ zuul.project.name }}"
+          DIST_VER="{{ centos_releasever }}"
 
           if [ "{{ rdoinfo_release }}" = "master" ]; then
               RELEASE="{{ master_release }}"
           else
               RELEASE="{{ rdoinfo_release }}"
+          fi
+
+          case $PROJECT in
+          rdoinfo)
+            REPO="cloud${DIST_VER}-openstack-$RELEASE-$PHASE"
+          ;;
+          nfvinfo)
+            REPO="nfv${DIST_VER}-openvswitch-2-$PHASE"
+          ;;
+          esac
+
+          if [ -z "{{ rdoinfo_phase|default("") }}" -o -z "{{ rdoinfo_release|default("") }}" ]; then
+              echo "ERROR in job definition"
+              exit 1
           fi
 
           # Set log path
@@ -59,7 +70,7 @@
           # If we could not find a working repository, give up
           curl -o $CREPOS_FILE -sf "$logs/repos/changed_repos.txt" || exit 1
 
-          if ! grep -q -E "($RELEASE|openvswitch-2)-{{ rdoinfo_phase }}" $CREPOS_FILE; then
+          if ! grep -q -E ${REPO} $CREPOS_FILE; then
               echo "INFO: this test is not required"| tee not_required
               exit 0
           fi
