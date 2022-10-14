@@ -18,6 +18,23 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a47fe008_08741cb5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-10-14T11:12:26Z",
+      "side": 1,
+      "message": "update incoming thank you for reviewing",
+      "revId": "712aa7c82345d5fa9659fcd78ad4943f46b1c045",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "459bb975_daaab05d",
@@ -31,6 +48,24 @@
       "writtenOn": "2022-10-13T19:36:48Z",
       "side": 1,
       "message": "master trigger?",
+      "revId": "712aa7c82345d5fa9659fcd78ad4943f46b1c045",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f37604a_4906706b",
+        "filename": "zuul.d/component-pipeline-zed-centos9.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-10-14T11:12:26Z",
+      "side": 1,
+      "message": "yeah this is wrong. at first i thought it was bad naming on the job (i.e. it handles all the branches). We have this same typo on wallaby there \n\nhttps://github.com/rdo-infra/rdo-jobs/blob/5d942cc44cf47dd223c3dbf9b60a715e59ebb7be/zuul.d/component-jobs-master-centos9.yaml#L687-L706",
+      "parentUuid": "459bb975_daaab05d",
       "revId": "712aa7c82345d5fa9659fcd78ad4943f46b1c045",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
