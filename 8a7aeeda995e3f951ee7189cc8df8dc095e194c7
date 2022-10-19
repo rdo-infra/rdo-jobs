@@ -50,6 +50,24 @@
       "message": "Wouldn\u0027t it be better to create a generic job: periodic-featureset-component-zed\" and make it parent for other child jobs?\nThis would gather all vars in one place, instead of redefining them in all subsequent jobs?\nWDYT?",
       "revId": "8a7aeeda995e3f951ee7189cc8df8dc095e194c7",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ee6d9f2_0db052ff",
+        "filename": "zuul.d/component-jobs-zed-centos9.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-10-19T13:14:28Z",
+      "side": 1,
+      "message": "yeah ... maybe?\nthe only vars we could stop repeating are the release/branch_override. \ncomponent has to stay and enable_validation is different in the jobs below  - some have true some false and some not at all.\n\n\ni could add some intermediary parent here:\n\nname: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-zed-component-generic\nparent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-master\nvars:\n  release: zed\n  branch_override: \u0027stable/zed\u0027\n\n\nand then have the child jobs inherit from that. but we\u0027d still have to carry vars like enable_validation \n\npersonally i\u0027d rather push to close this out and finish the bootstrap of the zed pipelines and then optimize the parenting as a subsequent effort (for example this can also be applied to wallaby from which this is copied)",
+      "parentUuid": "9f2f7894_a8176ab4",
+      "revId": "8a7aeeda995e3f951ee7189cc8df8dc095e194c7",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
