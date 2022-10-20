@@ -38,6 +38,7 @@
           REQUIRED=0
           CREPOS_FILE=changed_repos.txt
           PROJECT="{{ zuul.project.name }}"
+          PHASE="{{ rdoinfo_phase }}"
           DIST_VER="{{ centos_releasever }}"
 
           if [ "{{ rdoinfo_release }}" = "master" ]; then
