@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "592da16b_6603f164",
+        "filename": "playbooks/rdoinfo/weirdo-buildsys-tags.yaml",
+        "patchSetId": 18
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2022-10-20T14:38:15Z",
+      "side": 1,
+      "message": "Still failining https://review.rdoproject.org/zuul/build/55ca7d44cab044e1b383c5778065fcc3\n\nPackage python3-pip-9.0.3-22.el8.noarch is already installed.\nDependencies resolved.\nNothing to do.\nComplete!\n/bin/sh: line 1: pip: command not found\n\n\nIt\u0027s tricky, in cs8 python3-pip provides command pip-3 or pip3 but not just pip. I think in cs9, it provides both pip and pip3, pyp-3 so using pip-3 probably if fine for cs9 and cs8.",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 6
+      },
+      "revId": "d048016b8fc9b84d6b3b3a8583aee632330f145d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
