@@ -615,7 +615,8 @@
       component: network
       release: zed
       branch_override: 'stable/zed'
-      enable_validation: true
+      #  TODO(marios) https://bugs.launchpad.net/tripleo/+bug/1993262
+      enable_validation: false
       validations_inventory: /home/zuul/config-download/overcloud/tripleo-ansible-inventory.yaml
 
 - job:
@@ -637,7 +638,8 @@
       component: tripleo
       release: zed
       branch_override: 'stable/zed'
-      enable_validation: true
+      #  TODO(marios) https://bugs.launchpad.net/tripleo/+bug/1993262
+      enable_validation: false
       validations_inventory: /home/zuul/config-download/overcloud/tripleo-ansible-inventory.yaml
 
 - job:
@@ -651,7 +653,8 @@
       component: compute
       release: zed
       branch_override: 'stable/zed'
-      enable_validation: true
+      #  TODO(marios) https://bugs.launchpad.net/tripleo/+bug/1993262
+      enable_validation: false
       validations_inventory: /home/zuul/config-download/overcloud/tripleo-ansible-inventory.yaml
 
 ## validation ovb jobs:

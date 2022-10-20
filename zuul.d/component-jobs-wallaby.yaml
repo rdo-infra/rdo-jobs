@@ -236,7 +236,8 @@
       component: network
       release: wallaby
       branch_override: 'stable/wallaby'
-      enable_validation: true
+      #  TODO(marios) https://bugs.launchpad.net/tripleo/+bug/1993262
+      enable_validation: false
       validations_inventory: /home/zuul/config-download/overcloud/tripleo-ansible-inventory.yaml
 
 - job:
@@ -258,7 +259,8 @@
       component: tripleo
       release: wallaby
       branch_override: 'stable/wallaby'
-      enable_validation: true
+      #  TODO(marios) https://bugs.launchpad.net/tripleo/+bug/1993262
+      enable_validation: false
       validations_inventory: /home/zuul/config-download/overcloud/tripleo-ansible-inventory.yaml
 
 - job:
@@ -272,7 +274,8 @@
       component: compute
       release: wallaby
       branch_override: 'stable/wallaby'
-      enable_validation: true
+      #  TODO(marios) https://bugs.launchpad.net/tripleo/+bug/1993262
+      enable_validation: false
       validations_inventory: /home/zuul/config-download/overcloud/tripleo-ansible-inventory.yaml
 
 ## validation ovb jobs:
@@ -296,7 +299,8 @@
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
-      enable_validation: true
+      #  TODO(marios) https://bugs.launchpad.net/tripleo/+bug/1993262
+      enable_validation: false
 
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-baremetal-wallaby
