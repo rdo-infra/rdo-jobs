@@ -240,8 +240,7 @@
       Validation Framework, and standalone component job for VF itself.
     vars:
       component: validation
-      #  TODO(marios) https://bugs.launchpad.net/tripleo/+bug/1993262
-      enable_validation: false
+      enable_validation: true
 
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-compute-master-validation
@@ -344,8 +343,8 @@
     parent: periodic-tripleo-ci-centos-9-standalone-component-master
     vars:
       component: validation
-      #  TODO(marios) https://bugs.launchpad.net/tripleo/+bug/1993262
-      enable_validation: false
+      enable_validation: true
+
 
 ## scenario001-standalone-component jobs
 
@@ -636,8 +635,7 @@
       and is used by validation standalone jobs.
     vars:
       component: validation
-      #  TODO(marios) https://bugs.launchpad.net/tripleo/+bug/1993262
-      enable_validation: false
+      enable_validation: true
       extra_tags:
         - component-validations
       validations_inventory: "tripleo-deploy/undercloud/tripleo-ansible-inventory.yaml"
@@ -801,8 +799,7 @@
       the 'validations.yml' playbook from the 'tripleo-quickstart-extras'.
     vars:
       component: validation
-      #  TODO(marios) https://bugs.launchpad.net/tripleo/+bug/1993262
-      enable_validation: false
+      enable_validation: true
       enable_overcloud_validate: false
       validations_inventory: /home/zuul/config-download/overcloud/tripleo-ansible-inventory.yaml
       execute_full_vf_catalogue: true
