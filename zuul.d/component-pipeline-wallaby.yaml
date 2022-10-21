@@ -148,19 +148,19 @@
         - periodic-tripleo-centos-8-wallaby-component-validation-promote-consistent-to-component-ci-testing: *component_node
     openstack-promote-component:
       jobs:
-        - periodic-tripleo-centos-8-wallaby-component-baremetal-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-wallaby-component-cinder-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-wallaby-component-clients-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-wallaby-component-cloudops-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-wallaby-component-common-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-wallaby-component-compute-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-wallaby-component-glance-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-wallaby-component-manila-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-wallaby-component-network-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-wallaby-component-octavia-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-wallaby-component-security-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-wallaby-component-swift-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-wallaby-component-tripleo-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-wallaby-component-tempest-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-wallaby-component-ui-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-wallaby-component-validation-promote-to-promoted-components: *component_node
+        - periodic-tripleo-centos-8-wallaby-component-baremetal-promote-to-promoted-components
+        - periodic-tripleo-centos-8-wallaby-component-cinder-promote-to-promoted-components
+        - periodic-tripleo-centos-8-wallaby-component-clients-promote-to-promoted-components
+        - periodic-tripleo-centos-8-wallaby-component-cloudops-promote-to-promoted-components
+        - periodic-tripleo-centos-8-wallaby-component-common-promote-to-promoted-components
+        - periodic-tripleo-centos-8-wallaby-component-compute-promote-to-promoted-components
+        - periodic-tripleo-centos-8-wallaby-component-glance-promote-to-promoted-components
+        - periodic-tripleo-centos-8-wallaby-component-manila-promote-to-promoted-components
+        - periodic-tripleo-centos-8-wallaby-component-network-promote-to-promoted-components
+        - periodic-tripleo-centos-8-wallaby-component-octavia-promote-to-promoted-components
+        - periodic-tripleo-centos-8-wallaby-component-security-promote-to-promoted-components
+        - periodic-tripleo-centos-8-wallaby-component-swift-promote-to-promoted-components
+        - periodic-tripleo-centos-8-wallaby-component-tripleo-promote-to-promoted-components
+        - periodic-tripleo-centos-8-wallaby-component-tempest-promote-to-promoted-components
+        - periodic-tripleo-centos-8-wallaby-component-ui-promote-to-promoted-components
+        - periodic-tripleo-centos-8-wallaby-component-validation-promote-to-promoted-components

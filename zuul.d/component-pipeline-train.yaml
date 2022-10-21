@@ -200,19 +200,19 @@
         - periodic-tripleo-centos-8-train-component-validation-promote-consistent-to-component-ci-testing: *component_node
     openstack-promote-component:
       jobs:
-        - periodic-tripleo-centos-8-train-component-baremetal-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-train-component-cinder-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-train-component-clients-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-train-component-cloudops-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-train-component-common-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-train-component-compute-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-train-component-glance-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-train-component-manila-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-train-component-network-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-train-component-octavia-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-train-component-security-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-train-component-swift-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-train-component-tripleo-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-train-component-tempest-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-train-component-ui-promote-to-promoted-components: *component_node
-        - periodic-tripleo-centos-8-train-component-validation-promote-to-promoted-components: *component_node
+        - periodic-tripleo-centos-8-train-component-baremetal-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-cinder-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-clients-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-cloudops-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-common-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-compute-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-glance-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-manila-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-network-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-octavia-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-security-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-swift-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-tripleo-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-tempest-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-ui-promote-to-promoted-components
+        - periodic-tripleo-centos-8-train-component-validation-promote-to-promoted-components
