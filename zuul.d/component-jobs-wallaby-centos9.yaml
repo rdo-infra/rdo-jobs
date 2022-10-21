@@ -644,8 +644,7 @@
       component: network
       release: wallaby
       branch_override: 'stable/wallaby'
-      #  TODO(marios) https://bugs.launchpad.net/tripleo/+bug/1993262
-      enable_validation: false
+      enable_validation: true
       validations_inventory: /home/zuul/config-download/overcloud/tripleo-ansible-inventory.yaml
 
 - job:
@@ -667,9 +666,7 @@
       component: tripleo
       release: wallaby
       branch_override: 'stable/wallaby'
-      #  TODO(marios) https://bugs.launchpad.net/tripleo/+bug/1993262
-      enable_validation: false
-
+      enable_validation: true
       validations_inventory: /home/zuul/config-download/overcloud/tripleo-ansible-inventory.yaml
 
 - job:
@@ -683,8 +680,7 @@
       component: compute
       release: wallaby
       branch_override: 'stable/wallaby'
-      #  TODO(marios) https://bugs.launchpad.net/tripleo/+bug/1993262
-      enable_validation: false
+      enable_validation: true
       validations_inventory: /home/zuul/config-download/overcloud/tripleo-ansible-inventory.yaml
 
 ## validation ovb jobs:
