@@ -92,6 +92,11 @@
     override-checkout: "stable/wallaby"
     vars: *wallaby_vars
 
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-master
+    vars: *wallaby_vars
+
 ## undercloud
 
 - job:
