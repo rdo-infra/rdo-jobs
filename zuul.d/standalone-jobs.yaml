@@ -256,7 +256,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-master
     parent: periodic-tripleo-ci-standalone-rdo-centos-9
-    nodeset: single-centos-9-node-nested-virt
+    nodeset: single-centos-8-node-vexxhost
     timeout: 14400
     vars: *vars_standalone_010_kvm
 
