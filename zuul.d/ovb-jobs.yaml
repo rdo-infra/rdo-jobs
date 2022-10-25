@@ -135,7 +135,7 @@
 - job:
     name: tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
     parent: tripleo-ci-ovb-rdo-centos-8
-    branches: ^(stable/(train|wallaby)).*$
+    branches: stable/train
     vars:
       nodes: 3ctlr_1comp
       featureset: '001'
@@ -143,7 +143,7 @@
 - job:
     name: tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset001
     parent: tripleo-ci-ovb-rdo-centos-8
-    branches: ^(stable/(train|wallaby)).*$
+    branches: stable/train
     vars:
       nodes: 1ctlr_1comp
       featureset: '001'
