@@ -20,7 +20,7 @@
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-train
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-master
     override-checkout: "stable/train"
-    vars:
+    vars: &train_vars
       branch_override: "stable/train"
       release: train
       baremetal_image_name: "ipxe-boot"
@@ -29,33 +29,26 @@
     name: periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-train
     parent: periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-master
     override-checkout: "stable/train"
-    vars:
-      branch_override: "stable/train"
-      release: train
+    vars: *train_vars
 
 - job:
     name: periodic-tripleo-ci-centos-8-containers-multinode-train
     parent: periodic-tripleo-ci-centos-8-containers-multinode-master
     override-checkout: "stable/train"
-    vars:
-      branch_override: "stable/train"
-      release: train
+    vars: *train_vars
 
 - job:
     name: periodic-tripleo-ci-centos-8-scenario007-multinode-oooq-container-train
     parent: periodic-tripleo-ci-centos-8-scenario007-multinode-oooq-container-master
     override-checkout: "stable/train"
-    vars:
-      branch_override: "stable/train"
-      release: train
+    vars: *train_vars
 
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-train
     parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039-master
     override-checkout: "stable/train"
     vars:
-      branch_override: "stable/train"
-      release: train
+      <<: *train_vars
       baremetal_image_name: "ipxe-boot"
 
 - job:
@@ -63,9 +56,7 @@
     parent: periodic-tripleo-ci-centos-8-containers-undercloud-minion-master
     override-checkout: "stable/train"
     voting: false
-    vars:
-      branch_override: "stable/train"
-      release: train
+    vars: *train_vars
 
 ## Quay
 
@@ -97,3 +88,12 @@
       trigger_os_distro: centos_8
       trigger_job_name: fs001
       trigger_commit_msg: "Trigger for fs001 train c8 job"
+
+
+## Standalone
+
+- job:
+    name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-train
+    parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master
+    override-checkout: "stable/train"
+    vars: *train_vars
