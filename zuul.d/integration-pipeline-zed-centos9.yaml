@@ -26,6 +26,7 @@
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-zed: *build_containers_cs_9_push_zed
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-zed: *build_containers_cs_9_push_zed
         - periodic-tripleo-ci-centos-9-scenario010-ovn-provider-standalone-zed: *build_containers_cs_9_push_zed
+        - periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-zed: *build_containers_cs_9_push_zed
         - create-scenario010-trigger-for-downstream:
             vars:
               trigger_branch: zed
