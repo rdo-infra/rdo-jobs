@@ -16,6 +16,46 @@
       "message": "adding +1 for now and waiting on last sanity check https://review.rdoproject.org/r/c/testproject/+/43591/17#message-e14bf88475c1db3569e6e9ed673995abd4739314\n\nthank you jpodivin",
       "revId": "92c98ef41c17c807c3175beb15f7f0442c1021ef",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48fb57f4_a193e218",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-10-25T12:16:52Z",
+      "side": 1,
+      "message": "15:08 \u003c jpodivin\u003e marios|ruck: the test has mostly passed, with couple of exceptions. Tripleo, clients and network failed on tempest tests. https://review.rdoproject.org/r/c/testproject/+/43591\n15:09 \u003c jpodivin\u003e I think the https://review.rdoproject.org/r/c/rdo-jobs/+/44771 might be ready for votes. \n\n\nhttps://review.rdoproject.org/r/c/testproject/+/43591/17#message-b58b6e6893589f6c8b1c9a21439c203d2cac3c88",
+      "revId": "92c98ef41c17c807c3175beb15f7f0442c1021ef",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1904fbec_bacc7ad7",
+        "filename": "zuul.d/component-jobs-master-centos9.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 789,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-10-25T12:16:52Z",
+      "side": 1,
+      "message": "checked one where the validations are now re-enabled: looks good there https://review.rdoproject.org/zuul/build/94f82b70544842c1924214e4487305de\n\nperiodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-master-validation SUCCESS",
+      "range": {
+        "startLine": 789,
+        "startChar": 30,
+        "endLine": 789,
+        "endChar": 36
+      },
+      "revId": "92c98ef41c17c807c3175beb15f7f0442c1021ef",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
