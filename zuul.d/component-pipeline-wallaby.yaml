@@ -9,11 +9,6 @@
             dependencies: &dep_baremetal
               - periodic-tripleo-centos-8-wallaby-component-baremetal-promote-consistent-to-component-ci-testing
             nodeset: single-centos-8-stream-node-ibm
-        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-baremetal-wallaby:
-            dependencies: *dep_baremetal
-            nodeset: tripleo-ovb-centos-8-primary-ibm
-            vars:
-              cloud_name: ibm-bm2-nodepool
         - periodic-tripleo-centos-8-wallaby-component-baremetal-promote-consistent-to-component-ci-testing: &component_node
             nodeset: cloud-centos-8-stream-ibm
     openstack-component-cinder:
@@ -29,11 +24,6 @@
             dependencies: &dep_clients
               - periodic-tripleo-centos-8-wallaby-component-clients-promote-consistent-to-component-ci-testing
             nodeset: single-centos-8-stream-node-ibm
-        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-clients-wallaby:
-            nodeset: tripleo-ovb-centos-8-primary-ibm
-            vars:
-              cloud_name: ibm-bm2-nodepool
-            dependencies: *dep_clients
         - periodic-tripleo-centos-8-wallaby-component-clients-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-cloudops:
       jobs:
@@ -81,11 +71,6 @@
             dependencies: &dep_network
               - periodic-tripleo-centos-8-wallaby-component-network-promote-consistent-to-component-ci-testing
             nodeset: single-centos-8-stream-node-ibm
-        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-network-wallaby:
-            nodeset: tripleo-ovb-centos-8-primary-ibm
-            vars:
-              cloud_name: ibm-bm2-nodepool
-            dependencies: *dep_network
         - periodic-tripleo-centos-8-wallaby-component-network-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-octavia:
       jobs:
@@ -114,11 +99,6 @@
             nodeset: single-centos-8-stream-node-ibm
             dependencies: &dep_tripleo
               - periodic-tripleo-centos-8-wallaby-component-tripleo-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-tripleo-wallaby:
-            nodeset: tripleo-ovb-centos-8-primary-ibm
-            vars:
-              cloud_name: ibm-bm2-nodepool
-            dependencies: *dep_tripleo
         - periodic-tripleo-centos-8-wallaby-component-tripleo-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-tempest:
       jobs:
@@ -140,11 +120,6 @@
             nodeset: single-centos-8-stream-node-ibm
             dependencies: &dep_validation
               - periodic-tripleo-centos-8-wallaby-component-validation-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-component-wallaby-validation:
-            nodeset: tripleo-ovb-centos-8-primary-ibm
-            vars:
-              cloud_name: ibm-bm2-nodepool
-            dependencies: *dep_validation
         - periodic-tripleo-centos-8-wallaby-component-validation-promote-consistent-to-component-ci-testing: *component_node
     openstack-promote-component:
       jobs:
