@@ -48,6 +48,12 @@
       component: compute
 
 - job:
+    name: periodic-tripleo-centos-9-master-component-designate-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-centos-9-master-base-promote-consistent-to-component-ci-testing
+    vars:
+      component: designate
+
+- job:
     name: periodic-tripleo-centos-9-master-component-glance-promote-consistent-to-component-ci-testing
     parent: tripleo-ci-centos-9-master-base-promote-consistent-to-component-ci-testing
     vars:
@@ -152,6 +158,12 @@
     parent: tripleo-ci-centos-9-master-base-component-promote-to-promoted-components
     vars:
       component: compute
+
+- job:
+    name: periodic-tripleo-centos-9-master-component-designate-promote-to-promoted-components
+    parent: tripleo-ci-centos-9-master-base-component-promote-to-promoted-components
+    vars:
+      component: designate
 
 - job:
     name: periodic-tripleo-centos-9-master-component-glance-promote-to-promoted-components

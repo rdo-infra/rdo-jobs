@@ -52,6 +52,14 @@
       dlrn_server_url: "trunk.rdoproject.org"
 
 - job:
+    name: periodic-tripleo-centos-8-master-component-designate-promote-consistent-to-component-ci-testing
+    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
+    vars:
+      release: master
+      component: designate
+      dlrn_server_url: "trunk.rdoproject.org"
+
+- job:
     name: periodic-tripleo-centos-8-master-component-glance-promote-consistent-to-component-ci-testing
     parent: tripleo-ci-base-promote-consistent-to-component-ci-testing
     vars:
@@ -175,6 +183,13 @@
     vars:
       release: master
       component: compute
+
+- job:
+    name: periodic-tripleo-centos-8-master-component-designate-promote-to-promoted-components
+    parent: tripleo-ci-base-component-promote-to-promoted-components
+    vars:
+      release: master
+      component: glance
 
 - job:
     name: periodic-tripleo-centos-8-master-component-glance-promote-to-promoted-components
