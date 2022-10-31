@@ -39,6 +39,12 @@
       release: wallaby
 
 - job:
+    name: periodic-tripleo-centos-8-wallaby-component-designate-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-designate-promote-consistent-to-component-ci-testing
+    vars:
+      release: wallaby
+
+- job:
     name: periodic-tripleo-centos-8-wallaby-component-glance-promote-consistent-to-component-ci-testing
     parent: periodic-tripleo-centos-8-master-component-glance-promote-consistent-to-component-ci-testing
     vars:
@@ -134,6 +140,12 @@
 - job:
     name: periodic-tripleo-centos-8-wallaby-component-compute-promote-to-promoted-components
     parent: periodic-tripleo-centos-8-master-component-compute-promote-to-promoted-components
+    vars:
+      release: wallaby
+
+- job:
+    name: periodic-tripleo-centos-8-wallaby-component-designate-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-designate-promote-to-promoted-components
     vars:
       release: wallaby
 
