@@ -139,6 +139,18 @@
       release: wallaby
 
 - job:
+    name: periodic-tripleo-centos-9-wallaby-component-designate-promote-to-promoted-components
+    parent: periodic-tripleo-centos-9-master-component-designate-promote-to-promoted-components
+    vars:
+      release: wallaby
+
+- job:
+    name: periodic-tripleo-centos-9-wallaby-component-designate-promote-to-promoted-components
+    parent: periodic-tripleo-centos-9-master-component-designate-promote-to-promoted-components
+    vars:
+      release: wallaby
+
+- job:
     name: periodic-tripleo-centos-9-wallaby-component-glance-promote-to-promoted-components
     parent: periodic-tripleo-centos-9-master-component-glance-promote-to-promoted-components
     vars:
