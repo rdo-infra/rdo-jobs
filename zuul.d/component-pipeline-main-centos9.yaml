@@ -64,6 +64,9 @@
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-compute-master: *cs9_comp_compute_to_ci_testing_master
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-compute-master: *cs9_comp_compute_to_ci_testing_master
         - periodic-tripleo-centos-9-master-component-compute-promote-consistent-to-component-ci-testing
+    openstack-component-designate:
+      jobs:
+        - periodic-tripleo-centos-9-master-component-designate-promote-consistent-to-component-ci-testing
     openstack-component-glance:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-glance-master: &cs9_comp_glance_to_ci_testing_master
@@ -168,6 +171,7 @@
         - periodic-tripleo-centos-9-master-component-cloudops-promote-to-promoted-components
         - periodic-tripleo-centos-9-master-component-common-promote-to-promoted-components
         - periodic-tripleo-centos-9-master-component-compute-promote-to-promoted-components
+        - periodic-tripleo-centos-9-master-component-designate-promote-to-promoted-components
         - periodic-tripleo-centos-9-master-component-glance-promote-to-promoted-components
         - periodic-tripleo-centos-9-master-component-manila-promote-to-promoted-components
         - periodic-tripleo-centos-9-master-component-network-promote-to-promoted-components

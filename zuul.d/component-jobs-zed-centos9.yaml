@@ -40,6 +40,12 @@
       release: zed
 
 - job:
+    name: periodic-tripleo-centos-9-zed-component-designate-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-9-master-component-designate-promote-consistent-to-component-ci-testing
+    vars:
+      release: zed
+
+- job:
     name: periodic-tripleo-centos-9-zed-component-glance-promote-consistent-to-component-ci-testing
     parent: periodic-tripleo-centos-9-master-component-glance-promote-consistent-to-component-ci-testing
     vars:
@@ -137,6 +143,13 @@
     parent: periodic-tripleo-centos-9-master-component-compute-promote-to-promoted-components
     vars:
       release: zed
+
+- job:
+    name: periodic-tripleo-centos-9-zed-component-designate-promote-to-promoted-components
+    parent: periodic-tripleo-centos-9-master-component-designate-promote-to-promoted-components
+    vars:
+      release: zed
+
 
 - job:
     name: periodic-tripleo-centos-9-zed-component-glance-promote-to-promoted-components
