@@ -61,6 +61,9 @@
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-compute-zed: *comp_compute_to_ci_testing_zed_cs9
         - periodic-tripleo-ci-centos-9-standalone-compute-zed-validation: *comp_compute_to_ci_testing_zed_cs9
         - periodic-tripleo-centos-9-zed-component-compute-promote-consistent-to-component-ci-testing
+    openstack-component-designate:
+      jobs:
+        - periodic-tripleo-centos-9-zed-component-designate-promote-consistent-to-component-ci-testing
     openstack-component-glance:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-glance-zed: &comp_glance_to_ci_testing_zed_cs9
@@ -161,6 +164,7 @@
         - periodic-tripleo-centos-9-zed-component-cloudops-promote-to-promoted-components
         - periodic-tripleo-centos-9-zed-component-common-promote-to-promoted-components
         - periodic-tripleo-centos-9-zed-component-compute-promote-to-promoted-components
+        - periodic-tripleo-centos-9-zed-component-designate-promote-to-promoted-components
         - periodic-tripleo-centos-9-zed-component-glance-promote-to-promoted-components
         - periodic-tripleo-centos-9-zed-component-manila-promote-to-promoted-components
         - periodic-tripleo-centos-9-zed-component-network-promote-to-promoted-components
