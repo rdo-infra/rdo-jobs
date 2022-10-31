@@ -40,6 +40,12 @@
       release: train
 
 - job:
+    name: periodic-tripleo-centos-8-train-component-designate-promote-consistent-to-component-ci-testing
+    parent: periodic-tripleo-centos-8-master-component-designate-promote-consistent-to-component-ci-testing
+    vars:
+      release: train
+
+- job:
     name: periodic-tripleo-centos-8-train-component-glance-promote-consistent-to-component-ci-testing
     parent: periodic-tripleo-centos-8-master-component-glance-promote-consistent-to-component-ci-testing
     vars:
@@ -135,6 +141,12 @@
 - job:
     name: periodic-tripleo-centos-8-train-component-compute-promote-to-promoted-components
     parent: periodic-tripleo-centos-8-master-component-compute-promote-to-promoted-components
+    vars:
+      release: train
+
+- job:
+    name: periodic-tripleo-centos-8-train-component-designate-promote-to-promoted-components
+    parent: periodic-tripleo-centos-8-master-component-designate-promote-to-promoted-components
     vars:
       release: train
 
