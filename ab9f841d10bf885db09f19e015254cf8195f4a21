@@ -46,6 +46,53 @@
       },
       "revId": "ab9f841d10bf885db09f19e015254cf8195f4a21",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1445e6aa_d184107e",
+        "filename": "zuul.d/integration-pipeline-wallaby-centos9.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-11-03T16:19:04Z",
+      "side": 0,
+      "message": "we need depends-on *to* ci-config\n\ndepends-on: https://review.rdoproject.org/r/c/rdo-infra/ci-config/+/45922",
+      "parentUuid": "1296f017_3a9a317a",
+      "range": {
+        "startLine": 9,
+        "startChar": 100,
+        "endLine": 9,
+        "endChar": 106
+      },
+      "revId": "ab9f841d10bf885db09f19e015254cf8195f4a21",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9bb22e9_3958ade2",
+        "filename": "zuul.d/integration-pipeline-wallaby-centos9.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-11-03T16:19:04Z",
+      "side": 0,
+      "message": "you need depends-on https://review.rdoproject.org/r/c/rdo-jobs/+/45921 \n\nyou want to remove it from criteria first before you stop running it",
+      "range": {
+        "startLine": 9,
+        "startChar": 47,
+        "endLine": 9,
+        "endChar": 106
+      },
+      "revId": "ab9f841d10bf885db09f19e015254cf8195f4a21",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
