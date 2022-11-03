@@ -1,7 +1,7 @@
 - hosts: all
   vars:
     container_registry_logins:
-      trunk.registry.rdoproject.org:
+      quay.rdoproject.org:
         unused: test
     tripleo_container_registry_logins: '{{ container_registry_logins }}'
 
