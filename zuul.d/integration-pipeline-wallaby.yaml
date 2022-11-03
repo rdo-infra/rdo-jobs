@@ -22,7 +22,6 @@
             dependencies:
               - periodic-tripleo-centos-8-wallaby-promote-promoted-components-to-tripleo-ci-testing
             nodeset: single-centos-8-stream-node-ibm
-        - periodic-tripleo-ci-build-containers-centos-8-quay-push-wallaby: *promoted_comp_to_ci_testing_wallaby
         - periodic-tripleo-centos-8-wallaby-promote-promoted-components-to-tripleo-ci-testing:
             nodeset: cloud-centos-8-stream-ibm
             vars:

@@ -6,10 +6,9 @@
       jobs:
         ##### wallaby #####
         - periodic-tripleo-centos-9-wallaby-promote-promoted-components-to-tripleo-ci-testing
-        - periodic-tripleo-ci-build-containers-centos-9-push-wallaby: &promoted_comp_to_ci_testing_wallaby
+        - periodic-tripleo-ci-build-containers-ubi-9-quay-push-wallaby: &promoted_comp_to_ci_testing_wallaby
             dependencies:
               - periodic-tripleo-centos-9-wallaby-promote-promoted-components-to-tripleo-ci-testing
-        - periodic-tripleo-ci-build-containers-ubi-9-quay-push-wallaby: *promoted_comp_to_ci_testing_wallaby
         - periodic-tripleo-centos-9-buildimage-overcloud-full-wallaby: *promoted_comp_to_ci_testing_wallaby
         - periodic-tripleo-centos-9-buildimage-overcloud-hardened-uefi-full-wallaby: *promoted_comp_to_ci_testing_wallaby
         - periodic-tripleo-centos-9-buildimage-ironic-python-agent-wallaby: *promoted_comp_to_ci_testing_wallaby
@@ -39,7 +38,7 @@
         - periodic-tripleo-ci-centos-9-8-multinode-mixed-os: *build_containers_cs_9_push_wallaby
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-wallaby: &ovb_dep_cs_9_wallaby
             dependencies:
-              - periodic-tripleo-ci-build-containers-centos-9-push-wallaby
+              - periodic-tripleo-ci-build-containers-ubi-9-quay-push-wallaby
               - periodic-tripleo-centos-9-buildimage-overcloud-full-wallaby
               - periodic-tripleo-centos-9-buildimage-overcloud-hardened-uefi-full-wallaby
               - periodic-tripleo-centos-9-buildimage-ironic-python-agent-wallaby
