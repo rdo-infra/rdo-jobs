@@ -10,8 +10,8 @@
 ## containers/images
 
 - job:
-    name: periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
-    parent: periodic-tripleo-ci-build-containers-ubi-8-push
+    name: periodic-tripleo-ci-build-containers-ubi-8-quay-push-wallaby
+    parent: periodic-tripleo-ci-build-containers-rdo-centos-8
     override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
@@ -86,7 +86,7 @@
 
 - job:
     name: periodic-tripleo-ci-build-containers-centos-8-quay-push-wallaby
-    parent: periodic-tripleo-build-containers-quay-centos-8-secrets
+    parent: periodic-tripleo-ci-build-containers-rdo-centos-8
     override-checkout: "stable/wallaby"
     vars:
       release: wallaby
