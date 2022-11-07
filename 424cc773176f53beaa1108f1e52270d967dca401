@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdc11e52_755b88ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 670
+      },
+      "writtenOn": "2022-11-07T12:56:58Z",
+      "side": 1,
+      "message": "Thanks! Marios 😊",
+      "revId": "424cc773176f53beaa1108f1e52270d967dca401",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc751dad_905c1aae",
@@ -14,6 +31,24 @@
       "writtenOn": "2022-11-07T12:39:05Z",
       "side": 1,
       "message": "14:16 \u003c bhagyashris\u003e marios|ruck, just plz check this https://review.rdoproject.org/r/c/rdo-jobs/+/45969/1/zuul.d/integration-jobs-wallaby.yaml is the correct place to add mixed_os_lower_veeriosn add \n\nNo this is wrong.\n\nwe will leave the 8-9 job alone for now, and eventually we will remove it completely\n\nYou need to add this to the 9-8 job please not this one.\n\nThe 9-8 job is the only one we will keep as discussed earlier. It will be reporting to 9 delorean, and then with this parameter mixed_os_lower_version it will also re-report to 8 delorean via https://code.engineering.redhat.com/gerrit/c/openstack/tripleo-ci-internal-config/+/434123",
+      "revId": "424cc773176f53beaa1108f1e52270d967dca401",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b938b87e_19ea3ffc",
+        "filename": "zuul.d/integration-jobs-wallaby.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 670
+      },
+      "writtenOn": "2022-11-07T12:56:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc751dad_905c1aae",
       "revId": "424cc773176f53beaa1108f1e52270d967dca401",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
