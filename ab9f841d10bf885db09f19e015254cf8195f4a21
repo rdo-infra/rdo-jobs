@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "026967ba_b8d6e0d8",
+        "filename": "zuul.d/integration-pipeline-train.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2022-11-08T18:41:31Z",
+      "side": 0,
+      "message": "Please remove the definition: https://github.com/rdo-infra/rdo-jobs/blob/master/zuul.d/integration-jobs-c8-train.yaml#L63",
+      "parentUuid": "9d3c506d_60d6537d",
+      "revId": "ab9f841d10bf885db09f19e015254cf8195f4a21",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8bb9b275_aadccb36",
         "filename": "zuul.d/integration-pipeline-wallaby-centos9.yaml",
         "patchSetId": 1
@@ -138,6 +156,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b9ba820d_e0fb6158",
+        "filename": "zuul.d/integration-pipeline-wallaby-centos9.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2022-11-08T18:41:31Z",
+      "side": 0,
+      "message": "Please remove also definition of this job from here: https://github.com/rdo-infra/rdo-jobs/blob/master/zuul.d/integration-jobs-cs9-wallaby.yaml#L12",
+      "revId": "ab9f841d10bf885db09f19e015254cf8195f4a21",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "af8f613e_165317fc",
         "filename": "zuul.d/integration-pipeline-wallaby.yaml",
         "patchSetId": 3
@@ -149,6 +184,30 @@
       "writtenOn": "2022-11-08T07:27:47Z",
       "side": 0,
       "message": "ack same as the train one and lgtm https://codesearch.rdoproject.org/codesearch/?q\u003dperiodic-tripleo-ci-build-containers-centos-8-quay-push-wallaby\u0026i\u003dnope\u0026files\u003d\u0026repos\u003d",
+      "range": {
+        "startLine": 25,
+        "startChar": 36,
+        "endLine": 25,
+        "endChar": 46
+      },
+      "revId": "ab9f841d10bf885db09f19e015254cf8195f4a21",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "115c89ad_ddbe3f7d",
+        "filename": "zuul.d/integration-pipeline-wallaby.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2022-11-08T18:41:31Z",
+      "side": 0,
+      "message": "Plese remove the definition too: https://github.com/rdo-infra/rdo-jobs/blob/master/zuul.d/integration-jobs-wallaby.yaml#L88",
+      "parentUuid": "af8f613e_165317fc",
       "range": {
         "startLine": 25,
         "startChar": 36,
