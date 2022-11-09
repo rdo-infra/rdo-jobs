@@ -8,14 +8,6 @@
       release: wallaby
 
 ## containers/images
-- job:
-    name: periodic-tripleo-ci-build-containers-centos-9-push-wallaby
-    parent: periodic-tripleo-ci-build-containers-centos-9-push-master
-    override-checkout: "stable/wallaby"
-    vars:
-      release: wallaby
-      branch_override: "stable/wallaby"
-      registry_namespace: tripleowallabycentos9
 
 - job:
     name: periodic-tripleo-centos-9-buildimage-overcloud-full-wallaby
