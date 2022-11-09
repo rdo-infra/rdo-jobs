@@ -658,6 +658,58 @@
       - name: peers
         nodes: []
 
+- nodeset:
+    name: cloud-centos-8-stream-ibm-bm3
+    nodes:
+      - name: primary
+        label: ibm-bm3-nodepool-upstream-centos-8-stream
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: single-centos-8-stream-node-ibm-bm3
+    nodes:
+      - name: primary
+        label: ibm-bm3-nodepool-upstream-centos-8-stream
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: two-centos-8-nodes-ibm-bm3
+    nodes:
+      - name: primary
+        label: ibm-bm3-nodepool-upstream-centos-8-stream
+      - name: secondary
+        label: ibm-bm3-nodepool-upstream-centos-8-stream
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes:
+          - secondary
+      - name: subnodes
+        nodes:
+          - secondary
+
+- nodeset:
+    name: tripleo-ovb-centos-8-primary-ibm-bm3
+    nodes:
+      - name: primary
+        label: ibm-bm3-nodepool-upstream-centos-8-stream
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
 # CentOS 9
 - nodeset:
     name: cloud-centos-9-stream-ibm
@@ -720,6 +772,80 @@
         label: ibm-cloud-centos-9-stream-tripleo
       - name: secondary-2
         label: ibm-upstream-centos-8-stream
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes:
+          - secondary-1
+          - secondary-2
+      - name: subnodes
+        nodes:
+          - secondary-1
+          - secondary-2
+
+- nodeset:
+    name: cloud-centos-9-stream-ibm-bm3
+    nodes:
+      - name: primary
+        label: ibm-bm3-nodepool-cloud-centos-9-stream-tripleo
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: single-centos-9-stream-node-ibm-bm3
+    nodes:
+      - name: primary
+        label: ibm-bm3-nodepool-cloud-centos-9-stream-tripleo
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: two-centos-9-nodes-ibm-bm3
+    nodes:
+      - name: primary
+        label: ibm-bm3-nodepool-cloud-centos-9-stream-tripleo
+      - name: secondary
+        label: ibm-bm3-nodepool-cloud-centos-9-stream-tripleo
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes:
+          - secondary
+      - name: subnodes
+        nodes:
+          - secondary
+
+- nodeset:
+    name: tripleo-ovb-centos-9-primary-ibm-bm3
+    nodes:
+      - name: primary
+        label: ibm-bm3-nodepool-cloud-centos-9-stream-tripleo
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: two-centos-9-one-centos-8-nodes-ibm-bm3
+    nodes:
+      - name: primary
+        label: ibm-bm3-nodepool-cloud-centos-9-stream-tripleo
+      - name: secondary-1
+        label: ibm-bm3-nodepool-cloud-centos-9-stream-tripleo
+      - name: secondary-2
+        label: ibm-bm3-nodepool-upstream-centos-8-stream
     groups:
       - name: switch
         nodes:
