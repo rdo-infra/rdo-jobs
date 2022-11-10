@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "13acfe4f_368bb858",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-11-10T07:32:52Z",
+      "side": 1,
+      "message": "is that part of the request are we expecting deployments with designate for train?",
+      "range": {
+        "startLine": 11,
+        "startChar": 56,
+        "endLine": 11,
+        "endChar": 61
+      },
+      "revId": "3855b1ef4a046765cd4c6a2eded0130edee5f542",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "7da44253_df8ac5b4",
@@ -14,6 +37,115 @@
       "writtenOn": "2022-11-09T16:45:00Z",
       "side": 1,
       "message": "recheck",
+      "revId": "3855b1ef4a046765cd4c6a2eded0130edee5f542",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3aa830d5_c6ac1085",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-11-10T07:32:52Z",
+      "side": 1,
+      "message": "stared for a bit looks right\n\nsanity check inline for train\n\nneed to stare again ",
+      "revId": "3855b1ef4a046765cd4c6a2eded0130edee5f542",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04378699_9e64e864",
+        "filename": "zuul.d/component-jobs-master.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-11-10T07:32:52Z",
+      "side": 1,
+      "message": "8-master?",
+      "range": {
+        "startLine": 55,
+        "startChar": 27,
+        "endLine": 55,
+        "endChar": 42
+      },
+      "revId": "3855b1ef4a046765cd4c6a2eded0130edee5f542",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74e8f12e_17685d04",
+        "filename": "zuul.d/component-jobs-master.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-11-10T07:32:52Z",
+      "side": 1,
+      "message": "we need this one? 8-master?\n\n[EDIT]: yeah we use it for parenting.\n\nimo we could add \"abstract: true\" for this job then since it is never expected to run just used for parenting.",
+      "range": {
+        "startLine": 188,
+        "startChar": 27,
+        "endLine": 190,
+        "endChar": 9
+      },
+      "revId": "3855b1ef4a046765cd4c6a2eded0130edee5f542",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e31bb8ca_d543da59",
+        "filename": "zuul.d/component-jobs-train.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-11-10T07:32:52Z",
+      "side": 1,
+      "message": "sanity check on this do we need it for train?",
+      "range": {
+        "startLine": 46,
+        "startChar": 15,
+        "endLine": 46,
+        "endChar": 20
+      },
+      "revId": "3855b1ef4a046765cd4c6a2eded0130edee5f542",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f97cb78_383197e8",
+        "filename": "zuul.d/component-jobs-wallaby.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-11-10T07:32:52Z",
+      "side": 1,
+      "message": "ok i see now it is a parenting scheme.  but imo we should not keep doing it since 8-master no longer makes sense.\n\nif we remove the redundant 8-master definition, you can just use here:\n\n    parent: tripleo-ci-base-promote-consistent-to-component-ci-testing\n    vars:\n      release: master\n      component: designate\n      dlrn_server_url: \"trunk.rdoproject.org\"\n\n\n[EDIT]: k then we\u0027d have to do it for all the components 😞\n\ngrumble grumble ok then",
+      "range": {
+        "startLine": 43,
+        "startChar": 13,
+        "endLine": 43,
+        "endChar": 107
+      },
       "revId": "3855b1ef4a046765cd4c6a2eded0130edee5f542",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
