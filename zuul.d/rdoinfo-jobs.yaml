@@ -543,6 +543,10 @@
       rdoinfo_release: master
       rdoinfo_phase: testing
       centos_releasever: 8s
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'ci/environments/scenario001-standalone.yaml'
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-8-scenario001-standalone
