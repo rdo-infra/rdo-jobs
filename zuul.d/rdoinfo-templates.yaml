@@ -2,6 +2,30 @@
     name: rdoinfo-master-testing-tripleo-jobs
     check:
       jobs:
+        - distgit-tripleo-master-testing-centos-9-standalone-scenario001:
+            dependencies:
+              - rdoinfo-DLRN-check-centos9
+            voting: false
+            files:
+              - ^tags/antelope-uc.yml$
+        - distgit-tripleo-master-testing-centos-9-standalone-scenario002:
+            dependencies:
+              - rdoinfo-DLRN-check-centos9
+            voting: false
+            files:
+              - ^tags/antelope-uc.yml$
+        - distgit-tripleo-master-testing-centos-9-standalone-scenario003:
+            dependencies:
+              - rdoinfo-DLRN-check-centos9
+            voting: false
+            files:
+              - ^tags/antelope-uc.yml$
+        - distgit-tripleo-master-testing-centos-9-standalone-scenario004:
+            dependencies:
+              - rdoinfo-DLRN-check-centos9
+            voting: false
+            files:
+              - ^tags/antelope-uc.yml$
         - rdoinfo-tripleo-wallaby-testing-centos-9-scenario001-standalone:
             dependencies:
               - validate-buildsys-tags
