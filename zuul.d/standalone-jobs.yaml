@@ -421,3 +421,23 @@
     vars:
       branch_override: "stable/train"
       release: train
+
+#############
+# EDPM Jobs #
+#############
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-external-compute-target-host-master
+    parent: tripleo-ci-base-multinode-periodic-centos-9
+    vars:
+      release: master
+      # FIXME(chandankumar): Add featureset var here till we fix
+      # https://review.rdoproject.org/r/c/testproject/+/46118/1#message-b63923cbc2c2d4f0781ecf58c295a98f35958655
+      featureset: "053"
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-external-compute-target-host-zed
+    parent: periodic-tripleo-ci-centos-9-standalone-external-compute-target-host-master
+    override-checkout: "stable/zed"
+    vars:
+      branch_override: "stable/zed"
+      release: zed
