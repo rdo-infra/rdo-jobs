@@ -421,3 +421,24 @@
     vars:
       branch_override: "stable/train"
       release: train
+
+#############
+# EDPM Jobs #
+#############
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-external-compute-target-host-master
+    parent: tripleo-ci-standalone-external-compute-options
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-external-compute-target-host-master
+    parent: tripleo-ci-base-required-projects-edpm-rdo
+    vars:
+      release: master
+
+- job:
+    name: periodic-tripleo-ci-centos-9-standalone-external-compute-target-host-zed
+    parent: periodic-tripleo-ci-centos-9-standalone-external-compute-target-host-master
+    override-checkout: "stable/zed"
+    vars:
+      branch_override: "stable/zed"
+      release: zed
