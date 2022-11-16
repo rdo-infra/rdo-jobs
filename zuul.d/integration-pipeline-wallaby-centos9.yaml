@@ -5,6 +5,16 @@
     openstack-periodic-integration-stable1:
       jobs:
         ##### wallaby #####
+        ## 8 in 9 line jobs ##
+        - periodic-tripleo-centos-8-wallaby-promote-promoted-components-to-tripleo-ci-testing:
+            nodeset: cloud-centos-8-stream-ibm
+            vars:
+              release: wallaby
+        - periodic-tripleo-ci-build-containers-centos-8-quay-push-wallaby:
+            dependencies:
+              - periodic-tripleo-centos-8-wallaby-promote-promoted-components-to-tripleo-ci-testing
+            nodeset: single-centos-8-stream-node-ibm
+        ## 9 line starts here ##
         - periodic-tripleo-centos-9-wallaby-promote-promoted-components-to-tripleo-ci-testing
         - periodic-tripleo-ci-build-containers-centos-9-push-wallaby: &promoted_comp_to_ci_testing_wallaby
             dependencies:
@@ -36,7 +46,10 @@
         - periodic-tripleo-ci-centos-9-undercloud-containers-wallaby: *build_containers_cs_9_push_wallaby
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-wallaby: *build_containers_cs_9_push_wallaby
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-wallaby: *build_containers_cs_9_push_wallaby
-        - periodic-tripleo-ci-centos-9-8-multinode-mixed-os: *build_containers_cs_9_push_wallaby
+        - periodic-tripleo-ci-centos-9-8-multinode-mixed-os:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-ubi-9-quay-push-wallaby
+              - periodic-tripleo-ci-build-containers-centos-8-quay-push-wallaby
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-wallaby: &ovb_dep_cs_9_wallaby
             dependencies:
               - periodic-tripleo-ci-build-containers-centos-9-push-wallaby
