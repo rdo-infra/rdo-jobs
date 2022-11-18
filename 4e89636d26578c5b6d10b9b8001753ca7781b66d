@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6353fd47_45dd04f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2022-11-18T07:29:27Z",
+      "side": 1,
+      "message": "Looks good.\n\nhttps://logserver.rdoproject.org/69/41469/36/check/periodic-tripleo-ci-build-containers-ubi-9-quay-push-zed/48b2722/zuul-info/inventory.yaml\n\n\ncurrently we are checking out master for zed and that\u0027s wrong.\n~~~\n        opendev.org/openstack/python-tripleoclient:\n          canonical_hostname: opendev.org\n          canonical_name: opendev.org/openstack/python-tripleoclient\n          checkout: master\n          checkout_description: zuul branch\n          commit: 70bbc79cb1fc249d75a9e11557eaaf742350b558\n          name: openstack/python-tripleoclient\n          required: true\n          short_name: python-tripleoclient\n          src_dir: src/opendev.org/openstack/python-tripleoclient\n~~~",
+      "revId": "4e89636d26578c5b6d10b9b8001753ca7781b66d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
