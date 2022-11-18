@@ -16,6 +16,29 @@
       "message": "looks good to me",
       "revId": "9c8a618d57e282dd10ba9c6e2bcb85ca046c449c",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bb6483f_a86470d9",
+        "filename": "zuul.d/integration-pipeline-wallaby-centos9.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-11-18T11:43:09Z",
+      "side": 1,
+      "message": "with the mixed_os_lower_version var added to the job in this review and with the (merged) config patch at https://review.rdoproject.org/r/c/config/+/46130 this now reports for both 9 and 8 hashes - logs at [1] - pasting here to highlight:\n\n\n1. report to dlrn for c9 (normal case)\n\n\n        * 2022-11-17 18:06:00.095902 | TASK [Report to DLRN]\n        * 2022-11-17 18:06:00.631087 | primary | ++ export DLRNAPI_URL\u003dhttps://trunk.rdoproject.org/api-centos9-wallaby\n        * 2022-11-17 18:06:00.631102 | primary | ++ export FULL_HASH\u003d0bfd4d191a0f85109775d930c2c5b4e5\n        * 2022-11-17 18:06:02.105323 | primary | + dlrnapi --url https://trunk.rdoproject.org/api-centos9-wallaby report-result --agg-hash 0bfd4d191a0f85109775d930c2c5b4e5 --job-id periodic-tripleo-ci-centos-9-8-multinode-mixed-os --info-url https://logserver.rdoproject.org/34/44234/13/check/periodic-tripleo-ci-centos-9-8-multinode-mixed-os/5e51557 --timestamp 1668708362 --success True\n\n\n2. report again to dlrn for c8 \n\n\n        *2022-11-17 18:06:04.605845 | POST-RUN START: [trusted : review.rdoproject.org/config/playbooks/tripleo-ci-periodic-base/post-mixed-os.yaml@master]\n        * 2022-11-17 18:06:06.759297 | TASK [Recreate hash_info.sh - mixed OS - set distro centos8]\n        * 2022-11-17 18:06:13.253436 | TASK [Report to DLRN]\n        * 2022-11-17 18:06:13.618585 | primary | ++ export DLRNAPI_URL\u003dhttps://trunk.rdoproject.org/api-centos8-wallaby\n        * 2022-11-17 18:06:13.618618 | primary | ++ export FULL_HASH\u003d5743f98948d940f1e592259e198e327c\n\n\nYou can see that for both hashes the job reports - c9 at [2] c8 at [3]\n\n\n\n[1] https://logserver.rdoproject.org/34/44234/13/check/periodic-tripleo-ci-centos-9-8-multinode-mixed-os/5e51557/job-output.txt\n[2] https://trunk.rdoproject.org/api-centos9-wallaby/api/civotes_agg_detail.html?ref_hash\u003d0bfd4d191a0f85109775d930c2c5b4e5\n[3] https://trunk.rdoproject.org/api-centos8-wallaby/api/civotes_agg_detail.html?ref_hash\u003d5743f98948d940f1e592259e198e327c",
+      "range": {
+        "startLine": 47,
+        "startChar": 10,
+        "endLine": 47,
+        "endChar": 60
+      },
+      "revId": "9c8a618d57e282dd10ba9c6e2bcb85ca046c449c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
