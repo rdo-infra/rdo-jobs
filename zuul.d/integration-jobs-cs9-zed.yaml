@@ -11,9 +11,11 @@
 - job:
     name: periodic-tripleo-ci-build-containers-ubi-9-quay-push-zed
     parent: periodic-tripleo-build-containers-quay-centos-9-secrets
+    override-checkout: "stable/zed"
     vars:
       release: zed
       registry_namespace: tripleozedcentos9
+      branch_override: "stable/zed"
 
 ## overcloud deploy images
 - job:
