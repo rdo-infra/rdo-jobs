@@ -50,6 +50,24 @@
       "message": "why ibm cloud node? we can stay in vexx as this line is in vexx",
       "revId": "878a6fdb7a755451ba506f9949e2b9fa34f2ccd4",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ab9feef_62f67878",
+        "filename": "zuul.d/integration-pipeline-wallaby-centos9.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-11-22T12:36:01Z",
+      "side": 1,
+      "message": "i carried this over from the current definition i.e. https://github.com/rdo-infra/rdo-jobs/blob/4f72c29ae21a5826285486130ec0dae5354ebeed/zuul.d/integration-pipeline-wallaby.yaml#L24-L25\n\nthey all have ibm nodeset.\n\nwhy not keep them as is? we can run them in vexx but is there a benefit to doing that/changing what we currently do?",
+      "parentUuid": "0379f7b1_5af7569a",
+      "revId": "878a6fdb7a755451ba506f9949e2b9fa34f2ccd4",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
