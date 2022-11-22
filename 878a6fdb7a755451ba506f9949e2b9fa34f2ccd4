@@ -35,6 +35,29 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0db73fb_a52b15bf",
+        "filename": "zuul.d/integration-pipeline-wallaby-centos9.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2022-11-22T13:04:05Z",
+      "side": 1,
+      "message": "Okay, by default if not mentioned this will be picked: https://github.com/rdo-infra/review.rdoproject.org-config/blob/master/zuul.d/tripleo-rdo-base.yaml#L7",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 46
+      },
+      "revId": "878a6fdb7a755451ba506f9949e2b9fa34f2ccd4",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0379f7b1_5af7569a",
@@ -84,6 +107,24 @@
       "side": 1,
       "message": "just discussed in irc\n\nwill update to remove and let them run in vexx\n\nthese nodeset will need to be updated anyway for ibmcloud3 ... but lets keep this line running in one cloud",
       "parentUuid": "2ab9feef_62f67878",
+      "revId": "878a6fdb7a755451ba506f9949e2b9fa34f2ccd4",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3097c2f_25fff8a5",
+        "filename": "zuul.d/integration-pipeline-wallaby-centos9.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2022-11-22T13:04:05Z",
+      "side": 1,
+      "message": "Ack, if we don\u0027t mention here single-centos-8-node-vexxhost will be picked.\n\nhttps://github.com/rdo-infra/review.rdoproject.org-config/blob/master/zuul.d/tripleoci.yaml#L232",
+      "parentUuid": "591748cc_20285bef",
       "revId": "878a6fdb7a755451ba506f9949e2b9fa34f2ccd4",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
