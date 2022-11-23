@@ -41,11 +41,11 @@
       push_registry: trunk.registry.rdoproject.org
       featureset: containers-build
 
-# CentOS 9
 - job:
-    name: periodic-tripleo-ci-build-containers-centos-9-push-master
-    parent: periodic-tripleo-ci-build-containers-rdo-centos-9
+    name: periodic-tripleo-ci-build-containers-ubi-8-quay-push-train
+    parent: periodic-tripleo-ci-build-containers-rdo-centos-8
+    override-checkout: 'stable/train'
     vars:
-      buildcontainers_override_repos: centos9-master
-      registry_namespace: tripleomastercentos9
-      buildcontainers_venv: false
+      release: train
+      branch_override: 'stable/train'
+      registry_namespace: tripleotraincentos8
