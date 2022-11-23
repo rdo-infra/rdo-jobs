@@ -10,8 +10,8 @@
 ## containers/images
 
 - job:
-    name: periodic-tripleo-ci-build-containers-ubi-8-push-wallaby
-    parent: periodic-tripleo-ci-build-containers-ubi-8-push
+    name: periodic-tripleo-ci-build-containers-ubi-8-quay-push-wallaby
+    parent: periodic-tripleo-ci-build-containers-rdo-centos-8
     override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
@@ -81,17 +81,6 @@
         validate_services: false
       extra_tags:
         - undercloud-upgrade
-
-## Quay
-
-- job:
-    name: periodic-tripleo-ci-build-containers-centos-8-quay-push-wallaby
-    parent: periodic-tripleo-build-containers-quay-centos-8-secrets
-    override-checkout: "stable/wallaby"
-    vars:
-      release: wallaby
-      branch_override: "stable/wallaby"
-      registry_namespace: tripleowallabycentos8
 
 ## Temporary trigger jobs till vexxhost is stable
 
