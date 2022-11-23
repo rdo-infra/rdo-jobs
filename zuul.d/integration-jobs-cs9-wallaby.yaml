@@ -200,7 +200,7 @@
 
 - job:
     name: periodic-tripleo-ci-build-containers-ubi-9-quay-push-wallaby
-    parent: periodic-tripleo-build-containers-quay-centos-9-secrets
+    parent:  periodic-tripleo-ci-build-containers-rdo-centos-9
     override-checkout: "stable/wallaby"
     vars:
       release: wallaby
