@@ -57,11 +57,9 @@
     voting: false
     vars: *train_vars
 
-## Quay
-
 - job:
-    name: periodic-tripleo-ci-build-containers-centos-8-quay-push-train
-    parent: periodic-tripleo-build-containers-quay-centos-8-secrets
+    name: periodic-tripleo-ci-build-containers-ubi-8-quay-push-train
+    parent: periodic-tripleo-ci-build-containers-rdo-centos-8
     override-checkout: 'stable/train'
     vars:
       release: train
