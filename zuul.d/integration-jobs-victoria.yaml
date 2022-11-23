@@ -11,7 +11,7 @@
 
 - job:
     name: periodic-tripleo-ci-build-containers-ubi-8-push-victoria
-    parent: periodic-tripleo-ci-build-containers-ubi-8-push
+    parent: periodic-tripleo-ci-build-containers-rdo-centos-8
     override-checkout: 'stable/victoria'
     vars:
       release: victoria
