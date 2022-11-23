@@ -40,3 +40,12 @@
       promote_source: tripleo-ci-testing
       push_registry: trunk.registry.rdoproject.org
       featureset: containers-build
+
+- job:
+    name: periodic-tripleo-ci-build-containers-ubi-8-quay-push-train
+    parent: periodic-tripleo-ci-build-containers-rdo-centos-8
+    override-checkout: 'stable/train'
+    vars:
+      release: train
+      branch_override: 'stable/train'
+      registry_namespace: tripleotraincentos8

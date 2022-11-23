@@ -12,7 +12,7 @@
               - periodic-tripleo-centos-8-train-promote-promoted-components-to-tripleo-ci-testing
             nodeset: single-centos-8-stream-node-ibm-bm3
         - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train: *promoted_comp_to_ci_testing_train
-        - periodic-tripleo-ci-build-containers-centos-8-quay-push-train: *promoted_comp_to_ci_testing_train
+        - periodic-tripleo-ci-build-containers-ubi-8-quay-push-train: *promoted_comp_to_ci_testing_train
         - periodic-tripleo-centos-8-buildimage-overcloud-hardened-full-train: *promoted_comp_to_ci_testing_train
         - periodic-tripleo-ci-centos-8-standalone-train: &build_con_ubi_8_push_train
             dependencies: &dep_build_con_ubi_8_push_train
@@ -49,7 +49,7 @@
             dependencies: &ovb_deps
               - periodic-tripleo-centos-8-buildimage-overcloud-full-train
               - periodic-tripleo-centos-8-buildimage-ironic-python-agent-train
-              - periodic-tripleo-ci-build-containers-centos-8-quay-push-train
+              - periodic-tripleo-ci-build-containers-ubi-8-quay-push-train
             vars:
               cloud_name: ibm-bm3-nodepool
             nodeset: tripleo-ovb-centos-8-primary-ibm-bm3
