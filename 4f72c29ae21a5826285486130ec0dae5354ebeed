@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a735084c_f191928c",
+        "filename": "zuul.d/integration-pipeline-train.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-11-24T09:24:53Z",
+      "side": 0,
+      "message": "this job is pushing to quay, BUT problem is it is centos-8 based.\nWe need this to bcome like master/wallaby9 https://github.com/rdo-infra/rdo-jobs/blob/4f72c29ae21a5826285486130ec0dae5354ebeed/zuul.d/integration-pipeline-main.yaml#L58 \n\ni.e.\n\nperiodic-tripleo-ci-build-containers-ubi-8-quay-push-train\n\nEDIT\n\nwe have decided to do this after removing the trunk.registry jobs.\n\ni.e.\n\nfirst step, remove for 8 train/wallaby periodic-tripleo-ci-build-containers-ubi-8-push-train and KEEP (for now) periodic-tripleo-ci-build-containers-centos-8-quay-push-train . then we will deal withi making the 8wallaby train push job ubi 8 based.",
+      "range": {
+        "startLine": 16,
+        "startChar": 10,
+        "endLine": 16,
+        "endChar": 71
+      },
+      "revId": "4f72c29ae21a5826285486130ec0dae5354ebeed",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
