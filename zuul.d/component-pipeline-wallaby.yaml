@@ -8,43 +8,43 @@
         - periodic-tripleo-ci-centos-8-standalone-baremetal-wallaby:
             dependencies: &dep_baremetal
               - periodic-tripleo-centos-8-wallaby-component-baremetal-promote-consistent-to-component-ci-testing
-            nodeset: single-centos-8-stream-node-ibm
+            nodeset: single-centos-8-stream-node-ibm-bm3
         - periodic-tripleo-centos-8-wallaby-component-baremetal-promote-consistent-to-component-ci-testing: &component_node
-            nodeset: cloud-centos-8-stream-ibm
+            nodeset: cloud-centos-8-stream-ibm-bm3
     openstack-component-cinder:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-cinder-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-cinder-promote-consistent-to-component-ci-testing
-            nodeset: single-centos-8-stream-node-ibm
+            nodeset: single-centos-8-stream-node-ibm-bm3
         - periodic-tripleo-centos-8-wallaby-component-cinder-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-clients:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-clients-wallaby:
             dependencies: &dep_clients
               - periodic-tripleo-centos-8-wallaby-component-clients-promote-consistent-to-component-ci-testing
-            nodeset: single-centos-8-stream-node-ibm
+            nodeset: single-centos-8-stream-node-ibm-bm3
         - periodic-tripleo-centos-8-wallaby-component-clients-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-cloudops:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-cloudops-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-cloudops-promote-consistent-to-component-ci-testing
-            nodeset: single-centos-8-stream-node-ibm
+            nodeset: single-centos-8-stream-node-ibm-bm3
         - periodic-tripleo-centos-8-wallaby-component-cloudops-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-common:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-common-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-common-promote-consistent-to-component-ci-testing
-            nodeset: single-centos-8-stream-node-ibm
+            nodeset: single-centos-8-stream-node-ibm-bm3
         - periodic-tripleo-centos-8-wallaby-component-common-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-compute:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-compute-wallaby: &comp_compute_to_ci_testing_wallaby
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-compute-promote-consistent-to-component-ci-testing
-            nodeset: single-centos-8-stream-node-ibm
+            nodeset: single-centos-8-stream-node-ibm-bm3
         - periodic-tripleo-ci-centos-8-standalone-compute-wallaby-validation: *comp_compute_to_ci_testing_wallaby
         - periodic-tripleo-centos-8-wallaby-component-compute-promote-consistent-to-component-ci-testing: *component_node
         - periodic-tripleo-ci-centos-8-9-multinode-mixed-os-compute-wallaby:
@@ -55,14 +55,14 @@
         - periodic-tripleo-ci-centos-8-standalone-glance-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-glance-promote-consistent-to-component-ci-testing
-            nodeset: single-centos-8-stream-node-ibm
+            nodeset: single-centos-8-stream-node-ibm-bm3
         - periodic-tripleo-centos-8-wallaby-component-glance-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-manila:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-manila-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-manila-promote-consistent-to-component-ci-testing
-            nodeset: single-centos-8-stream-node-ibm
+            nodeset: single-centos-8-stream-node-ibm-bm3
         - periodic-tripleo-centos-8-wallaby-component-manila-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-network:
       jobs:
@@ -70,54 +70,54 @@
         - periodic-tripleo-ci-centos-8-standalone-network-wallaby:
             dependencies: &dep_network
               - periodic-tripleo-centos-8-wallaby-component-network-promote-consistent-to-component-ci-testing
-            nodeset: single-centos-8-stream-node-ibm
+            nodeset: single-centos-8-stream-node-ibm-bm3
         - periodic-tripleo-centos-8-wallaby-component-network-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-octavia:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-octavia-wallaby:
-            nodeset: single-centos-8-stream-node-ibm
+            nodeset: single-centos-8-stream-node-ibm-bm3
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-octavia-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-octavia-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-security:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-security-wallaby:
-            nodeset: single-centos-8-stream-node-ibm
+            nodeset: single-centos-8-stream-node-ibm-bm3
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-security-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-security-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-swift:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-swift-wallaby:
-            nodeset: single-centos-8-stream-node-ibm
+            nodeset: single-centos-8-stream-node-ibm-bm3
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-swift-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-swift-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-tripleo:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-tripleo-wallaby:
-            nodeset: single-centos-8-stream-node-ibm
+            nodeset: single-centos-8-stream-node-ibm-bm3
             dependencies: &dep_tripleo
               - periodic-tripleo-centos-8-wallaby-component-tripleo-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-tripleo-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-tempest:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-tempest-wallaby:
-            nodeset: single-centos-8-stream-node-ibm
+            nodeset: single-centos-8-stream-node-ibm-bm3
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-tempest-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-tempest-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-ui:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-ui-wallaby:
-            nodeset: single-centos-8-stream-node-ibm
+            nodeset: single-centos-8-stream-node-ibm-bm3
             dependencies:
               - periodic-tripleo-centos-8-wallaby-component-ui-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-ui-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-validation:
       jobs:
         - periodic-tripleo-ci-centos-8-standalone-validation-wallaby:
-            nodeset: single-centos-8-stream-node-ibm
+            nodeset: single-centos-8-stream-node-ibm-bm3
             dependencies: &dep_validation
               - periodic-tripleo-centos-8-wallaby-component-validation-promote-consistent-to-component-ci-testing
         - periodic-tripleo-centos-8-wallaby-component-validation-promote-consistent-to-component-ci-testing: *component_node
