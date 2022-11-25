@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fa8fd0f_619da907",
+        "filename": "zuul.d/build-containers.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2022-11-25T09:12:59Z",
+      "side": 0,
+      "message": "checked following which looks good:-\n\n1) This job is pushing to trunk.registry.rdoproject.org\n\nhttps://logserver.rdoproject.org/openstack-periodic-integration-main/opendev.org/openstack/tripleo-ci/master/periodic-tripleo-ci-build-containers-centos-9-push-master/569d314/logs/containers-built.log\n\n\n2) Not present in the criteria file.\n\nhttps://github.com/rdo-infra/ci-config/blob/master/ci-scripts/dlrnapi_promoter/config_environments/rdo/CentOS-9/master.yaml\n\n3) This job is mentioned in two other files in rdo-jobs(usage removed in same file)\n\n1) zuul.d/integration-jobs-cs9-wallaby.yaml - Usage is getting removed in the same patch.\n2) zuul.d/integration-pipeline-main.yaml - Removed from pipeline in the same patch.\n\n\n4) Another container build job which pushes to quay is already running for master.\n\nDoubts/concerns:-\n\nperiodic-tripleo-ci-build-containers-centos-9-push-master is mentioned in below ci-config file.\n\n~~~\nci-scripts/infra-setup/roles/copy_container/files/copy-quay/config.yaml\n~~~\n\nI see you are updating above file in https://review.rdoproject.org/r/c/rdo-infra/ci-config/+/45898/6/ci-scripts/infra-setup/roles/copy_container/files/copy-quay/config.yaml#b14 but we don\u0027t have depends-on on https://review.rdoproject.org/r/c/rdo-infra/ci-config/+/45898 in this patch.\n\nWill we not break copy_container script as soon as this patch merges?",
+      "revId": "f0da85ef8e50def6d15d046ceb45e6be5d6be624",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b88faf5_a1d7f06a",
+        "filename": "zuul.d/integration-jobs-cs9-wallaby.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2022-11-25T09:12:59Z",
+      "side": 0,
+      "message": "Same comment as I have for master file.\n\nchecked following which looks good:-\n\n1) This job is pushing to trunk.registry.rdoproject.org\n\nhttps://logserver.rdoproject.org/openstack-periodic-integration-stable1/opendev.org/openstack/tripleo-ci/master/periodic-tripleo-ci-build-containers-centos-9-push-wallaby/f69b49c/logs/containers-built.log\n\n\n2) Not present in the criteria file.\n\nhttps://github.com/rdo-infra/ci-config/blob/master/ci-scripts/dlrnapi_promoter/config_environments/rdo/CentOS-9/wallaby.yaml\n\n3) This job is mentioned in one other file in rdo-jobs(usage removed in same file)\n\n1) zuul.d/integration-pipeline-wallaby-centos9.yaml - Usage is getting removed in the same patch.\n2) zuul.d/integration-pipeline-main.yaml - Removed from pipeline in the same patch.\n\n4) Another container build job which pushes to quay is already running for master.\n\nDoubts/concerns:-\n\nperiodic-tripleo-ci-build-containers-centos-9-push-wallaby is mentioned in below ci-config file.\n\n~~~\nci-scripts/infra-setup/roles/copy_container/files/copy-quay/config.yaml\n~~~\n\nI see you are updating above file in https://review.rdoproject.org/r/c/rdo-infra/ci-config/+/45898/6/ci-scripts/infra-setup/roles/copy_container/files/copy-quay/config.yaml#20 but we don\u0027t have depends-on on https://review.rdoproject.org/r/c/rdo-infra/ci-config/+/45898 in this patch.\n\nWill we not break copy_container script as soon as this patch merges?",
+      "range": {
+        "startLine": 12,
+        "startChar": 10,
+        "endLine": 12,
+        "endChar": 68
+      },
+      "revId": "f0da85ef8e50def6d15d046ceb45e6be5d6be624",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f57a9b66_82f48c95",
+        "filename": "zuul.d/integration-jobs-wallaby.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2022-11-25T09:12:59Z",
+      "side": 0,
+      "message": "checked following which looks good:-\n\n1) This job is pushing to trunk.registry.rdoproject.org\n\nhttps://logserver.rdoproject.org/openstack-periodic-integration-stable1-cs8/opendev.org/openstack/tripleo-ci/master/periodic-tripleo-ci-build-containers-ubi-8-push-wallaby/4381fbb/logs/containers-built.log\n\n\n2)  Another container build job which pushes to quay is already running for master.\n\n3) This job is mentioned in one other file in rdo-jobs(usage removed in same patch)\n\n* zuul.d/integration-pipeline-wallaby.yaml - Usage is getting removed in the same patch.\n\n\n\nDoubts/concerns:-\n\n* Job is present in criteria file:\n\nhttps://github.com/rdo-infra/ci-config/blob/master/ci-scripts/dlrnapi_promoter/config_environments/rdo/CentOS-8/wallaby.yaml#L19\n\nI see you have proposed https://review.rdoproject.org/r/c/rdo-infra/ci-config/+/46112/3/ci-scripts/dlrnapi_promoter/config_environments/rdo/CentOS-8/wallaby.yaml, but we don\u0027t have depends-on on https://review.rdoproject.org/r/c/rdo-infra/ci-config/+/46112 in this patch. We will block promotion, imho.. as the other job(which pushes to quay) is already running we should merge the criteria patch first.\n\nperiodic-tripleo-ci-build-containers-centos-9-push-wallaby is mentioned in below ci-config file.\n\n~~~\nci-scripts/infra-setup/roles/copy_container/files/copy-quay/config.yaml\n~~~\n\nI see you are updating above file in https://review.rdoproject.org/r/c/rdo-infra/ci-config/+/45898/6/ci-scripts/infra-setup/roles/copy_container/files/copy-quay/config.yaml#14 but we don\u0027t have depends-on on https://review.rdoproject.org/r/c/rdo-infra/ci-config/+/45898 in this patch.\n\nWill we not break copy_container script as soon as this patch merges?",
+      "revId": "f0da85ef8e50def6d15d046ceb45e6be5d6be624",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
