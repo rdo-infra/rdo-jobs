@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83a09071_25e5c119",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-11-28T07:52:17Z",
+      "side": 1,
+      "message": "not sure we really need depends-on that one? can it go after we merge this?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 7
+      },
+      "revId": "c77c4298128c1327bc952e273e52616b77d8d9c9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3be345ad_d65a8fc7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-11-28T07:52:17Z",
+      "side": 1,
+      "message": "this one yes we should remove from criteria first",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 73
+      },
+      "revId": "c77c4298128c1327bc952e273e52616b77d8d9c9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca5cbf47_21f7fa88",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-11-28T07:52:17Z",
+      "side": 1,
+      "message": "i think its doing the right thing now and removing all the jobs that are pushing to trunk.rdoregistry\n\nwe need the criteria fix first (depends-on)\n\nwe also need more people to stare at it again and sanity check \n\n",
+      "revId": "c77c4298128c1327bc952e273e52616b77d8d9c9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
