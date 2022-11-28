@@ -1221,6 +1221,23 @@
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
           - 'ci/environments/scenario002-standalone.yaml'
+        tempest_services:
+          - barbican
+          - ceilometer
+          - aodh
+        tempest_tempest_conf_overrides:
+          auth.tempest_roles: "'Member, creator'"
+          telemetry.alarm_granularity: '60'
+        tempest_extra_config:
+          auth.tempest_roles: "'Member, creator'"
+          telemetry.alarm_granularity: '60'
+        tempest_test_whitelist:
+          - 'tempest.api.object_storage.test_object_services.ObjectTest'
+          - 'barbican_tempest_plugin.tests.scenario.test_volume_encryption.VolumeEncryptionTest'
+          - 'barbican_tempest_plugin.tests.scenario.test_image_signing.ImageSigningSnapshotTest'
+          - 'barbican_tempest_plugin.tests.scenario.test_image_signing.ImageSigningTest.test_signed_image_upload_and_boot'
+          - 'telemetry_tempest_plugin.scenario.test_telemetry_integration.TestTelemetryIntegration'
+
 - job:
     name: rdoinfo-tripleo-master-testing-centos-9-scenario003-standalone
     parent: rdoinfo-tripleo-master-testing-centos-9-scenario001-standalone
@@ -1230,6 +1247,19 @@
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
           - 'ci/environments/scenario003-standalone.yaml'
+        tempest_services:
+          - mistral
+          - sahara
+          - designate
+        tempest_tempest_conf_overrides:
+          auth.tempest_roles: "Member"
+          dns.nameservers: '1.1.1.1'
+        tempest_test_whitelist:
+          - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps.test_network_basic_ops'
+          - 'sahara_tempest_plugin.tests.api.test_data_sources.DataSourceTest'
+          - 'mistral_tempest_tests.tests.api.v2.test_actions.ActionTestsV2'
+          - 'designate_tempest_plugin.tests.api.v2.test_recordset.RecordsetsTest'
+          - 'designate_tempest_plugin.tests.api.v2.test_zones.ZonesTest'
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-9-scenario004-standalone
@@ -1239,6 +1269,14 @@
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
           - 'ci/environments/scenario004-standalone.yaml'
+        tempest_services:
+          - manila
+        tempest_tempest_conf_overrides:
+          'auth.tempest_roles': 'Member'
+        tempest_test_whitelist:
+          - 'tempest.scenario.test_network_basic_ops.TestNetworkBasicOps.test_network_basic_ops'
+          - 'manila_tempest_tests.tests.api.test_shares.SharesNFSTest.test_create_get_delete_share'
+          - 'tempest.scenario.test_object_storage_basic_ops'
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-9-scenario007-standalone
@@ -1255,11 +1293,12 @@
     name: rdoinfo-tripleo-master-testing-centos-9-scenario010-standalone
     parent: rdoinfo-tripleo-master-testing-centos-9-scenario001-standalone
     vars:
-      standalone_ceph: false
+      standalone_ceph: true
       featureset_override:
         standalone_environment_files:
           - 'environments/low-memory-usage.yaml'
           - 'ci/environments/scenario010-standalone.yaml'
+          - 'ci/environments/octavia-kvm.yaml'
 
 - job:
     name: rdoinfo-tripleo-master-testing-centos-9-undercloud-containers
