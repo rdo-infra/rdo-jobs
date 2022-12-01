@@ -296,6 +296,8 @@
           addFilter("ovn-bgp-agent.noarch: W: non-conffile-in-etc /etc/sudoers.d/ovn-bgp-agent.*")
           # Exceptions for cinderlib
           addFilter("python3-cinderlib.noarch: E: wrong-script-interpreter /usr/lib/python3.6/site-packages/cinderlib/bin/venv-privsep-helper.*")
+          # Exceptions for validations-libs
+          addFilter("python3-validations-libs.noarch: E: non-executable-script /usr/lib/python*/site-packages/validations-libs/cli/*")
           EOF
 
           RPMLINT_CMD="rpmlint -f $HOME/.rpmlintrc"
