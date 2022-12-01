@@ -24,6 +24,30 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "77126f09_a581fd21",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 673
+      },
+      "writtenOn": "2022-12-01T08:59:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9cf04f0_56b66433",
+      "range": {
+        "startLine": 15,
+        "startChar": 2,
+        "endLine": 16,
+        "endChar": 21
+      },
+      "revId": "d40da6f1c890b64528e512e0788c80663e5df07c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "84a6f1aa_e04c76e6",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-01T07:23:17Z",
       "side": 1,
       "message": "why are you adding this here?",
+      "range": {
+        "startLine": 44,
+        "startChar": 6,
+        "endLine": 45,
+        "endChar": 66
+      },
+      "revId": "d40da6f1c890b64528e512e0788c80663e5df07c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9736fb40_f50351d5",
+        "filename": "zuul.d/build-containers.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 673
+      },
+      "writtenOn": "2022-12-01T08:59:30Z",
+      "side": 1,
+      "message": "Build containers job should go to build-containers file. Do you want me to move it to integration-jobs-train.yaml ?\n\n[EDIT]\nMoved to integration-jobs-train.yaml",
+      "parentUuid": "84a6f1aa_e04c76e6",
       "range": {
         "startLine": 44,
         "startChar": 6,
@@ -70,6 +118,30 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce53d12c_cc3001d5",
+        "filename": "zuul.d/integration-jobs-victoria.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 673
+      },
+      "writtenOn": "2022-12-01T08:59:30Z",
+      "side": 1,
+      "message": "Ok. I think we need to get rid of this file. may be in next patches.",
+      "parentUuid": "87da17f1_e1d43f66",
+      "range": {
+        "startLine": 12,
+        "startChar": 6,
+        "endLine": 15,
+        "endChar": 40
+      },
+      "revId": "d40da6f1c890b64528e512e0788c80663e5df07c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c203dfc_2fdd2b7a",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-12-01T07:23:17Z",
       "side": 1,
       "message": "this part should be its own change imo and we should check that the new jobs are working before proceeding",
+      "range": {
+        "startLine": 78,
+        "startChar": 62,
+        "endLine": 79,
+        "endChar": 61
+      },
+      "revId": "d40da6f1c890b64528e512e0788c80663e5df07c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1220b629_186b56f0",
+        "filename": "zuul.d/integration-jobs-wallaby.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 673
+      },
+      "writtenOn": "2022-12-01T08:59:30Z",
+      "side": 1,
+      "message": "I agree. I\u0027ve run testproject. But it is pushing to trunk.registry.rdoproject.org, we need depends-on patch to push it to right registry.",
+      "parentUuid": "0c203dfc_2fdd2b7a",
       "range": {
         "startLine": 78,
         "startChar": 62,
