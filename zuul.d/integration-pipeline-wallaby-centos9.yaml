@@ -15,6 +15,9 @@
         - periodic-tripleo-ci-centos-8-undercloud-upgrade-ffu-wallaby:
             dependencies:
               - periodic-tripleo-ci-build-containers-centos-8-quay-push-wallaby
+        - periodic-tripleo-ci-centos-8-standalone-upgrade-ffu-wallaby:
+            dependencies:
+              - periodic-tripleo-ci-build-containers-centos-8-quay-push-wallaby
         ## 9 line starts here ##
         - periodic-tripleo-centos-9-wallaby-promote-promoted-components-to-tripleo-ci-testing
         - periodic-tripleo-ci-build-containers-ubi-9-quay-push-wallaby: &promoted_comp_to_ci_testing_wallaby
