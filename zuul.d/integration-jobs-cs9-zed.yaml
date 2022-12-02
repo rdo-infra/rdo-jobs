@@ -195,3 +195,14 @@
       enable_secure_rbac: true
       baremetal_image_name: "ipxe-uefi"
       tripleo_image_type: overcloud-hardened-uefi-full
+
+## Trigger jobs
+
+- job:
+    name: create-fs064-zed-c9-trigger-for-downstream
+    parent: create-scenario010-trigger-for-downstream
+    vars:
+      trigger_branch: zed
+      trigger_os_distro: centos_9
+      trigger_job_name: fs064
+      trigger_commit_msg: "Trigger for fs064 zed c9 job"
