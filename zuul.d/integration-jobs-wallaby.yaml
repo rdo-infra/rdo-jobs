@@ -41,6 +41,40 @@
       branch_override: "stable/wallaby"
       release: wallaby
 
+- job:
+    name: periodic-tripleo-ci-centos-8-standalone-upgrade-ffu-wallaby
+    parent: periodic-tripleo-ci-centos-8-standalone-master
+    override-checkout: "stable/wallaby"
+    vars:
+      playbooks:
+        - quickstart.yml
+        - multinode-standalone.yml
+        - multinode-standalone-upgrade.yml
+      featureset: '067'
+      branch_override: "stable/wallaby"
+      release: wallaby
+      featureset_override:
+        standalone_environment_files:
+          - 'environments/low-memory-usage.yaml'
+          - 'environments/docker-ha.yaml'
+          - 'environments/podman.yaml'
+      extra_tags:
+        - standalone-upgrade
+
+## undercloud
+- job:
+    name: periodic-tripleo-ci-centos-8-undercloud-upgrade-ffu-wallaby
+    parent: periodic-tripleo-ci-undercloud-rdo-centos-8
+    override-checkout: "stable/wallaby"
+    vars:
+      featureset: '065'
+      branch_override: "stable/wallaby"
+      release: wallaby
+      featureset_override:
+        validate_services: false
+      extra_tags:
+        - undercloud-upgrade
+
 ## ovb
 - job:
     name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby
