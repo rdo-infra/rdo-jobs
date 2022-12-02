@@ -52,6 +52,7 @@
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset064-master: *ovb_dep_cs_9_master
         - create-fs001-master-c9-trigger-for-downstream: *ovb_dep_cs_9_master
         - create-fs035-master-c9-trigger-for-downstream: *ovb_dep_cs_9_master
+        - create-fs064-master-c9-trigger-for-downstream: *ovb_dep_cs_9_master
         - periodic-tripleo-ci-build-containers-ubi-9-quay-push-master: &cs9_promoted_comp_to_ci_testing_master
             dependencies:
               - periodic-tripleo-centos-9-master-promote-promoted-components-to-tripleo-ci-testing
