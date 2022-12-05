@@ -45,6 +45,30 @@
       },
       "revId": "bad03c865223eaa0cf2a20816f8d7852314793bb",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "629ed7b1_d922b44e",
+        "filename": "zuul.d/integration-jobs-wallaby.yaml",
+        "patchSetId": 9
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 673
+      },
+      "writtenOn": "2022-12-05T08:26:11Z",
+      "side": 1,
+      "message": "For 8-secrets we have similar job rdo-centos-8[1] which created at the time of re-parenting. So once we moved to rdo-cenots-8 we are removing secrets in next patches.\n\nJob rdo-centos-8 was missing quay registry vars which added in depends on.\n\n\n[1] https://github.com/rdo-infra/review.rdoproject.org-config/blob/98b0f1035661bd3ebda43794b117c137dc85e031/zuul.d/tripleoci.yaml#L150",
+      "parentUuid": "b1d55e25_0c5b4717",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 61
+      },
+      "revId": "bad03c865223eaa0cf2a20816f8d7852314793bb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
