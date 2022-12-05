@@ -22,6 +22,29 @@
       },
       "revId": "bad03c865223eaa0cf2a20816f8d7852314793bb",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1d55e25_0c5b4717",
+        "filename": "zuul.d/integration-jobs-wallaby.yaml",
+        "patchSetId": 9
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-12-05T08:08:17Z",
+      "side": 1,
+      "message": "looking at the ubi-9 jobs, e.g. periodic-tripleo-ci-build-containers-ubi-9-quay-push-wallaby\n\ndefined at [1]:\n\n\n    name: periodic-tripleo-ci-build-containers-ubi-9-quay-push-wallaby\n    parent: periodic-tripleo-build-containers-quay-centos-9-secrets\n\n\nSo i expected something similar for the ubi-8 job. We *do* in fact have a centos-8-secrets definition at [2] (it was the parent for the job you are removing in fact)\n\n    name: periodic-tripleo-build-containers-quay-centos-8-secrets\n    parent: tripleo-ci-build-containers-required-projects-rdo\n\n\nSo sanity check please are you aware of this is there a reason we aren\u0027t using the centos-8-secrets as parent?\n\n\n[1] https://github.com/rdo-infra/rdo-jobs/blob/e29b6b9bfc23934f1bf3ecabf3f88a0215bae282/zuul.d/integration-jobs-cs9-wallaby.yaml#L202\n[2] https://github.com/rdo-infra/review.rdoproject.org-config/blob/98b0f1035661bd3ebda43794b117c137dc85e031/zuul.d/tripleoci.yaml#L237",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 61
+      },
+      "revId": "bad03c865223eaa0cf2a20816f8d7852314793bb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
