@@ -69,6 +69,30 @@
       },
       "revId": "bad03c865223eaa0cf2a20816f8d7852314793bb",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d736b570_c416b3d9",
+        "filename": "zuul.d/integration-jobs-wallaby.yaml",
+        "patchSetId": 9
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 716
+      },
+      "writtenOn": "2022-12-05T12:13:27Z",
+      "side": 1,
+      "message": "lgtm as the quay secrets were added to the parent job used here (periodic-tripleo-ci-build-containers-rdo-centos-9) in patch https://review.rdoproject.org/r/c/config/+/46332.\n\nShould we do the same for the c9 jobs? At the moment I think the c9 jobs are parented on the quay-secrets jobs. Should we change the parents of the c9 push jobs to periodic-tripleo-ci-build-containers-rdo-centos-9 and add the wuay secrets to periodic-tripleo-ci-build-containers-rdo-centos-9?",
+      "parentUuid": "629ed7b1_d922b44e",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 61
+      },
+      "revId": "bad03c865223eaa0cf2a20816f8d7852314793bb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
