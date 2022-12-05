@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c6627f6_243fcd61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2022-12-05T11:29:33Z",
+      "side": 1,
+      "message": "Looks good to my eyes:-\n\nhttps://logserver.rdoproject.org/35/46335/3/check/periodic-tripleo-ci-centos-8-standalone-upgrade-ffu-wallaby/1a6a627/zuul-info/inventory.yaml\n\n~~~\n    featureset: \u0027067\u0027\n~~~\n\nDeployed with train\n\nhttps://logserver.rdoproject.org/35/46335/3/check/periodic-tripleo-ci-centos-8-standalone-upgrade-ffu-wallaby/1a6a627/logs/undercloud/home/zuul/standalone_deploy.log.txt.gz\n\n~~~\n2022-12-02 16:32:32.910466 | fa163e31-68ca-0b2a-dd46-000000001037 |     TIMING | tripleo-container-tag : Fail if container image is undefined | standalone | 0:11:52.613110 | 0.06s\n2022-12-02 16:32:32.974250 | fa163e31-68ca-0b2a-dd46-000000001038 |       TASK | Pull 192.168.24.1:8787/tripleotraincentos8/centos-binary-cinder-volume:759a1d314448cdfdeafd2d36220e7c77-updated-20221202160650 image\n2022-12-02 16:32:33.534815 | fa163e31-68ca-0b2a-dd46-000000001038 |    CHANGED | Pull 192.168.24.1:8787/tripleotraincentos8/centos-binary-cinder-volume:759a1d314448cdfdeafd2d36220e7c77-updated-20221202160650 image | standalone\n~~~\n\nAt the end of job, we can see wallaby container running:-\n\nhttps://logserver.rdoproject.org/35/46335/3/check/periodic-tripleo-ci-centos-8-standalone-upgrade-ffu-wallaby/1a6a627/logs/undercloud/var/log/extra/podman/podman_allinfo.log.txt.gz\n\n~~~\n16ea9d1d45d8  quay.rdoproject.org/tripleowallabycentos8/openstack-cinder-volume:f9ce4c006790f36a0db797eabde53c4f               /bin/bash -c chow...  25 minutes ago  Exited (0) 25 minutes ago          cinder_volume_init_logs\n~~~",
+      "revId": "fc12a403fe83bc52c9ef392fc0e49c6adc6a7d39",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
