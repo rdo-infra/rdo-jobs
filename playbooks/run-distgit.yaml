@@ -49,10 +49,10 @@
           # Use the latest repository hash
           # If DLRN built multiple packages, there will be multiple repositories.
           # We want the latest repository which contains all of the packages that were just built.
-          if [ $(echo {{ buildset_artifacts_url }}| grep -c centos8) -ne 0 ]; then
-              repository="${logs}/centos8/current"
-          else
+          if [ "{{ ansible_distribution_major_version }}" == "7" ]; then
               repository="${logs}/centos/current"
+          else
+              repository="${logs}/centos{{ ansible_distribution_major_version }}/current"
           fi
 
           # The rdoinfo-DLRN-check job may create different repos (centos-rpm-master, centos-pike-rdo)
