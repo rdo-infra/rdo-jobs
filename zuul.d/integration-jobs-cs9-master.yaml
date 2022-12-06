@@ -106,7 +106,7 @@
 
 - job:
     name: periodic-tripleo-ci-build-containers-ubi-9-quay-push-master
-    parent: periodic-tripleo-build-containers-quay-centos-9-secrets
+    parent: periodic-tripleo-ci-build-containers-rdo-centos-9
     vars:
       release: master
       registry_namespace: tripleomastercentos9
