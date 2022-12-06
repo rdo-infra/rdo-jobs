@@ -93,6 +93,30 @@
       },
       "revId": "bad03c865223eaa0cf2a20816f8d7852314793bb",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24c44540_3be32b7e",
+        "filename": "zuul.d/integration-jobs-wallaby.yaml",
+        "patchSetId": 9
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-12-06T06:59:24Z",
+      "side": 1,
+      "message": "ok but i don\u0027t think we should re-parent the c9 jobs in this patch though it is already confusing enough and hard to track if we are doing the right thing in all cases (and allowing us to sanity check/run the things we fix one at a time, rather than all together as is happening in this version 11 of the patch.\n\nwe should keep this patch for fixing the 8 jobs as explained in the commit message.\n\nreparenting for the 9 jobs should be a patch ontop of this one.",
+      "parentUuid": "d736b570_c416b3d9",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 61
+      },
+      "revId": "bad03c865223eaa0cf2a20816f8d7852314793bb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
