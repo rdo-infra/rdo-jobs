@@ -913,3 +913,22 @@
         nodes: []
       - name: peers
         nodes: []
+
+# EDPM Nodeset
+- nodeset:
+    name: two-node-cs8crc-cs9ed
+    nodes:
+      - name: controller
+        label: centos-8-stream-crc
+      - name: secondary
+        label: cloud-centos-9-stream-tripleo-vexxhost
+    groups:
+      - name: switch
+        nodes:
+          - controller
+      - name: peers
+        nodes:
+          - secondary
+      - name: subnodes
+        nodes:
+          - secondary
