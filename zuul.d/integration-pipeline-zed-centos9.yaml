@@ -15,6 +15,7 @@
               - periodic-tripleo-ci-build-containers-ubi-9-quay-push-zed
         - periodic-tripleo-ci-centos-9-containers-multinode-zed: *build_containers_cs_9_push_zed
         - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-zed: *build_containers_cs_9_push_zed
+        - periodic-tripleo-ci-centos-9-undercloud-upgrade-zed: *build_containers_cs_9_push_zed
         - periodic-tripleo-ci-centos-9-scenario001-standalone-zed: *build_containers_cs_9_push_zed
         - periodic-tripleo-ci-centos-9-scenario002-standalone-zed: *build_containers_cs_9_push_zed
         - periodic-tripleo-ci-centos-9-scenario003-standalone-zed: *build_containers_cs_9_push_zed
