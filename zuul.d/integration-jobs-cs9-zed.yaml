@@ -121,6 +121,12 @@
     vars: *zed_vars
 
 - job:
+    name: periodic-tripleo-ci-centos-9-undercloud-upgrade-zed
+    parent: periodic-tripleo-ci-centos-9-undercloud-upgrade-master
+    override-checkout: "stable/zed"
+    vars: *zed_vars
+
+- job:
     name: periodic-tripleo-ci-centos-9-scenario007-multinode-oooq-container-zed
     parent: periodic-tripleo-ci-centos-9-scenario007-multinode-oooq-container-master
     override-checkout: "stable/zed"
