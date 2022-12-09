@@ -34,11 +34,14 @@
             dependencies: *dep_build_containers_cs_9_push_zed
         - periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-zed: *build_containers_cs_9_push_zed
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-zed: &ovb_dep_cs_9_zed
-            dependencies:
+            dependencies: &ovb_dep_cs_9_zed_deps_job
               - periodic-tripleo-ci-build-containers-ubi-9-quay-push-zed
               - periodic-tripleo-centos-9-buildimage-overcloud-full-zed
               - periodic-tripleo-centos-9-buildimage-overcloud-hardened-uefi-full-zed
               - periodic-tripleo-centos-9-buildimage-ironic-python-agent-zed
+            nodeset: tripleo-ovb-centos-9-primary-ibm-bm3
+            vars:
+              cloud_name: ibm-bm3-nodepool
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-rbac-zed: *ovb_dep_cs_9_zed
         - periodic-tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020-rbac-zed: *ovb_dep_cs_9_zed
         - periodic-tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset002-zed: *build_containers_cs_9_push_zed
@@ -46,8 +49,9 @@
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset035-zed: *ovb_dep_cs_9_zed
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-zed: *ovb_dep_cs_9_zed
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset064-zed: *ovb_dep_cs_9_zed
-        - create-fs001-zed-c9-trigger-for-downstream: *ovb_dep_cs_9_zed
-        - create-fs035-zed-c9-trigger-for-downstream: *ovb_dep_cs_9_zed
-        - create-fs039-zed-c9-trigger-for-downstream: *ovb_dep_cs_9_zed
-        - create-fs064-zed-c9-trigger-for-downstream: *ovb_dep_cs_9_zed
+        - create-fs001-zed-c9-trigger-for-downstream: &ovb_dep_cs_9_zed_deps
+            dependencies: *ovb_dep_cs_9_zed_deps_job
+        - create-fs035-zed-c9-trigger-for-downstream: *ovb_dep_cs_9_zed_deps
+        - create-fs039-zed-c9-trigger-for-downstream: *ovb_dep_cs_9_zed_deps
+        - create-fs064-zed-c9-trigger-for-downstream: *ovb_dep_cs_9_zed_dpes
         - periodic-tripleo-centos-9-zed-promote-promoted-components-to-tripleo-ci-testing
