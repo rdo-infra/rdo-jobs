@@ -159,7 +159,6 @@
       jobs:
         - tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039
         - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
-        - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby
         - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-ussuri
         - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-train
 
@@ -192,8 +191,6 @@
     name: ovb-branchless
     openstack-check:
       jobs:
-        - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby:
-            irrelevant-files: *fs001_irrelevant_files
         - tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-wallaby:
             irrelevant-files: *fs001_irrelevant_files
         - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-train:

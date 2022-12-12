@@ -7,39 +7,14 @@
     vars:
       release: wallaby
 
-## containers/images
 - job:
-    name: periodic-tripleo-centos-8-buildimage-overcloud-full-wallaby
-    parent: periodic-tripleo-centos-8-buildimage-overcloud-full-master
+    name: periodic-tripleo-ci-build-containers-ubi-8-quay-push-wallaby
+    parent: periodic-tripleo-ci-build-containers-rdo-centos-8
     override-checkout: "stable/wallaby"
     vars:
       release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-centos-8-buildimage-ironic-python-agent-wallaby
-    parent: periodic-tripleo-centos-8-buildimage-ironic-python-agent-master
-    override-checkout: "stable/wallaby"
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-- job:
-    name: periodic-tripleo-centos-8-buildimage-overcloud-hardened-uefi-full-wallaby
-    parent: periodic-tripleo-centos-8-buildimage-overcloud-hardened-uefi-full-master
-    override-checkout: "stable/wallaby"
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-
-## standalone
-- job:
-    name: periodic-tripleo-ci-centos-8-standalone-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-master
-    override-checkout: "stable/wallaby"
-    vars:
       branch_override: "stable/wallaby"
-      release: wallaby
+      registry_namespace: tripleowallabycentos8
 
 - job:
     name: periodic-tripleo-ci-centos-8-standalone-upgrade-ffu-wallaby
@@ -61,24 +36,6 @@
       extra_tags:
         - standalone-upgrade
 
-## ovb
-- job:
-    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-wallaby
-    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-- job:
-    name: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-wallaby
-    parent: periodic-tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035-master
-    override-checkout: "stable/wallaby"
-    vars:
-      branch_override: "stable/wallaby"
-      release: wallaby
-
-## undercloud
 - job:
     name: periodic-tripleo-ci-centos-8-undercloud-upgrade-ffu-wallaby
     parent: periodic-tripleo-ci-undercloud-rdo-centos-8
@@ -91,46 +48,3 @@
         validate_services: false
       extra_tags:
         - undercloud-upgrade
-
-## Quay
-
-- job:
-    name: periodic-tripleo-ci-build-containers-ubi-8-quay-push-wallaby
-    parent: periodic-tripleo-ci-build-containers-rdo-centos-8
-    override-checkout: "stable/wallaby"
-    vars:
-      release: wallaby
-      branch_override: "stable/wallaby"
-      registry_namespace: tripleowallabycentos8
-
-## Temporary trigger jobs till vexxhost is stable
-
-- job:
-    name: create-fs035-wallaby-c8-trigger-for-downstream
-    parent: create-scenario010-trigger-for-downstream
-    vars:
-      trigger_branch: wallaby
-      trigger_os_distro: centos_8
-      trigger_job_name: fs035
-      trigger_commit_msg: "Trigger for fs035 wallaby c8 job"
-
-- job:
-    name: create-fs001-wallaby-c8-trigger-for-downstream
-    parent: create-scenario010-trigger-for-downstream
-    vars:
-      trigger_branch: wallaby
-      trigger_os_distro: centos_8
-      trigger_job_name: fs001
-      trigger_commit_msg: "Trigger for fs001 wallaby c8 job"
-
-# multinode-mixed-os Centos 8/9 jobs
-- job:
-    name: periodic-tripleo-ci-centos-8-9-multinode-mixed-os
-    parent: tripleo-ci-base-required-projects-multinode-mixed-os-rdo
-    override-checkout: "stable/wallaby"
-    vars:
-      release: wallaby
-      branch_override: 'stable/wallaby'
-      featureset: '066'
-      nodes: 1ctlr_1comp_mixed_os
-      mixed_os_stable_version: '9'
