@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "266aea5e_596aac20",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 673
+      },
+      "writtenOn": "2022-12-12T06:36:07Z",
+      "side": 1,
+      "message": "Testproject jobs are pusing to quay.rdoproject.org.\n\n```\n2022-12-09 12:41:26.825824 | TASK [build-containers : Get actual built containers]\n2022-12-09 07:41:27.183645 | primary | + buildah images\n2022-12-09 07:41:27.183726 | primary | + grep openstack\n2022-12-09 07:41:27.183896 | primary | + tee /home/zuul/workspace/containers-built.log\n2022-12-09 07:41:27.232639 | primary | quay.rdoproject.org/tripleomastercentos9/openstack-ovn-northd                   76b606ae2fbce0ddf6a0724c1498ce6a_x86_64   35ba75426784   5 minutes ago    600 MB\n2022-12-09 07:41:27.232718 | primary | quay.rdoproject.org/tripleomastercentos9/openstack-ovn-northd                   76b606ae2fbce0ddf6a0724c1498ce6a          35ba75426784   5 minutes ago    600 MB\n2022-12-09 07:41:27.232729 | primary | quay.rdoproject.org/tripleomastercentos9/openstack-ovn-nb-db-server             76b606ae2fbce0ddf6a0724c1498ce6a_x86_64   b3550d6b229d   5 minutes ago    494 \n```\n\nTestproject: https://review.rdoproject.org/r/c/testproject/+/46387/2/\n\nLogs:\n- https://logserver.rdoproject.org/87/46387/2/check/periodic-tripleo-ci-build-containers-ubi-9-quay-push-master/77405da/job-output.txt\n- https://logserver.rdoproject.org/87/46387/2/check/periodic-tripleo-ci-build-containers-ubi-9-quay-push-wallaby/226a2b4/job-output.txt\n- https://logserver.rdoproject.org/87/46387/2/check/periodic-tripleo-ci-build-containers-ubi-9-quay-push-zed/c9bcc3c/job-output.txt",
+      "parentUuid": "7d0e624e_a2990c26",
+      "revId": "43076348ec1b166403077a162a28468a6a066c3b",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "e449837d_33f3c6f3",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 3
