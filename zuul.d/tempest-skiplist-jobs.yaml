@@ -12,9 +12,6 @@
         - periodic-tripleo-ci-centos-8-skipped-scenario007-standalone-train
         - periodic-tripleo-ci-centos-8-skipped-scenario012-standalone-train
 
-        # Centos 8 - Wallaby
-        - periodic-tripleo-ci-centos-8-skipped-standalone-wallaby
-
         # Centos 9 - Wallaby
         - periodic-tripleo-ci-centos-9-skipped-scenario001-standalone-wallaby
         - periodic-tripleo-ci-centos-9-skipped-scenario002-standalone-wallaby
@@ -70,11 +67,6 @@
 - job:
     name: periodic-tripleo-ci-centos-8-skipped-scenario012-standalone-train
     parent: periodic-tripleo-ci-centos-8-scenario012-standalone-train
-    vars: *periodic
-
-- job:
-    name: periodic-tripleo-ci-centos-8-skipped-standalone-wallaby
-    parent: periodic-tripleo-ci-centos-8-standalone-wallaby
     vars: *periodic
 
 - job:
