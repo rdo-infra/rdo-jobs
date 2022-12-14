@@ -6,12 +6,12 @@
       jobs:
         ##### wallaby #####
         ## 8 in 9 line jobs ##
-        - periodic-tripleo-centos-8-wallaby-promote-promoted-components-to-tripleo-ci-testing:
+        - periodic-tripleo-centos-8-wallaby-promote-consistent-to-tripleo-ci-testing:
             vars:
               release: wallaby
         - periodic-tripleo-ci-build-containers-ubi-8-quay-push-wallaby:
             dependencies:
-              - periodic-tripleo-centos-8-wallaby-promote-promoted-components-to-tripleo-ci-testing
+              - periodic-tripleo-centos-8-wallaby-promote-consistent-to-tripleo-ci-testing
         - periodic-tripleo-ci-centos-8-undercloud-upgrade-ffu-wallaby:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-quay-push-wallaby

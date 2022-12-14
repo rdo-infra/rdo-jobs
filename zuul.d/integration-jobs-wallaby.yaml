@@ -1,11 +1,14 @@
 ---
 # wallaby integration jobs
 ## promote to tripleo-ci-testing
+# we removed components in wallaby/8 so promote consistent to tripleo-ci-testing
 - job:
-    name: periodic-tripleo-centos-8-wallaby-promote-promoted-components-to-tripleo-ci-testing
+    name: periodic-tripleo-centos-8-wallaby-promote-consistent-to-tripleo-ci-testing
     parent: periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing
     vars:
       release: wallaby
+      promote_source: consistent
+      promote_target: tripleo-ci-testing
 
 - job:
     name: periodic-tripleo-ci-build-containers-ubi-8-quay-push-wallaby
