@@ -33,6 +33,24 @@
       "message": "so idk if this is the right approach ... we could just leave the component promotes in place with no criteria. If comes to the same thing in the end I guess?",
       "revId": "705cbe5019afd7c7da7a55757ce9fee67fc2c460",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91f4d716_df04fbd0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-12-14T16:45:06Z",
+      "side": 1,
+      "message": "imo unless we have some reason to do so, lets not keep the empty component line.\n\nIf nothing else, its just one more thing, link in the chain that might break and cause us delays (eg even things like random NODE_FAILURE as just an example). Not to mention this is simply a waste of resources.",
+      "parentUuid": "6e97b1ff_b8749760",
+      "revId": "705cbe5019afd7c7da7a55757ce9fee67fc2c460",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
