@@ -203,6 +203,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-baremetal-wallaby
     parent: periodic-tripleo-ci-centos-9-standalone-baremetal-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -210,6 +211,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-cinder-wallaby
     parent: periodic-tripleo-ci-centos-9-standalone-cinder-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -217,6 +219,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-clients-wallaby
     parent: periodic-tripleo-ci-centos-9-standalone-clients-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -224,6 +227,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-cloudops-wallaby
     parent: periodic-tripleo-ci-centos-9-standalone-cloudops-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -231,6 +235,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-common-wallaby
     parent: periodic-tripleo-ci-centos-9-standalone-common-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -238,6 +243,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-compute-wallaby
     parent: periodic-tripleo-ci-centos-9-standalone-compute-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -245,6 +251,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-glance-wallaby
     parent: periodic-tripleo-ci-centos-9-standalone-glance-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -252,6 +259,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-network-wallaby
     parent: periodic-tripleo-ci-centos-9-standalone-network-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -259,6 +267,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-octavia-wallaby
     parent: periodic-tripleo-ci-centos-9-standalone-octavia-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -266,6 +275,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-security-wallaby
     parent: periodic-tripleo-ci-centos-9-standalone-security-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -273,6 +283,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-tempest-wallaby
     parent: periodic-tripleo-ci-centos-9-standalone-tempest-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -280,6 +291,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-tripleo-wallaby
     parent: periodic-tripleo-ci-centos-9-standalone-tripleo-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -287,6 +299,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-ui-wallaby
     parent: periodic-tripleo-ci-centos-9-standalone-ui-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -294,6 +307,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-validation-wallaby
     parent: periodic-tripleo-ci-centos-9-standalone-validation-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -309,18 +323,21 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-compute-wallaby-validation
     parent: periodic-tripleo-ci-centos-9-standalone-component-wallaby-validation
+    override-checkout: 'stable/wallaby'
     vars:
       component: compute
 
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-network-wallaby-validation
     parent: periodic-tripleo-ci-centos-9-standalone-component-wallaby-validation
+    override-checkout: 'stable/wallaby'
     vars:
       component: network
 
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-tripleo-wallaby-validation
     parent: periodic-tripleo-ci-centos-9-standalone-component-wallaby-validation
+    override-checkout: 'stable/wallaby'
     vars:
       component: tripleo
 
@@ -329,6 +346,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario001-standalone-cinder-wallaby
     parent: periodic-tripleo-ci-centos-9-scenario001-standalone-cinder-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -336,6 +354,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario001-standalone-cloudops-wallaby
     parent: periodic-tripleo-ci-centos-9-scenario001-standalone-cloudops-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -343,6 +362,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario001-standalone-common-wallaby
     parent: periodic-tripleo-ci-centos-9-scenario001-standalone-common-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -350,6 +370,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario001-standalone-glance-wallaby
     parent: periodic-tripleo-ci-centos-9-scenario001-standalone-glance-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -360,6 +381,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario002-standalone-cloudops-wallaby
     parent: periodic-tripleo-ci-centos-9-scenario002-standalone-cloudops-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -367,6 +389,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario002-standalone-common-wallaby
     parent: periodic-tripleo-ci-centos-9-scenario002-standalone-common-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -374,6 +397,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario002-standalone-glance-wallaby
     parent: periodic-tripleo-ci-centos-9-scenario002-standalone-glance-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -381,6 +405,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario002-standalone-swift-wallaby
     parent: periodic-tripleo-ci-centos-9-scenario002-standalone-swift-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -391,6 +416,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario003-standalone-common-wallaby
     parent: periodic-tripleo-ci-centos-9-scenario003-standalone-common-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -398,6 +424,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario003-standalone-glance-wallaby
     parent: periodic-tripleo-ci-centos-9-scenario003-standalone-glance-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -408,6 +435,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario004-standalone-cinder-wallaby
     parent: periodic-tripleo-ci-centos-9-scenario004-standalone-cinder-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -415,6 +443,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario004-standalone-common-wallaby
     parent: periodic-tripleo-ci-centos-9-scenario004-standalone-common-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -423,6 +452,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario004-standalone-glance-wallaby
     parent: periodic-tripleo-ci-centos-9-scenario004-standalone-glance-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -430,6 +460,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario004-standalone-manila-wallaby
     parent: periodic-tripleo-ci-centos-9-scenario004-standalone-manila-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -437,6 +468,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario004-standalone-tripleo-wallaby
     parent: periodic-tripleo-ci-centos-9-scenario004-standalone-tripleo-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -467,6 +499,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-compute-wallaby
     parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-compute-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -474,6 +507,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-network-wallaby
     parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-network-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -481,6 +515,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-tempest-wallaby
     parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-tempest-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -491,6 +526,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-compute-wallaby
     parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-compute-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -498,6 +534,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-tempest-wallaby
     parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-tempest-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -508,6 +545,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-containers-multinode-clients-wallaby
     parent: periodic-tripleo-ci-centos-9-containers-multinode-clients-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -515,6 +553,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-containers-multinode-common-wallaby
     parent: periodic-tripleo-ci-centos-9-containers-multinode-common-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -522,6 +561,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-containers-multinode-network-wallaby
     parent: periodic-tripleo-ci-centos-9-containers-multinode-network-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -529,6 +569,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-containers-multinode-octavia-wallaby
     parent: periodic-tripleo-ci-centos-9-containers-multinode-octavia-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -536,6 +577,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-containers-multinode-security-wallaby
     parent: periodic-tripleo-ci-centos-9-containers-multinode-security-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -543,6 +585,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-containers-multinode-tripleo-wallaby
     parent: periodic-tripleo-ci-centos-9-containers-multinode-tripleo-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -593,6 +636,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-tripleo-wallaby
     parent: periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-tripleo-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -600,6 +644,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-security-wallaby
     parent: periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-security-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -610,6 +655,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-baremetal-wallaby
     parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-master
+    override-checkout: 'stable/wallaby'
     description: |
       OVB job for Wallaby with 3 controller and 1 compute for Baremetal
       component.
@@ -627,6 +673,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-clients-wallaby
     parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-master
+    override-checkout: 'stable/wallaby'
     vars:
       component: clients
       release: wallaby
@@ -635,6 +682,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-network-wallaby
     parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-master
+    override-checkout: 'stable/wallaby'
     description: |
       OVB job for Wallaby with 3 controller and 1 compute for Network component.
       Validations are enabled and executed from the undercloud host, with
@@ -649,6 +697,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-security-wallaby
     parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-security-master
+    override-checkout: 'stable/wallaby'
     vars:
       component: security
       release: wallaby
@@ -657,6 +706,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-tripleo-wallaby
     parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-master
+    override-checkout: 'stable/wallaby'
     description: |
       OVB job for Wallaby with 3 controller and 1 compute for Tripleo component.
       Validations are enabled and executed from the undercloud host, with
@@ -671,6 +721,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-compute-wallaby
     parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-master
+    override-checkout: 'stable/wallaby'
     description: |
       OVB job for Wallaby with 3 controller and 1 compute for Compute component.
       Validations are enabled and executed from the undercloud host, with
@@ -687,6 +738,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-wallaby-validation
     parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-master-validation
+    override-checkout: 'stable/wallaby'
     description: |
       VF OVB job for wallaby branch. Inheriting from the master job and overriding release
       specifying parameters.
@@ -700,6 +752,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario007-standalone-network-wallaby
     parent: periodic-tripleo-ci-centos-9-scenario007-standalone-network-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'
@@ -707,6 +760,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario007-standalone-octavia-wallaby
     parent: periodic-tripleo-ci-centos-9-scenario007-standalone-octavia-master
+    override-checkout: 'stable/wallaby'
     vars:
       release: wallaby
       branch_override: 'stable/wallaby'

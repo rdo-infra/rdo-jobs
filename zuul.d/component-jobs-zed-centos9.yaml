@@ -203,6 +203,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-baremetal-zed
     parent: periodic-tripleo-ci-centos-9-standalone-baremetal-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -210,6 +211,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-cinder-zed
     parent: periodic-tripleo-ci-centos-9-standalone-cinder-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -217,6 +219,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-clients-zed
     parent: periodic-tripleo-ci-centos-9-standalone-clients-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -224,6 +227,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-cloudops-zed
     parent: periodic-tripleo-ci-centos-9-standalone-cloudops-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -231,6 +235,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-common-zed
     parent: periodic-tripleo-ci-centos-9-standalone-common-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -238,6 +243,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-compute-zed
     parent: periodic-tripleo-ci-centos-9-standalone-compute-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -245,6 +251,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-glance-zed
     parent: periodic-tripleo-ci-centos-9-standalone-glance-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -252,6 +259,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-network-zed
     parent: periodic-tripleo-ci-centos-9-standalone-network-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -259,6 +267,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-octavia-zed
     parent: periodic-tripleo-ci-centos-9-standalone-octavia-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -266,6 +275,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-security-zed
     parent: periodic-tripleo-ci-centos-9-standalone-security-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -273,6 +283,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-tempest-zed
     parent: periodic-tripleo-ci-centos-9-standalone-tempest-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -280,6 +291,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-tripleo-zed
     parent: periodic-tripleo-ci-centos-9-standalone-tripleo-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -287,6 +299,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-ui-zed
     parent: periodic-tripleo-ci-centos-9-standalone-ui-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -294,6 +307,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-validation-zed
     parent: periodic-tripleo-ci-centos-9-standalone-validation-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -329,6 +343,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario001-standalone-cinder-zed
     parent: periodic-tripleo-ci-centos-9-scenario001-standalone-cinder-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -336,6 +351,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario001-standalone-cloudops-zed
     parent: periodic-tripleo-ci-centos-9-scenario001-standalone-cloudops-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -343,6 +359,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario001-standalone-common-zed
     parent: periodic-tripleo-ci-centos-9-scenario001-standalone-common-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -350,6 +367,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario001-standalone-glance-zed
     parent: periodic-tripleo-ci-centos-9-scenario001-standalone-glance-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -360,6 +378,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario002-standalone-cloudops-zed
     parent: periodic-tripleo-ci-centos-9-scenario002-standalone-cloudops-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -367,6 +386,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario002-standalone-common-zed
     parent: periodic-tripleo-ci-centos-9-scenario002-standalone-common-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -374,6 +394,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario002-standalone-glance-zed
     parent: periodic-tripleo-ci-centos-9-scenario002-standalone-glance-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -381,6 +402,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario002-standalone-swift-zed
     parent: periodic-tripleo-ci-centos-9-scenario002-standalone-swift-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -391,6 +413,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario003-standalone-common-zed
     parent: periodic-tripleo-ci-centos-9-scenario003-standalone-common-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -398,6 +421,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario003-standalone-glance-zed
     parent: periodic-tripleo-ci-centos-9-scenario003-standalone-glance-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -408,6 +432,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario004-standalone-cinder-zed
     parent: periodic-tripleo-ci-centos-9-scenario004-standalone-cinder-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -415,6 +440,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario004-standalone-common-zed
     parent: periodic-tripleo-ci-centos-9-scenario004-standalone-common-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -423,6 +449,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario004-standalone-glance-zed
     parent: periodic-tripleo-ci-centos-9-scenario004-standalone-glance-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -430,6 +457,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario004-standalone-manila-zed
     parent: periodic-tripleo-ci-centos-9-scenario004-standalone-manila-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -437,6 +465,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario004-standalone-tripleo-zed
     parent: periodic-tripleo-ci-centos-9-scenario004-standalone-tripleo-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -467,6 +496,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-compute-zed
     parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-compute-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -474,6 +504,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-network-zed
     parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-network-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -481,6 +512,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-tempest-zed
     parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-api-tempest-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -491,6 +523,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-compute-zed
     parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-compute-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -498,6 +531,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-tempest-zed
     parent: periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-tempest-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -508,6 +542,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-containers-multinode-clients-zed
     parent: periodic-tripleo-ci-centos-9-containers-multinode-clients-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -515,6 +550,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-containers-multinode-common-zed
     parent: periodic-tripleo-ci-centos-9-containers-multinode-common-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -522,6 +558,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-containers-multinode-network-zed
     parent: periodic-tripleo-ci-centos-9-containers-multinode-network-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -529,6 +566,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-containers-multinode-octavia-zed
     parent: periodic-tripleo-ci-centos-9-containers-multinode-octavia-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -536,6 +574,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-containers-multinode-security-zed
     parent: periodic-tripleo-ci-centos-9-containers-multinode-security-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -543,6 +582,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-containers-multinode-tripleo-zed
     parent: periodic-tripleo-ci-centos-9-containers-multinode-tripleo-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -566,6 +606,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-tripleo-zed
     parent: periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-tripleo-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -573,6 +614,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-security-zed
     parent: periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-security-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -582,6 +624,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-baremetal-zed
     parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-master
+    override-checkout: 'stable/zed'
     description: |
       OVB job for zed with 3 controller and 1 compute for Baremetal
       component.
@@ -599,6 +642,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-clients-zed
     parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-master
+    override-checkout: 'stable/zed'
     vars:
       component: clients
       release: zed
@@ -607,6 +651,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-network-zed
     parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-master
+    override-checkout: 'stable/zed'
     description: |
       OVB job for zed with 3 controller and 1 compute for Network component.
       Validations are enabled and executed from the undercloud host, with
@@ -621,6 +666,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-security-zed
     parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-security-master
+    override-checkout: 'stable/zed'
     vars:
       component: security
       release: zed
@@ -629,6 +675,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-tripleo-zed
     parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-master
+    override-checkout: 'stable/zed'
     description: |
       OVB job for zed with 3 controller and 1 compute for Tripleo component.
       Validations are enabled and executed from the undercloud host, with
@@ -643,6 +690,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-compute-zed
     parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-master
+    override-checkout: 'stable/zed'
     description: |
       OVB job for zed with 3 controller and 1 compute for Compute component.
       Validations are enabled and executed from the undercloud host, with
@@ -659,6 +707,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-zed-validation
     parent: periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-master-validation
+    override-checkout: 'stable/zed'
     description: |
       VF OVB job for zed branch. Inheriting from the master job and overriding release
       specifying parameters.
@@ -672,6 +721,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario007-standalone-network-zed
     parent: periodic-tripleo-ci-centos-9-scenario007-standalone-network-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -679,6 +729,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario007-standalone-octavia-zed
     parent: periodic-tripleo-ci-centos-9-scenario007-standalone-octavia-master
+    override-checkout: 'stable/zed'
     vars:
       release: zed
       branch_override: 'stable/zed'
@@ -688,6 +739,7 @@
 - job:
     name: create-scenario010-trigger-for-downstream-component-zed-c9
     parent: create-scenario010-trigger-for-downstream
+    override-checkout: 'stable/zed'
     abstract: true
     vars:
       trigger_branch: zed
