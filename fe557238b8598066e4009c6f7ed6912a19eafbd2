@@ -16,6 +16,46 @@
       "message": "Here is the testproject result: https://review.rdoproject.org/r/c/testproject/+/46118\nperiodic-tripleo-ci-centos-9-standalone-external-compute-target-host-master\tSUCCESS 1h 01m 54s\nperiodic-tripleo-ci-centos-9-standalone-external-compute-target-host-zed\tSUCCESS 1h 07m 59s\n\nand\ndlrn md5 hash used: \u003c396e31e851c18f9fc0bfa715371a43c4\u003e\n- https://logserver.rdoproject.org/18/46118/5/check/periodic-tripleo-ci-centos-9-standalone-external-compute-target-host-master/5561061/logs/subnode-1/home/zuul/deploy_compute.sh.txt.gz\n\n- https://logserver.rdoproject.org/18/46118/5/check/periodic-tripleo-ci-centos-9-standalone-external-compute-target-host-master/5561061/logs/undercloud/home/zuul/containers-prepare-parameters.yaml.txt.gz\n\nAt both places, correct dlrn md5 hash is used. It works as expected.",
       "revId": "fe557238b8598066e4009c6f7ed6912a19eafbd2",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b240cac4_52dc72d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-12-20T07:23:51Z",
+      "side": 1,
+      "message": "looks right - inline thought about parenting (but no objection to current proposal so +2)\nif you update i can revote ",
+      "revId": "fe557238b8598066e4009c6f7ed6912a19eafbd2",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8d604ae_33a67966",
+        "filename": "zuul.d/standalone-jobs.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2022-12-20T07:23:51Z",
+      "side": 1,
+      "message": "just a thought but we don\u0027t get any benefit from parenting on the -master job here. there are no vars to inherit and we are overriding release anyway.",
+      "range": {
+        "startLine": 436,
+        "startChar": 12,
+        "endLine": 436,
+        "endChar": 87
+      },
+      "revId": "fe557238b8598066e4009c6f7ed6912a19eafbd2",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
