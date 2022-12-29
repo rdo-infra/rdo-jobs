@@ -61,13 +61,6 @@
     required-projects:
       - name: review.rdoproject.org/rdo-infra/ci-config
 
-# mol-tripleo_common_integration
-- job:
-    name: periodic-mol-tripleo_common_integration
-    parent: mol-tripleo_common_integration
-    required-projects:
-      - name: review.rdoproject.org/rdo-infra/ci-config
-
 # tox-py36
 
 - job:
