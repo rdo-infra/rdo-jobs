@@ -97,6 +97,7 @@
 - job:
     name: periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-zed
     parent: periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-master
+    override-checkout: "stable/zed"
     vars: *zed_vars
 
 ## undercloud
