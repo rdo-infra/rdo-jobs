@@ -66,7 +66,7 @@
 # TripleO CI templates
 - project-template:
     name: tripleo-ovb
-    openstack-check:
+    openstack-experimental:
       jobs:
         - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001:
             irrelevant-files: &fs001_irrelevant_files
@@ -146,7 +146,7 @@
 # TripleO CI templates - fs35
 - project-template:
     name: tripleo-ovb-fs35
-    openstack-check:
+    openstack-experimental:
       jobs:
         - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset035:
             irrelevant-files: *fs001_irrelevant_files
@@ -157,9 +157,10 @@
     name: ovb-experimental
     openstack-experimental:
       jobs:
-        - tripleo-ci-centos-8-ovb-3ctlr_1comp_1supp-featureset039
-        - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001
-        - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-ussuri
+        - tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039
+        - tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset035
+        - tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001
+        - tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-wallaby
         - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001-train
 
 - project-template:
@@ -171,7 +172,7 @@
 
 - project-template:
     name: ovb-001-check
-    openstack-check:
+    openstack-experimental:
       jobs:
         - tripleo-ci-centos-8-ovb-3ctlr_1comp-featureset001:
             irrelevant-files: *fs001_irrelevant_files
@@ -180,7 +181,7 @@
 
 - project-template:
     name: ovb-001-lite
-    openstack-check:
+    openstack-experimental:
       jobs:
         - tripleo-ci-centos-8-ovb-1ctlr_1comp-featureset001:
             irrelevant-files: *fs001_irrelevant_files
@@ -189,7 +190,7 @@
 
 - project-template:
     name: ovb-branchless
-    openstack-check:
+    openstack-experimental:
       jobs:
         - tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-wallaby:
             irrelevant-files: *fs001_irrelevant_files
