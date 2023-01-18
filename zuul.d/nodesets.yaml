@@ -3,7 +3,7 @@
     name: container-fedora
     nodes:
       - name: container
-        label: pod-python-f33
+        label: zuul-worker-f37
 
 # Dib centos
 - nodeset:
@@ -45,36 +45,6 @@
     nodes:
       - name: cloud-centos-9-stream
         label: cloud-centos-9-stream
-
-- nodeset:
-    name: rdo-fedora-30
-    nodes:
-      - name: primary
-        label: rdo-fedora-30
-
-- nodeset:
-    name: single-fedora-30-node
-    nodes:
-      - name: primary
-        label: cloud-fedora-30
-
-- nodeset:
-    name: single-fedora-31-node
-    nodes:
-      - name: primary
-        label: cloud-fedora-31
-
-- nodeset:
-    name: single-fedora-32-node
-    nodes:
-      - name: primary
-        label: cloud-fedora-32-vexxhost
-
-- nodeset:
-    name: single-fedora-33-node
-    nodes:
-      - name: primary
-        label: cloud-fedora-33
 
 - nodeset:
     name: single-fedora-rawhide-node
