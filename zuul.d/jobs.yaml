@@ -75,6 +75,7 @@
 
 - job:
     name: DLRN-build-tripleo-base
+    timeout: 5400
     parent: base
     run: playbooks/DLRN-build-tripleo/run.yaml
     post-run: playbooks/DLRN-build-tripleo/post.yaml
@@ -112,6 +113,7 @@
 
 - job:
     name: DLRN-rpmbuild-base
+    timeout: 5400
     run: playbooks/DLRN/rpmbuild.yaml
     post-run: playbooks/DLRN/post.yaml
     nodeset: rdo-centos-7
