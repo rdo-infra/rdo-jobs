@@ -6,156 +6,240 @@
     openstack-component-baremetal:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-baremetal-wallaby: &comp_baremetal_to_ci_testing_wallaby_cs9
-            dependencies:
+            dependencies: &comp_baremetal_to_ci_testing_wallaby_cs9_dep
               - periodic-tripleo-centos-9-wallaby-component-baremetal-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-9-stream-node-ibm-bm3
         - periodic-tripleo-ci-centos-9-scenario012-standalone-baremetal-wallaby: *comp_baremetal_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-baremetal-wallaby: *comp_baremetal_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-baremetal-wallaby: *comp_baremetal_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-centos-9-wallaby-component-baremetal-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-baremetal-wallaby:
+            dependencies: *comp_baremetal_to_ci_testing_wallaby_cs9_dep
+            nodeset: tripleo-ovb-centos-9-primary-ibm-bm3
+            vars:
+              cloud_name: ibm-bm3-nodepool
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-baremetal-wallaby:
+            dependencies: *comp_baremetal_to_ci_testing_wallaby_cs9_dep
+            nodeset: two-centos-9-nodes-ibm-bm3
+        - periodic-tripleo-centos-9-wallaby-component-baremetal-promote-consistent-to-component-ci-testing: &component_node
+            nodeset: cloud-centos-9-stream-ibm-bm3
     openstack-component-cinder:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-cinder-wallaby: &comp_cinder_to_ci_testing_wallaby_cs9
             dependencies:
               - periodic-tripleo-centos-9-wallaby-component-cinder-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-9-stream-node-ibm-bm3
         - periodic-tripleo-ci-centos-9-scenario001-standalone-cinder-wallaby: *comp_cinder_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-scenario004-standalone-cinder-wallaby: *comp_cinder_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-centos-9-wallaby-component-cinder-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-9-wallaby-component-cinder-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-clients:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-clients-wallaby: &comp_clients_to_ci_testing_wallaby_cs9
-            dependencies:
+            dependencies: &comp_clients_to_ci_testing_wallaby_cs9_dep
               - periodic-tripleo-centos-9-wallaby-component-clients-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-9-containers-multinode-clients-wallaby: *comp_clients_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-clients-wallaby: *comp_clients_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-clients-wallaby: *comp_clients_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-centos-9-wallaby-component-clients-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-9-stream-node-ibm-bm3
+        - periodic-tripleo-ci-centos-9-containers-multinode-clients-wallaby:
+            dependencies: *comp_clients_to_ci_testing_wallaby_cs9_dep
+            nodeset: two-centos-9-nodes-ibm-bm3
+        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-clients-wallaby:
+            dependencies: *comp_clients_to_ci_testing_wallaby_cs9_dep
+            nodeset: tripleo-ovb-centos-9-primary-ibm-bm3
+            vars:
+              cloud_name: ibm-bm3-nodepool
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-clients-wallaby:
+            dependencies: *comp_clients_to_ci_testing_wallaby_cs9_dep
+            nodeset: two-centos-9-nodes-ibm-bm3
+        - periodic-tripleo-centos-9-wallaby-component-clients-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-cloudops:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-cloudops-wallaby: &comp_cloudops_to_ci_testing_wallaby_cs9
-            dependencies:
+            dependencies: &comp_cloudops_to_ci_testing_wallaby_cs9_dep
               - periodic-tripleo-centos-9-wallaby-component-cloudops-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-9-stream-node-ibm-bm3
         - periodic-tripleo-ci-centos-9-scenario001-standalone-cloudops-wallaby: *comp_cloudops_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-scenario002-standalone-cloudops-wallaby: *comp_cloudops_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-cloudops-wallaby: *comp_cloudops_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-centos-9-wallaby-component-cloudops-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-cloudops-wallaby:
+            dependencies: *comp_cloudops_to_ci_testing_wallaby_cs9_dep
+            nodeset: two-centos-9-nodes-ibm-bm3
+        - periodic-tripleo-centos-9-wallaby-component-cloudops-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-common:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-common-wallaby: &comp_common_to_ci_testing_wallaby_cs9
-            dependencies:
+            dependencies: &comp_common_to_ci_testing_wallaby_cs9_dep
               - periodic-tripleo-centos-9-wallaby-component-common-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-9-stream-node-ibm-bm3
         - periodic-tripleo-ci-centos-9-scenario001-standalone-common-wallaby: *comp_common_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-scenario002-standalone-common-wallaby: *comp_common_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-scenario003-standalone-common-wallaby: *comp_common_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-scenario004-standalone-common-wallaby: *comp_common_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-ci-centos-9-containers-multinode-common-wallaby: *comp_common_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-common-wallaby: *comp_common_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-centos-9-wallaby-component-common-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-containers-multinode-common-wallaby:
+            dependencies: *comp_common_to_ci_testing_wallaby_cs9_dep
+            nodeset: two-centos-9-nodes-ibm-bm3
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-common-wallaby:
+            dependencies: *comp_common_to_ci_testing_wallaby_cs9_dep
+            nodeset: two-centos-9-nodes-ibm-bm3
+        - periodic-tripleo-centos-9-wallaby-component-common-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-compute:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-compute-wallaby: &comp_compute_to_ci_testing_wallaby_cs9
-            dependencies:
+            dependencies: &comp_compute_to_ci_testing_wallaby_cs9_dep
               - periodic-tripleo-centos-9-wallaby-component-compute-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-9-stream-node-ibm-bm3
         - periodic-tripleo-ci-centos-9-scenario012-standalone-compute-wallaby: *comp_compute_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-compute-wallaby: *comp_compute_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-compute-wallaby: *comp_compute_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-compute-wallaby: *comp_compute_to_ci_testing_wallaby_cs9
+        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-compute-wallaby:
+            dependencies: *comp_compute_to_ci_testing_wallaby_cs9_dep
+            nodeset: tripleo-ovb-centos-9-primary-ibm-bm3
+            vars:
+              cloud_name: ibm-bm3-nodepool
         - periodic-tripleo-ci-centos-9-standalone-compute-wallaby-validation: *comp_compute_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-8-multinode-mixed-os-compute-wallaby:
             dependencies:
               - periodic-tripleo-centos-9-wallaby-component-compute-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-centos-9-wallaby-component-compute-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-9-wallaby-component-compute-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-glance:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-glance-wallaby: &comp_glance_to_ci_testing_wallaby_cs9
             dependencies:
               - periodic-tripleo-centos-9-wallaby-component-glance-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-9-stream-node-ibm-bm3
         - periodic-tripleo-ci-centos-9-scenario001-standalone-glance-wallaby: *comp_glance_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-scenario002-standalone-glance-wallaby: *comp_glance_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-scenario003-standalone-glance-wallaby: *comp_glance_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-scenario004-standalone-glance-wallaby: *comp_glance_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-centos-9-wallaby-component-glance-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-9-wallaby-component-glance-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-manila:
       jobs:
         - periodic-tripleo-ci-centos-9-scenario004-standalone-manila-wallaby: &comp_manila_to_ci_testing_wallaby_cs9
             dependencies:
               - periodic-tripleo-centos-9-wallaby-component-manila-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-centos-9-wallaby-component-manila-promote-consistent-to-component-ci-testing
+           nodeset: single-centos-9-stream-node-ibm-bm3
+        - periodic-tripleo-centos-9-wallaby-component-manila-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-network:
       jobs:
-
         - periodic-tripleo-ci-centos-9-standalone-network-wallaby: &comp_network_to_ci_testing_wallaby_cs9
-            dependencies:
+            dependencies: &comp_network_to_ci_testing_wallaby_cs9_dep
               - periodic-tripleo-centos-9-wallaby-component-network-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-9-stream-node-ibm-bm3
         - periodic-tripleo-ci-centos-9-standalone-network-wallaby-validation: *comp_network_to_ci_testing_wallaby_cs9
-        - create-scenario010-trigger-for-downstream-network-wallaby-c9: *comp_network_to_ci_testing_wallaby_cs9
+        - create-scenario010-trigger-for-downstream-network-wallaby-c9:
+            dependencies: *comp_network_to_ci_testing_wallaby_cs9_dep
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-network-wallaby: *comp_network_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-ci-centos-9-containers-multinode-network-wallaby: *comp_network_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-network-wallaby: *comp_network_to_ci_testing_wallaby_cs9
+        - periodic-tripleo-ci-centos-9-containers-multinode-network-wallaby:
+            dependencies: *comp_network_to_ci_testing_wallaby_cs9_dep
+            nodeset: two-centos-9-nodes-ibm-bm3
+        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-network-wallaby:
+            dependencies: *comp_network_to_ci_testing_wallaby_cs9_dep
+            nodeset: tripleo-ovb-centos-9-primary-ibm-bm3
+            vars:
+              cloud_name: ibm-bm3-nodepool
         - periodic-tripleo-ci-centos-9-scenario007-standalone-network-wallaby: *comp_network_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-network-wallaby: *comp_network_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-centos-9-wallaby-component-network-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-network-wallaby:
+            dependencies: *comp_network_to_ci_testing_wallaby_cs9_dep
+            nodeset: two-centos-9-nodes-ibm-bm3
+        - periodic-tripleo-centos-9-wallaby-component-network-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-octavia:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-octavia-wallaby: &comp_octavia_to_ci_testing_wallaby_cs9
-            dependencies:
+            dependencies: &comp_octavia_to_ci_testing_wallaby_cs9_dep
               - periodic-tripleo-centos-9-wallaby-component-octavia-promote-consistent-to-component-ci-testing
-        - create-scenario010-trigger-for-downstream-octavia-wallaby-c9: *comp_octavia_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-ci-centos-9-containers-multinode-octavia-wallaby: *comp_octavia_to_ci_testing_wallaby_cs9
+            nodeset: single-centos-9-stream-node-ibm-bm3
+        - create-scenario010-trigger-for-downstream-octavia-wallaby-c9:
+            dependencies: *comp_octavia_to_ci_testing_wallaby_cs9_dep
+        - periodic-tripleo-ci-centos-9-containers-multinode-octavia-wallaby:
+            dependencies: *comp_octavia_to_ci_testing_wallaby_cs9_dep
+            nodeset: two-centos-9-nodes-ibm-bm3
         - periodic-tripleo-ci-centos-9-scenario007-standalone-octavia-wallaby: *comp_octavia_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-centos-9-wallaby-component-octavia-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-centos-9-wallaby-component-octavia-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-security:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-security-wallaby: &comp_security_to_ci_testing_wallaby_cs9
-            dependencies:
+            dependencies: &comp_security_to_ci_testing_wallaby_cs9_dep
               - periodic-tripleo-centos-9-wallaby-component-security-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-9-containers-multinode-security-wallaby: *comp_security_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-security-wallaby: *comp_security_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-security-wallaby: *comp_security_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-security-wallaby: *comp_security_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-centos-9-wallaby-component-security-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-9-stream-node-ibm-bm3
+        - periodic-tripleo-ci-centos-9-containers-multinode-security-wallaby:
+            dependencies: *comp_security_to_ci_testing_wallaby_cs9_dep
+            nodeset: two-centos-9-nodes-ibm-bm3
+        - periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-security-wallaby:
+            dependencies: *comp_security_to_ci_testing_wallaby_cs9_dep
+            nodeset: two-centos-9-nodes-ibm-bm3
+        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039-security-wallaby:
+            dependencies: *comp_security_to_ci_testing_wallaby_cs9_dep
+            nodeset: tripleo-ovb-centos-9-primary-ibm-bm3
+            vars:
+              cloud_name: ibm-bm3-nodepool
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-security-wallaby:
+            dependencies: *comp_security_to_ci_testing_wallaby_cs9_dep
+            nodeset: two-centos-9-nodes-ibm-bm3
+        - periodic-tripleo-centos-9-wallaby-component-security-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-swift:
       jobs:
         - periodic-tripleo-ci-centos-9-scenario002-standalone-swift-wallaby: &comp_swift_to_ci_testing_wallaby_cs9
             dependencies:
               - periodic-tripleo-centos-9-wallaby-component-swift-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-centos-9-wallaby-component-swift-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-9-stream-node-ibm-bm3
+        - periodic-tripleo-centos-9-wallaby-component-swift-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-tripleo:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-tripleo-wallaby: &comp_tripleo_to_ci_testing_wallaby_cs9
-            dependencies:
+            dependencies: &comp_tripleo_to_ci_testing_wallaby_cs9_dep
               - periodic-tripleo-centos-9-wallaby-component-tripleo-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-9-stream-node-ibm-bm3
         - periodic-tripleo-ci-centos-9-scenario004-standalone-tripleo-wallaby: *comp_tripleo_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-standalone-tripleo-wallaby-validation: *comp_tripleo_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-ci-centos-9-containers-multinode-tripleo-wallaby: *comp_tripleo_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-ci-centos-9-containers-multinode-tripleo-wallaby-validation: *comp_tripleo_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-tripleo-wallaby: *comp_tripleo_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-tripleo-wallaby: *comp_tripleo_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-tripleo-wallaby: *comp_tripleo_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-tripleo-wallaby: *comp_tripleo_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-centos-9-wallaby-component-tripleo-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-containers-multinode-tripleo-wallaby:
+            dependencies: *comp_tripleo_to_ci_testing_wallaby_cs9_dep
+            nodeset: two-centos-9-nodes-ibm-bm3
+        - periodic-tripleo-ci-centos-9-containers-multinode-tripleo-wallaby-validation:
+            dependencies: *comp_tripleo_to_ci_testing_wallaby_cs9_dep
+            nodeset: two-centos-9-nodes-ibm-bm3
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-tripleo-wallaby:
+            dependencies: *comp_tripleo_to_ci_testing_wallaby_cs9_dep
+            nodeset: two-centos-9-nodes-ibm-bm3
+        - periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-tripleo-wallaby:
+            dependencies: *comp_tripleo_to_ci_testing_wallaby_cs9_dep
+            nodeset: two-centos-9-nodes-ibm-bm3
+        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-tripleo-wallaby:
+            dependencies: *comp_tripleo_to_ci_testing_wallaby_cs9_dep
+            nodeset: tripleo-ovb-centos-9-primary-ibm-bm3
+            vars:
+              cloud_name: ibm-bm3-nodepool
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-tripleo-wallaby:
+            dependencies: *comp_tripleo_to_ci_testing_wallaby_cs9_dep
+            nodeset: two-centos-9-nodes-ibm-bm3
+        - periodic-tripleo-centos-9-wallaby-component-tripleo-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-tempest:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-tempest-wallaby: &comp_tempest_to_ci_testing_wallaby_cs9
-            dependencies:
+            dependencies: &comp_tempest_to_ci_testing_wallaby_cs9_dep
               - periodic-tripleo-centos-9-wallaby-component-tempest-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-9-stream-node-ibm-bm3
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-tempest-wallaby: *comp_tempest_to_ci_testing_wallaby_cs9
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-tempest-wallaby: *comp_tempest_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-tempest-wallaby: *comp_tempest_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-centos-9-wallaby-component-tempest-promote-consistent-to-component-ci-testing
+        - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-tempest-wallaby:
+            dependencies: *comp_tempest_to_ci_testing_wallaby_cs9_dep
+            nodeset: two-centos-9-nodes-ibm-bm3
+        - periodic-tripleo-centos-9-wallaby-component-tempest-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-ui:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-ui-wallaby: &comp_ui_to_ci_testing_wallaby_cs9
             dependencies:
               - periodic-tripleo-centos-9-wallaby-component-ui-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-centos-9-wallaby-component-ui-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-9-stream-node-ibm-bm3
+        - periodic-tripleo-centos-9-wallaby-component-ui-promote-consistent-to-component-ci-testing: *component_node
     openstack-component-validation:
       jobs:
         - periodic-tripleo-ci-centos-9-standalone-component-wallaby-validation: &comp_validation_to_ci_testing_wallaby_cs9
-            dependencies:
+            dependencies: &comp_validation_to_ci_testing_wallaby_cs9_dep
               - periodic-tripleo-centos-9-wallaby-component-validation-promote-consistent-to-component-ci-testing
-        - periodic-tripleo-ci-centos-9-containers-multinode-validation-wallaby: *comp_validation_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-wallaby-validation: *comp_validation_to_ci_testing_wallaby_cs9
-        - periodic-tripleo-centos-9-wallaby-component-validation-promote-consistent-to-component-ci-testing
+            nodeset: single-centos-9-stream-node-ibm-bm3
+        - periodic-tripleo-ci-centos-9-containers-multinode-validation-wallaby:
+            dependencies: *comp_validation_to_ci_testing_wallaby_cs9_dep
+            nodeset: two-centos-9-nodes-ibm-bm3
+        - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-component-wallaby-validation:
+            dependencies: *comp_validation_to_ci_testing_wallaby_cs9_dep
+            nodeset: tripleo-ovb-centos-9-primary-ibm-bm3
+            vars:
+              cloud_name: ibm-bm3-nodepool
+        - periodic-tripleo-centos-9-wallaby-component-validation-promote-consistent-to-component-ci-testing: *component_node
     openstack-promote-component:
       jobs:
         # CentOS 9 wallaby jobs
