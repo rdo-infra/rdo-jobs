@@ -71,6 +71,7 @@
 - job:
     name: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-train
     parent: periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-master
+    nodeset: single-centos-8-node-vexxhost
     override-checkout: "stable/train"
     vars: *train_vars
 

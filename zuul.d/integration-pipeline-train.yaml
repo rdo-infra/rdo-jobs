@@ -36,7 +36,8 @@
             dependencies: *dep_build_con_ubi_8_push_train
             nodeset: two-centos-8-nodes-ibm-bm3
         - periodic-tripleo-ci-centos-8-scenario010-ovn-provider-standalone-train: *build_con_ubi_8_push_train
-        - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-train: *build_con_ubi_8_push_train
+        - periodic-tripleo-ci-centos-8-scenario010-kvm-standalone-train:
+            dependencies: *dep_build_con_ubi_8_push_train
         - create-scenario010-trigger-for-downstream:
             vars:
               trigger_branch: train
