@@ -1,0 +1,12 @@
+- name: Generate external compute secret script
+  template:
+    src: external_compute_secret.sh.j2
+    dest: "{{ ansible_user_dir }}/external_compute_secret.sh"
+
+- name: Run external_compute_secret.sh file
+  shell: |
+    source ~/.bashrc
+    bash {{ ansible_user_dir }}/external_compute_secret.sh
+  args:
+    executable: /bin/bash
+  changed_when: false
