@@ -1,0 +1,62 @@
+- hosts: controller
+  tasks:
+    - name: Print the current CRC version
+      ansible.builtin.shell: |
+        crc version
+
+    - name: Initialize OC Credentials
+      ansible.builtin.include_role:
+        name: add_crc_creds
+
+    - name: Build and push openstack-runner image
+      ansible.builtin.shell: |
+        TAG=$(git show-ref --head --hash head)
+        EEIMG=quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:${TAG}
+        make docker-build-ee EEIMG=${EEIMG} EDPM_LOCAL_REPO={{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible
+        make docker-push-ee EEIMG=${EEIMG}
+      args:
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
+
+    - name: Get the registry name
+      ansible.builtin.shell: |
+        git show-ref --head --hash head
+      args:
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
+      register: ee_image_out
+
+    - name: Set the EE_Image name
+      ansible.builtin.set_fact:
+        ee_image: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:{{ ee_image_out.stdout }}"
+        cacheable: true
+
+    - name: Deploy podified control plane using install_yamls
+      vars:
+        storage_class: standard
+        run_crc_storage: true
+        run_openstack_deploy: true
+        create_openstack_cr: true
+        run_script: true
+        run_ansibleee: true
+      ansible.builtin.include_role:
+        name: use_install_yamls
+
+    - name: Add additional sleep in order to finish the deploy
+      ansible.builtin.shell: |
+        sleep 200
+      args:
+        executable: /bin/bash
+
+    - name: Generate secret for external compute
+      ansible.builtin.include_role:
+        name: add_external_compute_node_secret
+
+    - name: Run EDPM Play
+      ansible.builtin.include_role:
+        name: external_compute_play
+
+    - name: Get the logs of EDPM Play
+      ansible.builtin.shell: |
+        sleep 400
+        oc logs -f $(oc get pods | grep deploy- | awk {'print $1'} | tail -1)
+      args:
+        executable: /bin/bash

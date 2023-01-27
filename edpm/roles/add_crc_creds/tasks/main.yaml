@@ -1,0 +1,17 @@
+- name: Add crc creds in the user bashrc file
+  blockinfile:
+    dest: ~/.bashrc
+    block: |-
+      eval $(crc oc-env)
+      export KUBECONFIG="{{ ansible_user_dir }}/.crc/machines/crc/kubeconfig"
+
+- name: Source bashrc and confirm crc login
+  shell: |
+    source ~/.bashrc
+    oc whoami
+  register: bashrc_result
+  changed_when: false
+
+- name: Check bashrc results
+  debug:
+    var: bashrc_result.stdout
