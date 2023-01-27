@@ -1,0 +1,50 @@
+- hosts: controller
+  tasks:
+    - name: Collect pod logs
+      ansible.builtin.shell: |
+        source ~/.bashrc
+        mkdir -p logs/controller/pod
+        chmod -R a+r "{{ ansible_user_dir }}/openstack"
+        chown -R {{ ansible_user }}: "{{ ansible_user_dir }}/openstack"
+        pushd logs/controller
+        oc get pods > all_pods.txt
+        all_pods=$(oc get pods -o name)
+        for pod in $all_pods; do
+          echo $pod
+          oc logs $pod > ${pod}-logs.txt
+        done
+        popd
+      args:
+        chdir: "{{ ansible_user_dir }}/openstack"
+      changed_when: true
+
+- hosts: secondary
+  tasks:
+    - name: Collect logs from edpm node
+      ansible.builtin.shell: |
+        mkdir -p openstack/logs/secondary
+        chmod -R a+r "{{ ansible_user_dir }}/openstack"
+        chown -R {{ ansible_user }}: "{{ ansible_user_dir }}/openstack"
+        pushd openstack/logs
+        rpm -qa > secondary/rpm_qa.txt
+        sudo podman images > secondary/podman_images.txt
+        popd
+      args:
+        chdir: "{{ ansible_user_dir }}"
+      changed_when: true
+
+- hosts: all
+  tasks:
+    - name: Copy files from {{ ansible_user_dir }}/openstack on node
+      ansible.posix.synchronize:
+        src: '{{ ansible_user_dir }}/openstack/'
+        dest: '{{ zuul.executor.log_root }}'
+        mode: pull
+        copy_links: true
+        verify_host: true
+        rsync_opts:
+          - --include=/etc/**
+          - --include=/conf/**
+          - --include=/logs/**
+          - --include=*/
+          - --prune-empty-dirs
