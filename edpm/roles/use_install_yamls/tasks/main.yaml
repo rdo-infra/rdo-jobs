@@ -1,0 +1,40 @@
+- name: Include vars
+  ansible.builtin.include_vars:
+    dir: 'vars'
+
+- name: Make sure deployment_artifacts directory exists
+  file:
+    path: "{{ deployment_artifacts }}"
+    state: directory
+
+- name: Generate OpenStack CR file
+  when: create_openstack_cr | default('false') | bool
+  block:
+    - name: Create core_v1beta1_openstackcontrolplane.yaml file
+      template:
+        src: core_v1beta1_openstackcontrolplane.yaml.j2
+        dest: "{{ deployment_artifacts }}/core_v1beta1_openstackcontrolplane.yaml"
+
+    - name: Set openstack_cr path
+      set_fact:
+        openstack_cr: "{{ deployment_artifacts }}/core_v1beta1_openstackcontrolplane.yaml"
+
+- name: Create Deployment scripts
+  template:
+    src: "install_yamls.sh.j2"
+    dest: "{{ deployment_artifacts }}/install_yamls.sh"
+
+- name: Remove blank line from scripts
+  shell: |
+    awk -i inplace NF {{ deployment_artifacts }}/install_yamls.sh
+  args:
+    executable: /bin/bash
+
+- name: Run Podified Deployment
+  shell: |
+    cat {{ deployment_artifacts }}/install_yamls.sh
+    bash {{ deployment_artifacts }}/install_yamls.sh
+  args:
+     chdir: "{{ install_yamls_repo }}"
+     executable: /bin/bash
+  when: run_script | default('false') | bool

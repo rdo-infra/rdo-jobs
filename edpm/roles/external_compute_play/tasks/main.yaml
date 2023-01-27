@@ -1,0 +1,20 @@
+- name: Get subnodes
+  command: cat /etc/nodepool/sub_nodes_private
+  register: nodes
+
+- name: Get second node ip
+  set_fact:
+    node_ip: "{{ nodes.stdout }}"
+    cacheable: true
+
+- name: Generate edpm play
+  template:
+    src: "edpm-play.yaml.j2"
+    dest: "{{ deployment_artifacts }}/edpm-play.yaml"
+
+- name: Run EDPM play
+  shell: |
+    source ~/.bashrc
+    oc apply -f "{{ deployment_artifacts }}/edpm-play.yaml"
+  args:
+    executable: /bin/bash
