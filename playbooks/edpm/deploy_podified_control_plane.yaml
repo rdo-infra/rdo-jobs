@@ -1,0 +1,41 @@
+- hosts: controller
+  tasks:
+    - name: Print the current CRC version
+      shell: |
+        crc version
+  
+    - name: Initialize OC Credentials
+      include_role:
+        name: add_crc_creds
+
+    - name: Deploy podified control plane using install_yamls
+      vars:
+        storage_class: standard
+        run_crc_storage: true
+        run_openstack_deploy: true
+        create_openstack_cr: true
+        run_script: true 
+        run_ansibleee: true
+      ansible.builtin.include_role:
+        name: use_install_yamls
+
+    - name: Add additional sleep in order to finish the deploy
+      shell: |
+        sleep 200
+      args:
+        executable: /bin/bash
+
+    - name: Generate secret for external compute
+      ansible.builtin.include_role:
+        name: add_external_compute_node_secret
+
+    - name: Run EDPM Play
+      ansible.builtin.include_role:
+        name: external_compute_play
+
+    - name: Get the logs of EDPM Play
+      shell: |
+        sleep 400
+        oc logs -f $(oc get pods | grep deploy- | awk {'print $1'} | tail -1)
+      args:
+        executable: /bin/bash

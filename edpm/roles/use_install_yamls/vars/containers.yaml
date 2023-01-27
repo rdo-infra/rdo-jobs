@@ -1,0 +1,29 @@
+# Service containers related vars
+service_registry: quay.io
+service_org: tripleozedcentos9
+container_tag: current-tripleo
+namespace: openstack
+keystoneapi_img: "{{ service_registry }}/{{ service_org }}/{{ namespace }}-keystone:{{ container_tag }}"
+mariadb_depl_img: "{{ service_registry }}/{{ service_org }}/{{ namespace }}-mariadb:{{ container_tag }}"
+placementapi_img: "{{ service_registry }}/{{ service_org }}/{{ namespace }}-placement-api:{{ container_tag }}"
+glanceapi_img: "{{ service_registry }}/{{ service_org }}/{{ namespace }}-glance-api:{{ container_tag }}"
+cinderapi_img: "{{ service_registry }}/{{ service_org }}/{{ namespace }}-cinder-api:{{ container_tag }}"
+cinder_scheduler_img: "{{ service_registry }}/{{ service_org }}/{{ namespace }}-cinder-scheduler:{{ container_tag }}"
+cinder_backup_img: "{{ service_registry }}/{{ service_org }}/{{ namespace }}-cinder-backup:{{ container_tag }}"
+cinder_volume_img: "{{ service_registry }}/{{ service_org }}/{{ namespace }}-cinder-volume:{{ container_tag }}"
+ovn_nb_db_server_img: "{{ service_registry }}/{{ service_org }}/{{ namespace }}-ovn-nb-db-server:{{ container_tag }}"
+ovn_sb_db_server_img: "{{ service_registry }}/{{ service_org }}/{{ namespace }}-ovn-sb-db-server:{{ container_tag }}"
+ovn_northd_img: "{{ service_registry }}/{{ service_org }}/{{ namespace }}-ovn-northd:{{ container_tag }}"
+ovs_img: "quay.io/skaplons/ovs:latest"
+ovn_controller_img: "{{ service_registry }}/{{ service_org }}/{{ namespace }}-ovn-controller:{{ container_tag }}"
+neutron_server_img: "{{ service_registry }}/{{ service_org }}/{{ namespace }}-neutron-server:{{ container_tag }}"
+neutronapi_img: "{{ service_registry }}/{{ service_org }}/{{ namespace }}-neutron-api:{{ container_tag }}"
+octaviaapi_img: "{{ service_registry }}/{{ service_org }}/{{ namespace }}-octavia-api:{{ container_tag }}"
+rabbitmq_depl_img: "{{ service_registry }}/{{ service_org }}/{{ namespace }}-rabbitmq:{{ container_tag }}"
+
+
+# Deployment artifacts
+deployment_artifacts: "{{ ansible_user_dir }}/openstack"
+install_yamls_repo: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls"
+create_openstack_cr: false 
+run_script: false

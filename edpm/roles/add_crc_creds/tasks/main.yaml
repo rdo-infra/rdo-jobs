@@ -1,0 +1,16 @@
+- name: Add crc creds in the user bashrc file
+  blockinfile:
+    dest: ~/.bashrc
+    block: |-
+      eval $(crc oc-env)
+      oc login -u kubeadmin -p 123456789 https://api.crc.testing:6443
+
+- name: Source bashrc and confirm crc login
+  shell: |
+    source ~/.bashrc
+    oc whoami
+  register: bashrc_result
+
+- name: Check bashrc results
+  debug:
+    var: bashrc_result.stdout
