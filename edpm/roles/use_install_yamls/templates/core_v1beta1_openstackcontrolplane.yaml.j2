@@ -1,0 +1,88 @@
+apiVersion: core.openstack.org/v1beta1
+kind: OpenStackControlPlane
+metadata:
+  name: openstack
+spec:
+  secret: osp-secret
+  storageClass: local-storage
+  keystone:
+    template:
+      containerImage: {{ keystoneapi_img }}
+      databaseInstance: openstack
+      secret: osp-secret
+  mariadb:
+    template:
+      containerImage: {{ mariadb_depl_img }}
+      storageRequest: 500M
+  rabbitmq:
+    template:
+      replicas: 1
+      #resources:
+      #  requests:
+      #    cpu: 500m
+      #    memory: 1Gi
+      #  limits:
+      #    cpu: 800m
+      #    memory: 1Gi
+  placement:
+    template:
+      databaseInstance: openstack
+      containerImage: {{ placementapi_img }}
+      secret: osp-secret
+  glance:
+    template:
+      databaseInstance: openstack
+      containerImage: {{ glanceapi_img }}
+      storageClass: ""
+      storageRequest: 10G
+      glanceAPIInternal:
+        containerImage: {{ glanceapi_img }}
+      glanceAPIExternal:
+        containerImage: {{ glanceapi_img }}
+  cinder:
+    template:
+      cinderAPI:
+        replicas: 1
+        containerImage: {{ cinderapi_img }}
+      cinderScheduler:
+        replicas: 1
+        containerImage: {{ cinder_scheduler_img }}
+      cinderBackup:
+        replicas: 1
+        containerImage: {{ cinder_backup_img }}
+      cinderVolumes:
+        volume1:
+          containerImage: {{ cinder_volume_img }}
+          replicas: 1
+  ovn:
+    template:
+      ovnDBCluster:
+        ovndbcluster-nb:
+          replicas: 1
+          containerImage: {{ ovn_nb_db_server_img }}
+          dbType: NB
+          storageRequest: 10G
+        ovndbcluster-sb:
+          replicas: 1
+          containerImage: {{ ovn_sb_db_server_img }}
+          dbType: SB
+          storageRequest: 10G
+      ovnNorthd:
+        replicas: 1
+        containerImage: {{ ovn_northd_img }}
+  ovs:
+    template:
+      ovsContainerImage: {{ ovs_img }}
+      ovnContainerImage: {{ ovn_controller_img }}
+      external-ids:
+        system-id: "random"
+        ovn-bridge: "br-int"
+        ovn-encap-type: "geneve"
+  neutron:
+    template:
+      databaseInstance: openstack
+      containerImage: {{ neutron_server_img }}
+      secret: osp-secret
+  nova:
+    template:
+      secret: osp-secret
