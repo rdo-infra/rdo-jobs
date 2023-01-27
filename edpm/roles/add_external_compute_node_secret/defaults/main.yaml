@@ -1,0 +1,3 @@
+external_compute_private_key_file: '{{ ansible_user_dir }}/.ssh/id_rsa'
+ansibleee_secret_name: ansibleee-ssh-key-secret
+ansibleee_secret_file: "{{ ansible_user_dir }}/{{ ansibleee_secret_name }}.yaml"
