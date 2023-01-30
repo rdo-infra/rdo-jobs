@@ -46,7 +46,8 @@
         - periodic-tripleo-ci-centos-9-scenario004-standalone-wallaby: *build_containers_cs_9_push_wallaby
         - periodic-tripleo-ci-centos-9-scenario007-standalone-wallaby: *build_containers_cs_9_push_wallaby
         - periodic-tripleo-ci-centos-9-scenario007-multinode-oooq-container-wallaby: *multinode
-        - periodic-tripleo-ci-centos-9-scenario010-ovn-provider-standalone-wallaby: *build_containers_cs_9_push_wallaby
+        - periodic-tripleo-ci-centos-9-scenario010-ovn-provider-standalone-wallaby:
+            dependencies: *dep_build_containers_cs_9_push_wallaby
         - periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-wallaby:
             dependencies: *dep_build_containers_cs_9_push_wallaby
         - create-scenario010-trigger-for-downstream:
