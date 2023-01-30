@@ -46,6 +46,30 @@
       },
       "revId": "05ce545e5d9f4599c7d2a706eb9a6475ffa70476",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7508e6bb_0be04b0f",
+        "filename": "zuul.d/integration-pipeline-wallaby-centos9.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 739
+      },
+      "writtenOn": "2023-01-30T15:25:27Z",
+      "side": 1,
+      "message": "line 38 is under \u0027build_containers_cs_9_push_wallaby\u0027 anchor.\nSince you are using \u0027dep_build_containers_cs_9_push_wallaby\u0027 stanza, it should  be fine.\nSame thing that was made on \u0027periodic-tripleo-ci-centos-9-scenario010-kvm-standalone-wallaby",
+      "parentUuid": "814f8903_883a1d2b",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 48
+      },
+      "revId": "05ce545e5d9f4599c7d2a706eb9a6475ffa70476",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
