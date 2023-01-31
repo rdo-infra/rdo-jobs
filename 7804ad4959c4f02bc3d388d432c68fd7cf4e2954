@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91da4798_5547906b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-01-31T07:03:23Z",
+      "side": 1,
+      "message": "stared for a while \n\nprobably we need to merge this and then add improvements\n\nits too big to review properly",
+      "revId": "7804ad4959c4f02bc3d388d432c68fd7cf4e2954",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ce5a334_5c76c27b",
+        "filename": "edpm/roles/external_compute_play/templates/edpm-play.yaml.j2",
+        "patchSetId": 5
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-01-31T07:03:23Z",
+      "side": 1,
+      "message": "would be nice if we can use jinja for some of these duplications \n\nlike auth_url: {{ auth_url }}",
+      "revId": "7804ad4959c4f02bc3d388d432c68fd7cf4e2954",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bc3ef8f_7cde03c8",
+        "filename": "playbooks/edpm/deploy_podified_control_plane.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-01-31T07:03:23Z",
+      "side": 1,
+      "message": "perhaps we can improve that later with something else",
+      "range": {
+        "startLine": 46,
+        "startChar": 14,
+        "endLine": 46,
+        "endChar": 17
+      },
+      "revId": "7804ad4959c4f02bc3d388d432c68fd7cf4e2954",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c88a8f11_457ff0e5",
+        "filename": "playbooks/edpm/deploy_podified_control_plane.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-01-31T07:03:23Z",
+      "side": 1,
+      "message": "and this one ... a bit fragile",
+      "range": {
+        "startLine": 60,
+        "startChar": 14,
+        "endLine": 60,
+        "endChar": 17
+      },
+      "revId": "7804ad4959c4f02bc3d388d432c68fd7cf4e2954",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
