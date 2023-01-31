@@ -1,0 +1,584 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3a23d3d_57f0c368",
+        "filename": "edpm/roles/add_external_compute_node_secret/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "ansible.builtin.template",
+      "range": {
+        "startLine": 2,
+        "startChar": 2,
+        "endLine": 2,
+        "endChar": 10
+      },
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6d0c87d_578faab2",
+        "filename": "edpm/roles/add_external_compute_node_secret/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "ansible.builtin.shell",
+      "range": {
+        "startLine": 7,
+        "startChar": 2,
+        "endLine": 7,
+        "endChar": 7
+      },
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12e89dda_e1eb01dc",
+        "filename": "edpm/roles/external_compute_play/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "ansible.builtin.command",
+      "range": {
+        "startLine": 2,
+        "startChar": 2,
+        "endLine": 2,
+        "endChar": 9
+      },
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3701354_aa516764",
+        "filename": "edpm/roles/external_compute_play/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "ansible.builtin.set_fact",
+      "range": {
+        "startLine": 7,
+        "startChar": 2,
+        "endLine": 7,
+        "endChar": 10
+      },
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fa37ce7_5823eb07",
+        "filename": "edpm/roles/external_compute_play/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "ansible.builtin.template",
+      "range": {
+        "startLine": 12,
+        "startChar": 2,
+        "endLine": 12,
+        "endChar": 10
+      },
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9edf1c7a_3aa7594f",
+        "filename": "edpm/roles/external_compute_play/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "ansible.builtin.shell",
+      "range": {
+        "startLine": 17,
+        "startChar": 2,
+        "endLine": 17,
+        "endChar": 7
+      },
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94bb1320_2bf7e047",
+        "filename": "edpm/roles/play.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "since it\u0027s a playbook, we may write it like this:\n - hosts: localhost\n   vars:\n     storage_class: standard\n     [....]\n   roles:\n     - use_install_yamls\n\nIt should be 1:1 the same, just... a bit more \"ansible\" ? Though it\u0027s really nitpicking at this stage.",
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a769e99_ba9a8de4",
+        "filename": "edpm/roles/use_install_yamls/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "ansible.builtin.file",
+      "range": {
+        "startLine": 6,
+        "startChar": 2,
+        "endLine": 6,
+        "endChar": 6
+      },
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fc1c79f_bed73c64",
+        "filename": "edpm/roles/use_install_yamls/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "ansible.builtin.template",
+      "range": {
+        "startLine": 14,
+        "startChar": 6,
+        "endLine": 14,
+        "endChar": 14
+      },
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28770cdb_6df2660c",
+        "filename": "edpm/roles/use_install_yamls/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "ansible.builtin.set_fact",
+      "range": {
+        "startLine": 19,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 14
+      },
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "804f6c17_88a21e5e",
+        "filename": "edpm/roles/use_install_yamls/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "ansible.builtin.template",
+      "range": {
+        "startLine": 23,
+        "startChar": 2,
+        "endLine": 23,
+        "endChar": 10
+      },
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8a953ea_c4063869",
+        "filename": "edpm/roles/use_install_yamls/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "ansible.builtin.shell",
+      "range": {
+        "startLine": 28,
+        "startChar": 2,
+        "endLine": 28,
+        "endChar": 7
+      },
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba62d858_d771efd0",
+        "filename": "edpm/roles/use_install_yamls/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "ansible.builtin.shell",
+      "range": {
+        "startLine": 35,
+        "startChar": 2,
+        "endLine": 35,
+        "endChar": 7
+      },
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de681319_e3c9ea01",
+        "filename": "edpm/roles/use_install_yamls/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "why that? Maybe we should get a dedicated debug step for that cat, instead of overloading the \"shell.stdout\" ?",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 6
+      },
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "999e5b5c_b562a7e5",
+        "filename": "edpm/scripts/makefile_to_install_yamls.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "extra empty line (depending on the editor, it can\u0027t really be avoided if we want a \"newline\" on L118 though...)",
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fc2a289_13878f47",
+        "filename": "playbooks/edpm/collect_logs.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "ansible.posix.synchronize",
+      "range": {
+        "startLine": 39,
+        "startChar": 6,
+        "endLine": 39,
+        "endChar": 17
+      },
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6938b93d_1e8d427e",
+        "filename": "playbooks/edpm/subnode_ip.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "ansible.builtin.set_fact",
+      "range": {
+        "startLine": 10,
+        "startChar": 6,
+        "endLine": 10,
+        "endChar": 14
+      },
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd9c6ed6_40702dac",
+        "filename": "playbooks/edpm/subnode_ip.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 15,
+        "startChar": 6,
+        "endLine": 15,
+        "endChar": 14
+      },
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c1e7136_2345b7e3",
+        "filename": "playbooks/edpm/subnode_ip.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "ansible.builtin.file",
+      "range": {
+        "startLine": 23,
+        "startChar": 6,
+        "endLine": 23,
+        "endChar": 10
+      },
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dfa5eda_ec8dae7d",
+        "filename": "playbooks/edpm/subnode_ip.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "ansible.builtin.copy",
+      "range": {
+        "startLine": 29,
+        "startChar": 6,
+        "endLine": 29,
+        "endChar": 10
+      },
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6532d535_d97c0f5c",
+        "filename": "playbooks/edpm/subnode_ip.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 34,
+        "startChar": 6,
+        "endLine": 34,
+        "endChar": 10
+      },
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "532115bb_962c29b5",
+        "filename": "playbooks/edpm/subnode_ip.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "ansible.builtin.lineinfile",
+      "range": {
+        "startLine": 39,
+        "startChar": 6,
+        "endLine": 39,
+        "endChar": 16
+      },
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23307e5b_a951ec83",
+        "filename": "playbooks/edpm/subnode_ip.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 46,
+        "startChar": 6,
+        "endLine": 46,
+        "endChar": 16
+      },
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9da684a_dc241b30",
+        "filename": "playbooks/edpm/subnode_ip.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "ansible.builtin.copy",
+      "range": {
+        "startLine": 54,
+        "startChar": 6,
+        "endLine": 54,
+        "endChar": 10
+      },
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee985135_1c125954",
+        "filename": "playbooks/edpm/subnode_ip.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 60,
+        "startChar": 6,
+        "endLine": 60,
+        "endChar": 10
+      },
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5604f69_475fb7a9",
+        "filename": "playbooks/edpm/subnode_ip.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-01-31T09:40:49Z",
+      "side": 1,
+      "message": "extra line - though might be due to the editor (?)",
+      "revId": "f494e26e73977b63eca7533353f9cbffca95af58",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
