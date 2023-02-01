@@ -16,6 +16,69 @@
       "message": "https://review.rdoproject.org/r/c/testproject/+/46738 - edpm-ansible-github-rdo-integration-centos-8-crc-singlenode-centos-9-external-compute job is working now. We are good to merge it.",
       "revId": "55b7d74f1d49ac6dadd6432cb2f08b42cc22f533",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "665ab2ef_127973a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-02-01T08:19:03Z",
+      "side": 1,
+      "message": "Some stuff that will be corrected later in follow-up - let\u0027s merge it, it\u0027s working and really needed.",
+      "revId": "55b7d74f1d49ac6dadd6432cb2f08b42cc22f533",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35756c71_128fa11f",
+        "filename": "playbooks/edpm/collect_logs.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-02-01T08:19:03Z",
+      "side": 1,
+      "message": "ansible.posix iirc - will patch as a follow-up.",
+      "range": {
+        "startLine": 40,
+        "startChar": 6,
+        "endLine": 40,
+        "endChar": 17
+      },
+      "revId": "55b7d74f1d49ac6dadd6432cb2f08b42cc22f533",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b5f0b00_0089fa55",
+        "filename": "playbooks/edpm/subnode_ip.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-02-01T08:19:03Z",
+      "side": 1,
+      "message": "iirc \"loop\" is preferred over \"with_items\" - but a follow-up will be OK. I see multiple occurrences, I\u0027ll push a proposal once it\u0027s merged.",
+      "range": {
+        "startLine": 50,
+        "startChar": 6,
+        "endLine": 50,
+        "endChar": 16
+      },
+      "revId": "55b7d74f1d49ac6dadd6432cb2f08b42cc22f533",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
