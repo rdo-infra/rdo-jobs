@@ -35,6 +35,24 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "83e03145_acb16624",
+        "filename": "edpm/roles/external_compute_play/templates/edpm-play.yaml.j2",
+        "patchSetId": 5
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2023-02-01T04:40:44Z",
+      "side": 1,
+      "message": "All these vars will be removed later on once dataplane-operator crds in place. Most of the services related vars will be provided by service operator itself once service gets deployed.",
+      "parentUuid": "2ce5a334_5c76c27b",
+      "revId": "7804ad4959c4f02bc3d388d432c68fd7cf4e2954",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2bc3ef8f_7cde03c8",
@@ -95,6 +113,30 @@
       "side": 1,
       "message": "indeed. Maybe a param, or some async with wait loop in plain ansible?",
       "parentUuid": "c88a8f11_457ff0e5",
+      "range": {
+        "startLine": 60,
+        "startChar": 14,
+        "endLine": 60,
+        "endChar": 17
+      },
+      "revId": "7804ad4959c4f02bc3d388d432c68fd7cf4e2954",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9edb9ac_5cf4dcbf",
+        "filename": "playbooks/edpm/deploy_podified_control_plane.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2023-02-01T04:40:44Z",
+      "side": 1,
+      "message": "I will work on removing the sleep from playbook in new review. Help is always welcome.",
+      "parentUuid": "208ad12d_61b4b90d",
       "range": {
         "startLine": 60,
         "startChar": 14,
