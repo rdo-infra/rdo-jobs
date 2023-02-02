@@ -39,7 +39,7 @@
       ansible.builtin.lineinfile:
         path: /etc/nodepool/sub_nodes
         line: "{{ hostvars[item]['nodepool']['public_ipv4'] }}"
-      with_items: "{{ groups['subnodes'] }}"
+      loop: "{{ groups['subnodes'] }}"
       when: groups['subnodes'] is defined
 
     - name: Populate nodepool sub_nodes_private file
@@ -47,7 +47,7 @@
         path: /etc/nodepool/sub_nodes_private
         line: "{{ hostvars[item]['nodepool_ip'] }}"
         insertafter: EOF
-      with_items: "{{ groups['subnodes'] }}"
+      loop: "{{ groups['subnodes'] }}"
       when: groups['subnodes'] is defined
 
     - name: Create nodepool primary file
