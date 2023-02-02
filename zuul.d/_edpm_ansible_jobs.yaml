@@ -1,7 +1,6 @@
 - job:
     name: edpm-ansible-github-rdo-integration-centos-8-crc-singlenode-centos-9-external-compute
     parent: base-crc
-    nodeset: centos-8-crc-single-node-centos-9-external-compute
     timeout: 10800
     required-projects:
       - openstack-k8s-operators/install_yamls
@@ -17,7 +16,3 @@
     pre-run: playbooks/edpm/subnode_ip.yaml
     run: playbooks/edpm/deploy_podified_control_plane.yaml
     post-run: playbooks/edpm/collect_logs.yaml
-    vars:
-      registry_login_enabled: true
-      push_registry: quay.rdoproject.org
-      quay_login_secret_name: quay_nextgen_zuulgithubci
