@@ -31,9 +31,17 @@
     executable: /bin/bash
   changed_when: false
 
+- name: Get install_yamls.sh script content for later debug
+  register: slurp_install_yamls
+  ansible.builtin.slurp:
+    path: "{{ deployment_artifacts }}/install_yamls.sh"
+
+- name: Output install_yamls.sh content
+  debug:
+    msg: "{{ slurp_install_yamls['content'] | b64decode }}"
+
 - name: Run Podified Deployment
   ansible.builtin.shell: |
-    cat {{ deployment_artifacts }}/install_yamls.sh
     bash {{ deployment_artifacts }}/install_yamls.sh
   args:
     chdir: "{{ install_yamls_repo }}"
