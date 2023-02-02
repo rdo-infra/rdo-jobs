@@ -16,12 +16,32 @@
         make docker-push-ee EEIMG=${EEIMG}
       args:
         chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
+      register: ee_runner_out
+
+    - name: Show Build and Push openstack-runner image output
+      ansible.builtin.debug:
+        msg: "{{ ee_runner_out.stdout_lines }}"
+
+    - name: Build and push openstack-ansibleee-operator bundle image
+      ansible.builtin.shell: |
+        podman pull docker.io/library/golang:1.19
+        TAG=$(git show-ref --head --hash head)
+        IMAGE_TAG_BASE=quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator
+        make docker-build docker-push IMG=IMG=${IMAGE_TAG_BASE}:${TAG}
+        make bundle IMG=${IMAGE_TAG_BASE}:${TAG}
+        make bundle-build BUNDLE_IMG=${IMAGE_TAG_BASE}-bundle:${TAG}
+        podman push ${IMAGE_TAG_BASE}-bundle:${TAG}
+        make catalog-build CATALOG_IMG=${IMAGE_TAG_BASE}-index:${TAG}
+        make catalog-push CATALOG_IMG=${IMAGE_TAG_BASE}-index:${TAG}
+      args:
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
       register: runner_out
 
     - name: Show Build and Push openstack-runner image output
-      ansible.builtin.debug: var=runner_out.stdout_lines
+      ansible.builtin.debug:
+        msg: "{{ runner_out.stdout_lines }}"
 
-    - name: Get the registry name
+    - name: Get the last commit hash
       ansible.builtin.shell: |
         git show-ref --head --hash head
       args:
@@ -31,6 +51,12 @@
     - name: Set the EE_Image name
       ansible.builtin.set_fact:
         ee_image: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:{{ ee_image_out.stdout }}"
+        cacheable: true
+
+    - name: Set the openstack-ansibleee-operator image
+      ansible.builtin.set_fact:
+        ansibleee_img: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator-index:{{ ee_image_out.stdout }}"
+        ansibleee_repo: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
         cacheable: true
 
     - name: Deploy podified control plane using install_yamls
