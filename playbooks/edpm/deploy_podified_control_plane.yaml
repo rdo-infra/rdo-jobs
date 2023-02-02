@@ -17,11 +17,26 @@
       args:
         chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
       register: runner_out
+      when: project_under_test | default('edpm-ansible') == 'edpm-ansible'
+
+    - name: Build and push openstack-ansibleee-operator bundle image
+      ansible.builtin.shell: |
+        TAG=$(git show-ref --head --hash head)
+        VERSION=${TAG}
+        IMAGE_TAG_BASE=quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator
+        IMG=${IMAGE_TAG_BASE}:${TAG}
+        IMAGE_TAG_BASE=${IMAGE_TAG_BASE} VERSION=${VERSION} IMG=${IMG} \
+          make manifests build docker-build docker-push bundle bundle-build bundle-push catalog-build catalog-push
+      args:
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
+      register: runner_out
+      when: project_under_test | default('edpm-ansible') == 'openstack-ansibleee-operator'
 
     - name: Show Build and Push openstack-runner image output
-      ansible.builtin.debug: var=runner_out.stdout_lines
+      ansible.builtin.debug:
+        msg: "{{ runner_out.stdout_lines }}"
 
-    - name: Get the registry name
+    - name: Get the last commit hash
       ansible.builtin.shell: |
         git show-ref --head --hash head
       args:
@@ -32,6 +47,14 @@
       ansible.builtin.set_fact:
         ee_image: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:{{ ee_image_out.stdout }}"
         cacheable: true
+      when: project_under_test | default('edpm-ansible') == 'edpm-ansible'
+
+    - name: Set the openstack-ansibleee-operator image
+      ansible.builtin.set_fact:
+        ansibleee_img: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator-index:{{ ee_image_out.stdout }}"
+        ansibleee_repo: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
+        cacheable: true
+      when: project_under_test | default('edpm-ansible') == 'openstack-ansibleee-operator'
 
     - name: Deploy podified control plane using install_yamls
       vars:
