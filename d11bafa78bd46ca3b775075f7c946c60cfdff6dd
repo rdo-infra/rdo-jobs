@@ -18,6 +18,23 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f773316_1c45f2cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 739
+      },
+      "writtenOn": "2023-02-02T19:53:50Z",
+      "side": 1,
+      "message": "question inline",
+      "revId": "d11bafa78bd46ca3b775075f7c946c60cfdff6dd",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b385ba6c_24322ad6",
@@ -31,6 +48,29 @@
       "writtenOn": "2023-02-02T19:32:30Z",
       "side": 1,
       "message": "confirming the right version pf golang",
+      "revId": "d11bafa78bd46ca3b775075f7c946c60cfdff6dd",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c21730f_d42b701a",
+        "filename": "zuul.d/_edpm_ansible_jobs.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 739
+      },
+      "writtenOn": "2023-02-02T19:53:50Z",
+      "side": 1,
+      "message": "so, you are adding build and push to this playbook. \nHow it will work on this job, without \"registry_login_enabled: true\" and secrets?",
+      "range": {
+        "startLine": 17,
+        "startChar": 19,
+        "endLine": 17,
+        "endChar": 58
+      },
       "revId": "d11bafa78bd46ca3b775075f7c946c60cfdff6dd",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
