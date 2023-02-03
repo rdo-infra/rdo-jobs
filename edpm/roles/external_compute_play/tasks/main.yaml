@@ -3,9 +3,24 @@
   register: nodes
   changed_when: false
 
+- name: Get Controller IP
+  ansible.builtin.command: cat /etc/nodepool/node_private
+  register: controller_ip
+  changed_when: false
+
 - name: Get second node ip
   ansible.builtin.set_fact:
     node_ip: "{{ nodes.stdout }}"
+    cacheable: true
+
+- name: Get Controller IP
+  ansible.builtin.command: cat /etc/nodepool/node_private
+  register: controller_ip
+  changed_when: false
+
+- name: set the ip_addr of the controller
+  ansible.builtin.set_fact:
+    ip_addr: ["{{ controller_ip.stdout }}/{{ controller_ip.stdout.split('.')[-1] }}"]
     cacheable: true
 
 - name: Generate edpm play

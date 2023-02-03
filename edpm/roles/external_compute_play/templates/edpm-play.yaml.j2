@@ -190,6 +190,11 @@ spec:
                 hosts_entries: []
                 hosts_entry: []
                 plan: overcloud
+                edpm_sshd_configure_firewall: true
+                # Putting the cidr of virbr0 interface
+                edpm_sshd_allowed_ranges: {{ ip_addr }}
+                edpm_sshd_configure_firewall: true
+
 
   env:
     - name: ANSIBLE_FORCE_COLOR
