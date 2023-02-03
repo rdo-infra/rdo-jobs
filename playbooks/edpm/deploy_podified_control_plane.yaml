@@ -28,9 +28,15 @@
         chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
       register: ee_image_out
 
+    - name: Get subnode IP
+      register: subnode_ip
+      ansible.builtin.slurp:
+        path: "/etc/nodepool/sub_nodes_private"
+
     - name: Set the EE_Image name
       ansible.builtin.set_fact:
         ee_image: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:{{ ee_image_out.stdout }}"
+        ee_subnode_ip: "{{ subnode_ip['content'] | b64decode | join('') }}"
         cacheable: true
 
     - name: Deploy podified control plane using install_yamls
@@ -56,8 +62,13 @@
         name: add_external_compute_node_secret
 
     - name: Run EDPM Play
-      ansible.builtin.include_role:
-        name: external_compute_play
+      ansible.builtin.command:
+        cmd: make edpm_play
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/devsetup"
+      environment:
+        EDPM_COMPUTE_IP: "{{ ee_subnode_ip }}"
+        EDPM_RUNNER_IMG: "{{ ee_image }}"
+        EDPM_NETWORK_CONFIG_TEMPLATE: "templates/ci/multinode.j2"
 
     - name: Get the logs of EDPM Play
       ansible.builtin.shell: |
