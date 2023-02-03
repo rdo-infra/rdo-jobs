@@ -1,0 +1,25 @@
+- job:
+    name: data-plane-adoption-github-rdo-centos-8-crc-centos-9-standalone
+    parent: base-crc-standalone
+    nodeset: centos-8-crc-single-node-centos-9-standalone
+    timeout: 10800
+    required-projects:
+      - openstack-k8s-operators/install_yamls
+      - opendev.org/zuul/zuul-jobs
+      - opendev.org/openstack/tripleo-repos
+      - name: openstack-k8s-operators/data-plane-adoption
+        override-checkout: main
+      - rdo-jobs
+    roles:
+      - zuul: rdo-jobs
+    pre-run:
+      - playbooks/edpm/subnode_ip.yaml
+      - playbooks/data_plane_adoption/setup_crc_use_install_yamls.yaml
+    post-run: playbooks/data_plane_adoption/collect_logs_crc.yaml
+    vars:
+      featureset: '052'
+      release: wallaby
+      branch_override: stable/wallaby
+      registry_login_enabled: true
+      push_registry: quay.rdoproject.org
+      quay_login_secret_name: quay_nextgen_zuulgithubci
