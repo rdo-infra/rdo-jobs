@@ -190,6 +190,9 @@ spec:
                 hosts_entries: []
                 hosts_entry: []
                 plan: overcloud
+                # For now, don't load firewall
+                deploy_tripleo_openstack_run_firewall: false
+                tripleo_sshd_configure_firewall: true
 
   env:
     - name: ANSIBLE_FORCE_COLOR
