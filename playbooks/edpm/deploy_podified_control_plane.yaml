@@ -48,6 +48,7 @@
     - name: Add additional sleep in order to finish the deploy
       ansible.builtin.shell: |
         sleep 200
+        exit 1
       args:
         executable: /bin/bash
 
