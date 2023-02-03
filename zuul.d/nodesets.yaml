@@ -749,3 +749,21 @@
       - name: subnodes
         nodes:
           - secondary
+
+- nodeset:
+    name: centos-8-crc-single-node-centos-9-standalone
+    nodes:
+      - name: controller
+        label: centos-8-stream-crc
+      - name: primary
+        label: cloud-centos-9-stream
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes:
+          - controller
+      - name: subnodes
+        nodes:
+          - controller
