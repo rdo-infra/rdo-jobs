@@ -92,10 +92,6 @@
       args:
         executable: /bin/bash
 
-    - name: Generate secret for external compute
-      ansible.builtin.include_role:
-        name: add_external_compute_node_secret
-
     - name: Run EDPM Play
       ansible.builtin.command:
         cmd: make edpm_play
@@ -104,6 +100,7 @@
         EDPM_COMPUTE_IP: "{{ ee_subnode_ip }}"
         OPENSTACK_RUNNER_IMG: "{{ ee_image }}"
         EDPM_NETWORK_CONFIG_TEMPLATE: "templates/ci/multinode.j2"
+        SSH_KEY_FILE: "{{ ansible_user_dir }}/.ssh/id_rsa"
 
     - name: Get the logs of EDPM Play
       ansible.builtin.shell: |
