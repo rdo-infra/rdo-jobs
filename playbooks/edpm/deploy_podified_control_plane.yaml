@@ -55,6 +55,16 @@
       ansible.builtin.slurp:
         path: "/etc/nodepool/sub_nodes_private"
 
+    - name: Get Controller IP
+      ansible.builtin.command: cat /etc/nodepool/node_private
+      register: controller_ip
+      changed_when: false
+
+    - name: set the EDPM_SSHD_ALLOWED_RANGES range
+      ansible.builtin.set_fact:
+        edpm_sshd_allowed_ranges: ["0.0.0.0/0", "{{ controller_ip.stdout }}/24"]
+        cacheable: true
+
     - name: Set the EE_Image name
       ansible.builtin.set_fact:
         ee_image: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:{{ ee_image_out.stdout }}"
@@ -92,6 +102,15 @@
       args:
         executable: /bin/bash
 
+    - name: Debug some values
+      debug:
+        msg: |
+          EDPM_COMPUTE_IP: "{{ ee_subnode_ip }}"
+          OPENSTACK_RUNNER_IMG: "{{ ee_image }}"
+          EDPM_NETWORK_CONFIG_TEMPLATE: "templates/ci/multinode.j2"
+          SSH_KEY_FILE: "{{ ansible_user_dir }}/.ssh/id_rsa"
+          EDPM_SSHD_ALLOWED_RANGES: "{{ edpm_sshd_allowed_ranges }}"
+
     - name: Run EDPM Play
       ansible.builtin.command:
         cmd: make edpm_play
@@ -101,6 +120,7 @@
         OPENSTACK_RUNNER_IMG: "{{ ee_image }}"
         EDPM_NETWORK_CONFIG_TEMPLATE: "templates/ci/multinode.j2"
         SSH_KEY_FILE: "{{ ansible_user_dir }}/.ssh/id_rsa"
+        EDPM_SSHD_ALLOWED_RANGES: "{{ edpm_sshd_allowed_ranges }}"
 
     - name: Get deploy-external-dataplane-compute pod name
       register: deploy_external_pod_name
