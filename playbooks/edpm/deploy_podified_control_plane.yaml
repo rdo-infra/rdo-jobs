@@ -10,7 +10,10 @@
 
     - name: Build and push openstack-runner image
       ansible.builtin.shell: |
+        pushd {{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible
+        git log -1
         TAG=$(git show-ref --head --hash head)
+        popd
         EEIMG=quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:${TAG}
         make docker-build-ee EEIMG=${EEIMG} EDPM_LOCAL_REPO={{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible
         make docker-push-ee EEIMG=${EEIMG}
@@ -19,12 +22,12 @@
       register: ee_runner_out
 
     - name: Show Build and Push openstack-runner image output
-      ansible.builtin.debug:
-        msg: "{{ ee_runner_out.stdout_lines }}"
+      ansible.builtin.debug: var=ee_runner_out.stdout_lines
 
     - name: Build and push openstack-ansibleee-operator bundle image
       ansible.builtin.shell: |
         podman pull docker.io/library/golang:1.19
+        git log -1
         TAG=$(git show-ref --head --hash head)
         IMAGE_TAG_BASE=quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator
         make docker-build docker-push IMG=IMG=${IMAGE_TAG_BASE}:${TAG}
@@ -38,14 +41,13 @@
       register: runner_out
 
     - name: Show Build and Push openstack-runner image output
-      ansible.builtin.debug:
-        msg: "{{ runner_out.stdout_lines }}"
+      ansible.builtin.debug: var=runner_out.stdout_lines
 
-    - name: Get the last commit hash
+    - name: Set the openstack-runner image tag
       ansible.builtin.shell: |
         git show-ref --head --hash head
       args:
-        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible"
       register: ee_image_out
 
     - name: Get subnode IP
