@@ -12,6 +12,8 @@
         for pod in $all_pods; do
           echo $pod
           oc logs $pod > ${pod}-logs.txt
+          oc get -o yaml $pod > ${pod}.json
+          oc describe $pod > ${pod}-describe.txt
         done
         popd
         rsync -r /home/zuul-worker/src/github.com/openstack-k8s-operators/install_yamls/out ./install_yamls_out
