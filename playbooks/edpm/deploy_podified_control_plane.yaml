@@ -102,9 +102,28 @@
         EDPM_NETWORK_CONFIG_TEMPLATE: "templates/ci/multinode.j2"
         SSH_KEY_FILE: "{{ ansible_user_dir }}/.ssh/id_rsa"
 
+    - name: Get deploy-external-dataplane-compute pod name
+      register: deploy_external_pod_name
+      ansible.builtin.shell:
+        cmd: oc get pods -o name | grep -m1 deploy-external
+        executable: /bin/bash
+      until: deploy_external_pod_name.rc == 0
+      retries: 5
+      delay: 5
+
+    # oc wait is experimental. setting timeout to 0 will make it immediate.
+    # We'll retry 100 times, with a 20 seconds delay between retries.
+    # The "Completed" state we can see in the "oc get pods" is actually "Succeeded"
+    # in the json output.
+    - name: Wait for deploy-external-dataplane-compute to finish
+      register: deploy_external_status
+      ansible.builtin.shell:
+        cmd: "oc wait --timeout=0 --for=jsonpath='{.status.phase}'=Succeeded {{ deploy_external_pod_name.stdout |trim }}"
+      until: deploy_external_status.rc == 0
+      retries: 100
+      delay: 20
+
     - name: Get the logs of EDPM Play
-      ansible.builtin.shell: |
-        sleep 400
-        oc logs -f $(oc get pods | grep deploy- | awk {'print $1'} | tail -1)
-      args:
+      ansible.builtin.shell:
+        cmd: "oc logs -f {{ deploy_external_pod_name.stdout |trim }}"
         executable: /bin/bash
