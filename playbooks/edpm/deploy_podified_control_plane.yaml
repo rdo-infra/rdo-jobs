@@ -55,6 +55,11 @@
       ansible.builtin.slurp:
         path: "/etc/nodepool/sub_nodes_private"
 
+    - name: set the EDPM_SSHD_ALLOWED_RANGES range
+      ansible.builtin.set_fact:
+        edpm_sshd_allowed_ranges: "{{ hostvars['controller']['ansible_all_ipv4_addresses'] }}"
+        cacheable: true
+
     - name: Set the EE_Image name
       ansible.builtin.set_fact:
         ee_image: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:{{ ee_image_out.stdout }}"
@@ -101,6 +106,7 @@
         OPENSTACK_RUNNER_IMG: "{{ ee_image }}"
         EDPM_NETWORK_CONFIG_TEMPLATE: "templates/ci/multinode.j2"
         SSH_KEY_FILE: "{{ ansible_user_dir }}/.ssh/id_rsa"
+        EDPM_SSHD_ALLOWED_RANGES: "{{ edpm_sshd_allowed_ranges }}"
 
     - name: Get the logs of EDPM Play
       ansible.builtin.shell: |
