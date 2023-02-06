@@ -10,7 +10,9 @@
 
     - name: Build and push openstack-runner image
       ansible.builtin.shell: |
+        pushd {{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible
         TAG=$(git show-ref --head --hash head)
+        popd
         EEIMG=quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:${TAG}
         make docker-build-ee EEIMG=${EEIMG} EDPM_LOCAL_REPO={{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible
         make docker-push-ee EEIMG=${EEIMG}
@@ -21,11 +23,11 @@
     - name: Show Build and Push openstack-runner image output
       ansible.builtin.debug: var=runner_out.stdout_lines
 
-    - name: Get the registry name
+    - name: Set the openstack-runner image tag
       ansible.builtin.shell: |
         git show-ref --head --hash head
       args:
-        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible"
       register: ee_image_out
 
     - name: Get subnode IP
