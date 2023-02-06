@@ -25,6 +25,7 @@
 - job:
     name: openstack-ansibleee-operator-github-rdo-integration-centos-8-crc-singlenode-centos-9-external-compute
     parent: base-crc
+    nodeset: centos-8-crc-single-node-centos-9-external-compute
     timeout: 10800
     required-projects: *edpm_required_projects
     roles:
