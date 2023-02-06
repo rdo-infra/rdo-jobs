@@ -14,6 +14,7 @@
           oc logs $pod > ${pod}-logs.txt
         done
         popd
+        rsync -r /home/zuul-worker/src/github.com/openstack-k8s-operators/install_yamls/out ./install_yamls_out
       args:
         chdir: "{{ ansible_user_dir }}/openstack"
       changed_when: true
