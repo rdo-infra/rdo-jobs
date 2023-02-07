@@ -1,4 +1,5 @@
 - hosts: controller
+  gather_facts: false
   tasks:
     - name: Collect pod logs
       ansible.builtin.shell: |
@@ -7,6 +8,8 @@
         chmod -R a+r "{{ ansible_user_dir }}/openstack"
         chown -R {{ ansible_user }}: "{{ ansible_user_dir }}/openstack"
         pushd logs/controller
+        ip a > network.txt
+        ip ro ls >> network.txt
         oc get pods > all_pods.txt
         all_pods=$(oc get pods -o name)
         for pod in $all_pods; do
@@ -22,6 +25,7 @@
       changed_when: true
 
 - hosts: secondary
+  gather_facts: false
   tasks:
     - name: Collect logs from edpm node
       ansible.builtin.shell: |
@@ -29,10 +33,13 @@
         chmod -R a+r "{{ ansible_user_dir }}/openstack"
         chown -R {{ ansible_user }}: "{{ ansible_user_dir }}/openstack"
         pushd openstack/logs
+        ip a > secondary/network.txt
+        ip ro ls >> secondary/network.txt
         rpm -qa > secondary/rpm_qa.txt
         sudo podman images > secondary/podman_images.txt
         sudo cp -r /etc/nftables /var/lib/edpm-config secondary/
         sudo journalctl -p warning -t kernel -o short -g DROPPING --no-pager &> secondary/firewall-drops.txt
+        sudo journalctl -o short --no-pager -u sshd > secondary/sshd.log
         sudo chown -R {{ansible_user}}: secondary
         popd
       args:
@@ -40,6 +47,7 @@
       changed_when: true
 
 - hosts: all
+  gather_facts: false
   tasks:
     - name: Copy files from {{ ansible_user_dir }}/openstack on node
       # ansible.posix.synchronize does not work with zuul-executor
