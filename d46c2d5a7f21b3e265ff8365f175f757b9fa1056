@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f9d6f9c_cdd30235",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2023-02-07T05:59:35Z",
+      "side": 1,
+      "message": "Thank you for working on this, suggested few changes.\nIf we see the logs https://logserver.rdoproject.org/74/46874/5/check/edpm-ansible-github-rdo-integration-centos-8-crc-singlenode-centos-9-external-compute/309225c/logs/controller/pod/\nthere is no nothing in describe.\n\nOne more suggestion, may be we can move the describe logs in a new directory?",
+      "revId": "d46c2d5a7f21b3e265ff8365f175f757b9fa1056",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0fe9d1a_29613e58",
+        "filename": "playbooks/edpm/collect_logs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2023-02-07T05:59:35Z",
+      "side": 1,
+      "message": "```\n oc get glance-operator-controller-manager-7f8b445b64-tlvjj\nerror: the server doesn\u0027t have a resource type \"glance-operator-controller-manager-7f8b445b64-tlvjj\"\n```\nThe correct command is \"oc get pod $pod -o yaml \u003e ${pod}.yaml\"\n```\n[zuul-worker@node-0003538323 edpm-ansible]$ oc get pod deploy-external-dataplane-compute-2vr62 \nNAME                                      READY   STATUS      RESTARTS   AGE\ndeploy-external-dataplane-compute-2vr62   0/1     Completed   0          65m\n```\nI would prefer out as a yaml instead of json.",
+      "range": {
+        "startLine": 15,
+        "startChar": 10,
+        "endLine": 15,
+        "endChar": 35
+      },
+      "revId": "d46c2d5a7f21b3e265ff8365f175f757b9fa1056",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bf4cd8e_4b9597a2",
+        "filename": "playbooks/edpm/collect_logs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2023-02-07T05:59:35Z",
+      "side": 1,
+      "message": "oc describe pod $pod \u003e ${pod}-describe.yaml",
+      "range": {
+        "startLine": 16,
+        "startChar": 10,
+        "endLine": 16,
+        "endChar": 49
+      },
+      "revId": "d46c2d5a7f21b3e265ff8365f175f757b9fa1056",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
