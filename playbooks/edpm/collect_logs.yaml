@@ -31,6 +31,9 @@
         pushd openstack/logs
         rpm -qa > secondary/rpm_qa.txt
         sudo podman images > secondary/podman_images.txt
+        sudo cp -r /etc/nftables /var/lib/edpm-config secondary/
+        sudo journalctl -p warning -t kernel -o short -g DROPPING --no-pager &> secondary/firewall-drops.txt
+        sudo chown -R {{ansible_user}}: secondary
         popd
       args:
         chdir: "{{ ansible_user_dir }}"
