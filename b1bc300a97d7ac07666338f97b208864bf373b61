@@ -33,6 +33,24 @@
       "message": "Awesome work, can we show the logs in the job-output.txt itself?",
       "revId": "b1bc300a97d7ac07666338f97b208864bf373b61",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b573cf39_07c6686a",
+        "filename": "playbooks/edpm/deploy_podified_control_plane.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-02-07T07:38:56Z",
+      "side": 1,
+      "message": "that\u0027s another task I have a card for. It will be... \"annoying\" I guess: with the current way of running everything from within one single script, every outputs are in the ansible.builtin.command (or shell) object stdout/stderr... For instance, this problem will be the same even if we make a call to `oc logs -f \u003cpod\u003e\u0027... Sooo... It needs investigations, and maybe some rethink of the whole script purpose in order to, at least, get the many steps right.\n\nWe may need some custom module that would output the stdout \"live\". We have to take some time to discuss architecture, repositories and so on :).",
+      "parentUuid": "91fda9d4_32841fa1",
+      "revId": "b1bc300a97d7ac07666338f97b208864bf373b61",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
