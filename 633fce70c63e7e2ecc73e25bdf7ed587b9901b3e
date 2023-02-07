@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b9bce28_e67bfe3e",
+        "filename": "playbooks/edpm/deploy_podified_control_plane.yaml",
+        "patchSetId": 9
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-02-07T08:28:02Z",
+      "side": 1,
+      "message": "I think we should set /24 instead, so that we get the actual range ?",
+      "revId": "633fce70c63e7e2ecc73e25bdf7ed587b9901b3e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d313c6c9_a33dc4a2",
+        "filename": "playbooks/edpm/deploy_podified_control_plane.yaml",
+        "patchSetId": 9
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-02-07T08:28:02Z",
+      "side": 1,
+      "message": "we may want to add 0.0.0.0/0 first, so that we avoid lockout.",
+      "revId": "633fce70c63e7e2ecc73e25bdf7ed587b9901b3e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
