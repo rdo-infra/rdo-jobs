@@ -33,6 +33,23 @@
       "message": "we may want to add 0.0.0.0/0 first, so that we avoid lockout.",
       "revId": "633fce70c63e7e2ecc73e25bdf7ed587b9901b3e",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9a1c483_cb503f0f",
+        "filename": "playbooks/edpm/deploy_podified_control_plane.yaml",
+        "patchSetId": 9
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2023-02-07T09:53:21Z",
+      "side": 1,
+      "message": "Thank you Cedric for the review, I tested these values\nand it works here is the logs:\nhttps://logserver.rdoproject.org/59/46859/9/check/edpm-ansible-github-rdo-integration-centos-8-crc-singlenode-centos-9-external-compute/b8dbe4c/logs/controller/pod/deploy-external-dataplane-compute-gwdmg-logs.txt",
+      "revId": "633fce70c63e7e2ecc73e25bdf7ed587b9901b3e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
