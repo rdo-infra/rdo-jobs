@@ -1,4 +1,5 @@
 - hosts: controller
+  gather_facts: false
   tasks:
     - name: Collect pod logs
       ansible.builtin.shell: |
@@ -22,6 +23,7 @@
       changed_when: true
 
 - hosts: secondary
+  gather_facts: false
   tasks:
     - name: Collect logs from edpm node
       ansible.builtin.shell: |
@@ -33,13 +35,28 @@
         sudo podman images > secondary/podman_images.txt
         sudo cp -r /etc/nftables /var/lib/edpm-config secondary/
         sudo journalctl -p warning -t kernel -o short -g DROPPING --no-pager &> secondary/firewall-drops.txt
+        sudo journalctl -o short --no-pager -u sshd > secondary/sshd.log
         sudo chown -R {{ansible_user}}: secondary
         popd
       args:
         chdir: "{{ ansible_user_dir }}"
       changed_when: true
 
+- hosts: controller,secondary
+  gather_facts: false
+  tasks:
+    - name: Gather common information from all nodes
+      changed_when: true
+      ansible.builtin.shell:
+        chdir: "{{ ansible_user_dir }}"
+        cmd: |
+          pushd openstack/logs/{{ ansible_host }}
+          ip a > network.txt
+          ip ro ls >> network.txt
+          popd
+
 - hosts: all
+  gather_facts: false
   tasks:
     - name: Copy files from {{ ansible_user_dir }}/openstack on node
       # ansible.posix.synchronize does not work with zuul-executor
