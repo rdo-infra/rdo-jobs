@@ -2,8 +2,8 @@
 - nodeset:
     name: container-fedora
     nodes:
-      - name: container
-        label: pod-python-f33
+      - name: zuul-worker-f37
+        label: zuul-worker-f37
 
 # Dib centos
 - nodeset:
@@ -27,13 +27,6 @@
 
 - nodeset:
     # status: recommended
-    name: rdo-centos-8
-    nodes:
-      - name: rdo-centos-8
-        label: rdo-centos-8-vexxhost
-
-- nodeset:
-    # status: recommended
     name: rdo-centos-8-stream
     nodes:
       - name: rdo-centos-stream
@@ -45,36 +38,6 @@
     nodes:
       - name: cloud-centos-9-stream
         label: cloud-centos-9-stream
-
-- nodeset:
-    name: rdo-fedora-30
-    nodes:
-      - name: primary
-        label: rdo-fedora-30
-
-- nodeset:
-    name: single-fedora-30-node
-    nodes:
-      - name: primary
-        label: cloud-fedora-30
-
-- nodeset:
-    name: single-fedora-31-node
-    nodes:
-      - name: primary
-        label: cloud-fedora-31
-
-- nodeset:
-    name: single-fedora-32-node
-    nodes:
-      - name: primary
-        label: cloud-fedora-32-vexxhost
-
-- nodeset:
-    name: single-fedora-33-node
-    nodes:
-      - name: primary
-        label: cloud-fedora-33
 
 - nodeset:
     name: single-fedora-rawhide-node
@@ -93,17 +56,6 @@
     nodes:
       - name: primary
         label: upstream-centos-7-vexxhost
-    groups:
-      - name: switch
-        nodes: []
-      - name: peers
-        nodes: []
-
-- nodeset:
-    name: tripleo-ovb-fedora-28-primary
-    nodes:
-      - name: primary
-        label: tripleo-ovb-fedora-28
     groups:
       - name: switch
         nodes: []
@@ -273,14 +225,6 @@
     nodes:
       - name: upstream-centos-7
         label: upstream-centos-7-vexxhost
-
-- nodeset:
-    name: centos-8
-    # status: deprecated, use rdo-centos-8 instead
-    nodes:
-      - name: cloud-centos-8
-        label: cloud-centos-8
-
 
 - nodeset:
     name: upstream-centos-8-vexxhost
