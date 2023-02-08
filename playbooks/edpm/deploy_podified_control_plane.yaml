@@ -56,19 +56,21 @@
         path: "/etc/nodepool/sub_nodes_private"
 
     - name: Get Controller IP
-      ansible.builtin.command: cat /etc/nodepool/node_private
+      ansible.builtin.slurp:
+        path: /etc/nodepool/node_private
       register: controller_ip
-      changed_when: false
 
-    - name: set the EDPM_SSHD_ALLOWED_RANGES range
+    - name: Extract SSH_CONNECTION content
       ansible.builtin.set_fact:
-        edpm_sshd_allowed_ranges: ["0.0.0.0/0", "{{ controller_ip.stdout }}/24"]
-        cacheable: true
+        zuul_worker_ip: >-
+          {% set ssh_env = lookup('env', 'SSH_CONNECTION') | split %}
+          {{ ssh_env[0::2] }}
 
-    - name: Set the EE_Image name
+    - name: Set some EDPM requested variables
       ansible.builtin.set_fact:
         ee_image: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:{{ ee_image_out.stdout }}"
         ee_subnode_ip: "{{ subnode_ip['content'] | b64decode | trim }}"
+        edpm_sshd_allowed_ranges: ["0.0.0.0/0", "{{ zuul_worker_ip }}", "{{ controller_ip['content'] | b64decode | trim }}"]
         cacheable: true
 
     - name: Set the openstack-ansibleee-operator image tag
