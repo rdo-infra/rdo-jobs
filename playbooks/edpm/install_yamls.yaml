@@ -1,0 +1,18 @@
+---
+- hosts: controller
+  tasks:
+    - name: Initialize OC Credentials
+      ansible.builtin.include_role:
+        name: add_crc_creds
+
+    - name: Deploy podified control plane using install_yamls
+      vars:
+        namespace: openstack
+        run_input: true
+        run_crc_storage: true
+        run_openstack_deploy: true
+        create_openstack_cr: true
+        run_script: true
+      ansible.builtin.include_role:
+        name: use_install_yamls
+

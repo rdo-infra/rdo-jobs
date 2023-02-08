@@ -1,0 +1,42 @@
+- hosts: controller
+  tasks:
+    - name: Collect pod logs
+      ansible.builtin.shell: |
+        source ~/.bashrc
+        mkdir -p logs/controller/pod
+        chmod -R a+r "{{ ansible_user_dir }}/openstack"
+        chown -R {{ ansible_user }}: "{{ ansible_user_dir }}/openstack"
+        pushd logs/controller
+        oc get pods > all_pods.txt
+        oc get events > get_events.txt
+        oc get pv > get_pv.txt
+        oc get csv > get_csv.txt
+        all_pods=$(oc get pods -o name)
+        for pod in $all_pods; do
+          echo $pod
+          oc logs $pod > ${pod}-logs.txt
+          oc get -o yaml $pod > ${pod}.yaml
+          oc describe $pod > ${pod}-describe.txt
+        done
+        popd
+        rsync -r /home/zuul-worker/src/github.com/openstack-k8s-operators/install_yamls/out ./install_yamls_out
+      args:
+        chdir: "{{ ansible_user_dir }}/openstack"
+      changed_when: true
+
+- hosts: all
+  tasks:
+    - name: Copy files from {{ ansible_user_dir }}/openstack on node
+      # ansible.posix.synchronize does not work with zuul-executor
+      synchronize:
+        src: '{{ ansible_user_dir }}/openstack/'
+        dest: '{{ zuul.executor.log_root }}'
+        mode: pull
+        copy_links: true
+        verify_host: true
+        rsync_opts:
+          - --include=/etc/**
+          - --include=/conf/**
+          - --include=/logs/**
+          - --include=*/
+          - --prune-empty-dirs
