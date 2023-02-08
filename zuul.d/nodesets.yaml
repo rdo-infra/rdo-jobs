@@ -805,3 +805,9 @@
       - name: subnodes
         nodes:
           - secondary
+
+- nodeset:
+    name: centos-8-crc
+    nodes:
+      - name: controller
+        label: centos-8-stream-crc

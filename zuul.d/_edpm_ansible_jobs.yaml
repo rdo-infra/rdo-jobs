@@ -34,3 +34,23 @@
     run: playbooks/edpm/deploy_podified_control_plane.yaml
     post-run: playbooks/edpm/collect_logs.yaml
     vars: *edpm_vars
+
+- job:
+    name: install-yamls-github-rdo-integration-centos-8-crc
+    parent: base-crc
+    nodeset: centos-8-crc
+    timeout: 10800
+    required-projects:
+      - openstack-k8s-operators/install_yamls
+      - opendev.org/zuul/zuul-jobs
+      - opendev.org/openstack/tripleo-repos
+      - name: openstack-k8s-operators/edpm-ansible
+        override-checkout: main
+      - name: openstack-k8s-operators/openstack-ansibleee-operator
+        override-checkout: main
+      - rdo-jobs
+    roles:
+      - zuul: rdo-jobs
+    run: playbooks/edpm/install_yamls.yaml
+    post-run: playbooks/edpm/podified_collect_logs.yaml
+    vars: *edpm_vars
