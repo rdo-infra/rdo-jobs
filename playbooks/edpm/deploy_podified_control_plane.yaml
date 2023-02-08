@@ -56,19 +56,24 @@
         path: "/etc/nodepool/sub_nodes_private"
 
     - name: Get Controller IP
-      ansible.builtin.command: cat /etc/nodepool/node_private
+      ansible.builtin.slurp:
+        path: /etc/nodepool/node_private
       register: controller_ip
-      changed_when: false
 
-    - name: set the EDPM_SSHD_ALLOWED_RANGES range
+    - name: Set some network related facts
       ansible.builtin.set_fact:
-        edpm_sshd_allowed_ranges: ["0.0.0.0/0", "{{ controller_ip.stdout }}/24"]
-        cacheable: true
+        basic_sshd_allowed_ranges: ["0.0.0.0/0", "{{ controller_ip['content'] | b64decode | trim }}"]
+        zuul_worker_ip: >-
+          {%- set ssh_env = lookup('env', 'SSH_CONNECTION') | ansible.builtin.split -%}
+          {{ ssh_env[0::2] }}
 
-    - name: Set the EE_Image name
+    - name: Set some EDPM requested variables
       ansible.builtin.set_fact:
         ee_image: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:{{ ee_image_out.stdout }}"
         ee_subnode_ip: "{{ subnode_ip['content'] | b64decode | trim }}"
+        edpm_sshd_allowed_ranges: >-
+          {%- set full_range = basic_sshd_allowed_ranges + zuul_worker_ip %}
+          {{ full_range }}
         cacheable: true
 
     - name: Set the openstack-ansibleee-operator image tag
@@ -105,6 +110,7 @@
     - name: Debug some values
       debug:
         msg: |
+          zuul_worker_ip: "{{ zuul_worker_ip }}"
           EDPM_COMPUTE_IP: "{{ ee_subnode_ip }}"
           OPENSTACK_RUNNER_IMG: "{{ ee_image }}"
           EDPM_NETWORK_CONFIG_TEMPLATE: "templates/ci/multinode.j2"
@@ -145,5 +151,5 @@
 
     - name: Get the logs of EDPM Play
       ansible.builtin.shell:
-        cmd: "oc logs -f {{ deploy_external_pod_name.stdout |trim }}"
+        cmd: "oc logs {{ deploy_external_pod_name.stdout |trim }}"
         executable: /bin/bash
