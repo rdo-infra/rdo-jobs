@@ -2,13 +2,12 @@
 # To Run: python makefile_to_install_yamls.py <path to install_yamls makefile>
 import os
 import sys
-import yaml
 
 script_path = os.path.realpath(os.path.dirname(__file__))
-additional_commands_file = os.path.join(script_path, 'additional_commands_between_makefile_target.yaml')
 roles_dir = os.path.join(os.path.normpath(script_path + os.sep + os.pardir), 'roles', 'use_install_yamls')
 template_file = os.path.join(roles_dir, 'templates', 'install_yamls.sh.j2')
 roles_var_file = os.path.join(roles_dir, 'defaults', 'main.yaml')
+command_after_makefile_vars_file = os.path.join(roles_dir, 'vars', 'command_after_make_target.yaml')
 make_file = sys.argv[1]
 
 # Content to dump in defaults/main.yaml
@@ -23,21 +22,12 @@ command_jinja_vars = []
 # Jinja conditionals to run cleanup commands
 command_cleanup_jinja_vars = []
 
+# Content to dump in vars/command_after_make_target.yaml
+command_after_makefile_vars = []
+
 # Read the content of MakeFile
 with open(make_file) as f:
     content = f.read().split('\n')
-
-# Read the content of additional_commands_between_makefile_target.yaml
-with open(additional_commands_file) as yd:
-    yaml_data = yaml.safe_load(yd)
-
-# Function to look for specific yaml key and return the
-# command value
-def additional_command_between_make_target(key_name, data=yaml_data):
-    if key_name in data:
-        return data[key_name]
-    else:
-        return '\n'
 
 # Seperate vars in order to export it
 for data in content:
@@ -65,54 +55,51 @@ for data in content:
 # Set the value of run_{command} to true
 # run_{command}: false''')
 
+        command_after_makefile_vars.append(f'''
+# Add command to be executed after **make {command}**
+# uncomment command_after_make_{command} var: | and add the command the below that''')
+
         if command.endswith('cleanup'):
             command_cleanup_jinja_vars.append(f'''
 {{% if run_{command} is defined and run_{command} | bool %}}
 # set run_{command} var to true to run **make {command}**
 make {command}
-{additional_command_between_make_target(command)}
+
+# Command to run after command_after_make_{command} var
+{{% if command_after_make_{command} is defined %}}
+{{{{ command_after_make_{command} }}}}
+{{% endif %}}
+
 {{% endif %}}''')
+
         else:
             command_jinja_vars.append(f'''
 {{% if run_{command} is defined and run_{command} | bool %}}
 # set run_{command} var to true to run **make {command}**
 make {command}
-{additional_command_between_make_target(command)}
+
+# Command to run after command_after_make_{command} var
+{{% if command_after_make_{command} is defined %}}
+{{{{ command_after_make_{command} }}}}
+{{% endif %}}
+
 {{% endif %}}''')
 
 # Reverse the order of cleanup command
 command_cleanup_jinja_vars.reverse()
 
-# Additional Vars which are not defined in makefile
-additional_vars = [
-"""
-# To run *make crc_storage* command
-# set run_crc_storage to true
-
-# To run *make crc_storage_cleanup* command
-# set run_crc_storage_cleanup to true
-"""]
-
-additional_commands = ["""
-{% if run_crc_storage is defined and run_crc_storage| bool %}
-make crc_storage
-{% endif%}
-"""]
-
-additional_cleanup_commands = ["""
-{% if run_crc_storage_cleanup is defined and run_crc_storage_cleanup| bool %}
-make crc_storage_cleanup
-{% endif%}
-"""]
-
 # Merge list
-command_list = export_jinja_vars + additional_commands + command_jinja_vars + command_cleanup_jinja_vars + additional_cleanup_commands
+command_list = export_jinja_vars + command_jinja_vars + command_cleanup_jinja_vars
 
 ## Write content in the file
 # defaults/main.yaml
 with open(roles_var_file, 'w') as f:
-    f.write('\n'.join(roles_vars + additional_vars))
+    f.write('\n'.join(roles_vars))
 
 # templates/run_install_yamls.sh.j2
 with open(template_file, 'w') as f:
     f.write('\n'.join(command_list))
+
+# vars/command_after_make_target.yaml
+with open(command_after_makefile_vars_file, 'w') as f:
+    f.write('\n'.join(command_after_makefile_vars))
