@@ -18,6 +18,23 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfc2ef15_249a295a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-02-08T07:55:37Z",
+      "side": 1,
+      "message": "needs rebase for merge conflict",
+      "revId": "9ffc98b3df0f74dc6a403639848ab65b124b9252",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96c3d608_ac584e10",
@@ -31,6 +48,29 @@
       "writtenOn": "2023-02-07T19:11:58Z",
       "side": 1,
       "message": "why would you put this as false?",
+      "revId": "9ffc98b3df0f74dc6a403639848ab65b124b9252",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "483768ed_dd847589",
+        "filename": "playbooks/edpm/collect_logs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-02-08T07:55:37Z",
+      "side": 1,
+      "message": "is that dir already available for the crc/controller node. i see we explicitly create it in the play above this one for the secondary         mkdir -p openstack/logs/secondary",
+      "range": {
+        "startLine": 52,
+        "startChar": 24,
+        "endLine": 52,
+        "endChar": 27
+      },
       "revId": "9ffc98b3df0f74dc6a403639848ab65b124b9252",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
