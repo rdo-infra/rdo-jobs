@@ -115,7 +115,6 @@
 
     - name: Deploy podified control plane using install_yamls
       vars:
-        storage_class: standard
         namespace: openstack
         run_crc_storage: true
         run_openstack_deploy: true

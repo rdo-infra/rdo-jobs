@@ -41,6 +41,24 @@
 ## The default value of openstack_cr is ${OPERATOR_BASE_DIR}/openstack-operator/${OPENSTACK_CTLPLANE}
 # openstack_cr: ${OPERATOR_BASE_DIR}/openstack-operator/${OPENSTACK_CTLPLANE}
 
+## The default value of infra_img is quay.io/openstack-k8s-operators/infra-operator-index:latest
+# infra_img: quay.io/openstack-k8s-operators/infra-operator-index:latest
+
+## The default value of infra_repo is https://github.com/openstack-k8s-operators/infra-operator.git
+# infra_repo: https://github.com/openstack-k8s-operators/infra-operator.git
+
+## The default value of infra_branch is master
+# infra_branch: master
+
+## The default value of memcached is config/samples/memcached_v1beta1_memcached.yaml
+# memcached: config/samples/memcached_v1beta1_memcached.yaml
+
+## The default value of memcached_cr is ${OPERATOR_BASE_DIR}/infra-operator/${MEMCACHED}
+# memcached_cr: ${OPERATOR_BASE_DIR}/infra-operator/${MEMCACHED}
+
+## The default value of memcached_img is ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-memcached:current-tripleo
+# memcached_img: ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-memcached:current-tripleo
+
 ## The default value of keystone_img is quay.io/openstack-k8s-operators/keystone-operator-index:latest
 # keystone_img: quay.io/openstack-k8s-operators/keystone-operator-index:latest
 
@@ -146,6 +164,27 @@
 ## The default value of ovnnorthd_cr is ${OPERATOR_BASE_DIR}/ovn-operator/${OVNNORTHD}
 # ovnnorthd_cr: ${OPERATOR_BASE_DIR}/ovn-operator/${OVNNORTHD}
 
+## The default value of ovn_kuttl_conf is ${OPERATOR_BASE_DIR}/ovn-operator/kuttl-test.yaml
+# ovn_kuttl_conf: ${OPERATOR_BASE_DIR}/ovn-operator/kuttl-test.yaml
+
+## The default value of ovn_kuttl_dir is ${OPERATOR_BASE_DIR}/ovn-operator/tests/kuttl/tests
+# ovn_kuttl_dir: ${OPERATOR_BASE_DIR}/ovn-operator/tests/kuttl/tests
+
+## The default value of ovs_img is quay.io/openstack-k8s-operators/ovs-operator-index:latest
+# ovs_img: quay.io/openstack-k8s-operators/ovs-operator-index:latest
+
+## The default value of ovs_repo is https://github.com/openstack-k8s-operators/ovs-operator.git
+# ovs_repo: https://github.com/openstack-k8s-operators/ovs-operator.git
+
+## The default value of ovs_branch is main
+# ovs_branch: main
+
+## The default value of ovs is config/samples/ovs_v1beta1_ovs.yaml
+# ovs: config/samples/ovs_v1beta1_ovs.yaml
+
+## The default value of ovs_cr is ${OPERATOR_BASE_DIR}/ovs-operator/${OVS}
+# ovs_cr: ${OPERATOR_BASE_DIR}/ovs-operator/${OVS}
+
 ## The default value of neutron_img is quay.io/openstack-k8s-operators/neutron-operator-index:latest
 # neutron_img: quay.io/openstack-k8s-operators/neutron-operator-index:latest
 
@@ -227,6 +266,12 @@
 ## The default value of octaviaapi_img is ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-octavia-api:current-tripleo
 # octaviaapi_img: ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-octavia-api:current-tripleo
 
+## The default value of octavia_kuttl_conf is ${OPERATOR_BASE_DIR}/octavia-operator/kuttl-test.yaml
+# octavia_kuttl_conf: ${OPERATOR_BASE_DIR}/octavia-operator/kuttl-test.yaml
+
+## The default value of octavia_kuttl_dir is ${OPERATOR_BASE_DIR}/octavia-operator/tests/kuttl/tests
+# octavia_kuttl_dir: ${OPERATOR_BASE_DIR}/octavia-operator/tests/kuttl/tests
+
 ## The default value of nova_img is quay.io/openstack-k8s-operators/nova-operator-index:latest
 # nova_img: quay.io/openstack-k8s-operators/nova-operator-index:latest
 
@@ -236,17 +281,17 @@
 ## The default value of nova_branch is master
 # nova_branch: master
 
-## The default value of nova is config/samples/nova_v1beta1_nova.yaml
-# nova: config/samples/nova_v1beta1_nova.yaml
+## The default value of nova is config/samples/nova_v1beta1_nova_collapsed_cell.yaml
+# nova: config/samples/nova_v1beta1_nova_collapsed_cell.yaml
 
 ## The default value of nova_cr is ${OPERATOR_BASE_DIR}/nova-operator/${NOVA}
 # nova_cr: ${OPERATOR_BASE_DIR}/nova-operator/${NOVA}
 
-## The default value of ansibleee_img is quay.io/openstack-k8s-operators/ansibleee-operator-index:main-latest
-# ansibleee_img: quay.io/openstack-k8s-operators/ansibleee-operator-index:main-latest
+## The default value of ansibleee_img is quay.io/openstack-k8s-operators/openstack-ansibleee-operator-index:latest
+# ansibleee_img: quay.io/openstack-k8s-operators/openstack-ansibleee-operator-index:latest
 
-## The default value of ansibleee_repo is https://github.com/openstack-k8s-operators/ansibleee-operator.git
-# ansibleee_repo: https://github.com/openstack-k8s-operators/ansibleee-operator.git
+## The default value of ansibleee_repo is https://github.com/openstack-k8s-operators/openstack-ansibleee-operator
+# ansibleee_repo: https://github.com/openstack-k8s-operators/openstack-ansibleee-operator
 
 ## The default value of ansibleee_branch is main
 # ansibleee_branch: main
@@ -256,6 +301,18 @@
 
 ## The default value of ansibleee_cr is ${OPERATOR_BASE_DIR}/ansibleee-operator/${ANSIBLEEE}
 # ansibleee_cr: ${OPERATOR_BASE_DIR}/ansibleee-operator/${ANSIBLEEE}
+
+## The default value of baremetal_img is quay.io/openstack-k8s-operators/openstack-baremetal-operator-index:latest
+# baremetal_img: quay.io/openstack-k8s-operators/openstack-baremetal-operator-index:latest
+
+## The default value of baremetal_repo is https://github.com/openstack-k8s-operators/openstack-baremetal-operator.git
+# baremetal_repo: https://github.com/openstack-k8s-operators/openstack-baremetal-operator.git
+
+## The default value of baremetal_branch is master
+# baremetal_branch: master
+
+## The default value of ceph_img is quay.io/ceph/daemon:latest-quincy
+# ceph_img: quay.io/ceph/daemon:latest-quincy
 
 # For running **make all**
 # Set the value of run_all to true
@@ -324,6 +381,30 @@
 # For running **make openstack_crds**
 # Set the value of run_openstack_crds to true
 # run_openstack_crds: false
+
+# For running **make infra_prep**
+# Set the value of run_infra_prep to true
+# run_infra_prep: false
+
+# For running **make infra**
+# Set the value of run_infra to true
+# run_infra: false
+
+# For running **make infra_cleanup**
+# Set the value of run_infra_cleanup to true
+# run_infra_cleanup: false
+
+# For running **make memcached_deploy_prep**
+# Set the value of run_memcached_deploy_prep to true
+# run_memcached_deploy_prep: false
+
+# For running **make memcached_deploy**
+# Set the value of run_memcached_deploy to true
+# run_memcached_deploy: false
+
+# For running **make memcached_deploy_cleanup**
+# Set the value of run_memcached_deploy_cleanup to true
+# run_memcached_deploy_cleanup: false
 
 # For running **make keystone_prep**
 # Set the value of run_keystone_prep to true
@@ -449,6 +530,30 @@
 # Set the value of run_ovn_deploy_cleanup to true
 # run_ovn_deploy_cleanup: false
 
+# For running **make ovs_prep**
+# Set the value of run_ovs_prep to true
+# run_ovs_prep: false
+
+# For running **make ovs**
+# Set the value of run_ovs to true
+# run_ovs: false
+
+# For running **make ovs_cleanup**
+# Set the value of run_ovs_cleanup to true
+# run_ovs_cleanup: false
+
+# For running **make ovs_deploy_prep**
+# Set the value of run_ovs_deploy_prep to true
+# run_ovs_deploy_prep: false
+
+# For running **make ovs_deploy**
+# Set the value of run_ovs_deploy to true
+# run_ovs_deploy: false
+
+# For running **make ovs_deploy_cleanup**
+# Set the value of run_ovs_deploy_cleanup to true
+# run_ovs_deploy_cleanup: false
+
 # For running **make neutron_prep**
 # Set the value of run_neutron_prep to true
 # run_neutron_prep: false
@@ -565,6 +670,10 @@
 # Set the value of run_octavia_deploy to true
 # run_octavia_deploy: false
 
+# For running **make octavia_deploy_validate**
+# Set the value of run_octavia_deploy_validate to true
+# run_octavia_deploy_validate: false
+
 # For running **make octavia_deploy_cleanup**
 # Set the value of run_octavia_deploy_cleanup to true
 # run_octavia_deploy_cleanup: false
@@ -593,13 +702,37 @@
 # Set the value of run_nova_deploy_cleanup to true
 # run_nova_deploy_cleanup: false
 
+# For running **make mariadb_kuttl_run**
+# Set the value of run_mariadb_kuttl_run to true
+# run_mariadb_kuttl_run: false
+
 # For running **make mariadb_kuttl**
 # Set the value of run_mariadb_kuttl to true
 # run_mariadb_kuttl: false
 
+# For running **make keystone_kuttl_run**
+# Set the value of run_keystone_kuttl_run to true
+# run_keystone_kuttl_run: false
+
 # For running **make keystone_kuttl**
 # Set the value of run_keystone_kuttl to true
 # run_keystone_kuttl: false
+
+# For running **make octavia_kuttl_run**
+# Set the value of run_octavia_kuttl_run to true
+# run_octavia_kuttl_run: false
+
+# For running **make octavia_kuttl**
+# Set the value of run_octavia_kuttl to true
+# run_octavia_kuttl: false
+
+# For running **make ovn_kuttl_run**
+# Set the value of run_ovn_kuttl_run to true
+# run_ovn_kuttl_run: false
+
+# For running **make ovn_kuttl**
+# Set the value of run_ovn_kuttl to true
+# run_ovn_kuttl: false
 
 # For running **make ansibleee_prep**
 # Set the value of run_ansibleee_prep to true
@@ -613,8 +746,22 @@
 # Set the value of run_ansibleee_cleanup to true
 # run_ansibleee_cleanup: false
 
-# To run *make crc_storage* command
-# set run_crc_storage to true
+# For running **make baremetal_prep**
+# Set the value of run_baremetal_prep to true
+# run_baremetal_prep: false
 
-# To run *make crc_storage_cleanup* command
-# set run_crc_storage_cleanup to true
+# For running **make baremetal**
+# Set the value of run_baremetal to true
+# run_baremetal: false
+
+# For running **make baremetal_cleanup**
+# Set the value of run_baremetal_cleanup to true
+# run_baremetal_cleanup: false
+
+# For running **make ceph**
+# Set the value of run_ceph to true
+# run_ceph: false
+
+# For running **make ceph_cleanup**
+# Set the value of run_ceph_cleanup to true
+# run_ceph_cleanup: false
