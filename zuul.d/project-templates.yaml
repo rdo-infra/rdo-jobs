@@ -742,6 +742,7 @@
 
 - project-template:
     name: centos-opstools
+    queue: centos-release-opstools
     description: |
       Jobs that are used by opstools projects.
     check:
@@ -752,7 +753,6 @@
         - centos-opstools-collectd-5-distgit-cbs-validate-centos8s
         - centos-opstools-collectd-5-distgit-cbs-validate-centos9s
     gate:
-      queue: centos-release-opstools
       jobs:
         - centos-opstools-rpmlint
         - centos-opstools-rpmbuild-centos8s
@@ -762,10 +762,10 @@
 
 - project-template:
     name: centos-opstools-unsupported
+    queue: centos-release-opstools
     check:
       jobs:
         - opstools-deprecated-warning
     gate:
-      queue: centos-release-opstools
       jobs:
         - opstools-deprecated-warning
