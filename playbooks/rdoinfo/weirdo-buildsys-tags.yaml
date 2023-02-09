@@ -89,17 +89,16 @@
           {% endfor %}
       changed_when: true
 
-    - name: install tox in CentOS 9
-      shell:
-        cmd: |
-          sudo pip install tox
-      when: centos_release == "centos9"
-
     - name: install rdopkg dependencies
       become: true
       shell:
         cmd: |
           dnf install -y python3-pip rpmlint python3-rpm {{ 'python3-pyOpenSSL' if centos_release == "centos8" }}
+
+    - name: install tox
+      shell:
+        cmd: |
+          sudo pip install tox
 
     - name: pip install rdopkg
       # noqa 403
