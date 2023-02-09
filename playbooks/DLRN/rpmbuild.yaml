@@ -12,6 +12,11 @@
             sed -e "s|^#baseurl=http://mirror.centos.org/\$contentdir|baseurl=$BASE|" -i scripts/centos*.cfg # noqa 303
         chdir: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
 
+    - import_role:
+        name: ensure-tox
+      vars:
+        ensure_global_symlinks: true
+
     - name: Set up mock configuration
       shell:
         cmd: |

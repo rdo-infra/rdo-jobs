@@ -2,6 +2,11 @@
 - hosts: all
   name: DLRN-build-tripleo run playbook
   tasks:
+    - import_role:
+        name: ensure-tox
+      vars:
+        ensure_global_symlinks: true
+
     - name: Setup deps repo for mock
       get_url:
         url: https://trunk.rdoproject.org/centos8-master/delorean-deps.repo
