@@ -8,47 +8,75 @@
       ansible.builtin.include_role:
         name: add_crc_creds
 
-    - name: Build and push openstack-runner image
-      ansible.builtin.shell: |
-        pushd {{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible
-        git log -1
-        TAG=$(git show-ref --head --hash head)
-        popd
-        EEIMG=quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:${TAG}
-        make docker-build-ee EEIMG=${EEIMG} EDPM_LOCAL_REPO={{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible
-        make docker-push-ee EEIMG=${EEIMG}
-      args:
-        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
-      register: ee_runner_out
+    - name: Get git tag for image tagging
+      register: edpm_ansible_tag
+      ansible.builtin.command:
+        cmd: git show-ref --head --hash head
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible"
 
-    - name: Show Build and Push openstack-runner image output
-      ansible.builtin.debug: var=ee_runner_out.stdout_lines
+    - name: Build and push openstack-runner image
+      block:
+        - name: Call docker-build-ee
+          community.general.make:
+            chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
+            target: docker-build-ee
+            params:
+              EEIMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:{{ edpm_ansible_tag.stdout|trim }}"
+              EDPM_LOCAL_REPO: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible"
+
+        - name: Call docker-push-ee
+          community.general.make:
+            chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
+            target: docker-push-ee
+            params:
+              EEIMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:{{ edpm_ansible_tag.stdout|trim }}"
 
     - name: Build and push openstack-ansibleee-operator bundle image
-      ansible.builtin.shell: |
-        podman pull docker.io/library/golang:1.19
-        git log -1
-        TAG=$(git show-ref --head --hash head)
-        IMAGE_TAG_BASE=quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator
-        make docker-build docker-push IMG=IMG=${IMAGE_TAG_BASE}:${TAG}
-        make bundle IMG=${IMAGE_TAG_BASE}:${TAG}
-        make bundle-build BUNDLE_IMG=${IMAGE_TAG_BASE}-bundle:${TAG}
-        podman push ${IMAGE_TAG_BASE}-bundle:${TAG}
-        make catalog-build CATALOG_IMG=${IMAGE_TAG_BASE}-index:${TAG}
-        make catalog-push CATALOG_IMG=${IMAGE_TAG_BASE}-index:${TAG}
-      args:
-        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
-      register: runner_out
+      block:
+        - name: Get golang container image
+          containers.podman.podman_image:
+            name: docker.io/library/golang:1.19
 
-    - name: Show Build and Push openstack-runner image output
-      ansible.builtin.debug: var=runner_out.stdout_lines
+        - name: Call docker-build docker-push
+          community.general.make:
+            chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
+            target: docker-build docker-push
+            params:
+              IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator:{{ edpm_ansible_tag.stdout|trim }}"
 
-    - name: Set the openstack-runner image tag
-      ansible.builtin.shell: |
-        git show-ref --head --hash head
-      args:
-        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible"
-      register: ee_image_out
+        - name: Call bundle
+          community.general.make:
+            chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
+            target: bundle
+            params:
+              IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator:{{ edpm_ansible_tag.stdout|trim }}"
+
+        - name: Call bundle-build
+          community.general.make:
+            chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
+            target: bundle-build
+            params:
+              BUNDLE_IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator-bundle:{{ edpm_ansible_tag.stdout|trim }}"
+
+        - name: Push bundle image
+          containers.podman.podman_image:
+            name: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator-bundle:{{ edpm_ansible_tag.stdout|trim }}"
+            pull: false
+            push: true
+
+        - name: Call catalog-build
+          community.general.make:
+            chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
+            target: catalog-build
+            params:
+              CATALOG_IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator-index:{{ edpm_ansible_tag.stdout|trim }}"
+
+        - name: Call catalog-push
+          community.general.make:
+            chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
+            target: catalog-push
+            params:
+              CATALOG_IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator-index:{{ edpm_ansible_tag.stdout|trim }}"
 
     - name: Get subnode IP
       register: subnode_ip
@@ -67,7 +95,7 @@
 
     - name: Set the EE_Image name
       ansible.builtin.set_fact:
-        ee_image: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:{{ ee_image_out.stdout }}"
+        ee_image: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:{{ edpm_ansible_tag.stdout|trim }}"
         ee_subnode_ip: "{{ subnode_ip['content'] | b64decode | trim }}"
         cacheable: true
 
@@ -112,15 +140,15 @@
           EDPM_SSHD_ALLOWED_RANGES: "{{ edpm_sshd_allowed_ranges }}"
 
     - name: Run EDPM Play
-      ansible.builtin.command:
-        cmd: make edpm_play
+      community.general.make:
+        target: edpm_play
         chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/devsetup"
-      environment:
-        EDPM_COMPUTE_IP: "{{ ee_subnode_ip }}"
-        OPENSTACK_RUNNER_IMG: "{{ ee_image }}"
-        EDPM_NETWORK_CONFIG_TEMPLATE: "templates/ci/multinode.j2"
-        SSH_KEY_FILE: "{{ ansible_user_dir }}/.ssh/id_rsa"
-        EDPM_SSHD_ALLOWED_RANGES: "{{ edpm_sshd_allowed_ranges }}"
+        params:
+          EDPM_COMPUTE_IP: "{{ ee_subnode_ip }}"
+          OPENSTACK_RUNNER_IMG: "{{ ee_image }}"
+          EDPM_NETWORK_CONFIG_TEMPLATE: "templates/ci/multinode.j2"
+          SSH_KEY_FILE: "{{ ansible_user_dir }}/.ssh/id_rsa"
+          EDPM_SSHD_ALLOWED_RANGES: "{{ edpm_sshd_allowed_ranges }}"
 
     - name: Get deploy-external-dataplane-compute pod name
       register: deploy_external_pod_name
