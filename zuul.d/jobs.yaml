@@ -68,7 +68,7 @@
       Dependency check with "rdopkg reqcheck"
     parent: base
     run: playbooks/reqcheck/run.yaml
-    nodeset: container-fedora
+    nodeset: zuul-worker-f37
     required-projects:
       - rdopkg
 
