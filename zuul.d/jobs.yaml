@@ -61,6 +61,8 @@
     parent: rdo-molecule-base
     vars:
       mol_scenario: container-login
+    required-projects:
+      - opendev.org/openstack/tripleo-ansible
 
 - job:
     name: rdopkg-reqcheck
