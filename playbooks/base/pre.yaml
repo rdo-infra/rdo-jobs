@@ -21,13 +21,13 @@
     - name: Use vexxhost nameserver
       become: true
       when: nodepool.cloud in ["vexxhost-nodepool-tripleo"]
-      shell: |
-        echo "nameserver {{ item }}" >> /etc/resolv.conf
-      with_items:
-        - 38.102.83.3
-        - 38.102.83.2
-        - 38.102.83.68
-
+      copy:
+        content: |
+          # MANAGED BY ANSIBLE
+          nameserver 38.102.83.3
+          nameserver 38.102.83.2
+          nameserver 38.102.83.68
+        dest: /etc/resolv.conf
 
     - import_role:
         name: configure-mirrors
