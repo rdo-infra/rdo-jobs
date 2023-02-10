@@ -15,21 +15,14 @@
         chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible"
 
     - name: Build and push openstack-runner image
-      block:
-        - name: Call docker-build-ee
-          community.general.make:
-            chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
-            target: docker-build-ee
-            params:
-              EEIMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:{{ edpm_ansible_tag.stdout|trim }}"
-              EDPM_LOCAL_REPO: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible"
-
-        - name: Call docker-push-ee
-          community.general.make:
-            chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
-            target: docker-push-ee
-            params:
-              EEIMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:{{ edpm_ansible_tag.stdout|trim }}"
+      containers.podman.podman_image:
+        name: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:{{ edpm_ansible_tag.stdout|trim }}"
+        path: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible/openstack_ansibleee"
+        build:
+          volume:
+            - "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible:/var/tmp/edpm-ansible:z"
+          extra_args: "EDPM_LOCAL_REPO={{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible"
+        push: true
 
     - name: Build and push openstack-ansibleee-operator bundle image
       block:
