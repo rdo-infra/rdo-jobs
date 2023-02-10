@@ -12,7 +12,7 @@
           sudo dnf install -y python3-virtualenv
           virtualenv --system-site-packages {{ ansible_user_dir }}/.venv
           source {{ ansible_user_dir }}/.venv/bin/activate
-          pushd {{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/rdopkg'].src_dir }}/
+          pushd /workspace/{{ zuul.projects['softwarefactory-project.io/rdopkg'].src_dir }}/
           pip install .
           popd
       args:
@@ -35,7 +35,7 @@
         cmd: |
           set -e
           source {{ ansible_user_dir }}/.venv/bin/activate
-          pushd {{ ansible_user_dir }}/{{ zuul.project.src_dir }}
+          pushd /workspace/{{ zuul.project.src_dir }}
           git remote add upstream {{ upstream.stdout }}
           git fetch upstream
           rdopkg reqcheck --strict
