@@ -13,12 +13,13 @@
         pushd {{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible
         git log -1
         TAG=$(git show-ref --head --hash head)
+        EDPM_LOCAL_REPO={{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible
         popd
         EEIMG=quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:${TAG}
-        make docker-build-ee EEIMG=${EEIMG} EDPM_LOCAL_REPO={{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible
-        make docker-push-ee EEIMG=${EEIMG}
+        podman build -t ${EEIMG} . --volume ${EDPM_LOCAL_REPO}:/var/tmp/edpm-ansible:z --build-arg EDPM_LOCAL_REPO=${EDPM_LOCAL_REPO}
+        podman push ${EEIMG}
       args:
-        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible/openstack_ansibleee"
       register: ee_runner_out
 
     - name: Show Build and Push openstack-runner image output
