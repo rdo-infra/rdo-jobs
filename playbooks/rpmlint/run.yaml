@@ -283,6 +283,10 @@
           # Exceptions for cinder
           addFilter("python3-cinder-common.noarch: E: explicit-lib-dependency libcgroup-tools")
 
+          # Exceptions for glare
+          addFilter("python3-glare.noarch: W: obsolete-not-provided python39-glare")
+          addFilter("python3-glare-tests.noarch: W: obsolete-not-provided python39-glare-tests")
+
           # Exceptions for tripleo-repos
           # rpmlint detects tripleo-yum-config as devel file as it uses regex that includes bin/.+-config
           addFilter("python3-tripleo-repos.noarch: W: devel-file-in-non-devel-package /usr/bin/tripleo-yum-config")
