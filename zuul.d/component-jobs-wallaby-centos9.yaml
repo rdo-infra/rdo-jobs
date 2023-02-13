@@ -743,6 +743,7 @@
       VF OVB job for wallaby branch. Inheriting from the master job and overriding release
       specifying parameters.
     vars:
+      execute_full_vf_catalogue: true
       release: wallaby
       branch_override: 'stable/wallaby'
 
