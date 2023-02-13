@@ -21,6 +21,7 @@
       registry_login_enabled: true
       push_registry: quay.rdoproject.org
       quay_login_secret_name: quay_nextgen_zuulgithubci
+      openstack_img: quay.io/openstack-k8s-operators/openstack-operator-index:61fab31faa7bb0b72d09578c679d092415a696b1
 
 - job:
     name: openstack-ansibleee-operator-github-rdo-integration-centos-8-crc-singlenode-centos-9-external-compute
