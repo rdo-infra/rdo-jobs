@@ -31,37 +31,50 @@
           containers.podman.podman_image:
             name: docker.io/library/golang:1.19
 
+        - name: Set the openstack-ansibleee-operator image tag
+          ansible.builtin.shell: |
+            git show-ref --head --hash head
+          args:
+            chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
+          register: ee_operator_out
+
+        - name: Set the openstack-ansibleee-operator image
+          ansible.builtin.set_fact:
+            ansibleee_img: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator-index:{{ ee_operator_out.stdout }}"
+            ansibleee_repo: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
+            cacheable: true
+
         - name: Call docker-build
           community.general.make:
             chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
             target: docker-build
             params:
-              IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator:{{ edpm_ansible_tag.stdout|trim }}"
+              IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator:{{ ee_operator_out.stdout|trim }}"
 
         - name: Call docker-push
           community.general.make:
             chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
             target: docker-push
             params:
-              IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator:{{ edpm_ansible_tag.stdout|trim }}"
+              IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator:{{ ee_operator_out.stdout|trim }}"
 
         - name: Call bundle
           community.general.make:
             chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
             target: bundle
             params:
-              IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator:{{ edpm_ansible_tag.stdout|trim }}"
+              IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator:{{ ee_operator_out.stdout|trim }}"
 
         - name: Call bundle-build
           community.general.make:
             chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
             target: bundle-build
             params:
-              BUNDLE_IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator-bundle:{{ edpm_ansible_tag.stdout|trim }}"
+              BUNDLE_IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator-bundle:{{ ee_operator_out.stdout|trim }}"
 
         - name: Push bundle image
           containers.podman.podman_image:
-            name: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator-bundle:{{ edpm_ansible_tag.stdout|trim }}"
+            name: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator-bundle:{{ ee_operator_out.stdout|trim }}"
             pull: false
             push: true
 
@@ -70,14 +83,14 @@
             chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
             target: catalog-build
             params:
-              CATALOG_IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator-index:{{ edpm_ansible_tag.stdout|trim }}"
+              CATALOG_IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator-index:{{ ee_operator_out.stdout|trim }}"
 
         - name: Call catalog-push
           community.general.make:
             chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
             target: catalog-push
             params:
-              CATALOG_IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator-index:{{ edpm_ansible_tag.stdout|trim }}"
+              CATALOG_IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator-index:{{ ee_operator_out.stdout|trim }}"
 
     - name: Get subnode IP
       register: subnode_ip
@@ -98,19 +111,6 @@
       ansible.builtin.set_fact:
         ee_image: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:{{ edpm_ansible_tag.stdout|trim }}"
         ee_subnode_ip: "{{ subnode_ip['content'] | b64decode | trim }}"
-        cacheable: true
-
-    - name: Set the openstack-ansibleee-operator image tag
-      ansible.builtin.shell: |
-        git show-ref --head --hash head
-      args:
-        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
-      register: ee_operator_out
-
-    - name: Set the openstack-ansibleee-operator image
-      ansible.builtin.set_fact:
-        ansibleee_img: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator-index:{{ ee_operator_out.stdout }}"
-        ansibleee_repo: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
         cacheable: true
 
     - name: Deploy podified control plane using install_yamls
