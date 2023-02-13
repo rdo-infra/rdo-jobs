@@ -122,6 +122,7 @@
         create_openstack_cr: true
         run_script: true
         run_ansibleee: true
+        openstack_img: quay.io/openstack-k8s-operators/openstack-operator-index:61fab31faa7bb0b72d09578c679d092415a696b1
       ansible.builtin.include_role:
         name: use_install_yamls
 
