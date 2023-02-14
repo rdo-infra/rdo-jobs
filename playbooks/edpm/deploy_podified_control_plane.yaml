@@ -25,73 +25,6 @@
         pull: false
         push: true
 
-    - name: Build and push openstack-ansibleee-operator bundle image
-      block:
-        - name: Get golang container image
-          containers.podman.podman_image:
-            name: docker.io/library/golang:1.19
-
-        - name: Set the openstack-ansibleee-operator image tag
-          ansible.builtin.shell: |
-            git show-ref --head --hash head
-          args:
-            chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
-          register: ee_operator_out
-
-        - name: Set the openstack-ansibleee-operator image
-          ansible.builtin.set_fact:
-            ansibleee_img: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator-index:{{ ee_operator_out.stdout }}"
-            ansibleee_repo: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
-            cacheable: true
-
-        - name: Call docker-build
-          community.general.make:
-            chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
-            target: docker-build
-            params:
-              IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator:{{ ee_operator_out.stdout|trim }}"
-
-        - name: Call docker-push
-          community.general.make:
-            chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
-            target: docker-push
-            params:
-              IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator:{{ ee_operator_out.stdout|trim }}"
-
-        - name: Call bundle
-          community.general.make:
-            chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
-            target: bundle
-            params:
-              IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator:{{ ee_operator_out.stdout|trim }}"
-
-        - name: Call bundle-build
-          community.general.make:
-            chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
-            target: bundle-build
-            params:
-              BUNDLE_IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator-bundle:{{ ee_operator_out.stdout|trim }}"
-
-        - name: Push bundle image
-          containers.podman.podman_image:
-            name: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator-bundle:{{ ee_operator_out.stdout|trim }}"
-            pull: false
-            push: true
-
-        - name: Call catalog-build
-          community.general.make:
-            chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
-            target: catalog-build
-            params:
-              CATALOG_IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator-index:{{ ee_operator_out.stdout|trim }}"
-
-        - name: Call catalog-push
-          community.general.make:
-            chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-ansibleee-operator"
-            target: catalog-push
-            params:
-              CATALOG_IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-operator-index:{{ ee_operator_out.stdout|trim }}"
-
     - name: Get subnode IP
       register: subnode_ip
       ansible.builtin.slurp:
@@ -120,7 +53,6 @@
         run_openstack_deploy: true
         create_openstack_cr: true
         run_script: true
-        run_ansibleee: true
       ansible.builtin.include_role:
         name: use_install_yamls
 
