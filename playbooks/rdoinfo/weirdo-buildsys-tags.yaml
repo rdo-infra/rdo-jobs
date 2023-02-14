@@ -1,11 +1,6 @@
 - hosts: all
   tasks:
 
-    - name: Create workspace directory
-      file:
-        path: '{{ ansible_user_dir }}/workspace'
-        state: directory
-
     - name: Create periodic_job fact
       set_fact:
         periodic_job: "{{ periodic_job|default(false) or 'periodic' in zuul.pipeline }}"
@@ -20,14 +15,16 @@
         - not periodic_job|default(false)
         - buildset_artifacts_url is not defined
 
-    - name: Create centos_releasever fact
-      set_fact:
-        centos_releasever: "{{ ansible_distribution_major_version | default('7') }}"
-      when: centos_releasever is not defined
+    - name: test
+      shell:
+        cmd: |
+          set +e
+          ls -la "{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-jobs'].src_dir }}/playbooks/weirdo"
+      changed_when: true
 
-    - name: set centos_release fact
-      set_fact:
-        centos_release: "centos{{ ansible_distribution_major_version | default('7') }}"
+    - name: Run common weirdo tasks
+      ansible.builtin.include_tasks:
+        file: "../weirdo/common.yaml"
 
     - name: Check if job needs to be run or not based on changes
       shell:
@@ -79,31 +76,11 @@
       register: stop_file
       when: not periodic_job|default(false)
 
-    - name: Setup weirdo roles
-      shell:
-        cmd: |
-          export WBASE="{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/weirdo'].src_dir }}";
-          mkdir -p $WBASE/playbooks/roles
-          {% for project in ["common", "logs", "kolla", "packstack", "puppet-openstack"] %}
-            ln -s "{{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/ansible-role-weirdo-' + project].src_dir }}" $WBASE/playbooks/roles/{{ project }};  # noqa 204
-          {% endfor %}
-      changed_when: true
-
     - name: install rdopkg dependencies
       become: true
       shell:
         cmd: |
           dnf install -y python3-pip rpmlint python3-rpm {{ 'python3-pyOpenSSL' if centos_release == "centos8" }}
-
-    - name: install tox
-      shell:
-        cmd: |
-          which pip
-          if [ $? -eq 0 ]; then
-            sudo pip install tox
-          else
-            sudo pip3 install tox
-          fi
 
     - name: pip install rdopkg
       # noqa 403
@@ -112,12 +89,6 @@
         virtualenv: "{{ ansible_user_dir }}/rdopkg-venv"
         virtualenv_command: "/usr/bin/python{{ ansible_python.version.major }} -m venv"
         virtualenv_site_packages: true
-
-    - name: Execute mirror info role
-      import_role:
-        name: mirror-info-fork
-      vars:
-        mirror_fqdn: "mirror.{{ nodepool.region | lower }}.{{ nodepool.cloud | lower }}.rdoproject.org"
 
     - name: Run weirdo for the desired project and scenario
       shell:
