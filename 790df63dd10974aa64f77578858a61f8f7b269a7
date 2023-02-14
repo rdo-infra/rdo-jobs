@@ -18,6 +18,24 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f315619_b6b93d7a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-02-14T08:03:55Z",
+      "side": 1,
+      "message": "there was mention of it multiple times in the various requests for review:\nhttps://review.rdoproject.org/r/c/testproject/+/46859",
+      "parentUuid": "6d2f88ff_c90a5feb",
+      "revId": "790df63dd10974aa64f77578858a61f8f7b269a7",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef0e57de_e5b40097",
@@ -41,6 +59,30 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb279143_f4b60056",
+        "filename": "playbooks/edpm/deploy_podified_control_plane.yaml",
+        "patchSetId": 16
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-02-14T08:03:55Z",
+      "side": 1,
+      "message": "slurp is just cleaner than \"cat\" running in a shell/command",
+      "parentUuid": "ef0e57de_e5b40097",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 28
+      },
+      "revId": "790df63dd10974aa64f77578858a61f8f7b269a7",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "76852acb_389baf8e",
@@ -54,6 +96,24 @@
       "writtenOn": "2023-02-14T05:34:30Z",
       "side": 1,
       "message": "In the earlier code we were appending the cidr\n\nedpm_sshd_allowed_ranges: [\"0.0.0.0/0\", \"{{ controller_ip.stdout }}/24\"]\n\n\nWith below we are narrowing the allowed range to single IP which looks more safe:\n\n~~~\n[\"{{ controller_ip[\u0027content\u0027] | b64decode | trim }}\"] \n~~~",
+      "revId": "790df63dd10974aa64f77578858a61f8f7b269a7",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d1ee323_e3596431",
+        "filename": "playbooks/edpm/deploy_podified_control_plane.yaml",
+        "patchSetId": 16
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-02-14T08:03:55Z",
+      "side": 1,
+      "message": "the 0.0.0.0/0 range was a workaround in order to merge the firewall support into EDPM while not crashing the whole CI job. Here, we\u0027re now able to remove that workaround, and get a cleaner firewall ruling.",
+      "parentUuid": "76852acb_389baf8e",
       "revId": "790df63dd10974aa64f77578858a61f8f7b269a7",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
