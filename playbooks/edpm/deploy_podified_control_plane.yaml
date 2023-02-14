@@ -118,6 +118,14 @@
           {{ full_range | unique }}
         cacheable: true
 
+    - name: Get the operator status
+      ansible.builtin.shell: |
+        oc get csv
+        oc get deployment openstack-operator-controller-manager
+        INSTALLED_CSV=$(oc get subscription openstack-operator -o jsonpath='{.status.installedCSV}')
+        oc get csv openstack-operator.v0.0.1 -o 'jsonpath={.spec.install.spec.deployments[*].name}' | \
+          timeout 240 xargs -I '{}' -d ' ' sh -c 'oc wait --for=condition=Available deployment {} --timeout=-1s'
+
     - name: Deploy podified control plane using install_yamls
       vars:
         namespace: openstack
