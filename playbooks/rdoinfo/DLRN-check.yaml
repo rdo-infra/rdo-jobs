@@ -32,6 +32,12 @@
       vars:
         bindep_dir: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
 
+    - name: Ensure tox is installed
+      import_role:
+        name: ensure-tox
+      vars:
+        ensure_global_symlinks: true
+
     - name: Remove deps repo
       file:
         path: /etc/yum.repos.d/delorean-deps.repo
