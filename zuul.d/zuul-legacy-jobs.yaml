@@ -1,15 +1,4 @@
 - job:
-    name: legacy-rdo-infra-playbooks-integration-base
-    parent: legacy-base
-    run: playbooks/legacy/rdo-infra-playbooks-integration-base/run.yaml
-    post-run: playbooks/legacy/rdo-infra-playbooks-integration-base/post.yaml
-    required-projects:
-      - centos-opstools/opstools-ansible
-      - rdo-infra/ansible-role-rdo-base
-      - rdo-infra/ansible-role-rdo-bot
-      - rdo-infra/rdo-infra-playbooks
-
-- job:
     name: legacy-rdo-kolla-build-containers
     parent: legacy-base
     run: playbooks/legacy/rdo-kolla-build-containers/run.yaml
@@ -21,9 +10,3 @@
     parent: legacy-base
     run: playbooks/legacy/rdo-kolla-build-integration/run.yaml
     post-run: playbooks/legacy/rdo-kolla-build-integration/post.yaml
-
-- job:
-    name: legacy-rdo-registry-integration
-    parent: legacy-base
-    run: playbooks/legacy/rdo-registry-integration/run.yaml
-    post-run: playbooks/legacy/rdo-registry-integration/post.yaml
