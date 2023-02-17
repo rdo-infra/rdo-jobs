@@ -23,6 +23,7 @@
       push_registry: quay.rdoproject.org
       quay_login_secret_name: quay_nextgen_zuulgithubci
       openstack_img: quay.io/openstack-k8s-operators/openstack-operator-index:2d9e7f0972e1176c16b0dce02db2ee11209cac07
+      crc_parameters: "--memory 22000 --disk-size 120 --cpus 6"
 
 - job:
     name: openstack-ansibleee-operator-github-rdo-integration-centos-8-crc-singlenode-centos-9-external-compute
