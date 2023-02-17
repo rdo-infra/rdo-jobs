@@ -21,9 +21,3 @@
     parent: legacy-base
     run: playbooks/legacy/rdo-kolla-build-integration/run.yaml
     post-run: playbooks/legacy/rdo-kolla-build-integration/post.yaml
-
-- job:
-    name: legacy-rdo-registry-integration
-    parent: legacy-base
-    run: playbooks/legacy/rdo-registry-integration/run.yaml
-    post-run: playbooks/legacy/rdo-registry-integration/post.yaml
