@@ -1,0 +1,7 @@
+---
+# zed container build, test, promotion pipeline
+- project-template:
+    name: container-pipeline-zed-centos9
+    openstack-periodic-container-zed-centos9:
+      jobs:
+        - periodic-tripleo-centos-9-zed-promote-consistent-to-openstack-ci-testing
