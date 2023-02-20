@@ -1,0 +1,7 @@
+---
+# master container build, test, promotion pipeline
+- project-template:
+    name: container-pipeline-master-centos9
+    openstack-periodic-container-master-centos9:
+      jobs:
+        - periodic-centos-9-master-promote-consistent-to-openstack-ci-testing

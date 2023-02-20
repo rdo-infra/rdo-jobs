@@ -1,0 +1,22 @@
+---
+# master promote jobs
+
+## promote-consistent-to-openstack-ci-testing
+- job:
+    name: periodic-centos-9-master-promote-consistent-to-openstack-ci-testing
+    parent: openstack-ci-base-promote-hash
+    nodeset: cloud-centos-9-stream-vexxhost
+    vars:
+      release: master
+      promote_source: consistent
+      promote_target: openstack-ci-testing
+
+## promote-openstack-ci-testing-to-current-openstack
+- job:
+    name: periodic-centos-9-master-promote-openstack-ci-testing-to-current-openstack
+    parent: periodic-centos-9-master-promote-consistent-to-openstack-ci-testing
+    vars:
+      release: master
+      promote_source: openstack-ci-testing
+      promote_target: current-openstack
+
