@@ -1,0 +1,22 @@
+---
+# master promote jobs
+
+## promote-consistent-to-podified-ci-testing
+- job:
+    name: periodic-centos-9-master-promote-consistent-to-podified-ci-testing
+    parent: openstack-ci-base-promote-hash
+    nodeset: cloud-centos-9-stream-vexxhost
+    vars:
+      release: master
+      promote_source: consistent
+      promote_target: podified-ci-testing
+
+## promote-podified-ci-testing-to-current-podified
+- job:
+    name: periodic-centos-9-master-promote-podified-ci-testing-to-current-podified
+    parent: openstack-ci-base-promote-hash
+    nodeset: cloud-centos-9-stream-vexxhost
+    vars:
+      release: master
+      promote_source: podified-ci-testing
+      promote_target: current-podified
