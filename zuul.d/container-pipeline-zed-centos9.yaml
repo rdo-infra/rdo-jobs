@@ -1,0 +1,21 @@
+---
+# zed container build, test, promotion pipeline
+- project-template:
+    name: container-pipeline-zed-centos9
+    openstack-periodic-container-zed-centos9:
+      jobs:
+        - periodic-centos-9-zed-promote-consistent-to-openstack-ci-testing
+        # build container job - > push to quay.rdoproject namespace openstackzedcentos9
+        #  dependencies:
+        #    - periodic-centos-9-zed-promote-consistent-to-openstack-ci-testing
+        # test with CRC, operators, install_yamls, tempest API, EPDM
+        #   dependencies:
+        #     - container build push job
+        # push containers to quay.io namespace openstackzedcentos9
+        #  dependencies:
+        #    - CRC operator test
+        #    - tempest API tests
+        #    - EDPM test
+        # periodic-centos-9-zed-promote-openstack-ci-testing-to-current-openstack
+        #   dependencies:
+        #     - push containers to quay.io namespace openstackzedcentos9 job
