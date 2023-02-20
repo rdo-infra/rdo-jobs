@@ -1,0 +1,27 @@
+---
+# container zed jobs
+
+## promote-consistent-to-openstack-ci-testing
+- job:
+    name: periodic-tripleo-centos-9-zed-promote-consistent-to-openstack-ci-testing
+    parent: periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing
+    nodeset: cloud-centos-9-stream-vexxhost
+    vars:
+      release: zed
+      promote_source: consistent
+      promote_target: openstack-ci-testing
+
+## promote-openstack-ci-testing-to-current-openstack
+- job:
+    name: periodic-tripleo-centos-9-zed-promote-openstack-ci-testing-to-current-openstack
+    parent: periodic-tripleo-centos-8-master-promote-promoted-components-to-tripleo-ci-testing
+    nodeset: cloud-centos-9-stream-vexxhost
+    vars:
+      release: zed
+      promote_source: openstack-ci-testing
+      promote_target: current-openstack
+
+## build push containers
+
+## test with pushed containers
+
