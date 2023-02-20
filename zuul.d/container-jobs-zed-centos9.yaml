@@ -1,0 +1,16 @@
+---
+# zed promote jobs
+
+## promote-consistent-to-openstack-ci-testing
+- job:
+    name: periodic-centos-9-zed-promote-consistent-to-openstack-ci-testing
+    parent: periodic-centos-9-master-promote-consistent-to-openstack-ci-testing
+    vars:
+      release: zed
+
+## promote-openstack-ci-testing-to-current-openstack
+- job:
+    name: periodic-centos-9-zed-promote-openstack-ci-testing-to-current-openstack
+    parent: periodic-centos-9-master-promote-openstack-ci-testing-to-current-openstack
+    vars:
+      release: zed
