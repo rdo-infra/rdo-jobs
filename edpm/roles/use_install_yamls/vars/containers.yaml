@@ -20,6 +20,10 @@ neutron_server_img: "{{ service_registry }}/{{ service_org }}/{{ prefix }}-neutr
 neutronapi_img: "{{ service_registry }}/{{ service_org }}/{{ prefix }}-neutron-api:{{ container_tag }}"
 octaviaapi_img: "{{ service_registry }}/{{ service_org }}/{{ prefix }}-octavia-api:{{ container_tag }}"
 rabbitmq_depl_img: "{{ service_registry }}/{{ service_org }}/{{ prefix }}-rabbitmq:{{ container_tag }}"
+ironicapi_img: "{{ service_registry }}/{{ service_org }}/{{ prefix }}-ironic-api:{{ container_tag }}"
+ironicconductor_img: "{{ service_registry }}/{{ service_org }}/{{ prefix }}-ironic-conductor:{{ container_tag }}"
+ironicpxe_img: "{{ service_registry }}/{{ service_org }}/{{ prefix }}-ironic-pxe:{{ container_tag }}"
+ironicinspector_img: "{{ service_registry }}/{{ service_org }}/{{ prefix }}-ironic-inspector:{{ container_tag }}"
 
 
 # Deployment artifacts

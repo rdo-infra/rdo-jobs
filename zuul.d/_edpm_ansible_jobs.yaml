@@ -22,7 +22,6 @@
       registry_login_enabled: true
       push_registry: quay.rdoproject.org
       quay_login_secret_name: quay_nextgen_zuulgithubci
-      openstack_img: quay.io/openstack-k8s-operators/openstack-operator-index:2d9e7f0972e1176c16b0dce02db2ee11209cac07
       crc_parameters: "--memory 22000 --disk-size 120 --cpus 6"
       pre_pull_images:
         - registry.redhat.io/rhosp-rhel9/openstack-rabbitmq:17.0
@@ -38,4 +37,6 @@
     pre-run: playbooks/edpm/subnode_ip.yaml
     run: playbooks/edpm/deploy_podified_control_plane.yaml
     post-run: playbooks/edpm/collect_logs.yaml
-    vars: *edpm_vars
+    vars:
+      <<: *edpm_vars
+      build_operators: true
