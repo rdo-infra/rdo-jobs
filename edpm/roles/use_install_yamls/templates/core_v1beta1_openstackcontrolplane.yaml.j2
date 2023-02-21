@@ -15,15 +15,11 @@ spec:
       containerImage: {{ mariadb_depl_img }}
       storageRequest: 500M
   rabbitmq:
-    template:
-      replicas: 1
-      #resources:
-      #  requests:
-      #    cpu: 500m
-      #    memory: 1Gi
-      #  limits:
-      #    cpu: 800m
-      #    memory: 1Gi
+    templates:
+      rabbitmq:
+        replicas: 1
+      rabbitmq-cell1:
+        replicas: 1
   placement:
     template:
       databaseInstance: openstack
@@ -85,4 +81,20 @@ spec:
       secret: osp-secret
   nova:
     template:
+      secret: osp-secret
+  ironic:
+    template:
+      databaseInstance: openstack
+      ironicAPI:
+        replicas: 1
+        containerImage: {{ ironicapi_img }}
+      ironicConductors:
+      - replicas: 1
+        containerImage: {{ ironicconductor_img }}
+        pxeContainerImage: {{ ironicpxe_img }}
+        storageRequest: 10G
+      ironicInspector:
+        replicas: 1
+        containerImage: {{ ironicinspector_img }}
+        pxeContainerImage: {{ ironicpxe_img }}
       secret: osp-secret
