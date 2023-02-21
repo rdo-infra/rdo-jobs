@@ -8,6 +8,18 @@
       ansible.builtin.include_role:
         name: add_crc_creds
 
+    - name: Get resource status
+      ansible.builtin.shell: |
+        oc get csv
+        oc get pods
+
+    - name: clean up existing storage
+      community.general.make:
+        target: crc_storage_cleanup
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls"
+        params:
+          STORAGE_CLASS: "standard"
+
     - name: Get git tag for image tagging
       register: edpm_ansible_tag
       ansible.builtin.command:
