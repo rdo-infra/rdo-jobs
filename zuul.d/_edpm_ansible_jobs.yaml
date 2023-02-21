@@ -38,4 +38,6 @@
     pre-run: playbooks/edpm/subnode_ip.yaml
     run: playbooks/edpm/deploy_podified_control_plane.yaml
     post-run: playbooks/edpm/collect_logs.yaml
-    vars: *edpm_vars
+    vars:
+      <<: *edpm_vars
+      build_operators: true

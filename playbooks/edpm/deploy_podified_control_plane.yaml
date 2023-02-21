@@ -8,6 +8,12 @@
       ansible.builtin.include_role:
         name: add_crc_creds
 
+    - name: Get resource status
+      ansible.builtin.shell: |
+        oc project openstack
+        oc get csv
+        oc get pods
+
     - name: Get git tag for image tagging
       register: edpm_ansible_tag
       ansible.builtin.command:
