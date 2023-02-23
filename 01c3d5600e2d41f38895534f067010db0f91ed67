@@ -18,6 +18,23 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08a9d6ca_87b2f6a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2023-02-23T07:43:25Z",
+      "side": 1,
+      "message": "Inline comments:",
+      "revId": "01c3d5600e2d41f38895534f067010db0f91ed67",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2bdf2b3a_405a3525",
@@ -37,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "723018da_c6b5d294",
+        "filename": "playbooks/data_plane_adoption/collect_logs_crc.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2023-02-23T07:43:25Z",
+      "side": 1,
+      "message": "Maybe we can capture must-gather report\n\nI am planning to add something similiar in prow side in our jobs:\n\nhttps://github.com/openshift/release/pull/36594/files#diff-777d609947d96aed69e9d88371f9855ef78f6170c56fad617cb53d9811d7b50eR183\n\noc --insecure-skip-tls-verify adm must-gather $MUST_GATHER_IMAGE --timeout\u003d$MUST_GATHER_TIMEOUT --dest-dir ${ARTIFACT_DIR}/must-gather \u003e ${ARTIFACT_DIR}/must-gather/must-gather.log\n\n\nBut I haven\u0027t investigated that yet and not sure completely what all it gathers, so I won\u0027t block on this and maybe we can improve the logging in a follow up.",
+      "parentUuid": "2bdf2b3a_405a3525",
+      "revId": "01c3d5600e2d41f38895534f067010db0f91ed67",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b5a1aa6d_fb85b6eb",
         "filename": "playbooks/data_plane_adoption/setup_crc_use_install_yamls.yaml",
         "patchSetId": 11
@@ -48,6 +83,24 @@
       "writtenOn": "2023-02-21T19:06:51Z",
       "side": 1,
       "message": "can we poll for something here rather than sleep?",
+      "revId": "01c3d5600e2d41f38895534f067010db0f91ed67",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57e21232_c486cd17",
+        "filename": "playbooks/data_plane_adoption/setup_crc_use_install_yamls.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2023-02-23T07:43:25Z",
+      "side": 1,
+      "message": "+1 to Ronelle\u0027s suggestion - we can use `oc wait` on the particular resources\n\n\nYou can refer below (what we do on prow jobs):\n\nTo poll if operators are installed:-\n\nhttps://github.com/openshift/release/blob/master/ci-operator/step-registry/openstack-k8s-operators/deploy/openstack-k8s-operators-deploy-commands.sh#L72-L76\n\nTo poll is services are started:-\n\nhttps://github.com/openshift/release/blob/master/ci-operator/step-registry/openstack-k8s-operators/deploy/openstack-k8s-operators-deploy-commands.sh#L173-L174",
+      "parentUuid": "b5a1aa6d_fb85b6eb",
       "revId": "01c3d5600e2d41f38895534f067010db0f91ed67",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
