@@ -1,0 +1,33 @@
+---
+- hosts: all
+  tasks:
+    - name: Install container runtime
+      include_role:
+        name: ensure-podman
+
+    - shell:
+        cmd: |
+          ls -la {{ ansible_user_dir }}
+          ls -la {{ zuul.executor.work_root }}
+          ls -la {{ zuul.projects['review.rdoproject.org/rdo-infra/releng'].src_dir }}
+          ls -la {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/releng'].src_dir }}
+      changed_when: true
+      ignore_errors: true
+
+    - name: Setup build-container-image role
+      include_role:
+        name: build-container-image
+      vars:
+        zuul_work_dir: "{{ zuul.projects['review.rdoproject.org/rdo-infra/releng'].src_dir }}"
+        container_command: podman
+        container_registry_credentials:
+          quay.io:
+            username: user
+            password: pwd
+        container_images:
+          - context: container
+            container_filename: Containerfile
+            registry: quay.io
+            repository: rdo-infra/rdo-toolbox
+            tags: latest
+
