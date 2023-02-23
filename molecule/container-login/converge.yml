@@ -1,4 +1,8 @@
 - hosts: all
+  vars:
+    tripleo_container_registry_insecure_registries:
+      - localhost:5000
+      - localhost:5001
   tasks:
     - name: Testing container-login role
       include_role:
