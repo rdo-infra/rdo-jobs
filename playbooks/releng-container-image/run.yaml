@@ -1,0 +1,40 @@
+---
+- hosts: all
+  tasks:
+    - name: Install container runtime
+      include_role:
+        name: ensure-podman
+
+    - name: Setup build-container-image role
+      include_role:
+        name: build-container-image
+      vars:
+        zuul_work_dir: "{{ zuul.projects['review.rdoproject.org/rdo-infra/releng'].src_dir }}"
+        container_command: podman
+        container_registry_credentials:
+          quay.io:
+            username: "{{ quay_io_rdo_infra_orga.username }}"
+            password:  "{{ quay_io_rdo_infra_orga.password }}"
+        container_images:
+          - container_filename: "{{ container_filename }}"
+            registry: "{{ registry }}"
+            repository: "{{ repository }}"
+            tags: "{{ tags }}"
+
+    - name: Setup upload-container-image role
+      include_role:
+        name: upload-container-image
+      when:
+        - push_to_registry|default(false)
+      vars:
+        zuul_work_dir: "{{ zuul.projects['review.rdoproject.org/rdo-infra/releng'].src_dir }}"
+        container_command: podman
+        container_registry_credentials:
+          quay.io:
+            username: "{{ quay_io_rdo_infra_orga.username }}"
+            password:  "{{ quay_io_rdo_infra_orga.password }}"
+        container_images:
+          - container_filename: "{{ container_filename }}"
+            registry: "{{ registry }}"
+            repository: "{{ repository }}"
+            tags: "{{ tags }}"

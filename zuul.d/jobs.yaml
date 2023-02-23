@@ -324,6 +324,32 @@
     final: true
 
 - job:
+    name: build-releng-container-image
+    parent: base
+    description: |
+      Job to build the RDO toolbox container image
+    run: playbooks/releng-container-image/run.yaml
+    required-projects:
+      - review.rdoproject.org/rdo-infra/releng
+    vars:
+      container_filename: Containerfile
+      registry: quay.io
+      repository: rdo-infra/rdo-toolbox
+      tags: 
+        - latest
+      quay_io_rdo_infra_orga:
+        username: test
+        password: test
+
+- job:
+    name: build-and-push-releng-container-image
+    parent: build-releng-container-image
+    description: |
+      Job to build and push the RDO toolbox container image
+    vars:
+      push_to_registry: true
+
+- job:
     name: weirdo-base-promote-consistent-to-puppet-ci-testing
     parent: weirdo-base-promote-dlrn
     abstract: true
