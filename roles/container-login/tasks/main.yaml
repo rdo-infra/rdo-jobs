@@ -35,6 +35,15 @@
          or (branch_override is defined and branch_override == 'stable/train')
          or (zuul.branch is defined and zuul.branch == 'stable/train')
 
+    - name: set tripleo podman task name prefix for train/wallaby/zed
+      no_log: false
+      set_fact:
+        tripleo_podman_task_prefix: tripleo_podman_
+      when:
+        (release is defined and release in ['train', 'wallaby', 'zed'] )
+        or (branch_override is defined and branch_override in ['stable/train', 'stable/wallaby', 'stable/zed'])
+        or (zuul.branch is defined and zuul.branch in ['stable/train', 'stable/wallaby', 'stable/zed'])
+
     - name: Load vars and install podman
       no_log: false
       block:
@@ -46,7 +55,7 @@
         - name: Install podman
           include_role:
             name: "{{ tripleo_podman_role_name | default('tripleo_podman') }}"
-            tasks_from: tripleo_podman_install.yml
+            tasks_from: "{{ tripleo_podman_task_prefix | default('') }}install.yml"
             vars_from: "{{ ansible_os_family | lower }}.yml"
       when:
         - ansible_distribution_major_version is version(8, '>=')
@@ -54,12 +63,12 @@
     - name: Perform podman login
       include_role:
         name: "{{ tripleo_podman_role_name | default('tripleo_podman') }}"
-        tasks_from: tripleo_podman_login.yml
+        tasks_from: "{{ tripleo_podman_task_prefix | default('') }}login.yml"
 
     - name: Perform podman buildah login
       include_role:
         name: "{{ tripleo_podman_role_name | default('tripleo_podman') }}"
-        tasks_from: tripleo_podman_buildah_login.yml
+        tasks_from: "{{ tripleo_podman_task_prefix | default('') }}buildah_login.yml"
       when:
         - tripleo_podman_buildah_login | bool
 
