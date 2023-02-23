@@ -324,6 +324,13 @@
     final: true
 
 - job:
+    name: build-releng-container-image
+    parent: base-minimal
+    description: |
+      Job to build the RDO toolbox container image
+    run: playbooks/build-releng-container-image/run.yaml
+
+- job:
     name: weirdo-base-promote-consistent-to-puppet-ci-testing
     parent: weirdo-base-promote-dlrn
     abstract: true
