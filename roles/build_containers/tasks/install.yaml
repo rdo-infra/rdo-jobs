@@ -1,0 +1,19 @@
+---
+- name: Install required packages
+  become: true
+  ansible.builtin.package:
+    name:
+      - python3-devel
+      - python3-pip
+      - podman
+      - buildah
+    state: latest
+
+  # FIXME(Chandan): Skip usage of sudo installation
+- name: Install tcib package
+  become: true
+  ansible.builtin.shell: |
+    pip install -r requirements.txt
+    python setup.py install
+  args:
+    chdir: "{{ tcib_repo }}"

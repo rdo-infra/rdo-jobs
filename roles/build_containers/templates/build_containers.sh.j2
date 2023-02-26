@@ -1,0 +1,65 @@
+#!/bin/bash -eux
+
+openstack tcib container image build \
+{%   if push_containers|bool %}
+     --push \
+{%   endif %}
+{%   if authfile_path is defined %}
+     --authfile {{ authfile_path }} \
+{%   endif %}
+{%   if distro is defined %}
+     --distro {{ distro }} \
+{%   endif %}
+{%   if release is defined %}
+     --release {{ release }} \
+{%   endif %}
+{%   if registry_namespace is defined %}
+     --namespace {{ registry_namespace }} \
+{%   endif%}
+{%   if push_registry is defined %}
+     --registry {{ push_registry }} \
+{%   endif %}
+{%   if rhel_modules is defined %}
+     --rhel-modules {{ rhel_modules | join(",") }} \
+{%   endif %}
+{%   if exclude_containers is defined %}
+{%   set distroversion = distro + version %}
+{%   for item in exclude_containers[openstack_release][distroversion] %}
+     --exclude {{ item }} \
+{%   endfor %}
+{%   endif %}
+{%   if config_file is defined %}
+     --config-file {{ config_file }} \
+{%   endif %}
+{%   if config_path is defined %}
+     --config-path {{ config_path }} \
+{%   endif %}
+     --work-dir {{ work_dir }} \
+{%   if build_timeout is defined %}
+     --build-timeout {{ build_timeout }} \
+{%   endif %}
+{%   if dockerfile_labels is defined %}
+{%   for item in dockerfile_labels %}
+     --label {{ item }} \
+{%   endfor %}
+{%   endif %}
+{%   if volume_mounts is defined %}
+{%   for item in volume_mounts %}
+     --volume {{ item }} \
+{%   endfor %}
+{%   endif %}
+     --tcib-extra tcib_release={{ ansible_distribution_major_version }} \
+     --tcib-extra tcib_python_version={{ (ansible_distribution_major_version is version('9', '<')) | ternary ('3.6', '3.9') }} \
+{%   if (tcib_extra_config is defined) %}
+     --extra-config {{ workspace }}/extra_config.yaml \
+{%   endif %}
+{%   if build_timeout is defined %}
+     --build-timeout {{ build_timeout }} \
+{%   endif %}
+{%   if repo_dir is defined %}
+     --repo-dir {{ repo_dir }} \
+{%   endif %}
+     --tag {{ image_tag }} \
+     --base {{ containers_base_image }} \
+     --prefix {{ container_name_prefix }}
+
