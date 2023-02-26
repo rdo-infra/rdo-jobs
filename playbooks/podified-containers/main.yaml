@@ -1,0 +1,54 @@
+---
+- hosts: primary
+  tasks:
+    - name: Install repo-setup package
+      ansible.builtin.shell: |
+        pip install virtualenv
+        virtualenv .venv
+        source .venv/bin/activate
+        pip install -r requirements.txt
+        python setup.py install
+      args:
+        chdir: "{{ ansible_user_dir }}/src/github.com/ci-framework/repo-setup"
+
+    - name: Setup repos for the openstack release
+      ansible.builtin.shell: |
+        mkdir -p {{ repo_dir }}
+        source {{ ansible_user_dir }}/src/github.com/ci-framework/repo-setup/.venv/bin/activate
+        repo-setup {{ promote_source }} -b {{ openstack_release }} -o {{ repo_dir }}
+      args:
+        chdir: "{{ ansible_user_dir }}/src/github.com/ci-framework/repo-setup"
+
+    - name: Get md5 file for DLRN hash tag
+      ansible.builtin.get_url:
+        url: "{{ trunk_url }}/{{ ansible_distribution|lower }}{{ ansible_distribution_major_version }}-{{ openstack_release}}/{{ promote_source }}/delorean.repo.md5"
+        dest: "{{ ansible_user_dir }}/delorean.repo.md5"
+
+    - name: Find MD5 value
+      ansible.builtin.command: "cat {{ ansible_user_dir }}/delorean.repo.md5"
+      register: md5_value
+
+    - name: Disable tripleo repo if it exists
+      ansible.builtin.replace:
+        path: "{{repo_dir}}/delorean.repo"
+        after: 'delorean-component-tripleo'
+        before: 'delorean-component-ui'
+        regexp: 'enabled=1'
+        replace: 'enabled=0'
+
+    - name: create symlink for tcib role
+      become: true
+      ansible.builtin.shell: |
+        mkdir -p /usr/share/ansible/roles
+        cd /usr/share/ansible/roles
+        ln -sf {{ tcib_repo }}/ci/roles/build_containers build_containers
+
+    - name: Build Containers
+      ansible.builtin.include_role:
+        name: "{{ zuul.executor.src_root}}/github.com/openstack-k8s-operators/tcib/ci/roles/build_containers"
+      vars:
+        version: "{{ ansible_distribution_major_version }}"
+        release: "{{ openstack_release }}"
+        timestamper_cmd: >-
+            | awk '{ print strftime("%Y-%m-%d %H:%M:%S |"), $0; fflush(); }'
+        image_tag: "{{ md5_value }}"
