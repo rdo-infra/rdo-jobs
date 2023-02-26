@@ -1,0 +1,35 @@
+---
+- hosts: primary
+  tasks:
+    - name: Install repo-setup package
+      ansible.builtin.shell: |
+        pip install virtualenv
+        virtualenv .venv
+        source .venv/bin/activate
+        pip install -r requirements.txt
+        python setup.py install
+      args:
+        chdir: "{{ ansible_user_dir }}/src/github.com/ci-framework/repo-setup"
+
+    - name: Setup repos for the openstack release
+      ansible.builtin.shell: |
+        repo-setup {{ promote_source }} -b {{ openstack_release }} -o {{ repo_dir }}
+
+    - name: Get PR with roles
+      ansible.builtin.shell: |
+        cd {{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/tcib
+        gh pr checkout 12
+
+    - name: create symlink for tcib_role
+      become: true
+      ansible.builtin.shell: |
+        cd /usr/share/ansible/roles
+        ln -s {{ tcib_repo }}/ci/roles/build_containers build_containers
+
+    - name: Build Containers
+      ansible.builtin.include_role:
+        name: build_containers
+      vars:
+        tcib_repo: "{{ tcib_repo }}"
+        repo_dir: "{{ repo_dir }}"
+        registry_namespace: "{{ registry_namespace }}"
