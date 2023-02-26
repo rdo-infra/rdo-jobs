@@ -1,0 +1,70 @@
+---
+# Path of the authentication file. Use REGISTRY_AUTH_FILE environment variable to override. (default: /root/containers/auth.json)
+# authfile_path
+
+# Base image name from which containers can be built
+containers_base_image: registry.access.redhat.com/ubi9:latest
+
+# YAML config file specifying the images to build
+# config_file
+
+# base path for all container-image files
+# config_path
+
+# Distro name which sets tcib_distro
+distro: centos
+
+# Distro major release version which sets tcib_release
+release: 9
+
+# TCIB extra variables you want to pass. They can be later used within TCIB files as conditonals
+# tcib_extras
+
+# Name of one container to match against the list of containers to be built to skip
+# exclude_containers
+
+# Apply additional options from a given configuration YAML file.
+# extra_config
+
+# Container registry namespace
+# registry_namespace
+
+# Container registry URL
+# push_registry
+
+# Skip or not the build of the images
+# skip_build
+
+# image tag
+image_tag: ''
+
+# Image Prefix
+container_name_prefix: podified
+
+# Enable image push to a given registry
+push_containers: false
+
+# Add labels to the containers
+# dockerfile_labels
+
+# Container bind mount used when building the image
+volume_mounts:
+  - "/usr/share/tcib/container-images:/usr/share/tcib/container-images:z"
+
+# Define a custom directory containing the repo files
+# repo_dir
+
+# container builds directory, storing configs and logs for each image and its dependencies
+work_dir: "{{ ansible_user_dir }}/container-builds"
+
+# A comma separated list of RHEL modules to enable with their version
+# rhel_modules
+
+# Build timeout in seconds
+# build_timeout
+
+# Openstack Release
+openstack_release: master
+
+# Roles related vars
+tcib_repo: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/tcib"
