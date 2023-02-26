@@ -1,0 +1,45 @@
+---
+- name: Ensure working dir exists
+  file:
+    path: "{{ work_dir }}"
+    state: directory
+
+- name: Ensure logs directory exists
+  file:
+    path: '{{ work_dir }}/logs'
+    state: directory
+
+- name: Install tcib
+  include_tasks: install.yaml
+
+- name: Make sure authfile exists
+  when: authfile_path is defined
+  block:
+    - name: Check for authfile
+      stat:
+        path: '{{ authfile_path }}'
+      register: authfile_exist
+
+    - name: Make sure autfile exists
+      assert:
+        that:
+          - authfile_exist.stat.exists | bool
+
+- name: Generate container_build.sh script
+  template:
+    src: templates/build_containers.sh.j2
+    dest: "{{ work_dir }}/build_containers.sh"
+    mode: 0777
+    force: true
+
+- name: Run container_build.sh script
+  become: true
+  args:
+    chdir: "{{ work_dir }}"
+  ansible.builtin.shell: |
+    set -o pipefail && bash build_containers.sh 2>&1 {{ timestamper_cmd }} > {{ work_dir }}/logs/build.log
+
+- name: Retrieve built images  # noqa risky-shell-pipe
+  shell: "podman images | grep {{ container_name_prefix }} | awk '{ print $1 }'"
+  become: true
+  changed_when: false
