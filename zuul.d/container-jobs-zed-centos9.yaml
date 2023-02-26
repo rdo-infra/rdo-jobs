@@ -14,3 +14,21 @@
     parent: periodic-centos-9-master-promote-podified-ci-testing-to-current-podified
     vars:
       release: zed
+
+## container build jobs
+- job:
+    name: container-tcib-build-centos-9-zed
+    parent: container-tcib-build-centos-9-master
+    vars:
+      registry_namespace: podified-zed-centos9
+      openstack_release: zed
+
+## container push jobs
+- job:
+    name: container-tcib-build-push-centos-9-zed
+    parent: container-tcib-build-centos-9-zed
+    vars:
+      push_containers: true
+      buildah_login: true
+      buildah_push: true
+      registry_login_enabled: true
