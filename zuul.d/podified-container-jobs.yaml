@@ -1,0 +1,26 @@
+---
+- job:
+    name: container-tcib-build-centos-9-master
+    parent: container-tcib-build-base
+    nodeset: single-centos-9-stream-node-vexxhost
+    pre-run: playbooks/base/pre.yaml
+    run: playbooks/podified-containers/main.yaml
+    vars:
+      tcib_repo: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/tcib"
+      repo_dir: "{{ ansible_user_dir }}/repos"
+      container_name_prefix: podified
+      containers_base_image: registry.access.redhat.com/ubi9:latest
+      openstack_release: master
+      promote_source: podified-ci-testing
+      push_registry: quay.rdoproject.org
+      registry_namespace: podified-master-centos9
+      push_containers: false
+      ara_report_type: database
+      ara_report_path: "{{ zuul.executor.log_root }}/ara-report"
+
+- job:
+    name: container-tcib-build-centos-9-zed
+    parent: container-tcib-build-centos-9-master
+    vars:
+      registry_namespace: podified-zed-centos9
+      openstack_release: zed
