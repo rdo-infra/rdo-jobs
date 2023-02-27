@@ -1,0 +1,61 @@
+---
+# Tempest stuff
+- name: Run tempest
+  block:
+    - name: Ensure podman is installed
+      become: true
+      ansible.builtin.package:
+        name: podman
+        state: present
+
+    - name: Create tempest directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+      with_items:
+        - "{{ tempest_dir }}"
+        - "{{ tempest_dir }}/src"
+        - "{{ tempest_dir }}/logs"
+
+    - name: Get keystone secret name
+      register: keystone_secret_name
+      ansible.builtin.shell:
+        cmd: oc get keystoneapi keystone -o json | jq -r .spec.secret
+
+    - name: Get keystone passwd select
+      register: keystone_passwd_select
+      ansible.builtin.shell:
+        cmd: oc get keystoneapi keystone -o json |jq -r .spec.passwordSelectors.admin
+
+    - name: Get os_password
+      register: os_password
+      ansible.builtin.shell:
+        cmd: oc get secret "{{ keystone_secret_name.stdout }}" -o json |jq -r .data."{{ keystone_passwd_select.stdout }}" | base64 -d
+
+    - name: Get api endpoint
+      register: keystone_api
+      ansible.builtin.shell:
+        cmd: oc get keystoneapi keystone -o json | jq -r .status.apiEndpoint.public
+
+    - name: Get clouds.yaml
+      ansible.builtin.template:
+        src: clouds.yaml.j2
+        dest: "{{ tempest_dir }}/src/clouds.yaml"
+
+    - name: Copy Container files
+      ansible.builtin.copy:
+        src: Containerfile
+        dest: "{{ tempest_dir }}/Containerfile"
+
+    - name: Copy run-tempest script
+      ansible.builtin.copy:
+        src: src/run_tempest.sh
+        dest: "{{ tempest_dir }}/src/run_tempest.sh"
+
+    - name: Build container image
+      ansible.builtin.command: podman build --tag openstack/tempest-run --layers=false .
+      args:
+        chdir: "{{ tempest_dir }}"
+
+    - name: Run tempest
+      ansible.builtin.command: "podman run -e JOB_NAME={{ zuul.job }} -v {{ tempest_dir }}/logs:/root/external_files:Z localhost/openstack/tempest-run:latest"

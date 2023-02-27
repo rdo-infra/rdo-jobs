@@ -124,6 +124,12 @@
       ansible.builtin.include_role:
         name: use_install_yamls
 
+    # - name: Waiting for all services to be ready
+    #   ansible.builtin.shell:
+    #     oc get OpenStackControlPlane openstack -o json | \
+    #     jq -r '.status.conditions[] | select(.type | test("^OpenStackControlPlane(?!Cinder)")).type' | \
+    #     timeout 1200 xargs -d '\n' -I {} sh -c 'echo testing condition={}; oc wait openstackcontrolplane.core.openstack.org/openstack --for=condition={} --timeout=-1s'
+
     - name: List services
       shell: |
         oc get pv
@@ -173,6 +179,10 @@
       until: deploy_external_status.rc == 0
       retries: 100
       delay: 20
+
+    - name: Run tempest
+      ansible.builtin.include_role:
+        name: tempest-run
 
     - name: Get the logs of EDPM Play
       ansible.builtin.shell:
