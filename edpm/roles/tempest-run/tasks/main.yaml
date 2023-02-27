@@ -1,0 +1,67 @@
+---
+# Tempest stuff
+- name: Run tempest
+  block:
+    - name: Create tempest directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+      with_items:
+        - "{{ tempest_dir }}"
+        - "{{ tempest_dir }}/src"
+        - "{{ tempest_dir }}/logs"
+
+    - name: Get keystone secret name
+      register: keystone_secret_name
+      ansible.builtin.shell:
+        cmd: oc get keystoneapi keystone -o json | jq -r .spec.secret
+
+    - name: Get keystone passwd select
+      register: keystone_passwd_select
+      ansible.builtin.shell:
+        cmd: oc get keystoneapi keystone -o json |jq -r .spec.passwordSelectors.admin
+
+    - name: Get os_password
+      register: os_password
+      ansible.builtin.shell:
+        cmd: oc get secret "{{ keystone_secret_name.stdout }}" -o json |jq -r .data."{{ keystone_passwd_select.stdout }}" | base64 -d
+
+    - name: Create clouds.yaml
+      ansible.builtin.shell:
+        cmd: |
+          cat > "{{ tempest_dir }}/src/clouds.yaml" << EOF
+          oc get cm openstack-config -n openstack -o json | jq -r '.data["clouds.yaml"]'
+          EOF
+
+    - name: Inject os_password into clouds.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ tempest_dir }}/src/clouds.yaml"
+        regex: "project_domain_name"
+        insertafter: "project_domain_name"
+        line: "      password: {{ os_password.stdout }} "
+
+    - name: Copy Container files
+      ansible.builtin.copy:
+        src: Containerfile
+        dest: "{{ tempest_dir }}/Containerfile"
+
+    - name: Copy run-tempest script
+      ansible.builtin.copy:
+        src: src/run_tempest.sh
+        dest: "{{ tempest_dir }}/src/run_tempest.sh"
+
+    - name: Copy include and exclude file
+      ansible.builtin.copy:
+        src: "src/{{ item }}"
+        dest: "{{ tempest_dir }}/logs/{{ item }}"
+      with_items:
+        - include.txt
+        - exclude.txt
+
+    - name: Build container image
+      ansible.builtin.command: podman build --tag openstack/tempest-run --layers=false .
+      args:
+        chdir: "{{ tempest_dir }}"
+
+    - name: Run tempest
+      ansible.builtin.command: "podman run -it v {{ tempest_dir }}/logs:/root/external_files:Z localhost/openstack/tempest-run:latest /bin/bash"
