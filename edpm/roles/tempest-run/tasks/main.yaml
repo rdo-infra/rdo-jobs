@@ -1,0 +1,123 @@
+---
+# Tempest stuff
+- name: Run tempest
+  block:
+    - name: Create tempest directory
+      ansible.builtin.file:
+        path: "{{ tempest_dir }}"
+        state: directory
+
+    - name: Get keystone secret name
+      register: keystone_secret_name
+      ansible.builtin.shell:
+        cmd: oc get keystoneapi keystone -o json | jq -r .spec.secret
+
+    - name: Get keystone passwd select
+      register: keystone_passwd_select
+      ansible.builtin.shell:
+        cmd: oc get keystoneapi keystone -o json |jq -r .spec.passwordSelectors.admin
+
+    - name: Get os_password
+      register: os_password
+      ansible.builtin.shell:
+        cmd: oc get secret "{{ keystone_secret_name.stdout }}" -o json |jq -r .data."{{ keystone_passwd_select.stdout }}" | base64 -d
+
+    - name: Create clouds.yaml
+      ansible.builtin.shell:
+        cmd: |
+          cat > "{{ tempest_dir }}/clouds.yaml" << EOF
+          oc get cm openstack-config -n openstack -o json | jq -r '.data["clouds.yaml"]'
+          EOF
+
+    - name: Inject os_password into clouds.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ ansible_user_dir }}/.config/openstack/clouds.yaml"
+        regex: "project_domain_name"
+        insertafter: "project_domain_name"
+        line: "      password: {{ os_password.stdout }} "
+
+    - name: render tempest osclient to {{ tempest_dir }} dir
+      template:
+        src: "tempest_openstackclient.yaml.j2"
+        dest: "{{ tempest_dir }}/tempest_openstackclient.yaml"
+        mode: '0644'
+
+    - name: render tempest working templates to {{ tempest_working_dir }}
+      template:
+        src: "{{ item }}.j2"
+        dest: "{{ tempest_dir }}/{{ item }}"
+        mode: '0644'
+      with_items:
+        - tempest_script.sh
+        - include_file
+        - exclude_file
+
+    - name: create tempest osclient
+      shell: |
+        if oc get -n openstack osclient/tempest; then
+          oc delete -n openstack osclient tempest
+        fi
+        oc apply -f {{ tempest_dir }}/tempest_openstackclient.yaml
+
+    - name: wait for tempest pod in ready state
+      shell: |
+        oc wait pod -n openstack tempest --for condition=Ready --timeout="{{ tempest_timeout }}s"
+      retries: 12
+      delay: 10
+      register: pod_result
+      until: pod_result.rc == 0
+
+    - name: Prepare tempest
+      when: pod_result.rc == 0
+      block:
+        - name: Create /var/lib/tempest/.config/openstack directory and copy clouds.yaml
+          shell: |
+            #!/bin/bash
+            set -e
+            oc rsh -n openstack tempest mkdir -p /var/lib/tempest/.config/openstack
+            oc cp -n openstack {{ tempest_dir }}/clouds.yaml tempest:/var/lib/tempest/.config/openstack/clouds.yaml
+
+        - name: copy rendered tempest config
+          shell: |
+            #!/bin/bash
+            set -e
+            oc cp -n openstack {{ tempest_dir }}/{{ item }} tempest:/var/lib/tempest/{{ item }}
+          with_items:
+          - tempest_script.sh
+          - include_file
+          - exclude_file
+
+        - name: Run tempest, the output gets logged at {{ tempest_dir }}/tempest.log
+          shell: |
+            #!/bin/bash
+            set -e
+            oc rsh -n openstack tempest timeout 20m sh /var/lib/tempest/tempest_script.sh > {{ tempest_dir }}/tempest.log 2>&1
+          ignore_errors: true
+          register: tempest_run
+
+        - name: Get tempest summary
+          shell: |
+            #!/bin/bash
+            set -e
+            sed -n '/^Totals/,$p' {{ tempest_dir }}/tempest.log
+          register: tempest_summary
+
+        - name: Get failed tempest tests
+          shell: |
+            #!/bin/bash
+            set -e
+            grep FAILED {{ working_log_dir }}/tempest.log || true
+          register: tempest_failed
+
+        - name: Tempest run summary
+          debug:
+            msg: "{{ tempest_summary.stdout.split('\n') }}"
+
+        - name: Tempest failed tests
+          debug:
+            msg: "{{ tempest_failed.stdout.split('\n') }}"
+
+        - name: Fail playbook if tempest run failed or timed out
+          fail:
+            msg: Tempest run failed or timed out, check output {{ tempest_dir }}/tempest.log
+          when: tempest_run.rc == 1 or tempest_failed.stdout | length != 0

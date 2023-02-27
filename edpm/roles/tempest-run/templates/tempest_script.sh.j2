@@ -1,0 +1,31 @@
+# Set the exit status for the command
+set -e
+
+# Create a tempest workspace, use the shared directory so that the files
+# in it are accessible from the host as well.
+mkdir -p /var/lib/tempest/tempest_workspace
+tempest init /var/lib/tempest/tempest_workspace
+
+# change directory to tempest_workspace
+pushd /var/lib/tempest/tempest_workspace
+
+# export TEMPESTCONF environment variable for easier later usage
+export TEMPESTCONF="/usr/bin/discover-tempest-config"
+
+# Execute the discover-tempest-config in order to generate tempest.conf
+# Set --out to /home/stack/tempest_workspace/tempest.conf so that the
+# tempest.conf file is later accessible from host machine as well.
+# Set --deployer-input to point to the tempest-deployer-input.conf
+# located in the shared directory.
+$TEMPESTCONF \
+  --out /var/lib/tempest/tempest_workspace/etc/tempest.conf \
+  --debug \
+  --create 
+
+tempest cleanup --init-saved-state
+
+tempest run \
+  --include-list /var/lib/tempest/include_file \
+  --exclude-list /var/lib/tempest/exclude_file
+
+tempest cleanup
