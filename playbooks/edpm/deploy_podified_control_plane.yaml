@@ -66,6 +66,11 @@
         oc get csv ${INSTALLED_CSV} -o 'jsonpath={.spec.install.spec.deployments[*].name}' | \
           timeout 240 xargs -I '{}' -d ' ' sh -c 'oc wait --for=condition=Available deployment {} --timeout=-1s'
 
+    - name: Waiting for all services to be ready
+      ansible.builtin.shell:
+        oc get OpenStackControlPlane openstack -o json | jq -r '.status.conditions[].type' | \
+        timeout 240 xargs -d '\n' -I {} sh -c 'echo testing condition={}; oc wait openstackcontrolplane.core.openstack.org/openstack --for=condition={} --timeout=-1s'
+
     - name: Deploy podified control plane using install_yamls
       vars:
         namespace: openstack
@@ -156,6 +161,18 @@
       until: deploy_external_status.rc == 0
       retries: 100
       delay: 20
+
+    - name: Wait for pending pods
+      register: pending_pods
+      ansible.builtin.shell:
+        cmd: "oc get pods | grep Pending"
+      until: pending_pods.rc != 0
+      retries: 10
+      delay: 60
+
+    - name: Run tempest
+      ansible.builtin.include_role:
+        name: tempest-run
 
     - name: Get the logs of EDPM Play
       ansible.builtin.shell:
