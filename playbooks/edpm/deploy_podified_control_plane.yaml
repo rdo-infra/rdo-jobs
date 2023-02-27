@@ -115,6 +115,72 @@
       retries: 100
       delay: 20
 
+    # Tempest stuff
+    - name: Run tempest
+      block:
+        - name: Ensure we have tempest packages installed
+          package:
+            state: preset
+            name: {{ item }}
+          with_items:
+            - openstack-tempest-all
+            - python3-tempestconf
+            - openstack-tempest
+
+        - name: Create .config/openstack directory
+          ansible.builtin.file:
+            path: "{{ ansible_user_dir }}/.config/openstack"
+            state: directory
+
+        - name: Create clouds.yaml
+          ansible.builtin.shell:
+            cmd: |
+              cat > "{{ ansible_user_dir }}/.config/openstack/clouds.yaml" << EOF
+              oc get cm openstack-config -n openstack -o json | jq -r '.data["clouds.yaml"]'
+              EOF
+
+        - name: Get keystone secret name
+          register: keystone_secret_name
+          ansible.builtin.shell:
+            cmd: oc get keystoneapi keystone -o json | jq -r .spec.secret
+
+        - name: Get keystone passwd select
+          register: keystone_passwd_select
+          ansible.builtin.shell:
+            cmd: oc get keystoneapi keystone -o json |jq -r .spec.passwordSelectors.admin
+
+        - name: Get os_password
+          register: os_password
+          ansible.builtin.shell:
+            cmd: oc get secret "{{ keystone_secret_name.stdout }}" -o json |jq -r .data."{{ keystone_passwd_select.stdout }}" | base64 -d
+
+        - name: Inject os_password into clouds.yaml
+          ansible.builtin.lineinfile:
+            path: "{{ ansible_user_dir }}/.config/openstack/clouds.yaml"
+            regex: "project_domain_name"
+            insertafter: "project_domain_name"
+            line: "      password: {{ os_password.stdout }} "
+
+        - name: Create tempest directory
+          ansible.builtin.file:
+            path: "{{ ansible_user_dir }}/tempest"
+            state: directory
+
+        - name: Initialize tempest
+          ansible.builtin.shell:
+            cmd: tempest init openshift
+            chdir: "{{ansible_user_dir }}/tempest"
+
+        - name: Run tempestconf
+          ansible.builtin.shell:
+            cmd: discover-tempest-config --os-cloud default --debug --create
+            chdir: "{{ ansible_user_dir }}/tempest/openshift"
+
+        - name: Run tempest
+          ansible.builtin.shell:
+            cmd: tempest run --regex "tempest.api.compute.*.v3"
+          register: tempest_run
+
     - name: Get the logs of EDPM Play
       ansible.builtin.shell:
         cmd: "oc logs {{ deploy_external_pod_name.stdout |trim }}"
