@@ -113,6 +113,10 @@
       retries: 100
       delay: 20
 
+    - name: Run tempest
+      ansible.builtin.include_role:
+        name: tempest-run
+
     - name: Get the logs of EDPM Play
       ansible.builtin.shell:
         cmd: "oc logs {{ deploy_external_pod_name.stdout |trim }}"
