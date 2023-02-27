@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tempest
+  namespace: openstack
+spec:
+  cloudName: overcloud
+  imageURL: {{ tempest_image }}
+  networks:
+    - ctlplane
+    - external
+    - internal_api
+  storageClass: host-nfs-storageclass
+  # tempest:x:42480:42480
+  runUID: 42480
+  runGID: 42480
+  caConfigMap: cacerts
