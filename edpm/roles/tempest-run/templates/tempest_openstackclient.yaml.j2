@@ -1,0 +1,9 @@
+apiVersion: apps/v1
+kind: Pod
+metadata:
+  name: tempest
+  namespace: openstack
+spec:
+  containers:
+    image: {{ tempest_image }}
+    name: tempest
