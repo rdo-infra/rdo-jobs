@@ -22,6 +22,12 @@
         pushd {{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls
         cp -R out {{ ansible_user_dir }}/zuul-output/logs/controller
         popd
+        mkdir -p logs/controller/pod
+        mkdir -p logs/controller/tempest
+        chmod -R a+r "{{ ansible_user_dir }}/openstack"
+        chmod -R a+r "{{ansible_user_dir }}/tempest"
+        chown -R {{ ansible_user }}: "{{ ansible_user_dir }}/openstack"
+        chown -R {{ ansible_user }}: "{{ ansible_user_dir }}/tempest"
         ip a > network.txt
         ip ro ls >> network.txt
         oc get pods > all_pods.txt
@@ -35,6 +41,9 @@
           oc get -o yaml $pod > ${pod}.yaml
           oc describe $pod > ${pod}-describe.txt
         done
+        pushd logs/controller/tempest
+        test -d "{{ ansible_user_dir }}/tempest" && rsync -r "{{ ansible_user_dir }}/tempest" ./
+        popd
       args:
         chdir: "{{ ansible_user_dir }}/zuul-output/logs/controller"
       changed_when: true
