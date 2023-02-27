@@ -1,0 +1,21 @@
+FROM centos/centos:stream9 
+
+RUN dnf install -y git python-setuptools python-requests python3-pip
+RUN git clone https://git.openstack.org/openstack/tripleo-repos && \
+    pushd tripleo-repos && \
+    python3 setup.py install && \
+    popd && \
+    /usr/local/bin/tripleo-repos current-tripleo-dev
+
+RUN dnf update -y && \
+    dnf install -y python3-tempestconf openstack-tempest && \
+    dnf clean all
+
+RUN mkdir -p /root/external_files
+
+COPY ./src/run_tempest.sh /root/tempest/run_tempest.sh
+COPY ./src/clouds.yaml /root/.config/openstack/clouds.yaml
+
+ENV USE_EXTERNAL_FILES=true
+
+ENTRYPOINT ["/root/tempest/run_tempest.sh"]
