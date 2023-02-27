@@ -1,0 +1,6 @@
+---
+tempest_dir: "{{ ansible_user_dir }}/tempest"
+tempest_tag: "current-tripleo"
+tempest_namespace: "tripleozedcentos9"
+tempest_registry: "quay.io"
+tempest_image: "{{ tempest_registry }}/{{ tempest_namespace }}/tempest:{{ tempest_tag }}"
