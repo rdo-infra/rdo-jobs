@@ -90,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a23ba754_53ef41c2",
+        "filename": "playbooks/data_plane_adoption/collect_logs_crc.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-02-28T16:37:56Z",
+      "side": 1,
+      "message": "note that this thing will also be covered by the ci framework. So maybe we can go \"as-is\" and improve in the framework directly?",
+      "parentUuid": "be453ebd_9e4ec061",
+      "revId": "01c3d5600e2d41f38895534f067010db0f91ed67",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b5a1aa6d_fb85b6eb",
         "filename": "playbooks/data_plane_adoption/setup_crc_use_install_yamls.yaml",
         "patchSetId": 11
@@ -137,6 +155,24 @@
       "side": 1,
       "message": "again yes, and cedric already considered this with chandan and we will have some common code to check this in the ci operator.\n\nfor now i\u0027d like to merge and improve either way (i.e. if we improve here to poll or if we wait and use the common code when ready)",
       "parentUuid": "57e21232_c486cd17",
+      "revId": "01c3d5600e2d41f38895534f067010db0f91ed67",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da38e9cc_6d3395f2",
+        "filename": "playbooks/data_plane_adoption/setup_crc_use_install_yamls.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-02-28T16:37:56Z",
+      "side": 1,
+      "message": "the ci framework will provide helpers for this kind of thing - I\u0027m ok with merging as-is and improving with the \"common code\" aka ci framework.",
+      "parentUuid": "8fd9cbea_dbf53781",
       "revId": "01c3d5600e2d41f38895534f067010db0f91ed67",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
