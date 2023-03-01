@@ -9,6 +9,10 @@
         cmd: |
           set -e
           # Need to inherit system-site-packages for python-yum
+          echo {{ ansible_user_dir }}
+          find {{ ansible_user_dir }}
+          echo workspace
+          find /workspace
           sudo dnf install -y python3-virtualenv
           virtualenv --system-site-packages {{ ansible_user_dir }}/.venv
           source {{ ansible_user_dir }}/.venv/bin/activate
