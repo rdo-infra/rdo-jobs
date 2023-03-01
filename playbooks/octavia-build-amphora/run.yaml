@@ -67,13 +67,28 @@
           fi
           sudo --preserve-env=DIB_LOCAL_IMAGE,DIB_YUM_MINIMAL_EXTRA_REPOS \
                 /usr/bin/octavia-diskimage-create.sh -s 3 -d "$amphora_distrib_release" -p -i centos -o amphora-x64-haproxy-centos.qcow2
+          # From 2023.1/Antelope on build another image with "-m", which
+          # enables cpu-pinning
+          if [[ "$RELEASE" =~ ^20 ]]; then
+            sudo --preserve-env=DIB_LOCAL_IMAGE,DIB_YUM_MINIMAL_EXTRA_REPOS \
+                  /usr/bin/octavia-diskimage-create.sh -m -s 3 \
+                  -d "$amphora_distrib_release" -p -i centos \
+                  -o amphora-cpu-pinning-x64-haproxy-centos.qcow2
+          fi
+
           # Create output directory
           mkdir -p images/$RELEASE
+          curdate=$(date +%Y%m%d-%H%M%S)
           if [ -f amphora-x64-haproxy-centos.qcow2 ]; then
-              curdate=$(date +%Y%m%d-%H%M%S)
               mv amphora-x64-haproxy-centos.qcow2 images/${RELEASE}/amphora-x64-haproxy-centos-$curdate.qcow2
               pushd images/${RELEASE}
               ln -s amphora-x64-haproxy-centos-$curdate.qcow2 amphora-x64-haproxy-centos.qcow2
+              popd
+          fi
+          if [ -f amphora-cpu-pinning-x64-haproxy-centos.qcow2 ]; then
+              mv amphora-cpu-pinning-x64-haproxy-centos.qcow2 images/${RELEASE}/amphora-cpu-pinning-x64-haproxy-centos-$curdate.qcow2
+              pushd images/${RELEASE}
+              ln -s amphora-cpu-pinning-x64-haproxy-centos-$curdate.qcow2 amphora-cpu-pinning-x64-haproxy-centos.qcow2
               popd
           fi
         chdir: '{{ zuul.project.src_dir }}'
