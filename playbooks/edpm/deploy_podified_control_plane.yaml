@@ -55,21 +55,31 @@
           {{ full_range | unique }}
         cacheable: true
 
+    - name: Make sure openstack operator deployed successfully
+      ansible.builtin.shell: |
+        INSTALLED_CSV=$(oc get subscription openstack-operator -o jsonpath='{.status.installedCSV}')
+        oc get csv ${INSTALLED_CSV} -o 'jsonpath={.spec.install.spec.deployments[*].name}' | \
+          timeout 240 xargs -I '{}' -d ' ' sh -c 'oc wait --for=condition=Available deployment {} --timeout=-1s'
+
     - name: Deploy podified control plane using install_yamls
       vars:
         namespace: openstack
-        run_crc_storage: true
         run_openstack_deploy: true
+        run_input: true
+        run_crc_storage: true
+        command_after_run_crc_storage: |
+          sleep 100
         create_openstack_cr: true
         run_script: true
+        command_after_make_openstack_deploy: |
+          sleep 600
       ansible.builtin.include_role:
         name: use_install_yamls
 
-    - name: Add additional sleep in order to finish the deploy
-      ansible.builtin.shell: |
-        sleep 200
-      args:
-        executable: /bin/bash
+    - name: List services
+      shell: |
+        oc get OpenStackControlPlane openstack -o json | jq -r '.status.conditions[]'
+        oc get pods
 
     - name: Debug some values
       debug:
