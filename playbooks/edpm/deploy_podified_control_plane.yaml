@@ -55,11 +55,28 @@
           {{ full_range | unique }}
         cacheable: true
 
+    - name: Delete standard crc storage
+      vars:
+        namespace: openstack
+        run_crc_storage_cleanup: true
+        run_script: true
+        storage_class: standard
+      ansible.builtin.include_role:
+        name: use_install_yamls
+
+    - name: Check Status
+      shell: |
+        oc get OpenStackControlPlane openstack -o json | \
+          jq -r '.status.conditions[] | select(.type | test("^OpenStackControlPlane(?!Cinder)")).type' | \
+          timeout 1200 xargs \
+          -d '\n' -I '{}' sh -c 'echo testing condition={}; oc wait openstackcontrolplane.core.openstack.org/openstack --for=condition={} --timeout=-1s'
+
     - name: Deploy podified control plane using install_yamls
       vars:
         namespace: openstack
-        run_crc_storage: true
         run_openstack_deploy: true
+        run_input: true
+        run_crc_storage: true
         create_openstack_cr: true
         run_script: true
       ansible.builtin.include_role:
@@ -67,7 +84,7 @@
 
     - name: Add additional sleep in order to finish the deploy
       ansible.builtin.shell: |
-        sleep 200
+        exit 1
       args:
         executable: /bin/bash
 
