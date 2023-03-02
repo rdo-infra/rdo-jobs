@@ -50,4 +50,3 @@
             | awk '{ print strftime("%Y-%m-%d %H:%M:%S |"), $0; fflush(); }'
         image_tag: "{{ md5_value.stdout }}"
         work_dir: "{{ ansible_user_dir }}/workspace"
-
