@@ -1,0 +1,13 @@
+- hosts: controller
+  gather_facts: false
+  vars:
+    dpa_dir: "/home/zuul-worker/src/github.com/openstack-k8s-operators/data-plane-adoption"
+  tasks:
+    - name: Run data-plane-adoption tests
+      community.general.make:
+        chdir: "{{ dpa_dir }}"
+        target: test-minimal
+        params:
+          TEST_CONFIG: "tests/ci/ci_ansible.cfg"
+          TEST_SECRETS: "tests/ci/secrets.yaml"
+          TEST_VARS: "tests/ci/vars.yaml"
