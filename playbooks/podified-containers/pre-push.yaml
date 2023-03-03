@@ -1,0 +1,26 @@
+---
+- hosts: primary
+  tasks:
+    - name: install copy_containers
+      ansible.builtin.include_role:
+        name: copy_container
+        tasks_from: main
+      vars:
+        enable_cron: false
+        enable_cron_c9: false
+
+    - name: Create the config file
+      ansible.builtin.template:
+        src: {{ playbook_dir }}/files/copy-quay-config.yaml.j2
+        dest:  {{ work_dir }}/copy-quay-config.yaml
+        mode: '0755'
+
+    # TODO: Use go to get DLRN hash from job file
+    - name: Get md5 file for DLRN hash tag
+      ansible.builtin.get_url:
+        url: "{{ trunk_url }}/{{ ansible_distribution|lower }}{{ ansible_distribution_major_version }}-{{ openstack_release}}/{{ promote_source }}/delorean.repo.md5"
+        dest: "{{ ansible_user_dir }}/delorean.repo.md5"
+
+    - name: Find MD5 value
+      ansible.builtin.command: "cat {{ ansible_user_dir }}/delorean.repo.md5"
+      register: DLRN_hash
