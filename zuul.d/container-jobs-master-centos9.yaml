@@ -50,3 +50,21 @@
       push_containers: true
       buildah_login: true
       registry_login_enabled: true
+
+## quay.io push job
+- job:
+    name: periodic-container-quay-push-centos-9-master
+    parent: copy-container-quay-base
+    nodeset: single-centos-9-stream-node-vexxhost
+    timeout: 3000
+    pre-run: playbooks/podified-containers/pre-push.yaml
+    post-run: playbooks/podified-containers/collect-push-logs.yaml
+    attempts: 1
+    vars:
+      openstack_release: master
+      container_build_push_job_name: periodic-container-tcib-build-push-centos-9-master
+      api_end_point: api-centos9-master-uc
+      from_namespace: podified-main-centos9
+      to_namespace: podified-main-centos9
+      trunk_url: https://trunk.rdoproject.org
+      promote_source: podified-ci-testing
