@@ -1,0 +1,4 @@
+- hosts: controller
+  tasks:
+    - name: Run the tests from data-plane-adoption repo
+      include: /home/zuul-worker/src/github.com/openstack-k8s-operators/data-plane-adoption/tests/playbooks/test_minimal.yaml
