@@ -24,7 +24,7 @@
         # Copy repo-setup files
         rsync -var --no-links {{ ansible_user_dir }}/repos {{ ansible_user_dir }}/zuul-output/logs || true
         # Buildah images
-        sudo buildah images &> buildah_images.txt
+        sudo buildah images | grep {{ container_name_prefix }} | tee {{ ansible_user_dir }}/workspace/logs/containers-built.log
         pushd {{ ansible_user_dir }}/workspace
         sudo cp -R * {{ ansible_user_dir }}/zuul-output/logs
         popd
