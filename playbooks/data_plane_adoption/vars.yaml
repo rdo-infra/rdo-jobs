@@ -1,0 +1,13 @@
+# Path to install_yamls repo
+install_yamls_path: /home/zuul-worker/src/github.com/openstack-k8s-operators/install_yamls/
+# Whether to use 'make crc_storage_cleanup; make crc_storage' before the test
+reset_crc_storage: true
+
+# Snippet to get the desired 'oc' command onto $PATH.
+oc_header: ''
+
+# External MariaDB IP for DB exports.
+external_mariadb_ip: CUSTOMIZE_THIS
+
+# Auth URL to use for adopted Keystone.
+auth_url: http://keystone-public-openstack.apps-crc.testing

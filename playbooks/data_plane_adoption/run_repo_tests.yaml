@@ -1,0 +1,15 @@
+- hosts: controller
+  gather_facts: false
+  vars:
+    dpa_dir: "/home/zuul-worker/src/github.com/openstack-k8s-operators/data-plane-adoption"
+    rdo_dir: "/home/zuul-worker/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
+  tasks:
+    - name: Run data-plane-adoption tests
+      community.general.make:
+        chdir: "{{ dpa_dir }}"
+        target: test-minimal
+        params:
+          TEST_CONFIG: "{{ rdo_dir }}/ansible.cfg"
+          TEST_SECRETS: "{{ rdo_dir}}/secrets.yaml"
+          TEST_VARS: "{{ rdo_dir }}/vars.yaml"
+          TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"
