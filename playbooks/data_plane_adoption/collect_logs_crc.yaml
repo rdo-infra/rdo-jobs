@@ -26,6 +26,13 @@
         chdir: "{{ ansible_user_dir }}/openstack"
       changed_when: true
 
+    - name: collect data-plane-adoption test logs
+      ansible.builtin.shell: |
+        cp logs/test_minimal_out_* {{ ansible_user_dir }}
+      args:
+        chdir: "/home/zuul-worker/src/github.com/openstack-k8s-operators/data-plane-adoption/tests"
+      failed_when: false
+
     - name: Copy files from {{ ansible_user_dir }}/openstack on node
       # ansible.posix.synchronize does not work with zuul-executor
       synchronize:
