@@ -1,0 +1,11 @@
+---
+zuul_api: "https://review.rdoproject.org/zuul/api/"
+pull_registry: "quay.rdoproject.org"
+push_registry: "quay.io"
+entries:
+  - name: "{{ openstack_release }}{{ ansible_distribution|lower }}{{ansible_distribution_major_version }}"
+    release: "{{ openstack_release }}{{ ansible_distribution|lower }}{{ansible_distribution_major_version }}"
+    job_name: "{{ container_build_push_job_name }}"
+    api_entry: "https://trunk.rdoproject.org/{{ api_end_point }}"
+    from_namespace: "{{ from_namespace }}"
+    to_namespace: "{{ to_namespace }}"
