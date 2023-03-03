@@ -1,0 +1,29 @@
+---
+- hosts: all
+  vars:
+    work_dir: "{{ ansible_user_dir }}/workspace"
+  tasks:
+    - name: Create container log dir
+      file:
+        path: "{{ ansible_user_dir }}/zuul-output/logs"
+        state: directory
+        mode: 0755
+    - name: Collect logs
+      args:
+        chdir: "{{ ansible_user_dir }}/zuul-output/logs"
+      ansible.builtin.shell: |
+        set -x
+        # Collect installed packages
+        sudo {{ ansible_pkg_mgr }} list installed &> installed_pkgs.txt
+        # Save some statistics
+        df -h &> disk_usage.txt
+        # Copy yum repos
+        sudo rsync -var --no-links --include 'yum.repos.d/***' --include 'yum.conf' --include 'dnf/***' --exclude='*' /etc/ {{ ansible_user_dir }}/zuul-output/logs || true
+        # Copy push logs
+        pushd {{ ansible_user_dir }}/workspace
+        sudo cp -R * {{ ansible_user_dir }}/zuul-output/logs
+        popd
+      changed_when: true
+    - name: Copy files from {{ work_dir }} on node
+      include_role:
+        name: fetch-output
