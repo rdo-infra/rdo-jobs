@@ -1,0 +1,28 @@
+- hosts: controller
+  gather_facts: false
+  roles:
+    - prelude_local
+  vars:
+    oc_login_command: oc login -u kubeadmin -p 123456789
+    install_yamls_path: /home/zuul-worker/src/github.com/openstack-k8s-operators/install_yamls/
+    oc_header: ''
+
+- hosts: controller
+  gather_facts: false
+  roles:
+    - pcp_cleanup
+  vars:
+    oc_login_command: oc login -u kubeadmin -p 123456789
+    install_yamls_path: /home/zuul-worker/src/github.com/openstack-k8s-operators/install_yamls/
+    oc_header: ''
+    reset_crc_storage: false
+
+- hosts: controller
+  gather_facts: false
+  roles:
+    - backend_services
+    - mariadb_copy
+  vars:
+    oc_login_command: oc login -u kubeadmin -p 123456789
+    install_yamls_path: /home/zuul-worker/src/github.com/openstack-k8s-operators/install_yamls/
+    oc_header: ''

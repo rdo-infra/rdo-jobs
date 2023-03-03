@@ -12,10 +12,13 @@
       - rdo-jobs
     roles:
       - zuul: rdo-jobs
+      - zuul: github.com/openstack-k8s-operators/data-plane-adoption
     pre-run:
       - playbooks/edpm/subnode_ip.yaml
       - playbooks/data_plane_adoption/setup_crc_use_install_yamls.yaml
-    post-run: playbooks/data_plane_adoption/collect_logs_crc.yaml
+    post-run:
+      - playbooks/data_plane_adoption/run_repo_tests.yaml
+      - playbooks/data_plane_adoption/collect_logs_crc.yaml
     vars:
       featureset: '052'
       release: wallaby
