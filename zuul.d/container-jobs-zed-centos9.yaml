@@ -31,3 +31,14 @@
       push_containers: true
       buildah_login: true
       registry_login_enabled: true
+
+## quay.io push job
+- job:
+    name: periodic-container-quay-push-centos-9-zed
+    parent: periodic-container-quay-push-centos-9-master
+    vars:
+      openstack_release: zed
+      container_build_push_job_name: periodic-container-tcib-build-push-centos-9-zed
+      api_end_point: api-centos9-zed
+      from_namespace: podified-zed-centos9
+      to_namespace: podified-zed-centos9
