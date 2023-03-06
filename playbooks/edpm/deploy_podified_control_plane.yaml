@@ -20,14 +20,19 @@
         cmd: git show-ref --head --hash head
         chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible"
 
-    - name: Build and push openstack-runner image
-      containers.podman.podman_image:
-        name: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:{{ edpm_ansible_tag.stdout|trim }}"
-        path: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible"
-        build:
-          file: "openstack_ansibleee/Dockerfile"
-        pull: false
-        push: true
+    - name: Build openstack-runner image
+      community.general.make:
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible"
+        target: openstack_ansibleee_build
+        params:
+          IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:{{ edpm_ansible_tag.stdout|trim }}"
+
+    - name: Push openstack-runner image
+      community.general.make:
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/edpm-ansible"
+        target: openstack_ansibleee_push
+        params:
+          IMG: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:{{ edpm_ansible_tag.stdout|trim }}"
 
     - name: Get subnode IP
       register: subnode_ip
