@@ -4,6 +4,9 @@
     name: container-pipeline-zed-centos9
     openstack-periodic-container-zed-centos9:
       jobs:
+        - periodic-centos-9-podified-edpm-integration-zed:
+            dependencies:
+              - periodic-container-tcib-build-push-centos-9-zed
         - periodic-container-tcib-build-push-centos-9-zed:
             dependencies:
               - periodic-centos-9-zed-promote-consistent-to-podified-ci-testing

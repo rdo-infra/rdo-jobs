@@ -90,6 +90,36 @@
           SSH_KEY_FILE: "{{ ansible_user_dir }}/.ssh/id_rsa"
           EDPM_SSHD_ALLOWED_RANGES: "{{ edpm_sshd_allowed_ranges }}"
 
+    - name: Update EDPM Play for periodic jobs
+      block:
+        - name: Get md5 file for DLRN hash tag
+          ansible.builtin.get_url:
+            url: "https://trunk.rdoproject.org/centos9-{{ openstack_release}}/{{ promote_source }}/delorean.repo.md5"
+            dest: "{{ ansible_user_dir }}/delorean.repo.md5"
+
+        - name: Find MD5 value
+          ansible.builtin.command: "cat {{ ansible_user_dir }}/delorean.repo.md5"
+          register: md5_value
+
+        - name: Update registry name in EDPM play
+          ansible.builtin.replace:
+            path: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/devsetup/edpm/edpm-play.yaml"
+            regexp: 'quay.io'
+            replace: 'quay.rdoproject.org'
+
+        - name: Update registry namespace in EDPM play
+          ansible.builtin.replace:
+            path: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/devsetup/edpm/edpm-play.yaml"
+            regexp: 'tripleomastercentos9'
+            replace: '{{ registry_namespace }}'
+
+        - name: Update Image tag in EDPM play
+          ansible.builtin.replace:
+            path: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/devsetup/edpm/edpm-play.yaml"
+            regexp: 'image_tag: "current-tripleo"'
+            replace: 'image_tag: "{{ md5_value.stdout }}"'
+      when: "'periodic' in zuul.job"
+
     - name: Run EDPM Play
       community.general.make:
         target: edpm_play
