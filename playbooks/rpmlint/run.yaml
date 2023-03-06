@@ -127,6 +127,9 @@
           # Exception for tackerclient
           addFilter("python-tackerclient-doc.noarch: W: file-not-utf8 /usr/share/doc/python-tackerclient-doc-.*/html/objects.inv")
 
+          # Exception for tacker
+          addFilter("openstack-tacker-common.noarch: W: non-standard-gid /etc/tacker/prometheus-plugin.yaml tacker")
+
           # Exception for openstackclient
           addFilter("python-openstackclient-doc.noarch: W: file-not-utf8 /usr/share/doc/python-openstackclient-doc/html/objects.inv")
           addFilter("python-openstackclient-doc.noarch: W: wrong-file-end-of-line-encoding /usr/share/doc/python-openstackclient-doc/html/objects.inv")
