@@ -40,3 +40,21 @@
     vars:
       <<: *edpm_vars
       build_operators: true
+
+# Periodic Jobs
+- job:
+    name: periodic-centos-9-podified-edpm-integration-zed
+    parent: base-crc
+    nodeset: centos-8-crc-single-node-centos-9-external-compute
+    timeout: 10800
+    required-projects: *edpm_required_projects
+    roles:
+      - zuul: rdo-jobs
+    pre-run: playbooks/edpm/subnode_ip.yaml
+    run: playbooks/edpm/deploy_podified_control_plane.yaml
+    post-run: playbooks/edpm/collect_logs.yaml
+    vars:
+      <<: *edpm_vars
+      registry_namespace: podified-zed-centos9
+      openstack_release: zed
+      promote_source: podified_ci_testing
