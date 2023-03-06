@@ -16,6 +16,23 @@
       "message": "Test results from https://review.rdoproject.org/r/c/testproject/+/47426/3#message-fa765354a64c2053a6fc2edc9f2e98392f13a8f1\n\nLogs: https://logserver.rdoproject.org/26/47426/2/check/periodic-centos-9-podified-edpm-integration-zed/fe08339/logs/secondary/podman_images.txt\n```\nREPOSITORY                                                                     TAG                               IMAGE ID      CREATED      SIZE\nquay.rdoproject.org/podified-zed-centos9/openstack-ovn-controller              6576e6e0fa3dc80787700e5c14b498f5  639d1d520add  7 hours ago  533 MB\nquay.rdoproject.org/podified-zed-centos9/openstack-nova-libvirt                6576e6e0fa3dc80787700e5c14b498f5  447c7bbf2a73  7 hours ago  1.56 GB\nquay.rdoproject.org/podified-zed-centos9/openstack-nova-compute                6576e6e0fa3dc80787700e5c14b498f5  8e7b64516d97  7 hours ago  1.36 GB\nquay.rdoproject.org/podified-zed-centos9/openstack-neutron-metadata-agent-ovn  6576e6e0fa3dc80787700e5c14b498f5  d7cb53a9ccb4  8 hours ago  947 MB\nquay.rdoproject.org/podified-zed-centos9/openstack-iscsid                      6576e6e0fa3dc80787700e5c14b498f5  70127cac05b1  8 hours ago  544 MB\nquay.rdoproject.org/podified-zed-centos9/openstack-cron                        6576e6e0fa3dc80787700e5c14b498f5  5e4e91fc8ad2  8 hours ago  406 MB\n```\n\nhttps://logserver.rdoproject.org/26/47426/2/check/periodic-centos-9-podified-edpm-integration-zed/fe08339/job-output.txt\n\n```\n2023-03-06 13:48:12.271039 | TASK [Find MD5 value]\n2023-03-06 13:48:12.732676 | controller | 6576e6e0fa3dc80787700e5c14b498f5\n2023-03-06 13:48:12.732730 | controller | [Zuul] No trailing newline\n2023-03-06 13:48:12.809279 | controller | changed\n```",
       "revId": "69baf6c9ae0446d9b2bcf0a420ea0f9ac5d03f39",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66c03852_1e8daf4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 242
+      },
+      "writtenOn": "2023-03-06T15:18:45Z",
+      "side": 1,
+      "message": "based on logs using correct containers",
+      "revId": "69baf6c9ae0446d9b2bcf0a420ea0f9ac5d03f39",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
