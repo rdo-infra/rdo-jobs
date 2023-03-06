@@ -22,6 +22,30 @@
       },
       "revId": "974302b086d627ece780d69c980fae872acdcd65",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61593c4b_bd63031e",
+        "filename": "playbooks/edpm/deploy_podified_control_plane.yaml",
+        "patchSetId": 31
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 739
+      },
+      "writtenOn": "2023-03-06T14:54:05Z",
+      "side": 1,
+      "message": "You also need to fixe the \u0027sleep 600\u0027 on line 79.\nSo you may want to reduce de sleep to sthing like 60, just to make sure that OpenStackControlPlane resource was created.",
+      "parentUuid": "b979c1da_5b789789",
+      "range": {
+        "startLine": 64,
+        "startChar": 3,
+        "endLine": 67,
+        "endChar": 166
+      },
+      "revId": "974302b086d627ece780d69c980fae872acdcd65",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
