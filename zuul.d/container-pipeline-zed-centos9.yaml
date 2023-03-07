@@ -4,6 +4,13 @@
     name: container-pipeline-zed-centos9
     openstack-periodic-container-zed-centos9:
       jobs:
+        - periodic-centos-9-zed-promote-podified-ci-testing-to-current-podified:
+           dependencies:
+              - periodic-container-quay-push-centos-9-zed
+              # Tempest API test
+        - periodic-container-quay-push-centos-9-zed:
+           dependencies:
+              - periodic-centos-9-podified-edpm-integration-zed
         - periodic-centos-9-podified-edpm-integration-zed:
             dependencies:
               - periodic-container-tcib-build-push-centos-9-zed
@@ -11,17 +18,3 @@
             dependencies:
               - periodic-centos-9-zed-promote-consistent-to-podified-ci-testing
         - periodic-centos-9-zed-promote-consistent-to-podified-ci-testing
-        # build container job - > push to quay.rdoproject namespace openstackzedcentos9
-        #  dependencies:
-        #    - periodic-centos-9-zed-promote-consistent-to-podified-ci-testing
-        # test with CRC, operators, install_yamls, tempest API, EPDM
-        #   dependencies:
-        #     - container build push job
-        # push containers to quay.io namespace podified-zed-centos9
-        #  dependencies:
-        #    - CRC operator test
-        #    - tempest API tests
-        #    - EDPM test
-        # periodic-centos-9-zed-promote-podified-ci-testing-to-current-podified
-        #   dependencies:
-        #     - push containers to quay.io namespace podified-zed-centos9 job
