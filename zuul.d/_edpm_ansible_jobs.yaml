@@ -43,7 +43,7 @@
 
 # Periodic Jobs
 - job:
-    name: periodic-centos-9-podified-edpm-integration-zed
+    name: periodic-centos-9-podified-edpm-integration-master
     parent: base-crc
     nodeset: centos-8-crc-single-node-centos-9-external-compute
     timeout: 10800
@@ -55,6 +55,14 @@
     post-run: playbooks/edpm/collect_logs.yaml
     vars:
       <<: *edpm_vars
+      registry_namespace: podified-main-centos9
+      openstack_release: master
+      promote_source: podified-ci-testing
+
+
+- job:
+    name: periodic-centos-9-podified-edpm-integration-zed
+    parent: periodic-centos-9-podified-edpm-integration-master
+    vars:
       registry_namespace: podified-zed-centos9
       openstack_release: zed
-      promote_source: podified-ci-testing
