@@ -66,3 +66,35 @@
     vars:
       registry_namespace: podified-zed-centos9
       openstack_release: zed
+
+# Microshift
+- job:
+    name: edpm-ansible-github-rdo-integration-centos-9-microshift-singlenode-centos-9-external-compute
+    parent: base-microshift
+    nodeset: centos-9-microshift-single-node-centos-9-external-compute
+    timeout: 10800
+    required-projects: &edpm_microshift_required_projects
+      - openstack-k8s-operators/install_yamls
+      - opendev.org/zuul/zuul-jobs
+      - opendev.org/openstack/tripleo-repos
+      - openstack-k8s-operators/openstack-operator
+      - name: openstack-k8s-operators/edpm-ansible
+        override-checkout: main
+      - name: openstack-k8s-operators/openstack-ansibleee-operator
+        override-checkout: main
+      - rdo-jobs
+      - rdo-infra/rdo-infra-playbooks
+    roles:
+      - zuul: rdo-jobs
+      - zuul: rdo-infra/rdo-infra-playbooks
+    pre-run: playbooks/edpm/subnode_ip.yaml
+    run: playbooks/edpm/deploy_podified_control_plane_microshift.yaml
+    post-run: playbooks/edpm/collect_logs.yaml
+    vars: &edpm_microshift_vars
+      registry_login_enabled: true
+      push_registry: quay.rdoproject.org
+      quay_login_secret_name: quay_nextgen_zuulgithubci
+      pre_pull_images:
+        - registry.redhat.io/rhosp-rhel9/openstack-rabbitmq:17.0
+      pv_storageclass: local-storage
+      overwrite_container_policy: true

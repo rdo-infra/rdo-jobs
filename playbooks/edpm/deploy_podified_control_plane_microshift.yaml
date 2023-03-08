@@ -1,0 +1,24 @@
+- hosts: all
+  tasks:
+    - name: Clone repos in the job workspace
+      include_role:
+        name: prepare-workspace
+
+- hosts: controller
+  tasks:
+    - name: Deploy podified control plane using install_yamls
+      vars:
+        namespace: openstack
+        run_openstack: true
+        command_after_make_openstack: |
+          sleep 100
+        run_script: true
+      ansible.builtin.include_role:
+        name: use_install_yamls
+
+    - name: Make sure openstack operator deployed successfully
+      ansible.builtin.shell: |
+        INSTALLED_CSV=$(oc get subscription openstack-operator -o jsonpath='{.status.installedCSV}')
+        oc get csv ${INSTALLED_CSV} -o 'jsonpath={.spec.install.spec.deployments[*].name}' | \
+          timeout 240 xargs -I '{}' -d ' ' sh -c 'oc wait --for=condition=Available deployment {} --timeout=-1s'
+
