@@ -1,0 +1,47 @@
+- hosts: all
+  tasks:
+    - name: Clone repos in the job workspace
+      include_role:
+        name: prepare-workspace
+
+- hosts: controller
+  tasks:
+    - name: Install Ansible, Make, Tar
+      become: true
+      ansible.builtin.package:
+        name:
+          - ansible-core
+          - make
+          - tar
+        state: latest
+
+    - name: Install devsetup dependencies
+      community.general.make:
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/devsetup"
+        target: download_tools
+
+    - name: Create OpenStack namespace
+      community.general.make:
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls"
+        target: namespace
+
+    - name: Generate olm artifacts
+      community.general.make:
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls"
+        target: openstack_prep
+
+    - name: Install olm
+      ansible.builtin.shell: |
+        operator-sdk olm install
+
+    - name: Deploy Openstack Operators
+      community.general.make:
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls"
+        target: openstack
+
+    - name: Make sure openstack operator deployed successfully
+      ansible.builtin.shell: |
+        INSTALLED_CSV=$(oc get subscription openstack-operator -o jsonpath='{.status.installedCSV}')
+        oc get csv ${INSTALLED_CSV} -o 'jsonpath={.spec.install.spec.deployments[*].name}' | \
+          timeout 240 xargs -I '{}' -d ' ' sh -c 'oc wait --for=condition=Available deployment {} --timeout=-1s'
+
