@@ -4,6 +4,13 @@
     name: container-pipeline-master-centos9
     openstack-periodic-container-master-centos9:
       jobs:
+        - periodic-centos-9-master-promote-podified-ci-testing-to-current-podified:
+            dependencies:
+              - periodic-container-quay-push-centos-9-master
+              # Tempest API test
+        - periodic-container-quay-push-centos-9-master:
+            dependencies:
+              - periodic-centos-9-podified-edpm-integration-master
         - periodic-centos-9-podified-edpm-integration-master:
             dependencies:
               - periodic-container-tcib-build-push-centos-9-master
