@@ -33,6 +33,24 @@
       "message": "so you have listed this without the connection prefix\n\nwhich should work but im wondering if that will also mean it will be in a differnt location in the src directory\n\nits looking for it in /home/zuul-worker/src/github.com/openstack-k8s-operators/edpm-ansible\n\n\nhttps://review.rdoproject.org/zuul/build/8d5fed9f278c46e9b107260660b75570/log/job-output.txt#1115-1123\n\n\nalthough more likely the prepare-workspace or prepare-workspace-git roles were not run as i dont see it in the job output.\n\nthe openshift variant was skipped \nhttps://review.rdoproject.org/zuul/build/8d5fed9f278c46e9b107260660b75570/log/job-output.txt#192-193\n\nso i think that is missing form teh base job.\n\nwe likely shoudl be using https://opendev.org/zuul/zuul-jobs/src/branch/master/roles/prepare-workspace-git or  or https://opendev.org/zuul/zuul-jobs/src/branch/master/roles/prepare-workspace to ensure the prepared git repos are copied form teh executor to the working directory.",
       "revId": "233ffbd9fae42d091b132955eefef0f5522d78fa",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d81256d_835d1332",
+        "filename": "zuul.d/_edpm_ansible_jobs.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2023-03-09T07:41:33Z",
+      "side": 1,
+      "message": "added prepare-workspace: https://review.rdoproject.org/r/c/config/+/47579/",
+      "parentUuid": "0942ab44_5520d88e",
+      "revId": "233ffbd9fae42d091b132955eefef0f5522d78fa",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
