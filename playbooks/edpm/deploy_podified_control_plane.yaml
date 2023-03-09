@@ -139,7 +139,7 @@
     - name: Get deploy-external-dataplane-compute pod name
       register: deploy_external_pod_name
       ansible.builtin.shell:
-        cmd: oc get pods -o name | grep -m1 deploy-external
+        cmd: oc get pods -o name | grep -m1 deploy-edpm-node
         executable: /bin/bash
       until: deploy_external_pod_name.rc == 0
       retries: 5
