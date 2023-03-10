@@ -767,3 +767,34 @@
       - name: subnodes
         nodes:
           - controller
+
+# Microshift
+- nodeset:
+    name: centos-9-microshift-single-node
+    nodes:
+      - name: controller
+        label: cloud-centos-9-stream
+    groups:
+      - name: switch
+        nodes:
+          - cotnroller
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: centos-9-microshift-single-node-centos-9-external-compute
+    nodes:
+      - name: controller
+        label: cloud-centos-9-stream
+      - name: secondary
+        label: cloud-centos-9-stream
+    groups:
+      - name: switch
+        nodes:
+          - controller
+      - name: peers
+        nodes:
+          - secondary
+      - name: subnodes
+        nodes:
+          - secondary
