@@ -733,6 +733,28 @@
         nodes: []
 
 - nodeset:
+    name: centos-8-crc-two-node-centos-9-external-compute
+    nodes:
+      - name: controller
+        label: centos-8-stream-crc-xxl
+      - name: secondary-1
+        label: cloud-centos-9-stream
+      - name: secondary-2
+        label: cloud-centos-9-stream
+    groups:
+      - name: switch
+        nodes:
+          - controller
+      - name: peers
+        nodes:
+          - secondary-1
+          - secondary-2
+      - name: subnodes
+        nodes:
+          - secondary-1
+          - secondary-2
+
+- nodeset:
     name: centos-8-crc-single-node-centos-9-external-compute
     nodes:
       - name: controller
