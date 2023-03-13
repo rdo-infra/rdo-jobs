@@ -12,7 +12,7 @@
     apiVersion: kustomize.config.k8s.io/v1beta1
     kind: Kustomization
     resources:
-    - ./core_v1beta1_openstackcontrolplane.yaml
+    - ./core_v1beta1_openstackcontrolplane_network_isolation.yaml
     namespace: openstack
     patches:
     - patch: |-
