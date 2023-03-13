@@ -1,0 +1,7 @@
+---
+  # FIXME(chandan): Till EDPM jobs gets the network isolation support
+- name: Update ctlplane_ip in EDPM play
+  ansible.builtin.replace:
+    path: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/devsetup/edpm/edpm-play.yaml"
+    regexp: 'ctlplane_ip: _COMPUTE_IP_'
+    replace: 'ctlplane_ip: 192.168.24.100'

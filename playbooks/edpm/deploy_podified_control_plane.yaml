@@ -125,6 +125,8 @@
             replace: 'image_tag: "{{ md5_value.stdout }}"'
       when: "'periodic' in zuul.job"
 
+    - include_tasks: workarounds.yaml
+
     - name: Run EDPM Play
       community.general.make:
         target: edpm_play
