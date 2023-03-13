@@ -1,5 +1,5 @@
 ---
-- hosts: secondary
+- hosts: secondary-1, secondary-2
   tasks:
     - name: Populate repos
       ansible.builtin.shell: |
