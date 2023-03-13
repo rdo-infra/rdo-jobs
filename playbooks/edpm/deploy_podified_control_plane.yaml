@@ -73,6 +73,7 @@
         run_openstack_deploy_prep: true
         run_input: true
         openstack_repo: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-operator"
+        openstack_ctlplane: config/samples/core_v1beta1_openstackcontrolplane_network_isolation.yaml
         run_crc_storage: true
         command_after_run_crc_storage: |
           sleep 100
