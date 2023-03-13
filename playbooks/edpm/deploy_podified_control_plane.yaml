@@ -10,6 +10,7 @@
 
     - name: Get resource status
       ansible.builtin.shell: |
+        exit 1
         oc project openstack
         oc get csv
         oc get pods
