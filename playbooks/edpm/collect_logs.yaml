@@ -1,66 +1,72 @@
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: Create log dir
+      file:
+        path: "{{ ansible_user_dir }}/zuul-output/logs"
+        state: directory
+        mode: 0755
+
 - hosts: controller
   gather_facts: false
   tasks:
+    - name: Create log dir
+      file:
+        path: "{{ ansible_user_dir }}/zuul-output/logs/controller"
+        state: directory
+        mode: 0755
+
     - name: Collect pod logs
       ansible.builtin.shell: |
         source ~/.bashrc
-        mkdir -p logs/controller/pod
-        chmod -R a+r "{{ ansible_user_dir }}/openstack"
-        chown -R {{ ansible_user }}: "{{ ansible_user_dir }}/openstack"
-        pushd logs/controller
+        pushd {{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls
+        cp -R out {{ ansible_user_dir }}/zuul-output/logs/controller
+        popd
         ip a > network.txt
         ip ro ls >> network.txt
         oc get pods > all_pods.txt
+        oc get secrets > all_secrets.txt
+        oc get pv > all_pv.txt
         all_pods=$(oc get pods -o name)
+        mkdir pod
         for pod in $all_pods; do
           echo $pod
           oc logs $pod > ${pod}-logs.txt
           oc get -o yaml $pod > ${pod}.yaml
           oc describe $pod > ${pod}-describe.txt
         done
-        popd
-        test -d /home/zuul-worker/src/github.com/openstack-k8s-operators/install_yamls/out && \
-          rsync -r /home/zuul-worker/src/github.com/openstack-k8s-operators/install_yamls/out ./install_yamls_out
       args:
-        chdir: "{{ ansible_user_dir }}/openstack"
+        chdir: "{{ ansible_user_dir }}/zuul-output/logs/controller"
       changed_when: true
+      ignore_errors: true
 
 - hosts: secondary
   gather_facts: false
   tasks:
+    - name: Create log dir
+      file:
+        path: "{{ ansible_user_dir }}/zuul-output/logs/secondary"
+        state: directory
+        mode: 0755
+
     - name: Collect logs from edpm node
       ansible.builtin.shell: |
-        mkdir -p openstack/logs/secondary
-        chmod -R a+r "{{ ansible_user_dir }}/openstack"
-        chown -R {{ ansible_user }}: "{{ ansible_user_dir }}/openstack"
-        pushd openstack/logs
-        ip a > secondary/network.txt
-        ip ro ls >> secondary/network.txt
-        rpm -qa > secondary/rpm_qa.txt
-        sudo podman images > secondary/podman_images.txt
-        sudo cp -r /etc/nftables /var/lib/edpm-config secondary/
-        sudo journalctl -p warning -t kernel -o short -g DROPPING --no-pager &> secondary/firewall-drops.txt
-        sudo journalctl -o short --no-pager -u sshd > secondary/sshd.log
-        sudo chown -R {{ansible_user}}: secondary
+        ip a > network.txt
+        ip ro ls >> network.txt
+        rpm -qa > rpm_qa.txt
+        sudo podman images > podman_images.txt
+        sudo cp -r /etc/nftables /var/lib/edpm-config .
+        sudo journalctl -p warning -t kernel -o short -g DROPPING --no-pager &> firewall-drops.txt
+        sudo journalctl -o short --no-pager -u sshd > sshd.log
         popd
       args:
-        chdir: "{{ ansible_user_dir }}"
+        chdir: "{{ ansible_user_dir }}/zuul-output/logs/secondary"
       changed_when: true
+      ignore_errors: true
 
 - hosts: all
   gather_facts: false
   tasks:
-    - name: Copy files from {{ ansible_user_dir }}/openstack on node
-      # ansible.posix.synchronize does not work with zuul-executor
-      synchronize:
-        src: '{{ ansible_user_dir }}/openstack/'
-        dest: '{{ zuul.executor.log_root }}'
-        mode: pull
-        copy_links: true
-        verify_host: true
-        rsync_opts:
-          - --include=/etc/**
-          - --include=/conf/**
-          - --include=/logs/**
-          - --include=*/
-          - --prune-empty-dirs
+    - name: Copy files from {{ work_dir }} on node
+      include_role:
+        name: fetch-output
