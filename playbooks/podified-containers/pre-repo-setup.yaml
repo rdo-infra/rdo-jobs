@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Install and setup repos for the openstack release
+      ansible.builtin.shell: |
+        ansible-galaxy collection install --force .
+      args:
+        chdir: "{{ zuul.projects['github.com/ci-framework/repo-setup'].src_dir }}"
+
+- hosts: primary
+  tasks:
+    - name: Install ansible
+      become: true
+      ansible.builtin.package:
+        name:
+          - ansible-core
+        state: present
+
+    - name: Install and setup repos for the openstack release
+      ansible.builtin.shell: |
+        ansible-galaxy collection install --force .
+      args:
+        chdir: "{{ ansible_user_dir }}/src/github.com/ci-framework/repo-setup"
