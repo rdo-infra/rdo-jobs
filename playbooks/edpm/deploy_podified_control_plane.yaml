@@ -73,6 +73,7 @@
         run_openstack_deploy_prep: true
         run_input: true
         openstack_repo: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-operator"
+        openstack_ctlplane: config/samples/core_v1beta1_openstackcontrolplane_network_isolation.yaml
         run_crc_storage: true
         command_after_run_crc_storage: |
           sleep 100
@@ -149,8 +150,6 @@
           EDPM_NETWORK_CONFIG_TEMPLATE: "templates/ci/multinode.j2"
           SSH_KEY_FILE: "{{ ansible_user_dir }}/.ssh/id_rsa"
           EDPM_SSHD_ALLOWED_RANGES: "{{ edpm_sshd_allowed_ranges }}"
-
-    - include_tasks: workarounds.yaml
 
     - name: Run EDPM Play
       community.general.make:
