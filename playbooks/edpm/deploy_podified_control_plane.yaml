@@ -66,12 +66,48 @@
         oc get csv ${INSTALLED_CSV} -o 'jsonpath={.spec.install.spec.deployments[*].name}' | \
           timeout 240 xargs -I '{}' -d ' ' sh -c 'oc wait --for=condition=Available deployment {} --timeout=-1s'
 
+    - name: Install nmstate operator
+      community.general.make:
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls"
+        target: nmstate
+        params:
+          OUT: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/out"
+
+    - name: Install nncp operator
+      community.general.make:
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls"
+        target: nncp
+        params:
+          OUT: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/out"
+
+    - name: Run make netattach
+      community.general.make:
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls"
+        target: netattach
+        params:
+          OUT: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/out"
+
+    - name: Install metallb operator
+      community.general.make:
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls"
+        target: metallb
+        params:
+          OUT: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/out"
+
+    - name: Run metallb_config
+      community.general.make:
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls"
+        target: metallb_config
+        params:
+          OUT: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/out"
+
     - name: Deploy podified control plane using install_yamls
       vars:
         namespace: openstack
         run_openstack_deploy: true
         run_input: true
         run_crc_storage: true
+        openstack_ctlplane: "config/samples/core_v1beta1_openstackcontrolplane_network_isolation.yaml"
         command_after_run_crc_storage: |
           sleep 100
         run_script: true
@@ -91,7 +127,6 @@
           zuul_worker_ip: "{{ zuul_worker_ip }}"
           EDPM_COMPUTE_IP: "{{ ee_subnode_ip }}"
           OPENSTACK_RUNNER_IMG: "{{ ee_image }}"
-          EDPM_NETWORK_CONFIG_TEMPLATE: "templates/ci/multinode.j2"
           SSH_KEY_FILE: "{{ ansible_user_dir }}/.ssh/id_rsa"
           EDPM_SSHD_ALLOWED_RANGES: "{{ edpm_sshd_allowed_ranges }}"
 
@@ -132,7 +167,6 @@
         params:
           EDPM_COMPUTE_IP: "{{ ee_subnode_ip }}"
           OPENSTACK_RUNNER_IMG: "{{ ee_image }}"
-          EDPM_NETWORK_CONFIG_TEMPLATE: "templates/ci/multinode.j2"
           SSH_KEY_FILE: "{{ ansible_user_dir }}/.ssh/id_rsa"
           EDPM_SSHD_ALLOWED_RANGES: "{{ edpm_sshd_allowed_ranges }}"
 
