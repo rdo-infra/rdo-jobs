@@ -21,6 +21,12 @@
     run: playbooks/edpm/deploy_podified_control_plane.yaml
     post-run: playbooks/edpm/collect_logs.yaml
     vars: &edpm_vars
+      unbound_cache_min_ttl: 900
+      bridge_name: br-ex
+      bridge_address_prefix: 192.168.24
+      bridge_address_subnet: 24
+      bridge_address_offset: 4
+      bridge_mtu: 1350
       registry_login_enabled: true
       push_registry: quay.rdoproject.org
       quay_login_secret_name: quay_nextgen_zuulgithubci
