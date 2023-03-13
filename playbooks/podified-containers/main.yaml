@@ -1,31 +1,24 @@
 ---
 - hosts: primary
   tasks:
-    - name: Install repo-setup package
-      ansible.builtin.shell: |
-        pip install virtualenv
-        virtualenv .venv
-        source .venv/bin/activate
-        pip install -r requirements.txt
-        python setup.py install
-      args:
-        chdir: "{{ ansible_user_dir }}/src/github.com/ci-framework/repo-setup"
+    - name: Install and setup repos for the openstack release
+      ansible.builtin.include_role:
+        name: repo_setup
+      vars:
+        cifmw_repo_setup_basedir: "{{ cifmw_basedir | default(ansible_user_dir ~ '/ci-framework') }}"
+        cifmw_repo_setup_promotion: "{{ promote_source }}"
+        cifmw_repo_setup_branch: "{{ openstack_release }}"
+        cifwm_repo_setup_dlrn_uri: "{{ trunk_url }}"
+        cifmw_repo_setup_os_release: "{{ ansible_distribution|lower }}"
+        cifmw_repo_setup_dist_major_version: "{{ ansible_distribution_major_version }}"
 
-    - name: Setup repos for the openstack release
-      ansible.builtin.shell: |
-        mkdir -p {{ repo_dir }}
-        source {{ ansible_user_dir }}/src/github.com/ci-framework/repo-setup/.venv/bin/activate
-        repo-setup {{ promote_source }} -b {{ openstack_release }} -o {{ repo_dir }}
-      args:
-        chdir: "{{ ansible_user_dir }}/src/github.com/ci-framework/repo-setup"
-
-    - name: Get md5 file for DLRN hash tag
-      ansible.builtin.get_url:
-        url: "{{ trunk_url }}/{{ ansible_distribution|lower }}{{ ansible_distribution_major_version }}-{{ openstack_release}}/{{ promote_source }}/delorean.repo.md5"
-        dest: "{{ ansible_user_dir }}/delorean.repo.md5"
-
-    - name: Find MD5 value
-      ansible.builtin.command: "cat {{ ansible_user_dir }}/delorean.repo.md5"
+    - name: Find MD5 hash value
+      collections:
+        - repo_setup.repos
+      repo_setup.repos.get_hash:
+        release: "{{ openstack_release }}"
+        os_version: "{{ ansible_distribution|lower }}{{ ansible_distribution_major_version }}"
+        tag: "{{ promote_source }}"
       register: md5_value
 
     # - name: Disable tripleo repo if it exists
@@ -42,4 +35,4 @@
       vars:
         version: "{{ ansible_distribution_major_version }}"
         release: "{{ openstack_release }}"
-        image_tag: "{{ md5_value.stdout }}"
+        image_tag: "{{ md5_value.full_hash }}"
