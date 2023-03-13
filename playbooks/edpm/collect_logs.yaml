@@ -40,7 +40,7 @@
       changed_when: true
       ignore_errors: true
 
-- hosts: secondary
+- hosts: secondary-1, secondary-2
   gather_facts: false
   tasks:
     - name: Create log dir
