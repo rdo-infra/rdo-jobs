@@ -54,7 +54,7 @@
     - name: Set some EDPM requested variables
       ansible.builtin.set_fact:
         ee_image: "quay.rdoproject.org/openstack-k8s-operators/openstack-ansibleee-runner:{{ edpm_ansible_tag.stdout|trim }}"
-        ee_subnode_ip: "{{ subnode_ip['content'] | b64decode | trim }}"
+        ee_subnode_ip: "{{ subnode_ip['content'] | b64decode | trim | split('\n') }}"
         edpm_sshd_allowed_ranges: >-
           {%- set full_range = basic_sshd_allowed_ranges + zuul_worker_ip + hostvars['controller']['ansible_all_ipv4_addresses'] %}
           {{ full_range | unique }}
@@ -74,7 +74,10 @@
         run_openstack_deploy_prep: true
         run_input: true
         openstack_repo: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-operator"
+        openstack_ctlplane: config/samples/core_v1beta1_openstackcontrolplane_network_isolation.yaml
         run_crc_storage: true
+        command_after_make_input: |
+          sleep 100
         command_after_run_crc_storage: |
           sleep 100
         run_script: true
@@ -94,13 +97,13 @@
 
         - name: Update Registry name and namespace in Openstack CRD file
           ansible.builtin.replace:
-            path: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/out/openstack/openstack/cr/core_v1beta1_openstackcontrolplane.yaml"
+            path: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/out/openstack/openstack/cr/core_v1beta1_openstackcontrolplane_network_isolation.yaml"
             regexp: 'quay.io/tripleozedcentos9'
             replace: 'quay.rdoproject.org/{{ registry_namespace }}'
 
         - name: Update Image tag in Openstack CRD file
           ansible.builtin.replace:
-            path: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/out/openstack/openstack/cr/core_v1beta1_openstackcontrolplane.yaml"
+            path: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/out/openstack/openstack/cr/core_v1beta1_openstackcontrolplane_network_isolation.yaml"
             regexp: 'current-tripleo'
             replace: '{{ md5_value.stdout }}'
 
@@ -140,6 +143,7 @@
       until: openstack_status.rc == 0
       retries: 20
       delay: 5
+      ignore_errors: true
 
     - name: Print Pod and OpenStack resources Status
       ansible.builtin.shell: |
@@ -158,24 +162,40 @@
           EDPM_SSHD_ALLOWED_RANGES: "{{ edpm_sshd_allowed_ranges }}"
           EDPM_CHRONY_NTP_SERVER: pool.ntp.org
 
-    - include_tasks: workarounds.yaml
+    - name: Update "tenant_ip: 192.168.24.100"
+      ansible.builtin.replace:
+        path: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/dataplane-operator/config/samples/dataplane_v1beta1_openstackdataplane.yaml"
+        regexp: 'tenant_ip: 192.168.24.100'
+        replace: 'tenant_ip: 192.168.24.5'
+
+    - name: Update 'tenant_ip: 192.168.24.101'
+      ansible.builtin.replace:
+        path: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/dataplane-operator/config/samples/dataplane_v1beta1_openstackdataplane.yaml"
+        regexp: 'tenant_ip: 192.168.24.101'
+        replace: 'tenant_ip: 192.168.24.6'
+
+    - name: Generate secrets for the compute node
+      ansible.builtin.shell: |
+        export SSH_KEY_FILE: {{ ansible_user_dir }}/.ssh/id_rsa
+        bash scripts/gen-ansibleee-ssh-key.sh
+      args:
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/devsetup"
 
     - name: Run EDPM Play
       community.general.make:
         target: edpm_play
-        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/devsetup"
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls"
         params:
-          EDPM_COMPUTE_IP: "{{ ee_subnode_ip }}"
+          EDPM_COMPUTE_NODE0_IP: "{{ ee_subnode_ip[0] }}"
+          EDPM_COMPUTE_NODE1_IP: "{{ ee_subnode_ip[1] }}"
           OPENSTACK_RUNNER_IMG: "{{ ee_image }}"
-          EDPM_NETWORK_CONFIG_TEMPLATE: "templates/ci/multinode.j2"
-          SSH_KEY_FILE: "{{ ansible_user_dir }}/.ssh/id_rsa"
           EDPM_SSHD_ALLOWED_RANGES: "{{ edpm_sshd_allowed_ranges }}"
           EDPM_CHRONY_NTP_SERVER: pool.ntp.org
 
     - name: Get deploy-external-dataplane-compute pod name
       register: deploy_external_pod_name
       ansible.builtin.shell:
-        cmd: oc get pods -o name | grep -m1 deploy-external
+        cmd: oc get pods -o name | grep -m1 openstack-edpm
         executable: /bin/bash
       until: deploy_external_pod_name.rc == 0
       retries: 5
