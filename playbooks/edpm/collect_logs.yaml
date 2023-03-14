@@ -10,6 +10,12 @@
 - hosts: controller
   gather_facts: false
   tasks:
+    - name: Create log dir
+      file:
+        path: "{{ ansible_user_dir }}/zuul-output/logs/controller"
+        state: directory
+        mode: 0755
+
     - name: Collect pod logs
       ansible.builtin.shell: |
         source ~/.bashrc
@@ -37,6 +43,12 @@
 - hosts: secondary
   gather_facts: false
   tasks:
+    - name: Create log dir
+      file:
+        path: "{{ ansible_user_dir }}/zuul-output/logs/secondary"
+        state: directory
+        mode: 0755
+
     - name: Collect logs from edpm node
       ansible.builtin.shell: |
         ip a > network.txt
