@@ -19,9 +19,3 @@
         dest: "{{ work_dir }}/copy-quay-config.yaml"
         mode: '0755'
 
-    # https://bugs.launchpad.net/tripleo/+bug/1988500
-    - name: Downgrade containers-common due to bug
-      ansible.builtin.shell: |
-        sudo dnf install -y podman
-        sudo dnf config-manager --setopt 'appstream.exclude=containers-common-1-44.*' appstream --save
-        sudo dnf -y downgrade containers-common-1-40.el9
