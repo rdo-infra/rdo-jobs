@@ -10,6 +10,12 @@
 - hosts: controller
   gather_facts: false
   tasks:
+    - name: Create log dir
+      file:
+        path: "{{ ansible_user_dir }}/zuul-output/logs/controller"
+        state: directory
+        mode: 0755
+
     - name: Collect pod logs
       ansible.builtin.shell: |
         source ~/.bashrc
@@ -37,6 +43,12 @@
 - hosts: secondary
   gather_facts: false
   tasks:
+    - name: Create log dir
+      file:
+        path: "{{ ansible_user_dir }}/zuul-output/logs/secondary"
+        state: directory
+        mode: 0755
+
     - name: Collect logs from edpm node
       ansible.builtin.shell: |
         ip a > network.txt
@@ -45,8 +57,9 @@
         sudo podman images > podman_images.txt
         sudo cp -r /etc/nftables /var/lib/edpm-config .
         sudo journalctl -p warning -t kernel -o short -g DROPPING --no-pager &> firewall-drops.txt
-        sudo journalctl -o short --no-pager -u sshd > sshd.log
-        popd
+        sudo journalctl -o short --no-pager -u sshd > sshd.loig
+        chmod -R a+r {{ ansible_user_dir }}/zuul-output/logs/secondary
+        sudo chmod 777 {{ ansible_user_dir }}/zuul-output/logs/secondary
       args:
         chdir: "{{ ansible_user_dir }}/zuul-output/logs/secondary"
       changed_when: true
