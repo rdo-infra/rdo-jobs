@@ -66,11 +66,55 @@
         oc get csv ${INSTALLED_CSV} -o 'jsonpath={.spec.install.spec.deployments[*].name}' | \
           timeout 240 xargs -I '{}' -d ' ' sh -c 'oc wait --for=condition=Available deployment {} --timeout=-1s'
 
+    - name: Update EDPM Play for periodic jobs
+      block:
+        - name: Get md5 file for DLRN hash tag
+          ansible.builtin.get_url:
+            url: "https://trunk.rdoproject.org/centos9-{{ openstack_release}}/{{ promote_source }}/delorean.repo.md5"
+            dest: "{{ ansible_user_dir }}/delorean.repo.md5"
+
+        - name: Find MD5 value
+          ansible.builtin.command: "cat {{ ansible_user_dir }}/delorean.repo.md5"
+          register: md5_value
+
+        - name: Update Registry name and namespace in Openstack CRD file
+           ansible.builtin.replace:
+            path: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/openstack-operator/config/samples/core_v1beta1_openstackcontrolplane.yaml"
+            regexp: 'quay.io/tripleozedcentos9'
+            replace: 'quay.rdoproject.org/{{ registry_namespace }}'
+
+        - name: Update Image tag in Openstack CRD file
+           ansible.builtin.replace:
+            path: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/openstack-operator/config/samples/core_v1beta1_openstackcontrolplane.yaml"
+            regexp: 'current-tripleo'
+            replace: '{{ md5_value.stdout }}'
+
+        - name: Update registry name in EDPM play
+          ansible.builtin.replace:
+            path: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/devsetup/edpm/edpm-play.yaml"
+            regexp: 'quay.io'
+            replace: 'quay.rdoproject.org'
+
+        - name: Update registry namespace in EDPM play
+          ansible.builtin.replace:
+            path: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/devsetup/edpm/edpm-play.yaml"
+            regexp: 'tripleomastercentos9'
+            replace: '{{ registry_namespace }}'
+
+        - name: Update Image tag in EDPM play
+          ansible.builtin.replace:
+            path: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/devsetup/edpm/edpm-play.yaml"
+            regexp: 'image_tag: "current-tripleo"'
+            replace: 'image_tag: "{{ md5_value.stdout }}"'
+      when: "'periodic' in zuul.job"
+
+
     - name: Deploy podified control plane using install_yamls
       vars:
         namespace: openstack
         run_openstack_deploy: true
         run_input: true
+        openstack_repo: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-operator"
         run_crc_storage: true
         command_after_run_crc_storage: |
           sleep 100
@@ -94,36 +138,6 @@
           EDPM_NETWORK_CONFIG_TEMPLATE: "templates/ci/multinode.j2"
           SSH_KEY_FILE: "{{ ansible_user_dir }}/.ssh/id_rsa"
           EDPM_SSHD_ALLOWED_RANGES: "{{ edpm_sshd_allowed_ranges }}"
-
-    - name: Update EDPM Play for periodic jobs
-      block:
-        - name: Get md5 file for DLRN hash tag
-          ansible.builtin.get_url:
-            url: "https://trunk.rdoproject.org/centos9-{{ openstack_release}}/{{ promote_source }}/delorean.repo.md5"
-            dest: "{{ ansible_user_dir }}/delorean.repo.md5"
-
-        - name: Find MD5 value
-          ansible.builtin.command: "cat {{ ansible_user_dir }}/delorean.repo.md5"
-          register: md5_value
-
-        - name: Update registry name in EDPM play
-          ansible.builtin.replace:
-            path: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/devsetup/edpm/edpm-play.yaml"
-            regexp: 'quay.io'
-            replace: 'quay.rdoproject.org'
-
-        - name: Update registry namespace in EDPM play
-          ansible.builtin.replace:
-            path: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/devsetup/edpm/edpm-play.yaml"
-            regexp: 'tripleomastercentos9'
-            replace: '{{ registry_namespace }}'
-
-        - name: Update Image tag in EDPM play
-          ansible.builtin.replace:
-            path: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/devsetup/edpm/edpm-play.yaml"
-            regexp: 'image_tag: "current-tripleo"'
-            replace: 'image_tag: "{{ md5_value.stdout }}"'
-      when: "'periodic' in zuul.job"
 
     - include_tasks: workarounds.yaml
 
