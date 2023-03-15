@@ -1,0 +1,44 @@
+---i
+# antelope promote jobs
+
+## promote-consistent-to-podified-ci-testing
+- job:
+    name: periodic-centos-9-antelope-promote-consistent-to-podified-ci-testing
+    parent: periodic-centos-9-master-promote-consistent-to-podified-ci-testing
+    vars:
+      release: antelope
+
+## promote-podified-ci-testing-to-current-podified
+- job:
+    name: periodic-centos-9-antelope-promote-podified-ci-testing-to-current-podified
+    parent: periodic-centos-9-master-promote-podified-ci-testing-to-current-podified
+    vars:
+      release: antelope
+
+## container build jobs
+- job:
+    name: container-tcib-build-centos-9-antelope
+    parent: container-tcib-build-centos-9-master
+    vars:
+      registry_namespace: podified-antelope-centos9
+      openstack_release: antelope
+
+## container push jobs
+- job:
+    name: periodic-container-tcib-build-push-centos-9-antelope
+    parent: container-tcib-build-centos-9-antelope
+    vars:
+      push_containers: true
+      buildah_login: true
+      registry_login_enabled: true
+
+## quay.io push job
+- job:
+    name: periodic-container-quay-push-centos-9-antelope
+    parent: periodic-container-quay-push-centos-9-master
+    vars:
+      openstack_release: antelope
+      container_build_push_job_name: periodic-container-tcib-build-push-centos-9-antelope
+      api_end_point: api-centos9-antelope
+      from_namespace: podified-antelope-centos9
+      to_namespace: podified-antelope-centos9
