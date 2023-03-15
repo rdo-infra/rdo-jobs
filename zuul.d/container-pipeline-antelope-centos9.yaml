@@ -1,0 +1,20 @@
+---
+# antelope container build, test, promotion pipeline
+- project-template:
+    name: container-pipeline-antelope-centos9
+    openstack-periodic-container-antelope-centos9:
+      jobs:
+        - periodic-centos-9-antelope-promote-podified-ci-testing-to-current-podified:
+            dependencies:
+              - periodic-container-quay-push-centos-9-antelope
+              # Tempest API test
+        - periodic-container-quay-push-centos-9-antelope:
+            dependencies:
+              - periodic-centos-9-podified-edpm-integration-antelope
+        - periodic-centos-9-podified-edpm-integration-antelope:
+            dependencies:
+              - periodic-container-tcib-build-push-centos-9-antelope
+        - periodic-container-tcib-build-push-centos-9-antelope:
+            dependencies:
+              - periodic-centos-9-antelope-promote-consistent-to-podified-ci-testing
+        - periodic-centos-9-antelope-promote-consistent-to-podified-ci-testing
