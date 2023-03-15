@@ -62,10 +62,5 @@
       openstack_release: master
       promote_source: podified-ci-testing
 
-
-- job:
-    name: periodic-centos-9-podified-edpm-integration-zed
-    parent: periodic-centos-9-podified-edpm-integration-master
-    vars:
-      registry_namespace: podified-zed-centos9
-      openstack_release: zed
+# Periodic jobs for stable branches are in
+# zuul.d/container-jobs-{{ release }}-centos9.yaml files
