@@ -62,6 +62,12 @@
       openstack_release: master
       promote_source: podified-ci-testing
 
+- job:
+    name: periodic-centos-9-podified-edpm-integration-antelope
+    parent: periodic-centos-9-podified-edpm-integration-master
+    vars:
+      registry_namespace: podified-antelope-centos9
+      openstack_release: antelope
 
 - job:
     name: periodic-centos-9-podified-edpm-integration-zed
