@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef352f66_93f07967",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2023-03-16T17:01:44Z",
+      "side": 1,
+      "message": "We still need to handle [1] and [2], which are both used to checkout to the right branch in p-o-i and packstack repos. But we don\u0027t know yet what name will be used in p-o-i. Packstack repo will have to use same naming as in p-o-i.\n\n[1] https://github.com/rdo-infra/rdo-jobs/blob/ca22912abafeca8daa3415fefa38d871c70da0f9/playbooks/weirdo/dlrn/run.yaml#L123\n[2] https://github.com/rdo-infra/rdo-jobs/blob/ca22912abafeca8daa3415fefa38d871c70da0f9/playbooks/weirdo/integration/run.yaml#L26\n",
+      "revId": "7fab16b12beaec4c8d20e865ab7d97635a96749f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
