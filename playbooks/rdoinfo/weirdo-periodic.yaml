@@ -26,6 +26,9 @@
           if [ $RELEASE = $MASTER ]; then
             VERSION="master"
             O_RELEASE="master"
+          elif [ $RELEASE = "antelope" ]; then
+            VERSION="stable/2023.1"
+            O_RELEASE="$RELEASE"
           else
             VERSION="stable/$RELEASE"
             O_RELEASE="$RELEASE"

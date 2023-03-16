@@ -33,7 +33,11 @@ if [[ "${TAG}" != "antelope-uc" ]]; then
     branch=$(echo $TAG | awk -F- '{print $1}')
     tag=$TAG
     baseurl="http://trunk.rdoproject.org/${branch}/${CENTOS_VERSION}/"
-    src="stable/${branch}"
+    if [ "$branch" == 'antelope' ]; then
+        src="stable/2023.1"
+    else
+        src="stable/${branch}"
+    fi
     PROJECT_DISTRO_BRANCH="${TAG}-rdo"
 fi
 
