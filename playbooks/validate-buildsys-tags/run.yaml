@@ -53,6 +53,6 @@
           esac
           bash ./create_temporary_repos.sh $INFO_DIR $WORKSPACE/logs $INFO_FILE
           ln -s $WORKSPACE/logs $WORKSPACE/buildset
-          bash ./${VALIDATE_SCRIPT} $WORKSPACE/logs
+          bash ./${VALIDATE_SCRIPT} $WORKSPACE/logs $INFO_FILE
           popd
       changed_when: true
