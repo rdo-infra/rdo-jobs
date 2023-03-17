@@ -6,15 +6,19 @@
     required-projects: &edpm_required_projects
       - openstack-k8s-operators/install_yamls
       - opendev.org/zuul/zuul-jobs
-      - opendev.org/openstack/tripleo-repos
       - openstack-k8s-operators/openstack-operator
       - name: openstack-k8s-operators/edpm-ansible
         override-checkout: main
       - name: openstack-k8s-operators/openstack-ansibleee-operator
         override-checkout: main
+      - name: github.com/openstack-k8s-operators/ci-framework
+        override-checkout: main
+      - name: github.com/openstack-k8s-operators/repo-setup
+        override-checkout: main
       - rdo-jobs
-    roles:
+    roles: &edpm_roles
       - zuul: rdo-jobs
+      - zuul: github.com/openstack-k8s-operators/ci-framework
     pre-run: &pre_run
       - playbooks/edpm/subnode_ip.yaml
       - playbooks/edpm/repo_setup.yaml
@@ -22,9 +26,11 @@
     post-run: playbooks/edpm/collect_logs.yaml
     vars: &edpm_vars
       registry_login_enabled: true
+      openstack_release: zed
       push_registry: quay.rdoproject.org
       quay_login_secret_name: quay_nextgen_zuulgithubci
       crc_parameters: "--memory 22000 --disk-size 120 --cpus 6"
+      cifmw_repo_setup_dist_major_version: 9
       pre_pull_images:
         - registry.redhat.io/rhosp-rhel9/openstack-rabbitmq:17.0
         - quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:afa73a12a1ffd31f77b10a25c43a4d02b0fd62f927f6209c26983bd8aee021bf
@@ -35,8 +41,7 @@
     nodeset: centos-8-crc-single-node-centos-9-external-compute
     timeout: 10800
     required-projects: *edpm_required_projects
-    roles:
-      - zuul: rdo-jobs
+    roles: *edpm_roles
     pre-run: *pre_run
     run: playbooks/edpm/deploy_podified_control_plane.yaml
     post-run: playbooks/edpm/collect_logs.yaml
@@ -51,8 +56,7 @@
     nodeset: centos-8-crc-single-node-centos-9-external-compute
     timeout: 10800
     required-projects: *edpm_required_projects
-    roles:
-      - zuul: rdo-jobs
+    roles: *edpm_roles
     pre-run: *pre_run
     run: playbooks/edpm/deploy_podified_control_plane.yaml
     post-run: playbooks/edpm/collect_logs.yaml
