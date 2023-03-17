@@ -149,6 +149,7 @@
           EDPM_NETWORK_CONFIG_TEMPLATE: "templates/ci/multinode.j2"
           SSH_KEY_FILE: "{{ ansible_user_dir }}/.ssh/id_rsa"
           EDPM_SSHD_ALLOWED_RANGES: "{{ edpm_sshd_allowed_ranges }}"
+          EDPM_CHRONY_NTP_SERVER: pool.ntp.org
 
     - include_tasks: workarounds.yaml
 
@@ -162,6 +163,7 @@
           EDPM_NETWORK_CONFIG_TEMPLATE: "templates/ci/multinode.j2"
           SSH_KEY_FILE: "{{ ansible_user_dir }}/.ssh/id_rsa"
           EDPM_SSHD_ALLOWED_RANGES: "{{ edpm_sshd_allowed_ranges }}"
+          EDPM_CHRONY_NTP_SERVER: pool.ntp.org
 
     - name: Get deploy-external-dataplane-compute pod name
       register: deploy_external_pod_name
