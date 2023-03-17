@@ -16,6 +16,46 @@
       "message": "see test project usage: https://logserver.rdoproject.org/54/47154/44/check/container-tcib-build-centos-9-master/f321faa/build_containers.sh",
       "revId": "57482a0bf97014e53c8f62b79adead4109149b08",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82da2b2e_d403ad9d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-03-17T13:28:42Z",
+      "side": 1,
+      "message": "\"shell\" isn\u0027t really useful in the pointed case - but I won\u0027t block on it ;)",
+      "revId": "57482a0bf97014e53c8f62b79adead4109149b08",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "249997e9_41444e80",
+        "filename": "playbooks/podified-containers/main.yaml",
+        "patchSetId": 24
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-03-17T13:28:42Z",
+      "side": 1,
+      "message": "I\u0027d rather use either \"command\" or \"slurp\" for such cases. Slurp is nice, really:\nname: Get MD5 from file\nregister: md5sum_slurp\nansible.builtin.slurp:\n  path: \"{{ ansible_user_dir }}/ci-framework/....\"\n  \nAnd later: \"{{ md5sum_slurp[\u0027content\u0027]|b64decode }}\"",
+      "range": {
+        "startLine": 21,
+        "startChar": 22,
+        "endLine": 21,
+        "endChar": 27
+      },
+      "revId": "57482a0bf97014e53c8f62b79adead4109149b08",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
