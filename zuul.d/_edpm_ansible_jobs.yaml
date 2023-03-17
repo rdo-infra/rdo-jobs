@@ -15,7 +15,9 @@
       - rdo-jobs
     roles:
       - zuul: rdo-jobs
-    pre-run: playbooks/edpm/subnode_ip.yaml
+    pre-run: &pre_run
+      - playbooks/edpm/subnode_ip.yaml
+      - playbooks/edpm/repo_setup.yaml
     run: playbooks/edpm/deploy_podified_control_plane.yaml
     post-run: playbooks/edpm/collect_logs.yaml
     vars: &edpm_vars
@@ -35,7 +37,7 @@
     required-projects: *edpm_required_projects
     roles:
       - zuul: rdo-jobs
-    pre-run: playbooks/edpm/subnode_ip.yaml
+    pre-run: *pre_run
     run: playbooks/edpm/deploy_podified_control_plane.yaml
     post-run: playbooks/edpm/collect_logs.yaml
     vars:
@@ -51,7 +53,7 @@
     required-projects: *edpm_required_projects
     roles:
       - zuul: rdo-jobs
-    pre-run: playbooks/edpm/subnode_ip.yaml
+    pre-run: *pre-run
     run: playbooks/edpm/deploy_podified_control_plane.yaml
     post-run: playbooks/edpm/collect_logs.yaml
     vars:
