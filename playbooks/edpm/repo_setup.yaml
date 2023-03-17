@@ -1,15 +1,25 @@
 ---
-- hosts: secondary
+- hosts: all
   tasks:
-    - name: Populate repos
-      ansible.builtin.shell: |
-        rpm -q git || sudo yum -y install git
-        sudo yum -y install python-setuptools python-requests python3-pip
-        git clone https://github.com/openstack-k8s-operators/repo-setup
-        pushd repo-setup
-        sudo python3 setup.py install
-        {% if openstack_release is defined %}
-        sudo /usr/local/bin/repo-setup podified-ci-testing -b {{ openstack_release }}
-        {% else %}
-        sudo /usr/local/bin/repo-setup current-podified-dev
-        {% endif %}
+    - name: Install virtualenv
+      ansible.builtin.pip:
+        name: virtualenv
+
+    - name: Install and Generate repos for the openstack release
+      ansible.builtin.include_role:
+        name: repo_setup
+      vars:
+        cifmw_repo_setup_basedir: "{{ cifmw_basedir | default(ansible_user_dir ~ '/ci-framework') }}"
+        cifmw_repo_setup_promotion: "{{ promote_source | default('current-podified') }}"
+        cifmw_repo_setup_branch: "{{ openstack_release }}"
+        cifwm_repo_setup_dlrn_uri: "{{ trunk_url|default('https://trunk.rdoproject.org/') }}"
+        cifmw_repo_setup_os_release: "{{ ansible_distribution|lower | default('centos') }}"
+        cifmw_repo_setup_dist_major_version: "{{ ansible_distribution_major_version | default(9) }}"
+        cifmw_repo_setup_src: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/repo-setup"
+
+    - name: Copy the repos to /etc/yum.repos.d directory
+      when: ansible_distribution_major_version is version('9', '>=')
+      become: true
+      ansible.builtin.copy:
+        src: "{{ ansible_user_dir }}/ci-framework/artifacts/repositories/*.repo"
+        dest: "/etc/yum.repos.d/"
