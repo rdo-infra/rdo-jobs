@@ -341,16 +341,28 @@
       promote_target: puppet-passed-ci
 
 - job:
-    name: weirdo-antelope-promote-consistent-to-puppet-ci-testing
+    name: weirdo-bobcat-promote-consistent-to-puppet-ci-testing
     parent: weirdo-base-promote-consistent-to-puppet-ci-testing
     vars:
       release: master
 
 - job:
-    name: weirdo-antelope-promote-puppet-ci-testing-to-puppet-passed-ci
+    name: weirdo-bobcat-promote-puppet-ci-testing-to-puppet-passed-ci
     parent: weirdo-base-promote-puppet-ci-testing-to-puppet-passed-ci
     vars:
       release: master
+
+- job:
+    name: weirdo-antelope-promote-consistent-to-puppet-ci-testing
+    parent: weirdo-base-promote-consistent-to-puppet-ci-testing
+    vars:
+      release: antelope
+
+- job:
+    name: weirdo-antelope-promote-puppet-ci-testing-to-puppet-passed-ci
+    parent: weirdo-base-promote-puppet-ci-testing-to-puppet-passed-ci
+    vars:
+      release: antelope
 
 - job:
     name: weirdo-zed-promote-consistent-to-puppet-ci-testing
@@ -485,7 +497,7 @@
       - rdo-infra/ansible-role-weirdo-puppet-openstack
     vars:
       selinux_enforcing: "false"
-      rdoinfo_release: antelope
+      rdoinfo_release: bobcat
       centos_releasever: 9
       job_type: promotion
     nodeset: rdo-centos-9-stream
@@ -509,6 +521,62 @@
       centos_releasever: 8
       job_type: promotion
     nodeset: rdo-centos-8-stream
+
+- job:
+    name: weirdo-bobcat-promote-puppet-scenario001-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: bobcat
+      scenario: scenario001
+
+- job:
+    name: weirdo-bobcat-promote-puppet-scenario002-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: bobcat
+      scenario: scenario002
+
+- job:
+    name: weirdo-bobcat-promote-puppet-scenario003-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: bobcat
+      scenario: scenario003
+
+- job:
+    name: weirdo-bobcat-promote-puppet-scenario004-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: bobcat
+      scenario: scenario004
+
+- job:
+    name: weirdo-bobcat-promote-puppet-scenario005-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: bobcat
+      scenario: scenario005
+
+- job:
+    name: weirdo-bobcat-promote-packstack-scenario001-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: bobcat
+      scenario: scenario001
+
+- job:
+    name: weirdo-bobcat-promote-packstack-scenario002-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: bobcat
+      scenario: scenario002
+
+- job:
+    name: weirdo-bobcat-promote-packstack-scenario003-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: bobcat
+      scenario: scenario003
 
 - job:
     name: weirdo-antelope-promote-puppet-scenario001-centos-stream-9
