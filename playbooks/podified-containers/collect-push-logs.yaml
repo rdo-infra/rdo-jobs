@@ -1,4 +1,10 @@
 ---
+- hosts: primary
+  tasks:
+    - name: Fail task when error in logs
+      ansible.builtin.command: cat {{ work_dir }}/{{ openstack_release }}.txt
+      register: log_out
+      failed_when: "'Failed to copy container image' in log_out.stdout"
 - hosts: all
   vars:
     work_dir: "{{ ansible_user_dir }}/workspace"
