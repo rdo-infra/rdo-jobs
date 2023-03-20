@@ -60,12 +60,13 @@
           {{ full_range | unique }}
         cacheable: true
 
-    - name: Make sure openstack operator deployed successfully
+    - name: Wait for operator to get deployed
       ansible.builtin.shell: |
-        INSTALLED_CSV=$(oc get subscription openstack-operator -o jsonpath='{.status.installedCSV}')
-        oc get csv ${INSTALLED_CSV} -o 'jsonpath={.spec.install.spec.deployments[*].name}' | \
-          timeout 240 xargs -I '{}' -d ' ' sh -c 'oc wait --for=condition=Available deployment {} --timeout=-1s'
-
+        oc get csv --no-headers=true | grep -i "succeeded"
+      register: operator_status
+      until: operator_status.rc == 0
+      retries: 20
+      delay: 5
 
     - name: Deploy podified control plane using install_yamls
       vars:
@@ -122,6 +123,9 @@
             replace: 'image_tag: "{{ md5_value.stdout }}"'
       when: "'periodic' in zuul.job"
 
+    - name: Deply ceph
+      include_tasks: ceph_support.yaml
+
     - name: Deploy OpenStack services
       ansible.builtin.shell: |
         export DEPLOY_DIR={{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/out/openstack/openstack/cr/
@@ -131,14 +135,13 @@
 
     - name: List services
       ansible.builtin.shell: |
-        oc get pv
-        oc get OpenStackControlPlane openstack -o json | jq -r '.status.conditions[]'
-        oc get pods
-        oc get OpenStackControlPlane openstack -o json | \
-        jq -r '.status.conditions[] | select(.type | test("^OpenStackControlPlane(?!Cinder)")).type' | \
-        timeout 240 xargs -d '\n' -I {} sh -c 'echo testing condition={}; \
-        oc wait openstackcontrolplane.core.openstack.org/openstack --for=condition={} --timeout=-1s'
-      ignore_errors: true
+        oc wait openstackcontrolplane.core.openstack.org/openstack --for=condition=Ready
+
+    - name: Print Pod and OpenStack resources Status
+      ansible.builtin.shell: |
+        oc get csv;
+        oc get pods;
+        oc get OpenStackControlPlane openstack -o json | jq -r '.status.conditions[].type';
 
     - name: Debug some values
       debug:
