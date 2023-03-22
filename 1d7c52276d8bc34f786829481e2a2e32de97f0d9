@@ -16,6 +16,57 @@
       "message": "testproject results: https://review.rdoproject.org/zuul/buildset/aadc9be059e14519b74cfab4649b6ceb",
       "revId": "1d7c52276d8bc34f786829481e2a2e32de97f0d9",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36c590c9_3da21ae3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 31
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-03-22T15:25:21Z",
+      "side": 1,
+      "message": "Won\u0027t block - looks OK, but just a couple of things",
+      "revId": "1d7c52276d8bc34f786829481e2a2e32de97f0d9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c70955a9_1bbb5bcf",
+        "filename": "playbooks/edpm/repo_setup.yaml",
+        "patchSetId": 31
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-03-22T15:25:21Z",
+      "side": 1,
+      "message": "ah, I have a patch for that one - if this one can wait until tomorrow or Friday, I should be able to propose it in the project (now only for the demo work)",
+      "revId": "1d7c52276d8bc34f786829481e2a2e32de97f0d9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d54f03a1_cf3a45c8",
+        "filename": "playbooks/edpm/repo_setup.yaml",
+        "patchSetId": 31
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-03-22T15:25:21Z",
+      "side": 1,
+      "message": "unless you think to pass cifmw_basedir, that whole statement is probably useless.",
+      "revId": "1d7c52276d8bc34f786829481e2a2e32de97f0d9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
