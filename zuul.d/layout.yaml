@@ -1,14 +1,24 @@
+- job:
+    name: tripleo-ci-centos-8-containers-multinode-wallaby
+    parent: tripleo-ci-base-multinode-centos-8
+
+- job:
+    name: tripleo-ci-centos-8-containers-multinode-wallaby
+    parent: tripleo-ci-containers-multinode-options
+
 - project:
     check:
-      jobs: &jobs
-        # Place all individual molecule jobs here, rdo-tox-molecule will soon be removed
-        - rdo-mol-container-login:
-            files:
-              - .*molecule.*
-              - .*container-login.*
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^molecule-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+      jobs:
+        - periodic-tripleo-ci-centos-9-containers-multinode-wallaby:
+            post-run: playbooks/post.yaml
+            vars:
+              force_periodic: true
+              report_dlrn: false
+        - tripleo-ci-centos-8-containers-multinode-wallaby:
+            nodeset: two-centos-8-nodes-vexxhost
+            override-checkout: stable/wallaby
+            pre-run: playbooks/mirror.yaml
+            post-run: playbooks/post.yaml
+            vars:
+              force_periodic: true
+              branch_override: stable/wallaby
