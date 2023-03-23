@@ -20,6 +20,7 @@
       - playbooks/data_plane_adoption/collect_logs_crc.yaml
     vars:
       featureset: '052'
+      skip_os_tempest: true
       release: wallaby
       branch_override: stable/wallaby
       registry_login_enabled: true
