@@ -128,38 +128,6 @@
     nodeset: single-centos-9-stream-node-vexxhost
 
 - job:
-    name: distgit-tripleo-master-testing-centos-9-standalone-scenario001
-    parent: tripleo-ci-centos-9-scenario001-standalone
-    nodeset: single-centos-9-stream-node-vexxhost
-    run: playbooks/run-distgit.yaml
-    vars:
-      release: master
-
-- job:
-    name: distgit-tripleo-master-testing-centos-9-standalone-scenario002
-    parent: tripleo-ci-centos-9-scenario002-standalone
-    nodeset: single-centos-9-stream-node-vexxhost
-    run: playbooks/run-distgit.yaml
-    vars:
-      release: master
-
-- job:
-    name: distgit-tripleo-master-testing-centos-9-standalone-scenario003
-    parent: tripleo-ci-centos-9-scenario003-standalone
-    nodeset: single-centos-9-stream-node-vexxhost
-    run: playbooks/run-distgit.yaml
-    vars:
-      release: master
-
-- job:
-    name: distgit-tripleo-master-testing-centos-9-standalone-scenario004
-    parent: tripleo-ci-centos-9-scenario004-standalone
-    nodeset: single-centos-9-stream-node-vexxhost
-    run: playbooks/run-distgit.yaml
-    vars:
-      release: master
-
-- job:
     name: distgit-tripleo-master-testing-centos-9-standalone-full-temepst-api
     parent: distgit-tripleo-master-testing-centos-9-standalone
     nodeset: single-centos-9-stream-node-vexxhost
