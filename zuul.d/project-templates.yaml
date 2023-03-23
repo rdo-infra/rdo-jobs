@@ -45,16 +45,6 @@
         - distgit-cbs-final-build-centos9
 
 - project-template:
-    name: package-distgit-tripleo-check-jobs
-    check:
-      jobs:
-        - distgit-tripleo-master-testing-centos-9-standalone:
-            dependencies:
-              - DLRN-rpmbuild-centos9
-            voting: false
-            branches: ^rpm-master$
-
-- project-template:
     name: deps-distgit-check-jobs
     check:
       jobs:
