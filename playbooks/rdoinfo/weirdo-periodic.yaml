@@ -10,7 +10,8 @@
         cmd: |
           set -e -x
 
-          MASTER="bobcat"
+          source '{{ ansible_user_dir }}/rdopkg-venv/bin/activate'
+          MASTER="$(rdopkg info | grep -e "in development phase" | awk '{print $1}')"
           RELEASE="{{ rdoinfo_release }}"
           DIST_VER="{{ centos_releasever }}"
 
@@ -26,11 +27,8 @@
           if [ $RELEASE = $MASTER ]; then
             VERSION="master"
             O_RELEASE="master"
-          elif [ $RELEASE = "antelope" ]; then
-            VERSION="stable/2023.1"
-            O_RELEASE="$RELEASE"
           else
-            VERSION="stable/$RELEASE"
+            VERSION="$(rdopkg release -r "$RELEASE" | grep source_branch | awk '{print $2}')"
             O_RELEASE="$RELEASE"
           fi
 
