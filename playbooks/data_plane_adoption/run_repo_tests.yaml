@@ -13,3 +13,6 @@
           TEST_SECRETS: "{{ rdo_dir}}/secrets.yaml"
           TEST_VARS: "{{ rdo_dir }}/vars.yaml"
           TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"
+      register: make_res
+    - debug:
+        var: make_res
