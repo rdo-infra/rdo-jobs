@@ -13,3 +13,5 @@
           TEST_SECRETS: "{{ rdo_dir}}/secrets.yaml"
           TEST_VARS: "{{ rdo_dir }}/vars.yaml"
           TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"
+      register: make_res
+      failed_when: "'failed=0' not in make_res.stdout_lines[-1:]"
