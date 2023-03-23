@@ -1,119 +1,4 @@
 - project-template:
-    name: rdoinfo-master-testing-tripleo-jobs
-    check:
-      jobs:
-        - distgit-tripleo-master-testing-centos-9-standalone-scenario001:
-            dependencies:
-              - rdoinfo-DLRN-check-centos9
-            voting: false
-            files:
-              - ^tags/bobcat-uc.yml$
-        - distgit-tripleo-master-testing-centos-9-standalone-scenario002:
-            dependencies:
-              - rdoinfo-DLRN-check-centos9
-            voting: false
-            files:
-              - ^tags/bobcat-uc.yml$
-        - distgit-tripleo-master-testing-centos-9-standalone-scenario003:
-            dependencies:
-              - rdoinfo-DLRN-check-centos9
-            voting: false
-            files:
-              - ^tags/bobcat-uc.yml$
-        - distgit-tripleo-master-testing-centos-9-standalone-scenario004:
-            dependencies:
-              - rdoinfo-DLRN-check-centos9
-            voting: false
-            files:
-              - ^tags/bobcat-uc.yml$
-        - rdoinfo-tripleo-wallaby-testing-centos-9-scenario001-standalone:
-            dependencies:
-              - validate-buildsys-tags
-            voting: false
-            files:
-              - ^buildsys-tags/cloud9s-openstack-wallaby-testing.yml$
-        - rdoinfo-tripleo-zed-release-centos-9-scenario001-standalone:
-            dependencies:
-              - validate-buildsys-tags
-            voting: false
-            files:
-              - ^buildsys-tags/cloud9s-openstack-zed-release.yml$
-        - rdoinfo-tripleo-zed-release-centos-9-undercloud-containers:
-            dependencies:
-              - validate-buildsys-tags
-            voting: false
-            files:
-              - ^buildsys-tags/cloud9s-openstack-zed-release.yml$
-        - rdoinfo-tripleo-master-testing-centos-9-scenario001-standalone:
-            dependencies:
-              - validate-buildsys-tags
-            voting: false
-            files:
-              - ^buildsys-tags/cloud9s-openstack-bobcat-testing.yml$
-        - rdoinfo-tripleo-master-testing-centos-9-undercloud-containers:
-            dependencies:
-              - validate-buildsys-tags
-            voting: false
-            files:
-              - ^buildsys-tags/cloud9s-openstack-bobcat-testing.yml$
-    experimental:
-      jobs:
-        - rdoinfo-tripleo-master-testing-centos-9-scenario002-standalone:
-            dependencies:
-              - validate-buildsys-tags
-            files:
-              - ^buildsys-tags/cloud9s-openstack-bobcat-testing.yml$
-            voting: false
-        - rdoinfo-tripleo-master-testing-centos-9-scenario003-standalone:
-            dependencies:
-              - validate-buildsys-tags
-            files:
-              - ^buildsys-tags/cloud9s-openstack-bobcat-testing.yml$
-            voting: false
-        - rdoinfo-tripleo-master-testing-centos-9-scenario004-standalone:
-            dependencies:
-              - validate-buildsys-tags
-            files:
-              - ^buildsys-tags/cloud9s-openstack-bobcat-testing.yml$
-            voting: false
-        - rdoinfo-tripleo-master-testing-centos-9-scenario007-standalone:
-            dependencies:
-              - validate-buildsys-tags
-            files:
-              - ^buildsys-tags/cloud9s-openstack-bobcat-testing.yml$
-            voting: false
-        - rdoinfo-tripleo-master-testing-centos-9-scenario010-standalone:
-            dependencies:
-              - validate-buildsys-tags
-            files:
-              - ^buildsys-tags/cloud9s-openstack-bobcat-testing.yml$
-            voting: false
-        - rdoinfo-tripleo-zed-release-centos-9-scenario002-standalone:
-            dependencies:
-              - validate-buildsys-tags
-            voting: false
-            files:
-              - ^buildsys-tags/cloud9s-openstack-zed-release.yml$
-        - rdoinfo-tripleo-zed-release-centos-9-scenario003-standalone:
-            dependencies:
-              - validate-buildsys-tags
-            voting: false
-            files:
-              - ^buildsys-tags/cloud9s-openstack-zed-release.yml$
-        - rdoinfo-tripleo-zed-release-centos-9-scenario004-standalone:
-            dependencies:
-              - validate-buildsys-tags
-            voting: false
-            files:
-              - ^buildsys-tags/cloud9s-openstack-zed-release.yml$
-        - rdoinfo-tripleo-zed-release-centos-9-scenario007-standalone:
-            dependencies:
-              - validate-buildsys-tags
-            voting: false
-            files:
-              - ^buildsys-tags/cloud9s-openstack-zed-release.yml$
-
-- project-template:
     name: rdoinfo-wallaby-testing-tripleo-jobs
     check:
       jobs:
@@ -129,6 +14,12 @@
             voting: false
             files:
               - ^buildsys-tags/cloud8s-openstack-wallaby-testing.yml$
+        - rdoinfo-tripleo-wallaby-testing-centos-9-scenario001-standalone:
+            dependencies:
+              - validate-buildsys-tags
+            voting: false
+            files:
+              - ^buildsys-tags/cloud9s-openstack-wallaby-testing.yml$
         - rdoinfo-tripleo-wallaby-testing-centos-8-containers-multinode:
             dependencies:
               - validate-buildsys-tags
