@@ -92,7 +92,7 @@
 - job:
     name: DLRN-build-tripleo-centos8
     parent: DLRN-build-tripleo-base
-    branches: ^(train|ussuri|victoria|wallaby)-rdo$
+    branches: ^(train|wallaby)-rdo$
     dependencies:
       - DLRN-rpmbuild-centos8
     vars:
@@ -102,7 +102,7 @@
 - job:
     name: DLRN-build-tripleo-centos9
     parent: DLRN-build-tripleo-base
-    branches: ^(rpm-master|wallaby-rdo)$
+    branches: ^wallaby-rdo$
     dependencies:
       - DLRN-rpmbuild-centos9
     vars:
