@@ -581,7 +581,7 @@ make input
 
 {% if run_openstack_prep is defined and run_openstack_prep | bool %}
 # set run_openstack_prep var to true to run **make openstack_prep**
-make openstack_prep
+make openstack_prep NETWORK_ISOLATION=false
 
 # Command to run after command_after_make_openstack_prep var
 {% if command_after_make_openstack_prep is defined %}
@@ -592,7 +592,7 @@ make openstack_prep
 
 {% if run_openstack is defined and run_openstack | bool %}
 # set run_openstack var to true to run **make openstack**
-make openstack
+make openstack NETWORK_ISOLATION=false
 
 # Command to run after command_after_make_openstack var
 {% if command_after_make_openstack is defined %}
@@ -603,7 +603,7 @@ make openstack
 
 {% if run_openstack_deploy_prep is defined and run_openstack_deploy_prep | bool %}
 # set run_openstack_deploy_prep var to true to run **make openstack_deploy_prep**
-make openstack_deploy_prep
+make openstack_deploy_prep NETWORK_ISOLATION=false
 
 # Command to run after command_after_make_openstack_deploy_prep var
 {% if command_after_make_openstack_deploy_prep is defined %}
@@ -614,7 +614,7 @@ make openstack_deploy_prep
 
 {% if run_openstack_deploy is defined and run_openstack_deploy | bool %}
 # set run_openstack_deploy var to true to run **make openstack_deploy**
-make openstack_deploy
+make openstack_deploy NETWORK_ISOLATION=false
 
 # Command to run after command_after_make_openstack_deploy var
 {% if command_after_make_openstack_deploy is defined %}
