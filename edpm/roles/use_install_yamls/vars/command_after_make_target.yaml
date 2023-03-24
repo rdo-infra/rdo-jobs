@@ -1,4 +1,3 @@
----
 # Add command to be executed after **make all**
 # uncomment command_after_make_all var: | and add the command the below that
 
@@ -46,6 +45,15 @@
 
 # Add command to be executed after **make openstack_deploy_cleanup**
 # uncomment command_after_make_openstack_deploy_cleanup var: | and add the command the below that
+
+# Add command to be executed after **make edpm_deploy_prep**
+# uncomment command_after_make_edpm_deploy_prep var: | and add the command the below that
+
+# Add command to be executed after **make edpm_deploy_cleanup**
+# uncomment command_after_make_edpm_deploy_cleanup var: | and add the command the below that
+
+# Add command to be executed after **make edpm_deploy**
+# uncomment command_after_make_edpm_deploy var: | and add the command the below that
 
 # Add command to be executed after **make openstack_crds**
 # uncomment command_after_make_openstack_crds var: | and add the command the below that
@@ -212,6 +220,9 @@
 # Add command to be executed after **make cinder_deploy**
 # uncomment command_after_make_cinder_deploy var: | and add the command the below that
 
+# Add command to be executed after **make cinder_deploy_validate**
+# uncomment command_after_make_cinder_deploy_validate var: | and add the command the below that
+
 # Add command to be executed after **make cinder_deploy_cleanup**
 # uncomment command_after_make_cinder_deploy_cleanup var: | and add the command the below that
 
@@ -302,6 +313,18 @@
 # Add command to be executed after **make keystone_kuttl**
 # uncomment command_after_make_keystone_kuttl var: | and add the command the below that
 
+# Add command to be executed after **make cinder_kuttl_run**
+# uncomment command_after_make_cinder_kuttl_run var: | and add the command the below that
+
+# Add command to be executed after **make cinder_kuttl**
+# uncomment command_after_make_cinder_kuttl var: | and add the command the below that
+
+# Add command to be executed after **make neutron_kuttl_run**
+# uncomment command_after_make_neutron_kuttl_run var: | and add the command the below that
+
+# Add command to be executed after **make neutron_kuttl**
+# uncomment command_after_make_neutron_kuttl var: | and add the command the below that
+
 # Add command to be executed after **make octavia_kuttl_run**
 # uncomment command_after_make_octavia_kuttl_run var: | and add the command the below that
 
@@ -313,6 +336,51 @@
 
 # Add command to be executed after **make ovn_kuttl**
 # uncomment command_after_make_ovn_kuttl var: | and add the command the below that
+
+# Add command to be executed after **make ovs_kuttl_run**
+# uncomment command_after_make_ovs_kuttl_run var: | and add the command the below that
+
+# Add command to be executed after **make ovs_kuttl**
+# uncomment command_after_make_ovs_kuttl var: | and add the command the below that
+
+# Add command to be executed after **make ironic_kuttl_run**
+# uncomment command_after_make_ironic_kuttl_run var: | and add the command the below that
+
+# Add command to be executed after **make ironic_kuttl**
+# uncomment command_after_make_ironic_kuttl var: | and add the command the below that
+
+# Add command to be executed after **make ironic_kuttl_crc**
+# uncomment command_after_make_ironic_kuttl_crc var: | and add the command the below that
+
+# Add command to be executed after **make ansibleee_kuttl_run**
+# uncomment command_after_make_ansibleee_kuttl_run var: | and add the command the below that
+
+# Add command to be executed after **make ansibleee_kuttl_cleanup**
+# uncomment command_after_make_ansibleee_kuttl_cleanup var: | and add the command the below that
+
+# Add command to be executed after **make ansibleee_kuttl_prep**
+# uncomment command_after_make_ansibleee_kuttl_prep var: | and add the command the below that
+
+# Add command to be executed after **make ansibleee_kuttl**
+# uncomment command_after_make_ansibleee_kuttl var: | and add the command the below that
+
+# Add command to be executed after **make horizon_prep**
+# uncomment command_after_make_horizon_prep var: | and add the command the below that
+
+# Add command to be executed after **make horizon**
+# uncomment command_after_make_horizon var: | and add the command the below that
+
+# Add command to be executed after **make horizon_cleanup**
+# uncomment command_after_make_horizon_cleanup var: | and add the command the below that
+
+# Add command to be executed after **make horizon_deploy_prep**
+# uncomment command_after_make_horizon_deploy_prep var: | and add the command the below that
+
+# Add command to be executed after **make horizon_deploy**
+# uncomment command_after_make_horizon_deploy var: | and add the command the below that
+
+# Add command to be executed after **make horizon_deploy_cleanup**
+# uncomment command_after_make_horizon_deploy_cleanup var: | and add the command the below that
 
 # Add command to be executed after **make ansibleee_prep**
 # uncomment command_after_make_ansibleee_prep var: | and add the command the below that
@@ -332,8 +400,80 @@
 # Add command to be executed after **make baremetal_cleanup**
 # uncomment command_after_make_baremetal_cleanup var: | and add the command the below that
 
+# Add command to be executed after **make dataplane_prep**
+# uncomment command_after_make_dataplane_prep var: | and add the command the below that
+
+# Add command to be executed after **make dataplane**
+# uncomment command_after_make_dataplane var: | and add the command the below that
+
+# Add command to be executed after **make dataplane_cleanup**
+# uncomment command_after_make_dataplane_cleanup var: | and add the command the below that
+
+# Add command to be executed after **make ceph_help**
+# uncomment command_after_make_ceph_help var: | and add the command the below that
+
 # Add command to be executed after **make ceph**
 # uncomment command_after_make_ceph var: | and add the command the below that
 
 # Add command to be executed after **make ceph_cleanup**
 # uncomment command_after_make_ceph_cleanup var: | and add the command the below that
+
+# Add command to be executed after **make nmstate**
+# uncomment command_after_make_nmstate var: | and add the command the below that
+
+# Add command to be executed after **make nncp**
+# uncomment command_after_make_nncp var: | and add the command the below that
+
+# Add command to be executed after **make nncp_cleanup**
+# uncomment command_after_make_nncp_cleanup var: | and add the command the below that
+
+# Add command to be executed after **make netattach**
+# uncomment command_after_make_netattach var: | and add the command the below that
+
+# Add command to be executed after **make netattach_cleanup**
+# uncomment command_after_make_netattach_cleanup var: | and add the command the below that
+
+# Add command to be executed after **make metallb**
+# uncomment command_after_make_metallb var: | and add the command the below that
+
+# Add command to be executed after **make metallb_config**
+# uncomment command_after_make_metallb_config var: | and add the command the below that
+
+# Add command to be executed after **make metallb_config_cleanup**
+# uncomment command_after_make_metallb_config_cleanup var: | and add the command the below that
+
+# Add command to be executed after **make manila_prep**
+# uncomment command_after_make_manila_prep var: | and add the command the below that
+
+# Add command to be executed after **make manila**
+# uncomment command_after_make_manila var: | and add the command the below that
+
+# Add command to be executed after **make manila_cleanup**
+# uncomment command_after_make_manila_cleanup var: | and add the command the below that
+
+# Add command to be executed after **make manila_deploy_prep**
+# uncomment command_after_make_manila_deploy_prep var: | and add the command the below that
+
+# Add command to be executed after **make manila_deploy**
+# uncomment command_after_make_manila_deploy var: | and add the command the below that
+
+# Add command to be executed after **make manila_deploy_cleanup**
+# uncomment command_after_make_manila_deploy_cleanup var: | and add the command the below that
+
+# Add command to be executed after **make ceilometer_prep**
+# uncomment command_after_make_ceilometer_prep var: | and add the command the below that
+
+# Add command to be executed after **make ceilometer**
+# uncomment command_after_make_ceilometer var: | and add the command the below that
+
+# Add command to be executed after **make ceilometer_cleanup**
+# uncomment command_after_make_ceilometer_cleanup var: | and add the command the below that
+
+# Add command to be executed after **make ceilometer_deploy_prep**
+# uncomment command_after_make_ceilometer_deploy_prep var: | and add the command the below that
+
+# Add command to be executed after **make ceilometer_deploy**
+# uncomment command_after_make_ceilometer_deploy var: | and add the command the below that
+
+# Add command to be executed after **make ceilometer_deploy_cleanup**
+# uncomment command_after_make_ceilometer_deploy_cleanup var: | and add the command the below that
