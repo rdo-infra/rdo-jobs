@@ -56,6 +56,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "d970ff39_bd9acde8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2023-03-24T05:37:52Z",
+      "side": 1,
+      "message": "It looks good\n2023-03-23 13:35:47.915419 | cloud-centos-9-stream | + \u0027[\u0027 zed \u003d bobcat \u0027]\u0027\n2023-03-23 13:35:47.916371 | cloud-centos-9-stream | ++ rdopkg release -r zed\n2023-03-23 13:35:47.916556 | cloud-centos-9-stream | ++ grep source_branch\n2023-03-23 13:35:47.916765 | cloud-centos-9-stream | ++ awk \u0027{print $2}\u0027\n2023-03-23 13:35:49.711555 | cloud-centos-9-stream | + VERSION\u003dstable/zed\n2023-03-23 13:35:49.711688 | cloud-centos-9-stream | + O_RELEASE\u003dzed",
+      "parentUuid": "4e107db1_8a0b8baf",
+      "revId": "068b8d9f5c77514ad323a0d14f5484db5a412f78",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "4de2684b_049f374f",
         "filename": "playbooks/rdoinfo/files/rdoinfo-DLRN.sh",
         "patchSetId": 2
