@@ -33,6 +33,23 @@
       "message": "ci-framework is already using the \"xl\" label - working fine!",
       "revId": "bee55d3860a3069e9ad3976eac4ac1649bb07d86",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4284344_fefdc575",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2023-03-24T03:45:39Z",
+      "side": 1,
+      "message": "https://review.rdoproject.org/zuul/build/b6d840da7850442ea14b62c369db858d\nhttps://logserver.rdoproject.org/62/162/9ba04a0260f8ce9539dc567f9ce17a6cb807ad4b/github-check/centos-9-crc-singlenode-podified-edpm-deployment/b6d840d/job-output.txt\n```\nLOOP [emit-job-header : Print node information]\n2023-03-24 02:36:08.072878 | localhost | ok:\n2023-03-24 02:36:08.073106 | localhost | # Node Information\n2023-03-24 02:36:08.073140 | localhost | Inventory Hostname: controller\n2023-03-24 02:36:08.073165 | localhost | Hostname: np0003678792\n2023-03-24 02:36:08.073187 | localhost | Username: zuul-worker\n2023-03-24 02:36:08.073210 | localhost | Distro: CentOS 9\n2023-03-24 02:36:08.073231 | localhost | Provider: vexxhost-nodepool-sf\n2023-03-24 02:36:08.073253 | localhost | Label: centos-9-stream-crc-xxl\n2023-03-24 02:36:08.073275 | localhost | Interface IP: 38.102.83.5\n2023-03-24 02:36:08.151606 | localhost | ok:\n2023-03-24 02:36:08.151786 | localhost | # Node Information\n2023-03-24 02:36:08.151831 | localhost | Inventory Hostname: secondary\n2023-03-24 02:36:08.151870 | localhost | Hostname: np0003678793\n2023-03-24 02:36:08.151950 | localhost | Username: zuul-worker\n2023-03-24 02:36:08.152017 | localhost | Distro: CentOS 9\n2023-03-24 02:36:08.152056 | localhost | Provider: vexxhost-nodepool-sf\n2023-03-24 02:36:08.152099 | localhost | Label: cloud-centos-9-stream\n2023-03-24 02:36:08.152131 | localhost | Interface IP: 38.102.83.64\n```\nand\n\ncentos-9-crc-singlenode-podified-edpm-deployment SUCCESS",
+      "revId": "bee55d3860a3069e9ad3976eac4ac1649bb07d86",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
