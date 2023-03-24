@@ -14,6 +14,9 @@
 ## The default value of install_yamls is ${PWD}  # used for kuttl tests
 # install_yamls: ${PWD}  # used for kuttl tests
 
+## The default value of microshift is 0
+# microshift: 0
+
 ## The default value of operator_base_dir is ${OUT}/operator
 # operator_base_dir: ${OUT}/operator
 
@@ -26,6 +29,9 @@
 ## The default value of storage_class is "local-storage"
 # storage_class: "local-storage"
 
+## The default value of network_isolation is true
+# network_isolation: true
+
 ## The default value of openstack_img is quay.io/openstack-k8s-operators/openstack-operator-index:latest
 # openstack_img: quay.io/openstack-k8s-operators/openstack-operator-index:latest
 
@@ -35,11 +41,14 @@
 ## The default value of openstack_branch is master
 # openstack_branch: master
 
-## The default value of openstack_ctlplane is config/samples/core_v1beta1_openstackcontrolplane.yaml
-# openstack_ctlplane: config/samples/core_v1beta1_openstackcontrolplane.yaml
+## The default value of openstack_ctlplane is $(if $(findstring true,$(NETWORK_ISOLATION)),config/samples/core_v1beta1_openstackcontrolplane_network_isolation.yaml,config/samples/core_v1beta1_openstackcontrolplane.yaml)
+# openstack_ctlplane: $(if $(findstring true,$(NETWORK_ISOLATION)),config/samples/core_v1beta1_openstackcontrolplane_network_isolation.yaml,config/samples/core_v1beta1_openstackcontrolplane.yaml)
 
 ## The default value of openstack_cr is ${OPERATOR_BASE_DIR}/openstack-operator/${OPENSTACK_CTLPLANE}
 # openstack_cr: ${OPERATOR_BASE_DIR}/openstack-operator/${OPENSTACK_CTLPLANE}
+
+## The default value of openstack_bundle_img is quay.io/openstack-k8s-operators/openstack-operator-bundle:latest
+# openstack_bundle_img: quay.io/openstack-k8s-operators/openstack-operator-bundle:latest
 
 ## The default value of infra_img is quay.io/openstack-k8s-operators/infra-operator-index:latest
 # infra_img: quay.io/openstack-k8s-operators/infra-operator-index:latest
@@ -185,6 +194,12 @@
 ## The default value of ovs_cr is ${OPERATOR_BASE_DIR}/ovs-operator/${OVS}
 # ovs_cr: ${OPERATOR_BASE_DIR}/ovs-operator/${OVS}
 
+## The default value of ovs_kuttl_conf is ${OPERATOR_BASE_DIR}/ovs-operator/kuttl-test.yaml
+# ovs_kuttl_conf: ${OPERATOR_BASE_DIR}/ovs-operator/kuttl-test.yaml
+
+## The default value of ovs_kuttl_dir is ${OPERATOR_BASE_DIR}/ovs-operator/tests/kuttl/tests
+# ovs_kuttl_dir: ${OPERATOR_BASE_DIR}/ovs-operator/tests/kuttl/tests
+
 ## The default value of neutron_img is quay.io/openstack-k8s-operators/neutron-operator-index:latest
 # neutron_img: quay.io/openstack-k8s-operators/neutron-operator-index:latest
 
@@ -203,6 +218,12 @@
 ## The default value of neutronapi_img is ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-neutron-server:current-tripleo
 # neutronapi_img: ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-neutron-server:current-tripleo
 
+## The default value of neutron_kuttl_conf is ${OPERATOR_BASE_DIR}/neutron-operator/kuttl-test.yaml
+# neutron_kuttl_conf: ${OPERATOR_BASE_DIR}/neutron-operator/kuttl-test.yaml
+
+## The default value of neutron_kuttl_dir is ${OPERATOR_BASE_DIR}/neutron-operator/test/kuttl/tests
+# neutron_kuttl_dir: ${OPERATOR_BASE_DIR}/neutron-operator/test/kuttl/tests
+
 ## The default value of cinder_img is quay.io/openstack-k8s-operators/cinder-operator-index:latest
 # cinder_img: quay.io/openstack-k8s-operators/cinder-operator-index:latest
 
@@ -217,6 +238,12 @@
 
 ## The default value of cinder_cr is ${OPERATOR_BASE_DIR}/cinder-operator/${CINDER}
 # cinder_cr: ${OPERATOR_BASE_DIR}/cinder-operator/${CINDER}
+
+## The default value of cinder_kuttl_conf is ${OPERATOR_BASE_DIR}/cinder-operator/kuttl-test.yaml
+# cinder_kuttl_conf: ${OPERATOR_BASE_DIR}/cinder-operator/kuttl-test.yaml
+
+## The default value of cinder_kuttl_dir is ${OPERATOR_BASE_DIR}/cinder-operator/tests/kuttl/tests
+# cinder_kuttl_dir: ${OPERATOR_BASE_DIR}/cinder-operator/tests/kuttl/tests
 
 ## The default value of rabbitmq_img is quay.io/openstack-k8s-operators/rabbitmq-cluster-operator-index:latest
 # rabbitmq_img: quay.io/openstack-k8s-operators/rabbitmq-cluster-operator-index:latest
@@ -248,6 +275,12 @@
 ## The default value of ironic_cr is ${OPERATOR_BASE_DIR}/ironic-operator/${IRONIC}
 # ironic_cr: ${OPERATOR_BASE_DIR}/ironic-operator/${IRONIC}
 
+## The default value of ironic_kuttl_conf is ${OPERATOR_BASE_DIR}/ironic-operator/kuttl-test.yaml
+# ironic_kuttl_conf: ${OPERATOR_BASE_DIR}/ironic-operator/kuttl-test.yaml
+
+## The default value of ironic_kuttl_dir is ${OPERATOR_BASE_DIR}/ironic-operator/tests/kuttl/tests
+# ironic_kuttl_dir: ${OPERATOR_BASE_DIR}/ironic-operator/tests/kuttl/tests
+
 ## The default value of octavia_img is quay.io/openstack-k8s-operators/octavia-operator-index:latest
 # octavia_img: quay.io/openstack-k8s-operators/octavia-operator-index:latest
 
@@ -257,8 +290,8 @@
 ## The default value of octavia_branch is main
 # octavia_branch: main
 
-## The default value of octaviaapi is config/samples/octavia_v1beta1_octaviaapi.yaml
-# octaviaapi: config/samples/octavia_v1beta1_octaviaapi.yaml
+## The default value of octaviaapi is config/samples/octavia_v1beta1_octavia.yaml
+# octaviaapi: config/samples/octavia_v1beta1_octavia.yaml
 
 ## The default value of octaviaapi_cr is ${OPERATOR_BASE_DIR}/octavia-operator/${OCTAVIAAPI}
 # octaviaapi_cr: ${OPERATOR_BASE_DIR}/octavia-operator/${OCTAVIAAPI}
@@ -287,6 +320,24 @@
 ## The default value of nova_cr is ${OPERATOR_BASE_DIR}/nova-operator/${NOVA}
 # nova_cr: ${OPERATOR_BASE_DIR}/nova-operator/${NOVA}
 
+## The default value of horizon_img is quay.io/openstack-k8s-operators/horizon-operator-index:latest
+# horizon_img: quay.io/openstack-k8s-operators/horizon-operator-index:latest
+
+## The default value of horizon_repo is https://github.com/openstack-k8s-operators/horizon-operator.git
+# horizon_repo: https://github.com/openstack-k8s-operators/horizon-operator.git
+
+## The default value of horizon_branch is main
+# horizon_branch: main
+
+## The default value of horizon is config/samples/horizon_v1alpha1_horizon.yaml
+# horizon: config/samples/horizon_v1alpha1_horizon.yaml
+
+## The default value of horizon_cr is ${OPERATOR_BASE_DIR}/horizon-operator/${HORIZON}
+# horizon_cr: ${OPERATOR_BASE_DIR}/horizon-operator/${HORIZON}
+
+## The default value of horizonapi_img is ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-horizon:current-tripleo
+# horizonapi_img: ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-horizon:current-tripleo
+
 ## The default value of ansibleee_img is quay.io/openstack-k8s-operators/openstack-ansibleee-operator-index:latest
 # ansibleee_img: quay.io/openstack-k8s-operators/openstack-ansibleee-operator-index:latest
 
@@ -299,8 +350,14 @@
 ## The default value of ansibleee is config/samples/_v1alpha1_ansibleee.yaml
 # ansibleee: config/samples/_v1alpha1_ansibleee.yaml
 
-## The default value of ansibleee_cr is ${OPERATOR_BASE_DIR}/ansibleee-operator/${ANSIBLEEE}
-# ansibleee_cr: ${OPERATOR_BASE_DIR}/ansibleee-operator/${ANSIBLEEE}
+## The default value of ansibleee_cr is ${OPERATOR_BASE_DIR}/openstack-ansibleee-operator/${ANSIBLEEE}
+# ansibleee_cr: ${OPERATOR_BASE_DIR}/openstack-ansibleee-operator/${ANSIBLEEE}
+
+## The default value of ansibleee_kuttl_conf is ${OPERATOR_BASE_DIR}/openstack-ansibleee-operator/kuttl-test.yaml
+# ansibleee_kuttl_conf: ${OPERATOR_BASE_DIR}/openstack-ansibleee-operator/kuttl-test.yaml
+
+## The default value of ansibleee_kuttl_dir is ${OPERATOR_BASE_DIR}/openstack-ansibleee-operator/tests/kuttl/tests
+# ansibleee_kuttl_dir: ${OPERATOR_BASE_DIR}/openstack-ansibleee-operator/tests/kuttl/tests
 
 ## The default value of baremetal_img is quay.io/openstack-k8s-operators/openstack-baremetal-operator-index:latest
 # baremetal_img: quay.io/openstack-k8s-operators/openstack-baremetal-operator-index:latest
@@ -311,8 +368,98 @@
 ## The default value of baremetal_branch is master
 # baremetal_branch: master
 
-## The default value of ceph_img is quay.io/ceph/daemon:latest-quincy
-# ceph_img: quay.io/ceph/daemon:latest-quincy
+## The default value of dataplane_img is quay.io/openstack-k8s-operators/dataplane-operator-index:latest
+# dataplane_img: quay.io/openstack-k8s-operators/dataplane-operator-index:latest
+
+## The default value of dataplane_repo is https://github.com/openstack-k8s-operators/dataplane-operator.git
+# dataplane_repo: https://github.com/openstack-k8s-operators/dataplane-operator.git
+
+## The default value of dataplane_branch is main
+# dataplane_branch: main
+
+## The default value of openstack_dataplane is config/samples/dataplane_v1beta1_openstackdataplane.yaml
+# openstack_dataplane: config/samples/dataplane_v1beta1_openstackdataplane.yaml
+
+## The default value of dataplane_cr is ${OPERATOR_BASE_DIR}/dataplane-operator/${OPENSTACK_DATAPLANE}
+# dataplane_cr: ${OPERATOR_BASE_DIR}/dataplane-operator/${OPENSTACK_DATAPLANE}
+
+## The default value of dataplane_ansible_secret is dataplane-ansible-ssh-private-key-secret
+# dataplane_ansible_secret: dataplane-ansible-ssh-private-key-secret
+
+## The default value of dataplane_compute_ip is 192.168.122.100
+# dataplane_compute_ip: 192.168.122.100
+
+## The default value of dataplane_compute_1_ip is 192.168.122.101
+# dataplane_compute_1_ip: 192.168.122.101
+
+## The default value of dataplane_runner_img is quay.io/openstack-k8s-operators/openstack-ansibleee-runner:latest
+# dataplane_runner_img: quay.io/openstack-k8s-operators/openstack-ansibleee-runner:latest
+
+## The default value of dataplane_network_config_template is templates/single_nic_vlans/single_nic_vlans.j2
+# dataplane_network_config_template: templates/single_nic_vlans/single_nic_vlans.j2
+
+## The default value of dataplane_sshd_allowed_ranges is ['192.168.122.0/24']
+# dataplane_sshd_allowed_ranges: ['192.168.122.0/24']
+
+## The default value of dataplane_chrony_ntp_server is clock.redhat.com
+# dataplane_chrony_ntp_server: clock.redhat.com
+
+## The default value of dataplane_ovn_metadata_agent_nova_metadata_host is 127.0.0.1
+# dataplane_ovn_metadata_agent_nova_metadata_host: 127.0.0.1
+
+## The default value of dataplane_ovn_metadata_agent_proxy_shared_secret is 12345678
+# dataplane_ovn_metadata_agent_proxy_shared_secret: 12345678
+
+## The default value of dataplane_ovn_metadata_agent_bind_host is 127.0.0.1
+# dataplane_ovn_metadata_agent_bind_host: 127.0.0.1
+
+## The default value of dataplane_single_node is true
+# dataplane_single_node: true
+
+## The default value of manila_img is quay.io/openstack-k8s-operators/manila-operator-index:latest
+# manila_img: quay.io/openstack-k8s-operators/manila-operator-index:latest
+
+## The default value of manila_repo is https://github.com/openstack-k8s-operators/manila-operator.git
+# manila_repo: https://github.com/openstack-k8s-operators/manila-operator.git
+
+## The default value of manila_branch is main
+# manila_branch: main
+
+## The default value of manila is config/samples/manila_v1beta1_manila.yaml
+# manila: config/samples/manila_v1beta1_manila.yaml
+
+## The default value of manila_cr is ${OPERATOR_BASE_DIR}/manila-operator/${MANILA}
+# manila_cr: ${OPERATOR_BASE_DIR}/manila-operator/${MANILA}
+
+## The default value of ceph_img is quay.io/ceph/demo:latest
+# ceph_img: quay.io/ceph/demo:latest
+
+## The default value of nncp_interface is enp6s0
+# nncp_interface: enp6s0
+
+## The default value of ceilometer_img is quay.io/openstack-k8s-operators/ceilometer-operator-index:latest
+# ceilometer_img: quay.io/openstack-k8s-operators/ceilometer-operator-index:latest
+
+## The default value of ceilometer_repo is https://github.com/openstack-k8s-operators/ceilometer-operator.git
+# ceilometer_repo: https://github.com/openstack-k8s-operators/ceilometer-operator.git
+
+## The default value of ceilometer_branch is main
+# ceilometer_branch: main
+
+## The default value of ceilometer is config/samples/ceilometer_v1beta1_ceilometer.yaml
+# ceilometer: config/samples/ceilometer_v1beta1_ceilometer.yaml
+
+## The default value of ceilometer_cr is ${OPERATOR_BASE_DIR}/ceilometer-operator/${CEILOMETER}
+# ceilometer_cr: ${OPERATOR_BASE_DIR}/ceilometer-operator/${CEILOMETER}
+
+## The default value of ceilometerapi_central_img is ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-ceilometer-central:current-tripleo
+# ceilometerapi_central_img: ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-ceilometer-central:current-tripleo
+
+## The default value of ceilometerapi_notification_img is ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-ceilometer-notification:current-tripleo
+# ceilometerapi_notification_img: ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-ceilometer-notification:current-tripleo
+
+## The default value of ceilometerapi_sg_core_img is ${SERVICE_REGISTRY}/infrawatch/sg-core:latest
+# ceilometerapi_sg_core_img: ${SERVICE_REGISTRY}/infrawatch/sg-core:latest
 
 # For running **make all**
 # Set the value of run_all to true
@@ -377,6 +524,18 @@
 # For running **make openstack_deploy_cleanup**
 # Set the value of run_openstack_deploy_cleanup to true
 # run_openstack_deploy_cleanup: false
+
+# For running **make edpm_deploy_prep**
+# Set the value of run_edpm_deploy_prep to true
+# run_edpm_deploy_prep: false
+
+# For running **make edpm_deploy_cleanup**
+# Set the value of run_edpm_deploy_cleanup to true
+# run_edpm_deploy_cleanup: false
+
+# For running **make edpm_deploy**
+# Set the value of run_edpm_deploy to true
+# run_edpm_deploy: false
 
 # For running **make openstack_crds**
 # Set the value of run_openstack_crds to true
@@ -598,6 +757,10 @@
 # Set the value of run_cinder_deploy to true
 # run_cinder_deploy: false
 
+# For running **make cinder_deploy_validate**
+# Set the value of run_cinder_deploy_validate to true
+# run_cinder_deploy_validate: false
+
 # For running **make cinder_deploy_cleanup**
 # Set the value of run_cinder_deploy_cleanup to true
 # run_cinder_deploy_cleanup: false
@@ -718,6 +881,22 @@
 # Set the value of run_keystone_kuttl to true
 # run_keystone_kuttl: false
 
+# For running **make cinder_kuttl_run**
+# Set the value of run_cinder_kuttl_run to true
+# run_cinder_kuttl_run: false
+
+# For running **make cinder_kuttl**
+# Set the value of run_cinder_kuttl to true
+# run_cinder_kuttl: false
+
+# For running **make neutron_kuttl_run**
+# Set the value of run_neutron_kuttl_run to true
+# run_neutron_kuttl_run: false
+
+# For running **make neutron_kuttl**
+# Set the value of run_neutron_kuttl to true
+# run_neutron_kuttl: false
+
 # For running **make octavia_kuttl_run**
 # Set the value of run_octavia_kuttl_run to true
 # run_octavia_kuttl_run: false
@@ -733,6 +912,66 @@
 # For running **make ovn_kuttl**
 # Set the value of run_ovn_kuttl to true
 # run_ovn_kuttl: false
+
+# For running **make ovs_kuttl_run**
+# Set the value of run_ovs_kuttl_run to true
+# run_ovs_kuttl_run: false
+
+# For running **make ovs_kuttl**
+# Set the value of run_ovs_kuttl to true
+# run_ovs_kuttl: false
+
+# For running **make ironic_kuttl_run**
+# Set the value of run_ironic_kuttl_run to true
+# run_ironic_kuttl_run: false
+
+# For running **make ironic_kuttl**
+# Set the value of run_ironic_kuttl to true
+# run_ironic_kuttl: false
+
+# For running **make ironic_kuttl_crc**
+# Set the value of run_ironic_kuttl_crc to true
+# run_ironic_kuttl_crc: false
+
+# For running **make ansibleee_kuttl_run**
+# Set the value of run_ansibleee_kuttl_run to true
+# run_ansibleee_kuttl_run: false
+
+# For running **make ansibleee_kuttl_cleanup**
+# Set the value of run_ansibleee_kuttl_cleanup to true
+# run_ansibleee_kuttl_cleanup: false
+
+# For running **make ansibleee_kuttl_prep**
+# Set the value of run_ansibleee_kuttl_prep to true
+# run_ansibleee_kuttl_prep: false
+
+# For running **make ansibleee_kuttl**
+# Set the value of run_ansibleee_kuttl to true
+# run_ansibleee_kuttl: false
+
+# For running **make horizon_prep**
+# Set the value of run_horizon_prep to true
+# run_horizon_prep: false
+
+# For running **make horizon**
+# Set the value of run_horizon to true
+# run_horizon: false
+
+# For running **make horizon_cleanup**
+# Set the value of run_horizon_cleanup to true
+# run_horizon_cleanup: false
+
+# For running **make horizon_deploy_prep**
+# Set the value of run_horizon_deploy_prep to true
+# run_horizon_deploy_prep: false
+
+# For running **make horizon_deploy**
+# Set the value of run_horizon_deploy to true
+# run_horizon_deploy: false
+
+# For running **make horizon_deploy_cleanup**
+# Set the value of run_horizon_deploy_cleanup to true
+# run_horizon_deploy_cleanup: false
 
 # For running **make ansibleee_prep**
 # Set the value of run_ansibleee_prep to true
@@ -758,6 +997,22 @@
 # Set the value of run_baremetal_cleanup to true
 # run_baremetal_cleanup: false
 
+# For running **make dataplane_prep**
+# Set the value of run_dataplane_prep to true
+# run_dataplane_prep: false
+
+# For running **make dataplane**
+# Set the value of run_dataplane to true
+# run_dataplane: false
+
+# For running **make dataplane_cleanup**
+# Set the value of run_dataplane_cleanup to true
+# run_dataplane_cleanup: false
+
+# For running **make ceph_help**
+# Set the value of run_ceph_help to true
+# run_ceph_help: false
+
 # For running **make ceph**
 # Set the value of run_ceph to true
 # run_ceph: false
@@ -765,3 +1020,83 @@
 # For running **make ceph_cleanup**
 # Set the value of run_ceph_cleanup to true
 # run_ceph_cleanup: false
+
+# For running **make nmstate**
+# Set the value of run_nmstate to true
+# run_nmstate: false
+
+# For running **make nncp**
+# Set the value of run_nncp to true
+# run_nncp: false
+
+# For running **make nncp_cleanup**
+# Set the value of run_nncp_cleanup to true
+# run_nncp_cleanup: false
+
+# For running **make netattach**
+# Set the value of run_netattach to true
+# run_netattach: false
+
+# For running **make netattach_cleanup**
+# Set the value of run_netattach_cleanup to true
+# run_netattach_cleanup: false
+
+# For running **make metallb**
+# Set the value of run_metallb to true
+# run_metallb: false
+
+# For running **make metallb_config**
+# Set the value of run_metallb_config to true
+# run_metallb_config: false
+
+# For running **make metallb_config_cleanup**
+# Set the value of run_metallb_config_cleanup to true
+# run_metallb_config_cleanup: false
+
+# For running **make manila_prep**
+# Set the value of run_manila_prep to true
+# run_manila_prep: false
+
+# For running **make manila**
+# Set the value of run_manila to true
+# run_manila: false
+
+# For running **make manila_cleanup**
+# Set the value of run_manila_cleanup to true
+# run_manila_cleanup: false
+
+# For running **make manila_deploy_prep**
+# Set the value of run_manila_deploy_prep to true
+# run_manila_deploy_prep: false
+
+# For running **make manila_deploy**
+# Set the value of run_manila_deploy to true
+# run_manila_deploy: false
+
+# For running **make manila_deploy_cleanup**
+# Set the value of run_manila_deploy_cleanup to true
+# run_manila_deploy_cleanup: false
+
+# For running **make ceilometer_prep**
+# Set the value of run_ceilometer_prep to true
+# run_ceilometer_prep: false
+
+# For running **make ceilometer**
+# Set the value of run_ceilometer to true
+# run_ceilometer: false
+
+# For running **make ceilometer_cleanup**
+# Set the value of run_ceilometer_cleanup to true
+# run_ceilometer_cleanup: false
+
+# For running **make ceilometer_deploy_prep**
+# Set the value of run_ceilometer_deploy_prep to true
+# run_ceilometer_deploy_prep: false
+
+# For running **make ceilometer_deploy**
+# Set the value of run_ceilometer_deploy to true
+# run_ceilometer_deploy: false
+
+# For running **make ceilometer_deploy_cleanup**
+# Set the value of run_ceilometer_deploy_cleanup to true
+# run_ceilometer_deploy_cleanup: false
