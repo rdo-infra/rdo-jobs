@@ -16,6 +16,24 @@
       "message": "why \u0027\u0027 is used here? if {{ ansible_user_dir }} will be just changed to path, then it will be a command like: source \u0027foo/rdopkg-venv/bin/activate\u0027 (so passing string to source - not sure if it won\u0027t fail)",
       "revId": "867fec333d981e5a0f24e4c0d22ea9a315e44fe5",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57be5168_a6199322",
+        "filename": "playbooks/weirdo/dlrn/run.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2023-03-27T12:53:36Z",
+      "side": 1,
+      "message": "That\u0027s a good point, there is no strong reason to keep them. It\u0027s working though as we are using the syntax in other jobs [1].\nI removed the quotes in PS2.\n\n[1] https://github.com/rdo-infra/rdo-jobs/search?q\u003drdopkg-venv",
+      "parentUuid": "ceca203c_b0ad41b5",
+      "revId": "867fec333d981e5a0f24e4c0d22ea9a315e44fe5",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
