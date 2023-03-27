@@ -76,7 +76,6 @@
 
           source '{{ ansible_user_dir }}/rdopkg-venv/bin/activate'
           MASTER="$(rdopkg info | grep -e "in development phase" | awk '{print $1}')"
-          deactivate
           RELEASE="{{ rdoinfo_release }}"
           PHASE="{{ rdoinfo_phase }}"
           PROJECT="{{ zuul.project.name }}"
