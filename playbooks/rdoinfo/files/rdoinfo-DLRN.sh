@@ -1,16 +1,32 @@
 #!/bin/bash
+# Simple script to test several DLRN packages
 set -ex
 
-# Simple script to test several DLRN packages
-TAG="${1:-bobcat-uc}"
-PACKAGES_TO_BUILD="${2:-python-glanceclient}"
-CENTOS_VERSION="${3:-centos7}"
+## Setup virtualenv with tox and use it
+#tox -e${PYTHON_VERSION} --notest
+#. .tox/${PYTHON_VERSION}/bin/activate
+
+if [ $# -ne 3 ]; then
+    echo "The script expects 3 arguments: <TAG> <PACKAGES_TO_BUILD> <CENTOS_VERSION>"
+    exit 1
+fi
+
+TAG=$1
+PACKAGES_TO_BUILD=$2
+CENTOS_VERSION=$3
 PROJECT_DISTRO_BRANCH="rpm-master"
+
+baseurl="http://trunk.rdoproject.org/${CENTOS_VERSION}/"
+src="master"
+tag="$(rdopkg info | grep -e "in development phase" | awk '{print $1}')-uc"
+branch=""
+components="true"
 
 # Prepare config
 if [ "$CENTOS_VERSION" = "centos7" ];then
     target="centos"
     PYTHON_VERSION="py27"
+    components="false"
 elif [ "$CENTOS_VERSION" = "centos8" ];then
     target="centos8-stream"
     PYTHON_VERSION="py36"
@@ -18,32 +34,14 @@ else
     target=${CENTOS_VERSION}
     PYTHON_VERSION="py36"
 fi
-baseurl="http://trunk.rdoproject.org/${CENTOS_VERSION}/"
-src="master"
-branch=""
-tag="bobcat-uc"
-components="false"
-
-# Setup virtualenv with tox and use it
-tox -e${PYTHON_VERSION} --notest
-. .tox/${PYTHON_VERSION}/bin/activate
 
 # If we are testing a commit on a specific branch, make sure we are using it
-if [[ "${TAG}" != "bobcat-uc" ]]; then
-    branch=$(echo $TAG | awk -F- '{print $1}')
+if [[ "${TAG}" != "$tag" ]]; then
+    branch=$TAG
     tag=$TAG
     baseurl="http://trunk.rdoproject.org/${branch}/${CENTOS_VERSION}/"
-    if [ "$branch" == 'antelope' ]; then
-        src="stable/2023.1"
-    else
-        src="stable/${branch}"
-    fi
+    src=$(rdopkg release -r "$TAG" | grep source_branch | awk '{print $2}')
     PROJECT_DISTRO_BRANCH="${TAG}-rdo"
-fi
-
-# Enable components for all centos builders for centos >= 8
-if [ "${CENTOS_VERSION}" != "centos7" ]; then
-    components="true"
 fi
 
 # Update the configuration
