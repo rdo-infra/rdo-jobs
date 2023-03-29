@@ -16,6 +16,7 @@
         run_openstack_deploy: true
         create_openstack_cr: true
         run_script: true
+        network_isolation: false
       ansible.builtin.include_role:
         name: use_install_yamls
 
