@@ -793,7 +793,17 @@ make help
 
 {% if run_crc_storage is defined and run_crc_storage | bool %}
 # set run_crc_storage var to true to run **make crc_storage**
+{% if retry_crc_storage is defined and retry_crc_storage | bool %}
+for i in {1..10}; do
+    if ! make crc_storage; then
+        echo "CRC storage not created. Retrying...${i}";
+    else
+        break;
+    fi;
+done
+{% else %}
 make crc_storage
+{% endif %}
 
 # Command to run after command_after_make_crc_storage var
 {% if command_after_make_crc_storage is defined %}
