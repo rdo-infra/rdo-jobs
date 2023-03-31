@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3815e19f_5750693b",
+        "filename": "zuul.d/rdoinfo-jobs.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2023-03-31T11:31:10Z",
+      "side": 1,
+      "message": "Not really, this is taking advantadge of the multiple parents feature allowed by zuul. The first inheritance is getting all the wallaby and rdo specific parameters from rdoinfo-tripleo-wallaby-testing-centos-9-scenario001-standalone.\n\nThe second one, is inheriting only specific standalone options for scenario002 from upstream definition in:\n\nhttps://opendev.org/openstack/tripleo-ci/src/branch/master/zuul.d/standalone-jobs.yaml#L519-L542\n\nSo, the aggregation of both conforms the definition for rdoinfo-tripleo-wallaby-testing-centos-9-scenario002-standalone.\n\nSee https://opendev.org/openstack/tripleo-ci/commit/740d0c6a756e2c9962f04765f5989296bae24a3c for example",
+      "parentUuid": "6ba23242_09037aaa",
+      "range": {
+        "startLine": 341,
+        "startChar": 0,
+        "endLine": 343,
+        "endChar": 75
+      },
+      "revId": "647b9cc3ec43ed9ca576e79048f4a16721c35ea7",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "513fa4a8_e21a7c6f",
         "filename": "zuul.d/rdoinfo-jobs.yaml",
         "patchSetId": 4
