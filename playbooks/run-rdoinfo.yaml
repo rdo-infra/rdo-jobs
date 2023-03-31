@@ -28,7 +28,7 @@
       changed_when: true
       shell:
         cmd: |
-          dnf install -y python3-pip python3-pyOpenSSL rpmlint python3-rpm
+          dnf install -y python3-pip rpmlint python3-rpm {{ 'python3-pyOpenSSL' if ansible_distribution_major_version == 8 }}
 
     - name: pip install rdopkg
       # noqa 403
