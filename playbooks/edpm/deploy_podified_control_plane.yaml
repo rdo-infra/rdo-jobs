@@ -76,6 +76,7 @@
         openstack_repo: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-operator"
         network_isolation: false
         run_crc_storage: true
+        retry_crc_storage: true
         command_after_run_crc_storage: |
           sleep 100
         run_script: true
