@@ -8,6 +8,7 @@
 
 - name: Update kustomization.yaml file
   ansible.builtin.shell: |
+    export STORAGE_CLASS=crc-csi-hostpath-provisioner
     cat <<EOF >{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/out/openstack/openstack/cr/kustomization.yaml
     apiVersion: kustomize.config.k8s.io/v1beta1
     kind: Kustomization

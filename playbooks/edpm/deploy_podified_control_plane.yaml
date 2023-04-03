@@ -73,11 +73,9 @@
         namespace: openstack
         run_openstack_deploy_prep: true
         run_input: true
+        storage_class: crc-csi-hostpath-provisioner
         openstack_repo: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-operator"
         network_isolation: false
-        run_crc_storage: true
-        command_after_run_crc_storage: |
-          sleep 100
         run_script: true
       ansible.builtin.include_role:
         name: use_install_yamls
@@ -131,6 +129,7 @@
 
     - name: Deploy OpenStack services
       ansible.builtin.shell: |
+        export STORAGE_CLASS=crc-csi-hostpath-provisioner
         export DEPLOY_DIR={{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/out/openstack/openstack/cr/
         oc kustomize ${DEPLOY_DIR} | oc apply -f -
       args:
