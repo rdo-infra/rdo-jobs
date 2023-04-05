@@ -27,6 +27,7 @@
         sudo buildah images | grep {{ container_name_prefix }} | tee {{ ansible_user_dir }}/workspace/logs/containers-built.log
         pushd {{ ansible_user_dir }}/workspace
         sudo cp -R * {{ ansible_user_dir }}/zuul-output/logs
+        sudo cp -R {{ ansible_user_dir }}/ci-framework/artifacts {{ ansible_user_dir }}/zuul-output/logs
         popd
       changed_when: true
     - name: Copy files from {{ work_dir }} on node
