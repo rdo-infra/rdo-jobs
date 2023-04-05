@@ -22,6 +22,23 @@
         src: "{{ ansible_user_dir }}/ci-framework/artifacts/repositories/delorean.repo.md5"
       register: md5_value
 
+    - name: check for /etc/ci/mirror_info.sh
+      ansible.builtin.stat:
+        path: "/etc/ci/mirror_info.sh"
+      register: mirror_path
+
+    - name: Use proxy mirrors
+      when:
+        - mirror_path.stat.exists
+      ansible.builtin.shell: |
+        source /etc/ci/mirror_info.sh
+        echo "export NODEPOOL_CENTOS_MIRROR=${NODEPOOL_CENTOS_MIRROR}" >> repo_setup_env
+        echo "export NODEPOOL_RDO_PROXY=${NODEPOOL_RDO_PROXY}" >> repo_setup_env
+        sed -i -e "s|https://trunk.rdoproject.org|$NODEPOOL_RDO_PROXY|g" *.repo
+        sed -i -e "s|http://mirror.stream.centos.org|$NODEPOOL_CENTOS_MIRROR|g" *.repo
+      args:
+        chdir: "{{ ansible_user_dir }}/ci_framework/artifacts/repositories"
+
     # - name: Disable tripleo repo if it exists
     #   ansible.builtin.replace:
     #     path: "{{ repo_dir }}/delorean.repo"
