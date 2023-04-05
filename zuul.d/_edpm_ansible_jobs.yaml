@@ -34,6 +34,7 @@
       pre_pull_images:
         - registry.redhat.io/rhosp-rhel9/openstack-rabbitmq:17.0
         - quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:afa73a12a1ffd31f77b10a25c43a4d02b0fd62f927f6209c26983bd8aee021bf
+        - quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:fa0d95d2496796f561346e58d58316a20543a0b99e110d498f62f1bb7750b11f
 
 - job:
     name: openstack-ansibleee-operator-github-rdo-integration-centos-8-crc-singlenode-centos-9-external-compute
