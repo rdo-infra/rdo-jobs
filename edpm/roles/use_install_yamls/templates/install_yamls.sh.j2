@@ -51,7 +51,7 @@ export STORAGE_CLASS={{ storage_class }}
 
 {% if network_isolation is defined %}
 # To set the value of NETWORK_ISOLATION
-export NETWORK_ISOLATION={{ network_isolation }}
+export NETWORK_ISOLATION={{ network_isolation | lower }}
 {% endif %}
 
 {% if openstack_img is defined %}
