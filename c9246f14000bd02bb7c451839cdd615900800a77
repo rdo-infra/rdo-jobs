@@ -41,6 +41,30 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7d0350f_19767a10",
+        "filename": "edpm/roles/tempest-run/defaults/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-04-07T07:06:55Z",
+      "side": 1,
+      "message": "k marking it resolved this was updated the image references are removed altogether now in v7",
+      "parentUuid": "cdc9ab00_62e2c0a7",
+      "range": {
+        "startLine": 4,
+        "startChar": 20,
+        "endLine": 4,
+        "endChar": 37
+      },
+      "revId": "c9246f14000bd02bb7c451839cdd615900800a77",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c446d3af_46545c4a",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-03-30T06:14:08Z",
       "side": 1,
       "message": "want to add \".\" for consistency with line 12?",
+      "range": {
+        "startLine": 6,
+        "startChar": 28,
+        "endLine": 6,
+        "endChar": 29
+      },
+      "revId": "c9246f14000bd02bb7c451839cdd615900800a77",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b933f83a_9f547e1d",
+        "filename": "edpm/roles/tempest-run/files/Containerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-04-07T07:06:55Z",
+      "side": 1,
+      "message": "ah my bad this is wrong it doesn\u0027t need it in this case",
+      "parentUuid": "c446d3af_46545c4a",
       "range": {
         "startLine": 6,
         "startChar": 28,
