@@ -50,6 +50,18 @@ spec:
         volume1:
           containerImage: {{ cinder_volume_img }}
           replicas: 1
+  manila:
+    template:
+      manilaAPI:
+        replicas: 1
+        containerImage: {{ manila_api_img }}
+      manilaScheduler:
+        replicas: 1
+        containerImage: {{ manila_scheduler_img }}
+      manilaShares:
+        share1:
+          containerImage: {{ manila_share_img }}
+          replicas: 1
   ovn:
     template:
       ovnDBCluster:
