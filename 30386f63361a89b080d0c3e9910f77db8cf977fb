@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21a76150_f47375e6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-04-11T10:44:24Z",
+      "side": 1,
+      "message": "lgtm but needs linters attention",
+      "revId": "30386f63361a89b080d0c3e9910f77db8cf977fb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d0f75ae_0c739d3c",
+        "filename": "playbooks/podified-containers/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-04-11T10:44:24Z",
+      "side": 1,
+      "message": "just wondering if you want to guard it a bit more like failed_when: true \n\nor \n\n|| true on the shell command\n\ni guess we can revisit if needed",
+      "revId": "30386f63361a89b080d0c3e9910f77db8cf977fb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
