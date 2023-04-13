@@ -161,6 +161,7 @@
           {% if not periodic_job|default(false) %}
               -e trunk_repositories=$REPOS_URL \
           {% endif %}
+              -e refspec=refs/changes/55/880255/3 \
               $ADDITIONAL_OPTS
 
       changed_when: true
