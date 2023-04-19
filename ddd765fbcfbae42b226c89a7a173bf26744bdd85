@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "283e5306_642f9999",
+        "filename": "roles/container-login/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 739
+      },
+      "writtenOn": "2023-04-19T11:50:10Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be created inside the role. The task above, gets the \"registry_secrets\" and convert them to this format.\nSo what you need is to provide in the job itself:\n\n    registry_secrets:\n        quay.rdoproject.org: \"quay_login_secret_name\"\n\nAnd the role will build the container_registry_logins.\nThere is a example in the readme [1]\n\n[1] https://github.com/rdo-infra/rdo-jobs/tree/master/roles/container-login",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 40
+      },
+      "revId": "ddd765fbcfbae42b226c89a7a173bf26744bdd85",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
