@@ -4,6 +4,39 @@
     dpa_dir: "/home/zuul-worker/src/github.com/openstack-k8s-operators/data-plane-adoption"
     rdo_dir: "/home/zuul-worker/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
   tasks:
+    - name: Slurp the standalone IP address
+      ansible.builtin.slurp:
+        path: /etc/nodepool/primary_node_private
+      register: standalone_ip
+
+    - name: Place standalone_ip into vars.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: '^external_mariadb_ip:'
+        value: "external_mariadb_ip: {{ standalone_ip['content'] | b64decode | trim }}"
+
+    - name: Slurp the mariadb pass from standalone
+      delegate_to: primary
+      ansible.builtin.slurp:
+        path: /home/zuul-worker/tripleo-deploy/tripleo-standalone-passwords.yaml
+      register: tripleo_passwords
+
+    - name: set fact for mariadb pass from slurped file
+      ansible.builtin.set_fact:
+        tripleo_mariadb_pass: "{{ tripleo_passwords['content'] | b64decode | regex_search('MysqlRootPassword:.(.+)', '\\1') | first }}"
+
+    - name: Place mariadb pass into secrets.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/secrets.yaml"
+        regexp: 'external_db_root_password:'
+        value: "external_db_root_password: {{ tripleo_mariadb_pass }}"
+
+    # TODO(marios) fixme this breaks haproxy need another/better way
+    - name: Setup IPTables forwarding on standalone for mariadb client access
+      ansible.builtin.command: sudo iptables -t nat -A PREROUTING -p tcp --dport 3306 -j DNAT --to-destination 192.168.24.1:3306
+      become: true
+      delegate_to: primary
+
     - name: Run data-plane-adoption tests
       community.general.make:
         chdir: "{{ dpa_dir }}"
