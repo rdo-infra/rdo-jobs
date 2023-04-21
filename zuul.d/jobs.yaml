@@ -174,6 +174,24 @@
     nodeset: rdo-centos-8-stream
 
 - job:
+    name: DLRN-rpmbuild-centos9-compare-deps
+    parent: DLRN-rpmbuild-base
+    vars:
+      centos_version: 'centos9'
+      compare_deps: true
+    branches: ^rpm-master$
+    nodeset: rdo-centos-8-stream
+    voting: false
+
+- job:
+    name: DLRN-rpmbuild-centos9-compare-builddeps
+    parent: DLRN-rpmbuild-centos9-compare-deps
+    vars:
+      centos_version: 'centos9'
+      compare_builddeps: true
+      compare_deps: false
+
+- job:
     name: DLRN-rpmbuild-centos9-pinned
     parent: DLRN-rpmbuild-centos9
     vars:
