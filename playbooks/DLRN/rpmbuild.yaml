@@ -60,3 +60,44 @@
         ZUUL_PIPELINE: "{{ zuul.pipeline }}"
         ZUUL_CHANGES: "{% set comma = joiner('^') %} {% for chg in zuul['items'] %}{{ comma() }}{{ chg.project.name }}:{{ chg.branch }}:{{ chg.change_url }}{% endfor %}"  # noqa 204
         LANG: 'en_US.UTF-8'
+
+    - name: Compare dependencies with latest trunk
+      changed_when: true
+      shell:
+        cmd: |
+          DESTINATION="$PWD/rpms"
+          MOCK_CMD="mock -r data/dlrn-1.cfg "
+          mkdir -p $DESTINATION
+          cp data/repos/current/*rpm $DESTINATION
+          rm $DESTINATION/*src.rpm
+          for i in $DESTINATION/*rpm; do
+              INSTALL="${INSTALL} --install $i"
+              NVR=$(echo $(basename $i)|sed 's/.rpm$//')
+              PKG_NAME=$(echo $NVR|rev|cut -d- -f3-|rev)
+              INSTALL_TRUNK="$INSTALL_TRUNK --install $PKG_NAME"
+              PKGS="$PKGS $PKG_NAME"
+          done
+          echo -e "INFO: installing subpackages with the patched distgit"
+          $MOCK_CMD --init
+          $MOCK_CMD $INSTALL
+          $MOCK_CMD -q --shell "rpm -qa" > patched_deps.list
+          echo -e "INFO: installing subpackages from latest RDO Trunk repo"
+          $MOCK_CMD --init
+          $MOCK_CMD $INSTALL_TRUNK
+          $MOCK_CMD -q --shell "rpm -qa" > trunk_deps.list
+          for pkg in $PKGS; do
+            sed -i "/^${pkg}-/d" patched_deps.list
+            sed -i "/^${pkg}-/d" trunk_deps.list
+          done
+          cat patched_deps.list |sort > patched_deps.list.sorted
+          cat trunk_deps.list |sort > trunk_deps.list.sorted
+
+          echo -e "INFO: comparing installed packages for patched and trunk subpackages"
+          echo -e "Packages installed from Trunk < > Packages installed from patched distgit"
+          sdiff -s trunk_deps.list.sorted patched_deps.list.sorted
+          if [ $? -ne 0 ]; then
+              echo -e "ERROR: There are differences between deps with packages for patched and trunk subpackages"
+              exit 1
+          fi
+        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
+        when: compare_deps|default(false)
