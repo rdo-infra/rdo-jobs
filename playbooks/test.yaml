@@ -1,0 +1,5 @@
+---
+- hosts: all
+  tasks:
+    - name: Debug test-1 pre run
+      debug: msg="test message"
