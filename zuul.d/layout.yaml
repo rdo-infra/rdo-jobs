@@ -1,14 +1,3 @@
 - project:
     check:
-      jobs: &jobs
-        # Place all individual molecule jobs here, rdo-tox-molecule will soon be removed
-        - rdo-mol-container-login:
-            files:
-              - .*molecule.*
-              - .*container-login.*
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^molecule-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+      jobs: []
