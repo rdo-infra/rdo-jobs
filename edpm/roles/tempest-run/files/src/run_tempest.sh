@@ -10,7 +10,7 @@ tempest init openshift
 
 pushd $TEMPEST_DIR
 
-discover-tempest-config --os-cloud $OS_CLOUD --debug --create
+discover-tempest-config --os-cloud $OS_CLOUD --debug --create identity.v3_endpoint_type public
 
 TEMPEST_LIST="/root/tempest/"
 if [ ! -z ${USE_EXTERNAL_FILES} ]; then
