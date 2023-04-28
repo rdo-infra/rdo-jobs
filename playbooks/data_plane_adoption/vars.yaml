@@ -11,3 +11,6 @@ external_mariadb_ip: CUSTOMIZE_THIS
 
 # Auth URL to use for adopted Keystone.
 auth_url: http://keystone-public-openstack.apps-crc.testing
+
+# Set verbose logging for CI jobs (no secrets here)
+use_no_log: false
