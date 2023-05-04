@@ -19,6 +19,7 @@
       - playbooks/data_plane_adoption/run_repo_tests.yaml
       - playbooks/data_plane_adoption/collect_logs_crc.yaml
     vars:
+      crc_parameters: "--memory 16000 --disk-size 80 --cpus 6"
       featureset: '052'
       skip_os_tempest: true
       release: wallaby
