@@ -10,15 +10,16 @@
 
     - name: Deploy podified control plane using install_yamls
       vars:
-        storage_class: standard
         namespace: openstack
-        run_crc_storage: true
-        run_openstack_deploy: true
+        storage_class: standard
+        run_openstack_deploy_prep: true
+        openstack_repo: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/openstack-operator"
         create_openstack_cr: true
+        run_crc_storage: true
+        command_after_run_crc_storage: |
+          sleep 100
         run_script: true
         network_isolation: false
-      ansible.builtin.include_role:
-        name: use_install_yamls
 
     - name: Add additional sleep in order to finish the deploy
       ansible.builtin.shell: |
