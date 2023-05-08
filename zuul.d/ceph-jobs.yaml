@@ -63,21 +63,6 @@
       release: zed
       remote_working_dir: "/var/www/html/images/ceph/daemon/zed"
 
-- project-template:
-    name: ceph-daemon-promotion-pipeline-zed
-    periodic-promote-ceph-daemon:
-      jobs:
-        - tripleo-ci-ceph-daemon-get-latest-stable-tag-zed
-        - tripleo-ci-centos-9-scenario001-standalone-ceph-updates-zed: &scn_ceph_updates_zed
-            dependencies:
-              - tripleo-ci-ceph-daemon-get-latest-stable-tag-zed
-        - tripleo-ci-centos-9-scenario004-standalone-ceph-updates-zed: *scn_ceph_updates_zed
-        - tripleo-ci-promote-ceph-daemon-tag-to-current-ceph-zed:
-            dependencies:
-              - tripleo-ci-ceph-daemon-get-latest-stable-tag-zed
-              - tripleo-ci-centos-9-scenario001-standalone-ceph-updates-zed
-              - tripleo-ci-centos-9-scenario004-standalone-ceph-updates-zed
-
 # Wallaby Jobs
 - job:
     name: tripleo-ci-ceph-daemon-get-latest-stable-tag-wallaby
