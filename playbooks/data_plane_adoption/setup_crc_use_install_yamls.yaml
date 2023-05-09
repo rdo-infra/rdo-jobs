@@ -1,4 +1,7 @@
 - hosts: controller
+  vars:
+    framework_dir: "/home/zuul-worker/src/github.com/openstack-k8s-operators/ci-framework"
+    module_dir: "/usr/share/ansible/plugins"
   tasks:
     - name: Print the current CRC version
       ansible.builtin.shell: |
@@ -8,19 +11,38 @@
       ansible.builtin.include_role:
         name: add_crc_creds
 
-    - name: Deploy podified control plane using install_yamls
+    - name: copy plugins to usr share ansible directory (on subnode 1/ctrler... redundant)
+      become: true
+      failed_when: false
+      ansible.builtin.shell: |
+        sudo cp -r {{ framework_dir }}/ci_framework/plugins/modules/* {{ module_dir }}/modules/
+        sudo cp -r {{ framework_dir }}/ci_framework/plugins/action/* {{ module_dir }}/action/
+
+    - name: copy plugins to usr share ansible directory delegated
+      delegate_to: localhost
+      become: true
+      failed_when: false
+      ansible.builtin.shell: |
+        cp -r {{ framework_dir }}/ci_framework/plugins/modules/* {{ module_dir }}/modules/
+        cp -r {{ framework_dir }}/ci_framework/plugins/action/* {{ module_dir }}/action/
+
+    - name: set fact for install_yamls role var overrides
+      ansible.builtin.set_fact:
+        install_yamls_vars: |
+          "NETWORK_ISOLATION": "false"
+
+    - name: Prepare install_yamls make targets
       vars:
-        namespace: openstack
-        run_openstack_deploy_prep: true
-        run_input: true
-        network_isolation: false
-        run_crc_storage: true
-        retry_crc_storage: true
-        command_after_run_crc_storage: |
-          sleep 100
-        run_script: true
+        cifmw_install_yamls_vars: "{{ install_yamls_vars }}"
       ansible.builtin.include_role:
-        name: use_install_yamls
+        name: install_yamls
+
+    - name: Run openstack_deploy_prep using install_yamls_makes
+      vars:
+        cifmw_install_yamls_vars: "{{ install_yamls_vars }}"
+      ansible.builtin.include_role:
+        name: install_yamls_makes
+        tasks_from: 'openstack_deploy_prep'
 
     - name: Add additional sleep in order to finish the deploy
       ansible.builtin.shell: |
