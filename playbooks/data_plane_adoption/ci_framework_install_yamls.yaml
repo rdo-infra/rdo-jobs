@@ -1,0 +1,28 @@
+- hosts: all
+  vars:
+    framework_dir: "/home/zuul-worker/src/github.com/openstack-k8s-operators/ci-framework"
+    module_dir: "/usr/share/ansible/plugins"
+  tasks:
+    - name: set fact for install_yamls role var overrides
+      ansible.builtin.set_fact:
+        install_yamls_vars: |
+          "NETWORK_ISOLATION": "false"
+
+    - name: Prepare install_yamls make targets
+      vars:
+        cifmw_install_yamls_vars: "{{ install_yamls_vars }}"
+      ansible.builtin.include_role:
+        name: install_yamls
+
+    - name: Run openstack_deploy_prep using install_yamls_makes
+      vars:
+        cifmw_install_yamls_vars: "{{ install_yamls_vars }}"
+      ansible.builtin.include_role:
+        name: install_yamls_makes
+        tasks_from: 'openstack_deploy_prep'
+
+    - name: Add additional sleep in order to finish the deploy
+      ansible.builtin.shell: |
+        sleep 200
+      args:
+        executable: /bin/bash
