@@ -37,6 +37,7 @@
 - job:
     name: tripleo-ci-ceph-daemon-get-latest-stable-tag-zed
     parent: tripleo-ci-ceph-daemon-get-latest-stable-tag-master
+    override-checkout: "stable/zed"
     vars:
       ceph_daemon_latest_tag_regex: *ceph_regex_quincy
 
@@ -57,6 +58,7 @@
 - job:
     name: tripleo-ci-promote-ceph-daemon-tag-to-current-ceph-zed
     parent: tripleo-ci-promote-ceph-daemon-tag-to-current-ceph
+    override-checkout: "stable/zed"
     vars:
       release: zed
       remote_working_dir: "/var/www/html/images/ceph/daemon/zed"
@@ -80,6 +82,7 @@
 - job:
     name: tripleo-ci-ceph-daemon-get-latest-stable-tag-wallaby
     parent: tripleo-ci-ceph-daemon-get-latest-stable-tag-master
+    override-checkout: "stable/wallaby"
     vars:
       ceph_daemon_latest_tag_regex: &ceph_regex_pacific '^v(\\d+\\.\\d+\\.\\d+)-stable.*pacific.*x86_64$'
 
@@ -100,6 +103,7 @@
 - job:
     name: tripleo-ci-promote-ceph-daemon-tag-to-current-ceph-wallaby
     parent: tripleo-ci-promote-ceph-daemon-tag-to-current-ceph
+    override-checkout: "stable/wallaby"
     vars:
       release: wallaby
       remote_working_dir: "/var/www/html/images/ceph/daemon/wallaby"
