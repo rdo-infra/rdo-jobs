@@ -25,6 +25,7 @@
       args:
         chdir: "{{ ansible_user_dir }}/openstack"
       changed_when: true
+      failed_when: false
 
     - name: collect data-plane-adoption test input files from rdo-jobs directory
       ansible.builtin.shell: |
@@ -47,6 +48,7 @@
 
     - name: Copy files from {{ ansible_user_dir }}/openstack on node
       # ansible.posix.synchronize does not work with zuul-executor
+      failed_when: false
       synchronize:
         src: '{{ ansible_user_dir }}/openstack/'
         dest: '{{ zuul.executor.log_root }}'

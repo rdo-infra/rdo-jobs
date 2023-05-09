@@ -1,4 +1,9 @@
 - hosts: controller
+  vars:
+    framework_dir: "/home/zuul-worker/src/github.com/openstack-k8s-operators/ci-framework"
+
+    rdo_dir: "/home/zuul-worker/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
+    module_dir: "/usr/share/ansible/plugins"
   tasks:
     - name: Print the current CRC version
       ansible.builtin.shell: |
@@ -8,22 +13,10 @@
       ansible.builtin.include_role:
         name: add_crc_creds
 
-    - name: Deploy podified control plane using install_yamls
-      vars:
-        namespace: openstack
-        run_openstack_deploy_prep: true
-        run_input: true
-        network_isolation: true
-        run_crc_storage: true
-        retry_crc_storage: true
-        command_after_run_crc_storage: |
-          sleep 100
-        run_script: true
-      ansible.builtin.include_role:
-        name: use_install_yamls
-
-    - name: Add additional sleep in order to finish the deploy
+    - name: Run install_yamls via ci-framework
       ansible.builtin.shell: |
-        sleep 200
+          ansible-galaxy collection install community.general
+          mkdir -p /home/zuul-worker/ci-framework-data/logs
+          ansible-playbook {{ rdo_dir }}/ci_framework_install_yamls.yaml
       args:
-        executable: /bin/bash
+        chdir: "{{ framework_dir }}"
