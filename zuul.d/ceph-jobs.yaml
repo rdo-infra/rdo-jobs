@@ -37,6 +37,7 @@
 - job:
     name: tripleo-ci-ceph-daemon-get-latest-stable-tag-zed
     parent: tripleo-ci-ceph-daemon-get-latest-stable-tag-master
+    override-checkout: "stable/zed"
     vars:
       ceph_daemon_latest_tag_regex: *ceph_regex_quincy
 
@@ -80,6 +81,7 @@
 - job:
     name: tripleo-ci-ceph-daemon-get-latest-stable-tag-wallaby
     parent: tripleo-ci-ceph-daemon-get-latest-stable-tag-master
+    override-checkout: "stable/wallaby"
     vars:
       ceph_daemon_latest_tag_regex: &ceph_regex_pacific '^v(\\d+\\.\\d+\\.\\d+)-stable.*pacific.*x86_64$'
 
