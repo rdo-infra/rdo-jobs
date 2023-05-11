@@ -27,3 +27,6 @@
       registry_login_enabled: true
       push_registry: quay.rdoproject.org
       quay_login_secret_name: quay_nextgen_zuulgithubci
+      network_isolation: true
+      crc_attach_default_interface: true
+      crc_parameters: '--memory 20000 --cpus 8 --disk-size 100'
