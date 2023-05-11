@@ -21,6 +21,8 @@
       - playbooks/data_plane_adoption/collect_logs_crc.yaml
     vars:
       crc_parameters: "--memory 18000 --disk-size 100 --cpus 8"
+      crc_attach_default_interface: true
+      network_isolation: true
       featureset: '052'
       skip_os_tempest: true
       release: wallaby
