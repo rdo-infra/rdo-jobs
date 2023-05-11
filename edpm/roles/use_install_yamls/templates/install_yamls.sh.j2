@@ -834,6 +834,12 @@ make input
 
 {% endif %}
 
+{% if network_isolation is defined | bool %}
+pushd devsetup
+make crc_attach_default_interface
+popd
+{% endif %}
+
 {% if run_openstack_prep is defined and run_openstack_prep | bool %}
 # set run_openstack_prep var to true to run **make openstack_prep**
 make openstack_prep
