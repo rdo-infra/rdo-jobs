@@ -306,6 +306,8 @@
           # Exceptions for ansible-collections-openstack
           addFilter("ansible-collections-openstack.noarch: E: non-executable-script /usr/share/ansible/collections/ansible_collections/openstack/cloud/plugins/.*")
           addFilter("ansible-collections-openstack.noarch: E: non-executable-script /usr/share/ansible/collections/ansible_collections/openstack/cloud/scripts/.*")
+          # Exceptions for barbican
+          addFilter("openstack-barbican-api.noarch: W: non-standard-gid /etc/barbican/.*")
           EOF
 
           RPMLINT_CMD="rpmlint -f $HOME/.rpmlintrc"
