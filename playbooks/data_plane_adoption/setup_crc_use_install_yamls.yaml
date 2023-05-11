@@ -13,7 +13,7 @@
         namespace: openstack
         run_openstack_deploy_prep: true
         run_input: true
-        network_isolation: false
+        network_isolation: true
         run_crc_storage: true
         retry_crc_storage: true
         command_after_run_crc_storage: |
