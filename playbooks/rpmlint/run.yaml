@@ -309,6 +309,9 @@
           # Exceptions for barbican
           addFilter("openstack-barbican.*: W: non-standard-gid /etc/barbican/.*")
           addFilter("openstack-barbican.*: W: dangerous-command-in-%post chown")
+          # Exception for neutronclient
+          addFilter("python-neutronclient-doc.noarch: W: file-not-utf8 /usr/share/doc/python-neutronclient-doc/html/objects.inv")
+          addFilter("python-neutronclient-doc.noarch: W: wrong-file-end-of-line-encoding /usr/share/doc/python-neutronclient-doc/html/objects.inv")
           EOF
 
           RPMLINT_CMD="rpmlint -f $HOME/.rpmlintrc"
