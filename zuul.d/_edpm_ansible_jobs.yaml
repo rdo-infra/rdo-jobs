@@ -4,7 +4,8 @@
     nodeset: centos-8-crc-single-node-centos-9-external-compute
     timeout: 10800
     required-projects: &edpm_required_projects
-      - openstack-k8s-operators/install_yamls
+      - name: openstack-k8s-operators/install_yamls
+        override-checkout: main
       - opendev.org/zuul/zuul-jobs
       - openstack-k8s-operators/openstack-operator
       - name: openstack-k8s-operators/edpm-ansible

@@ -4,7 +4,8 @@
     nodeset: centos-8-crc-single-node-centos-9-standalone
     timeout: 10800
     required-projects:
-      - openstack-k8s-operators/install_yamls
+      - name: openstack-k8s-operators/install_yamls
+        override-checkout: main
       - opendev.org/zuul/zuul-jobs
       - opendev.org/openstack/tripleo-repos
       - name: openstack-k8s-operators/data-plane-adoption
