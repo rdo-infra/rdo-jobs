@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d6383e8_27a5f51e",
+        "filename": "zuul.d/_data_plane_adoption.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-05-16T15:04:33Z",
+      "side": 1,
+      "message": "adding memory did not help. cinder still times out on startup https://logserver.rdoproject.org/23/46923/24/check/data-plane-adoption-github-rdo-centos-8-crc-centos-9-standalone/349ef48/logs/subnode-1/home/zuul-worker/test_minimal_out_2023-05-15T14:10:26UTC.log.txt.gz - could try bumping cpus ...\n\ni logged into that node and the crc vm is still only using 12g ram:\n\n$ crc status\nCRC VM:          Running\nOpenShift:       Running (v4.12.9)\nRAM Usage:       12.67GB of 16.4GB\nDisk Usage:      27.02GB of 85.35GB (Inside the CRC VM)\nCache Usage:     18.66GB",
+      "range": {
+        "startLine": 23,
+        "startChar": 61,
+        "endLine": 23,
+        "endChar": 62
+      },
+      "revId": "11bad606e6c44c55e88d21f262a2e015ec0e38e1",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
