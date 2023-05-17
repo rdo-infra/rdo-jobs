@@ -7,7 +7,8 @@
       - name: openstack-k8s-operators/install_yamls
         override-checkout: main
       - opendev.org/zuul/zuul-jobs
-      - openstack-k8s-operators/openstack-operator
+      - name: openstack-k8s-operators/openstack-operator
+        override-checkout: main
       - name: openstack-k8s-operators/edpm-ansible
         override-checkout: main
       - name: openstack-k8s-operators/openstack-ansibleee-operator
