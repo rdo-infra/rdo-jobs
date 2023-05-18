@@ -1,3 +1,4 @@
+
 # Add command to be executed after **make all**
 # uncomment command_after_make_all var: | and add the command the below that
 
@@ -9,6 +10,9 @@
 
 # Add command to be executed after **make deploy_cleanup**
 # uncomment command_after_make_deploy_cleanup var: | and add the command the below that
+
+# Add command to be executed after **make wait**
+# uncomment command_after_make_wait var: | and add the command the below that
 
 # Add command to be executed after **make crc_storage**
 # uncomment command_after_make_crc_storage var: | and add the command the below that
@@ -27,6 +31,12 @@
 
 # Add command to be executed after **make input_cleanup**
 # uncomment command_after_make_input_cleanup var: | and add the command the below that
+
+# Add command to be executed after **make crc_bmo_setup**
+# uncomment command_after_make_crc_bmo_setup var: | and add the command the below that
+
+# Add command to be executed after **make crc_bmo_cleanup**
+# uncomment command_after_make_crc_bmo_cleanup var: | and add the command the below that
 
 # Add command to be executed after **make openstack_prep**
 # uncomment command_after_make_openstack_prep var: | and add the command the below that
@@ -57,6 +67,9 @@
 
 # Add command to be executed after **make openstack_crds**
 # uncomment command_after_make_openstack_crds var: | and add the command the below that
+
+# Add command to be executed after **make openstack_storage_crds**
+# uncomment command_after_make_openstack_storage_crds var: | and add the command the below that
 
 # Add command to be executed after **make infra_prep**
 # uncomment command_after_make_infra_prep var: | and add the command the below that
@@ -352,6 +365,15 @@
 # Add command to be executed after **make ironic_kuttl_crc**
 # uncomment command_after_make_ironic_kuttl_crc var: | and add the command the below that
 
+# Add command to be executed after **make heat_kuttl_run**
+# uncomment command_after_make_heat_kuttl_run var: | and add the command the below that
+
+# Add command to be executed after **make heat_kuttl**
+# uncomment command_after_make_heat_kuttl var: | and add the command the below that
+
+# Add command to be executed after **make heat_kuttl_crc**
+# uncomment command_after_make_heat_kuttl_crc var: | and add the command the below that
+
 # Add command to be executed after **make ansibleee_kuttl_run**
 # uncomment command_after_make_ansibleee_kuttl_run var: | and add the command the below that
 
@@ -363,6 +385,30 @@
 
 # Add command to be executed after **make ansibleee_kuttl**
 # uncomment command_after_make_ansibleee_kuttl var: | and add the command the below that
+
+# Add command to be executed after **make dataplane_kuttl_run**
+# uncomment command_after_make_dataplane_kuttl_run var: | and add the command the below that
+
+# Add command to be executed after **make dataplane_kuttl_cleanup**
+# uncomment command_after_make_dataplane_kuttl_cleanup var: | and add the command the below that
+
+# Add command to be executed after **make dataplane_kuttl_prep**
+# uncomment command_after_make_dataplane_kuttl_prep var: | and add the command the below that
+
+# Add command to be executed after **make dataplane_kuttl**
+# uncomment command_after_make_dataplane_kuttl var: | and add the command the below that
+
+# Add command to be executed after **make glance_kuttl_run**
+# uncomment command_after_make_glance_kuttl_run var: | and add the command the below that
+
+# Add command to be executed after **make glance_kuttl**
+# uncomment command_after_make_glance_kuttl var: | and add the command the below that
+
+# Add command to be executed after **make horizon_kuttl_run**
+# uncomment command_after_make_horizon_kuttl_run var: | and add the command the below that
+
+# Add command to be executed after **make horizon_kuttl**
+# uncomment command_after_make_horizon_kuttl var: | and add the command the below that
 
 # Add command to be executed after **make horizon_prep**
 # uncomment command_after_make_horizon_prep var: | and add the command the below that
@@ -381,6 +427,24 @@
 
 # Add command to be executed after **make horizon_deploy_cleanup**
 # uncomment command_after_make_horizon_deploy_cleanup var: | and add the command the below that
+
+# Add command to be executed after **make heat_prep**
+# uncomment command_after_make_heat_prep var: | and add the command the below that
+
+# Add command to be executed after **make heat**
+# uncomment command_after_make_heat var: | and add the command the below that
+
+# Add command to be executed after **make heat_cleanup**
+# uncomment command_after_make_heat_cleanup var: | and add the command the below that
+
+# Add command to be executed after **make heat_deploy_prep**
+# uncomment command_after_make_heat_deploy_prep var: | and add the command the below that
+
+# Add command to be executed after **make heat_deploy**
+# uncomment command_after_make_heat_deploy var: | and add the command the below that
+
+# Add command to be executed after **make heat_deploy_cleanup**
+# uncomment command_after_make_heat_deploy_cleanup var: | and add the command the below that
 
 # Add command to be executed after **make ansibleee_prep**
 # uncomment command_after_make_ansibleee_prep var: | and add the command the below that
@@ -460,20 +524,38 @@
 # Add command to be executed after **make manila_deploy_cleanup**
 # uncomment command_after_make_manila_deploy_cleanup var: | and add the command the below that
 
-# Add command to be executed after **make ceilometer_prep**
-# uncomment command_after_make_ceilometer_prep var: | and add the command the below that
+# Add command to be executed after **make telemetry_prep**
+# uncomment command_after_make_telemetry_prep var: | and add the command the below that
 
-# Add command to be executed after **make ceilometer**
-# uncomment command_after_make_ceilometer var: | and add the command the below that
+# Add command to be executed after **make telemetry**
+# uncomment command_after_make_telemetry var: | and add the command the below that
 
-# Add command to be executed after **make ceilometer_cleanup**
-# uncomment command_after_make_ceilometer_cleanup var: | and add the command the below that
+# Add command to be executed after **make telemetry_cleanup**
+# uncomment command_after_make_telemetry_cleanup var: | and add the command the below that
 
-# Add command to be executed after **make ceilometer_deploy_prep**
-# uncomment command_after_make_ceilometer_deploy_prep var: | and add the command the below that
+# Add command to be executed after **make telemetry_deploy_prep**
+# uncomment command_after_make_telemetry_deploy_prep var: | and add the command the below that
 
-# Add command to be executed after **make ceilometer_deploy**
-# uncomment command_after_make_ceilometer_deploy var: | and add the command the below that
+# Add command to be executed after **make telemetry_deploy**
+# uncomment command_after_make_telemetry_deploy var: | and add the command the below that
 
-# Add command to be executed after **make ceilometer_deploy_cleanup**
-# uncomment command_after_make_ceilometer_deploy_cleanup var: | and add the command the below that
+# Add command to be executed after **make telemetry_deploy_cleanup**
+# uncomment command_after_make_telemetry_deploy_cleanup var: | and add the command the below that
+
+# Add command to be executed after **make swift_prep**
+# uncomment command_after_make_swift_prep var: | and add the command the below that
+
+# Add command to be executed after **make swift**
+# uncomment command_after_make_swift var: | and add the command the below that
+
+# Add command to be executed after **make swift_cleanup**
+# uncomment command_after_make_swift_cleanup var: | and add the command the below that
+
+# Add command to be executed after **make swift_deploy_prep**
+# uncomment command_after_make_swift_deploy_prep var: | and add the command the below that
+
+# Add command to be executed after **make swift_deploy**
+# uncomment command_after_make_swift_deploy var: | and add the command the below that
+
+# Add command to be executed after **make swift_deploy_cleanup**
+# uncomment command_after_make_swift_deploy_cleanup var: | and add the command the below that
