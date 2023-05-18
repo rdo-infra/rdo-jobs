@@ -19,9 +19,19 @@ export SECRET={{ secret }}
 export OUT={{ out }}
 {% endif %}
 
-{% if install_yamls is defined %}
-# To set the value of INSTALL_YAMLS
-export INSTALL_YAMLS={{ install_yamls }}
+{% if metadata_shared_secret is defined %}
+# To set the value of METADATA_SHARED_SECRET
+export METADATA_SHARED_SECRET={{ metadata_shared_secret }}
+{% endif %}
+
+{% if heat_auth_encryption_key is defined %}
+# To set the value of HEAT_AUTH_ENCRYPTION_KEY
+export HEAT_AUTH_ENCRYPTION_KEY={{ heat_auth_encryption_key }}
+{% endif %}
+
+{% if cleanup_dir_cmd is defined %}
+# To set the value of CLEANUP_DIR_CMD
+export CLEANUP_DIR_CMD={{ cleanup_dir_cmd }}
 {% endif %}
 
 {% if microshift is defined %}
@@ -34,16 +44,6 @@ export MICROSHIFT={{ microshift }}
 export OPERATOR_BASE_DIR={{ operator_base_dir }}
 {% endif %}
 
-{% if service_registry is defined %}
-# To set the value of SERVICE_REGISTRY
-export SERVICE_REGISTRY={{ service_registry }}
-{% endif %}
-
-{% if service_org is defined %}
-# To set the value of SERVICE_ORG
-export SERVICE_ORG={{ service_org }}
-{% endif %}
-
 {% if storage_class is defined %}
 # To set the value of STORAGE_CLASS
 export STORAGE_CLASS={{ storage_class }}
@@ -52,6 +52,11 @@ export STORAGE_CLASS={{ storage_class }}
 {% if network_isolation is defined %}
 # To set the value of NETWORK_ISOLATION
 export NETWORK_ISOLATION={{ network_isolation | lower }}
+{% endif %}
+
+{% if git_clone_opts is defined %}
+# To set the value of GIT_CLONE_OPTS
+export GIT_CLONE_OPTS={{ git_clone_opts }}
 {% endif %}
 
 {% if openstack_img is defined %}
@@ -84,6 +89,16 @@ export OPENSTACK_CR={{ openstack_cr }}
 export OPENSTACK_BUNDLE_IMG={{ openstack_bundle_img }}
 {% endif %}
 
+{% if openstack_storage_bundle_img is defined %}
+# To set the value of OPENSTACK_STORAGE_BUNDLE_IMG
+export OPENSTACK_STORAGE_BUNDLE_IMG={{ openstack_storage_bundle_img }}
+{% endif %}
+
+{% if openstack_crds_dir is defined %}
+# To set the value of OPENSTACK_CRDS_DIR
+export OPENSTACK_CRDS_DIR={{ openstack_crds_dir }}
+{% endif %}
+
 {% if infra_img is defined %}
 # To set the value of INFRA_IMG
 export INFRA_IMG={{ infra_img }}
@@ -99,6 +114,11 @@ export INFRA_REPO={{ infra_repo }}
 export INFRA_BRANCH={{ infra_branch }}
 {% endif %}
 
+{% if # memcached_img is defined %}
+# To set the value of # MEMCACHED_IMG
+export # MEMCACHED_IMG={{ # memcached_img }}
+{% endif %}
+
 {% if memcached is defined %}
 # To set the value of MEMCACHED
 export MEMCACHED={{ memcached }}
@@ -109,9 +129,9 @@ export MEMCACHED={{ memcached }}
 export MEMCACHED_CR={{ memcached_cr }}
 {% endif %}
 
-{% if memcached_img is defined %}
-# To set the value of MEMCACHED_IMG
-export MEMCACHED_IMG={{ memcached_img }}
+{% if memcached_depl_img is defined %}
+# To set the value of MEMCACHED_DEPL_IMG
+export MEMCACHED_DEPL_IMG={{ memcached_depl_img }}
 {% endif %}
 
 {% if keystone_img is defined %}
@@ -139,9 +159,9 @@ export KEYSTONEAPI={{ keystoneapi }}
 export KEYSTONEAPI_CR={{ keystoneapi_cr }}
 {% endif %}
 
-{% if keystoneapi_img is defined %}
-# To set the value of KEYSTONEAPI_IMG
-export KEYSTONEAPI_IMG={{ keystoneapi_img }}
+{% if keystoneapi_depl_img is defined %}
+# To set the value of KEYSTONEAPI_DEPL_IMG
+export KEYSTONEAPI_DEPL_IMG={{ keystoneapi_depl_img }}
 {% endif %}
 
 {% if keystone_kuttl_conf is defined %}
@@ -152,6 +172,11 @@ export KEYSTONE_KUTTL_CONF={{ keystone_kuttl_conf }}
 {% if keystone_kuttl_dir is defined %}
 # To set the value of KEYSTONE_KUTTL_DIR
 export KEYSTONE_KUTTL_DIR={{ keystone_kuttl_dir }}
+{% endif %}
+
+{% if keystone_kuttl_namespace is defined %}
+# To set the value of KEYSTONE_KUTTL_NAMESPACE
+export KEYSTONE_KUTTL_NAMESPACE={{ keystone_kuttl_namespace }}
 {% endif %}
 
 {% if mariadb_img is defined %}
@@ -219,9 +244,9 @@ export PLACEMENTAPI={{ placementapi }}
 export PLACEMENTAPI_CR={{ placementapi_cr }}
 {% endif %}
 
-{% if placementapi_img is defined %}
-# To set the value of PLACEMENTAPI_IMG
-export PLACEMENTAPI_IMG={{ placementapi_img }}
+{% if placementapi_depl_img is defined %}
+# To set the value of PLACEMENTAPI_DEPL_IMG
+export PLACEMENTAPI_DEPL_IMG={{ placementapi_depl_img }}
 {% endif %}
 
 {% if glance_img is defined %}
@@ -249,9 +274,19 @@ export GLANCE={{ glance }}
 export GLANCE_CR={{ glance_cr }}
 {% endif %}
 
-{% if glanceapi_img is defined %}
-# To set the value of GLANCEAPI_IMG
-export GLANCEAPI_IMG={{ glanceapi_img }}
+{% if glanceapi_depl_img is defined %}
+# To set the value of GLANCEAPI_DEPL_IMG
+export GLANCEAPI_DEPL_IMG={{ glanceapi_depl_img }}
+{% endif %}
+
+{% if glance_kuttl_conf is defined %}
+# To set the value of GLANCE_KUTTL_CONF
+export GLANCE_KUTTL_CONF={{ glance_kuttl_conf }}
+{% endif %}
+
+{% if glance_kuttl_dir is defined %}
+# To set the value of GLANCE_KUTTL_DIR
+export GLANCE_KUTTL_DIR={{ glance_kuttl_dir }}
 {% endif %}
 
 {% if ovn_img is defined %}
@@ -359,9 +394,9 @@ export NEUTRONAPI={{ neutronapi }}
 export NEUTRONAPI_CR={{ neutronapi_cr }}
 {% endif %}
 
-{% if neutronapi_img is defined %}
-# To set the value of NEUTRONAPI_IMG
-export NEUTRONAPI_IMG={{ neutronapi_img }}
+{% if neutronapi_depl_img is defined %}
+# To set the value of NEUTRONAPI_DEPL_IMG
+export NEUTRONAPI_DEPL_IMG={{ neutronapi_depl_img }}
 {% endif %}
 
 {% if neutron_kuttl_conf is defined %}
@@ -459,6 +494,31 @@ export IRONIC={{ ironic }}
 export IRONIC_CR={{ ironic_cr }}
 {% endif %}
 
+{% if ironicapi_depl_img is defined %}
+# To set the value of IRONICAPI_DEPL_IMG
+export IRONICAPI_DEPL_IMG={{ ironicapi_depl_img }}
+{% endif %}
+
+{% if ironiccon_depl_img is defined %}
+# To set the value of IRONICCON_DEPL_IMG
+export IRONICCON_DEPL_IMG={{ ironiccon_depl_img }}
+{% endif %}
+
+{% if ironicpxe_depl_img is defined %}
+# To set the value of IRONICPXE_DEPL_IMG
+export IRONICPXE_DEPL_IMG={{ ironicpxe_depl_img }}
+{% endif %}
+
+{% if ironicins_depl_img is defined %}
+# To set the value of IRONICINS_DEPL_IMG
+export IRONICINS_DEPL_IMG={{ ironicins_depl_img }}
+{% endif %}
+
+{% if ironicnag_depl_img is defined %}
+# To set the value of IRONICNAG_DEPL_IMG
+export IRONICNAG_DEPL_IMG={{ ironicnag_depl_img }}
+{% endif %}
+
 {% if ironic_kuttl_conf is defined %}
 # To set the value of IRONIC_KUTTL_CONF
 export IRONIC_KUTTL_CONF={{ ironic_kuttl_conf }}
@@ -484,19 +544,14 @@ export OCTAVIA_REPO={{ octavia_repo }}
 export OCTAVIA_BRANCH={{ octavia_branch }}
 {% endif %}
 
-{% if octaviaapi is defined %}
-# To set the value of OCTAVIAAPI
-export OCTAVIAAPI={{ octaviaapi }}
+{% if octavia is defined %}
+# To set the value of OCTAVIA
+export OCTAVIA={{ octavia }}
 {% endif %}
 
-{% if octaviaapi_cr is defined %}
-# To set the value of OCTAVIAAPI_CR
-export OCTAVIAAPI_CR={{ octaviaapi_cr }}
-{% endif %}
-
-{% if octaviaapi_img is defined %}
-# To set the value of OCTAVIAAPI_IMG
-export OCTAVIAAPI_IMG={{ octaviaapi_img }}
+{% if octavia_cr is defined %}
+# To set the value of OCTAVIA_CR
+export OCTAVIA_CR={{ octavia_cr }}
 {% endif %}
 
 {% if octavia_kuttl_conf is defined %}
@@ -559,9 +614,64 @@ export HORIZON={{ horizon }}
 export HORIZON_CR={{ horizon_cr }}
 {% endif %}
 
-{% if horizonapi_img is defined %}
-# To set the value of HORIZONAPI_IMG
-export HORIZONAPI_IMG={{ horizonapi_img }}
+{% if horizon_depl_img is defined %}
+# To set the value of HORIZON_DEPL_IMG
+export HORIZON_DEPL_IMG={{ horizon_depl_img }}
+{% endif %}
+
+{% if horizon_kuttl_conf is defined %}
+# To set the value of HORIZON_KUTTL_CONF
+export HORIZON_KUTTL_CONF={{ horizon_kuttl_conf }}
+{% endif %}
+
+{% if horizon_kuttl_dir is defined %}
+# To set the value of HORIZON_KUTTL_DIR
+export HORIZON_KUTTL_DIR={{ horizon_kuttl_dir }}
+{% endif %}
+
+{% if heat_img is defined %}
+# To set the value of HEAT_IMG
+export HEAT_IMG={{ heat_img }}
+{% endif %}
+
+{% if heat_repo is defined %}
+# To set the value of HEAT_REPO
+export HEAT_REPO={{ heat_repo }}
+{% endif %}
+
+{% if heat_branch is defined %}
+# To set the value of HEAT_BRANCH
+export HEAT_BRANCH={{ heat_branch }}
+{% endif %}
+
+{% if heat is defined %}
+# To set the value of HEAT
+export HEAT={{ heat }}
+{% endif %}
+
+{% if heat_cr is defined %}
+# To set the value of HEAT_CR
+export HEAT_CR={{ heat_cr }}
+{% endif %}
+
+{% if heatapi_depl_img is defined %}
+# To set the value of HEATAPI_DEPL_IMG
+export HEATAPI_DEPL_IMG={{ heatapi_depl_img }}
+{% endif %}
+
+{% if heatengine_depl_img is defined %}
+# To set the value of HEATENGINE_DEPL_IMG
+export HEATENGINE_DEPL_IMG={{ heatengine_depl_img }}
+{% endif %}
+
+{% if heat_kuttl_conf is defined %}
+# To set the value of HEAT_KUTTL_CONF
+export HEAT_KUTTL_CONF={{ heat_kuttl_conf }}
+{% endif %}
+
+{% if heat_kuttl_dir is defined %}
+# To set the value of HEAT_KUTTL_DIR
+export HEAT_KUTTL_DIR={{ heat_kuttl_dir }}
 {% endif %}
 
 {% if ansibleee_img is defined %}
@@ -674,14 +784,9 @@ export DATAPLANE_SSHD_ALLOWED_RANGES={{ dataplane_sshd_allowed_ranges }}
 export DATAPLANE_CHRONY_NTP_SERVER={{ dataplane_chrony_ntp_server }}
 {% endif %}
 
-{% if dataplane_ovn_metadata_agent_nova_metadata_host is defined %}
-# To set the value of DATAPLANE_OVN_METADATA_AGENT_NOVA_METADATA_HOST
-export DATAPLANE_OVN_METADATA_AGENT_NOVA_METADATA_HOST={{ dataplane_ovn_metadata_agent_nova_metadata_host }}
-{% endif %}
-
-{% if dataplane_ovn_metadata_agent_proxy_shared_secret is defined %}
-# To set the value of DATAPLANE_OVN_METADATA_AGENT_PROXY_SHARED_SECRET
-export DATAPLANE_OVN_METADATA_AGENT_PROXY_SHARED_SECRET={{ dataplane_ovn_metadata_agent_proxy_shared_secret }}
+{% if dataplane_dns_server is defined %}
+# To set the value of DATAPLANE_DNS_SERVER
+export DATAPLANE_DNS_SERVER={{ dataplane_dns_server }}
 {% endif %}
 
 {% if dataplane_ovn_metadata_agent_bind_host is defined %}
@@ -692,6 +797,21 @@ export DATAPLANE_OVN_METADATA_AGENT_BIND_HOST={{ dataplane_ovn_metadata_agent_bi
 {% if dataplane_single_node is defined %}
 # To set the value of DATAPLANE_SINGLE_NODE
 export DATAPLANE_SINGLE_NODE={{ dataplane_single_node }}
+{% endif %}
+
+{% if dataplane_kuttl_conf is defined %}
+# To set the value of DATAPLANE_KUTTL_CONF
+export DATAPLANE_KUTTL_CONF={{ dataplane_kuttl_conf }}
+{% endif %}
+
+{% if dataplane_kuttl_dir is defined %}
+# To set the value of DATAPLANE_KUTTL_DIR
+export DATAPLANE_KUTTL_DIR={{ dataplane_kuttl_dir }}
+{% endif %}
+
+{% if dataplane_kuttl_namespace is defined %}
+# To set the value of DATAPLANE_KUTTL_NAMESPACE
+export DATAPLANE_KUTTL_NAMESPACE={{ dataplane_kuttl_namespace }}
 {% endif %}
 
 {% if manila_img is defined %}
@@ -729,44 +849,119 @@ export CEPH_IMG={{ ceph_img }}
 export NNCP_INTERFACE={{ nncp_interface }}
 {% endif %}
 
-{% if ceilometer_img is defined %}
-# To set the value of CEILOMETER_IMG
-export CEILOMETER_IMG={{ ceilometer_img }}
+{% if telemetry_img is defined %}
+# To set the value of TELEMETRY_IMG
+export TELEMETRY_IMG={{ telemetry_img }}
 {% endif %}
 
-{% if ceilometer_repo is defined %}
-# To set the value of CEILOMETER_REPO
-export CEILOMETER_REPO={{ ceilometer_repo }}
+{% if telemetry_repo is defined %}
+# To set the value of TELEMETRY_REPO
+export TELEMETRY_REPO={{ telemetry_repo }}
 {% endif %}
 
-{% if ceilometer_branch is defined %}
-# To set the value of CEILOMETER_BRANCH
-export CEILOMETER_BRANCH={{ ceilometer_branch }}
+{% if telemetry_branch is defined %}
+# To set the value of TELEMETRY_BRANCH
+export TELEMETRY_BRANCH={{ telemetry_branch }}
 {% endif %}
 
-{% if ceilometer is defined %}
-# To set the value of CEILOMETER
-export CEILOMETER={{ ceilometer }}
+{% if telemetry is defined %}
+# To set the value of TELEMETRY
+export TELEMETRY={{ telemetry }}
 {% endif %}
 
-{% if ceilometer_cr is defined %}
-# To set the value of CEILOMETER_CR
-export CEILOMETER_CR={{ ceilometer_cr }}
+{% if telemetry_cr is defined %}
+# To set the value of TELEMETRY_CR
+export TELEMETRY_CR={{ telemetry_cr }}
 {% endif %}
 
-{% if ceilometerapi_central_img is defined %}
-# To set the value of CEILOMETERAPI_CENTRAL_IMG
-export CEILOMETERAPI_CENTRAL_IMG={{ ceilometerapi_central_img }}
+{% if ceilometer_central_depl_img is defined %}
+# To set the value of CEILOMETER_CENTRAL_DEPL_IMG
+export CEILOMETER_CENTRAL_DEPL_IMG={{ ceilometer_central_depl_img }}
 {% endif %}
 
-{% if ceilometerapi_notification_img is defined %}
-# To set the value of CEILOMETERAPI_NOTIFICATION_IMG
-export CEILOMETERAPI_NOTIFICATION_IMG={{ ceilometerapi_notification_img }}
+{% if ceilometer_notification_depl_img is defined %}
+# To set the value of CEILOMETER_NOTIFICATION_DEPL_IMG
+export CEILOMETER_NOTIFICATION_DEPL_IMG={{ ceilometer_notification_depl_img }}
 {% endif %}
 
-{% if ceilometerapi_sg_core_img is defined %}
-# To set the value of CEILOMETERAPI_SG_CORE_IMG
-export CEILOMETERAPI_SG_CORE_IMG={{ ceilometerapi_sg_core_img }}
+{% if sg_core_depl_img is defined %}
+# To set the value of SG_CORE_DEPL_IMG
+export SG_CORE_DEPL_IMG={{ sg_core_depl_img }}
+{% endif %}
+
+{% if bmo_repo is defined %}
+# To set the value of BMO_REPO
+export BMO_REPO={{ bmo_repo }}
+{% endif %}
+
+{% if bmo_branch is defined %}
+# To set the value of BMO_BRANCH
+export BMO_BRANCH={{ bmo_branch }}
+{% endif %}
+
+{% if certmanager_url is defined %}
+# To set the value of CERTMANAGER_URL
+export CERTMANAGER_URL={{ certmanager_url }}
+{% endif %}
+
+{% if provisioning_interface is defined %}
+# To set the value of PROVISIONING_INTERFACE
+export PROVISIONING_INTERFACE={{ provisioning_interface }}
+{% endif %}
+
+{% if ironic_host is defined %}
+# To set the value of IRONIC_HOST
+export IRONIC_HOST={{ ironic_host }}
+{% endif %}
+
+{% if swift_img is defined %}
+# To set the value of SWIFT_IMG
+export SWIFT_IMG={{ swift_img }}
+{% endif %}
+
+{% if swift_repo is defined %}
+# To set the value of SWIFT_REPO
+export SWIFT_REPO={{ swift_repo }}
+{% endif %}
+
+{% if swift_branch is defined %}
+# To set the value of SWIFT_BRANCH
+export SWIFT_BRANCH={{ swift_branch }}
+{% endif %}
+
+{% if swiftring is defined %}
+# To set the value of SWIFTRING
+export SWIFTRING={{ swiftring }}
+{% endif %}
+
+{% if swiftring_cr is defined %}
+# To set the value of SWIFTRING_CR
+export SWIFTRING_CR={{ swiftring_cr }}
+{% endif %}
+
+{% if swiftproxy is defined %}
+# To set the value of SWIFTPROXY
+export SWIFTPROXY={{ swiftproxy }}
+{% endif %}
+
+{% if swiftproxy_cr is defined %}
+# To set the value of SWIFTPROXY_CR
+export SWIFTPROXY_CR={{ swiftproxy_cr }}
+{% endif %}
+
+{% if swiftstorage is defined %}
+# To set the value of SWIFTSTORAGE
+export SWIFTSTORAGE={{ swiftstorage }}
+{% endif %}
+
+{% if swiftstorage_cr is defined %}
+# To set the value of SWIFTSTORAGE_CR
+export SWIFTSTORAGE_CR={{ swiftstorage_cr }}
+{% endif %}
+
+{% if bmo_setup is defined %}
+# To set the value of BMO_SETUP
+export BMO_SETUP={{ bmo_setup }}
 {% endif %}
 
 {% if run_all is defined and run_all | bool %}
@@ -791,19 +986,20 @@ make help
 
 {% endif %}
 
+{% if run_wait is defined and run_wait | bool %}
+# set run_wait var to true to run **make wait**
+make wait
+
+# Command to run after command_after_make_wait var
+{% if command_after_make_wait is defined %}
+{{ command_after_make_wait }}
+{% endif %}
+
+{% endif %}
+
 {% if run_crc_storage is defined and run_crc_storage | bool %}
 # set run_crc_storage var to true to run **make crc_storage**
-{% if retry_crc_storage is defined and retry_crc_storage | bool %}
-for i in {1..10}; do
-    if ! make crc_storage; then
-        echo "CRC storage not created. Retrying...${i}";
-    else
-        break;
-    fi;
-done
-{% else %}
 make crc_storage
-{% endif %}
 
 # Command to run after command_after_make_crc_storage var
 {% if command_after_make_crc_storage is defined %}
@@ -830,6 +1026,17 @@ make input
 # Command to run after command_after_make_input var
 {% if command_after_make_input is defined %}
 {{ command_after_make_input }}
+{% endif %}
+
+{% endif %}
+
+{% if run_crc_bmo_setup is defined and run_crc_bmo_setup | bool %}
+# set run_crc_bmo_setup var to true to run **make crc_bmo_setup**
+make crc_bmo_setup
+
+# Command to run after command_after_make_crc_bmo_setup var
+{% if command_after_make_crc_bmo_setup is defined %}
+{{ command_after_make_crc_bmo_setup }}
 {% endif %}
 
 {% endif %}
@@ -907,6 +1114,17 @@ make openstack_crds
 # Command to run after command_after_make_openstack_crds var
 {% if command_after_make_openstack_crds is defined %}
 {{ command_after_make_openstack_crds }}
+{% endif %}
+
+{% endif %}
+
+{% if run_openstack_storage_crds is defined and run_openstack_storage_crds | bool %}
+# set run_openstack_storage_crds var to true to run **make openstack_storage_crds**
+make openstack_storage_crds
+
+# Command to run after command_after_make_openstack_storage_crds var
+{% if command_after_make_openstack_storage_crds is defined %}
+{{ command_after_make_openstack_storage_crds }}
 {% endif %}
 
 {% endif %}
@@ -1703,6 +1921,39 @@ make ironic_kuttl_crc
 
 {% endif %}
 
+{% if run_heat_kuttl_run is defined and run_heat_kuttl_run | bool %}
+# set run_heat_kuttl_run var to true to run **make heat_kuttl_run**
+make heat_kuttl_run
+
+# Command to run after command_after_make_heat_kuttl_run var
+{% if command_after_make_heat_kuttl_run is defined %}
+{{ command_after_make_heat_kuttl_run }}
+{% endif %}
+
+{% endif %}
+
+{% if run_heat_kuttl is defined and run_heat_kuttl | bool %}
+# set run_heat_kuttl var to true to run **make heat_kuttl**
+make heat_kuttl
+
+# Command to run after command_after_make_heat_kuttl var
+{% if command_after_make_heat_kuttl is defined %}
+{{ command_after_make_heat_kuttl }}
+{% endif %}
+
+{% endif %}
+
+{% if run_heat_kuttl_crc is defined and run_heat_kuttl_crc | bool %}
+# set run_heat_kuttl_crc var to true to run **make heat_kuttl_crc**
+make heat_kuttl_crc
+
+# Command to run after command_after_make_heat_kuttl_crc var
+{% if command_after_make_heat_kuttl_crc is defined %}
+{{ command_after_make_heat_kuttl_crc }}
+{% endif %}
+
+{% endif %}
+
 {% if run_ansibleee_kuttl_run is defined and run_ansibleee_kuttl_run | bool %}
 # set run_ansibleee_kuttl_run var to true to run **make ansibleee_kuttl_run**
 make ansibleee_kuttl_run
@@ -1732,6 +1983,83 @@ make ansibleee_kuttl
 # Command to run after command_after_make_ansibleee_kuttl var
 {% if command_after_make_ansibleee_kuttl is defined %}
 {{ command_after_make_ansibleee_kuttl }}
+{% endif %}
+
+{% endif %}
+
+{% if run_dataplane_kuttl_run is defined and run_dataplane_kuttl_run | bool %}
+# set run_dataplane_kuttl_run var to true to run **make dataplane_kuttl_run**
+make dataplane_kuttl_run
+
+# Command to run after command_after_make_dataplane_kuttl_run var
+{% if command_after_make_dataplane_kuttl_run is defined %}
+{{ command_after_make_dataplane_kuttl_run }}
+{% endif %}
+
+{% endif %}
+
+{% if run_dataplane_kuttl_prep is defined and run_dataplane_kuttl_prep | bool %}
+# set run_dataplane_kuttl_prep var to true to run **make dataplane_kuttl_prep**
+make dataplane_kuttl_prep
+
+# Command to run after command_after_make_dataplane_kuttl_prep var
+{% if command_after_make_dataplane_kuttl_prep is defined %}
+{{ command_after_make_dataplane_kuttl_prep }}
+{% endif %}
+
+{% endif %}
+
+{% if run_dataplane_kuttl is defined and run_dataplane_kuttl | bool %}
+# set run_dataplane_kuttl var to true to run **make dataplane_kuttl**
+make dataplane_kuttl
+
+# Command to run after command_after_make_dataplane_kuttl var
+{% if command_after_make_dataplane_kuttl is defined %}
+{{ command_after_make_dataplane_kuttl }}
+{% endif %}
+
+{% endif %}
+
+{% if run_glance_kuttl_run is defined and run_glance_kuttl_run | bool %}
+# set run_glance_kuttl_run var to true to run **make glance_kuttl_run**
+make glance_kuttl_run
+
+# Command to run after command_after_make_glance_kuttl_run var
+{% if command_after_make_glance_kuttl_run is defined %}
+{{ command_after_make_glance_kuttl_run }}
+{% endif %}
+
+{% endif %}
+
+{% if run_glance_kuttl is defined and run_glance_kuttl | bool %}
+# set run_glance_kuttl var to true to run **make glance_kuttl**
+make glance_kuttl
+
+# Command to run after command_after_make_glance_kuttl var
+{% if command_after_make_glance_kuttl is defined %}
+{{ command_after_make_glance_kuttl }}
+{% endif %}
+
+{% endif %}
+
+{% if run_horizon_kuttl_run is defined and run_horizon_kuttl_run | bool %}
+# set run_horizon_kuttl_run var to true to run **make horizon_kuttl_run**
+make horizon_kuttl_run
+
+# Command to run after command_after_make_horizon_kuttl_run var
+{% if command_after_make_horizon_kuttl_run is defined %}
+{{ command_after_make_horizon_kuttl_run }}
+{% endif %}
+
+{% endif %}
+
+{% if run_horizon_kuttl is defined and run_horizon_kuttl | bool %}
+# set run_horizon_kuttl var to true to run **make horizon_kuttl**
+make horizon_kuttl
+
+# Command to run after command_after_make_horizon_kuttl var
+{% if command_after_make_horizon_kuttl is defined %}
+{{ command_after_make_horizon_kuttl }}
 {% endif %}
 
 {% endif %}
@@ -1776,6 +2104,50 @@ make horizon_deploy
 # Command to run after command_after_make_horizon_deploy var
 {% if command_after_make_horizon_deploy is defined %}
 {{ command_after_make_horizon_deploy }}
+{% endif %}
+
+{% endif %}
+
+{% if run_heat_prep is defined and run_heat_prep | bool %}
+# set run_heat_prep var to true to run **make heat_prep**
+make heat_prep
+
+# Command to run after command_after_make_heat_prep var
+{% if command_after_make_heat_prep is defined %}
+{{ command_after_make_heat_prep }}
+{% endif %}
+
+{% endif %}
+
+{% if run_heat is defined and run_heat | bool %}
+# set run_heat var to true to run **make heat**
+make heat
+
+# Command to run after command_after_make_heat var
+{% if command_after_make_heat is defined %}
+{{ command_after_make_heat }}
+{% endif %}
+
+{% endif %}
+
+{% if run_heat_deploy_prep is defined and run_heat_deploy_prep | bool %}
+# set run_heat_deploy_prep var to true to run **make heat_deploy_prep**
+make heat_deploy_prep
+
+# Command to run after command_after_make_heat_deploy_prep var
+{% if command_after_make_heat_deploy_prep is defined %}
+{{ command_after_make_heat_deploy_prep }}
+{% endif %}
+
+{% endif %}
+
+{% if run_heat_deploy is defined and run_heat_deploy | bool %}
+# set run_heat_deploy var to true to run **make heat_deploy**
+make heat_deploy
+
+# Command to run after command_after_make_heat_deploy var
+{% if command_after_make_heat_deploy is defined %}
+{{ command_after_make_heat_deploy }}
 {% endif %}
 
 {% endif %}
@@ -1967,68 +2339,134 @@ make manila_deploy
 
 {% endif %}
 
-{% if run_ceilometer_prep is defined and run_ceilometer_prep | bool %}
-# set run_ceilometer_prep var to true to run **make ceilometer_prep**
-make ceilometer_prep
+{% if run_telemetry_prep is defined and run_telemetry_prep | bool %}
+# set run_telemetry_prep var to true to run **make telemetry_prep**
+make telemetry_prep
 
-# Command to run after command_after_make_ceilometer_prep var
-{% if command_after_make_ceilometer_prep is defined %}
-{{ command_after_make_ceilometer_prep }}
+# Command to run after command_after_make_telemetry_prep var
+{% if command_after_make_telemetry_prep is defined %}
+{{ command_after_make_telemetry_prep }}
 {% endif %}
 
 {% endif %}
 
-{% if run_ceilometer is defined and run_ceilometer | bool %}
-# set run_ceilometer var to true to run **make ceilometer**
-make ceilometer
+{% if run_telemetry is defined and run_telemetry | bool %}
+# set run_telemetry var to true to run **make telemetry**
+make telemetry
 
-# Command to run after command_after_make_ceilometer var
-{% if command_after_make_ceilometer is defined %}
-{{ command_after_make_ceilometer }}
+# Command to run after command_after_make_telemetry var
+{% if command_after_make_telemetry is defined %}
+{{ command_after_make_telemetry }}
 {% endif %}
 
 {% endif %}
 
-{% if run_ceilometer_deploy_prep is defined and run_ceilometer_deploy_prep | bool %}
-# set run_ceilometer_deploy_prep var to true to run **make ceilometer_deploy_prep**
-make ceilometer_deploy_prep
+{% if run_telemetry_deploy_prep is defined and run_telemetry_deploy_prep | bool %}
+# set run_telemetry_deploy_prep var to true to run **make telemetry_deploy_prep**
+make telemetry_deploy_prep
 
-# Command to run after command_after_make_ceilometer_deploy_prep var
-{% if command_after_make_ceilometer_deploy_prep is defined %}
-{{ command_after_make_ceilometer_deploy_prep }}
+# Command to run after command_after_make_telemetry_deploy_prep var
+{% if command_after_make_telemetry_deploy_prep is defined %}
+{{ command_after_make_telemetry_deploy_prep }}
 {% endif %}
 
 {% endif %}
 
-{% if run_ceilometer_deploy is defined and run_ceilometer_deploy | bool %}
-# set run_ceilometer_deploy var to true to run **make ceilometer_deploy**
-make ceilometer_deploy
+{% if run_telemetry_deploy is defined and run_telemetry_deploy | bool %}
+# set run_telemetry_deploy var to true to run **make telemetry_deploy**
+make telemetry_deploy
 
-# Command to run after command_after_make_ceilometer_deploy var
-{% if command_after_make_ceilometer_deploy is defined %}
-{{ command_after_make_ceilometer_deploy }}
+# Command to run after command_after_make_telemetry_deploy var
+{% if command_after_make_telemetry_deploy is defined %}
+{{ command_after_make_telemetry_deploy }}
 {% endif %}
 
 {% endif %}
 
-{% if run_ceilometer_deploy_cleanup is defined and run_ceilometer_deploy_cleanup | bool %}
-# set run_ceilometer_deploy_cleanup var to true to run **make ceilometer_deploy_cleanup**
-make ceilometer_deploy_cleanup
+{% if run_swift_prep is defined and run_swift_prep | bool %}
+# set run_swift_prep var to true to run **make swift_prep**
+make swift_prep
 
-# Command to run after command_after_make_ceilometer_deploy_cleanup var
-{% if command_after_make_ceilometer_deploy_cleanup is defined %}
-{{ command_after_make_ceilometer_deploy_cleanup }}
+# Command to run after command_after_make_swift_prep var
+{% if command_after_make_swift_prep is defined %}
+{{ command_after_make_swift_prep }}
 {% endif %}
 
 {% endif %}
 
-{% if run_ceilometer_cleanup is defined and run_ceilometer_cleanup | bool %}
-# set run_ceilometer_cleanup var to true to run **make ceilometer_cleanup**
-make ceilometer_cleanup
+{% if run_swift is defined and run_swift | bool %}
+# set run_swift var to true to run **make swift**
+make swift
 
-# Command to run after command_after_make_ceilometer_cleanup var
-{% if command_after_make_ceilometer_cleanup is defined %}
-{{ command_after_make_ceilometer_cleanup }}
+# Command to run after command_after_make_swift var
+{% if command_after_make_swift is defined %}
+{{ command_after_make_swift }}
+{% endif %}
+
+{% endif %}
+
+{% if run_swift_deploy_prep is defined and run_swift_deploy_prep | bool %}
+# set run_swift_deploy_prep var to true to run **make swift_deploy_prep**
+make swift_deploy_prep
+
+# Command to run after command_after_make_swift_deploy_prep var
+{% if command_after_make_swift_deploy_prep is defined %}
+{{ command_after_make_swift_deploy_prep }}
+{% endif %}
+
+{% endif %}
+
+{% if run_swift_deploy is defined and run_swift_deploy | bool %}
+# set run_swift_deploy var to true to run **make swift_deploy**
+make swift_deploy
+
+# Command to run after command_after_make_swift_deploy var
+{% if command_after_make_swift_deploy is defined %}
+{{ command_after_make_swift_deploy }}
+{% endif %}
+
+{% endif %}
+
+{% if run_swift_deploy_cleanup is defined and run_swift_deploy_cleanup | bool %}
+# set run_swift_deploy_cleanup var to true to run **make swift_deploy_cleanup**
+make swift_deploy_cleanup
+
+# Command to run after command_after_make_swift_deploy_cleanup var
+{% if command_after_make_swift_deploy_cleanup is defined %}
+{{ command_after_make_swift_deploy_cleanup }}
+{% endif %}
+
+{% endif %}
+
+{% if run_swift_cleanup is defined and run_swift_cleanup | bool %}
+# set run_swift_cleanup var to true to run **make swift_cleanup**
+make swift_cleanup
+
+# Command to run after command_after_make_swift_cleanup var
+{% if command_after_make_swift_cleanup is defined %}
+{{ command_after_make_swift_cleanup }}
+{% endif %}
+
+{% endif %}
+
+{% if run_telemetry_deploy_cleanup is defined and run_telemetry_deploy_cleanup | bool %}
+# set run_telemetry_deploy_cleanup var to true to run **make telemetry_deploy_cleanup**
+make telemetry_deploy_cleanup
+
+# Command to run after command_after_make_telemetry_deploy_cleanup var
+{% if command_after_make_telemetry_deploy_cleanup is defined %}
+{{ command_after_make_telemetry_deploy_cleanup }}
+{% endif %}
+
+{% endif %}
+
+{% if run_telemetry_cleanup is defined and run_telemetry_cleanup | bool %}
+# set run_telemetry_cleanup var to true to run **make telemetry_cleanup**
+make telemetry_cleanup
+
+# Command to run after command_after_make_telemetry_cleanup var
+{% if command_after_make_telemetry_cleanup is defined %}
+{{ command_after_make_telemetry_cleanup }}
 {% endif %}
 
 {% endif %}
@@ -2132,6 +2570,28 @@ make ansibleee_cleanup
 
 {% endif %}
 
+{% if run_heat_deploy_cleanup is defined and run_heat_deploy_cleanup | bool %}
+# set run_heat_deploy_cleanup var to true to run **make heat_deploy_cleanup**
+make heat_deploy_cleanup
+
+# Command to run after command_after_make_heat_deploy_cleanup var
+{% if command_after_make_heat_deploy_cleanup is defined %}
+{{ command_after_make_heat_deploy_cleanup }}
+{% endif %}
+
+{% endif %}
+
+{% if run_heat_cleanup is defined and run_heat_cleanup | bool %}
+# set run_heat_cleanup var to true to run **make heat_cleanup**
+make heat_cleanup
+
+# Command to run after command_after_make_heat_cleanup var
+{% if command_after_make_heat_cleanup is defined %}
+{{ command_after_make_heat_cleanup }}
+{% endif %}
+
+{% endif %}
+
 {% if run_horizon_deploy_cleanup is defined and run_horizon_deploy_cleanup | bool %}
 # set run_horizon_deploy_cleanup var to true to run **make horizon_deploy_cleanup**
 make horizon_deploy_cleanup
@@ -2150,6 +2610,17 @@ make horizon_cleanup
 # Command to run after command_after_make_horizon_cleanup var
 {% if command_after_make_horizon_cleanup is defined %}
 {{ command_after_make_horizon_cleanup }}
+{% endif %}
+
+{% endif %}
+
+{% if run_dataplane_kuttl_cleanup is defined and run_dataplane_kuttl_cleanup | bool %}
+# set run_dataplane_kuttl_cleanup var to true to run **make dataplane_kuttl_cleanup**
+make dataplane_kuttl_cleanup
+
+# Command to run after command_after_make_dataplane_kuttl_cleanup var
+{% if command_after_make_dataplane_kuttl_cleanup is defined %}
+{{ command_after_make_dataplane_kuttl_cleanup }}
 {% endif %}
 
 {% endif %}
@@ -2480,6 +2951,17 @@ make openstack_cleanup
 # Command to run after command_after_make_openstack_cleanup var
 {% if command_after_make_openstack_cleanup is defined %}
 {{ command_after_make_openstack_cleanup }}
+{% endif %}
+
+{% endif %}
+
+{% if run_crc_bmo_cleanup is defined and run_crc_bmo_cleanup | bool %}
+# set run_crc_bmo_cleanup var to true to run **make crc_bmo_cleanup**
+make crc_bmo_cleanup
+
+# Command to run after command_after_make_crc_bmo_cleanup var
+{% if command_after_make_crc_bmo_cleanup is defined %}
+{{ command_after_make_crc_bmo_cleanup }}
 {% endif %}
 
 {% endif %}

@@ -11,8 +11,14 @@
 ## The default value of out is ${PWD}/out
 # out: ${PWD}/out
 
-## The default value of install_yamls is ${PWD}  # used for kuttl tests
-# install_yamls: ${PWD}  # used for kuttl tests
+## The default value of metadata_shared_secret is 1234567842
+# metadata_shared_secret: 1234567842
+
+## The default value of heat_auth_encryption_key is 767c3ed056cbaa3b9dfedb8c6f825bf0
+# heat_auth_encryption_key: 767c3ed056cbaa3b9dfedb8c6f825bf0
+
+## The default value of cleanup_dir_cmd is rm -Rf
+# cleanup_dir_cmd: rm -Rf
 
 ## The default value of microshift is 0
 # microshift: 0
@@ -20,17 +26,14 @@
 ## The default value of operator_base_dir is ${OUT}/operator
 # operator_base_dir: ${OUT}/operator
 
-## The default value of service_registry is quay.io
-# service_registry: quay.io
-
-## The default value of service_org is tripleozedcentos9
-# service_org: tripleozedcentos9
-
 ## The default value of storage_class is "local-storage"
 # storage_class: "local-storage"
 
 ## The default value of network_isolation is true
 # network_isolation: true
+
+## The default value of git_clone_opts is 
+# git_clone_opts: 
 
 ## The default value of openstack_img is quay.io/openstack-k8s-operators/openstack-operator-index:latest
 # openstack_img: quay.io/openstack-k8s-operators/openstack-operator-index:latest
@@ -38,8 +41,8 @@
 ## The default value of openstack_repo is https://github.com/openstack-k8s-operators/openstack-operator.git
 # openstack_repo: https://github.com/openstack-k8s-operators/openstack-operator.git
 
-## The default value of openstack_branch is master
-# openstack_branch: master
+## The default value of openstack_branch is main
+# openstack_branch: main
 
 ## The default value of openstack_ctlplane is $(if $(findstring true,$(NETWORK_ISOLATION)),config/samples/core_v1beta1_openstackcontrolplane_network_isolation.yaml,config/samples/core_v1beta1_openstackcontrolplane.yaml)
 # openstack_ctlplane: $(if $(findstring true,$(NETWORK_ISOLATION)),config/samples/core_v1beta1_openstackcontrolplane_network_isolation.yaml,config/samples/core_v1beta1_openstackcontrolplane.yaml)
@@ -50,14 +53,23 @@
 ## The default value of openstack_bundle_img is quay.io/openstack-k8s-operators/openstack-operator-bundle:latest
 # openstack_bundle_img: quay.io/openstack-k8s-operators/openstack-operator-bundle:latest
 
+## The default value of openstack_storage_bundle_img is quay.io/openstack-k8s-operators/openstack-operator-storage-bundle:latest
+# openstack_storage_bundle_img: quay.io/openstack-k8s-operators/openstack-operator-storage-bundle:latest
+
+## The default value of openstack_crds_dir is openstack_crds
+# openstack_crds_dir: openstack_crds
+
 ## The default value of infra_img is quay.io/openstack-k8s-operators/infra-operator-index:latest
 # infra_img: quay.io/openstack-k8s-operators/infra-operator-index:latest
 
 ## The default value of infra_repo is https://github.com/openstack-k8s-operators/infra-operator.git
 # infra_repo: https://github.com/openstack-k8s-operators/infra-operator.git
 
-## The default value of infra_branch is master
-# infra_branch: master
+## The default value of infra_branch is main
+# infra_branch: main
+
+## The default value of # memcached_img is (tis is unused because this is part of infra operator)
+# # memcached_img: (tis is unused because this is part of infra operator)
 
 ## The default value of memcached is config/samples/memcached_v1beta1_memcached.yaml
 # memcached: config/samples/memcached_v1beta1_memcached.yaml
@@ -65,8 +77,8 @@
 ## The default value of memcached_cr is ${OPERATOR_BASE_DIR}/infra-operator/${MEMCACHED}
 # memcached_cr: ${OPERATOR_BASE_DIR}/infra-operator/${MEMCACHED}
 
-## The default value of memcached_img is ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-memcached:current-tripleo
-# memcached_img: ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-memcached:current-tripleo
+## The default value of memcached_depl_img is unused
+# memcached_depl_img: unused
 
 ## The default value of keystone_img is quay.io/openstack-k8s-operators/keystone-operator-index:latest
 # keystone_img: quay.io/openstack-k8s-operators/keystone-operator-index:latest
@@ -74,8 +86,8 @@
 ## The default value of keystone_repo is https://github.com/openstack-k8s-operators/keystone-operator.git
 # keystone_repo: https://github.com/openstack-k8s-operators/keystone-operator.git
 
-## The default value of keystone_branch is master
-# keystone_branch: master
+## The default value of keystone_branch is main
+# keystone_branch: main
 
 ## The default value of keystoneapi is config/samples/keystone_v1beta1_keystoneapi.yaml
 # keystoneapi: config/samples/keystone_v1beta1_keystoneapi.yaml
@@ -83,8 +95,8 @@
 ## The default value of keystoneapi_cr is ${OPERATOR_BASE_DIR}/keystone-operator/${KEYSTONEAPI}
 # keystoneapi_cr: ${OPERATOR_BASE_DIR}/keystone-operator/${KEYSTONEAPI}
 
-## The default value of keystoneapi_img is ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-keystone:current-tripleo
-# keystoneapi_img: ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-keystone:current-tripleo
+## The default value of keystoneapi_depl_img is unused
+# keystoneapi_depl_img: unused
 
 ## The default value of keystone_kuttl_conf is ${OPERATOR_BASE_DIR}/keystone-operator/kuttl-test.yaml
 # keystone_kuttl_conf: ${OPERATOR_BASE_DIR}/keystone-operator/kuttl-test.yaml
@@ -92,14 +104,17 @@
 ## The default value of keystone_kuttl_dir is ${OPERATOR_BASE_DIR}/keystone-operator/tests/kuttl/tests
 # keystone_kuttl_dir: ${OPERATOR_BASE_DIR}/keystone-operator/tests/kuttl/tests
 
+## The default value of keystone_kuttl_namespace is keystone-kuttl-tests
+# keystone_kuttl_namespace: keystone-kuttl-tests
+
 ## The default value of mariadb_img is quay.io/openstack-k8s-operators/mariadb-operator-index:latest
 # mariadb_img: quay.io/openstack-k8s-operators/mariadb-operator-index:latest
 
 ## The default value of mariadb_repo is https://github.com/openstack-k8s-operators/mariadb-operator.git
 # mariadb_repo: https://github.com/openstack-k8s-operators/mariadb-operator.git
 
-## The default value of mariadb_branch is master
-# mariadb_branch: master
+## The default value of mariadb_branch is main
+# mariadb_branch: main
 
 ## The default value of mariadb is config/samples/mariadb_v1beta1_mariadb.yaml
 # mariadb: config/samples/mariadb_v1beta1_mariadb.yaml
@@ -107,8 +122,8 @@
 ## The default value of mariadb_cr is ${OPERATOR_BASE_DIR}/mariadb-operator/${MARIADB}
 # mariadb_cr: ${OPERATOR_BASE_DIR}/mariadb-operator/${MARIADB}
 
-## The default value of mariadb_depl_img is ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-mariadb:current-tripleo
-# mariadb_depl_img: ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-mariadb:current-tripleo
+## The default value of mariadb_depl_img is unused
+# mariadb_depl_img: unused
 
 ## The default value of mariadb_kuttl_conf is ${OPERATOR_BASE_DIR}/mariadb-operator/kuttl-test.yaml
 # mariadb_kuttl_conf: ${OPERATOR_BASE_DIR}/mariadb-operator/kuttl-test.yaml
@@ -122,8 +137,8 @@
 ## The default value of placement_repo is https://github.com/openstack-k8s-operators/placement-operator.git
 # placement_repo: https://github.com/openstack-k8s-operators/placement-operator.git
 
-## The default value of placement_branch is master
-# placement_branch: master
+## The default value of placement_branch is main
+# placement_branch: main
 
 ## The default value of placementapi is config/samples/placement_v1beta1_placementapi.yaml
 # placementapi: config/samples/placement_v1beta1_placementapi.yaml
@@ -131,8 +146,8 @@
 ## The default value of placementapi_cr is ${OPERATOR_BASE_DIR}/placement-operator/${PLACEMENTAPI}
 # placementapi_cr: ${OPERATOR_BASE_DIR}/placement-operator/${PLACEMENTAPI}
 
-## The default value of placementapi_img is ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-placement-api:current-tripleo
-# placementapi_img: ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-placement-api:current-tripleo
+## The default value of placementapi_depl_img is unused
+# placementapi_depl_img: unused
 
 ## The default value of glance_img is quay.io/openstack-k8s-operators/glance-operator-index:latest
 # glance_img: quay.io/openstack-k8s-operators/glance-operator-index:latest
@@ -140,8 +155,8 @@
 ## The default value of glance_repo is https://github.com/openstack-k8s-operators/glance-operator.git
 # glance_repo: https://github.com/openstack-k8s-operators/glance-operator.git
 
-## The default value of glance_branch is master
-# glance_branch: master
+## The default value of glance_branch is main
+# glance_branch: main
 
 ## The default value of glance is config/samples/glance_v1beta1_glance.yaml
 # glance: config/samples/glance_v1beta1_glance.yaml
@@ -149,8 +164,14 @@
 ## The default value of glance_cr is ${OPERATOR_BASE_DIR}/glance-operator/${GLANCE}
 # glance_cr: ${OPERATOR_BASE_DIR}/glance-operator/${GLANCE}
 
-## The default value of glanceapi_img is ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-glance-api:current-tripleo
-# glanceapi_img: ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-glance-api:current-tripleo
+## The default value of glanceapi_depl_img is unused
+# glanceapi_depl_img: unused
+
+## The default value of glance_kuttl_conf is ${OPERATOR_BASE_DIR}/glance-operator/kuttl-test.yaml
+# glance_kuttl_conf: ${OPERATOR_BASE_DIR}/glance-operator/kuttl-test.yaml
+
+## The default value of glance_kuttl_dir is ${OPERATOR_BASE_DIR}/glance-operator/tests/kuttl/tests
+# glance_kuttl_dir: ${OPERATOR_BASE_DIR}/glance-operator/tests/kuttl/tests
 
 ## The default value of ovn_img is quay.io/openstack-k8s-operators/ovn-operator-index:latest
 # ovn_img: quay.io/openstack-k8s-operators/ovn-operator-index:latest
@@ -206,8 +227,8 @@
 ## The default value of neutron_repo is https://github.com/openstack-k8s-operators/neutron-operator.git
 # neutron_repo: https://github.com/openstack-k8s-operators/neutron-operator.git
 
-## The default value of neutron_branch is master
-# neutron_branch: master
+## The default value of neutron_branch is main
+# neutron_branch: main
 
 ## The default value of neutronapi is config/samples/neutron_v1beta1_neutronapi.yaml
 # neutronapi: config/samples/neutron_v1beta1_neutronapi.yaml
@@ -215,8 +236,8 @@
 ## The default value of neutronapi_cr is ${OPERATOR_BASE_DIR}/neutron-operator/${NEUTRONAPI}
 # neutronapi_cr: ${OPERATOR_BASE_DIR}/neutron-operator/${NEUTRONAPI}
 
-## The default value of neutronapi_img is ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-neutron-server:current-tripleo
-# neutronapi_img: ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-neutron-server:current-tripleo
+## The default value of neutronapi_depl_img is unused
+# neutronapi_depl_img: unused
 
 ## The default value of neutron_kuttl_conf is ${OPERATOR_BASE_DIR}/neutron-operator/kuttl-test.yaml
 # neutron_kuttl_conf: ${OPERATOR_BASE_DIR}/neutron-operator/kuttl-test.yaml
@@ -230,8 +251,8 @@
 ## The default value of cinder_repo is https://github.com/openstack-k8s-operators/cinder-operator.git
 # cinder_repo: https://github.com/openstack-k8s-operators/cinder-operator.git
 
-## The default value of cinder_branch is master
-# cinder_branch: master
+## The default value of cinder_branch is main
+# cinder_branch: main
 
 ## The default value of cinder is config/samples/cinder_v1beta1_cinder.yaml
 # cinder: config/samples/cinder_v1beta1_cinder.yaml
@@ -266,14 +287,29 @@
 ## The default value of ironic_repo is https://github.com/openstack-k8s-operators/ironic-operator.git
 # ironic_repo: https://github.com/openstack-k8s-operators/ironic-operator.git
 
-## The default value of ironic_branch is master
-# ironic_branch: master
+## The default value of ironic_branch is main
+# ironic_branch: main
 
 ## The default value of ironic is config/samples/ironic_v1beta1_ironic.yaml
 # ironic: config/samples/ironic_v1beta1_ironic.yaml
 
 ## The default value of ironic_cr is ${OPERATOR_BASE_DIR}/ironic-operator/${IRONIC}
 # ironic_cr: ${OPERATOR_BASE_DIR}/ironic-operator/${IRONIC}
+
+## The default value of ironicapi_depl_img is unused
+# ironicapi_depl_img: unused
+
+## The default value of ironiccon_depl_img is unused
+# ironiccon_depl_img: unused
+
+## The default value of ironicpxe_depl_img is unused
+# ironicpxe_depl_img: unused
+
+## The default value of ironicins_depl_img is unused
+# ironicins_depl_img: unused
+
+## The default value of ironicnag_depl_img is unused
+# ironicnag_depl_img: unused
 
 ## The default value of ironic_kuttl_conf is ${OPERATOR_BASE_DIR}/ironic-operator/kuttl-test.yaml
 # ironic_kuttl_conf: ${OPERATOR_BASE_DIR}/ironic-operator/kuttl-test.yaml
@@ -290,14 +326,11 @@
 ## The default value of octavia_branch is main
 # octavia_branch: main
 
-## The default value of octaviaapi is config/samples/octavia_v1beta1_octavia.yaml
-# octaviaapi: config/samples/octavia_v1beta1_octavia.yaml
+## The default value of octavia is config/samples/octavia_v1beta1_octavia.yaml
+# octavia: config/samples/octavia_v1beta1_octavia.yaml
 
-## The default value of octaviaapi_cr is ${OPERATOR_BASE_DIR}/octavia-operator/${OCTAVIAAPI}
-# octaviaapi_cr: ${OPERATOR_BASE_DIR}/octavia-operator/${OCTAVIAAPI}
-
-## The default value of octaviaapi_img is ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-octavia-api:current-tripleo
-# octaviaapi_img: ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-octavia-api:current-tripleo
+## The default value of octavia_cr is ${OPERATOR_BASE_DIR}/octavia-operator/${OCTAVIA}
+# octavia_cr: ${OPERATOR_BASE_DIR}/octavia-operator/${OCTAVIA}
 
 ## The default value of octavia_kuttl_conf is ${OPERATOR_BASE_DIR}/octavia-operator/kuttl-test.yaml
 # octavia_kuttl_conf: ${OPERATOR_BASE_DIR}/octavia-operator/kuttl-test.yaml
@@ -311,8 +344,8 @@
 ## The default value of nova_repo is https://github.com/openstack-k8s-operators/nova-operator.git
 # nova_repo: https://github.com/openstack-k8s-operators/nova-operator.git
 
-## The default value of nova_branch is master
-# nova_branch: master
+## The default value of nova_branch is main
+# nova_branch: main
 
 ## The default value of nova is config/samples/nova_v1beta1_nova_collapsed_cell.yaml
 # nova: config/samples/nova_v1beta1_nova_collapsed_cell.yaml
@@ -329,14 +362,47 @@
 ## The default value of horizon_branch is main
 # horizon_branch: main
 
-## The default value of horizon is config/samples/horizon_v1alpha1_horizon.yaml
-# horizon: config/samples/horizon_v1alpha1_horizon.yaml
+## The default value of horizon is config/samples/horizon_v1beta1_horizon.yaml
+# horizon: config/samples/horizon_v1beta1_horizon.yaml
 
 ## The default value of horizon_cr is ${OPERATOR_BASE_DIR}/horizon-operator/${HORIZON}
 # horizon_cr: ${OPERATOR_BASE_DIR}/horizon-operator/${HORIZON}
 
-## The default value of horizonapi_img is ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-horizon:current-tripleo
-# horizonapi_img: ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-horizon:current-tripleo
+## The default value of horizon_depl_img is unused
+# horizon_depl_img: unused
+
+## The default value of horizon_kuttl_conf is ${OPERATOR_BASE_DIR}/horizon-operator/kuttl-test.yaml
+# horizon_kuttl_conf: ${OPERATOR_BASE_DIR}/horizon-operator/kuttl-test.yaml
+
+## The default value of horizon_kuttl_dir is ${OPERATOR_BASE_DIR}/horizon-operator/tests/kuttl/tests
+# horizon_kuttl_dir: ${OPERATOR_BASE_DIR}/horizon-operator/tests/kuttl/tests
+
+## The default value of heat_img is quay.io/openstack-k8s-operators/heat-operator-index:latest
+# heat_img: quay.io/openstack-k8s-operators/heat-operator-index:latest
+
+## The default value of heat_repo is https://github.com/openstack-k8s-operators/heat-operator.git
+# heat_repo: https://github.com/openstack-k8s-operators/heat-operator.git
+
+## The default value of heat_branch is main
+# heat_branch: main
+
+## The default value of heat is config/samples/heat_v1beta1_heat.yaml
+# heat: config/samples/heat_v1beta1_heat.yaml
+
+## The default value of heat_cr is ${OPERATOR_BASE_DIR}/heat-operator/${HEAT}
+# heat_cr: ${OPERATOR_BASE_DIR}/heat-operator/${HEAT}
+
+## The default value of heatapi_depl_img is unused
+# heatapi_depl_img: unused
+
+## The default value of heatengine_depl_img is unused
+# heatengine_depl_img: unused
+
+## The default value of heat_kuttl_conf is ${OPERATOR_BASE_DIR}/heat-operator/kuttl-test.yaml
+# heat_kuttl_conf: ${OPERATOR_BASE_DIR}/heat-operator/kuttl-test.yaml
+
+## The default value of heat_kuttl_dir is ${OPERATOR_BASE_DIR}/heat-operator/tests/kuttl/tests
+# heat_kuttl_dir: ${OPERATOR_BASE_DIR}/heat-operator/tests/kuttl/tests
 
 ## The default value of ansibleee_img is quay.io/openstack-k8s-operators/openstack-ansibleee-operator-index:latest
 # ansibleee_img: quay.io/openstack-k8s-operators/openstack-ansibleee-operator-index:latest
@@ -365,8 +431,8 @@
 ## The default value of baremetal_repo is https://github.com/openstack-k8s-operators/openstack-baremetal-operator.git
 # baremetal_repo: https://github.com/openstack-k8s-operators/openstack-baremetal-operator.git
 
-## The default value of baremetal_branch is master
-# baremetal_branch: master
+## The default value of baremetal_branch is main
+# baremetal_branch: main
 
 ## The default value of dataplane_img is quay.io/openstack-k8s-operators/dataplane-operator-index:latest
 # dataplane_img: quay.io/openstack-k8s-operators/dataplane-operator-index:latest
@@ -401,20 +467,26 @@
 ## The default value of dataplane_sshd_allowed_ranges is ['192.168.122.0/24']
 # dataplane_sshd_allowed_ranges: ['192.168.122.0/24']
 
-## The default value of dataplane_chrony_ntp_server is clock.redhat.com
-# dataplane_chrony_ntp_server: clock.redhat.com
+## The default value of dataplane_chrony_ntp_server is pool.ntp.org
+# dataplane_chrony_ntp_server: pool.ntp.org
 
-## The default value of dataplane_ovn_metadata_agent_nova_metadata_host is 127.0.0.1
-# dataplane_ovn_metadata_agent_nova_metadata_host: 127.0.0.1
-
-## The default value of dataplane_ovn_metadata_agent_proxy_shared_secret is 12345678
-# dataplane_ovn_metadata_agent_proxy_shared_secret: 12345678
+## The default value of dataplane_dns_server is 192.168.122.1
+# dataplane_dns_server: 192.168.122.1
 
 ## The default value of dataplane_ovn_metadata_agent_bind_host is 127.0.0.1
 # dataplane_ovn_metadata_agent_bind_host: 127.0.0.1
 
 ## The default value of dataplane_single_node is true
 # dataplane_single_node: true
+
+## The default value of dataplane_kuttl_conf is ${OPERATOR_BASE_DIR}/dataplane-operator/kuttl-test.yaml
+# dataplane_kuttl_conf: ${OPERATOR_BASE_DIR}/dataplane-operator/kuttl-test.yaml
+
+## The default value of dataplane_kuttl_dir is ${OPERATOR_BASE_DIR}/dataplane-operator/tests/kuttl/tests
+# dataplane_kuttl_dir: ${OPERATOR_BASE_DIR}/dataplane-operator/tests/kuttl/tests
+
+## The default value of dataplane_kuttl_namespace is dataplane-kuttl-tests
+# dataplane_kuttl_namespace: dataplane-kuttl-tests
 
 ## The default value of manila_img is quay.io/openstack-k8s-operators/manila-operator-index:latest
 # manila_img: quay.io/openstack-k8s-operators/manila-operator-index:latest
@@ -437,29 +509,74 @@
 ## The default value of nncp_interface is enp6s0
 # nncp_interface: enp6s0
 
-## The default value of ceilometer_img is quay.io/openstack-k8s-operators/ceilometer-operator-index:latest
-# ceilometer_img: quay.io/openstack-k8s-operators/ceilometer-operator-index:latest
+## The default value of telemetry_img is quay.io/openstack-k8s-operators/telemetry-operator-index:latest
+# telemetry_img: quay.io/openstack-k8s-operators/telemetry-operator-index:latest
 
-## The default value of ceilometer_repo is https://github.com/openstack-k8s-operators/ceilometer-operator.git
-# ceilometer_repo: https://github.com/openstack-k8s-operators/ceilometer-operator.git
+## The default value of telemetry_repo is https://github.com/openstack-k8s-operators/telemetry-operator.git
+# telemetry_repo: https://github.com/openstack-k8s-operators/telemetry-operator.git
 
-## The default value of ceilometer_branch is main
-# ceilometer_branch: main
+## The default value of telemetry_branch is main
+# telemetry_branch: main
 
-## The default value of ceilometer is config/samples/ceilometer_v1beta1_ceilometer.yaml
-# ceilometer: config/samples/ceilometer_v1beta1_ceilometer.yaml
+## The default value of telemetry is config/samples/telemetry_v1beta1_telemetry.yaml
+# telemetry: config/samples/telemetry_v1beta1_telemetry.yaml
 
-## The default value of ceilometer_cr is ${OPERATOR_BASE_DIR}/ceilometer-operator/${CEILOMETER}
-# ceilometer_cr: ${OPERATOR_BASE_DIR}/ceilometer-operator/${CEILOMETER}
+## The default value of telemetry_cr is ${OPERATOR_BASE_DIR}/telemetry-operator/${TELEMETRY}
+# telemetry_cr: ${OPERATOR_BASE_DIR}/telemetry-operator/${TELEMETRY}
 
-## The default value of ceilometerapi_central_img is ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-ceilometer-central:current-tripleo
-# ceilometerapi_central_img: ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-ceilometer-central:current-tripleo
+## The default value of ceilometer_central_depl_img is unused
+# ceilometer_central_depl_img: unused
 
-## The default value of ceilometerapi_notification_img is ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-ceilometer-notification:current-tripleo
-# ceilometerapi_notification_img: ${SERVICE_REGISTRY}/${SERVICE_ORG}/openstack-ceilometer-notification:current-tripleo
+## The default value of ceilometer_notification_depl_img is unused
+# ceilometer_notification_depl_img: unused
 
-## The default value of ceilometerapi_sg_core_img is ${SERVICE_REGISTRY}/infrawatch/sg-core:latest
-# ceilometerapi_sg_core_img: ${SERVICE_REGISTRY}/infrawatch/sg-core:latest
+## The default value of sg_core_depl_img is unused
+# sg_core_depl_img: unused
+
+## The default value of bmo_repo is https://github.com/metal3-io/baremetal-operator
+# bmo_repo: https://github.com/metal3-io/baremetal-operator
+
+## The default value of bmo_branch is main
+# bmo_branch: main
+
+## The default value of certmanager_url is https://github.com/jetstack/cert-manager/releases/download/v1.5.4/cert-manager.yaml
+# certmanager_url: https://github.com/jetstack/cert-manager/releases/download/v1.5.4/cert-manager.yaml
+
+## The default value of provisioning_interface is enp2s0
+# provisioning_interface: enp2s0
+
+## The default value of ironic_host is 192.168.130.11
+# ironic_host: 192.168.130.11
+
+## The default value of swift_img is quay.io/openstack-k8s-operators/swift-operator-index:latest
+# swift_img: quay.io/openstack-k8s-operators/swift-operator-index:latest
+
+## The default value of swift_repo is https://github.com/openstack-k8s-operators/swift-operator.git
+# swift_repo: https://github.com/openstack-k8s-operators/swift-operator.git
+
+## The default value of swift_branch is main
+# swift_branch: main
+
+## The default value of swiftring is config/samples/swift_v1beta1_swiftring.yaml
+# swiftring: config/samples/swift_v1beta1_swiftring.yaml
+
+## The default value of swiftring_cr is ${OPERATOR_BASE_DIR}/swift-operator/${SWIFTRING}
+# swiftring_cr: ${OPERATOR_BASE_DIR}/swift-operator/${SWIFTRING}
+
+## The default value of swiftproxy is config/samples/swift_v1beta1_swiftproxy.yaml
+# swiftproxy: config/samples/swift_v1beta1_swiftproxy.yaml
+
+## The default value of swiftproxy_cr is ${OPERATOR_BASE_DIR}/swift-operator/${SWIFTPROXY}
+# swiftproxy_cr: ${OPERATOR_BASE_DIR}/swift-operator/${SWIFTPROXY}
+
+## The default value of swiftstorage is config/samples/swift_v1beta1_swiftstorage.yaml
+# swiftstorage: config/samples/swift_v1beta1_swiftstorage.yaml
+
+## The default value of swiftstorage_cr is ${OPERATOR_BASE_DIR}/swift-operator/${SWIFTSTORAGE}
+# swiftstorage_cr: ${OPERATOR_BASE_DIR}/swift-operator/${SWIFTSTORAGE}
+
+## The default value of bmo_setup is true
+# bmo_setup: true
 
 # For running **make all**
 # Set the value of run_all to true
@@ -476,6 +593,10 @@
 # For running **make deploy_cleanup**
 # Set the value of run_deploy_cleanup to true
 # run_deploy_cleanup: false
+
+# For running **make wait**
+# Set the value of run_wait to true
+# run_wait: false
 
 # For running **make crc_storage**
 # Set the value of run_crc_storage to true
@@ -500,6 +621,14 @@
 # For running **make input_cleanup**
 # Set the value of run_input_cleanup to true
 # run_input_cleanup: false
+
+# For running **make crc_bmo_setup**
+# Set the value of run_crc_bmo_setup to true
+# run_crc_bmo_setup: false
+
+# For running **make crc_bmo_cleanup**
+# Set the value of run_crc_bmo_cleanup to true
+# run_crc_bmo_cleanup: false
 
 # For running **make openstack_prep**
 # Set the value of run_openstack_prep to true
@@ -540,6 +669,10 @@
 # For running **make openstack_crds**
 # Set the value of run_openstack_crds to true
 # run_openstack_crds: false
+
+# For running **make openstack_storage_crds**
+# Set the value of run_openstack_storage_crds to true
+# run_openstack_storage_crds: false
 
 # For running **make infra_prep**
 # Set the value of run_infra_prep to true
@@ -933,6 +1066,18 @@
 # Set the value of run_ironic_kuttl_crc to true
 # run_ironic_kuttl_crc: false
 
+# For running **make heat_kuttl_run**
+# Set the value of run_heat_kuttl_run to true
+# run_heat_kuttl_run: false
+
+# For running **make heat_kuttl**
+# Set the value of run_heat_kuttl to true
+# run_heat_kuttl: false
+
+# For running **make heat_kuttl_crc**
+# Set the value of run_heat_kuttl_crc to true
+# run_heat_kuttl_crc: false
+
 # For running **make ansibleee_kuttl_run**
 # Set the value of run_ansibleee_kuttl_run to true
 # run_ansibleee_kuttl_run: false
@@ -948,6 +1093,38 @@
 # For running **make ansibleee_kuttl**
 # Set the value of run_ansibleee_kuttl to true
 # run_ansibleee_kuttl: false
+
+# For running **make dataplane_kuttl_run**
+# Set the value of run_dataplane_kuttl_run to true
+# run_dataplane_kuttl_run: false
+
+# For running **make dataplane_kuttl_cleanup**
+# Set the value of run_dataplane_kuttl_cleanup to true
+# run_dataplane_kuttl_cleanup: false
+
+# For running **make dataplane_kuttl_prep**
+# Set the value of run_dataplane_kuttl_prep to true
+# run_dataplane_kuttl_prep: false
+
+# For running **make dataplane_kuttl**
+# Set the value of run_dataplane_kuttl to true
+# run_dataplane_kuttl: false
+
+# For running **make glance_kuttl_run**
+# Set the value of run_glance_kuttl_run to true
+# run_glance_kuttl_run: false
+
+# For running **make glance_kuttl**
+# Set the value of run_glance_kuttl to true
+# run_glance_kuttl: false
+
+# For running **make horizon_kuttl_run**
+# Set the value of run_horizon_kuttl_run to true
+# run_horizon_kuttl_run: false
+
+# For running **make horizon_kuttl**
+# Set the value of run_horizon_kuttl to true
+# run_horizon_kuttl: false
 
 # For running **make horizon_prep**
 # Set the value of run_horizon_prep to true
@@ -972,6 +1149,30 @@
 # For running **make horizon_deploy_cleanup**
 # Set the value of run_horizon_deploy_cleanup to true
 # run_horizon_deploy_cleanup: false
+
+# For running **make heat_prep**
+# Set the value of run_heat_prep to true
+# run_heat_prep: false
+
+# For running **make heat**
+# Set the value of run_heat to true
+# run_heat: false
+
+# For running **make heat_cleanup**
+# Set the value of run_heat_cleanup to true
+# run_heat_cleanup: false
+
+# For running **make heat_deploy_prep**
+# Set the value of run_heat_deploy_prep to true
+# run_heat_deploy_prep: false
+
+# For running **make heat_deploy**
+# Set the value of run_heat_deploy to true
+# run_heat_deploy: false
+
+# For running **make heat_deploy_cleanup**
+# Set the value of run_heat_deploy_cleanup to true
+# run_heat_deploy_cleanup: false
 
 # For running **make ansibleee_prep**
 # Set the value of run_ansibleee_prep to true
@@ -1077,26 +1278,50 @@
 # Set the value of run_manila_deploy_cleanup to true
 # run_manila_deploy_cleanup: false
 
-# For running **make ceilometer_prep**
-# Set the value of run_ceilometer_prep to true
-# run_ceilometer_prep: false
+# For running **make telemetry_prep**
+# Set the value of run_telemetry_prep to true
+# run_telemetry_prep: false
 
-# For running **make ceilometer**
-# Set the value of run_ceilometer to true
-# run_ceilometer: false
+# For running **make telemetry**
+# Set the value of run_telemetry to true
+# run_telemetry: false
 
-# For running **make ceilometer_cleanup**
-# Set the value of run_ceilometer_cleanup to true
-# run_ceilometer_cleanup: false
+# For running **make telemetry_cleanup**
+# Set the value of run_telemetry_cleanup to true
+# run_telemetry_cleanup: false
 
-# For running **make ceilometer_deploy_prep**
-# Set the value of run_ceilometer_deploy_prep to true
-# run_ceilometer_deploy_prep: false
+# For running **make telemetry_deploy_prep**
+# Set the value of run_telemetry_deploy_prep to true
+# run_telemetry_deploy_prep: false
 
-# For running **make ceilometer_deploy**
-# Set the value of run_ceilometer_deploy to true
-# run_ceilometer_deploy: false
+# For running **make telemetry_deploy**
+# Set the value of run_telemetry_deploy to true
+# run_telemetry_deploy: false
 
-# For running **make ceilometer_deploy_cleanup**
-# Set the value of run_ceilometer_deploy_cleanup to true
-# run_ceilometer_deploy_cleanup: false
+# For running **make telemetry_deploy_cleanup**
+# Set the value of run_telemetry_deploy_cleanup to true
+# run_telemetry_deploy_cleanup: false
+
+# For running **make swift_prep**
+# Set the value of run_swift_prep to true
+# run_swift_prep: false
+
+# For running **make swift**
+# Set the value of run_swift to true
+# run_swift: false
+
+# For running **make swift_cleanup**
+# Set the value of run_swift_cleanup to true
+# run_swift_cleanup: false
+
+# For running **make swift_deploy_prep**
+# Set the value of run_swift_deploy_prep to true
+# run_swift_deploy_prep: false
+
+# For running **make swift_deploy**
+# Set the value of run_swift_deploy to true
+# run_swift_deploy: false
+
+# For running **make swift_deploy_cleanup**
+# Set the value of run_swift_deploy_cleanup to true
+# run_swift_deploy_cleanup: false
