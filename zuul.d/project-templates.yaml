@@ -380,7 +380,7 @@
 
 - project-template:
     name: weirdo-master-promotion-pipeline
-    openstack-periodic-integration-main:
+    openstack-periodic-daily:
       jobs:
         - weirdo-bobcat-promote-consistent-to-puppet-ci-testing
         - weirdo-bobcat-promote-puppet-scenario001-centos-stream-9:
