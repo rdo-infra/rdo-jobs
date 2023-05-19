@@ -64,6 +64,7 @@
         ip ro ls >> network.txt
         rpm -qa > rpm_qa.txt
         sudo podman images > podman_images.txt
+        ovs-vsctl show > ovs_vsctl.txt
         sudo cp -r /etc/nftables {{ ansible_user_dir }}/zuul-output/logs/secondary
         sudo cp -r /var/lib/edpm-config {{ ansible_user_dir }}/zuul-output/logs/secondary
         sudo chmod -R 777 {{ ansible_user_dir }}/zuul-output/logs/secondary
