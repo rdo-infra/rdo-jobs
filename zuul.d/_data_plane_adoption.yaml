@@ -20,6 +20,7 @@
       - playbooks/data_plane_adoption/run_repo_tests.yaml
       - playbooks/data_plane_adoption/collect_logs_crc.yaml
     vars:
+      crc_parameters: "--memory 18000 --disk-size 100 --cpus 8"
       featureset: '052'
       skip_os_tempest: true
       release: wallaby
@@ -27,3 +28,8 @@
       registry_login_enabled: true
       push_registry: quay.rdoproject.org
       quay_login_secret_name: quay_nextgen_zuulgithubci
+      pre_pull_images:
+        - registry.redhat.io/rhosp-rhel9/openstack-rabbitmq:17.0
+        - quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:52bae04b3fb721ff53a5447515494d18a6db6ac1a4aed693d9bb99d0173ba15c
+        - quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:afa73a12a1ffd31f77b10a25c43a4d02b0fd62f927f6209c26983bd8aee021bf
+        - quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:fa0d95d2496796f561346e58d58316a20543a0b99e110d498f62f1bb7750b11f
