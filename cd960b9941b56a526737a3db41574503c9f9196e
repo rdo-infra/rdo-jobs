@@ -16,6 +16,24 @@
       "message": "Just wondering about pulling the exact SHAs here for OCP. I guess those would change fairly frequently?\n\nAll the rest i can understand and looks good. Giving +1, we need this for stable CI. Thanks :)",
       "revId": "cd960b9941b56a526737a3db41574503c9f9196e",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c61f2c62_0560270f",
+        "filename": "zuul.d/_data_plane_adoption.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-05-24T07:16:42Z",
+      "side": 1,
+      "message": "yeah, i am not sure about that. it seems to be hard coded like that for edpm jobs too. and when i added just one, it then failed later on trying to pull the others\n\nwe need to go with this for now and we can re-evaluate but yes this will eventually need updating",
+      "parentUuid": "a16e9b03_2437c5f7",
+      "revId": "cd960b9941b56a526737a3db41574503c9f9196e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
