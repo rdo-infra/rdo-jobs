@@ -52,6 +52,24 @@
       "parentUuid": "c61f2c62_0560270f",
       "revId": "cd960b9941b56a526737a3db41574503c9f9196e",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e770365_8f19d71b",
+        "filename": "zuul.d/_data_plane_adoption.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2023-05-24T08:27:47Z",
+      "side": 1,
+      "message": "@marios, When we run make crc_storage. It looks for quay.io/openshift-release-dev/ocp-v4.0-art-dev containers to create the pvs. If it is not there make crc_storage fails by telling following container images is missing. \n\nIn order to fix that, we pre-pull the image (as we remove pull secret in pre-run playbook) to fix the image.\n\nFrom the above list. The last is used. But we kept all the images.",
+      "parentUuid": "fc19a0a2_63996084",
+      "revId": "cd960b9941b56a526737a3db41574503c9f9196e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
