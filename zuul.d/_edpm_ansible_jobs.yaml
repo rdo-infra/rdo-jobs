@@ -3,6 +3,7 @@
     parent: base-crc
     nodeset: centos-8-crc-single-node-centos-9-external-compute
     timeout: 10800
+    voting: false
     required-projects: &edpm_required_projects
       - name: openstack-k8s-operators/install_yamls
         override-checkout: main
