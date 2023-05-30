@@ -447,6 +447,8 @@
     vars: &fips_vars
       featureset_override:
         enable_fips: true
+        # https://bugs.launchpad.net/tripleo/+bug/2023029
+        report_dlrn: false
         standalone_environment_files:
           - 'environments/fips.yaml'
         tempest_tempestconf_profile_overrides:
