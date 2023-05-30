@@ -76,3 +76,54 @@
       unbound_cache_min_ttl: 900
       extra_tags:
         - overcloud-update
+
+# FIPS Jobs
+# Master branch
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-fips-master
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-master
+    nodeset: &cs9_fips_two_nodes two-centos-9-nodes-fips-vexxhost
+    vars: &fips_vars
+      featureset_override:
+        enable_fips: true
+        standalone_environment_files:
+          - 'environments/fips.yaml'
+        tempest_tempestconf_profile_overrides:
+          validation.ssh_key_type: 'ecdsa'
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-fips-master
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-master
+    nodeset: *cs9_fips_two_nodes
+    vars: *fips_vars
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario007-multinode-oooq-container-fips-master
+    parent: periodic-tripleo-ci-centos-9-scenario007-multinode-oooq-container-master
+    nodeset: *cs9_fips_two_nodes
+    vars: *fips_vars
+
+# stable/wallaby
+- job:
+    name: periodic-tripleo-ci-centos-9-containers-multinode-fips-wallaby
+    parent: periodic-tripleo-ci-centos-9-containers-multinode-fips-master
+    branches: master
+    override-checkout: stable/wallaby
+    vars:
+      branch_override: stable/wallaby
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-fips-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-fips-master
+    branches: master
+    override-checkout: stable/wallaby
+    vars:
+      branch_override: stable/wallaby
+
+- job:
+    name: periodic-tripleo-ci-centos-9-scenario007-multinode-oooq-container-fips-wallaby
+    parent: periodic-tripleo-ci-centos-9-scenario007-multinode-oooq-container-fips-master
+    branches: master
+    override-checkout: stable/wallaby
+    vars:
+      branch_override: stable/wallaby
