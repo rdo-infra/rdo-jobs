@@ -445,6 +445,8 @@
     parent: periodic-tripleo-ci-centos-9-standalone-master
     nodeset: &cs9_fips_single_node single-centos-9-stream-node-fips-vexxhost
     vars: &fips_vars
+      # https://bugs.launchpad.net/tripleo/+bug/2023029
+      report_dlrn: false
       featureset_override:
         enable_fips: true
         standalone_environment_files:
