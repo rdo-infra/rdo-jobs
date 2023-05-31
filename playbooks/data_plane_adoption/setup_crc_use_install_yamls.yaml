@@ -1,8 +1,8 @@
 - hosts: controller
   vars:
-    framework_dir: "/home/zuul-worker/src/github.com/openstack-k8s-operators/ci-framework"
+    framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
 
-    rdo_dir: "/home/zuul-worker/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
+    rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
   tasks:
     - name: Print the current CRC version
       ansible.builtin.shell: |
@@ -15,7 +15,7 @@
     - name: Run install_yamls via ci-framework
       ansible.builtin.shell: |
           ansible-galaxy collection install community.general
-          mkdir -p /home/zuul-worker/ci-framework-data/logs
+          mkdir -p /home/zuul/ci-framework-data/logs
           ansible-playbook {{ rdo_dir }}/ci_framework_install_yamls.yaml
       args:
         chdir: "{{ framework_dir }}"
