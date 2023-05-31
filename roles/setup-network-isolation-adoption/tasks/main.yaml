@@ -1,0 +1,70 @@
+---
+- name: Set the hostname
+  ansible.builtin.shell: |
+    sudo hostnamectl set-hostname standalone.localdomain
+    sudo hostnamectl set-hostname standalone.localdomain --transient
+  changed_when: false
+
+- name: Ensure /etc/os-net-config exists
+  become: true
+  ansible.builtin.file:
+    path: /etc/os-net-config
+    state: directory
+
+- name: Copy os-net-config
+  become: true
+  ansible.builtin.copy:
+    src: os-net-config.yaml
+    dest: /etc/os-net-config/config.yaml
+
+- name: Copy cloud config file
+  become: true
+  ansible.builtin.copy:
+    src: 99-edpm-disable-network-config.cfg
+    dest: /etc/cloud/cloud.cfg.d/99-edpm-disable-network-config.cfg
+
+- name: Copy standalone network template
+  become: true
+  ansible.builtin.copy:
+    src: standalone.j2
+    dest: /usr/share/ansible/roles/tripleo_network_config/templates/standalone.j2
+
+- name: Enable network service
+  become: true
+  ansible.builtin.systemd:
+    name: network
+    enabled: true
+
+- name: Ensure os-net-config is installed
+  become: true
+  ansible.builtin.pip:
+    name: os-net-config
+
+- name: Apply os-net-config
+  become: true
+  ansible.builtin.command: /usr/local/bin/os-net-config -c /etc/os-net-config/config.yaml
+  changed_when: false
+
+- name: Assign VIPs to to created networks
+  become: true
+  ansible.builtin.shell: |
+    ip addr add 172.17.0.2/32 dev vlan20
+    ip addr add 172.18.0.2/32 dev vlan21
+    ip addr add 172.19.0.2/32 dev vlan44
+    ip addr add 172.20.0.2/32 dev vlan23
+  changed_when: false
+
+- name: Copy network_data file
+  ansible.builtin.copy:
+    src: network_data.yaml
+    dest: /home/zuul-worker/network_data.yaml
+
+- name: Copy deployed_network file
+  ansible.builtin.copy:
+    src: deployed_network.yaml
+    dest: /home/zuul-worker/deployed_network.yaml
+
+- name: Copy standalone_parameters file
+  ansible.builtin.copy:
+    src: standalone_parameters.yaml
+    dest: /home/zuul-worker/standalone_parameters.yaml
