@@ -18,6 +18,8 @@
           # Find out if it is puppet or packstack and scenario
           if [[ "{{ zuul.job }}" == *"puppet"* ]]; then
               project="puppet-openstack"
+          elif [[ "{{ zuul.job }}" == *"openstack-ansible"* ]]; then
+              project="openstack-ansible"
           else
               project="packstack"
           fi
