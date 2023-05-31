@@ -635,6 +635,13 @@
       scenario: scenario003
 
 - job:
+    name: weirdo-antelope-promote-openstack-ansible-scenario001-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: antelope
+      scenario: scenario001
+
+- job:
     name: weirdo-zed-promote-puppet-scenario001-centos-stream-9
     parent: weirdo-promote-base-centos9
     vars:
