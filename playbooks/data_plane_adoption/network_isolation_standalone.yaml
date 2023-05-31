@@ -1,0 +1,5 @@
+- hosts: primary
+  tasks:
+    - name: Setup network isolation in standalone deployment
+      ansible.builtin.include_role:
+        name: setup-network-isolation-adoption
