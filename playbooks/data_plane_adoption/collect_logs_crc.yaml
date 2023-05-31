@@ -20,8 +20,8 @@
           oc describe $pod > ${pod}-describe.txt
         done
         popd
-        test -d /home/zuul-worker/src/github.com/openstack-k8s-operators/install_yamls/out && \
-          rsync -r /home/zuul-worker/src/github.com/openstack-k8s-operators/install_yamls/out ./install_yamls_out
+        test -d /home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out && \
+          rsync -r /home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out ./install_yamls_out
       args:
         chdir: "{{ ansible_user_dir }}/openstack"
       changed_when: true
@@ -31,7 +31,7 @@
       ansible.builtin.shell: |
         cp {{ item }} {{ ansible_user_dir }}
       args:
-        chdir: "/home/zuul-worker/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
+        chdir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
       loop:
         - secrets.yaml
         - vars.yaml
@@ -43,7 +43,7 @@
         cp logs/test_minimal_out_* {{ ansible_user_dir }}
         cp tests/inventory.sample-crc-vagrant.yaml {{ ansible_user_dir }}
       args:
-        chdir: "/home/zuul-worker/src/github.com/openstack-k8s-operators/data-plane-adoption/tests"
+        chdir: "/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption/tests"
       failed_when: false
 
     - name: Copy files from {{ ansible_user_dir }}/openstack on node
