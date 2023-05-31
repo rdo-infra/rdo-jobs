@@ -1,6 +1,6 @@
 - hosts: all
   vars:
-    framework_dir: "/home/zuul-worker/src/github.com/openstack-k8s-operators/ci-framework"
+    framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
   tasks:
     - name: Prepare install_yamls make targets
       vars:
