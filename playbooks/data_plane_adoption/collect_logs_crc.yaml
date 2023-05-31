@@ -29,7 +29,7 @@
       ansible.builtin.shell: |
         cp {{ item }} {{ ansible_user_dir }}
       args:
-        chdir: "/home/zuul-worker/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
+        chdir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
       loop:
         - secrets.yaml
         - vars.yaml
@@ -41,7 +41,7 @@
         cp logs/test_minimal_out_* {{ ansible_user_dir }}
         cp tests/inventory.sample-crc-vagrant.yaml {{ ansible_user_dir }}
       args:
-        chdir: "/home/zuul-worker/src/github.com/openstack-k8s-operators/data-plane-adoption/tests"
+        chdir: "/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption/tests"
       failed_when: false
 
     - name: Copy pod debug files from {{ ansible_user_dir }}/logs on node

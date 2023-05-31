@@ -1,8 +1,8 @@
 - hosts: controller
   gather_facts: false
   vars:
-    dpa_dir: "/home/zuul-worker/src/github.com/openstack-k8s-operators/data-plane-adoption"
-    rdo_dir: "/home/zuul-worker/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
+    dpa_dir: "/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption"
+    rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
   tasks:
     - name: Slurp the standalone IP address
       ansible.builtin.slurp:
@@ -18,7 +18,7 @@
     - name: Slurp the tripleo passwords from standalone
       delegate_to: primary
       ansible.builtin.slurp:
-        path: /home/zuul-worker/tripleo-deploy/tripleo-standalone-passwords.yaml
+        path: /home/zuul/tripleo-deploy/tripleo-standalone-passwords.yaml
       register: tripleo_passwords
 
     - name: Place mariadb password into secrets.yaml
@@ -53,13 +53,13 @@
 
     - name: Slurp crc public key for ssh access to standalone
       ansible.builtin.slurp:
-        path: /home/zuul-worker/.ssh/id_rsa.pub
+        path: /home/zuul/.ssh/id_rsa.pub
       register: crc_ssh_key
 
     - name: Place crc public key to standalone authorized_keys
       delegate_to: primary
       ansible.builtin.lineinfile:
-        path: "/home/zuul-worker/.ssh/authorized_keys"
+        path: "/home/zuul/.ssh/authorized_keys"
         insertafter: "EOF"
         value: "{{ crc_ssh_key['content'] | b64decode | trim }}"
 
@@ -67,7 +67,7 @@
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/secrets.yaml"
         regexp: 'controller1_ssh:'
-        value: "controller1_ssh: ssh zuul-worker@{{ standalone_ip['content'] | b64decode | trim }}"
+        value: "controller1_ssh: ssh zuul@{{ standalone_ip['content'] | b64decode | trim }}"
 
     - name: pip install openstackclient for keystone adoption on crc
       become: true
