@@ -17,8 +17,12 @@
         name: install_yamls_makes
         tasks_from: 'make_openstack'
 
-    - name: Add additional sleep in order to finish the deploy
+    - name: Make sure all Openstack operators are deployed
       ansible.builtin.shell: |
-        sleep 200
-      args:
-        executable: /bin/bash
+        set -o pipefail && \
+        oc get csv -l operators.coreos.com/openstack-operator.openstack-operators -n "openstack-operators" --no-headers=true | grep -i "succeeded"
+      register: operator_status
+      until: operator_status.rc == 0
+      changed_when: false
+      retries: 30
+      delay: 30
