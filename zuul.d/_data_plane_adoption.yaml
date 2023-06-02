@@ -1,7 +1,7 @@
 - job:
     name: data-plane-adoption-github-rdo-centos-8-crc-centos-9-standalone
     parent: base-crc-standalone
-    nodeset: centos-8-crc-single-node-centos-9-standalone
+    nodeset: centos-9-crc-single-node-centos-9-standalone
     timeout: 10800
     required-projects:
       - name: openstack-k8s-operators/install_yamls
