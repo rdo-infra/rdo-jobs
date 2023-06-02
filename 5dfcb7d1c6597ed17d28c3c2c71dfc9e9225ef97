@@ -18,6 +18,24 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1fac50d_f45545ea",
+        "filename": "playbooks/data_plane_adoption/ci_framework_install_yamls.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-06-02T12:07:23Z",
+      "side": 1,
+      "message": "so yes to network isolation it is the default from install_yamls https://github.com/openstack-k8s-operators/install_yamls/blob/140173dc3cd5a7baa91614c05c3900c9368f0df7/Makefile#L22\n\nNETWORK_ISOLATION   ?\u003d true\n\nand correct on the crc_storage. the point is to not do anything here which is going to be undone or redone in the next step. So we no longer have openstack deploy here only installation. \n\nThe data plane adoption tests start by reset on the existing controlplane. Part of that is reset crc storage, you can see it runs fine in the test of this patch there:\n\nhttps://logserver.rdoproject.org/15/48515/2/check/data-plane-adoption-github-rdo-centos-8-crc-centos-9-standalone/4602610/logs/subnode-1/home/zuul-worker/test_minimal_out_2023-06-01T16:51:17UTC.log.txt.gz\n\nTASK [pcp_cleanup : reset CRC storage] *****************************************",
+      "parentUuid": "e4f88efb_cf25e873",
+      "revId": "5dfcb7d1c6597ed17d28c3c2c71dfc9e9225ef97",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1bb7ef7_9398ad58",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-06-01T16:55:43Z",
       "side": 1,
       "message": "Maybe we should check that the controller manager deployments are ready instead of simply waiting? It should be more robust, IMO",
+      "revId": "5dfcb7d1c6597ed17d28c3c2c71dfc9e9225ef97",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1083e31_5579afed",
+        "filename": "playbooks/data_plane_adoption/ci_framework_install_yamls.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-06-02T12:07:23Z",
+      "side": 1,
+      "message": "ack sure good idea thanks for the suggestion. I would like to merge this, since we have a good test at https://review.rdoproject.org/r/c/testproject/+/48515/3#message-546d54b399201960905d3cd194472a119e40385d\n\nfollowup patch with the improvement at https://review.rdoproject.org/r/c/rdo-jobs/+/48798",
+      "parentUuid": "e1bb7ef7_9398ad58",
       "revId": "5dfcb7d1c6597ed17d28c3c2c71dfc9e9225ef97",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
