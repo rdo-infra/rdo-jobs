@@ -35,6 +35,23 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6438e96d_f3a6a0e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2023-06-02T12:36:50Z",
+      "side": 1,
+      "message": "lgtm",
+      "revId": "5dfcb7d1c6597ed17d28c3c2c71dfc9e9225ef97",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4f88efb_cf25e873",
@@ -66,6 +83,29 @@
       "side": 1,
       "message": "so yes to network isolation it is the default from install_yamls https://github.com/openstack-k8s-operators/install_yamls/blob/140173dc3cd5a7baa91614c05c3900c9368f0df7/Makefile#L22\n\nNETWORK_ISOLATION   ?\u003d true\n\nand correct on the crc_storage. the point is to not do anything here which is going to be undone or redone in the next step. So we no longer have openstack deploy here only installation. \n\nThe data plane adoption tests start by reset on the existing controlplane. Part of that is reset crc storage, you can see it runs fine in the test of this patch there:\n\nhttps://logserver.rdoproject.org/15/48515/2/check/data-plane-adoption-github-rdo-centos-8-crc-centos-9-standalone/4602610/logs/subnode-1/home/zuul-worker/test_minimal_out_2023-06-01T16:51:17UTC.log.txt.gz\n\nTASK [pcp_cleanup : reset CRC storage] *****************************************",
       "parentUuid": "e4f88efb_cf25e873",
+      "revId": "5dfcb7d1c6597ed17d28c3c2c71dfc9e9225ef97",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89c1e0c8_3394d78d",
+        "filename": "playbooks/data_plane_adoption/ci_framework_install_yamls.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 671
+      },
+      "writtenOn": "2023-06-02T12:36:50Z",
+      "side": 1,
+      "message": "This is default, we discussed to remove it in a followup",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 32
+      },
       "revId": "5dfcb7d1c6597ed17d28c3c2c71dfc9e9225ef97",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
