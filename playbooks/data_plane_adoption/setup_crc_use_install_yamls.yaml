@@ -3,7 +3,6 @@
     framework_dir: "/home/zuul-worker/src/github.com/openstack-k8s-operators/ci-framework"
 
     rdo_dir: "/home/zuul-worker/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
-    module_dir: "/usr/share/ansible/plugins"
   tasks:
     - name: Print the current CRC version
       ansible.builtin.shell: |

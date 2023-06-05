@@ -1,7 +1,6 @@
 - hosts: all
   vars:
     framework_dir: "/home/zuul-worker/src/github.com/openstack-k8s-operators/ci-framework"
-    module_dir: "/usr/share/ansible/plugins"
   tasks:
     - name: Prepare install_yamls make targets
       vars:
