@@ -61,3 +61,20 @@
         - ansible_connection != 'kubectl'
         - _worker_is_sudoer.rc == 0
         - ansible_distribution != "Fedora" or (ansible_distribution == "Fedora" and ansible_distribution_major_version|int > 28)
+
+    - name: extract NODEPOOL_RDO_PROXY from bash environment
+      shell: |
+        if [ -e /etc/ci/mirror_info.sh ]; then
+          source /etc/ci/mirror_info.sh
+        fi
+        if [ -z ${NODEPOOL_RDO_PROXY} ]; then
+          echo ${NODEPOOL_RDO_PROXY}
+        fi
+      register: nodepool_rdo_proxy_result
+      failed_when: false
+      changed_when: false
+
+    - name: "set facts baded on NODEPOOL_RDO_PROXY var: {{ nodepool_rdo_proxy_result.stdout }} "
+      set_fact:
+        dlrn_hash_baseurl: "{{ dlrn_hash_baseurl | default(nodepool_rdo_proxy_result.stdout) }}"
+      when: nodepool_rdo_proxy_result.stdout != ""
