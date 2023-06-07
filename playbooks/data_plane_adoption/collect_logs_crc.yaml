@@ -5,8 +5,8 @@
       ansible.builtin.shell: |
         source ~/.bashrc
         mkdir -p logs/controller/pod
-        chmod -R a+r "{{ ansible_user_dir }}/openstack"
-        chown -R {{ ansible_user }}: "{{ ansible_user_dir }}/openstack"
+        chmod -R a+r "{{ ansible_user_dir }}/openstack-operators"
+        chown -R {{ ansible_user }}: "{{ ansible_user_dir }}/openstack-operators"
         pushd logs/controller
         ip a > network.txt
         ip ro ls >> network.txt
@@ -23,7 +23,7 @@
         test -d /home/zuul-worker/src/github.com/openstack-k8s-operators/install_yamls/out && \
           rsync -r /home/zuul-worker/src/github.com/openstack-k8s-operators/install_yamls/out ./install_yamls_out
       args:
-        chdir: "{{ ansible_user_dir }}/openstack"
+        chdir: "{{ ansible_user_dir }}/openstack-operators"
       changed_when: true
       failed_when: false
 
