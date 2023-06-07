@@ -11,6 +11,10 @@
         - periodic-container-quay-push-centos-9-antelope:
             dependencies:
               - periodic-centos-9-podified-edpm-integration-antelope
+              - periodic-data-plane-adoption-github-rdo-centos-8-crc-centos-9-standalone
+        - periodic-data-plane-adoption-github-rdo-centos-8-crc-centos-9-standalone:
+            dependencies:
+              - periodic-container-tcib-build-push-centos-9-antelope
         - periodic-centos-9-podified-edpm-integration-antelope:
             dependencies:
               - periodic-container-tcib-build-push-centos-9-antelope
