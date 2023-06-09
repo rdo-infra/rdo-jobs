@@ -5,8 +5,6 @@
       ansible.builtin.shell: |
         source ~/.bashrc
         mkdir -p logs/controller/pod
-        chmod -R a+r "{{ ansible_user_dir }}/openstack"
-        chown -R {{ ansible_user }}: "{{ ansible_user_dir }}/openstack"
         pushd logs/controller
         ip a > network.txt
         ip ro ls >> network.txt
@@ -19,11 +17,11 @@
           oc get -o yaml $pod > ${pod}.yaml
           oc describe $pod > ${pod}-describe.txt
         done
-        popd
         test -d /home/zuul-worker/src/github.com/openstack-k8s-operators/install_yamls/out && \
           rsync -r /home/zuul-worker/src/github.com/openstack-k8s-operators/install_yamls/out ./install_yamls_out
+        popd
       args:
-        chdir: "{{ ansible_user_dir }}/openstack"
+        chdir: "{{ ansible_user_dir }}"
       changed_when: true
       failed_when: false
 
@@ -50,7 +48,7 @@
       # ansible.posix.synchronize does not work with zuul-executor
       failed_when: false
       synchronize:
-        src: '{{ ansible_user_dir }}/openstack/'
+        src: '{{ ansible_user_dir }}/logs/'
         dest: '{{ zuul.executor.log_root }}'
         mode: pull
         copy_links: true
