@@ -1,0 +1,25 @@
+- hosts: standalone
+  gather_facts: false
+  tasks:
+    - name: Pull the tripleo passwords from standalone vm
+      ansible.builtin.fetch:
+        src: /root/tripleo-standalone-passwords.yaml
+        dest: /home/zuul/tripleo-standalone-passwords.yaml
+        flat: true
+
+    # TODO(marios) fixme also affects haproxy may need another/better way
+    - name: Setup IPTables forwarding on standalone for mariadb client access
+      ansible.builtin.command: sudo iptables -t nat -A PREROUTING -p tcp --dport 3306 -j DNAT --to-destination 172.17.0.100:3306
+      become: true
+
+    - name: Slurp crc public key for ssh access to standalone
+      delegate_to: localhost
+      ansible.builtin.slurp:
+        path: /home/zuul/.ssh/id_rsa.pub
+      register: crc_ssh_key
+
+    - name: Place crc public key to standalone authorized_keys
+      ansible.builtin.lineinfile:
+        path: "/root/.ssh/authorized_keys"
+        insertafter: "EOF"
+        value: "{{ crc_ssh_key['content'] | b64decode | trim }}"

@@ -3,22 +3,21 @@
   vars:
     dpa_dir: "/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption"
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
+    standalone_ip: "192.168.122.100"
   tasks:
-    - name: Slurp the standalone IP address
-      ansible.builtin.slurp:
-        path: /etc/nodepool/primary_node_private
-      register: standalone_ip
+    - name: Run test prepartion in standalone vm
+      ansible.builtin.shell:
+        ansible-playbook {{ rdo_dir }}/standalone_prepare_tests.yaml -i /home/zuul/vm_inventory
 
     - name: Place standalone_ip into vars.yaml
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
         regexp: '^external_mariadb_ip:'
-        value: "external_mariadb_ip: {{ standalone_ip['content'] | b64decode | trim }}"
+        value: "external_mariadb_ip: {{ standalone_ip }}"
 
-    - name: Slurp the tripleo passwords from standalone
-      delegate_to: primary
+    - name: Read the tripleo passwords downloaded from standalone
       ansible.builtin.slurp:
-        path: /home/zuul/tripleo-deploy/tripleo-standalone-passwords.yaml
+        path: /home/zuul/tripleo-standalone-passwords.yaml
       register: tripleo_passwords
 
     - name: Place mariadb password into secrets.yaml
@@ -45,29 +44,11 @@
         regexp: 'cinder_password:'
         value: "cinder_password: {{ tripleo_passwords['content'] | b64decode | regex_search('CinderPassword:.(.+)', '\\1') | first }}"
 
-    # TODO(marios) fixme also affects haproxy may need another/better way
-    - name: Setup IPTables forwarding on standalone for mariadb client access
-      ansible.builtin.command: sudo iptables -t nat -A PREROUTING -p tcp --dport 3306 -j DNAT --to-destination 192.168.24.1:3306
-      become: true
-      delegate_to: primary
-
-    - name: Slurp crc public key for ssh access to standalone
-      ansible.builtin.slurp:
-        path: /home/zuul/.ssh/id_rsa.pub
-      register: crc_ssh_key
-
-    - name: Place crc public key to standalone authorized_keys
-      delegate_to: primary
-      ansible.builtin.lineinfile:
-        path: "/home/zuul/.ssh/authorized_keys"
-        insertafter: "EOF"
-        value: "{{ crc_ssh_key['content'] | b64decode | trim }}"
-
     - name: Set standalone login var controller1_ssh in secrets.yaml
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/secrets.yaml"
         regexp: 'controller1_ssh:'
-        value: "controller1_ssh: ssh zuul@{{ standalone_ip['content'] | b64decode | trim }}"
+        value: "controller1_ssh: ssh -i /home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa root@{{ standalone_ip }}"
 
     - name: pip install openstackclient for keystone adoption on crc
       become: true
