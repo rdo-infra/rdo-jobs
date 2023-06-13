@@ -1,0 +1,59 @@
+network_config:
+  - type: ovs_bridge
+    name: br-ctlplane
+    mtu: 1500
+    use_dhcp: false
+    dns_servers:
+      - 192.168.122.1
+    domain: []
+    addresses:
+      - ip_netmask: 192.168.122.100/24
+    routes:
+      - ip_netmask: 0.0.0.0/0
+        next_hop: 192.168.122.1
+    members:
+      - type: interface
+        name: nic1
+        mtu: 1500
+        # force the MAC address of the bridge to this interface
+        primary: true
+
+      # external
+      - type: vlan
+        mtu: 1500
+        vlan_id: 44
+        addresses:
+          - ip_netmask: 172.19.0.100/24
+        routes: []
+
+      # internal
+      - type: vlan
+        mtu: 1500
+        vlan_id: 20
+        addresses:
+          - ip_netmask: 172.17.0.100/24
+        routes: []
+
+      # storage
+      - type: vlan
+        mtu: 1500
+        vlan_id: 21
+        addresses:
+          - ip_netmask: 172.18.0.100/24
+        routes: []
+
+      # storage_mgmt
+      - type: vlan
+        mtu: 1500
+        vlan_id: 23
+        addresses:
+          - ip_netmask: 172.20.0.100/24
+        routes: []
+
+      # tenant
+      - type: vlan
+        mtu: 1500
+        vlan_id: 22
+        addresses:
+          - ip_netmask: 172.10.0.100/24
+        routes: []
