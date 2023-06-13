@@ -25,9 +25,14 @@
       changed_when: true
       failed_when: false
 
+    - name: create logs/data_plane_adoption directory 
+      ansible.builtin.file:
+        path: "{{ ansible_user_dir  }}/logs/data_plane_adoption"
+        state: directory
+
     - name: collect data-plane-adoption test input files from rdo-jobs directory
       ansible.builtin.shell: |
-        cp {{ item }} {{ ansible_user_dir }}
+        cp {{ item }} {{ ansible_user_dir }}/logs/data_plane_adoption
       args:
         chdir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
       loop:
@@ -38,8 +43,8 @@
 
     - name: collect data-plane-adoption test logs from dpa directory
       ansible.builtin.shell: |
-        cp logs/test_minimal_out_* {{ ansible_user_dir }}
-        cp tests/inventory.sample-crc-vagrant.yaml {{ ansible_user_dir }}
+        cp logs/test_minimal_out_* {{ ansible_user_dir }}/logs/data_plane_adoption
+        cp inventory.sample-crc-vagrant.yaml {{ ansible_user_dir }}/logs/data_plane_adoption
       args:
         chdir: "/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption/tests"
       failed_when: false
