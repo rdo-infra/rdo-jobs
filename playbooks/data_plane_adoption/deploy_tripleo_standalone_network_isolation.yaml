@@ -1,0 +1,19 @@
+- hosts: controller
+  vars:
+    framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
+    rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
+  tasks:
+    - name: Create standalone vm using ci-framework
+      ansible.builtin.shell:
+        ansible-playbook {{ rdo_dir }}/ci_framework_create_standalone_vm.yaml
+      args:
+        chdir: "{{ framework_dir }}"
+
+    - name: Create inventory to run tasks inside vm
+      ansible.builtin.shell: |
+        "echo '[standalone]' > /home/zuul/vm_inventory"
+        "echo 'nested_vm ansible_host=192.168.122.100 ansible_user=root ansible_ssh_private_key_file=/home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa' >> /home/zuul/vm_inventory"
+
+    - name: Run tasks inside standalone vm
+      ansible.builtin.shell:
+        ansible-playbook {{ rdo_dir }}/standalone_prepare_deploy.yaml -i /home/zuul/vm_inventory
