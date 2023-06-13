@@ -1,0 +1,13 @@
+- hosts: all
+  vars:
+    framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
+  tasks:
+    - name: Create vm using edpm_compute from install_yamls
+      ansible.builtin.include_role:
+        name: 'install_yamls_makes'
+        tasks_from: 'make_edpm_compute.yml'
+      vars:
+        make_edpm_compute_env:
+          EDPM_COMPUTE_VCPUS: 8
+          EDPM_COMPUTE_RAM: 10
+          EDPM_COMPUTE_DISK_SIZE: 70
