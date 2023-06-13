@@ -1,0 +1,136 @@
+- hosts: standalone
+  vars:
+    tripleo_repo_url: https://trunk.rdoproject.org/centos9/component/tripleo/current/
+    ceph_ip: 172.18.0.100
+  tasks:
+    - name: Remove epel-release repo
+      become: true
+      ansible.builtin.yum_repository:
+        name: epel-release
+        state: absent
+
+    - name: Upgrade all packages
+      become: true
+      ansible.builtin.dnf:
+        name: "*"
+        state: latest
+
+    - name: Install dependencies
+      become: true
+      ansible.builtin.dnf:
+        name: curl
+        state: latest
+
+    - name: Find current version of python3-tripleo-repos
+      ansible.builtin.shell:
+        curl {{ tripleo_repo_url }} | grep python3_tripleo_repos | sed -e 's/<[^>]*>//g' | awk 'BEGIN { FS = ".rpm"  } ; { print $1  }'
+      register: python3_tripleo_repos_version
+
+    - name: Install python-tripleo-repos
+      become: true
+      ansible.builtin.dnf:
+        name: "{{ tripleo_repo_url }}{{ python3_tripleo_repos_version.stdout }}.rpm"
+      state: present
+
+    - name: Install tripleo repos
+      become: true
+      ansible.builtin.command: "tripleo-repos -b wallaby current-tripleo-dev ceph --stream"
+
+    - name: Upgrade all packages
+      become: true
+      ansible.builtin.dnf:
+        name: "*"
+        state: latest
+
+    - name: Install dependencies
+      ansible.builtin.dnf:
+        name:
+         - podman
+          - python3-tripleoclient
+          - util-linux
+          - lvm2 cephadm
+        state: present
+
+    - name: Create a containers-prepare-parameters file
+      ansible.builtin.command: 
+        cmd: "openstack tripleo container image prepare default \
+                --output-env-file containers-prepare-parameters.yaml"
+        chdir: "{{ ansible_user_dir }}"
+      
+    - name: Setup network isolation
+      ansible.builtin.include_role:
+        name: setup-network-isolation-adoption
+
+    - name: Create a block device with logical volumes to be used as an OSD
+      become: true
+      ansible.builtin.shell: |
+        "dd if=/dev/zero of=/var/lib/ceph-osd.img bs=1 count=0 seek=7G
+         losetup /dev/loop3 /var/lib/ceph-osd.img
+         pvcreate /dev/loop3
+         vgcreate vg2 /dev/loop3
+         lvcreate -n data-lv2 -l +100%FREE vg2"
+
+    - name: Create an OSD spec file which references the block device
+      ansible.builtin.shell:
+        cmd: |
+          echo "data_devices:" > osd_spec.yaml
+          echo "  paths: " >> osd_spec.yaml
+          echo "    - /dev/vg2/data-lv2" >> osd_spec.yaml
+        chdir: "{{ ansible_user_dir }}"
+
+    - name: Create ceph spec file
+      become: true
+      ansible builtin.command:
+        cmd: "openstack overclout ceph spec \
+               --standalone --mon-ip {{ ceph_ip }} \
+               --osd-spec osd_spec.yaml \
+               --output ceph_spec.yaml"
+        chdir: "{{ ansible_user_dir }}"
+
+    - name: Create ceph-admin user
+      become: true
+      ansible.builtin.command:
+        cmd: "openstack overcloud ceph user enable \
+              --standalone ceph_spec.yaml"
+        chdir: "{{ ansible_user_dir }}"
+
+    - name:  Create an initial Ceph configuration to disable replication
+      ansible.builtin.shell:
+        cmd: |
+          echo "[global]" > initial_ceph.conf
+          echo "osd pool default size = 1" >> initial_ceph.conf
+          echo "[mon]" >> initial_ceph.conf
+          echo "mon_warn_on_pool_no_redundancy = false" >> initial_ceph.conf
+        chdir: "{{ ansible_user_dir }}"
+
+    - name: Install ceph 
+      become: true
+      ansible.builtin.command:
+        cmd: "openstack overcloud ceph deploy --mon-ip {{ ceph_ip }} \
+              --ceph-spec ceph_spec.yaml -- config initial_ceph.yaml \
+              --standalone --single-host-defaults --skip-hosts-config \
+              --skip-container-registry-config --skip-user-create \
+              --network-data network_data.yaml \
+              --ntp-server clock.corp-redhat.com --output deployed_ceph.yaml"
+        chdir: "{{ ansible_user_dir }}"
+
+    - name: Deploy standalone
+      become: true
+      ansible.builtin.command:
+        cmd: "openstack tripleo deploy \
+              --templates /usr/share/openstack-tripleo-heat-templates \
+              --standalone-role Standalone \
+              -e /usr/share/openstack-tripleo-heat-templates/environments/standalone/standalone-tripleo.yaml \
+              -e /usr/share/openstack-tripleo-heat-templates/environments/low-memory-usage.yaml \
+              -e containers-prepare-parameters.yaml \
+              -e standalone_parameters.yaml \
+              -e /usr/share/openstack-tripleo-heat-templates/environments/cephadm/cephadm.yaml \
+              -e deployed_ceph.yaml \
+              -e /usr/share/openstack-tripleo-heat-templates/environments/deployed-network-environment.yaml \
+              -e deployed_network.yaml \
+              -r /usr/share/openstack-tripleo-heat-templates/roles/Standalone.yaml \
+              -n network_data.yaml \
+              --local-ip=192.168.122.100/24 \
+              --control-virtual-ip=192.168.122.99 \
+              --output-dir $HOME"
+        chdir: "{{ ansible_user_dir }}"
