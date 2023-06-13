@@ -39,7 +39,7 @@
     - name: collect data-plane-adoption test logs from dpa directory
       ansible.builtin.shell: |
         cp logs/test_minimal_out_* {{ ansible_user_dir }}
-        cp tests/inventory.sample-crc-vagrant.yaml {{ ansible_user_dir }}
+        cp inventory.sample-crc-vagrant.yaml {{ ansible_user_dir }}
       args:
         chdir: "/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption/tests"
       failed_when: false

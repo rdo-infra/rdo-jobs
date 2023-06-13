@@ -24,6 +24,7 @@
         sudo ip addr add dev vlan20 172.17.0.222/24
         sudo ip link set up dev vlan20
 
+
     - name: Place standalone_ip into vars.yaml for MariaDB
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
