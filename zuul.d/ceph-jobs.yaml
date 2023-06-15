@@ -18,21 +18,6 @@
     parent: tripleo-ci-centos-9-scenario004-standalone
     vars: *ceph_updates_vars
 
-- project-template:
-    name: ceph-daemon-promotion-pipeline
-    periodic-promote-ceph-daemon:
-      jobs:
-        - tripleo-ci-ceph-daemon-get-latest-stable-tag-master
-        - tripleo-ci-centos-9-scenario001-standalone-ceph-updates-master: &scn_ceph_updates
-            dependencies:
-              - tripleo-ci-ceph-daemon-get-latest-stable-tag-master
-        - tripleo-ci-centos-9-scenario004-standalone-ceph-updates-master: *scn_ceph_updates
-        - tripleo-ci-promote-ceph-daemon-tag-to-current-ceph-master:
-            dependencies:
-              - tripleo-ci-ceph-daemon-get-latest-stable-tag-master
-              - tripleo-ci-centos-9-scenario001-standalone-ceph-updates-master
-              - tripleo-ci-centos-9-scenario004-standalone-ceph-updates-master
-
 # zed Jobs
 - job:
     name: tripleo-ci-ceph-daemon-get-latest-stable-tag-zed
