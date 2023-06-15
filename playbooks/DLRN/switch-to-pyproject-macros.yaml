@@ -1,0 +1,97 @@
+---
+- hosts: all
+  tasks:
+    - name: Check for actual repo in logs from parent job
+      shell:
+        cmd: |
+          set -x
+          repository={{ buildset_artifacts_url }}/centos9/current
+          # If we could not find a working repository, give up
+          curl -o /dev/null -sIf "${repository}" || exit 1
+      changed_when: true
+      register: check_repo
+      ignore_errors: true
+      when: compare_files|default(false)
+
+    - meta: end_play
+      when: 
+        - check_repo.rc != 0
+        - compare_files|default(false)
+
+    - name: Compare files with latest trunk
+      changed_when: true
+      shell:
+        cmd: |
+          set -x
+          PARENT_JOB_LOGS={{ buildset_artifacts_url }}
+          PARENT_JOB_REPO="${PARENT_JOB_LOGS}/centos9/current"
+          DESTINATION="$PWD/files"
+          PKGS_NAME=""
+
+          mkdir -p $DESTINATION/{patched,trunk}
+          PKGS_NVR=$(dnf --installroot=/tmp/root --disablerepo='*' --enablerepo='DLRN-rpmbuild-centos9' --repofrompath=DLRN-rpmbuild-centos9,$PARENT_JOB_REPO list available | grep -e "DLRN-rpmbuild-centos9" | awk '{print $1}' | grep -v -e "src$")
+
+          for nvr in $PKGS_NVR; do
+              PKG_NAME=$(echo -e "$nvr" | rev | cut -d. -f2- | rev)
+              PKGS="${PKGS} $PKG_NAME"
+          done
+
+          echo -e "INFO: downloading the pkgs below from the parent job repo and Trunk:"
+          echo -e "$PKGS"
+          for pkg in $PKGS; do
+              dnf download --installroot=/tmp/root --disablerepo=* --enablerepo=DLRN-rpmbuild-centos9 --repofrompath=DLRN-rpmbuild-centos9,$PARENT_JOB_REPO $pkg
+              if [ $? -eq 0 ]; then
+                  # We don't list egg-info/ and dist-info/ files as there are diff in metadata files and we don't care about it
+                  rpm -qlp ${pkg}* | grep -v -e ".egg-info" -e ".dist-info" > $DESTINATION/patched/$pkg
+                  rm ${pkg}*
+              fi
+              dnf download --installroot=/tmp/root \
+              --repofrompath=tmp-c9-master-clients,https://trunk.rdoproject.org/centos9-master/component/clients/current/ \
+              --repofrompath=tmp-c9-master-puppet,https://trunk.rdoproject.org/centos9-master/component/puppet/current/ \
+              --repofrompath=tmp-c9-master-common,https://trunk.rdoproject.org/centos9-master/component/common/current/ \
+              --repofrompath=tmp-c9-master-baremetal,https://trunk.rdoproject.org/centos9-master/component/baremetal/current/ \
+              --repofrompath=tmp-c9-master-cinder,https://trunk.rdoproject.org/centos9-master/component/cinder/current/ \
+              --repofrompath=tmp-c9-master-manila,https://trunk.rdoproject.org/centos9-master/component/manila/current/ \
+              --repofrompath=tmp-c9-master-swift,https://trunk.rdoproject.org/centos9-master/component/swift/current/ \
+              --repofrompath=tmp-c9-master-compute,https://trunk.rdoproject.org/centos9-master/component/compute/current/ \
+              --repofrompath=tmp-c9-master-podified,https://trunk.rdoproject.org/centos9-master/component/podified/current/ \
+              --repofrompath=tmp-c9-master-security,https://trunk.rdoproject.org/centos9-master/component/security/current/ \
+              --repofrompath=tmp-c9-master-cloudops,https://trunk.rdoproject.org/centos9-master/component/cloudops/current/ \
+              --repofrompath=tmp-c9-master-octavia,https://trunk.rdoproject.org/centos9-master/component/octavia/current/ \
+              --repofrompath=tmp-c9-master-network,https://trunk.rdoproject.org/centos9-master/component/network/current/ \
+              --repofrompath=tmp-c9-master-tempest,https://trunk.rdoproject.org/centos9-master/component/tempest/current/ \
+              --repofrompath=tmp-c9-master-glance,https://trunk.rdoproject.org/centos9-master/component/glance/current/ \
+              --repofrompath=tmp-c9-master-ui,https://trunk.rdoproject.org/centos9-master/component/ui/current/ \
+              $pkg
+              if [ $? -eq 0 ]; then
+                  # We don't list egg-info/ and dist-info/ files as there are diff in metadata files and we don't care about it
+                  rpm -qlp ${pkg}* | grep -v -e ".egg-info" -e ".dist-info" > $DESTINATION/trunk/$pkg
+                  rm ${pkg}*
+              fi
+          done
+
+          echo -e "INFO: checking whether or not we have listed the files for all the packages"
+          patched_nbr=$(find $DESTINATION/patched -type f | wc -l)
+          trunk_nbr=$(find $DESTINATION/trunk -type f | wc -l)
+          if [[ "$patched_nbr" -ne "$trunk_nbr" ]]; then
+              echo "ERROR: file are missing before the comparison between patched and trunk packages"
+              find $DESTINATION/patched -type f
+              find $DESTINATION/trunk -type f
+              exit 1
+          fi
+
+          echo -e "INFO: comparing the files between patched packages and trunk ones"
+          RET=0
+          for pkg in $PKGS; do
+              sdiff -s $DESTINATION/patched/$pkg $DESTINATION/trunk/$pkg
+              if [ $? -ne 0 ]; then
+                  RET=1
+              fi
+          done
+          if [ $RET -eq 0 ]; then
+              echo -e "INFO: There are no differences in files between patched packages and trunk ones"
+          else
+              echo -e "ERROR: There are differences in files between patched packages and trunk ones"
+              exit 1
+          fi
+      when: compare_files|default(false)
