@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af2e4bcd_564286f1",
+        "filename": "playbooks/data_plane_adoption/setup_crc_use_install_yamls.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-06-15T10:00:53Z",
+      "side": 1,
+      "message": "I\u0027d try really hard NOT to rely on galaxy API server - it\u0027s well known to crash every now and then, leading to failed CI jobs...\n\nThis simple proposal may help alleviate the issue, while NOT installing the whole world needed by the ci-framework:\n\necho \u0027collections: [{name: https://github.com/ansible-collections/community.general, type: git}]\u0027 \u003e/tmp/galaxy.yml\nansible-galaxy collection install -r /tmp/galaxy.yml\n\nThat way, you rely on github servers instead - far, far more reliable.",
+      "revId": "a6d57b663e66241403109b8566e1b164519467e4",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
