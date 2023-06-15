@@ -16,6 +16,24 @@
       "message": "I\u0027d try really hard NOT to rely on galaxy API server - it\u0027s well known to crash every now and then, leading to failed CI jobs...\n\nThis simple proposal may help alleviate the issue, while NOT installing the whole world needed by the ci-framework:\n\necho \u0027collections: [{name: https://github.com/ansible-collections/community.general, type: git}]\u0027 \u003e/tmp/galaxy.yml\nansible-galaxy collection install -r /tmp/galaxy.yml\n\nThat way, you rely on github servers instead - far, far more reliable.",
       "revId": "a6d57b663e66241403109b8566e1b164519467e4",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "402f81cf_4275bb26",
+        "filename": "playbooks/data_plane_adoption/setup_crc_use_install_yamls.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-06-15T10:51:59Z",
+      "side": 1,
+      "message": "ok let\u0027s get the bootstrap working here for directories first and then can fix that in its own patch i think cleaner\n\nlast run failed for repo-setup, which we don\u0027t want/need here so i am trying to bypass with --tags (v3 of this patch)\n\nrecheck @ https://review.rdoproject.org/r/c/testproject/+/48890/1#message-9402f9ec8f186fd518b764326c344b53d152a960",
+      "parentUuid": "af2e4bcd_564286f1",
+      "revId": "a6d57b663e66241403109b8566e1b164519467e4",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
