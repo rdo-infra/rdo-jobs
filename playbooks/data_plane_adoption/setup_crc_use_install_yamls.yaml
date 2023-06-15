@@ -12,10 +12,14 @@
       ansible.builtin.include_role:
         name: add_crc_creds
 
-    - name: Run install_yamls via ci-framework
+    - name: Prepare ci-framework environment
       ansible.builtin.shell: |
           ansible-galaxy collection install community.general
           mkdir -p /home/zuul/ci-framework-data/logs
+          ansible-playbook {{ framework_dir }}/ci-framework/playbooks/01-bootstrap.yml
+
+    - name: Run install_yamls via ci-framework
+      ansible.builtin.shell: |
           ansible-playbook {{ rdo_dir }}/ci_framework_install_yamls.yaml
       args:
         chdir: "{{ framework_dir }}"
