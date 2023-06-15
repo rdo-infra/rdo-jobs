@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08fa5b0e_edffbf79",
+        "filename": "playbooks/data_plane_adoption/setup_crc_use_install_yamls.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2023-06-15T08:14:25Z",
+      "side": 1,
+      "message": "maybe worth writing it like this:\nansible.builtin.shell:\n  cmd: |\n    (your very same cmds)\n  chdir: \"{{ framework_dir }}\"\n\nAlso, typo: ci_framework/playbooks/01-bootstrap.yml",
+      "revId": "0428c39f0a7e3be52184895699536bb261a18637",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
