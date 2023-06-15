@@ -8,11 +8,11 @@
         #  We don't want to promote tags in this case, since we don't plan to promote things here
         #  There is no build-containers job with FIPS enabled (FIPS issues with building bits)
         - periodic-tripleo-ci-build-containers-ubi-9-quay-push-wallaby:
-            nodeset: single-centos-9-stream-node-ibm-bm3
+            nodeset: single-centos-9-stream-node-fips-ibm-bm3
         - periodic-tripleo-ci-centos-9-standalone-fips-wallaby: &build_containers_cs_9_push_wallaby
             dependencies: &dep_build_containers_cs_9_push_wallaby
               - periodic-tripleo-ci-build-containers-ubi-9-quay-push-wallaby
-            nodeset: single-centos-9-stream-node-ibm-bm3
+            nodeset: single-centos-9-stream-node-fips-ibm-bm3
         - periodic-tripleo-ci-centos-9-scenario001-standalone-fips-wallaby: *build_containers_cs_9_push_wallaby
         - periodic-tripleo-ci-centos-9-scenario002-standalone-fips-wallaby: *build_containers_cs_9_push_wallaby
         - periodic-tripleo-ci-centos-9-scenario003-standalone-fips-wallaby: *build_containers_cs_9_push_wallaby
