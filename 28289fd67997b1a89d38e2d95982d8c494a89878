@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "032b5ba1_7da579fb",
+        "filename": "zuul.d/jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2023-06-16T11:20:36Z",
+      "side": 0,
+      "message": "This inheritance was providing some needed tasks, as installing mock, etc... After reparenting, it\u0027s failing with:\n\n2023-06-16 11:04:54.219715 | rdo-centos-8-stream | /bin/sh: line 18: mock: command not found",
+      "range": {
+        "startLine": 178,
+        "startChar": 0,
+        "endLine": 178,
+        "endChar": 9
+      },
+      "revId": "28289fd67997b1a89d38e2d95982d8c494a89878",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72be7f63_8a2b2f9b",
+        "filename": "zuul.d/jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2023-06-16T11:20:36Z",
+      "side": 0,
+      "message": "add: compare_files: false",
+      "range": {
+        "startLine": 192,
+        "startChar": 0,
+        "endLine": 192,
+        "endChar": 5
+      },
+      "revId": "28289fd67997b1a89d38e2d95982d8c494a89878",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
