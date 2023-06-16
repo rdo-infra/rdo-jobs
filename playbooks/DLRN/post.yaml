@@ -7,3 +7,11 @@
         dest: "{{ zuul.executor.log_root }}/buildset"
         mode: pull
         verify_host: true
+
+    - name: Copy DLRN mock config
+      synchronize:
+        src: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}/data/dlrn-1.cfg"
+        dest: "{{ zuul.executor.log_root }}/buildset/dlrn-1.cfg"
+        mode: pull
+        verify_host: true
+      when: compare_builddeps|default(false) or compare_deps|default(false)
