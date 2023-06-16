@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45cef362_6e335a93",
+        "filename": "playbooks/DLRN/switch-to-pyproject-macros.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2023-06-16T12:09:16Z",
+      "side": 1,
+      "message": "this can be tricky. If we have openstack-foo and openstack-foo-bar, this command will list the sum of both rpms when pkg\u003dopenstack-foo. Said this, later will compare openstack-foo-bar, so if the sum is equal and -foo-bar content is equal, we can asume -foo is equal.\n\nI don\u0027t see an easy alternative with globs, so we may merge like this unless you can figure out something better.",
+      "range": {
+        "startLine": 45,
+        "startChar": 27,
+        "endLine": 45,
+        "endChar": 34
+      },
+      "revId": "28289fd67997b1a89d38e2d95982d8c494a89878",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
