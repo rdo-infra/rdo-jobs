@@ -22,6 +22,30 @@
       },
       "revId": "28289fd67997b1a89d38e2d95982d8c494a89878",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb65e232_5ba855e6",
+        "filename": "playbooks/DLRN/switch-to-pyproject-macros.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2023-06-16T14:05:16Z",
+      "side": 1,
+      "message": "The \"dnf download command\" l.42 downloads only one package, it doesn\u0027t accept globs, that\u0027s why I had to list the $PKGS before.\nThen, I remove the RPM (l.46), that way there is only one RPM within the directory.\nThe reason I added the \"*\" is because \"dnf download\" command downloads the packages with NVR as filename but I only know the package name (from \u0027dnf list available\u0027 command l.32).",
+      "parentUuid": "45cef362_6e335a93",
+      "range": {
+        "startLine": 45,
+        "startChar": 27,
+        "endLine": 45,
+        "endChar": 34
+      },
+      "revId": "28289fd67997b1a89d38e2d95982d8c494a89878",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
