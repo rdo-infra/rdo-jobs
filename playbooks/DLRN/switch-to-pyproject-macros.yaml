@@ -1,6 +1,8 @@
 ---
 - hosts: all
   tasks:
+    - include_tasks: setup_mock.yaml
+
     - name: Check for actual repo in logs from parent job
       shell:
         cmd: |
@@ -11,21 +13,102 @@
       changed_when: true
       register: check_repo
       ignore_errors: true
-      when: compare_files|default(false)
 
     - meta: end_play
-      when:
-        - check_repo.rc != 0
-        - compare_files|default(false)
+      when: check_repo.rc != 0
+
+    - name: Compare dependencies with latest trunk
+      changed_when: true
+      shell:
+        cmd: |
+          DESTINATION="$PWD/rpms"
+          PARENT_JOB_LOGS="{{ buildset_artifacts_url }}"
+          PARENT_JOB_REPO="${PARENT_JOB_LOGS}/centos9/current"
+          mkdir -p $DESTINATION
+          curl -s -L -o ${DESTINATION}/dlrn-1.cfg $PARENT_JOB_LOGS/dlrn-1.cfg
+          MOCK_CMD="mock -r $DESTINATION/dlrn-1.cfg "
+          PKGS_NVR=$(dnf -q --releasever 9 --installroot=/tmp/root --disablerepo='*' --enablerepo='DLRN-rpmbuild-centos9' --repofrompath=DLRN-rpmbuild-centos9,$PARENT_JOB_REPO list available | grep -e "DLRN-rpmbuild-centos9" | awk '{print $1}' | grep -v -e "src$")
+          for pkg in $PKGS_NVR; do
+              dnf download -q --releasever 9 --installroot=/tmp/root --disablerepo=* --enablerepo=DLRN-rpmbuild-centos9 --repofrompath=DLRN-rpmbuild-centos9,$PARENT_JOB_REPO --destdir $DESTINATION $pkg
+          done
+          for i in $DESTINATION/*rpm; do
+              INSTALL="${INSTALL} --install $i"
+              NVR=$(echo $(basename $i)|sed 's/.rpm$//')
+              PKG_NAME=$(echo $NVR|rev|cut -d- -f3-|rev)
+              INSTALL_TRUNK="$INSTALL_TRUNK --install $PKG_NAME"
+              PKGS="$PKGS $PKG_NAME"
+          done
+          echo -e "INFO: installing subpackages with the patched distgit"
+          $MOCK_CMD --init
+          $MOCK_CMD $INSTALL
+          $MOCK_CMD -q --shell "rpm -qa|sort" > patched_deps.list
+          echo -e "INFO: installing subpackages from latest RDO Trunk repo"
+          $MOCK_CMD --init
+          $MOCK_CMD $INSTALL_TRUNK
+          $MOCK_CMD -q --shell "rpm -qa|sort" > trunk_deps.list
+          for pkg in $PKGS; do
+            sed -i "/^${pkg}-/d" patched_deps.list
+            sed -i "/^${pkg}-/d" trunk_deps.list
+          done
+
+          echo -e "INFO: comparing installed packages for patched and trunk subpackages"
+          echo -e "Packages installed from Trunk < > Packages installed from patched distgit"
+          sdiff -s trunk_deps.list patched_deps.list
+          if [ $? -ne 0 ]; then
+              echo -e "ERROR: There are differences between deps with packages for patched and trunk subpackages"
+              exit 1
+          fi
+      when: compare_deps|default(false)
+
+    - name: Compare build dependencies with latest trunk
+      changed_when: true
+      shell:
+        cmd: |
+          DESTINATION="$PWD/rpms"
+          PARENT_JOB_LOGS="{{ buildset_artifacts_url }}"
+          PARENT_JOB_REPO="${PARENT_JOB_LOGS}/centos9/current"
+          mkdir -p $DESTINATION
+          curl -s -L -o ${DESTINATION}/dlrn-1.cfg $PARENT_JOB_LOGS/dlrn-1.cfg
+          MOCK_CMD="mock -r $DESTINATION/dlrn-1.cfg "
+          NVR=$(curl -s -L -o /dev/stdout $PARENT_JOB_REPO | grep -e "src.rpm" | sed 's/.*href="\(.*.src.rpm\)".*/\1/')
+          curl -s -L -o ${DESTINATION}/${NVR} ${PARENT_JOB_REPO}/${NVR}
+          NVR=$(echo $(basename $DESTINATION/*src.rpm)|sed 's/.rpm$//')
+          PKG_NAME=$(echo $NVR|rev|cut -d- -f3-|rev)
+          echo -e "INFO: installing build deps with the patched distgit"
+          $MOCK_CMD --init
+          $MOCK_CMD --installdeps $DESTINATION/*src.rpm
+          $MOCK_CMD -q --shell "rpm -qa|sort" > patched_builddeps.list
+          echo -e "INFO: installing build deps from latest RDO Trunk repo"
+          $MOCK_CMD --init
+          # Some new BuildRequirements are expected as part of the migration
+          $MOCK_CMD -q --install tox --install pyproject-rpm-macros --install python3-wheel --install python3-tox-current-env
+          # Install build deps from latest srpm in trunk
+          $MOCK_CMD --dnf-cmd builddep $PKG_NAME
+          $MOCK_CMD -q --shell "rpm -qa|sort" > trunk_builddeps.list
+          # Using repoquery to list all BRs from trunk repo
+          $MOCK_CMD -q --install dnf --install dnf-plugins-core
+          $MOCK_CMD -q --shell "dnf repoquery --requires $PKG_NAME.src" > trunk_BRs.list
+
+          echo -e "INFO: comparing installed packages for patched and trunk build dependencies"
+          echo -e "Packages installed from Trunk < > Packages installed from patched distgit"
+          sdiff -s trunk_builddeps.list patched_builddeps.list
+          if [ $? -ne 0 ]; then
+              echo -e "ERROR: There are differences between build deps with SRPM for patched and trunk"
+              echo -e "INFO: Total Build Requirements from patched spec"
+              rpm -q --requires -p $DESTINATION/*src.rpm
+              echo -e "INFO: Total Build Requirements from latest Trunk"
+              cat trunk_BRs.list
+              exit 1
+          fi
+      when: compare_builddeps|default(false)
 
     - name: Compare files with latest trunk
       changed_when: true
       shell:
         cmd: |
-          set -x
+          DESTINATION="$PWD/files"
           PARENT_JOB_LOGS={{ buildset_artifacts_url }}
           PARENT_JOB_REPO="${PARENT_JOB_LOGS}/centos9/current"
-          DESTINATION="$PWD/files"
           PKGS_NAME=""
 
           mkdir -p $DESTINATION/{patched,trunk}
