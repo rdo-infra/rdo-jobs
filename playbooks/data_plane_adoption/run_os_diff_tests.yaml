@@ -1,0 +1,27 @@
+- hosts: controller
+  gather_facts: false
+  vars:
+    od_dir: "/home/zuul-worker/src/github.com/openstack-k8s-operators/os-diff"
+  tasks:
+    - name: Build os-diff
+      community.general.make:
+        chdir: "{{ od_dir }}"
+        target: build
+      register: make_res
+      become: true
+      failed_when: '"failed=0" not in "{{ make_res.stdout_lines[-1:] }}"'
+
+    - name: Pull config from Crc os-diff
+      command:
+        chdir: "{{ od_dir }}"
+        cmd: ./os-diff pull
+
+    - name: Pull config from Standalone os-diff
+      command:
+        chdir: "{{ od_dir }}"
+        cmd: ./os-diff pull -c podman
+
+    - name: Compare config
+      command:
+        chdir: "{{ od_dir }}"
+        cmd: ./os-diff compare -o /tmp/collect_tripleo_configs -d /tmp/collect_ocp_configs
