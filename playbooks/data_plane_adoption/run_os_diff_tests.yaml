@@ -1,0 +1,45 @@
+- hosts: controller
+  vars:
+    od_dir: "/home/zuul-worker/src/github.com/openstack-k8s-operators/os-diff"
+  tasks:
+    - name: Workaround zuul
+      failed_when: false
+      become: true
+      ansible.builtin.shell: |
+        dnf -y install golang
+        git clone https://github.com/openstack-k8s-operators/os-diff {{ od_dir }}
+
+    - name: Build os-diff
+      ansible.builtin.shell: |
+        cd {{ od_dir }}
+        make build
+      register: make_res
+      become: true
+
+    - name: Source bashrc and confirm crc login
+      ansible.builtin.shell: |
+        source ~/.bashrc
+        oc whoami
+
+    - name: Set etc hosts entry TripleO Standalone
+      become: true
+      ansible.builtin.lineinfile:
+        path: "/etc/hosts"
+        insertafter: "EOF"
+        value: "{{ standalone_ip }} standalone"
+
+    - name: Pull config from Tripleo os-diff
+      ansible.builtin.shell: |
+        cd {{ od_dir }}
+        ./os-diff pull
+
+    - name: Pull config from OCP os-diff
+      ansible.builtin.shell: |
+        cd {{ od_dir }}
+        ./os-diff pull -e ocp
+
+    - name: Compare config
+      become: true
+      ansible.builtin.command:
+        chdir: "{{ od_dir }}"
+        cmd: ./os-diff diff /tmp/tripleo /tmp/ocp
