@@ -1,0 +1,42 @@
+- hosts: controller
+  gather_facts: false
+  vars:
+    od_dir: "/home/zuul-worker/src/github.com/openstack-k8s-operators/os-diff"
+  tasks:
+    - name: workaround zuul
+      become: yes
+      shell: |
+        dnf -y install golang
+        git clone https://github.com/openstack-k8s-operators/os-diff {{ od_dir }}
+
+    - name: install os-diff
+      shell: |
+        cd {{ od_dir }}
+        make install
+      register: make_res
+      become: yes
+
+    - name: build os-diff
+      shell: |
+        cd {{ od_dir }}
+        make build
+      register: make_res
+      become: yes
+
+    - name: Pull config from Crc os-diff
+      become: yes
+      command:
+        chdir: "{{ od_dir }}"
+        cmd: ./os-diff pull
+
+    - name: Pull config from Standalone os-diff
+      become: yes
+      command:
+        chdir: "{{ od_dir }}"
+        cmd: ./os-diff pull -c podman
+
+    - name: Compare config
+      become: yes
+      command:
+        chdir: "{{ od_dir }}"
+        cmd: ./os-diff compare -o /tmp/collect_tripleo_configs -d /tmp/collect_ocp_configs
