@@ -42,3 +42,31 @@
       - ^docs_dev/.*$
       - ^docs_user/.*$
       - Gemfile
+
+- job:
+    name: data-plane-adoption-osp-17-to-extracted-crc-os-diff
+    parent: data-plane-adoption-osp-17-to-extracted-crc
+    required-projects:
+      - name: openstack-k8s-operators/install_yamls
+        override-checkout: main
+      - opendev.org/zuul/zuul-jobs
+      - name: openstack-k8s-operators/data-plane-adoption
+        override-checkout: main
+      - name: openstack-k8s-operators/ci-framework
+        override-checkout: main
+      - rdo-jobs
+      - name: github.com/openstack-k8s-operators/os-diff
+        override-checkout: main
+    roles:
+      - zuul: rdo-jobs
+      - zuul: github.com/openstack-k8s-operators/ci-framework
+    pre-run:
+      - playbooks/data_plane_adoption/subnode_ip.yaml
+      - playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml
+      - playbooks/data_plane_adoption/setup_standalone_os_net_config.yaml
+    post-run:
+      - playbooks/data_plane_adoption/run_os_diff_tests.yaml
+      - playbooks/data_plane_adoption/unregister_RH_subscription_standalone.yaml
+      - playbooks/data_plane_adoption/collect_logs_crc.yaml
+      - playbooks/data_plane_adoption/set_zuul_artifacts.yaml
+      - playbooks/force_job_failure.yaml
