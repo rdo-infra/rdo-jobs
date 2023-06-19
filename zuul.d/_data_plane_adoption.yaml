@@ -9,6 +9,8 @@
         override-checkout: main
       - name: openstack-k8s-operators/ci-framework
         override-checkout: main
+      - name: github.com/openstack-k8s-operators/os-diff
+        override-checkout: main
       - rdo-jobs
     roles:
       - zuul: rdo-jobs
@@ -18,6 +20,7 @@
       - playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml
       - playbooks/data_plane_adoption/setup_standalone_os_net_config.yaml
     run:
+      - playbooks/data_plane_adoption/run_os_diff_tests.yaml
       - playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml
     post-run:
       - playbooks/data_plane_adoption/unregister_RH_subscription_standalone.yaml
