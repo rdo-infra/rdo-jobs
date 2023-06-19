@@ -69,3 +69,30 @@
       crc_parameters: "--memory 22000 --disk-size 120 --cpus 8"
       quay_login_secret_name: quay_nextgen_zuulgithubci
       standalone_vm_inventory: "standalone_vm_inventory"
+
+- job:
+    name: centos-9-standalone-to-crc-data-plane-adoption-os-diff
+    parent: centos-9-standalone-to-crc-data-plane-adoption
+    required-projects:
+      - name: openstack-k8s-operators/install_yamls
+        override-checkout: main
+      - opendev.org/zuul/zuul-jobs
+      - opendev.org/openstack/tripleo-repos
+      - name: openstack-k8s-operators/data-plane-adoption
+        override-checkout: main
+      - name: openstack-k8s-operators/ci-framework
+        override-checkout: main
+      - rdo-jobs
+      - name: github.com/openstack-k8s-operators/os-diff
+        override-checkout: main
+    roles:
+      - zuul: rdo-jobs
+      - zuul: github.com/openstack-k8s-operators/ci-framework
+      - zuul: github.com/openstack-k8s-operators/os-diff
+    pre-run:
+      - playbooks/data_plane_adoption/subnode_ip.yaml
+      - playbooks/data_plane_adoption/setup_crc_use_install_yamls.yaml
+    post-run:
+      - playbooks/data_plane_adoption/run_repo_tests.yaml
+      - playbooks/data_plane_adoption/run_os_diff_tests.yaml
+      - playbooks/data_plane_adoption/collect_logs_crc.yaml
