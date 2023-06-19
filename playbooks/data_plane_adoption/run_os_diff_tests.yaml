@@ -1,0 +1,61 @@
+- hosts: controller
+  vars:
+    od_dir: "/home/zuul-worker/src/github.com/openstack-k8s-operators/os-diff"
+  tasks:
+    - name: Workaround zuul
+      failed_when: false
+      become: true
+      ansible.builtin.shell: |
+        dnf -y install golang
+        git clone https://github.com/openstack-k8s-operators/os-diff {{ od_dir }}
+
+    - name: Build os-diff
+      ansible.builtin.shell: |
+        cd {{ od_dir }}
+        make build
+      register: make_res
+      become: true
+
+    - name: Grab the crc VM IP address
+      ansible.builtin.command: crc ip
+      register: crc_ip
+
+    - name: Set etc hosts entry for keystone glance placement cinder to crc VM IP
+      become: true
+      ansible.builtin.lineinfile:
+        path: "/etc/hosts"
+        insertafter: "EOF"
+        value: "{{ crc_ip.stdout }} keystone-public-openstack.apps-crc.testing glance-public-openstack.apps-crc.testing placement-public-openstack.apps-crc.testing cinder-public-openstack.apps-crc.testing"
+
+    - name: Source bashrc and confirm crc login
+      ansible.builtin.shell: |
+        source ~/.bashrc
+        oc whoami
+
+    - name: Slurp the standalone IP address
+      ansible.builtin.slurp:
+        path: /etc/nodepool/primary_node_private
+      register: standalone_ip
+
+    - name: Set etc hosts entry TripleO Standalone
+      become: true
+      ansible.builtin.lineinfile:
+        path: "/etc/hosts"
+        insertafter: "EOF"
+        value: "{{ standalone_ip['content'] | b64decode | trim }} standalone"
+
+    - name: Pull config from Tripleo os-diff
+      ansible.builtin.shell: |
+        cd {{ od_dir }}
+        ./os-diff pull
+
+    - name: Pull config from OCP os-diff
+      ansible.builtin.shell: |
+        cd {{ od_dir }}
+        ./os-diff pull -e ocp
+
+    - name: Compare config
+      become: true
+      ansible.builtin.command:
+        chdir: "{{ od_dir }}"
+        cmd: ./os-diff diff /tmp/tripleo /tmp/ocp
