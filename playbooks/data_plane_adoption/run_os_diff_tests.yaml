@@ -1,0 +1,112 @@
+- hosts: controller
+  vars:
+    od_dir: "/home/zuul-worker/src/github.com/openstack-k8s-operators/os-diff"
+  tasks:
+    - name: workaround zuul
+      ignore_errors: true
+      become: yes
+      shell: |
+        dnf -y install golang
+        git clone https://github.com/openstack-k8s-operators/os-diff {{ od_dir }}
+
+    - name: install os-diff
+      shell: |
+        cd {{ od_dir }}
+        make install
+      register: make_res
+      become: yes
+
+    - name: build os-diff
+      shell: |
+        cd {{ od_dir }}
+        make build
+      register: make_res
+      become: yes
+
+    - name: grab the crc VM IP address
+      ansible.builtin.command: crc ip
+      register: crc_ip
+
+    - name: Set etc hosts entry for keystone glance placement cinder to crc VM IP
+      become: true
+      ansible.builtin.lineinfile:
+        path: "/etc/hosts"
+        insertafter: "EOF"
+        value: "{{ crc_ip.stdout }} keystone-public-openstack.apps-crc.testing glance-public-openstack.apps-crc.testing placement-public-openstack.apps-crc.testing cinder-public-openstack.apps-crc.testing"
+
+    - name: Install roles (should be done via make install)
+      become: yes
+      shell: |
+        sed -i 's/crc/localhost/' {{ od_dir }}/hosts
+        cp -R {{ od_dir }}/roles/* /usr/share/ansible/roles/
+
+    - name: Source bashrc and confirm crc login
+      ansible.builtin.shell: |
+        source ~/.bashrc
+        oc whoami
+
+    - name: Make sure all Openstack operators are deployed
+      ignore_errors: true
+      ansible.builtin.shell: |
+        set -o pipefail && \
+        oc get pods -n "openstack" --no-headers=true | grep -i "Running"
+      register: operator_status
+      until: operator_status.rc == 0
+      changed_when: false
+      retries: 30
+      delay: 30
+    # - name: Login CRC
+    #   ignore_errors: yes
+    #   ansible.builtin.include_role:
+    #     name: collect_config
+    #     tasks_from: ocp_login.yml
+
+    - name: debug running pods
+      register: get_pods
+      shell: |
+        oc get pods -A
+    
+    - name: debug
+      debug: var=get_pods
+
+    - name: workaround
+      become: yes
+      shell: |
+        sed -i "42d" /home/zuul-worker/src/github.com/openstack-k8s-operators/os-diff/roles/collect_config/tasks/collect_ocp.yml
+
+    - name: Pull config from Crc os-diff
+      become: yes
+      ansible.builtin.include_role:
+        name: collect_config
+        tasks_from: main.yml
+      vars:
+        collect_ocp: true
+        oc_login: false
+        oc_bin: oc
+        working_dir: /tmp/
+        local_working_dir: /tmp/
+        ansible_connection: local
+
+    - name: Configure host for standalone
+      become: yes
+      shell: |
+        cd {{ od_dir }}
+        sed -i 's/\/home\/stack\/os-diff/\/home\/zuul-worker\/src\/github.com\/openstack-k8s-operators\/os-diff/' ansible.cfg
+
+    - name: Pull config from podman os-diff
+      shell: |
+        cd {{ od_dir }}
+        sed -i '$d' ansible.cfg
+        ./os-diff pull -c podman
+      # ansible.builtin.include_role:
+      #   name: collect_config
+      # vars:
+      #   collect_podman: true
+      #   working_dir: /home/zuul
+      #   local_working_dir: /home/zuul
+
+    - name: Compare config
+      become: yes
+      command:
+        chdir: "{{ od_dir }}"
+        cmd: ./os-diff compare -o /tmp/collect_tripleo_configs -d /tmp/collect_ocp_configs
