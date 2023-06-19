@@ -1,0 +1,74 @@
+- hosts: controller
+  vars:
+    dpa_dir: "/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption"
+    od_dir: "/home/zuul-worker/src/github.com/openstack-k8s-operators/os-diff"
+  tasks:
+    - name: Workaround zuul
+      failed_when: false
+      become: true
+      ansible.builtin.shell: |
+        dnf -y install golang
+        git clone https://github.com/openstack-k8s-operators/os-diff {{ od_dir }}
+
+    - name: Build os-diff
+      ansible.builtin.shell: |
+        cd {{ od_dir }}
+        make build
+      register: make_res
+      become: true
+
+    - name: Source bashrc and confirm crc login
+      ansible.builtin.shell: |
+        source ~/.bashrc
+        oc whoami
+
+    - name: Set etc hosts entry TripleO Standalone
+      become: true
+      ansible.builtin.lineinfile:
+        path: "/etc/hosts"
+        insertafter: "EOF"
+        value: "{{ standalone_ip }} standalone"
+
+    - name: Set ssh command for Tripleo standalone in os-diff.cfg
+      become: true
+      ansible.builtin.lineinfile:
+        path: "{{ od_dir }}/os-diff.cfg"
+        regex: "ssh -F ssh.config standalone"
+        value: "ssh_cmd=ssh -i {{ standalone_private_key | default('/home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa') }} root@{{ standalone_ip }}"
+
+    - name: Set Tripleo config path in os-diff.cfg
+      become: true
+      ansible.builtin.lineinfile:
+        path: "{{ od_dir }}/os-diff.cfg"
+        regex: "local_config_path=/tmp/"
+        value: "local_config_path=tripleo"
+
+    - name: Set OCP config path in os-diff.cfg
+      become: true
+      ansible.builtin.lineinfile:
+        path: "{{ od_dir }}/os-diff.cfg"
+        regex: "ocp_local_config_path=/tmp/ocp"
+        value: "ocp_local_config_path=ocp"
+
+    - name: Set config path in os-diff.cfg
+      become: true
+      ansible.builtin.lineinfile:
+        path: "{{ od_dir }}/os-diff.cfg"
+        regex: "local_config_dir=/tmp/"
+        value: "local_config_dir={{ dpa_dir }}"
+
+    - name: Pull config from Tripleo os-diff
+      ansible.builtin.shell: |
+        cd {{ od_dir }}
+        ./os-diff pull
+
+    - name: Pull config from OCP os-diff
+      ansible.builtin.shell: |
+        cd {{ od_dir }}
+        ./os-diff pull -e ocp
+
+    - name: Compare config
+      become: true
+      ansible.builtin.command:
+        chdir: "{{ od_dir }}"
+        cmd: ./os-diff diff /tmp/tripleo /tmp/ocp
