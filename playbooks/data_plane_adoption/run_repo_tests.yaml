@@ -9,11 +9,17 @@
         path: /etc/nodepool/primary_node_private
       register: standalone_ip
 
-    - name: Place standalone_ip into vars.yaml
+    - name: Place standalone_ip into vars.yaml for MariaDB
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
         regexp: '^external_mariadb_ip:'
         value: "external_mariadb_ip: {{ standalone_ip['content'] | b64decode | trim }}"
+
+    - name: Place standalone_ip into vars.yaml for OVN
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: '^external_ovndb_ip:'
+        value: "external_ovndb_ip: {{ standalone_ip['content'] | b64decode | trim }}"
 
     - name: Slurp the tripleo passwords from standalone
       delegate_to: primary
