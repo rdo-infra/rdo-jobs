@@ -31,7 +31,7 @@
       openstack_release: zed
       push_registry: quay.rdoproject.org
       quay_login_secret_name: quay_nextgen_zuulgithubci
-      crc_parameters: "--memory 22000 --disk-size 120 --cpus 6"
+      crc_parameters: "--memory 24000 --disk-size 120 --cpus 8"
       cifmw_repo_setup_dist_major_version: 9
       pre_pull_images:
         - registry.redhat.io/rhosp-rhel9/openstack-rabbitmq:17.0
