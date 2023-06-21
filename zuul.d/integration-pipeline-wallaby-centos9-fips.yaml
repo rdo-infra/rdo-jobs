@@ -9,6 +9,7 @@
         #  There is no build-containers job with FIPS enabled (FIPS issues with building bits)
         - periodic-tripleo-ci-build-containers-ubi-9-quay-push-wallaby
         - periodic-tripleo-ci-centos-9-standalone-fips-wallaby: &build_containers_cs_9_push_wallaby
+            nodeset: single-centos-9-stream-node-fips-ibm-bm3
             dependencies: &dep_build_containers_cs_9_push_wallaby
               - periodic-tripleo-ci-build-containers-ubi-9-quay-push-wallaby
         - periodic-tripleo-ci-centos-9-scenario001-standalone-fips-wallaby: *build_containers_cs_9_push_wallaby
@@ -24,6 +25,7 @@
             dependencies: *dep_build_containers_cs_9_push_wallaby
         # Multinode
         - periodic-tripleo-ci-centos-9-containers-multinode-fips-wallaby: &fips_multinode_cs_9_wallaby
+            nodeset: two-centos-9-nodes-fips-ibm-bm3
             dependencies: *dep_build_containers_cs_9_push_wallaby
         - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-fips-wallaby: *fips_multinode_cs_9_wallaby
         - periodic-tripleo-ci-centos-9-scenario007-multinode-oooq-container-fips-wallaby: *fips_multinode_cs_9_wallaby
