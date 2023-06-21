@@ -137,6 +137,13 @@
       args:
         chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls"
 
+    - name: Wait for NeutronReady
+      ansible.builtin.shell: |
+        oc wait OpenStackControlPlane {{ (cifmw_edpm_prepare_ctrlplane_cr_slurp['content'] | b64decode | from_yaml).metadata.name }}
+        --namespace={{ cifmw_install_yamls_defaults['NAMESPACE'] }}
+        --for=condition=OpenStackControlPlaneNeutronReady
+        --timeout=30m
+
     - name: Wait for openstack services to get deployed
       ansible.builtin.shell: |
         oc wait openstackcontrolplane.core.openstack.org/openstack --for=condition=Ready
