@@ -101,6 +101,27 @@
         sudo ip addr add dev vlan20 172.17.0.222/24
         sudo ip link set up dev vlan20
 
+    - name: Fetch hash and set ci_testing_hash fact for periodic
+      when: "'periodic' in zuul.job or (force_periodic|default(false)|bool)"
+      block:
+        - name: Fetch latest c9/antelope podified-ci-testing from dlrn
+          ansible.builtin.uri:
+            url: https://trunk.rdoproject.org/centos9-antelope/podified-ci-testing/delorean.repo.md5
+            return_content: true
+          register: latest_podified_ci_testing
+          until: latest_podified_ci_testing.status == 200
+          retries: 6
+          delay: 5
+
+        - name: Insert vars needed for periodic job into test vars.yaml
+          ansible.builtin.blockinfile:
+            path: "{{ rdo_dir }}/vars.yaml"
+            block: |
+              periodic: true
+              container_registry: quay.rdoproject.org
+              container_namespace: podified-antelope-centos9
+              container_tag: {{ latest_podified_ci_testing.content }}
+
     - name: Run data-plane-adoption tests
       community.general.make:
         chdir: "{{ dpa_dir }}"
