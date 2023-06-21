@@ -111,6 +111,10 @@
           addFilter("no-manual-page-for-binary")
           addFilter("no-documentation")
           addFilter("non-readable")
+          addFilter(".*invalid-license Apache-2.0")
+          addFilter(".*invalid-license BSD-3-Clause")
+          addFilter(".*invalid-license GPL-2.0-or-later")
+          addFilter(".*invalid-license GPL-3.0-or-later")
 
           # vitrage-ui exceptions
           addFilter("openstack-vitrage-ui.noarch: W: non-conffile-in-etc /etc/openstack-dashboard/enabled/_4140_admin_template_vitrage_panel.py.*")
