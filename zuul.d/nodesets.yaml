@@ -677,6 +677,60 @@
           - secondary-1
           - secondary-2
 
+# CentOS-9 FIPS-enabled
+
+- nodeset:
+    name: cloud-centos-9-stream-fips-ibm-bm3
+    nodes:
+      - name: primary
+        label: ibm-bm3-nodepool-cloud-centos-9-stream-tripleo-fips
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: single-centos-9-stream-node-fips-ibm-bm3
+    nodes:
+      - name: primary
+        label: ibm-bm3-nodepool-cloud-centos-9-stream-tripleo-fips
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: two-centos-9-nodes-fips-ibm-bm3
+    nodes:
+      - name: primary
+        label: ibm-bm3-nodepool-cloud-centos-9-stream-tripleo-fips
+      - name: secondary
+        label: ibm-bm3-nodepool-cloud-centos-9-stream-tripleo-fips
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes:
+          - secondary
+      - name: subnodes
+        nodes:
+          - secondary
+
+- nodeset:
+    name: tripleo-ovb-centos-9-primary-fips-ibm-bm3
+    nodes:
+      - name: primary
+        label: ibm-bm3-nodepool-cloud-centos-9-stream-tripleo-fips
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
 # FIPS nodes
 # CentOS-9
 
