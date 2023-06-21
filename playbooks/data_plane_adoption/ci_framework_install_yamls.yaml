@@ -3,9 +3,6 @@
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
   tasks:
     - name: Run make openstack using install_yamls_makes
-      vars:
-        cifmw_install_yamls_vars:
-          NAMESPACE: "openstack"
       ansible.builtin.include_role:
         name: install_yamls_makes
         tasks_from: 'make_openstack'
