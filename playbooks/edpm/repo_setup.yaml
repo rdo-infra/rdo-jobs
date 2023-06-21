@@ -10,6 +10,7 @@
         name: virtualenv
 
     - name: Install and Generate repos for the openstack release
+      become: true
       ansible.builtin.include_role:
         name: repo_setup
       vars:
