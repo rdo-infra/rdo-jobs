@@ -50,6 +50,24 @@
       "message": "i see test has multinode-fips-wallaby and standalone-fips-wallaby https://review.rdoproject.org/r/c/testproject/+/44652/44#message-18896e1320d3057b29e151345a76ba0a2f48643d\n\nwhat about container-updates and scen7 jobs",
       "revId": "5911d9649601b48b68e3ddd85959c1619d8ffe1f",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8d37afd_aea7d712",
+        "filename": "zuul.d/integration-pipeline-wallaby-centos9-fips.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 739
+      },
+      "writtenOn": "2023-06-21T11:33:08Z",
+      "side": 1,
+      "message": "Hi marios,\n\nthere was a previous run with all 3 new jobs here:\nhttps://review.rdoproject.org/r/c/testproject/+/44652/44#message-b4704910dc54c053278c3321ae99088eeca60cfe\n\nthe difference between that test and the most recent one is that I moved the \u0027report_dlrn\u0027 var to job definition, and before was a testproject var[1]\n\n[1] https://review.rdoproject.org/r/c/rdo-jobs/+/48744/4..7/zuul.d/multinode-jobs.yaml",
+      "parentUuid": "da18a6c7_fc5ce235",
+      "revId": "5911d9649601b48b68e3ddd85959c1619d8ffe1f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
