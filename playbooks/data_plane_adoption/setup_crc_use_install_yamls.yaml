@@ -23,7 +23,33 @@
         name: beautifulsoup4
         executable: pip-3.11
 
+    - name: Fetch hash and set ci_testing_hash fact for periodic
+      when: "'periodic' in zuul.job or (force_periodic|default(false)|bool)"
+      block:
+        - name: Fetch latest c9/antelope podified-ci-testing from dlrn
+          ansible.builtin.uri:
+            url: https://trunk.rdoproject.org/centos9-antelope/podified-ci-testing/delorean.repo.md5
+            return_content: true
+          register: latest_podified_ci_testing
+          until: latest_podified_ci_testing.status == 200
+          retries: 6
+          delay: 5
+
+        - name: "set fact ci_testing_hash with fetched md5 {{ latest_podified_ci_testing.content }}"
+          ansible.builtin.set_fact:
+            ci_testing_hash: "{{ latest_podified_ci_testing.content }}"
+
+        - name: Prepare ci-framework environment
+          ansible.builtin.shell:
+            cmd: |
+              ansible-galaxy collection install community.general
+              ansible-playbook ci_framework/playbooks/01-bootstrap.yml --tags bootstrap --skip-tags packages -e @{{ rdo_dir }}/cifmw_vars.yaml
+            chdir: "{{ framework_dir }}"
+
     - name: Prepare ci-framework environment
+      when:
+        - "'periodic' not in zuul.job"
+        - not force_periodic|default(false)|bool
       ansible.builtin.shell:
         cmd: |
           ansible-galaxy collection install community.general
