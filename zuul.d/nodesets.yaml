@@ -736,7 +736,7 @@
     name: centos-8-crc-single-node-centos-9-external-compute
     nodes:
       - name: controller
-        label: centos-8-stream-crc-xxl
+        label: centos-8-stream-crc-3xl
       - name: secondary
         label: cloud-centos-9-stream
     groups:
@@ -749,6 +749,25 @@
       - name: subnodes
         nodes:
           - secondary
+
+- nodeset:
+    name: centos-9-crc-single-node-centos-9-external-compute
+    nodes:
+      - name: controller
+        label: centos-9-stream-crc-3xl
+      - name: secondary
+        label: cloud-centos-9-stream
+    groups:
+      - name: switch
+        nodes:
+          - controller
+      - name: peers
+        nodes:
+          - secondary
+      - name: subnodes
+        nodes:
+          - secondary
+
 
 - nodeset:
     name: centos-8-crc-single-node-centos-9-standalone
