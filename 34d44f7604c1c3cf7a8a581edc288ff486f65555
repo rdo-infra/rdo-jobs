@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "390c0ed9_7277148f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2023-06-21T16:15:04Z",
+      "side": 1,
+      "message": "Just a minor comment about the info provided by the job. Other than that, LGTM",
+      "revId": "34d44f7604c1c3cf7a8a581edc288ff486f65555",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1cd34b2_f3405de5",
+        "filename": "playbooks/DLRN/switch-to-pyproject-macros.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2023-06-21T16:15:04Z",
+      "side": 1,
+      "message": "I\u0027d add some info here so that we can see which packages are the differences coming from. Something like:\n\necho -e \"INFO: differences for ${pkg}\"",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 19
+      },
+      "revId": "34d44f7604c1c3cf7a8a581edc288ff486f65555",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
