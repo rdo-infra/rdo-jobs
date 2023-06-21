@@ -137,6 +137,31 @@
       args:
         chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls"
 
+     - name: Find the OpenStack CR manifest
+      ansible.builtin.find:
+        paths: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls/out/openstack/openstack/cr/"
+        contains: "kind: OpenStackControlPlane"
+        patterns: "*.yaml"
+      register: cifmw_edpm_prepare_openstack_cr_manifest_paths
+
+    - name: Ensure manifest exists
+      ansible.builtin.assert:
+        that: cifmw_edpm_prepare_openstack_cr_manifest_paths.matched == 1
+        quiet: true
+        msg: "Cannot determine OpenStackControlPlane deployment manifest"
+
+    - name: Find files out
+      ansible.builtin.slurp:
+        src: "{{ cifmw_edpm_prepare_openstack_cr_manifest_paths.files[0].path }}"
+      register: cifmw_edpm_prepare_ctrlplane_cr_slurp
+
+    - name: Wait for NeutronReady
+      ansible.builtin.shell: |
+        oc wait OpenStackControlPlane {{ (cifmw_edpm_prepare_ctrlplane_cr_slurp['content'] | b64decode | from_yaml).metadata.name }}
+        --namespace=openstack
+        --for=condition=OpenStackControlPlaneNeutronReady
+        --timeout=30m
+
     - name: Wait for openstack services to get deployed
       ansible.builtin.shell: |
         oc wait openstackcontrolplane.core.openstack.org/openstack --for=condition=Ready
