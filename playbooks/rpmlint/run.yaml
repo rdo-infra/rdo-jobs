@@ -322,6 +322,8 @@
           # Exception for sphinx-feature-classification
           addFilter("python3-sphinx-feature-classification.noarch: W: obsolete-not-provided python39-sphinx-feature-classification")
           addFilter("python3-sphinx-feature-classification-tests.noarch: W: obsolete-not-provided python39-sphinx-feature-classification-tests")
+          # Exception for requestsexceptions
+          addFilter("python3-requestsexceptions.noarch: W: obsolete-not-provided python39-requestsexceptions")
           EOF
 
           RPMLINT_CMD="rpmlint -f $HOME/.rpmlintrc"
