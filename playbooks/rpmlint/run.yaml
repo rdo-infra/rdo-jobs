@@ -319,6 +319,9 @@
           # Exception for rsd-lib
           addFilter("python3-rsd-lib.noarch: W: obsolete-not-provided python39-rsd-lib")
           addFilter("python3-rsd-lib-tests.noarch: W: obsolete-not-provided python39-rsd-lib-tests")
+          # Exception for sphinx-feature-classification
+          addFilter("python3-sphinx-feature-classification.noarch: W: obsolete-not-provided python39-sphinx-feature-classification")
+          addFilter("python3-sphinx-feature-classification-tests.noarch: W: obsolete-not-provided python39-sphinx-feature-classification-tests")
           EOF
 
           RPMLINT_CMD="rpmlint -f $HOME/.rpmlintrc"
