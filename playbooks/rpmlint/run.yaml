@@ -316,6 +316,9 @@
           # Exception for neutronclient
           addFilter("python-neutronclient-doc.noarch: W: file-not-utf8 /usr/share/doc/python-neutronclient-doc/html/objects.inv")
           addFilter("python-neutronclient-doc.noarch: W: wrong-file-end-of-line-encoding /usr/share/doc/python-neutronclient-doc/html/objects.inv")
+          # Exception for rsd-lib
+          addFilter("python3-rsd-lib.noarch: W: obsolete-not-provided python39-rsd-lib")
+          addFilter("python3-rsd-lib-tests.noarch: W: obsolete-not-provided python39-rsd-lib-tests")
           EOF
 
           RPMLINT_CMD="rpmlint -f $HOME/.rpmlintrc"
