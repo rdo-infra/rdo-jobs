@@ -113,7 +113,7 @@
           PKGS_NAME=""
 
           mkdir -p $DESTINATION/{patched,trunk}
-          PKGS_NVR=$(dnf -q --releasever 9 --installroot=/tmp/root --disablerepo='*' --enablerepo='DLRN-rpmbuild-centos9' --repofrompath=DLRN-rpmbuild-centos9,$PARENT_JOB_REPO list available | grep -e "DLRN-rpmbuild-centos9" | awk '{print $1}' | grep -v -e "src$")
+          PKGS_NVR=$(dnf repoquery -q --disablerepo='*' --enablerepo='DLRN-rpmbuild-centos9' --repofrompath=DLRN-rpmbuild-centos9,$PARENT_JOB_REPO --arch noarch --arch x86_64 --qf %{name})
 
           for nvr in $PKGS_NVR; do
               PKG_NAME=$(echo -e "$nvr" | rev | cut -d. -f2- | rev)
