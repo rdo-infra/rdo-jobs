@@ -10,11 +10,29 @@
               # Tempest API test
         - periodic-container-quay-push-centos-9-antelope:
             dependencies:
+              - periodic-podified-edpm-deployment-antelope-ocp-crc-1cs9
+              - periodic-podified-edpm-baremetal-antelope-ocp-crc
+        - periodic-podified-edpm-deployment-antelope-ocp-crc-1cs9:
+            dependencies: &deps
               - periodic-container-tcib-build-push-centos-9-antelope
-        #       - periodic-centos-9-podified-edpm-integration-antelope
-        # - periodic-centos-9-podified-edpm-integration-antelope:
-        #     dependencies:
-        #       - periodic-container-tcib-build-push-centos-9-antelope
+            required-projects: &rp
+              - name: openstack-k8s-operators/install_yamls
+                override-checkout: main
+              - name: openstack-k8s-operators/openstack-operator
+                override-checkout: main
+              - name: github.com/openstack-k8s-operators/ci-framework
+                override-checkout: main
+              - name: github.com/openstack-k8s-operators/repo-setup
+                override-checkout: main
+              - name: github.com/openstack-k8s-operators/dataplane-operator
+                override-checkout: main
+              - name: github.com/openstack-k8s-operators/infra-operator
+                override-checkout: main
+              - name: github.com/openstack-k8s-operators/openstack-baremetal-operator
+                override-checkout: main
+        - periodic-podified-edpm-baremetal-antelope-ocp-crc:
+            dependencies: *deps
+            required-projects: *rp
         - periodic-container-tcib-build-push-centos-9-antelope:
             dependencies:
               - periodic-centos-9-antelope-promote-consistent-to-podified-ci-testing
