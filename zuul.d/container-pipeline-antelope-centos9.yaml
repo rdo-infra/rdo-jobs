@@ -10,10 +10,11 @@
               # Tempest API test
         - periodic-container-quay-push-centos-9-antelope:
             dependencies:
-              - periodic-centos-9-podified-edpm-integration-antelope
-        - periodic-centos-9-podified-edpm-integration-antelope:
-            dependencies:
               - periodic-container-tcib-build-push-centos-9-antelope
+        #       - periodic-centos-9-podified-edpm-integration-antelope
+        # - periodic-centos-9-podified-edpm-integration-antelope:
+        #     dependencies:
+        #       - periodic-container-tcib-build-push-centos-9-antelope
         - periodic-container-tcib-build-push-centos-9-antelope:
             dependencies:
               - periodic-centos-9-antelope-promote-consistent-to-podified-ci-testing
