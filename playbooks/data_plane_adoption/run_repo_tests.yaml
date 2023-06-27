@@ -92,6 +92,15 @@
         insertafter: "EOF"
         value: "{{ crc_ip.stdout }} keystone-public-openstack.apps-crc.testing glance-public-openstack.apps-crc.testing placement-public-openstack.apps-crc.testing cinder-public-openstack.apps-crc.testing"
 
+    # FIXME: the tag and the address should ideally be calculated from definitions
+    # The address should ideally be removed from the address pool available for CNI
+    # for allocation.
+    - name: Configure access of adoption host to internalapi network
+      ansible.builtin.shell: |
+        sudo ip link add link virbr0 name vlan20 type vlan id 20
+        sudo ip addr add dev vlan20 172.17.0.222/24
+        sudo ip link set up dev vlan20
+
     - name: Run data-plane-adoption tests
       community.general.make:
         chdir: "{{ dpa_dir }}"
