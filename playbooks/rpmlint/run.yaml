@@ -326,6 +326,9 @@
           addFilter("python3-requestsexceptions.noarch: W: obsolete-not-provided python39-requestsexceptions")
           # Exception for pycadf
           addFilter("python3-pycadf.noarch: W: obsolete-not-provided python39-pycadf")
+          # Exception for os-resource-classes
+          addFilter("python3-os-resource-classes.noarch: W: obsolete-not-provided python39-os-resource-classes")
+          addFilter("python3-os-resource-classes-tests.noarch: W: obsolete-not-provided python39-os-resource-classes-tests")
           EOF
 
           RPMLINT_CMD="rpmlint -f $HOME/.rpmlintrc"
