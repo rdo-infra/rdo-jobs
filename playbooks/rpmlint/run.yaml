@@ -324,6 +324,8 @@
           addFilter("python3-sphinx-feature-classification-tests.noarch: W: obsolete-not-provided python39-sphinx-feature-classification-tests")
           # Exception for requestsexceptions
           addFilter("python3-requestsexceptions.noarch: W: obsolete-not-provided python39-requestsexceptions")
+          # Exception for pycadf
+          addFilter("python3-pycadf.noarch: W: obsolete-not-provided python39-pycadf")
           EOF
 
           RPMLINT_CMD="rpmlint -f $HOME/.rpmlintrc"
