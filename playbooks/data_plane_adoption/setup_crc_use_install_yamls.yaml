@@ -10,7 +10,8 @@
 
     - name: Initialize OC Credentials
       ansible.builtin.include_role:
-        name: add_crc_creds
+        name: rhol_crc
+        tasks_from: add_crc_creds.yml
 
     - name: Ensure pip is installed
       become: true
