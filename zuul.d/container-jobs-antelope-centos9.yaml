@@ -42,11 +42,3 @@
       api_end_point: api-centos9-antelope
       from_namespace: podified-antelope-centos9
       to_namespace: podified-antelope-centos9
-
-## EDPM job
-- job:
-    name: periodic-centos-9-podified-edpm-integration-antelope
-    parent: periodic-centos-9-podified-edpm-integration-master
-    vars:
-      registry_namespace: podified-antelope-centos9
-      openstack_release: antelope
