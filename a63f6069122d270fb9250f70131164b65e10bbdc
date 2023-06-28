@@ -16,6 +16,24 @@
       "message": "testing looks good together with https://review.rdoproject.org/r/c/rdo-jobs/+/49070 but why not combine the two patches?\n\ntest there https://review.rdoproject.org/r/c/testproject/+/48991/3#message-9d4bb601161991a64f504c5a997334f473de31ad",
       "revId": "a63f6069122d270fb9250f70131164b65e10bbdc",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a5d60df_4fb2dd77",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 104
+      },
+      "writtenOn": "2023-06-28T12:54:51Z",
+      "side": 1,
+      "message": "\u003e why not combine the two patches?\n\nBecause they do logically different things, and they make sense independent of each other. (e.g. vlan part may be useful for other cases where access to internalapi network IP endpoints is needed.)",
+      "parentUuid": "95a9e0f7_0a6a57d2",
+      "revId": "a63f6069122d270fb9250f70131164b65e10bbdc",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
