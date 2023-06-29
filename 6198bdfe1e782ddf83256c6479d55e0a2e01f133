@@ -18,6 +18,24 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05f97bba_e9221bf2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 39
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2023-06-29T07:03:18Z",
+      "side": 1,
+      "message": "that\u0027s a good point, to get some quick testing, the changes break the old job, we can either replace it or temporarily duplicate the test setup code to run both jobs. It\u0027s probably a good idea to keep both for a few days or weeks, since we don\u0027t get a lot of upstream PRs that would exercise the job",
+      "parentUuid": "4b1ba21c_e2eb212a",
+      "revId": "6198bdfe1e782ddf83256c6479d55e0a2e01f133",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "906a8add_05e5352e",
@@ -35,6 +53,24 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97196974_43a9cab8",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_standalone_network_isolation.yaml",
+        "patchSetId": 39
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2023-06-29T07:03:18Z",
+      "side": 1,
+      "message": "agree, we should compile improvements like this as tasks for future housekeeping",
+      "parentUuid": "906a8add_05e5352e",
+      "revId": "6198bdfe1e782ddf83256c6479d55e0a2e01f133",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa6e0549_ec95c905",
@@ -48,6 +84,24 @@
       "writtenOn": "2023-06-29T06:06:08Z",
       "side": 1,
       "message": "are these downloaded by one of the epdm plays (I don\u0027t see where/how we are grabbing that from the standalone) ... previously i had delegate_to to grab this from the standalone vm itself\n\n[EDIT]: ok i found it later https://review.rdoproject.org/r/c/rdo-jobs/+/48878/39/playbooks/data_plane_adoption/standalone_prepare_tests.yaml",
+      "revId": "6198bdfe1e782ddf83256c6479d55e0a2e01f133",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42313e09_836c90be",
+        "filename": "playbooks/data_plane_adoption/run_repo_tests.yaml",
+        "patchSetId": 39
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2023-06-29T07:03:18Z",
+      "side": 1,
+      "message": "yes, it\u0027s a bit weird way to access it, but I did not find any easy way to delegate to the vm with the new setup. I guess it should be possible to setup some forwarding to provide easier accessing, but I do not know enough about zuul to see a clear way. There are a few points like this that we should iterate on and improve",
+      "parentUuid": "fa6e0549_ec95c905",
       "revId": "6198bdfe1e782ddf83256c6479d55e0a2e01f133",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
