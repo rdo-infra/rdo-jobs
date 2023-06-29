@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b1ba21c_e2eb212a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 39
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-06-29T06:06:08Z",
+      "side": 1,
+      "message": "nice\n\nwe should discuss how we are going to proceed... do we rip out the existing job and replace with this immediately?\n\ndo we run both for a few days to check stability?\n\nif we want to do the second one this will need some rework so it could continue to work for the existing job",
+      "revId": "6198bdfe1e782ddf83256c6479d55e0a2e01f133",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "906a8add_05e5352e",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_standalone_network_isolation.yaml",
+        "patchSetId": 39
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-06-29T06:06:08Z",
+      "side": 1,
+      "message": "maybe we can use a template here as an improvement\nbut also fine as is for first pass :)",
+      "revId": "6198bdfe1e782ddf83256c6479d55e0a2e01f133",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa6e0549_ec95c905",
+        "filename": "playbooks/data_plane_adoption/run_repo_tests.yaml",
+        "patchSetId": 39
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-06-29T06:06:08Z",
+      "side": 1,
+      "message": "are these downloaded by one of the epdm plays (I don\u0027t see where/how we are grabbing that from the standalone) ... previously i had delegate_to to grab this from the standalone vm itself\n\n[EDIT]: ok i found it later https://review.rdoproject.org/r/c/rdo-jobs/+/48878/39/playbooks/data_plane_adoption/standalone_prepare_tests.yaml",
+      "revId": "6198bdfe1e782ddf83256c6479d55e0a2e01f133",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
