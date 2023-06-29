@@ -28,7 +28,7 @@
           mkdir -p $DESTINATION
           curl -s -L -o ${DESTINATION}/dlrn-1.cfg $PARENT_JOB_LOGS/dlrn-1.cfg
           MOCK_CMD="mock -r $DESTINATION/dlrn-1.cfg "
-          PKGS_NVR=$(dnf -q --releasever 9 --installroot=/tmp/root --disablerepo='*' --enablerepo='DLRN-rpmbuild-centos9' --repofrompath=DLRN-rpmbuild-centos9,$PARENT_JOB_REPO list available | grep -e "DLRN-rpmbuild-centos9" | awk '{print $1}' | grep -v -e "src$")
+          PKGS_NVR=$(dnf repoquery -q --releasever 9 --installroot=/tmp/root --disablerepo='*' --enablerepo='DLRN-rpmbuild-centos9' --repofrompath=DLRN-rpmbuild-centos9,$PARENT_JOB_REPO --arch noarch --arch x86_64 --nvr)
           for pkg in $PKGS_NVR; do
               dnf download -q --releasever 9 --installroot=/tmp/root --disablerepo=* --enablerepo=DLRN-rpmbuild-centos9 --repofrompath=DLRN-rpmbuild-centos9,$PARENT_JOB_REPO --destdir $DESTINATION $pkg
           done
