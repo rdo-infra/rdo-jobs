@@ -158,7 +158,8 @@
           RET=0
           for pkg in $PKGS; do
               echo -e "INFO: differences for ${pkg}"
-              sdiff -s $DESTINATION/patched/$pkg $DESTINATION/trunk/$pkg
+              echo -e "Files installed from Trunk < > Packages installed from patched distgit"
+              diff $DESTINATION/trunk/$pkg $DESTINATION/patched/$pkg
               if [ $? -ne 0 ]; then
                   RET=1
               fi
