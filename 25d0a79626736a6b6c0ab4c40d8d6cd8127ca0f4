@@ -46,6 +46,30 @@
       },
       "revId": "25d0a79626736a6b6c0ab4c40d8d6cd8127ca0f4",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08b1100b_9b05014f",
+        "filename": "playbooks/DLRN/switch-to-pyproject-macros.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2023-06-29T13:58:15Z",
+      "side": 1,
+      "message": "rpm -qlp https://trunk.rdoproject.org/centos9-master/component/cloudops/current/python3-ceilometermiddleware-3.1.0-0.20230221183317.fecef0b.el9.noarch.rpm \u003e trunk\nrpm -qlp https://logserver.rdoproject.org/96/48996/2/check/DLRN-rpmbuild-centos9/2c34a00/buildset/centos9/current/python3-ceilometermiddleware-3.1.1-0.20230623144605.10e3d15.el9.noarch.rpm  \u003e patched\ndiff patched trunk",
+      "parentUuid": "e0c83d48_dabd7b8f",
+      "range": {
+        "startLine": 162,
+        "startChar": 14,
+        "endLine": 162,
+        "endChar": 19
+      },
+      "revId": "25d0a79626736a6b6c0ab4c40d8d6cd8127ca0f4",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
