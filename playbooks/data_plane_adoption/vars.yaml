@@ -9,6 +9,10 @@ oc_header: ''
 # External MariaDB IP for DB exports.
 external_mariadb_ip: CUSTOMIZE_THIS
 
+# virsh --connect=qemu:///system -q domifaddr standalone | awk 'NF>1{print $NF}' | cut -d/ -f1
+# install_yamls default: 192.168.122.100
+edpm_node_ip: CUSTOMIZE_THIS
+
 # Auth URL to use for adopted Keystone.
 auth_url: http://keystone-public-openstack.apps-crc.testing
 
