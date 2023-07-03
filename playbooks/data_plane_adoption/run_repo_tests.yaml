@@ -9,6 +9,12 @@
         path: /etc/nodepool/primary_node_private
       register: standalone_ip
 
+    - name: Place standalone_ip into vars.yaml for EDPM
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: '^edpm_node_ip:'
+        value: "edpm_node_ip: {{ standalone_ip['content'] | b64decode | trim }}"
+
     - name: Place standalone_ip into vars.yaml for MariaDB
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
