@@ -7,38 +7,30 @@
         ##### wallaby #####
         ## 8 in 9 line jobs ##
         - periodic-tripleo-centos-8-wallaby-promote-consistent-to-tripleo-ci-testing:
-            nodeset: cloud-centos-8-stream-ibm-bm3
             vars:
               release: wallaby
         - periodic-tripleo-ci-build-containers-ubi-8-quay-push-wallaby:
             dependencies:
               - periodic-tripleo-centos-8-wallaby-promote-consistent-to-tripleo-ci-testing
-            nodeset: single-centos-8-stream-node-ibm-bm3
         - periodic-tripleo-ci-centos-8-undercloud-upgrade-ffu-wallaby:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-quay-push-wallaby
-            nodeset: single-centos-8-stream-node-ibm-bm3
         - periodic-tripleo-ci-centos-8-standalone-upgrade-ffu-wallaby:
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-8-quay-push-wallaby
-            nodeset: single-centos-8-stream-node-ibm-bm3
         ## 9 line starts here ##
-        - periodic-tripleo-centos-9-wallaby-promote-promoted-components-to-tripleo-ci-testing:
-            nodeset: cloud-centos-9-stream-ibm-bm3
+        - periodic-tripleo-centos-9-wallaby-promote-promoted-components-to-tripleo-ci-testing
         - periodic-tripleo-ci-build-containers-ubi-9-quay-push-wallaby: &promoted_comp_to_ci_testing_wallaby
             dependencies:
               - periodic-tripleo-centos-9-wallaby-promote-promoted-components-to-tripleo-ci-testing
-            nodeset: single-centos-9-stream-node-ibm-bm3
         - periodic-tripleo-centos-9-buildimage-overcloud-full-wallaby: *promoted_comp_to_ci_testing_wallaby
         - periodic-tripleo-centos-9-buildimage-overcloud-hardened-uefi-full-wallaby: *promoted_comp_to_ci_testing_wallaby
         - periodic-tripleo-centos-9-buildimage-ironic-python-agent-wallaby: *promoted_comp_to_ci_testing_wallaby
         - periodic-tripleo-ci-centos-9-standalone-wallaby: &build_containers_cs_9_push_wallaby
             dependencies: &dep_build_containers_cs_9_push_wallaby
               - periodic-tripleo-ci-build-containers-ubi-9-quay-push-wallaby
-            nodeset: single-centos-9-stream-node-ibm-bm3
         - periodic-tripleo-ci-centos-9-containers-multinode-wallaby: &multinode
             dependencies: *dep_build_containers_cs_9_push_wallaby
-            nodeset: two-centos-9-nodes-ibm-bm3
         - periodic-tripleo-ci-centos-9-scenario000-multinode-oooq-container-updates-wallaby: *multinode
         - periodic-tripleo-ci-centos-9-scenario001-standalone-wallaby: *build_containers_cs_9_push_wallaby
         - periodic-tripleo-ci-centos-9-scenario002-standalone-wallaby: *build_containers_cs_9_push_wallaby
@@ -58,7 +50,6 @@
         - periodic-tripleo-ci-centos-9-scenario012-standalone-wallaby: *build_containers_cs_9_push_wallaby
         - periodic-tripleo-ci-centos-9-standalone-on-multinode-ipa-wallaby:
             dependencies: *dep_build_containers_cs_9_push_wallaby
-            nodeset: two-centos-9-nodes-ibm-bm3
         - periodic-tripleo-ci-centos-9-undercloud-containers-wallaby: *build_containers_cs_9_push_wallaby
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-scenario-wallaby: *build_containers_cs_9_push_wallaby
         - periodic-tripleo-ci-centos-9-standalone-full-tempest-api-wallaby: *build_containers_cs_9_push_wallaby
@@ -66,7 +57,6 @@
             dependencies:
               - periodic-tripleo-ci-build-containers-ubi-9-quay-push-wallaby
               - periodic-tripleo-ci-build-containers-ubi-8-quay-push-wallaby
-            nodeset: two-centos-9-one-centos-8-nodes-ibm-bm3
         - periodic-tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001-wallaby: &ovb_dep_cs_9_wallaby
             dependencies: &ovb_dep_only_cs_9_wallaby
               - periodic-tripleo-ci-build-containers-ubi-9-quay-push-wallaby
