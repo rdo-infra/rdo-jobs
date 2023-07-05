@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ac3e391_eb5e3291",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 47
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-07-05T07:21:12Z",
+      "side": 1,
+      "message": "lgtm i think we should merge this soon ",
+      "revId": "a8e4cf2b6fcad071809dfdf86427831c2c2c2a1e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab58d5ad_0b34b70b",
+        "filename": "playbooks/data_plane_adoption/files/standalone_vm_inventory.yaml.j2",
+        "patchSetId": 47
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-07-05T07:21:12Z",
+      "side": 1,
+      "message": "why have all the vars on the same line",
+      "revId": "a8e4cf2b6fcad071809dfdf86427831c2c2c2a1e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d7ef8c4_06a7c379",
+        "filename": "playbooks/data_plane_adoption/run_repo_tests_single_node.yaml",
+        "patchSetId": 47
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-07-05T07:21:12Z",
+      "side": 1,
+      "message": "looks like these are the only two \u0027extra\u0027 tasks here.. we could consider having these in a separate play and run that before \u0027run_repo_tests.yaml\u0027 ... though you\u0027d have to pass in the stadnalone_ip\n\njust a thought ... duplication is also fine since it is temporary. in fact ignore this, lets keep the duplication will be easier/cleaner to work with and then remove, marking this resolved :D",
+      "range": {
+        "startLine": 8,
+        "startChar": 10,
+        "endLine": 25,
+        "endChar": 38
+      },
+      "revId": "a8e4cf2b6fcad071809dfdf86427831c2c2c2a1e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
