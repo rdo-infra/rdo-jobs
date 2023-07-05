@@ -92,15 +92,18 @@
           $MOCK_CMD -q --shell "dnf repoquery --requires $PKG_NAME.src" > trunk_BRs.list
 
           echo -e "INFO: comparing installed packages for patched and trunk build dependencies"
-          echo -e "Packages installed from Trunk < > Packages installed from patched distgit"
-          sdiff -s trunk_builddeps.list patched_builddeps.list
+          sdiff -s trunk_builddeps.list patched_builddeps.list > diff
           if [ $? -ne 0 ]; then
               echo -e "ERROR: There are differences between build deps with SRPM for patched and trunk"
               echo -e "INFO: Total Build Requirements from patched spec"
               rpm -q --requires -p $DESTINATION/*src.rpm
               echo -e "INFO: Total Build Requirements from latest Trunk"
               cat trunk_BRs.list
+              echo -e "Packages installed from Trunk < > Packages installed from patched distgit"
+              cat diff
               exit 1
+          else
+              echo -e "INFO: There are no differences between build deps with SRPM for patched and trunk"
           fi
       when: compare_builddeps|default(false)
 
