@@ -333,6 +333,9 @@
           addFilter("python3-os-service-types.noarch: W: obsolete-not-provided python39-os-service-types")
           # Exception for microversion-parse
           addFilter("python3-microversion-parse.noarch: W: obsolete-not-provided python39-microversion-parse")
+          # Exception for os-faults
+          addFilter("python3-os-faults.noarch: W: obsolete-not-provided python39-os-faults")
+          addFilter("python3-os-faults-tests.noarch: W: obsolete-not-provided python39-os-faults-tests")
           EOF
 
           RPMLINT_CMD="rpmlint -f $HOME/.rpmlintrc"
