@@ -2,6 +2,14 @@
     name: rdo-jobs
     check:
       jobs:
+        - periodic-edpm-build-push-images-centos-9-antelope:
+            required-projects:
+              - name: github.com/openstack-k8s-operators/ci-framework
+                override-checkout: main
+              - name: github.com/openstack-k8s-operators/repo-setup
+                override-checkout: main
+              - name: github.com/openstack-k8s-operators/edpm-image-builder
+                override-checkout: main
         - tox-docs: &cfg
             nodeset: rdo-centos-8-stream
             pre-run:
