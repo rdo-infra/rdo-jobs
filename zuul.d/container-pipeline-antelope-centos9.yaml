@@ -30,6 +30,14 @@
                 override-checkout: main
               - name: github.com/openstack-k8s-operators/openstack-baremetal-operator
                 override-checkout: main
+        - periodic-edpm-build-push-images-centos-9-antelope:
+            required-projects:
+              - name: github.com/openstack-k8s-operators/ci-framework
+                override-checkout: main
+              - name: github.com/openstack-k8s-operators/repo-setup
+                override-checkout: main
+              - name: github.com/openstack-k8s-operators/edpm-image-builder
+                override-checkout: main
         - periodic-podified-edpm-baremetal-antelope-ocp-crc:
             dependencies: *deps
             required-projects: *rp
