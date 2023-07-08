@@ -2,6 +2,7 @@
     name: rdo-jobs
     check:
       jobs:
+        - periodic-edpm-build-push-images-centos-9-antelope
         - tox-docs: &cfg
             nodeset: rdo-centos-8-stream
             pre-run:
