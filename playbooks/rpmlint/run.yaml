@@ -338,6 +338,9 @@
           # Exception for os-faults
           addFilter("python3-os-faults.noarch: W: obsolete-not-provided python39-os-faults")
           addFilter("python3-os-faults-tests.noarch: W: obsolete-not-provided python39-os-faults-tests")
+          # Exception for networking-sfc
+          addFilter("python-networking-sfc-doc.noarch: E: zero-length /usr/share/doc/python-networking-sfc-doc/_downloads/*")
+          addFilter("python-networking-sfc-doc.noarch: E: zero-length /usr/share/doc/python-networking-sfc-doc/_static/networking-sfc.policy.yaml.sample")
           EOF
 
           RPMLINT_CMD="rpmlint -f $HOME/.rpmlintrc"
