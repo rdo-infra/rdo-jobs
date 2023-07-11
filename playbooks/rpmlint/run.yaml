@@ -335,6 +335,9 @@
           addFilter("python3-microversion-parse.noarch: W: obsolete-not-provided python39-microversion-parse")
           # Exception for networking-bigswitch
           addFilter("python3-networking-bigswitch.noarch: W: obsolete-not-provided python39-networking-bigswitch")
+          # Exception for networking-sfc
+          addFilter("python-networking-sfc-doc.noarch: E: zero-length /usr/share/doc/python-networking-sfc-doc/_downloads/*")
+          addFilter("python-networking-sfc-doc.noarch: E: zero-length /usr/share/doc/python-networking-sfc-doc/_static/networking-sfc.policy.yaml.sample")
           EOF
 
           RPMLINT_CMD="rpmlint -f $HOME/.rpmlintrc"
