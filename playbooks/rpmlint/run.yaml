@@ -127,6 +127,9 @@
           addFilter("python-novajoin.noarch: W: non-standard-gid")
           addFilter("python-novajoin.noarch: W: non-standard-uid")
           addFilter("openstack-nova-compute.noarch: E: explicit-lib-dependency libvirt-client")
+          addFilter("python3-novajoin.noarch: W: obsolete-not-provided python39-novajoin")
+          addFilter("python3-novajoin-doc.noarch: W: obsolete-not-provided python39-novajoin-doc")
+          addFilter("python3-novajoin-tests-unit.noarch: W: obsolete-not-provided python39-novajoin-tests-unit")
 
           # Exception for tackerclient
           addFilter("python-tackerclient-doc.noarch: W: file-not-utf8 /usr/share/doc/python-tackerclient-doc-.*/html/objects.inv")
