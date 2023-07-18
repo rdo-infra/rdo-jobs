@@ -18,14 +18,14 @@
     - name: Place standalone_ip into vars.yaml for MariaDB
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
-        regexp: '^external_mariadb_ip:'
-        value: "external_mariadb_ip: {{ standalone_ip['content'] | b64decode | trim }}"
+        regexp: '^source_mariadb_ip:'
+        value: "source_mariadb_ip: {{ standalone_ip['content'] | b64decode | trim }}"
 
     - name: Place standalone_ip into vars.yaml for OVN
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
-        regexp: '^external_ovndb_ip:'
-        value: "external_ovndb_ip: {{ standalone_ip['content'] | b64decode | trim }}"
+        regexp: '^source_ovndb_ip:'
+        value: "source_ovndb_ip: {{ standalone_ip['content'] | b64decode | trim }}"
 
     - name: Slurp the private key from standalone
       delegate_to: primary
@@ -48,8 +48,8 @@
     - name: Place mariadb password into secrets.yaml
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/secrets.yaml"
-        regexp: 'external_db_root_password:'
-        value: "external_db_root_password: {{ tripleo_passwords['content'] | b64decode | regex_search('MysqlRootPassword:.(.+)', '\\1') | first }}"
+        regexp: 'source_db_root_password:'
+        value: "source_db_root_password: {{ tripleo_passwords['content'] | b64decode | regex_search('MysqlRootPassword:.(.+)', '\\1') | first }}"
 
     - name: Place glance password into secrets.yaml
       ansible.builtin.lineinfile:

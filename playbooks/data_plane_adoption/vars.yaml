@@ -6,8 +6,11 @@ reset_crc_storage: true
 # Snippet to get the desired 'oc' command onto $PATH.
 oc_header: ''
 
-# External MariaDB IP for DB exports.
-external_mariadb_ip: CUSTOMIZE_THIS
+# Source MariaDB IP for DB exports.
+source_mariadb_ip: CUSTOMIZE_THIS
+
+# Source OVN DB IP for DB exports.
+source_ovndb_ip: CUSTOMIZE_THIS
 
 # virsh --connect=qemu:///system -q domifaddr standalone | awk 'NF>1{print $NF}' | cut -d/ -f1
 # install_yamls default: 192.168.122.100
