@@ -36,8 +36,8 @@
     - name: Place standalone key into secrets.yaml
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/secrets.yaml"
-        regexp: '^edpm_privatekey:'
-        value: "edpm_privatekey: \"{{ standalone_key['content'] | b64decode | trim }}\""
+        regexp: '^edpm_encoded_privatekey:'
+        value: "edpm_encoded_privatekey: \"{{ standalone_key['content'] }}\""
 
     - name: Slurp the tripleo passwords from standalone
       delegate_to: primary
