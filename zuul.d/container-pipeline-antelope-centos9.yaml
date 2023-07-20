@@ -7,6 +7,7 @@
         - periodic-centos-9-antelope-promote-podified-ci-testing-to-current-podified:
             dependencies:
               - periodic-container-quay-push-centos-9-antelope
+              - periodic-edpm-container-image-quay-push-centos-9-antelope
               # Tempest API test
         - periodic-container-quay-push-centos-9-antelope:
             dependencies:
@@ -14,6 +15,9 @@
               - periodic-podified-edpm-baremetal-antelope-ocp-crc
               - periodic-centos-9-standalone-to-crc-data-plane-adoption-antelope
               - periodic-data-plane-adoption-github-rdo-centos-9-crc-single-node-antelope
+        - periodic-edpm-container-image-quay-push-centos-9-antelope:
+            dependencies:
+              - periodic-edpm-build-push-images-centos-9-antelope
         - periodic-centos-9-standalone-to-crc-data-plane-adoption-antelope:
             dependencies:
               - periodic-container-tcib-build-push-centos-9-antelope
