@@ -343,6 +343,8 @@
           addFilter("python3-os-faults-tests.noarch: W: obsolete-not-provided python39-os-faults-tests")
           # Exception for oslo-sphinx
           addFilter("python3-oslo-sphinx.noarch: W: obsolete-not-provided python39-oslo-sphinx")
+          # Exception for novaclient 
+          addFilter("python-novaclient-doc.noarch: W: .* /usr/share/doc/python-novaclient-doc/html/objects.inv")
           EOF
 
           RPMLINT_CMD="rpmlint -f $HOME/.rpmlintrc"
