@@ -5,6 +5,17 @@
       ansible.builtin.include_role:
         name: prepare-workspace
 
+    - name: Create .ansible/plugins dir
+      ansible.builtin.file:
+        path: "{{ ansible_user_dir }}/.ansible/plugins"
+        state: directory
+
+    - name: Expose ci-framework custom plugins
+      ansible.builtin.copy:
+        src: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/ci-framework/ci_framework/plugins/"
+        dest: "{{ ansible_user_dir }}/.ansible/plugins"
+        remote_src: true
+
     - name: Install copy_containers
       ansible.builtin.include_role:
         name: copy_container
