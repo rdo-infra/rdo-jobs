@@ -1,0 +1,10 @@
+---
+- hosts: primary
+  tasks:
+    - name: Install copy_containers
+      ansible.builtin.include_role:
+        name: copy_container
+        tasks_from: main
+      vars:
+        enable_cron: false
+        enable_cron_c9: false
