@@ -43,6 +43,16 @@
       from_namespace: podified-antelope-centos9
       to_namespace: podified-antelope-centos9
 
+- job:
+    name: periodic-edpm-container-image-quay-push-centos-9-antelope
+    parent: periodic-edpm-container-image-quay-push-centos-9-master
+    vars:
+      openstack_release: antelope
+      container_build_push_job_name: periodic-edpm-build-push-images-centos-9-antelope
+      api_end_point: api-centos9-antelope
+      from_namespace: podified-antelope-centos9
+      to_namespace: podified-antelope-centos9
+
 ## data plane adoption job
 - job:
     name: periodic-centos-9-standalone-to-crc-data-plane-adoption-antelope
