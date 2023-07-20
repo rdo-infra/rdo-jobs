@@ -1,0 +1,7 @@
+---
+- hosts: primary
+  tasks:
+    - name: install copy-containers
+      ansible.builtin.command:
+        chdir: "{{ ansible_user_dir }}/src/review.rdoproject.org/rdo-infra/rdo-jobs"
+        cmd: ansible-playbook playbooks/podified-containers/copy_container.yml
