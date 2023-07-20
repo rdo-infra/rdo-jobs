@@ -43,6 +43,15 @@
       from_namespace: podified-antelope-centos9
       to_namespace: podified-antelope-centos9
 
+- job:
+    name: periodic-edpm-container-image-quay-push-centos-9-antelope
+    parent: periodic-container-quay-push-centos-9-antelope
+    vars:
+      container_build_push_job_name: periodic-edpm-build-push-images-centos-9-antelope
+    required-projects:
+      - name: openstack-k8s-operators/ci-framework
+        override-checkout: main
+
 ## data plane adoption job
 - job:
     name: periodic-centos-9-standalone-to-crc-data-plane-adoption-antelope
