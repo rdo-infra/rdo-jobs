@@ -347,6 +347,9 @@
           addFilter("python3-shade.noarch: W: obsolete-not-provided python39-shade")
           # Exception for novaclient
           addFilter("python-novaclient-doc.noarch: W: .* /usr/share/doc/python-novaclient-doc/html/objects.inv")
+          # Exception for rsdclient
+          addFilter("python3-rsdclient.noarch: W: obsolete-not-provided python39-rsdclient")
+          addFilter("python3-rsdclient-tests.noarch: W: obsolete-not-provided python39-rsdclient-tests")
           EOF
 
           RPMLINT_CMD="rpmlint -f $HOME/.rpmlintrc"
