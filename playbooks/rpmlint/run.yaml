@@ -343,6 +343,8 @@
           addFilter("python3-os-faults-tests.noarch: W: obsolete-not-provided python39-os-faults-tests")
           # Exception for oslo-sphinx
           addFilter("python3-oslo-sphinx.noarch: W: obsolete-not-provided python39-oslo-sphinx")
+          # Exception for shade
+          addFilter("python3-shade.noarch: W: obsolete-not-provided python39-shade")
           EOF
 
           RPMLINT_CMD="rpmlint -f $HOME/.rpmlintrc"
