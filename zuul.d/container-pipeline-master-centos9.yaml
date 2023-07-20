@@ -7,11 +7,15 @@
         - periodic-centos-9-master-promote-podified-ci-testing-to-current-podified:
             dependencies:
               - periodic-container-quay-push-centos-9-master
+              - periodic-edpm-container-image-quay-push-centos-9-master
               # Tempest API test
         - periodic-container-quay-push-centos-9-master:
             dependencies:
               - periodic-podified-edpm-deployment-master-ocp-crc-1cs9
               - periodic-podified-edpm-baremetal-master-ocp-crc
+        - periodic-edpm-container-image-quay-push-centos-9-master:
+            dependencies:
+              - periodic-edpm-build-push-images-centos-9-master
         - periodic-podified-edpm-deployment-master-ocp-crc-1cs9:
             dependencies: &deps
               - periodic-container-tcib-build-push-centos-9-master
@@ -32,6 +36,12 @@
                 override-checkout: main
               - name: github.com/openstack-k8s-operators/edpm-ansible
                 override-checkout: main
+        - periodic-podified-edpm-baremetal-master-ocp-crc:
+            dependencies: *deps
+            required-projects: *rp
+        - periodic-container-tcib-build-push-centos-9-master:
+            dependencies: &promote_consistent_to_ci_testing_master
+              - periodic-centos-9-master-promote-consistent-to-podified-ci-testing
         - periodic-edpm-build-push-images-centos-9-master:
             dependencies: &promote_hash_to_testing
               - periodic-centos-9-master-promote-consistent-to-podified-ci-testing
