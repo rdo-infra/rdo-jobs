@@ -62,7 +62,9 @@
     parent: copy-container-quay-base
     nodeset: single-centos-9-stream-node-vexxhost
     timeout: 3000
-    pre-run: playbooks/podified-containers/pre-push.yaml
+    pre-run:
+      - playbooks/podified-containers/pre-push.yaml
+      - playbooks/podified-containers/copy_container_run.yaml  
     post-run: playbooks/podified-containers/collect-push-logs.yaml
     attempts: 1
     vars:
@@ -73,3 +75,9 @@
       to_namespace: podified-main-centos9
       trunk_url: https://trunk.rdoproject.org
       promote_source: podified-ci-testing
+
+- job:
+    name: periodic-edpm-container-image-quay-push-centos-9-master
+    parent: periodic-container-quay-push-centos-9-master
+    vars:
+      container_build_push_job_name: periodic-edpm-build-push-images-centos-9-master
