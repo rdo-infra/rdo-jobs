@@ -30,6 +30,8 @@
                 override-checkout: main
               - name: github.com/openstack-k8s-operators/openstack-baremetal-operator
                 override-checkout: main
+              - name: github.com/openstack-k8s-operators/edpm-ansible
+                override-checkout: main
         - periodic-edpm-build-push-images-centos-9-master:
             required-projects:
               - name: github.com/openstack-k8s-operators/ci-framework
