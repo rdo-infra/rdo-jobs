@@ -1,0 +1,39 @@
+---
+- hosts: primary
+  tasks:
+    - name: Create copy-container.yml playbook on primary
+      ansible.builtin.copy:
+        dest: "{{ ansible_user_dir }}/copy-container.yml"
+        content: |-
+          - hosts: localhost
+            tasks:
+              - name: Install copy_containers
+                ansible.builtin.include_role:
+                  name: copy_container
+                  tasks_from: main
+                vars:
+                  enable_cron: false
+                  enable_cron_c9: false
+
+    - name: Ensure make is installed
+      become: true
+      ansible.builtin.package:
+        name: make
+
+    - name: Ensure dependencies are installed
+      environment:
+        USE_VENV: yes
+      ansible.builtin.shell:
+        chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/ci-framework"
+        cmd: |-
+          make setup_molecule
+
+    - name: install copy-containers
+      environment:
+        ANSIBLE_CONFIG: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/ci-framework/ansible.cfg"
+      ansible.builtin.command:
+        cmd: >-
+          {{ ansible_user_dir }}/test-python/bin/ansible-playbook
+          -i localhost,
+          -c local
+          copy-container.yml
