@@ -62,7 +62,9 @@
     parent: copy-container-quay-base
     nodeset: single-centos-9-stream-node-vexxhost
     timeout: 3000
-    pre-run: playbooks/podified-containers/pre-push.yaml
+    pre-run:
+      - playbooks/podified-containers/pre-push.yaml
+      - playbooks/podified-containers/copy_container_run.yaml  
     post-run: playbooks/podified-containers/collect-push-logs.yaml
     attempts: 1
     vars:
