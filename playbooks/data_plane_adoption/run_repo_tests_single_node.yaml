@@ -44,7 +44,7 @@
 
     - name: Read the standalone ssh key downloaded from standalone vm
       ansible.builtin.slurp:
-        path: /home/zuul/edpm_ssh_key
+        path: /home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa
       register: standalone_key
 
     - name: Place standalone key into secrets.yaml
