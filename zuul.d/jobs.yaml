@@ -63,16 +63,6 @@
       mol_scenario: container-login
 
 - job:
-    name: rdopkg-reqcheck
-    description: |
-      Dependency check with "rdopkg reqcheck"
-    parent: base
-    run: playbooks/reqcheck/run.yaml
-    nodeset: container-fedora
-    required-projects:
-      - rdopkg
-
-- job:
     name: DLRN-build-tripleo-base
     parent: base
     run: playbooks/DLRN-build-tripleo/run.yaml
