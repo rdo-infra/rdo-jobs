@@ -37,6 +37,7 @@
       - zuul: github.com/openstack-k8s-operators/ci-framework
     vars:
       tcib_repo: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/tcib"
+      openstack_release: master
       cifmw_build_containers_repo_dir: "{{ ansible_user_dir }}/ci-framework/artifacts/repositories"
       cifmw_build_containers_container_name_prefix: openstack
       cifmw_build_containers_containers_base_image: registry.access.redhat.com/ubi9:latest
