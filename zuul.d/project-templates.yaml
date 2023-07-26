@@ -21,9 +21,6 @@
     name: package-distgit-check-jobs
     check:
       jobs:
-        - rdopkg-reqcheck:
-            voting: false
-            branches: ^rpm-master$
         - rpmlint:
             dependencies:
               - DLRN-rpmbuild-centos9
