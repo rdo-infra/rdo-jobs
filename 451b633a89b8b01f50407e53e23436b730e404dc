@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "616ce4e3_8cd4a580",
+        "filename": "playbooks/podified-containers/main.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2023-07-26T11:51:20Z",
+      "side": 1,
+      "message": "we can drop this var",
+      "range": {
+        "startLine": 54,
+        "startChar": 3,
+        "endLine": 54,
+        "endChar": 42
+      },
+      "revId": "451b633a89b8b01f50407e53e23436b730e404dc",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88a1abf2_17bd1f90",
+        "filename": "zuul.d/container-jobs-antelope-centos9.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2023-07-26T11:51:20Z",
+      "side": 1,
+      "message": "it should be cifmw_build_containers_registry_namespace",
+      "range": {
+        "startLine": 23,
+        "startChar": 6,
+        "endLine": 23,
+        "endChar": 24
+      },
+      "revId": "451b633a89b8b01f50407e53e23436b730e404dc",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da89cf69_763f645a",
+        "filename": "zuul.d/container-jobs-master-centos9.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2023-07-26T11:51:20Z",
+      "side": 1,
+      "message": "it should be dropped from here. as we are setting release at playbook level.",
+      "range": {
+        "startLine": 43,
+        "startChar": 6,
+        "endLine": 43,
+        "endChar": 54
+      },
+      "revId": "451b633a89b8b01f50407e53e23436b730e404dc",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91ea4d84_aa9e5829",
+        "filename": "zuul.d/container-jobs-master-centos9.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2023-07-26T11:51:20Z",
+      "side": 1,
+      "message": "we can drop it from here.",
+      "range": {
+        "startLine": 47,
+        "startChar": 5,
+        "endLine": 47,
+        "endChar": 51
+      },
+      "revId": "451b633a89b8b01f50407e53e23436b730e404dc",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
