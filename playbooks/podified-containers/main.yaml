@@ -51,6 +51,5 @@
       ansible.builtin.include_role:
         name: build_containers
       vars:
-        version: "{{ ansible_distribution_major_version }}"
-        release: "{{ openstack_release }}"
-        image_tag: "{{ md5_value['content'] | b64decode | trim }}"
+        cifmw_build_containers_openstack_release: "{{ openstack_release }}"
+        cifmw_build_containers_image_tag: "{{ md5_value['content'] | b64decode | trim }}"

@@ -20,7 +20,7 @@
     name: container-tcib-build-centos-9-antelope
     parent: container-tcib-build-centos-9-master
     vars:
-      registry_namespace: podified-antelope-centos9
+      cifmw_build_containers_registry_namespace: podified-antelope-centos9
       openstack_release: antelope
 
 ## container push jobs
@@ -28,7 +28,7 @@
     name: periodic-container-tcib-build-push-centos-9-antelope
     parent: container-tcib-build-centos-9-antelope
     vars:
-      push_containers: true
+      cifmw_build_containers_push_containers: true
       buildah_login: true
       registry_login_enabled: true
 
