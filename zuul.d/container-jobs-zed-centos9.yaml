@@ -28,7 +28,7 @@
     name: periodic-container-tcib-build-push-centos-9-zed
     parent: container-tcib-build-centos-9-zed
     vars:
-      push_containers: true
+      cifmw_build_containers_push_containers: true
       buildah_login: true
       registry_login_enabled: true
 
