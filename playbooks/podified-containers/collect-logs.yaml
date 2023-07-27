@@ -5,9 +5,45 @@
   tasks:
     - name: Create container log dir
       file:
-        path: "{{ ansible_user_dir }}/zuul-output/logs"
+        path: "{{ ansible_user_dir }}/zuul-output/logs/logs"
         state: directory
         mode: 0755
+
+    - name: Retrieve built images  # noqa risky-shell-pipe
+      ansible.builtin.shell: "podman images | grep {{ cifmw_build_containers_container_name_prefix | default('openstack') }} "
+      register: built_images
+      become: true
+      changed_when: false
+
+    - name: Store built images to containers-built.log
+      ansible.builtin.copy:
+        content: |
+          {%  for item in built_images.stdout_lines %}
+          {{ item }}
+          {% endfor %}
+        dest: "{{ ansible_user_dir }}/zuul-output/logs/logs/containers-built.log"
+
+    - name: Check if we get ci-framework-data basedir
+      register: cifmw_state
+      ansible.builtin.stat:
+        path: "{{ ansible_user_dir }}/ci-framework-data"
+
+    - name: Collect ci-framework-data content of interest
+      when:
+        - cifmw_state.stat.exists | bool
+      block:
+        - name: Create ci-framework-data log directory for zuul
+          ansible.builtin.file:
+            path: "{{ ansible_user_dir }}/zuul-output/logs/ci-framework-data"
+            state: directory
+
+        - name: Copy ci-framework interesting files
+          ansible.builtin.shell:
+            chdir: "{{ ansible_user_dir }}/zuul-output/logs/ci-framework-data"
+            cmd: |
+              cp -ra {{ ansible_user_dir }}/ci-framework-data/logs . ;
+              cp -ra {{ ansible_user_dir }}/ci-framework-data/artifacts . ;
+
     - name: Collect logs
       args:
         chdir: "{{ ansible_user_dir }}/zuul-output/logs"
@@ -23,11 +59,6 @@
         sudo rsync -var --no-links /etc/containers/ {{ ansible_user_dir }}/zuul-output/logs || true
         # Copy repo-setup files
         rsync -var --no-links {{ ansible_user_dir }}/repos {{ ansible_user_dir }}/zuul-output/logs || true
-        # Buildah images
-        sudo buildah images | grep {{ cifmw_build_containers_container_name_prefix |default('openstack') }} | tee {{ ansible_user_dir }}/workspace/logs/containers-built.log
-        pushd {{ ansible_user_dir }}/workspace
-        sudo cp -R * {{ ansible_user_dir }}/zuul-output/logs
-        popd
       changed_when: true
     - name: Copy files from {{ work_dir }} on node
       include_role:
