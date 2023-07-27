@@ -356,6 +356,9 @@
           addFilter("python-manilaclient-doc.noarch: W: .* /usr/share/doc/python-manilaclient-doc/html/objects.inv")
           # Exception for diskimage-builder
           addFilter("diskimage-builder.noarch: W: obsolete-not-provided python39-diskimage-builder")
+          # Exception for vitrage+openstack
+          addFilter("python3-vitrage+openstack.noarch: W: obsolete-not-provided python39-vitrage+openstack")
+          addFilter("python3-vitrage+openstack.noarch: W: spelling-error.*")
           EOF
 
           RPMLINT_CMD="rpmlint -f $HOME/.rpmlintrc"
