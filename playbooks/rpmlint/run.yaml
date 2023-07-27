@@ -354,6 +354,8 @@
           addFilter("python3-ibmcclient.noarch: W: obsolete-not-provided python39-ibmcclient")
           # Exception for manilaclient
           addFilter("python-manilaclient-doc.noarch: W: .* /usr/share/doc/python-manilaclient-doc/html/objects.inv")
+          # Exception for diskimage-builder
+          addFilter("diskimage-builder.noarch: W: obsolete-not-provided python39-diskimage-builder")
           EOF
 
           RPMLINT_CMD="rpmlint -f $HOME/.rpmlintrc"
