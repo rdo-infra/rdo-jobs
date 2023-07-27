@@ -82,6 +82,12 @@
         regexp: 'cinder_password:'
         value: "cinder_password: {{ tripleo_passwords['content'] | b64decode | regex_search('CinderPassword:.(.+)', '\\1') | first }}"
 
+    - name: Place neutron password into secrets.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/secrets.yaml"
+        regexp: 'neutron_password:'
+        value: "neutron_password: {{ tripleo_passwords['content'] | b64decode | regex_search('NeutronPassword:.(.+)', '\\1') | first }}"
+
     - name: Set standalone login var controller1_ssh in secrets.yaml
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/secrets.yaml"

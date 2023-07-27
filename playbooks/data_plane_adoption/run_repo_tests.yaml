@@ -69,6 +69,12 @@
         regexp: 'cinder_password:'
         value: "cinder_password: {{ tripleo_passwords['content'] | b64decode | regex_search('CinderPassword:.(.+)', '\\1') | first }}"
 
+    - name: Place neutron password into secrets.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/secrets.yaml"
+        regexp: 'neutron_password:'
+        value: "neutron_password: {{ tripleo_passwords['content'] | b64decode | regex_search('NeutronPassword:.(.+)', '\\1') | first }}"
+
     # TODO(marios) fixme also affects haproxy may need another/better way
     - name: Setup IPTables forwarding on standalone for mariadb client access
       ansible.builtin.command: sudo iptables -t nat -A PREROUTING -p tcp --dport 3306 -j DNAT --to-destination 192.168.24.1:3306
