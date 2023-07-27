@@ -352,6 +352,8 @@
           addFilter("python3-rsdclient-tests.noarch: W: obsolete-not-provided python39-rsdclient-tests")
           # Exception for ibmcclient
           addFilter("python3-ibmcclient.noarch: W: obsolete-not-provided python39-ibmcclient")
+          # Exception for manilaclient
+          addFilter("python-manilaclient-doc.noarch: W: .* /usr/share/doc/python-manilaclient-doc/html/objects.inv")
           EOF
 
           RPMLINT_CMD="rpmlint -f $HOME/.rpmlintrc"
