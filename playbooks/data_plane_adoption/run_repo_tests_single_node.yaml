@@ -114,9 +114,9 @@
     - name: Fetch hash and set ci_testing_hash fact for periodic
       when: "'periodic' in zuul.job or (force_periodic|default(false)|bool)"
       block:
-        - name: Fetch latest c9/antelope podified-ci-testing from dlrn
+        - name: Fetch latest c9 or rhel9 antelope podified-ci-testing from dlrn
           ansible.builtin.uri:
-            url: https://trunk.rdoproject.org/centos9-antelope/podified-ci-testing/delorean.repo.md5
+            url: "https://{{ dpa_dlrn_server | default('trunk.rdoproject.org') }}/{{ dpa_dlrn_namespace | default('centos9-antelope') }}/podified-ci-testing/delorean.repo.md5"
             return_content: true
           register: latest_podified_ci_testing
           until: latest_podified_ci_testing.status == 200
@@ -128,8 +128,8 @@
             path: "{{ rdo_dir }}/vars.yaml"
             block: |
               periodic: true
-              container_registry: quay.rdoproject.org
-              container_namespace: podified-antelope-centos9
+              container_registry: "{{ dpa_container_registry | default('quay.rdoproject.org') }}"
+              container_namespace: "{{ dpa_container_namespace | default('podified-antelope-centos9') }}"
               container_tag: {{ latest_podified_ci_testing.content }}
 
     - name: Run data-plane-adoption tests

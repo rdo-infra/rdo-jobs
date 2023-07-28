@@ -5,8 +5,15 @@
     standalone_vm_ip: 192.168.122.100
   tasks:
     - name: Create standalone vm using ci-framework
-      ansible.builtin.shell:
+      ansible.builtin.shell: >
         ansible-playbook {{ rdo_dir }}/ci_framework_create_standalone_vm.yaml
+        {% if dpa_standalone_ntp_server is defined %}
+        -e ntp_override={{ dpa_standalone_ntp_server }}
+        {% endif %}
+        {% if skip_tripleo_repos is defined %}
+        -e skip_tripleo_repos=true
+        {% endif %}
+
       args:
         chdir: "{{ framework_dir }}"
 
