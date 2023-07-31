@@ -234,6 +234,15 @@
             branches: ^((?!rpm-master)|(^(?!train|ussuri|victoria)(\w+)-rdo))$
         - DLRN-rpmbuild-centos9-pinned:
             branches: ^rpm-master$
+        - DLRN-rpmbuild-centos9-compare-deps:
+            dependencies:
+              - DLRN-rpmbuild-centos9-pinned
+        - DLRN-rpmbuild-centos9-compare-builddeps:
+            dependencies:
+              - DLRN-rpmbuild-centos9-pinned
+        - DLRN-rpmbuild-centos9-compare-files:
+            dependencies:
+              - DLRN-rpmbuild-centos9-pinned
         - DLRN-rpmbuild
         - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
