@@ -51,3 +51,11 @@
       registry_namespace: podified-antelope-centos9
       openstack_release: antelope
       promote_source: podified-ci-testing
+
+- job:
+    name: periodic-data-plane-adoption-github-rdo-centos-9-crc-single-node-antelope
+    parent: data-plane-adoption-github-rdo-centos-9-crc-single-node
+    vars:
+      registry_namespace: podified-antelope-centos9
+      openstack_release: antelope
+      promote_source: podified-ci-testing
