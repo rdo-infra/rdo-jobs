@@ -11,4 +11,5 @@
           EDPM_COMPUTE_VCPUS: 8
           EDPM_COMPUTE_RAM: 7
           EDPM_COMPUTE_DISK_SIZE: 70
-          NTP_SERVER: pool.ntp.org
+          NTP_SERVER: "{{ ntp_override | default('pool.ntp.org') }}"
+          REPO_SETUP_CMDS: "{{ repo_setup_commands | default('/tmp/standalone-repos') }}"
