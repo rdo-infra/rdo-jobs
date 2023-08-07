@@ -51,3 +51,23 @@
       registry_namespace: podified-antelope-centos9
       openstack_release: antelope
       promote_source: podified-ci-testing
+
+## test dlrn reporting
+- job:
+    name: dlrn-report-test-centos-9-antelope
+    parent: base-ci-framework
+    timeout: 3000
+    run: playbooks/podified-containers/dlrn-test.yaml
+    post-run: playbooks/podified-containers/collect-logs.yaml
+    required-projects:
+      - name: github.com/openstack-k8s-operators/ci-framework
+        override-checkout: main
+      - name: github.com/openstack-k8s-operators/repo-setup
+        override-checkout: main
+    roles:
+      - zuul: github.com/openstack-k8s-operators/ci-framework
+    vars:
+      tcib_repo: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/tcib"
+      cifmw_build_containers_repo_dir: "{{ ansible_user_dir }}/ci-framework-data/artifacts/repositories"
+      openstack_release: antelope
+      promote_source: podified-ci-testing
