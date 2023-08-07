@@ -1,0 +1,37 @@
+---
+- hosts: primary
+  tasks:
+    - name: Clone repos in the job workspace
+      include_role:
+        name: prepare-workspace
+
+    - name: Install virtualenv
+      ansible.builtin.pip:
+        name: virtualenv
+
+    - name: Install and setup repos for the openstack release
+      ansible.builtin.include_role:
+        name: repo_setup
+
+      vars:
+        cifmw_repo_setup_basedir: "{{ cifmw_basedir | default(ansible_user_dir ~ '/ci-framework-data') }}"
+        cifmw_repo_setup_promotion: "{{ promote_source }}"
+        cifmw_repo_setup_branch: "{{ openstack_release  }}"
+        cifmw_repo_setup_dlrn_uri: "{{ trunk_url }}"
+        cifmw_repo_setup_rdo_mirror: "{{ trunk_url }}"
+        cifmw_repo_setup_os_release: "centos"
+        cifmw_repo_setup_dist_major_version: "{{ ansible_distribution_major_version }}"
+        cifmw_repo_setup_src: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/repo-setup"
+
+    - name: Cat out hash_info.sh
+      ansible.builtin.debug:
+        msg: "{{ lookup('file', '{{ ansible_user_dir }}/ci-framework-data/artifacts/repositories/hash_info.sh') }}"
+
+    - name: Test DLRN reporting
+      ansible.builtin.include_role:
+        name: dlrn_report
+        tasks_from: dlrn_report_results_one_task.yml
+      vars:
+        cifmw_dlrn_report_hash_info_file: '{{ ansible_user_dir }}/ci-framework-data/artifacts/repositories/hash_info.sh'
+        cifmw_dlrn_report_workspace: '{{ ansible_user_dir }}/ci-framework-data'
+
