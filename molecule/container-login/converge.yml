@@ -9,6 +9,8 @@
         name: container-login
       vars:
         tripleo_podman_tls_verify: false
+        # TEST
+        contailer_login_podman_role_name: "edpm_podman"
         registry_secrets:
           localhost:5000: "test_secret0"
           localhost:5001: "test_secret1"
