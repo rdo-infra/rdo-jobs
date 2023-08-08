@@ -33,6 +33,8 @@
               - name: github.com/openstack-k8s-operators/edpm-ansible
                 override-checkout: main
         - periodic-edpm-build-push-images-centos-9-master:
+            dependencies: &promote_hash_to_testing
+              - periodic-centos-9-master-promote-consistent-to-podified-ci-testing
             required-projects:
               - name: github.com/openstack-k8s-operators/ci-framework
                 override-checkout: main
@@ -41,9 +43,10 @@
               - name: github.com/openstack-k8s-operators/edpm-image-builder
                 override-checkout: main
         - periodic-podified-edpm-baremetal-master-ocp-crc:
-            dependencies: *deps
+            dependencies:
+              - periodic-container-tcib-build-push-centos-9-master
+              - periodic-edpm-build-push-images-centos-9-master
             required-projects: *rp
         - periodic-container-tcib-build-push-centos-9-master:
-            dependencies:
-              - periodic-centos-9-master-promote-consistent-to-podified-ci-testing
+            dependencies: *promote_hash_to_testing
         - periodic-centos-9-master-promote-consistent-to-podified-ci-testing
