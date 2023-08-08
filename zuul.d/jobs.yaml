@@ -61,6 +61,10 @@
     parent: rdo-molecule-base
     vars:
       mol_scenario: container-login
+    required-projects:
+      - openstack-k8s-operators/edpm-ansible
+    roles:
+      - zuul: github.com/openstack-k8s-operators/edpm-ansible
 
 - job:
     name: DLRN-build-tripleo-base
