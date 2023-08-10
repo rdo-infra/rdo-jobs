@@ -1,5 +1,7 @@
 - hosts: controller
   gather_facts: false
+  vars:
+    rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
   tasks:
     - name: Collect pod logs
       ansible.builtin.shell: |
@@ -33,6 +35,12 @@
         src: "{{ ansible_user_dir }}/ci-framework-data"
         dest: "{{ ansible_user_dir }}/logs/"
         remote_src: true
+
+    - name: Gather logs from standalone deployment in single node jobs
+      when: "'single-node' in zuul.job"
+      failed_when: false
+      ansible.builtin.shell:
+        ansible-playbook {{ rdo_dir }}/standalone_collect_logs.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
 
     - name: Copy pod debug files from {{ ansible_user_dir }}/logs on node
       failed_when: false

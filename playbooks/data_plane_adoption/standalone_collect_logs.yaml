@@ -1,0 +1,13 @@
+- hosts: standalone
+  gather_facts: false
+  tasks:
+    - name: Ensure logs/standalone folder exists
+      ansible.builtin.file:
+        path: '{{ ansible_user_dir }}/logs/standalone'
+        state: directory
+
+    - name: Copy log files from standalone vm
+      synchronize:
+        src: '/root/'
+        dest: '{{ ansible_user_dir }}/logs/standalone/'
+        mode: pull
