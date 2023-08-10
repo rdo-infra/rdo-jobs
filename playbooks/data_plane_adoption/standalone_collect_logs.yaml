@@ -1,0 +1,13 @@
+- hosts: standalone
+  gather_facts: false
+  tasks:
+    - name: Ensure logs/standalone folder exists
+      ansible.builtin.file:
+        path: '{{ ansible_user_dir }}/logs/standalone'
+        state: directory
+
+    - name: Place crc public key to standalone authorized_keys
+      ansible.posix.synchronize:
+        src: '/root/'
+        dest: '{{ ansible_user_dir }}/logs/standalone/'
+        mode: pull
