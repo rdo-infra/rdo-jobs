@@ -1,0 +1,13 @@
+- hosts: standalone
+  gather_facts: false
+  tasks:
+    - name: Ensure logs/standalone folder exists
+      ansible.builtin.file:
+        path: '/home/zuul/logs/standalone'
+        state: directory
+
+    - name: Copy log files from standalone vm
+      ansible.posix.synchronize:
+        src: '/root/'
+        dest: '/home/zuul/logs/standalone/'
+        mode: pull
