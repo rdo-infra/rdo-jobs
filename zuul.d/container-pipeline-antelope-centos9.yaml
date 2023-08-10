@@ -14,7 +14,8 @@
               - periodic-podified-edpm-deployment-antelope-ocp-crc-1cs9
               - periodic-podified-edpm-baremetal-antelope-ocp-crc
               - periodic-centos-9-standalone-to-crc-data-plane-adoption-antelope
-              - periodic-data-plane-adoption-github-rdo-centos-9-crc-single-node-antelope
+              # TODO(marios): re-add once it is more stable
+              # - periodic-data-plane-adoption-github-rdo-centos-9-crc-single-node-antelope
         - periodic-edpm-container-image-quay-push-centos-9-antelope:
             dependencies:
               - periodic-edpm-build-push-images-centos-9-antelope
