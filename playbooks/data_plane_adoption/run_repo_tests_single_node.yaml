@@ -4,6 +4,17 @@
     dpa_dir: "/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption"
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
     standalone_ip: "192.168.122.100"
+  tripleo_password_files:
+    - name: mariadb
+      regex: 'external_db_root_password'
+    - name: glance
+      regex: 'glance_password'
+    - name: placement
+      regex: 'placement_password'
+    - name: cinder
+      regex: 'cinder_password'
+    - name: neutron
+      regex: 'neutron_password'
   tasks:
     - name: Run test preparation in standalone vm
       ansible.builtin.shell:
@@ -58,36 +69,6 @@
         path: /home/zuul/tripleo-standalone-passwords.yaml
       register: tripleo_passwords
 
-    - name: Place mariadb password into secrets.yaml
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/secrets.yaml"
-        regexp: 'external_db_root_password:'
-        value: "external_db_root_password: {{ tripleo_passwords['content'] | b64decode | regex_search('MysqlRootPassword:.(.+)', '\\1') | first }}"
-
-    - name: Place glance password into secrets.yaml
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/secrets.yaml"
-        regexp: 'glance_password:'
-        value: "glance_password: {{ tripleo_passwords['content'] | b64decode | regex_search('GlancePassword:.(.+)', '\\1') | first }}"
-
-    - name: Place placement password into secrets.yaml
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/secrets.yaml"
-        regexp: 'placement_password:'
-        value: "placement_password: {{ tripleo_passwords['content'] | b64decode | regex_search('PlacementPassword:.(.+)', '\\1') | first }}"
-
-    - name: Place cinder password into secrets.yaml
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/secrets.yaml"
-        regexp: 'cinder_password:'
-        value: "cinder_password: {{ tripleo_passwords['content'] | b64decode | regex_search('CinderPassword:.(.+)', '\\1') | first }}"
-
-    - name: Place neutron password into secrets.yaml
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/secrets.yaml"
-        regexp: 'neutron_password:'
-        value: "neutron_password: {{ tripleo_passwords['content'] | b64decode | regex_search('NeutronPassword:.(.+)', '\\1') | first }}"
-
     - name: Set standalone login var controller1_ssh in secrets.yaml
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/secrets.yaml"
@@ -110,6 +91,13 @@
         path: "/etc/hosts"
         insertafter: "EOF"
         value: "{{ crc_ip.stdout }} keystone-public-openstack.apps-crc.testing glance-public-openstack.apps-crc.testing placement-public-openstack.apps-crc.testing cinder-public-openstack.apps-crc.testing"
+
+    - name: Set tripleo passwords in secrets.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/secrets.yaml"
+        regexp: "{{ item.regex }}"
+        line: "{{ item.regex }}: {{ tripleo_passwords['content'] | b64decode | regex_search('{{ item.name }}Password:.+(.+)', '\\1') | first }}"
+      loop: "{{ tripleo_password_files }}"
 
     - name: Fetch hash and set ci_testing_hash fact for periodic
       when: "'periodic' in zuul.job or (force_periodic|default(false)|bool)"
