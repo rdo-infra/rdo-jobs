@@ -101,53 +101,34 @@
         path: /home/zuul/tripleo-standalone-passwords.yaml
       register: tripleo_passwords
 
-    - name: Place mariadb password into secrets.yaml
+    - name: Set tripleo passwords in secrets.yaml
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/secrets.yaml"
-        regexp: 'external_db_root_password:'
-        value: "external_db_root_password: {{ tripleo_passwords['content'] | b64decode | regex_search('MysqlRootPassword:.(.+)', '\\1') | first }}"
-
-    - name: Place glance password into secrets.yaml
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/secrets.yaml"
-        regexp: 'glance_password:'
-        value: "glance_password: {{ tripleo_passwords['content'] | b64decode | regex_search('GlancePassword:.(.+)', '\\1') | first }}"
-
-    - name: Place placement password into secrets.yaml
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/secrets.yaml"
-        regexp: 'placement_password:'
-        value: "placement_password: {{ tripleo_passwords['content'] | b64decode | regex_search('PlacementPassword:.(.+)', '\\1') | first }}"
-
-    - name: Place cinder password into secrets.yaml
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/secrets.yaml"
-        regexp: 'cinder_password:'
-        value: "cinder_password: {{ tripleo_passwords['content'] | b64decode | regex_search('CinderPassword:.(.+)', '\\1') | first }}"
-
-    - name: Place neutron password into secrets.yaml
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/secrets.yaml"
-        regexp: 'neutron_password:'
-        value: "neutron_password: {{ tripleo_passwords['content'] | b64decode | regex_search('NeutronPassword:.(.+)', '\\1') | first }}"
-
-    - name: Place heat password into secrets.yaml
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/secrets.yaml"
-        regexp: 'heat_password:'
-        value: "heat_password: {{ tripleo_passwords['content'] | b64decode | regex_search('HeatPassword:.(.+)', '\\1') | first }}"
-
-    - name: Place heat auth encription key into secrets.yaml
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/secrets.yaml"
-        regexp: 'heat_auth_encryption_key:'
-        value: "heat_auth_encryption_key: {{ tripleo_passwords['content'] | b64decode | regex_search('HeatAuthEncryptionKey:.(.+)', '\\1') | first }}"
-
-    - name: Place manila password into secrets.yaml
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/secrets.yaml"
-        regexp: 'manila_password:'
-        value: "manila_password: {{ tripleo_passwords['content'] | b64decode | regex_search('ManilaPassword:.(.+)', '\\1') | first }}"
+        regexp: "{{ item.key }}:"
+        line: "{{ item.key }}: {{ tripleo_passwords['content'] | b64decode | regex_search(item.regex + ': (.+)', '\\1') | first }}"
+      loop:
+        - key: 'external_db_root_password'
+          regex: 'MysqlRootPassword'
+        - key: 'glance_password'
+          regex: 'GlancePassword'
+        - key: 'placement_password'
+          regex: 'PlacementPassword'
+        - key: 'cinder_password'
+          regex: 'CinderPassword'
+        - key: 'neutron_password'
+          regex: 'NeutronPassword'
+        - key: 'heat_password'
+          regex: 'HeatPassword'
+        - key: 'heat_auth_encryption_key'
+          regex: 'HeatAuthEncryptionKey'
+        - key: 'manila_password'
+          regex: 'ManilaPassword'
+        - key: 'ironic_password'
+          regex: 'IronicPassword'
+        - key: 'nova_password'
+          regex: 'NovaPassword'
+        - key: 'octavia_password'
+          regex: 'OctaviaPassword'
 
     - name: Set standalone login var controller1_ssh in secrets.yaml
       ansible.builtin.lineinfile:
