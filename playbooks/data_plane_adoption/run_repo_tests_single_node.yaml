@@ -58,35 +58,22 @@
         path: /home/zuul/tripleo-standalone-passwords.yaml
       register: tripleo_passwords
 
-    - name: Place mariadb password into secrets.yaml
+    - name: Set tripleo passwords in secrets.yaml
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/secrets.yaml"
-        regexp: 'external_db_root_password:'
-        value: "external_db_root_password: {{ tripleo_passwords['content'] | b64decode | regex_search('MysqlRootPassword:.(.+)', '\\1') | first }}"
-
-    - name: Place glance password into secrets.yaml
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/secrets.yaml"
-        regexp: 'glance_password:'
-        value: "glance_password: {{ tripleo_passwords['content'] | b64decode | regex_search('GlancePassword:.(.+)', '\\1') | first }}"
-
-    - name: Place placement password into secrets.yaml
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/secrets.yaml"
-        regexp: 'placement_password:'
-        value: "placement_password: {{ tripleo_passwords['content'] | b64decode | regex_search('PlacementPassword:.(.+)', '\\1') | first }}"
-
-    - name: Place cinder password into secrets.yaml
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/secrets.yaml"
-        regexp: 'cinder_password:'
-        value: "cinder_password: {{ tripleo_passwords['content'] | b64decode | regex_search('CinderPassword:.(.+)', '\\1') | first }}"
-
-    - name: Place neutron password into secrets.yaml
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/secrets.yaml"
-        regexp: 'neutron_password:'
-        value: "neutron_password: {{ tripleo_passwords['content'] | b64decode | regex_search('NeutronPassword:.(.+)', '\\1') | first }}"
+        regexp: "{{ item.regex }}"
+        line: "{{ item.regex }}: {{ tripleo_passwords['content'] | b64decode | regex_search('{{ item.name }}Password:.+(.+)', '\\1') | first }}"
+      loop:
+        - name: mariadb
+          regex: 'external_db_root_password'
+        - name: glance
+          regex: 'glance_password'
+        - name: placement
+          regex: 'placement_password'
+        - name: cinder
+          regex: 'cinder_password'
+        - name: neutron
+          regex: 'neutron_password'
 
     - name: Set standalone login var controller1_ssh in secrets.yaml
       ansible.builtin.lineinfile:
