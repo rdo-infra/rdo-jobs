@@ -55,6 +55,34 @@
       buildah_login: true
       registry_login_enabled: true
 
+## Temp container job with dlrn reporting
+- job:
+    name: periodic-container-tcib-build-push-centos-9-master-dlrn
+    parent: container-tcib-build-base-dlrn
+    nodeset: single-centos-9-stream-node-vexxhost
+    timeout: 3000
+    pre-run: playbooks/base/pre.yaml
+    run: playbooks/podified-containers/main.yaml
+    post-run: playbooks/podified-containers/collect-logs.yaml
+    required-projects:
+      - name: github.com/openstack-k8s-operators/ci-framework
+        override-checkout: main
+    roles:
+      - zuul: github.com/openstack-k8s-operators/ci-framework
+    vars:
+      tcib_repo: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/tcib"
+      openstack_release: master
+      cifmw_build_containers_repo_dir: "{{ ansible_user_dir }}/ci-framework/artifacts/repositories"
+      cifmw_build_containers_container_name_prefix: openstack
+      cifmw_build_containers_containers_base_image: registry.access.redhat.com/ubi9:latest
+      promote_source: podified-ci-testing
+      cifmw_build_containers_push_registry: quay.rdoproject.org
+      cifmw_build_containers_registry_namespace: podified-main-centos9
+      trunk_url: https://trunk.rdoproject.org/
+      cifmw_build_containers_push_containers: false
+      buildah_login: true
+      registry_login_enabled: true
+
 ## quay.io push job
 - job:
     name: periodic-container-quay-push-centos-9-master
