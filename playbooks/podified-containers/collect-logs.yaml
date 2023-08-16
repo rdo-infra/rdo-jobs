@@ -10,12 +10,14 @@
         mode: 0755
 
     - name: Retrieve built images  # noqa risky-shell-pipe
+      ignore_errors: true
       ansible.builtin.shell: "podman images | grep {{ cifmw_build_containers_container_name_prefix | default('openstack') }} "
       register: built_images
       become: true
       changed_when: false
 
     - name: Store built images to containers-built.log
+      when: built_images.rc == 0
       ansible.builtin.copy:
         content: |
           {%  for item in built_images.stdout_lines %}
