@@ -35,6 +35,24 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "663bcffa_bd553851",
+        "filename": "playbooks/data_plane_adoption/run_repo_tests_single_node.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 651
+      },
+      "writtenOn": "2023-08-17T11:30:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df2478b2_2655aa5e",
+      "revId": "13eb3fb0534d8451a66f87e21e18dd5a6fd768e7",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6ef5996_3c10617e",
@@ -48,6 +66,30 @@
       "writtenOn": "2023-08-14T06:55:39Z",
       "side": 1,
       "message": "first there is some issue here with the list to string, not sure you\u0027ll have to dig a bit but see the testproject logs:\n        * https://logserver.rdoproject.org/13/49413/9/check/data-plane-adoption-github-rdo-centos-9-crc-single-node/d38d584/job-output.txt\n        * 2023-08-11 16:25:32.398458 | ERROR! \u0027tripleo_password_files\u0027 is not a valid attribute for a Play\n        \n        \nsecondly, we are only using tripleo_password_files in this task and nowhere else in the play so we might consider just adding the items directly here, instead of capturing them in tripleo_passwords_files variable. i.e. like:\n\n\n```\n    - name: Set tripleo passwords in secrets.yaml\n      ansible.builtin.lineinfile:\n        path: \"{{ rdo_dir }}/secrets.yaml\"\n        regexp: \"{{ item.regex }}\"\n        line: \"{{ item.regex }}: {{ tripleo_passwords[\u0027content\u0027] | b64decode | regex_search(\u0027{{ item.name }}Password:.+(.+)\u0027, \u0027\\\\1\u0027) | first }}\"\n      loop:\n        - name: mariadb\n          regex: \u0027external_db_root_password\u0027\n        - name: glance\n          regex: \u0027glance_password\u0027\n        - name: placement\n          regex: \u0027placement_password\u0027\n        ETC\n```\n\nand I think that should also solve the first issue.",
+      "range": {
+        "startLine": 100,
+        "startChar": 16,
+        "endLine": 100,
+        "endChar": 38
+      },
+      "revId": "13eb3fb0534d8451a66f87e21e18dd5a6fd768e7",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6f420ff_d05824b4",
+        "filename": "playbooks/data_plane_adoption/run_repo_tests_single_node.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 651
+      },
+      "writtenOn": "2023-08-17T11:30:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6ef5996_3c10617e",
       "range": {
         "startLine": 100,
         "startChar": 16,
