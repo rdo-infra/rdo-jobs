@@ -65,6 +65,6 @@
     post-run:
       - playbooks/data_plane_adoption/collect_logs_crc.yaml
     vars:
-      crc_parameters: "--memory 20000 --disk-size 120 --cpus 8"
+      crc_parameters: "--memory 22000 --disk-size 120 --cpus 8"
       quay_login_secret_name: quay_nextgen_zuulgithubci
       standalone_vm_inventory: "standalone_vm_inventory"
