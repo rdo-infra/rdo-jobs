@@ -46,6 +46,8 @@
                 override-checkout: main
               - name: github.com/openstack-k8s-operators/edpm-ansible
                 override-checkout: main
+            vars: &edpm_job_vars
+              cifmw_dlrn_report_result: true
         - periodic-edpm-build-push-images-centos-9-antelope:
             dependencies: &promote_hash_to_testing
               - periodic-centos-9-antelope-promote-consistent-to-podified-ci-testing
@@ -61,6 +63,7 @@
               - periodic-container-tcib-build-push-centos-9-antelope
               - periodic-edpm-build-push-images-centos-9-antelope
             required-projects: *rp
+            vars: *edpm_job_vars
         - periodic-container-tcib-build-push-centos-9-antelope:
             dependencies: *promote_hash_to_testing
         - periodic-centos-9-antelope-promote-consistent-to-podified-ci-testing
