@@ -40,7 +40,7 @@
       openstack_release: master
       cifmw_build_containers_repo_dir: "{{ ansible_user_dir }}/ci-framework/artifacts/repositories"
       cifmw_build_containers_container_name_prefix: openstack
-      cifmw_build_containers_containers_base_image: registry.access.redhat.com/ubi9:latest
+      cifmw_build_containers_containers_base_image: quay.io/centos/centos:stream9
       promote_source: podified-ci-testing
       cifmw_build_containers_push_registry: quay.rdoproject.org
       cifmw_build_containers_registry_namespace: podified-main-centos9
