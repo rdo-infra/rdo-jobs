@@ -33,6 +33,46 @@
       "message": "https://logserver.rdoproject.org/59/45359/44/check/container-tcib-build-centos-9-antelope/35e1abb/ci-framework-data/artifacts/build_containers.sh",
       "revId": "274a85a37bfc92b29fbbcfadc0b20dd2baf91195",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e885d4b_5a2159f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2023-08-29T05:29:14Z",
+      "side": 1,
+      "message": "`",
+      "revId": "274a85a37bfc92b29fbbcfadc0b20dd2baf91195",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ae06fe2_470036c8",
+        "filename": "zuul.d/container-jobs-master-centos9.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2023-08-29T05:29:14Z",
+      "side": 1,
+      "message": "This var is no longer needed in favor of https://github.com/openstack-k8s-operators/ci-framework/pull/478 but still we can keep it as it was added there.",
+      "range": {
+        "startLine": 43,
+        "startChar": 6,
+        "endLine": 43,
+        "endChar": 81
+      },
+      "revId": "274a85a37bfc92b29fbbcfadc0b20dd2baf91195",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
