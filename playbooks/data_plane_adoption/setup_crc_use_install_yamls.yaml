@@ -1,9 +1,28 @@
+- hosts: all
+  tasks:
+    # this should be handled better by parent job, just for testing
+    - name: Clone repos in the job workspace
+      include_role:
+        name: prepare-workspace
+
 - hosts: controller
   vars:
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
 
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
   tasks:
+    - name: Ensure ansible is installed
+      become: true
+      ansible.builtin.package:
+        name:
+          - ansible-core
+
+    - name: Wait for crc to be ready by ci-framework
+      ansible.builtin.shell: |
+          ansible-playbook {{ framework_dir }}/ci/playbooks/wait-for-crc.yaml
+      args:
+        chdir: "{{ framework_dir }}"
+
     - name: Print the current CRC version
       ansible.builtin.shell: |
         crc version
