@@ -4,17 +4,25 @@
     dpa_dir: "/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption"
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
-    standalone_ip: "192.168.122.100"
   tasks:
+    - name: Create inventory to run tasks inside vm
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/files/standalone_vm_inventory.yaml.j2"
+        dest: "/home/zuul/{{ standalone_vm_inventory | default('standalone_vm_inventory') }}"
+
+    - name: Install community.libvirt collection
+      ansible.builtin.command: ansible-galaxy collection install community.libvirt
+
     - name: Create standalone vm using ci-framework
       ansible.builtin.shell: >
-        ansible-playbook {{ rdo_dir }}/ci_framework_create_standalone_vm.yaml
+        ansible-playbook {{ rdo_dir }}/ci_framework_create_standalone_vm.yaml -e "job_name={{ zuul.job }}"
         {% if dpa_standalone_ntp_server is defined %}
         -e ntp_override={{ dpa_standalone_ntp_server }}
         {% endif %}
         {% if osp_release is defined %}
         -e repo_setup_commands=/home/zuul/ci-framework-data/artifacts/edpm_compute/compute_repo-0.sh
         {% endif %}
+        -e "standalone_ip={{ standalone_ip }}" -e "standalone_gateway={{ standalone_gateway }}"
       args:
         chdir: "{{ framework_dir }}"
 
@@ -28,11 +36,6 @@
         ansible_user: root
         ansible_ssh_private_key_file: /home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa
 
-    - name: Create inventory to run tasks inside vm
-      ansible.builtin.template:
-        src: "{{ playbook_dir }}/files/standalone_vm_inventory.yaml.j2"
-        dest: "/home/zuul/{{ standalone_vm_inventory | default('standalone_vm_inventory') }}"
-
     - name: Accept standalone vm ssh host keys to avoid prompt connecting for the first time
       connection: local
       ansible.builtin.shell: |
@@ -41,38 +44,54 @@
       register: known_hosts_script
       changed_when: "'found' not in known_hosts_script.stdout"
 
+    - name: Configure routing so the standalone vm is reachable from crc in extracted crc
+      when: "'extracted-crc' in job_name"
+      block:
+        - name: Add route to reach crc from standalone vm
+          ansible.builtin.shell:
+            ansible-playbook {{ rdo_dir }}/standalone_route_to_crc.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }} -e "standalone_gateway={{ standalone_gateway }}"
+
+        - name: Add route to reach standalone vm from crc node
+          become: true
+          delegate_to: crc
+          ansible.builtin.shell:
+            cmd: ip route add {{ standalone_ip }} via 192.168.122.11
+
     - name: Run test preparation in standalone vm
       ansible.builtin.shell:
         ansible-playbook {{ rdo_dir }}/standalone_prepare_tests.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
 
-    - name: Get bridge used by standalone vm
-      become: true
-      ansible.builtin.shell:
-        virsh dumpxml edpm-compute-0 | grep -oP "(?<=bridge=').*(?=')"
-      register: epdm_bridge
+    - name: Configure networking to provide host access to internalapi network
+      when: "'single-node' in zuul.job"
+      block:
+        - name: Get bridge used by standalone vm
+          become: true
+          ansible.builtin.shell:
+            virsh dumpxml edpm-compute-0 | grep -oP "(?<=bridge=').*(?=')"
+          register: epdm_bridge
 
-    # FIXME: the tag and the address should ideally be calculated from definitions
-    # The address should ideally be removed from the address pool available for CNI
-    # for allocation.
-    - name: Configure access of adoption host to internalapi network
-      ansible.builtin.shell: |
-        sudo ip link add link "{{ epdm_bridge.stdout }}" name vlan20 type vlan id 20
-        sudo ip addr add dev vlan20 172.17.0.222/24
-        sudo ip link set up dev vlan20
+        # FIXME: the tag and the address should ideally be calculated from definitions
+        # The address should ideally be removed from the address pool available for CNI
+        # for allocation.
+        - name: Configure access of adoption host to internalapi network
+          ansible.builtin.shell: |
+            sudo ip link add link "{{ epdm_bridge.stdout }}" name vlan20 type vlan id 20
+            sudo ip addr add dev vlan20 172.17.0.222/24
+            sudo ip link set up dev vlan20
 
-    - name: Place standalone_ip into vars.yaml for EDPM
+    - name: Place standalone vm ip into vars.yaml for EDPM
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
         regexp: '^edpm_node_ip:'
         value: "edpm_node_ip: {{ standalone_ip }}"
 
-    - name: Place standalone_ip into vars.yaml for MariaDB
+    - name: Place standalone vm ip into vars.yaml for MariaDB
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
         regexp: '^external_mariadb_ip:'
         value: "external_mariadb_ip: {{ standalone_ip }}"
 
-    - name: Place standalone_ip into vars.yaml for OVN
+    - name: Place standalone vm ip into vars.yaml for OVN
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
         regexp: '^external_ovndb_ip:'
@@ -136,16 +155,20 @@
         name: python-openstackclient
         executable: pip3
 
-    - name: grab the crc VM IP address
-      ansible.builtin.command: crc ip
-      register: crc_ip
+    - name: Configure hosts for nested crc
+      # this block is not needed in extracted crc job
+      when: "'single-node' in zuul.job"
+      block:
+        - name: grab the crc VM IP address
+          ansible.builtin.command: crc ip
+          register: crc_ip
 
-    - name: Set etc hosts entry for keystone glance placement cinder to crc VM IP
-      become: true
-      ansible.builtin.lineinfile:
-        path: "/etc/hosts"
-        insertafter: "EOF"
-        value: "{{ crc_ip.stdout }} keystone-public-openstack.apps-crc.testing glance-public-openstack.apps-crc.testing placement-public-openstack.apps-crc.testing cinder-public-openstack.apps-crc.testing"
+        - name: Set etc hosts entry for keystone glance placement cinder to crc VM IP
+          become: true
+          ansible.builtin.lineinfile:
+            path: "/etc/hosts"
+            insertafter: "EOF"
+            value: "{{ crc_ip.stdout }} keystone-public-openstack.apps-crc.testing glance-public-openstack.apps-crc.testing placement-public-openstack.apps-crc.testing cinder-public-openstack.apps-crc.testing"
 
     - name: Fetch hash and set ci_testing_hash fact for periodic
       when: "'periodic' in zuul.job or (force_periodic|default(false)|bool)"
