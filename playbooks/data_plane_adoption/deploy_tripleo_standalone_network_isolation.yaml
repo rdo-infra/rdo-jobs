@@ -2,7 +2,6 @@
   vars:
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
-    standalone_vm_ip: 192.168.122.100
   tasks:
     - name: This task will be removed.
       ansible.builtin.shell: |
