@@ -1,0 +1,94 @@
+- hosts: controller
+  vars:
+    framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
+    cifmw_parameters_file: "/home/zuul/vars.yaml"
+    rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
+    cifmw_installyamls_repos: "/home/zuul/src/github.com/openstack-k8s-operators/install_yamls"
+  tasks:
+    - name: Remove nested crc vm ip from /etc/hosts
+      become: true
+      ansible.builtin.lineinfile:
+        path: "/etc/hosts"
+        regexp: "^192.168.130.11"
+        state: absent
+
+    - name: Ensure we don't have a kubeconfig file from nested crc
+      ansible.builtin.file:
+        path: "/home/zuul/.kube/config"
+        state: absent
+
+    - name: Add extracted crc vm ip as dns server
+      become: true
+      ansible.builtin.lineinfile:
+        path: "/etc/resolv.conf"
+        insertbefore: "^nameserver"
+        line: "nameserver 192.168.122.10"
+        firstmatch: true
+
+    - name: Prepare ci-framework environment and install openshift client
+      ansible.builtin.shell:
+        cmd: |
+          ansible-galaxy collection install community.general
+          ansible-playbook ci_framework/playbooks/01-bootstrap.yml --tags bootstrap
+        chdir: "{{ framework_dir }}"
+
+    - name: Dump parameters to a file to pass them easily to cifmw playbooks
+      ansible.builtin.copy:
+        dest: "{{cifmw_parameters_file}}"
+        content: |
+          ---
+          cifmw_basedir: "/home/zuul/ci-framework-data"
+          cifmw_artifacts_crc_sshkey: "{{cifmw_artifacts_crc_sshkey}}"
+          cifmw_openshift_user: "{{cifmw_openshift_user}}"
+          cifmw_openshift_password: "{{cifmw_openshift_password}}"
+          cifmw_openshift_api: "{{cifmw_openshift_api}}"
+          cifmw_openshift_kubeconfig: "{{cifmw_openshift_kubeconfig}}"
+          cifmw_openshift_skip_tls_verify: "{{cifmw_openshift_skip_tls_verify}}"
+          cifmw_openshift_setup_skip_internal_registry_tls_verify: "{{cifmw_openshift_setup_skip_internal_registry_tls_verify}}"
+          cifmw_use_libvirt: "{{cifmw_use_libvirt}}"
+          cifmw_use_crc: "{{cifmw_use_crc}}"
+          pre_deploy:
+            - name: Fetch compute facts
+              type: playbook
+              source: fetch_compute_facts.yml
+          pre_infra:
+            - name: Download needed tools
+              inventory: 'localhost,'
+              connection: local
+              type: playbook
+              source: "{{ cifmw_installyamls_repos }}/devsetup/download_tools.yaml"
+
+    - name: Prepare openshift and libvirt environment
+      ansible.builtin.shell:
+        cmd:
+          ansible-playbook -v ci_framework/playbooks/02-infra.yml -e "@{{cifmw_parameters_file}}"
+        chdir: "{{ framework_dir }}"
+
+    - name: Install operators via ci-framework using edpm code
+      ansible.builtin.shell:
+        cmd:
+          ansible-playbook -v ci_framework/playbooks/06-deploy-edpm.yml -e "@{{cifmw_parameters_file}}" -i "{{ inventory_file }}"
+        chdir: "{{ framework_dir }}"
+
+    - name: Copy kubeconfig to .kube folder where oc expects it
+      ansible.builtin.copy:
+        src: "{{ cifmw_openshift_kubeconfig }}"
+        dest: "/home/zuul/.kube/config"
+        remote_src: true
+
+    - name: Make sure all Openstack operators are deployed
+      ansible.builtin.shell: |
+        set -o pipefail && \
+        oc get csv -l operators.coreos.com/openstack-operator.openstack-operators -n "openstack-operators" --no-headers=true | grep -i "succeeded"
+      register: operator_status
+      until: operator_status.rc == 0
+      changed_when: false
+      retries: 30
+      delay: 30
+
+    - name: Get the name of the control plane deployed by 06-deploy-edpm.yml
+      ansible.builtin.command: oc get -n openstack openstackcontrolplane -o name
+      register: control_plane
+
+    - name: Delete control plane deployed by 06-deploy-edpm.yml
+      ansible.builtin.command: oc delete -n openstack "{{ control_plane.stdout }}"
