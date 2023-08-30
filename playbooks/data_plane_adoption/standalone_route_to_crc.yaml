@@ -1,0 +1,7 @@
+- hosts: standalone
+  gather_facts: false
+  tasks:
+    - name: Add route to reach standalone vm from crc node
+      become: true
+      ansible.builtin.shell:
+        cmd: "ip route add 192.168.122.10 via {{ standalone_gateway }}"
