@@ -2,11 +2,18 @@
   vars:
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
-    standalone_vm_ip: 192.168.122.100
   tasks:
+    - name: Create inventory to run tasks inside vm
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/files/standalone_vm_inventory.yaml.j2"
+        dest: "/home/zuul/{{ standalone_vm_inventory | default('standalone_vm_inventory') }}"
+
     - name: Create standalone vm using ci-framework
       ansible.builtin.shell:
-        ansible-playbook {{ rdo_dir }}/ci_framework_create_standalone_vm.yaml
+        cmd: |
+          ansible-galaxy collection install community.libvirt
+          ansible-playbook {{ rdo_dir }}/ci_framework_create_standalone_vm.yaml -e "job_name={{ zuul.job }}" \
+            -e "standalone_vm_ip={{ standalone_vm_ip }}" -e "standalone_vm_gateway={{ standalone_vm_gateway }}"
       args:
         chdir: "{{ framework_dir }}"
 
@@ -19,11 +26,6 @@
       vars:
         ansible_user: root
         ansible_ssh_private_key_file: /home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa
-
-    - name: Create inventory to run tasks inside vm
-      ansible.builtin.template:
-        src: "{{ playbook_dir }}/files/standalone_vm_inventory.yaml.j2"
-        dest: "/home/zuul/{{ standalone_vm_inventory | default('standalone_vm_inventory') }}"
 
     - name: Accept standalone vm ssh host keys to avoid prompt connecting for the first time
       connection: local
