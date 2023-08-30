@@ -2,6 +2,137 @@
   vars:
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
   tasks:
+    - name: Configure qemu and vm network for extracted crc
+      when: "'extracted-crc' in job_name"
+      block:
+        - name: Create bridge to connect standalone vm to 192.168.122 network
+          become: true
+          community.general.nmcli:
+            type: bridge
+            conn_name: br1
+            ifname: br1
+            gw4: 192.168.122.1
+            dns4:
+              - 192.168.122.10
+            ip4:
+              - 192.168.122.11/24
+            state: present
+
+        - name: Turn down ci-private-network connection
+          become: true
+          community.general.nmcli:
+            conn_name: ci-private-network
+            state: absent
+
+        - name: Set ci-private-network connection as slave of the br1 bridge
+          become: true
+          community.general.nmcli:
+            slave_type: bridge
+            type: ethernet
+            ifname: eth1
+            master: br1
+            conn_name: ci-private-network
+            state: present
+
+        - name: Turn down vlan interfaces to allow tagged traffic to be forwarded to vm
+          # jgilaber: keep vlan20 interface since we need it to ping ovn pods over the
+          # internal-api network, if in the future we move the ovn adoption to
+          # execute with 'oc run' it should be added here
+          become: true
+          community.general.nmcli:
+            conn_name: "ci-private-network-{item}"
+            state: absent
+          loop:
+            - 21
+            - 21
+
+        - name: Ensure qemu is configured to use the zuul user
+          become: true
+          ansible.builtin.lineinfile:
+            path: "/etc/libvirt/qemu.conf"
+            regexp: "{{ item.regexp }}"
+            line: "{{ item.line }}"
+            backrefs: true
+          loop:
+            - {regexp: '^#user =', line: 'user = "zuul"'}
+            - {regexp: '^#group =', line: 'group = "libvirt"'}
+
+        - name: Restart libvirtd service to apply the changes
+          become: true
+          ansible.builtin.service:
+            name: libvirtd
+            state: restarted
+
+        - name: Undefine existing default network
+          community.libvirt.virt_net:
+            name: default
+            state: absent
+
+        - name: Recreate libvirt default with the correct network ip range
+          community.libvirt.virt_net:
+            name: default
+            state: present
+            xml: '{{ lookup("file", "libvirt_default_network.xml") }}'
+
+        - name: Activate default network
+          community.libvirt.virt_net:
+            name: default
+            state: active
+
+        - name: Set default network to autostart
+          community.libvirt.virt_net:
+            name: default
+            autostart: true
+
+        - name: Catch packets to multicast adresses
+          become: true
+          ansible.builtin.iptables:
+            table: "nat"
+            chain: "LIBVIRT_PRT"
+            source: "192.168.122.0/24"
+            destination: "224.0.0.0/24"
+            jump: "RETURN"
+
+        - name: Catch packets to broadcast adresses
+          become: true
+          ansible.builtin.iptables:
+            table: "nat"
+            chain: "LIBVIRT_PRT"
+            source: "192.168.122.0/24"
+            destination: "255.255.255.255/32"
+            jump: "RETURN"
+
+        - name: Masquerade outgoing tcp packets
+          become: true
+          ansible.builtin.iptables:
+            table: "nat"
+            chain: "LIBVIRT_PRT"
+            source: "192.168.122.0/24"
+            destination: "!192.168.122.0/24"
+            jump: "MASQUERADE"
+            protocol: tcp
+            to_ports: "1024-65535"
+
+        - name: Masquerade outgoing udp packets
+          become: true
+          ansible.builtin.iptables:
+            table: "nat"
+            chain: "LIBVIRT_PRT"
+            source: "192.168.122.0/24"
+            destination: "!192.168.122.0/24"
+            jump: "MASQUERADE"
+            protocol: udp
+            to_ports: "1024-65535"
+
+        - name: Masquerade outgoing packets
+          become: true
+          ansible.builtin.iptables:
+            table: "nat"
+            chain: "LIBVIRT_PRT"
+            source: "192.168.122.0/24"
+            destination: "!192.168.122.0/24"
+            jump: "MASQUERADE"
+
     - name: Create a vm and deploy standalone on it with network isolation
       ansible.builtin.include_role:
         name: 'install_yamls_makes'
@@ -13,3 +144,12 @@
           EDPM_COMPUTE_DISK_SIZE: 70
           NTP_SERVER: "{{ ntp_override | default('pool.ntp.org') }}"
           REPO_SETUP_CMDS: "{{ repo_setup_commands | default('/tmp/standalone-repos') }}"
+          GATEWAY: "{{ standalone_gateway }}"
+          IP: "{{ standalone_ip }}"
+          DATAPLANE_DNS_SERVER: "{{ standalone_dns | default(standalone_gateway) }}"
+          HOST_PRIMARY_RESOLV_CONF_ENTRY: "{{ standalone_dns | default(standalone_gateway) }}"
+
+    - name: Create a snapshot of the standalone vm in case we want to retry the adoption process
+      ansible.builtin.include_role:
+        name: 'install_yamls_makes'
+        tasks_from: 'make_standalone_snapshot.yml'
