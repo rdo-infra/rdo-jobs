@@ -1,0 +1,7 @@
+- hosts: standalone
+  gather_facts: false
+  tasks:
+    - name: Delete 192.168.122 subnet route to access via default gateway
+      become: true
+      ansible.builtin.shell:
+        cmd: ip route delete 192.168.122.0/24
