@@ -28,6 +28,50 @@
       crc_parameters: "--memory 22000 --disk-size 120 --cpus 8"
       quay_login_secret_name: quay_nextgen_zuulgithubci
       standalone_vm_inventory: "standalone_vm_inventory"
+      standalone_ip: 192.168.122.100
+      standalone_gateway: 192.168.122.1
+      single_node: true
+    irrelevant-files:
+      - ^.*\.md$
+      - ^.*\.rst$
+      - ^docs/.*$
+      - .github/workflows
+      - mkdocs.yaml
+      - .gitignore
+      - LICENSE
+
+- job:
+    name: data-plane-adoption-github-rdo-centos-9-extracted-crc
+    parent: cifmw-adoption-base
+    required-projects:
+      - name: openstack-k8s-operators/install_yamls
+        override-checkout: main
+      - opendev.org/zuul/zuul-jobs
+      - opendev.org/openstack/tripleo-repos
+      - name: openstack-k8s-operators/data-plane-adoption
+        override-checkout: main
+      - name: openstack-k8s-operators/ci-framework
+        override-checkout: main
+      - rdo-jobs
+    roles:
+      - zuul: rdo-jobs
+      - zuul: github.com/openstack-k8s-operators/ci-framework
+    pre-run:
+      - playbooks/data_plane_adoption/subnode_ip.yaml
+      - playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml
+    run:
+      - playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml
+    post-run:
+      - playbooks/data_plane_adoption/collect_logs_crc.yaml
+      - playbooks/data_plane_adoption/set_zuul_artifacts.yaml
+      - playbooks/force_job_failure.yaml
+    vars:
+      standalone_vm_inventory: "standalone_vm_inventory"
+      standalone_ip: 192.168.122.100
+      standalone_gateway: 192.168.122.11
+      standalone_dns: 192.168.122.10
+      standalone_check_connectivity: "true"
+      single_node: false
     irrelevant-files:
       - ^.*\.md$
       - ^.*\.rst$
