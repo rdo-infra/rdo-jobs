@@ -2,6 +2,42 @@
   vars:
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
   tasks:
+    - name: Configure qemu for extracted crc
+      when: "'extracted-crc' in job_name"
+      block:
+        - name: Ensure qemu is configured to use the zuul user
+          become: true
+          ansible.builtin.lineinfile:
+            path: "/etc/libvirt/qemu.conf"
+            regexp: "{{ item.regexp }}"
+            line: "{{ item.line }}"
+            backrefs: true
+          loop:
+            - {regexp: '^#user =', line: 'user = "zuul"'}
+            - {regexp: '^#group =', line: 'group = "libvirt"'}
+
+        - name: Restart libvirtd service to apply the changes
+          become: true
+          ansible.builtin.service:
+            name: libvirtd
+            state: restarted
+
+        - name: Stop pre-created crc libvirt network
+          community.libvirt.virt_net:
+            command: destroy
+            name: crc
+
+        - name: Undefine pre-created crc libvirt network
+          community.libvirt.virt_net:
+            command: undefine
+            name: crc
+
+        - name: Edit libvirt default network ip range
+          community.libvirt.virt_net:
+            command: modify
+            name: default
+            xml: '{{ lookup("file", "libvirt_default_network.xml") }}'
+
     - name: Create a vm and deploy standalone on it with network isolation
       ansible.builtin.include_role:
         name: 'install_yamls_makes'
@@ -12,3 +48,6 @@
           EDPM_COMPUTE_RAM: 7
           EDPM_COMPUTE_DISK_SIZE: 70
           NTP_SERVER: pool.ntp.org
+          GATEWAY: "{{ standalone_vm_gateway }}"
+          IP: "{{ standalone_vm_ip }}"
+          DATAPLANE_DNS_SERVER: "{{ standalone_vm_gateway }}"
