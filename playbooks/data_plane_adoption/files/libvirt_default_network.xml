@@ -1,0 +1,10 @@
+<network>
+  <name>default</name>
+  <forward mode='route' dev='eth1'/>
+  <bridge name='virbr1'/>
+  <ip address='192.168.122.96' netmask='255.255.255.224'>
+    <dhcp>
+      <range start="192.168.122.100" end="192.168.122.126"/>
+    </dhcp>
+  </ip>
+</network>
