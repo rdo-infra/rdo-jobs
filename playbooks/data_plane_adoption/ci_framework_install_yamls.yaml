@@ -2,6 +2,11 @@
   vars:
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
   tasks:
+    - name: Install dependencies from install_yamls
+      ansible.builtin.include_role:
+        name: install_yamls_makes
+        tasks_from: 'make_download_tools'
+
     - name: Prepare for network isolation in crc env
       ansible.builtin.include_role:
         name: install_yamls_makes
