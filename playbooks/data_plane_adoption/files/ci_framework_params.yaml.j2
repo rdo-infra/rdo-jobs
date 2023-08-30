@@ -1,0 +1,22 @@
+---
+cifmw_basedir: "/home/zuul/ci-framework-data"
+cifmw_artifacts_crc_sshkey: "{{cifmw_artifacts_crc_sshkey}}"
+cifmw_openshift_user: "{{cifmw_openshift_user}}"
+cifmw_openshift_password: "{{cifmw_openshift_password}}"
+cifmw_openshift_api: "{{cifmw_openshift_api}}"
+cifmw_openshift_kubeconfig: "{{cifmw_openshift_kubeconfig}}"
+cifmw_openshift_skip_tls_verify: "{{cifmw_openshift_skip_tls_verify}}"
+cifmw_openshift_setup_skip_internal_registry_tls_verify: "{{cifmw_openshift_setup_skip_internal_registry_tls_verify}}"
+cifmw_use_libvirt: "{{cifmw_use_libvirt}}"
+cifmw_use_crc: "{{cifmw_use_crc}}"
+pre_deploy:
+- name: Fetch compute facts
+  type: playbook
+  inventory: "/home/zuul/ci-framework-data/artifacts/zuul_inventory.yml"
+  source: fetch_compute_facts.yml
+pre_infra:
+- name: Download needed tools
+  inventory: 'localhost,'
+  connection: local
+  type: playbook
+  source: "{{ cifmw_installyamls_repos }}/devsetup/download_tools.yaml"
