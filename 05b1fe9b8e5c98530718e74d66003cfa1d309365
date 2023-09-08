@@ -120,6 +120,24 @@
       "parentUuid": "3023e6a7_0fbd8215",
       "revId": "05b1fe9b8e5c98530718e74d66003cfa1d309365",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2da2501e_92325699",
+        "filename": "playbooks/data_plane_adoption/ci_framework_create_standalone_vm.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-09-08T09:46:07Z",
+      "side": 1,
+      "message": "@Joan, i see you pointed to one of the other jobs, not the rhel one, so indeed without my explicit setting to false, i see th eproblem now, true vs True. \n\nI thought you meant the override was not working.\n\nAs mentioned earlier though, i am updating this now to remove it so the problem will go away for the default case as well.",
+      "parentUuid": "ce1e6daf_5f802bb8",
+      "revId": "05b1fe9b8e5c98530718e74d66003cfa1d309365",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
