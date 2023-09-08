@@ -52,6 +52,23 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e2fc753_02b05a0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2023-09-08T07:55:12Z",
+      "side": 1,
+      "message": "removing my votes.",
+      "revId": "05b1fe9b8e5c98530718e74d66003cfa1d309365",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e745a8d_5b0ac030",
@@ -65,6 +82,24 @@
       "writtenOn": "2023-09-08T07:45:40Z",
       "side": 1,
       "message": "I don\u0027t think this is working properly, as the standalone deployments for data-plane-adoption-github-rdo-centos-9-crc-single-node and periodic-data-plane-adoption-github-rdo-centos-9-crc-single-node-antelope both failed to deploy ceph since EDPM_COMPUTE_CEPH_ENABLED has a value of True instead of true, it should be probably a string instead of bool. See for example https://sf.hosted.upshift.rdu2.redhat.com/logs/34/445434/15/check/data-plane-adoption-github-rdo-centos-9-crc-single-node/3ef2ae7/ci-framework-data/logs/ci_make_002_run_standalone.log:\n\n + EDPM_COMPUTE_CEPH_ENABLED\u003dTrue\n + INTERFACE_MTU\u003d1500\n + [[ -f /root/containers-prepare-parameters.yaml ]]\n + openstack tripleo container image prepare default --output-env-file  /root/containers-prepare-parameters.yaml\n + sed -i \u0027s|quay.io/tripleowallaby$|quay.io/tripleowallabycentos9|\u0027 /root/containers-prepare-parameters.yaml\n + export NEUTRON_INTERFACE\u003deth0\n + NEUTRON_INTERFACE\u003deth0\n + export CTLPLANE_IP\u003d192.168.122.100\n + CTLPLANE_IP\u003d192.168.122.100\n + export CTLPLANE_VIP\u003d192.168.122.99\n + CTLPLANE_VIP\u003d192.168.122.99\n + export CIDR\u003d24\n + CIDR\u003d24\n + export GATEWAY\u003d192.168.122.1\n + GATEWAY\u003d192.168.122.1\n + export BRIDGE\u003dbr-ctlplane\n + BRIDGE\u003dbr-ctlplane\n + cat\n + \u0027[\u0027 True \u003d true \u0027]\u0027\n + CEPH_ARGS\u003d",
+      "revId": "05b1fe9b8e5c98530718e74d66003cfa1d309365",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3023e6a7_0fbd8215",
+        "filename": "playbooks/data_plane_adoption/ci_framework_create_standalone_vm.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2023-09-08T07:55:12Z",
+      "side": 1,
+      "message": "Yes, correct, \"{{ edpm_compute_ceph_enabled | bool | default(true) }}\" will take care of that.",
+      "parentUuid": "4e745a8d_5b0ac030",
       "revId": "05b1fe9b8e5c98530718e74d66003cfa1d309365",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
