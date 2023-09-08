@@ -102,6 +102,24 @@
       "parentUuid": "4e745a8d_5b0ac030",
       "revId": "05b1fe9b8e5c98530718e74d66003cfa1d309365",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce1e6daf_5f802bb8",
+        "filename": "playbooks/data_plane_adoption/ci_framework_create_standalone_vm.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-09-08T09:40:30Z",
+      "side": 1,
+      "message": "this is working fine folks, but i am going to remove it now anyway because i want to test ceph. The log you pointed to above is from an earlier run Joan.\n\ni am setting it to false in this review at https://review.rdoproject.org/r/c/rdo-jobs/+/49473/27/playbooks/data_plane_adoption/run_repo_tests_single_node.yaml \n\nsee for example https://sf.hosted.upshift.rdu2.redhat.com/logs/34/445434/15/check/periodic-rhel-9-rhos-17.1-standalone-to-crc-data-plane-adoption/d74c21f/ci-framework-data/logs/ci_make_002_run_standalone.log\n\n+ EDPM_COMPUTE_CEPH_ENABLED\u003dfalse",
+      "parentUuid": "3023e6a7_0fbd8215",
+      "revId": "05b1fe9b8e5c98530718e74d66003cfa1d309365",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
