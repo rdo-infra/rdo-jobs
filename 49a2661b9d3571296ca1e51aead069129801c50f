@@ -16,6 +16,29 @@
       "message": "waiting for testproject results here:- https://review.rdoproject.org/r/c/testproject/+/49413",
       "revId": "49a2661b9d3571296ca1e51aead069129801c50f",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "031582ec_7da5db9a",
+        "filename": "playbooks/data_plane_adoption/run_repo_tests_single_node.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-09-11T06:12:11Z",
+      "side": 1,
+      "message": "you need to access the \u0027tripleo_passwords\u0027 content, that is registered above, on line 59.\nthe b64decode needs to move so it can decode the tripleo_passwords[\u0027content\u0027] i.e. like it was before.\n\nthis is currently not working see the secrets file: https://logserver.rdoproject.org/13/49413/9/check/data-plane-adoption-github-rdo-centos-9-crc-single-node/9d86c43/controller/data-plane-adoption-tests-repo/data_plane_adoption/secrets.yaml\n\n\n\n```\nexternal_db_root_password: 6\npodified_db_root_password: 12345678\n\n# Service account passwords (not DB passwords).\ncinder_password: 6\nglance_password: 6\n```\n\nso it currently fails the data plane adoption tests as it has the wrong mariadb pass:\nhttps://logserver.rdoproject.org/13/49413/9/check/data-plane-adoption-github-rdo-centos-9-crc-single-node/9d86c43/controller/data-plane-adoption-tests-repo/data-plane-adoption/tests/logs/test_minimal_out_2023-09-08T08:22:53EDT.log\n\nAccess denied for user \u0027root\u0027@\u0027192.168.122.1\u0027 (using password: YES)\"], \"stdout\": \"\", \"stdout_lines\": []}",
+      "range": {
+        "startLine": 78,
+        "startChar": 122,
+        "endLine": 78,
+        "endChar": 131
+      },
+      "revId": "49a2661b9d3571296ca1e51aead069129801c50f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
