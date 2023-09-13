@@ -1,0 +1,8 @@
+- hosts: controller
+  gather_facts: false
+  tasks:
+    - name: Force job to fail for any zuul autohold requests
+      fail:
+        msg: >-
+          FORCING JOB FAILURE - force_job_failure is set true
+      when: force_job_failure | default(false) | bool
