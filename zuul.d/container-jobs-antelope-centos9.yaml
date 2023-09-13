@@ -53,6 +53,7 @@
         override-checkout: main
 
 ## data plane adoption job
+# TODO(marios): remove once we settle with multinode/extracted crc
 - job:
     name: periodic-centos-9-standalone-to-crc-data-plane-adoption-antelope
     parent: centos-9-standalone-to-crc-data-plane-adoption
