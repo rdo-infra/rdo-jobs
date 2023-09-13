@@ -65,6 +65,7 @@
       - playbooks/data_plane_adoption/run_repo_tests_single_node.yaml
     post-run:
       - playbooks/data_plane_adoption/collect_logs_crc.yaml
+      - playbooks/data_plane_adoption/force_job_failure.yaml
     vars:
       crc_parameters: "--memory 22000 --disk-size 120 --cpus 8"
       quay_login_secret_name: quay_nextgen_zuulgithubci
