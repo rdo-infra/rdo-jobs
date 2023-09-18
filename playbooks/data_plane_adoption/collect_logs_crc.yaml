@@ -6,18 +6,26 @@
     - name: Collect pod logs
       ansible.builtin.shell: |
         source ~/.bashrc
-        mkdir -p logs/controller/pod
+        mkdir -p logs/controller/pod logs/controller/crs
         pushd logs/controller
         ip a > network.txt
         ip ro ls >> network.txt
-        oc project openstack
-        oc get pods > all_pods.txt
-        all_pods=$(oc get pods -o name)
-        for pod in $all_pods; do
-          echo $pod
-          oc logs $pod > ${pod}-logs.txt
-          oc get -o yaml $pod > ${pod}.yaml
-          oc describe $pod > ${pod}-describe.txt
+        all_crds=$(oc get crd | awk '/openstack/ { print $1}' | awk -F '.' '{print $1}')
+        for cr in ${all_crds}; do
+          echo ${cr}
+          oc get -o yaml ${cr} > crs/${cr}.yaml
+        done
+        namespaces=("openstack-operators" "openstack")
+        for namespace in ${namespaces[@]}; do
+          oc project $namespace
+          oc get pods > all_pods.txt
+          all_pods=$(oc get pods -o name)
+          for pod in $all_pods; do
+            echo $pod
+            oc logs $pod > ${pod}-logs.txt
+            oc get -o yaml $pod > ${pod}.yaml
+            oc describe $pod > ${pod}-describe.txt
+          done
         done
         test -d /home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out && \
           rsync -r /home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out ./install_yamls_out
