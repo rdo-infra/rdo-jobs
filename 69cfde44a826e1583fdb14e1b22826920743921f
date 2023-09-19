@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e182e16e_eda9551b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2023-09-19T05:55:31Z",
+      "side": 1,
+      "message": "Thanks for updating the logs, it\u0027s a very much needed improvement, I\u0027ve left a small comment only",
+      "revId": "69cfde44a826e1583fdb14e1b22826920743921f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac1ba3ed_71ecc390",
+        "filename": "playbooks/data_plane_adoption/collect_logs_crc.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2023-09-19T05:55:31Z",
+      "side": 1,
+      "message": "I think we should append here instead of simply redirect, otherwise we will lose the summary of one of the namespaces, and IMO it would be very useful to have both",
+      "revId": "69cfde44a826e1583fdb14e1b22826920743921f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
