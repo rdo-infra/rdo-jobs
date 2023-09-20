@@ -15,6 +15,13 @@
     vars:
       release: antelope
 
+## dlrn-promote-podified-ci-testing to current-podified
+- job:
+    name: periodic-centos-9-antelope-dlrn-promote-podified-ci-testing-to-current-podified
+    parent: periodic-centos-9-master-dlrn-promote-podified-ci-testing-to-current-podified
+    vars:
+      cifmw_repo_setup_branch: antelope
+      
 ## container build jobs
 - job:
     name: container-tcib-build-centos-9-antelope
