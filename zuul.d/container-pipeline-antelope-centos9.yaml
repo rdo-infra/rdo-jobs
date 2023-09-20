@@ -2,22 +2,21 @@
 # antelope container build, test, promotion pipeline
 - project-template:
     name: container-pipeline-antelope-centos9
-    openstack-periodic-container-antelope-centos9:
+    openstack-promote-component:
       jobs:
-        - periodic-centos-9-antelope-promote-podified-ci-testing-to-current-podified:
+        - periodic-centos-9-antelope-dlrn-check-promotion-criteria-podified-ci-testing-to-current-podified
+        - periodic-container-quay-push-centos-9-antelope:
+            dependencies:
+              - periodic-centos-9-antelope-dlrn-check-promotion-criteria-podified-ci-testing-to-current-podified
+        - periodic-edpm-container-image-quay-push-centos-9-antelope:
+            dependencies:
+              - periodic-centos-9-antelope-dlrn-check-promotion-criteria-podified-ci-testing-to-current-podified
+        - periodic-centos-9-antelope-dlrn-promote-podified-ci-testing-to-current-podified:
             dependencies:
               - periodic-container-quay-push-centos-9-antelope
               - periodic-edpm-container-image-quay-push-centos-9-antelope
-              # Tempest API test
-        - periodic-container-quay-push-centos-9-antelope:
-            dependencies:
-              - periodic-podified-edpm-deployment-antelope-ocp-crc-1cs9
-              - periodic-podified-edpm-baremetal-antelope-ocp-crc
-              - periodic-data-plane-adoption-github-rdo-centos-9-crc-single-node-antelope
-        - periodic-edpm-container-image-quay-push-centos-9-antelope:
-            dependencies:
-              - periodic-edpm-build-push-images-centos-9-antelope
-              - periodic-podified-edpm-baremetal-antelope-ocp-crc
+    openstack-periodic-container-antelope-centos9:
+      jobs:
         - periodic-data-plane-adoption-github-rdo-centos-9-crc-single-node-antelope:
             dependencies:
               - periodic-container-tcib-build-push-centos-9-antelope

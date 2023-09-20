@@ -2,21 +2,21 @@
 # master container build, test, promotion pipeline
 - project-template:
     name: container-pipeline-master-centos9
-    openstack-periodic-container-master-centos9:
+    openstack-promote-component:
       jobs:
-        - periodic-centos-9-master-promote-podified-ci-testing-to-current-podified:
+        - periodic-centos-9-master-dlrn-check-promotion-criteria-podified-ci-testing-to-current-podified
+        - periodic-container-quay-push-centos-9-master:
+            dependencies:
+              - periodic-centos-9-master-dlrn-check-promotion-criteria-podified-ci-testing-to-current-podified
+        - periodic-edpm-container-image-quay-push-centos-9-master:
+            dependencies:
+              - periodic-centos-9-master-dlrn-check-promotion-criteria-podified-ci-testing-to-current-podified
+        - periodic-centos-9-master-dlrn-promote-podified-ci-testing-to-current-podified:
             dependencies:
               - periodic-container-quay-push-centos-9-master
               - periodic-edpm-container-image-quay-push-centos-9-master
-              # Tempest API test
-        - periodic-container-quay-push-centos-9-master:
-            dependencies:
-              - periodic-podified-edpm-deployment-master-ocp-crc-1cs9
-              - periodic-podified-edpm-baremetal-master-ocp-crc
-        - periodic-edpm-container-image-quay-push-centos-9-master:
-            dependencies:
-              - periodic-edpm-build-push-images-centos-9-master
-              - periodic-podified-edpm-baremetal-master-ocp-crc
+    openstack-periodic-container-master-centos9:
+      jobs:
         - periodic-podified-edpm-deployment-master-ocp-crc-1cs9:
             dependencies: &deps
               - periodic-container-tcib-build-push-centos-9-master
