@@ -4,7 +4,7 @@
     name: container-pipeline-antelope-centos9
     openstack-periodic-container-antelope-centos9:
       jobs:
-        - periodic-centos-9-antelope-promote-podified-ci-testing-to-current-podified:
+        - periodic-centos-9-antelope-dlrn-promote-podified-ci-testing-to-current-podified:
             dependencies:
               - periodic-container-quay-push-centos-9-antelope
               - periodic-edpm-container-image-quay-push-centos-9-antelope
