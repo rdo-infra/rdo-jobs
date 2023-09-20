@@ -21,6 +21,31 @@
       promote_source: podified-ci-testing
       promote_target: current-podified
 
+## dlrn check promotion criteria job from podified-ci-testing to current-podified
+- job:
+    name: periodic-centos-9-master-dlrn-check-promotion-criteria-podified-ci-testing-to-current-podified
+    parent: base-ci-framework-dlrn-promote
+    nodeset: cloud-centos-9-stream-vexxhost
+    required-projects:
+      - name: github.com/openstack-k8s-operators/ci-framework
+        override-checkout: main
+    roles:
+      - zuul: github.com/openstack-k8s-operators/ci-framework
+    vars:
+      cifmw_repo_setup_promotion: podified-ci-testing
+      cifmw_repo_setup_branch: master
+      cifmw_dlrn_report_dlrnapi_user: review_rdoproject_org
+      cifmw_dlrn_promote_promotion_target: current-podified
+      cifmw_dlrn_promote_hash: true
+      cifmw_dlrn_promote_criteria_file: "{{ ansible_user_dir }}/src/review.rdoproject.org/rdo-infra/rdo-jobs/criteria/centos9/{{ cifmw_repo_setup_branch }}.yaml"
+
+## dlrn promote job from podified-ci-testing to current-podified
+- job:
+    name: periodic-centos-9-master-dlrn-promote-podified-ci-testing-to-current-podified
+    parent: periodic-centos-9-master-dlrn-check-promotion-criteria-podified-ci-testing-to-current-podified
+    vars:
+      cifmw_dlrn_promote_hash_promote_content: true
+
 ## container build job
 - job:
     name: container-tcib-build-centos-9-master
