@@ -69,3 +69,11 @@
       crc_parameters: "--memory 22000 --disk-size 120 --cpus 8"
       quay_login_secret_name: quay_nextgen_zuulgithubci
       standalone_vm_inventory: "standalone_vm_inventory"
+    irrelevant-files:
+      - ^.*\.md$
+      - ^.*\.rst$
+      - ^docs/.*$
+      - .github/workflows
+      - mkdocs.yaml
+      - .gitignore
+      - LICENSE
