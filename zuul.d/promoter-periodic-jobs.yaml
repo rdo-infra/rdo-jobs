@@ -68,10 +68,10 @@
     required-projects:
       - name: review.rdoproject.org/rdo-infra/ci-config
 
-# tox-py36
+# tox-py39
 
 - job:
-    name: periodic-tox-py36
-    parent: tox-py36-ci-config
+    name: periodic-tox-py39
+    parent: tox-py39-ci-config
     required-projects:
       - name: review.rdoproject.org/rdo-infra/ci-config
