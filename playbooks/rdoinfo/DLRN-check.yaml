@@ -86,9 +86,6 @@
           CURRENT_MASTER_TAG="bobcat-uc"
 
           PACKAGES_UPDATED_MASTER=""
-          PACKAGES_UPDATED_TRAIN=""
-          PACKAGES_UPDATED_USSURI=""
-          PACKAGES_UPDATED_VICTORIA=""
           PACKAGES_UPDATED_WALLABY=""
 
           TAGS_DIFF=$(rdopkg info-tags-diff .)
@@ -124,20 +121,6 @@
                   fi
                   if [[ -n $(echo "$line" | grep -w wallaby) ]]; then
                       PACKAGES_UPDATED_WALLABY="$PACKAGES_UPDATED_WALLABY $PKGNAME"
-                  fi
-                  if [[ -n $(echo "$line" | grep -w victoria) ]]; then
-                      PACKAGES_UPDATED_VICTORIA="$PACKAGES_UPDATED_VICTORIA $PKGNAME"
-                  fi
-                  if [[ -n $(echo "$line" | grep -w ussuri) ]]; then
-                      PACKAGES_UPDATED_USSURI="$PACKAGES_UPDATED_USSURI $PKGNAME"
-                  fi
-                  if [[ -n $(echo "$line" | grep -w train) ]]; then
-                      PACKAGES_UPDATED_TRAIN="$PACKAGES_UPDATED_TRAIN $PKGNAME"
-                  fi
-              fi
-              if [ "${CENTOS_VERS}" = "centos7" ]; then
-                  if [[ -n $(echo "$line" | grep -w train) ]]; then
-                      PACKAGES_UPDATED_TRAIN="$PACKAGES_UPDATED_TRAIN $PKGNAME"
                   fi
               fi
           done <<< "${TAGS_DIFF}"
@@ -199,36 +182,6 @@
           fi
           if [ -n "${PACKAGES_UPDATED_WALLABY}" ]; then
               timeout --signal=SIGKILL $TIMEOUT  {{ ansible_user_dir }}/rdoinfo-DLRN.sh wallaby "${PACKAGES_UPDATED_WALLABY}" "${CENTOS_VERS}"
-              ret1=$?
-              if [ $ret1 -ne 0 ]; then
-                  ret=$ret1
-              fi
-              # The data/ contents have been archived already, remove to avoid issues with the next branch
-              rm -rf data
-              sudo rm -rf /var/cache/mock/*
-          fi
-          if [ -n "${PACKAGES_UPDATED_VICTORIA}" ]; then
-              timeout --signal=SIGKILL $TIMEOUT  {{ ansible_user_dir }}/rdoinfo-DLRN.sh victoria "${PACKAGES_UPDATED_VICTORIA}" "${CENTOS_VERS}"
-              ret1=$?
-              if [ $ret1 -ne 0 ]; then
-                  ret=$ret1
-              fi
-              # The data/ contents have been archived already, remove to avoid issues with the next branch
-              rm -rf data
-              sudo rm -rf /var/cache/mock/*
-          fi
-          if [ -n "${PACKAGES_UPDATED_USSURI}" ]; then
-              timeout --signal=SIGKILL $TIMEOUT  {{ ansible_user_dir }}/rdoinfo-DLRN.sh ussuri "${PACKAGES_UPDATED_USSURI}" "${CENTOS_VERS}"
-              ret1=$?
-              if [ $ret1 -ne 0 ]; then
-                  ret=$ret1
-              fi
-              # The data/ contents have been archived already, remove to avoid issues with the next branch
-              rm -rf data
-              sudo rm -rf /var/cache/mock/*
-          fi
-          if [ -n "${PACKAGES_UPDATED_TRAIN}" ]; then
-              timeout --signal=SIGKILL $TIMEOUT {{ ansible_user_dir }}/rdoinfo-DLRN.sh train "${PACKAGES_UPDATED_TRAIN}" "${CENTOS_VERS}"
               ret1=$?
               if [ $ret1 -ne 0 ]; then
                   ret=$ret1
