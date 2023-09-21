@@ -22,19 +22,6 @@
           # We want the latest repository which contains all of the packages that were just built.
           repository="${logs}/centos9/current"
 
-          # The rdoinfo-DLRN-check job may create different repos (centos-rpm-master, centos-pike-rdo)
-          # when it builds packages for more than one release. In that case, let us try to find the
-          # right one
-          curl -o /dev/null -sIf "${repository}"
-          if [ $? -ne 0 ]; then
-            releases="rpm-master train-rdo stein-rdo rocky-rdo queens-rdo pike-rdo ocata-rdo"
-            for release in $releases; do
-                repository="${logs}/centos-${release}/current"
-                curl -o /dev/null -sIf "${repository}" || continue
-                break
-            done
-          fi
-
           # If we could not find a working repository, give up
           curl -o /dev/null -sIf "${repository}" || exit 1
 
