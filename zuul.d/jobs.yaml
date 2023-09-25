@@ -164,31 +164,6 @@
     nodeset: rdo-centos-8-stream
 
 - job:
-    name: DLRN-rpmbuild-centos9-compare-deps
-    parent: DLRN-rpmbuild-centos9-compare-files
-    vars:
-      compare_deps: true
-      compare_files: false
-
-- job:
-    name: DLRN-rpmbuild-centos9-compare-builddeps
-    parent: DLRN-rpmbuild-centos9-compare-files
-    vars:
-      compare_builddeps: true
-      compare_files: false
-
-- job:
-    name: DLRN-rpmbuild-centos9-compare-files
-    run: playbooks/DLRN/switch-to-pyproject-macros.yaml
-    branches: ^rpm-master$
-    vars:
-      compare_files: true
-    nodeset: rdo-centos-8-stream
-    voting: false
-    dependencies:
-      - DLRN-rpmbuild-centos9
-
-- job:
     name: DLRN-rpmbuild-centos9-pinned
     parent: DLRN-rpmbuild-centos9
     vars:
