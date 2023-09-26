@@ -43,7 +43,7 @@
       cifmw_build_containers_containers_base_image: quay.io/centos/centos:stream9
       promote_source: podified-ci-testing
       cifmw_build_containers_push_registry: quay.rdoproject.org
-      cifmw_build_containers_registry_namespace: podified-main-centos9
+      cifmw_build_containers_registry_namespace: podified-master-centos9
       trunk_url: https://trunk.rdoproject.org/
 
 ## container push job
@@ -71,8 +71,8 @@
       openstack_release: master
       container_build_push_job_name: periodic-container-tcib-build-push-centos-9-master
       api_end_point: api-centos9-master-uc
-      from_namespace: podified-main-centos9
-      to_namespace: podified-main-centos9
+      from_namespace: podified-master-centos9
+      to_namespace: podified-master-centos9
       trunk_url: https://trunk.rdoproject.org
       promote_source: podified-ci-testing
       cifmw_dlrn_report_result: true
