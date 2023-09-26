@@ -1,0 +1,26 @@
+---
+# Operator periodic pipeline - using Antelope Openstack containers
+- project-template:
+    name: operators-periodic-integration-antelope-centos9
+    openstack-operators-periodic-integration-antelope-centos9:
+      jobs:
+        - podified-multinode-edpm-deployment-crc:
+            required-projects: &rp
+              - name: openstack-k8s-operators/install_yamls
+                override-checkout: main
+              - name: openstack-k8s-operators/openstack-operator
+                override-checkout: main
+              - name: github.com/openstack-k8s-operators/ci-framework
+                override-checkout: main
+              - name: github.com/openstack-k8s-operators/repo-setup
+                override-checkout: main
+              - name: github.com/openstack-k8s-operators/dataplane-operator
+                override-checkout: main
+              - name: github.com/openstack-k8s-operators/infra-operator
+                override-checkout: main
+              - name: github.com/openstack-k8s-operators/openstack-baremetal-operator
+                override-checkout: main
+              - name: github.com/openstack-k8s-operators/edpm-ansible
+                override-checkout: main
+        - cifmw-crc-podified-edpm-baremetal:
+            required-projects: *rp
