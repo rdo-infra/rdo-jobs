@@ -22,9 +22,6 @@
         - weirdo-dlrn-master-puppet-scenario001-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild-centos9-compare-deps
-        - DLRN-rpmbuild-centos9-compare-builddeps
-        - DLRN-rpmbuild-centos9-compare-files
         - DLRN-rpmbuild
         - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
@@ -34,6 +31,9 @@
         - weirdo-dlrn-master-puppet-scenario001-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
+        - DLRN-rpmbuild-centos9-compare-deps
+        - DLRN-rpmbuild-centos9-compare-builddeps
+        - DLRN-rpmbuild-centos9-compare-files
     gate:
       jobs:
         - DLRN-rpmbuild
@@ -56,9 +56,6 @@
         - weirdo-dlrn-master-puppet-scenario002-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild-centos9-compare-deps
-        - DLRN-rpmbuild-centos9-compare-builddeps
-        - DLRN-rpmbuild-centos9-compare-files
         - DLRN-rpmbuild
         - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
@@ -67,6 +64,9 @@
         - weirdo-dlrn-master-puppet-scenario002-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
+        - DLRN-rpmbuild-centos9-compare-deps
+        - DLRN-rpmbuild-centos9-compare-builddeps
+        - DLRN-rpmbuild-centos9-compare-files
     gate:
       jobs:
         - DLRN-rpmbuild
@@ -90,9 +90,6 @@
         - weirdo-dlrn-master-puppet-scenario001-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild-centos9-compare-deps
-        - DLRN-rpmbuild-centos9-compare-builddeps
-        - DLRN-rpmbuild-centos9-compare-files
         - DLRN-rpmbuild
         - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
@@ -102,6 +99,9 @@
         - weirdo-dlrn-master-puppet-scenario001-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
+        - DLRN-rpmbuild-centos9-compare-deps
+        - DLRN-rpmbuild-centos9-compare-builddeps
+        - DLRN-rpmbuild-centos9-compare-files
     gate:
       jobs:
         - DLRN-rpmbuild
@@ -126,9 +126,6 @@
         - weirdo-dlrn-master-puppet-scenario002-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild-centos9-compare-deps
-        - DLRN-rpmbuild-centos9-compare-builddeps
-        - DLRN-rpmbuild-centos9-compare-files
         - DLRN-rpmbuild
         - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
@@ -139,6 +136,9 @@
         - weirdo-dlrn-master-puppet-scenario002-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
+        - DLRN-rpmbuild-centos9-compare-deps
+        - DLRN-rpmbuild-centos9-compare-builddeps
+        - DLRN-rpmbuild-centos9-compare-files
     gate:
       jobs:
         - DLRN-rpmbuild
@@ -164,9 +164,6 @@
         - weirdo-dlrn-master-puppet-scenario005-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild-centos9-compare-deps
-        - DLRN-rpmbuild-centos9-compare-builddeps
-        - DLRN-rpmbuild-centos9-compare-files
         - DLRN-rpmbuild
         - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
@@ -179,6 +176,9 @@
         - weirdo-dlrn-master-puppet-scenario005-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
+        - DLRN-rpmbuild-centos9-compare-deps
+        - DLRN-rpmbuild-centos9-compare-builddeps
+        - DLRN-rpmbuild-centos9-compare-files
     gate:
       jobs:
         - DLRN-rpmbuild
@@ -216,15 +216,6 @@
             branches: ^((?!rpm-master)|(^(?!train|ussuri|victoria)(\w+)-rdo))$
         - DLRN-rpmbuild-centos9-pinned:
             branches: ^rpm-master$
-        - DLRN-rpmbuild-centos9-compare-deps:
-            dependencies:
-              - DLRN-rpmbuild-centos9-pinned
-        - DLRN-rpmbuild-centos9-compare-builddeps:
-            dependencies:
-              - DLRN-rpmbuild-centos9-pinned
-        - DLRN-rpmbuild-centos9-compare-files:
-            dependencies:
-              - DLRN-rpmbuild-centos9-pinned
         - DLRN-rpmbuild
         - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
@@ -238,6 +229,19 @@
         - DLRN-rpmbuild
         - distgit-cbs-final-build-centos8
         - distgit-cbs-final-build-centos9
+    experimental:
+      jobs:
+        - DLRN-rpmbuild-centos9-pinned:
+            branches: ^rpm-master$
+        - DLRN-rpmbuild-centos9-compare-deps:
+            dependencies:
+              - DLRN-rpmbuild-centos9-pinned
+        - DLRN-rpmbuild-centos9-compare-builddeps:
+            dependencies:
+              - DLRN-rpmbuild-centos9-pinned
+        - DLRN-rpmbuild-centos9-compare-files:
+            dependencies:
+              - DLRN-rpmbuild-centos9-pinned
 
 - project-template:
     name: weirdo-dlrn-master-heat
@@ -254,9 +258,6 @@
         - weirdo-dlrn-master-puppet-scenario003-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild-centos9-compare-deps
-        - DLRN-rpmbuild-centos9-compare-builddeps
-        - DLRN-rpmbuild-centos9-compare-files
         - DLRN-rpmbuild
         - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
@@ -266,6 +267,9 @@
         - weirdo-dlrn-master-puppet-scenario003-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
+        - DLRN-rpmbuild-centos9-compare-deps
+        - DLRN-rpmbuild-centos9-compare-builddeps
+        - DLRN-rpmbuild-centos9-compare-files
     gate:
       jobs:
         - DLRN-rpmbuild
@@ -288,9 +292,6 @@
         - weirdo-dlrn-master-puppet-scenario003-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild-centos9-compare-deps
-        - DLRN-rpmbuild-centos9-compare-builddeps
-        - DLRN-rpmbuild-centos9-compare-files
         - DLRN-rpmbuild
         - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
@@ -299,6 +300,9 @@
         - weirdo-dlrn-master-puppet-scenario003-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
+        - DLRN-rpmbuild-centos9-compare-deps
+        - DLRN-rpmbuild-centos9-compare-builddeps
+        - DLRN-rpmbuild-centos9-compare-files
     gate:
       jobs:
         - DLRN-rpmbuild
@@ -322,9 +326,6 @@
         - weirdo-dlrn-master-puppet-scenario003-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild-centos9-compare-deps
-        - DLRN-rpmbuild-centos9-compare-builddeps
-        - DLRN-rpmbuild-centos9-compare-files
         - DLRN-rpmbuild
         - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
@@ -334,6 +335,9 @@
         - weirdo-dlrn-master-puppet-scenario003-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
+        - DLRN-rpmbuild-centos9-compare-deps
+        - DLRN-rpmbuild-centos9-compare-builddeps
+        - DLRN-rpmbuild-centos9-compare-files
     gate:
       jobs:
         - DLRN-rpmbuild
@@ -357,9 +361,6 @@
         - weirdo-dlrn-master-puppet-scenario005-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild-centos9-compare-deps
-        - DLRN-rpmbuild-centos9-compare-builddeps
-        - DLRN-rpmbuild-centos9-compare-files
         - DLRN-rpmbuild
         - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
@@ -369,6 +370,9 @@
         - weirdo-dlrn-master-puppet-scenario005-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
+        - DLRN-rpmbuild-centos9-compare-deps
+        - DLRN-rpmbuild-centos9-compare-builddeps
+        - DLRN-rpmbuild-centos9-compare-files
     gate:
       jobs:
         - DLRN-rpmbuild
@@ -394,9 +398,6 @@
         - weirdo-dlrn-master-puppet-scenario005-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild-centos9-compare-deps
-        - DLRN-rpmbuild-centos9-compare-builddeps
-        - DLRN-rpmbuild-centos9-compare-files
         - DLRN-rpmbuild
         - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
@@ -407,6 +408,9 @@
         - weirdo-dlrn-master-puppet-scenario003-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
+        - DLRN-rpmbuild-centos9-compare-deps
+        - DLRN-rpmbuild-centos9-compare-builddeps
+        - DLRN-rpmbuild-centos9-compare-files
     gate:
       jobs:
         - DLRN-rpmbuild
@@ -431,9 +435,6 @@
         - weirdo-dlrn-master-puppet-scenario005-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild-centos9-compare-deps
-        - DLRN-rpmbuild-centos9-compare-builddeps
-        - DLRN-rpmbuild-centos9-compare-files
         - DLRN-rpmbuild
         - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
@@ -443,6 +444,9 @@
         - weirdo-dlrn-master-puppet-scenario001-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
+        - DLRN-rpmbuild-centos9-compare-deps
+        - DLRN-rpmbuild-centos9-compare-builddeps
+        - DLRN-rpmbuild-centos9-compare-files
     gate:
       jobs:
         - DLRN-rpmbuild
@@ -467,9 +471,6 @@
         - weirdo-dlrn-master-puppet-scenario003-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild-centos9-compare-deps
-        - DLRN-rpmbuild-centos9-compare-builddeps
-        - DLRN-rpmbuild-centos9-compare-files
         - DLRN-rpmbuild
         - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
@@ -480,6 +481,9 @@
         - weirdo-dlrn-master-puppet-scenario003-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
+        - DLRN-rpmbuild-centos9-compare-deps
+        - DLRN-rpmbuild-centos9-compare-builddeps
+        - DLRN-rpmbuild-centos9-compare-files
     gate:
       jobs:
         - DLRN-rpmbuild
@@ -502,9 +506,6 @@
         - weirdo-dlrn-master-puppet-scenario004-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild-centos9-compare-deps
-        - DLRN-rpmbuild-centos9-compare-builddeps
-        - DLRN-rpmbuild-centos9-compare-files
         - DLRN-rpmbuild
         - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
@@ -514,6 +515,9 @@
         - weirdo-dlrn-master-puppet-scenario005-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
+        - DLRN-rpmbuild-centos9-compare-deps
+        - DLRN-rpmbuild-centos9-compare-builddeps
+        - DLRN-rpmbuild-centos9-compare-files
     gate:
       jobs:
         - DLRN-rpmbuild
@@ -536,9 +540,6 @@
         - weirdo-dlrn-master-puppet-scenario002-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild-centos9-compare-deps
-        - DLRN-rpmbuild-centos9-compare-builddeps
-        - DLRN-rpmbuild-centos9-compare-files
         - DLRN-rpmbuild
         - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
@@ -547,6 +548,9 @@
         - weirdo-dlrn-master-puppet-scenario002-centos9
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
+        - DLRN-rpmbuild-centos9-compare-deps
+        - DLRN-rpmbuild-centos9-compare-builddeps
+        - DLRN-rpmbuild-centos9-compare-files
     gate:
       jobs:
         - DLRN-rpmbuild

@@ -31,9 +31,6 @@
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild-centos9-compare-deps
-        - DLRN-rpmbuild-centos9-compare-builddeps
-        - DLRN-rpmbuild-centos9-compare-files
         - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
     gate:
@@ -43,6 +40,13 @@
         - DLRN-rpmbuild-centos9
         - distgit-cbs-final-build-centos8
         - distgit-cbs-final-build-centos9
+    experimental:
+      jobs:
+        - DLRN-rpmbuild-centos9
+        - DLRN-rpmbuild-centos9-compare-deps
+        - DLRN-rpmbuild-centos9-compare-builddeps
+        - DLRN-rpmbuild-centos9-compare-files
+
 
 - project-template:
     name: deps-distgit-check-jobs
