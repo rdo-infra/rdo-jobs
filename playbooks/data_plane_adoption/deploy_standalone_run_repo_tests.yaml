@@ -145,7 +145,7 @@
       ansible.builtin.lineinfile:
         path: "/etc/hosts"
         insertafter: "EOF"
-        value: "{{ crc_ip.stdout }} keystone-public-openstack.apps-crc.testing glance-public-openstack.apps-crc.testing placement-public-openstack.apps-crc.testing cinder-public-openstack.apps-crc.testing"
+        value: "{{ crc_ip.stdout }} keystone-public-openstack.apps-crc.testing glance-public-openstack.apps-crc.testing placement-public-openstack.apps-crc.testing cinder-public-openstack.apps-crc.testing horizon.openstack.svcn"
 
     - name: Fetch hash and set ci_testing_hash fact for periodic
       when: "'periodic' in zuul.job or (force_periodic|default(false)|bool)"
