@@ -1,0 +1,18 @@
+---
+- name: Return Zuul log artifacts for data plane adoption jobs
+  zuul_return:
+    data:
+      zuul:
+        artifacts:
+          - name: Data plane adoption - logfile for make test-minimal
+            url: controller/data-plane-adoption-tests-repo/data-plane-adoption/tests/logs/
+          - name: secrets.yaml passed to make test-minimal
+            url: controller/data-plane-adoption-tests-repo/data_plane_adoption/secrets.yaml
+          - name: vars.yaml passed to make test-minimal
+            url: controller/data-plane-adoption-tests-repo/data_plane_adoption/vars.yaml
+          - name: Podified control plane - Individual pod logs
+            url: controller/pod/
+          - name: CI framework logs from make openstack/standalone
+            url: ci-framework-data/logs/
+          - name: Standalone deployment (the source environment) logs
+            url: standalone/
