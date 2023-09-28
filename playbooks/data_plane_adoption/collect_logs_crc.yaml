@@ -57,3 +57,10 @@
           - --include=/logs/**
           - --include=*/
           - --prune-empty-dirs
+
+    - name: Copy logs readme into place
+      failed_when: false
+      ansible.builtin.copy:
+        src: "{{ rdo_dir }}/files/logs_README.html"
+        dest: "{{ ansible_user_dir }}/logs/README.html"
+        remote_src: true
