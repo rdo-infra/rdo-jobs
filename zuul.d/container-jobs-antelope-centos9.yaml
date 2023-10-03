@@ -53,16 +53,6 @@
         override-checkout: main
 
 ## data plane adoption job
-# TODO(marios): remove once we settle with multinode/extracted crc
-- job:
-    name: periodic-centos-9-standalone-to-crc-data-plane-adoption-antelope
-    parent: centos-9-standalone-to-crc-data-plane-adoption
-    vars:
-      registry_namespace: podified-antelope-centos9
-      openstack_release: antelope
-      promote_source: podified-ci-testing
-      cifmw_dlrn_report_result: true
-
 - job:
     name: periodic-data-plane-adoption-github-rdo-centos-9-crc-single-node-antelope
     parent: data-plane-adoption-github-rdo-centos-9-crc-single-node
