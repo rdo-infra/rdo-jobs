@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24b8512f_b734d5d0",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-10-03T08:36:55Z",
+      "side": 1,
+      "message": "I am going to rename this and just have \u0027dlrn_hash_tag\u0027\n\nSome discussion with Chandan there https://redhat-internal.slack.com/archives/C04SKQ5KSJ0/p1696244712787849 \n\nThe ci framework repo-setup role has a cifmw_repo_setup_dlrn_hash_tag parameter for this purpose https://github.com/openstack-k8s-operators/ci-framework/blob/b66ddaf89f3034870e55955786eb5eb7598017ff/ci_framework/roles/repo_setup/README.md?plain\u003d1#L19\n\nBut I think it would be confusing to have the same name here, without actually using that role?\n\nAfter the current test finishes I\u0027ll update this to dlrn_hash_tag",
+      "range": {
+        "startLine": 154,
+        "startChar": 16,
+        "endLine": 154,
+        "endChar": 40
+      },
+      "revId": "650834a19f74e3b12b86a11ffb98e85170d90118",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
