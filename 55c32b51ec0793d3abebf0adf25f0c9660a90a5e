@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82cf3fd1_c69330df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-10-03T06:10:58Z",
+      "side": 1,
+      "message": "needs rebase for conflict",
+      "revId": "55c32b51ec0793d3abebf0adf25f0c9660a90a5e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "270bba4d_b378c3e8",
+        "filename": "zuul.d/operators-periodic-integration-antelope-centos9.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-10-03T06:10:58Z",
+      "side": 1,
+      "message": "lets also add a data plane adoption job here?\nperiodic-data-plane-adoption-github-rdo-centos-9-crc-single-node-antelope\n\n[EDIT]: what are we running/testing here? the upstream openstack-k8s-operators? are we testing the \u0027dev preview\u0027 version of the operators?",
+      "revId": "55c32b51ec0793d3abebf0adf25f0c9660a90a5e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
