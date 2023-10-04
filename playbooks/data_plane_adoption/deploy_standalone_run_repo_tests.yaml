@@ -179,7 +179,7 @@
     - name: Run data-plane-adoption tests
       community.general.make:
         chdir: "{{ dpa_dir }}"
-        target: test-minimal
+        target: test-with-ceph
         params:
           TEST_CONFIG: "{{ rdo_dir }}/ansible.cfg"
           TEST_SECRETS: "{{ rdo_dir}}/secrets.yaml"
