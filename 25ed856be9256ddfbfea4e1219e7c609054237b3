@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "705349ac_3e5bc300",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 51
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-10-04T06:06:09Z",
+      "side": 1,
+      "message": "Depends-On: https://github.com/openstack-k8s-operators/ci-framework/pull/491",
+      "revId": "25ed856be9256ddfbfea4e1219e7c609054237b3",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c50622e_5245856d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 51
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-10-04T06:06:09Z",
+      "side": 1,
+      "message": "first pass\n\ngreat work Joan",
+      "revId": "25ed856be9256ddfbfea4e1219e7c609054237b3",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "734b3d54_f468d135",
+        "filename": "zuul.d/_data_plane_adoption.yaml",
+        "patchSetId": 51
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-10-04T06:06:09Z",
+      "side": 1,
+      "message": "ack on this.. moving from the play vars to the job",
+      "revId": "25ed856be9256ddfbfea4e1219e7c609054237b3",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e074c475_9a2c2732",
+        "filename": "zuul.d/_data_plane_adoption.yaml",
+        "patchSetId": 51
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-10-04T06:06:09Z",
+      "side": 1,
+      "message": "also add the zuul_artifacts which merged yesterday please?\n\nso cool, i mean basically the difference is the parent. all the pre-run action is happening in the parent.\n\n[EDIT]: k not quite some action also happens here with the create_standalone_vm but it is nested so hidden from the job definition",
+      "revId": "25ed856be9256ddfbfea4e1219e7c609054237b3",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "483ce456_21e81704",
+        "filename": "zuul.d/_data_plane_adoption.yaml",
+        "patchSetId": 51
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-10-04T06:06:09Z",
+      "side": 1,
+      "message": "sanity check - intentional difference here? (above you added it with 122.1).",
+      "range": {
+        "startLine": 111,
+        "startChar": 39,
+        "endLine": 111,
+        "endChar": 40
+      },
+      "revId": "25ed856be9256ddfbfea4e1219e7c609054237b3",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
