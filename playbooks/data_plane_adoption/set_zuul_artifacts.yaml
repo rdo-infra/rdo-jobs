@@ -7,11 +7,11 @@
         data:
           zuul:
             artifacts:
-              - name: make test-minimal output
+              - name: make / test playbook output
                 url: controller/data-plane-adoption-tests-repo/data-plane-adoption/tests/logs/
-              - name: secrets.yaml passed to make test-minimal
+              - name: secrets.yaml passed to the test playbook
                 url: controller/data-plane-adoption-tests-repo/data_plane_adoption/secrets.yaml
-              - name: vars.yaml passed to make test-minimal
+              - name: vars.yaml passed to the test playbook
                 url: controller/data-plane-adoption-tests-repo/data_plane_adoption/vars.yaml
               - name: Podified control plane - pod logs
                 url: controller/pod/
