@@ -19,6 +19,8 @@
         for namespace in ${namespaces[@]}; do
           oc project $namespace
           oc get pods >> all_pods.txt
+          echo --- >> all_jobs.yaml
+          oc get jobs -o yaml >> all_jobs.yaml
           all_pods=$(oc get pods -o name)
           for pod in $all_pods; do
             echo $pod
