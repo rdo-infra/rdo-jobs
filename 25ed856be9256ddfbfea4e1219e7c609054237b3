@@ -69,6 +69,24 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "521d1767_d40216d3",
+        "filename": "zuul.d/_data_plane_adoption.yaml",
+        "patchSetId": 51
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2023-10-04T07:38:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e074c475_9a2c2732",
+      "revId": "25ed856be9256ddfbfea4e1219e7c609054237b3",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "483ce456_21e81704",
@@ -82,6 +100,30 @@
       "writtenOn": "2023-10-04T06:06:09Z",
       "side": 1,
       "message": "sanity check - intentional difference here? (above you added it with 122.1).",
+      "range": {
+        "startLine": 111,
+        "startChar": 39,
+        "endLine": 111,
+        "endChar": 40
+      },
+      "revId": "25ed856be9256ddfbfea4e1219e7c609054237b3",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50c2f010_a95c87a1",
+        "filename": "zuul.d/_data_plane_adoption.yaml",
+        "patchSetId": 51
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2023-10-04T07:38:46Z",
+      "side": 1,
+      "message": "yes, that is intentional. In the extracted crc job, the standalone vm is connected to a libvirt bridged network so that it can be accessed from outside the host and this 192.168.122.11 ip is the ip of the bridge. In the single node job, the vm uses a default libvirt NAT network and all 192.168.122 ips are just internal to that network (the vm is only accessible from the host)",
+      "parentUuid": "483ce456_21e81704",
       "range": {
         "startLine": 111,
         "startChar": 39,
