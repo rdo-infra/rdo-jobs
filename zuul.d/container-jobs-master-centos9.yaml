@@ -55,6 +55,7 @@
       buildah_login: true
       registry_login_enabled: true
       cifmw_dlrn_report_result: true
+      cifmw_repo_setup_branch: master
 
 ## quay.io push job
 - job:
@@ -76,6 +77,7 @@
       trunk_url: https://trunk.rdoproject.org
       promote_source: podified-ci-testing
       cifmw_dlrn_report_result: true
+      cifmw_repo_setup_branch: master
 
 - job:
     name: periodic-edpm-container-image-quay-push-centos-9-master
@@ -83,3 +85,4 @@
     vars:
       container_build_push_job_name: periodic-edpm-build-push-images-centos-9-master
       cifmw_dlrn_report_result: true
+      cifmw_repo_setup_branch: master
