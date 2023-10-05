@@ -31,6 +31,9 @@
       cifmw_build_containers_push_containers: true
       buildah_login: true
       registry_login_enabled: true
+      cifmw_dlrn_report_result: true
+      cifmw_repo_setup_branch: antelope
+
 
 ## quay.io push job
 - job:
@@ -42,12 +45,16 @@
       api_end_point: api-centos9-antelope
       from_namespace: podified-antelope-centos9
       to_namespace: podified-antelope-centos9
+      cifmw_dlrn_report_result: true
+      cifmw_repo_setup_branch: antelope
 
 - job:
     name: periodic-edpm-container-image-quay-push-centos-9-antelope
     parent: periodic-container-quay-push-centos-9-antelope
     vars:
       container_build_push_job_name: periodic-edpm-build-push-images-centos-9-antelope
+      cifmw_dlrn_report_result: true
+      cifmw_repo_setup_branch: antelope
     required-projects:
       - name: openstack-k8s-operators/ci-framework
         override-checkout: main
@@ -61,3 +68,4 @@
       openstack_release: antelope
       promote_source: podified-ci-testing
       cifmw_dlrn_report_result: true
+      cifmw_repo_setup_branch: antelope
