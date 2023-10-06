@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c51650b_1115ef54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 56
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-10-06T06:22:41Z",
+      "side": 1,
+      "message": "i think this is good to go, the base job merged yesterday",
+      "revId": "642aa662c9e8650eb4cceb9201b05babd7852202",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "667ee562_7eb9d814",
+        "filename": "playbooks/data_plane_adoption/ci_framework_create_standalone_vm.yaml",
+        "patchSetId": 56
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-10-06T06:22:41Z",
+      "side": 1,
+      "message": "wondering how long that takes\n\n[EDIT]: k only about a minute. I was wondering if we need to make it conditional but seems fine https://logserver.rdoproject.org/65/49765/27/check/data-plane-adoption-github-rdo-centos-9-extracted-crc/59ffc5d/job-output.txt2023-10-04 \n\n```\n13:09:46.650267 | controller | TASK [Create a snapshot of the standalone vm in case we want to retry the adoption process name\u003dinstall_yamls_makes, tasks_from\u003dmake_standalone_snapshot.yml] ***\n2023-10-04 13:09:46.650271 | controller | Wednesday 04 October 2023  13:09:46 -0400 (0:53:26.835)       0:54:38.246 *****\n2023-10-04 13:09:46.703786 | controller |\n2023-10-04 13:09:46.703820 | controller | TASK [install_yamls_makes : Debug make_standalone_snapshot_env var\u003dmake_standalone_snapshot_env] ***\n2023-10-04 13:09:46.703833 | controller | Wednesday 04 October 2023  13:09:46 -0400 (0:00:00.053)       0:54:38.299 *****\n2023-10-04 13:09:46.741573 | controller | skipping: [localhost]\n2023-10-04 13:09:46.741632 | controller |\n2023-10-04 13:09:46.741637 | controller | TASK [install_yamls_makes : Debug make_standalone_snapshot_params var\u003dmake_standalone_snapshot_params] ***\n2023-10-04 13:09:46.741642 | controller | Wednesday 04 October 2023  13:09:46 -0400 (0:00:00.037)       0:54:38.337 *****\n2023-10-04 13:09:46.783240 | controller | skipping: [localhost]\n2023-10-04 13:09:46.783295 | controller |\n2023-10-04 13:09:46.783300 | controller | TASK [install_yamls_makes : Run standalone_snapshot output_dir\u003d{{ cifmw_basedir|default(ansible_user_dir ~ \u0027/ci-framework-data\u0027) }}/artifacts, chdir\u003d/home/zuul/src/github.com/openstack-k8s-operators/install_yamls/devsetup, target\u003dstandalone_snapshot, dry_run\u003d{{ make_standalone_snapshot_dryrun|default(false)|bool }}, params\u003d{{ make_standalone_snapshot_params|default(omit) }}] ***\n2023-10-04 13:09:46.783304 | controller | Wednesday 04 October 2023  13:09:46 -0400 (0:00:00.041)       0:54:38.379 *****\n2023-10-04 13:10:23.426428 | controller | [WARNING]: conditional statements should not include jinja2 templating\n2023-10-04 13:10:23.426488 | controller | delimiters such as {{ }} or {% %}. Found: {{ make_standalone_snapshot_until |\n2023-10-04 13:10:23.426497 | controller | default(true) }}\n2023-10-04 13:10:23.513721 | controller | changed: [localhost]\n2023-10-04 13:10:23.513753 | controller |\n2023-10-04 13:10:23.513759 | controller | PLAY RECAP *********************************************************************\n2023-10-04 13:10:23.513763 | controller | localhost                  : ok\u003d17   changed\u003d16   unreachable\u003d0    failed\u003d0    skipped\u003d3    rescued\u003d0    ignored\u003d0\n2023-10-04 13:10:23.513767 | controller |\n\n```",
+      "revId": "642aa662c9e8650eb4cceb9201b05babd7852202",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1cfd266_97637c87",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 56
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-10-06T06:22:41Z",
+      "side": 1,
+      "message": "ideally include your name here (more for future reference, don\u0027t change this only if you get an update for something else) \n\n\"TODO(jgilaber): the tag... \"",
+      "revId": "642aa662c9e8650eb4cceb9201b05babd7852202",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8bc40c9_0c85d5ce",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 56
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-10-06T06:22:41Z",
+      "side": 1,
+      "message": "this works fine, we could also consider having a var on the job vars",
+      "revId": "642aa662c9e8650eb4cceb9201b05babd7852202",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
