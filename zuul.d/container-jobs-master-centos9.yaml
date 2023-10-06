@@ -67,6 +67,7 @@
       cifmw_build_containers_container_name_prefix: openstack
       cifmw_build_containers_containers_base_image: quay.io/centos/centos:stream9
       promote_source: podified-ci-testing
+      cifmw_repo_setup_promotion: podified-ci-testing
       cifmw_build_containers_push_registry: quay.rdoproject.org
       cifmw_build_containers_registry_namespace: podified-master-centos9
       trunk_url: https://trunk.rdoproject.org/
