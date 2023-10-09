@@ -1103,6 +1103,65 @@
       scenario: scenario003
 
 - job:
+    name: validate-buildsys-tags-caracal-testing-centos9-base
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: caracal
+      rdoinfo_phase: testing
+      centos_releasever: 9s
+    nodeset: rdo-centos-9-stream
+    files:
+      - ^buildsys-tags/cloud9s-openstack-caracal-testing.yml$
+
+- job:
+    name: validate-buildsys-tags-caracal-testing-puppet-scenario001-centos9
+    parent: validate-buildsys-tags-caracal-testing-centos9-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-caracal-testing-puppet-scenario002-centos9
+    parent: validate-buildsys-tags-caracal-testing-centos9-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-caracal-testing-puppet-scenario003-centos9
+    parent: validate-buildsys-tags-caracal-testing-centos9-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: validate-buildsys-tags-caracal-testing-puppet-scenario004-centos9
+    parent: validate-buildsys-tags-caracal-testing-centos9-base
+    vars:
+      scenario: scenario004
+
+- job:
+    name: validate-buildsys-tags-caracal-testing-puppet-scenario005-centos9
+    parent: validate-buildsys-tags-caracal-testing-centos9-base
+    vars:
+      scenario: scenario005
+
+- job:
+    name: validate-buildsys-tags-caracal-testing-packstack-scenario001-centos9
+    parent: validate-buildsys-tags-caracal-testing-centos9-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-caracal-testing-packstack-scenario002-centos9
+    parent: validate-buildsys-tags-caracal-testing-centos9-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-caracal-testing-packstack-scenario003-centos9
+    parent: validate-buildsys-tags-caracal-testing-centos9-base
+    vars:
+      scenario: scenario003
+
+- job:
     name: validate-buildsys-tags-bobcat-testing-centos9-base
     parent: weirdo-validate-buildsys-tags-base
     vars:
