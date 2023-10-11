@@ -403,6 +403,46 @@
     name: weirdo-master-promotion-pipeline
     openstack-periodic-daily:
       jobs:
+        - weirdo-caracal-promote-consistent-to-puppet-ci-testing
+        - weirdo-caracal-promote-puppet-scenario001-centos-stream-9:
+            dependencies:
+              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
+        - weirdo-caracal-promote-puppet-scenario002-centos-stream-9:
+            dependencies:
+              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
+        - weirdo-caracal-promote-puppet-scenario003-centos-stream-9:
+            dependencies:
+              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
+        - weirdo-caracal-promote-puppet-scenario004-centos-stream-9:
+            dependencies:
+              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
+        - weirdo-caracal-promote-puppet-scenario005-centos-stream-9:
+            dependencies:
+              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
+        - weirdo-caracal-promote-packstack-scenario001-centos-stream-9:
+            dependencies:
+              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
+        - weirdo-caracal-promote-packstack-scenario002-centos-stream-9:
+            dependencies:
+              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
+        - weirdo-caracal-promote-packstack-scenario003-centos-stream-9:
+            dependencies:
+              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
+        - weirdo-caracal-promote-puppet-ci-testing-to-puppet-passed-ci:
+            dependencies:
+              - weirdo-caracal-promote-puppet-scenario001-centos-stream-9
+              - weirdo-caracal-promote-puppet-scenario002-centos-stream-9
+              - weirdo-caracal-promote-puppet-scenario003-centos-stream-9
+              - weirdo-caracal-promote-puppet-scenario004-centos-stream-9
+              - weirdo-caracal-promote-puppet-scenario005-centos-stream-9
+              - weirdo-caracal-promote-packstack-scenario001-centos-stream-9
+              - weirdo-caracal-promote-packstack-scenario002-centos-stream-9
+              - weirdo-caracal-promote-packstack-scenario003-centos-stream-9
+
+- project-template:
+    name: weirdo-bobcat-promotion-pipeline
+    openstack-periodic-daily:
+      jobs:
         - weirdo-bobcat-promote-consistent-to-puppet-ci-testing
         - weirdo-bobcat-promote-puppet-scenario001-centos-stream-9:
             dependencies:
