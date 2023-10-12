@@ -45,7 +45,6 @@
         remote_src: true
 
     - name: Gather logs from standalone deployment in single node jobs
-      when: "'single-node' in zuul.job"
       failed_when: false
       ansible.builtin.shell: |
         ansible-galaxy collection install ansible.posix
