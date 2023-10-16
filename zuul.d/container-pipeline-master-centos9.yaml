@@ -17,7 +17,7 @@
               - periodic-edpm-container-image-quay-push-centos-9-master
     openstack-periodic-container-master-centos9:
       jobs:
-        - periodic-podified-edpm-deployment-master-ocp-crc-1cs9:
+        - periodic-podified-multinode-edpm-deployment-master-ocp-crc-cs9:
             dependencies: &deps
               - periodic-container-tcib-build-push-centos-9-master
             required-projects: &rp
