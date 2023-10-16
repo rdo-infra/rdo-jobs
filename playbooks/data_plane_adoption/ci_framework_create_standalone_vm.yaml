@@ -2,6 +2,28 @@
   vars:
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
   tasks:
+    - name: Created edpm compute node
+      ansible.builtin.include_role:
+        name: 'install_yamls_makes'
+        tasks_from: 'make_edpm_compute.yml'
+      vars:
+        make_edpm_compute_params:
+          EDPM_COMPUTE_VCPUS: 8
+          EDPM_COMPUTE_RAM: 7
+          EDPM_COMPUTE_DISK_SIZE: 70
+
+    # 1. actually this has to go into config repo... ? for secret...
+    # 2. and how do we target this against the edpm compute?
+    - name: Register edpm vm with red hat subscription
+      no_log: true
+      become: true
+      community.general.redhat_subscription:
+        state: present
+        activationKey: "{{ dpa_rhel_subscription.key }}"
+        org_id: "{{ dpa_rhel_subscription.org_id }}"
+        force_register: true
+        # subscription-manager register --force --org {{ dpa_rhel_subscription.org_id }} --activationkey {{ dpa_rhel_subscription.key }}
+
     - name: Create a vm and deploy standalone on it with network isolation
       ansible.builtin.include_role:
         name: 'install_yamls_makes'

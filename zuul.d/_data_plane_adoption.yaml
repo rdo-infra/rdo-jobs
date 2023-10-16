@@ -24,6 +24,7 @@
       - playbooks/data_plane_adoption/collect_logs_crc.yaml
       - playbooks/force_job_failure.yaml
       - playbooks/data_plane_adoption/set_zuul_artifacts.yaml
+      - playbooks/data_plane_adoption/subscription_manager_unregister.yaml
     vars:
       crc_parameters: "--memory 22000 --disk-size 120 --cpus 8"
       quay_login_secret_name: quay_nextgen_zuulgithubci
