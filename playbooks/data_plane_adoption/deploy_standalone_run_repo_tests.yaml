@@ -6,28 +6,6 @@
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
     standalone_ip: "192.168.122.100"
   tasks:
-    - name: Create standalone vm using ci-framework
-      ansible.builtin.shell: >
-        ansible-playbook {{ rdo_dir }}/ci_framework_create_standalone_vm.yaml
-        {% if dpa_standalone_ntp_server is defined %}
-        -e ntp_override={{ dpa_standalone_ntp_server }}
-        {% endif %}
-        {% if osp_release is defined %}
-        -e repo_setup_commands=/home/zuul/ci-framework-data/artifacts/edpm_compute/compute_repo-0.sh
-        {% endif %}
-      args:
-        chdir: "{{ framework_dir }}"
-
-    - name: Wait for standalone vm to be available
-      ansible.builtin.wait_for:
-        port: 22
-        host: "{{ standalone_ip }}"
-        delay: 10
-        timeout: 300
-      vars:
-        ansible_user: root
-        ansible_ssh_private_key_file: /home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa
-
     - name: Create inventory to run tasks inside vm
       ansible.builtin.template:
         src: "{{ playbook_dir }}/files/standalone_vm_inventory.yaml.j2"

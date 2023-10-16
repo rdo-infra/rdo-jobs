@@ -1,0 +1,7 @@
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: Unregister system with subscription-manager
+      become: true
+      ansible.builtin.shell: >
+        subscription-manager unregister
