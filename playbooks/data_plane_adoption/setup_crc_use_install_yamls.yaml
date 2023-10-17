@@ -21,7 +21,12 @@
         chdir: "{{ framework_dir }}"
 
     - name: Run install_yamls via ci-framework
-      ansible.builtin.shell: |
-          ansible-playbook {{ rdo_dir }}/ci_framework_install_yamls.yaml
+      ansible.builtin.shell: >
+        ansible-playbook {{ rdo_dir }}/ci_framework_install_yamls.yaml
+        {% if cifmw_operator_build_output is defined and cifmw_operator_build_output %}
+        -e openstack_operator_image_catalog={{ cifmw_operator_build_output['operators']['openstack-operator']['image_catalog'] }}
+        -e openstack_operator_src_dir={{ cifmw_operator_build_output['operators']['openstack-operator']['git_src_dir'] }}
+        {% endif %}
+
       args:
         chdir: "{{ framework_dir }}"
