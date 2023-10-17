@@ -124,6 +124,18 @@
         regexp: 'neutron_password:'
         value: "neutron_password: {{ tripleo_passwords['content'] | b64decode | regex_search('NeutronPassword:.(.+)', '\\1') | first }}"
 
+    - name: Place heat password into secrets.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/secrets.yaml"
+        regexp: 'heat_password:'
+        value: "heat_password: {{ tripleo_passwords['content'] | b64decode | regex_search('HeatPassword:.(.+)', '\\1') | first }}"
+
+    - name: Place heat auth encription key into secrets.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/secrets.yaml"
+        regexp: 'heat_auth_encryption_key:'
+        value: "heat_auth_encryption_key: {{ tripleo_passwords['content'] | b64decode | regex_search('HeatAuthEncryptionKey:.(.+)', '\\1') | first }}"
+
     - name: Set standalone login var controller1_ssh in secrets.yaml
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/secrets.yaml"
