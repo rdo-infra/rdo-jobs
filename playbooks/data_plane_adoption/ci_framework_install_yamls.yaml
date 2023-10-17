@@ -8,21 +8,17 @@
         tasks_from: 'make_crc_attach_default_interface'
 
     - name: Run make openstack using install_yamls_makes and pass content provider openstack-operator image
-      when:
-        - cifmw_operator_build_output is defined
-        - cifmw_operator_build_output['operators'] is defined
-        - cifmw_operator_build_output['operators']['openstack-operator'] is defined
+      when: openstack_operator_image_catalog is defined
       ansible.builtin.include_role:
         name: install_yamls_makes
         tasks_from: 'make_openstack'
       vars:
         make_openstack_env:
-          OPENSTACK_IMG: "{{ cifmw_operator_build_output['operators']['openstack-operator']['image_catalog'] }}"
-          OPENSTACK_REPO: "{{ cifmw_operator_build_output['operators']['openstack-operator']['git_src_dir'] }}"
+          OPENSTACK_IMG: "{{ openstack_operator_image_catalog }}"
+          OPENSTACK_REPO: "{{ openstack_operator_src_dir }}"
 
     - name: Run make openstack using install_yamls_makes without content provider
-      when:
-        - cifmw_operator_build_output is not defined
+      when: openstack_operator_image_catalog is not defined
       ansible.builtin.include_role:
         name: install_yamls_makes
         tasks_from: 'make_openstack'
