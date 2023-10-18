@@ -1455,3 +1455,62 @@
     parent: validate-buildsys-tags-antelope-release-centos9-base
     vars:
       scenario: scenario003
+
+- job:
+    name: validate-buildsys-tags-bobcat-release-centos9-base
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: bobcat
+      rdoinfo_phase: release
+      centos_releasever: 9s
+    nodeset: rdo-centos-9-stream
+    files:
+      - ^buildsys-tags/cloud9s-openstack-bobcat-release.yml$
+
+- job:
+    name: validate-buildsys-tags-bobcat-release-puppet-scenario001-centos9
+    parent: validate-buildsys-tags-bobcat-release-centos9-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-bobcat-release-puppet-scenario002-centos9
+    parent: validate-buildsys-tags-bobcat-release-centos9-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-bobcat-release-puppet-scenario003-centos9
+    parent: validate-buildsys-tags-bobcat-release-centos9-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: validate-buildsys-tags-bobcat-release-puppet-scenario004-centos9
+    parent: validate-buildsys-tags-bobcat-release-centos9-base
+    vars:
+      scenario: scenario004
+
+- job:
+    name: validate-buildsys-tags-bobcat-release-puppet-scenario005-centos9
+    parent: validate-buildsys-tags-bobcat-release-centos9-base
+    vars:
+      scenario: scenario005
+
+- job:
+    name: validate-buildsys-tags-bobcat-release-packstack-scenario001-centos9
+    parent: validate-buildsys-tags-bobcat-release-centos9-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-bobcat-release-packstack-scenario002-centos9
+    parent: validate-buildsys-tags-bobcat-release-centos9-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-bobcat-release-packstack-scenario003-centos9
+    parent: validate-buildsys-tags-bobcat-release-centos9-base
+    vars:
+      scenario: scenario003
