@@ -1,0 +1,10 @@
+- hosts: standalone
+  gather_facts: false
+  tasks:
+    - name: Unregister system with subscription-manager
+      when:
+        - skip_standalone_vm is defined
+        - skip_standalone_vm | default(false) | bool
+      become: true
+      ansible.builtin.shell: >
+        subscription-manager unregister
