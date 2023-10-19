@@ -1,0 +1,19 @@
+- hosts: standalone
+  gather_facts: false
+  tasks:
+    - name: Delete pre-existing Wired Connection 1 from standalone rhel node
+      become: true
+      ansible.builtin.shell: |
+        conn1=$(nmcli connection show "Wired connection 1" | grep connection.uuid  | awk '{ print $2 }')
+        nmcli connection delete $conn1
+      register: delete_wired1_res
+
+    - name: debug delete
+      ansible.builtin.debug:
+        var: delete_wired1_res
+
+    - name: Refresh NetworkManager
+      become: true
+      ansible.builtin.systemd:
+        name: NetworkManager
+        state: restarted
