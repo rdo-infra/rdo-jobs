@@ -13,7 +13,8 @@
     - name: Install collections to use nmcli and libvirt ansible modules
       ansible.builtin.command: ansible-galaxy collection install community.general community.libvirt
 
-    - name: Create standalone vm using ci-framework
+    - name: Create vm and deploy standalone using ci-framework
+      when: skip_standalone_vm is not defined
       ansible.builtin.shell: >
         ansible-playbook {{ rdo_dir }}/ci_framework_create_standalone_vm.yaml -e "job_name={{ zuul.job }}"
         {% if dpa_standalone_ntp_server is defined %}
@@ -26,6 +27,38 @@
         -e "standalone_dns={{ standalone_dns | default(standalone_gateway) }}"
       args:
         chdir: "{{ framework_dir }}"
+
+    - name: Write repo commands and deploy standalone using ci-framework no vm
+      when: skip_standalone_vm is defined and skip_standalone_vm
+      block:
+        - name: Write out the repo setup commands to file for standalone to use
+          ansible.builtin.copy:
+            dest: /home/zuul/cdn_subscription_repos.sh
+            content: |
+              subscription-manager repos --enable openstack-17.1-for-rhel-9-x86_64-rpms
+              subscription-manager repos --enable rhceph-6-tools-for-rhel-9-x86_64-rpms
+              subscription-manager repos --enable fast-datapath-for-rhel-9-x86_64-rpms
+              subscription-manager repos --enable rhel-9-for-x86_64-highavailability-eus-rpms
+
+        - name: Deploy the standalone with ci_framework_deploy_standalone_vm.yaml
+          ansible.builtin.shell: >
+            ansible-playbook {{ rdo_dir }}/ci_framework_deploy_standalone_vm.yaml -e "job_name={{ zuul.job }}"
+            {% if dpa_standalone_ntp_server is defined %}
+            -e ntp_override={{ dpa_standalone_ntp_server }}
+            {% endif %}
+            -e repo_setup_commands=/home/zuul/cdn_subscription_repos.sh
+            -e "standalone_ip={{ standalone_ip }}" -e "standalone_gateway={{ standalone_gateway }}"
+            -e "standalone_dns={{ standalone_dns | default(standalone_gateway) }}"
+          args:
+            chdir: "{{ framework_dir }}"
+
+        - name: Insert vars for data plane operator and os-net-config with zuul native standalone node
+          ansible.builtin.blockinfile:
+            path: "{{ rdo_dir }}/vars.yaml"
+            block: |
+              dataplane_os_net_config_iface: nic2
+              dataplane_public_iface: eth1
+              dataplane_os_net_config_set_route: false
 
     - name: Wait for standalone vm to be available
       ansible.builtin.wait_for:
@@ -87,7 +120,7 @@
 
     - name: Read the standalone ssh key downloaded from standalone vm
       ansible.builtin.slurp:
-        path: /home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa
+        path: "{{ standalone_private_key | default('/home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa') }}"
       register: standalone_key
 
     - name: Place standalone key into secrets.yaml
@@ -134,7 +167,7 @@
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/secrets.yaml"
         regexp: 'controller1_ssh:'
-        value: "controller1_ssh: ssh -i /home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa root@{{ standalone_ip }}"
+        value: "controller1_ssh: ssh -i {{ standalone_private_key | default('/home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa') }} root@{{ standalone_ip }}"
 
     - name: pip install openstackclient for keystone adoption on crc
       become: true
@@ -201,6 +234,12 @@
           TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"
       register: make_res
       failed_when: '"failed=0" not in "{{ make_res.stdout_lines[-1:] }}"'
+
+    # TODO(marios) remove comment - testing
+    # - name: Unregister with subscription-manager when this was a CDN OSP 17.1 source job
+    #  when: skip_standalone_vm is defined and skip_standalone_vm
+    #  ansible.builtin.shell:
+    #    ansible-playbook {{ rdo_dir }}/unregister_RH_subscription_standalone.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }} -e "skip_standalone_vm={{ skip_standalone_vm | default(false) }}"
 
     - name: Mark job as successful
       ansible.builtin.file:
