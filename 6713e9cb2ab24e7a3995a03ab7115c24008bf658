@@ -86,6 +86,24 @@
       "parentUuid": "3229b345_5a3d8ae1",
       "revId": "6713e9cb2ab24e7a3995a03ab7115c24008bf658",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e64894f_e192cbea",
+        "filename": "playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml",
+        "patchSetId": 69
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2023-10-19T08:53:13Z",
+      "side": 1,
+      "message": "oh right, I had overlooked that, apparently according to the documentation of the copy module (https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html) \"Using a variable in the content field will result in unpredictable output.\" I\u0027ll change the task to use template instead to be sure",
+      "parentUuid": "3a863703_76a53812",
+      "revId": "6713e9cb2ab24e7a3995a03ab7115c24008bf658",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
