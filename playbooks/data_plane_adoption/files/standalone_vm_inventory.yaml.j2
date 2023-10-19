@@ -4,4 +4,4 @@ nested_vm
 [standalone:vars]
 ansible_host={{ standalone_ip }}
 ansible_user=root
-ansible_ssh_private_key_file=/home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa
+ansible_ssh_private_key_file={{ standalone_private_key | default('/home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa') }}
