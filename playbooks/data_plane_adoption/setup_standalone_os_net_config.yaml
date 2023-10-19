@@ -1,0 +1,65 @@
+- hosts: standalone
+  vars:
+    rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
+    cifmw_installyamls_repos: "/home/zuul/src/github.com/openstack-k8s-operators/install_yamls"
+    ctlplane_ip: "{{ standalone_ip }}"
+    gateway_ip: "{{ standalone_gateway }}"
+    interface_mtu: 1500
+    ip_address_suffix: 100
+    os_net_config_iface: nic2
+    standalone_vm: false
+  tasks:
+    - name: Setup repos and install deps for running os-net-config
+      become: true
+      ansible.builtin.shell: |
+        subscription-manager repos --enable openstack-17.1-for-rhel-9-x86_64-rpms
+        subscription-manager repos --enable rhceph-6-tools-for-rhel-9-x86_64-rpms
+        subscription-manager repos --enable fast-datapath-for-rhel-9-x86_64-rpms
+        dnf install -y podman python3-tripleoclient util-linux lvm2 cephadm
+        mkdir -p /etc/os-net-config/
+
+    - name: Copy the net_config from install_yamls devsetup repo checkout
+      become: true
+      ansible.builtin.template:
+        src: "{{ cifmw_installyamls_repos }}/devsetup/standalone/net_config.j2"
+        dest: /etc/os-net-config/standalone_config.yaml
+
+    - name: Rename ci-framework created Network Manager scripts and delete connections
+      become: true
+      ansible.builtin.shell: |
+        for i in `ls -1`; do mv $i $i.BAK; done
+        for i in " " "-20" "-21" "-22"; do nmcli connection delete ci-private-network$i; done
+      args:
+        chdir: /etc/NetworkManager/system-connections/
+
+    - name: Stop NetworkManager
+      become: true
+      ansible.builtin.systemd:
+        name: NetworkManager
+        state: stopped
+
+    - name: Start network and openvswitch services
+      become: true
+      ansible.builtin.systemd:
+        name: "{{ item }}"
+        state: started
+      loop:
+        - network
+        - openvswitch
+
+    - name: Run os-net-config to create standalone networking
+      become: true
+      ansible.builtin.shell: |
+        os-net-config -c /etc/os-net-config/standalone_config.yaml
+
+    - name: Get debug info about network
+      failed_when: false
+      ansible.builtin.shell: |
+        ip a
+        ping -c 2 -W 2 192.168.122.10
+        ping -c 2 -W 2 192.168.122.11
+      register: standalone_network_ip_info
+
+    - name: Debug standalone network status
+      ansible.builtin.debug:
+        var: standalone_network_ip_info
