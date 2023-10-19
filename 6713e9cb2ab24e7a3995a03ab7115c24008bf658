@@ -18,6 +18,23 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7ee132c_2dc7664d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 69
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2023-10-19T08:06:56Z",
+      "side": 1,
+      "message": "Waiting for tests and another pass to remove unused code",
+      "revId": "6713e9cb2ab24e7a3995a03ab7115c24008bf658",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fab1a8fd_7410b8ff",
@@ -31,6 +48,24 @@
       "writtenOn": "2023-10-19T07:59:22Z",
       "side": 1,
       "message": "just spotted the spacing on all of these. clearly they must be working OK though so meh.\n\n[EDIT]: I wonder was that somehow needed/intentional here for some reason to do with the framework?",
+      "revId": "6713e9cb2ab24e7a3995a03ab7115c24008bf658",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3229b345_5a3d8ae1",
+        "filename": "playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml",
+        "patchSetId": 69
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2023-10-19T08:06:56Z",
+      "side": 1,
+      "message": "by spacing you mean the indentation? The file is created without it and looks good",
+      "parentUuid": "fab1a8fd_7410b8ff",
       "revId": "6713e9cb2ab24e7a3995a03ab7115c24008bf658",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
