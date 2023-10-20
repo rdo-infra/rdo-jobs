@@ -1,0 +1,8 @@
+- hosts: controller
+  gather_facts: false
+  tasks:
+    - name: Create inventory to run tasks inside vm
+      # DNM(jgilaber): Sleep for 30 mins to provide a temporary hold on the
+      # node
+      ansible.builtin.wait_for:
+        timeout: 1800
