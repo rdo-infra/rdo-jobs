@@ -18,6 +18,23 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "50b10a77_4c0a77dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 71
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2023-10-20T07:02:22Z",
+      "side": 1,
+      "message": "Tested here https://review.rdoproject.org/r/c/testproject/+/49765/comments/0e5d6ccc_70eff8e5",
+      "revId": "9798592c9bdf0e3c5a6e856f7bce80ebd8b8d69a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3fc9c7f3_6e067785",
@@ -31,6 +48,24 @@
       "writtenOn": "2023-10-19T15:23:15Z",
       "side": 1,
       "message": "Aren\u0027t the tcp/udp rules for specific ports above just subsets of this one? If so, not a blocker. In any case i\u0027m inclined to land the patch and then do any tweaks :)",
+      "revId": "9798592c9bdf0e3c5a6e856f7bce80ebd8b8d69a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37a8713b_21e1171c",
+        "filename": "playbooks/data_plane_adoption/ci_framework_create_standalone_vm.yaml",
+        "patchSetId": 71
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2023-10-20T07:02:22Z",
+      "side": 1,
+      "message": "you\u0027re probably right, tbh I followed the example of a default libvirt NAT network (https://jamielinux.com/docs/libvirt-networking-handbook/appendix/example-of-iptables-nat.html#example-of-iptables-nat) and since it worked I did not go back to try to simplify it. There are a few points of the networking that could use  some follow ups",
+      "parentUuid": "3fc9c7f3_6e067785",
       "revId": "9798592c9bdf0e3c5a6e856f7bce80ebd8b8d69a",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
