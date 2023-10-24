@@ -4,18 +4,30 @@
     cifmw_parameters_file: "/home/zuul/vars.yaml"
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
     cifmw_installyamls_repos: "/home/zuul/src/github.com/openstack-k8s-operators/install_yamls"
+    bootstrap_vars: "/home/zuul/bootstrap_vars.yaml"
   tasks:
+    - name: Dump cifmw bootstrap parameters to a file to pass them easily
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/files/cifmw_bootstrap_vars.yaml.j2"
+        dest: "{{ bootstrap_vars }}"
+      when: dpa_cifmw_bootstrap_customization | default('false') | bool
+
+    - name: Install community.general collection
+      ansible.builtin.command: ansible-galaxy collection install community.general
+
     - name: Prepare ci-framework environment and install openshift client
       ansible.builtin.shell:
-        cmd: |
-          ansible-galaxy collection install community.general
-          ansible-playbook ci_framework/playbooks/01-bootstrap.yml --tags bootstrap
+        cmd: >
+          ansible-playbook ci_framework/playbooks/01-bootstrap.yml
+          {% if dpa_cifmw_bootstrap_customization is defined %}
+          -e "@{{ bootstrap_vars }}"
+          {% endif %}
         chdir: "{{ framework_dir }}"
 
     - name: Dump parameters to a file to pass them easily to cifmw playbooks
       ansible.builtin.template:
         src: "{{ playbook_dir }}/files/ci_framework_params.yaml.j2"
-        dest: "{{cifmw_parameters_file}}"
+        dest: "{{ cifmw_parameters_file }}"
 
     - name: Prepare openshift and libvirt environment
       ansible.builtin.shell:
