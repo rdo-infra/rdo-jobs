@@ -5,11 +5,6 @@
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
   tasks:
-    - name: Create inventory to run tasks inside vm
-      ansible.builtin.template:
-        src: "{{ playbook_dir }}/files/standalone_vm_inventory.yaml.j2"
-        dest: "/home/zuul/{{ standalone_vm_inventory | default('standalone_vm_inventory') }}"
-
     - name: Install collections to use nmcli and libvirt ansible modules
       ansible.builtin.command: ansible-galaxy collection install community.general community.libvirt
 
