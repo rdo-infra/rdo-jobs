@@ -1,0 +1,16 @@
+- hosts: all,!crc
+  tasks:
+    - name: Ensure that nodes use crc as dns server
+      when: restart_nm_in_pre | default('false') | bool
+      block:
+        - name: Remove 'dns=none' config
+          become: true
+          ansible.builtin.file:
+            path: /etc/NetworkManager/conf.d/99-cloud-init.conf
+            state: absent
+
+        - name: Reload NetworkManager
+          become: true
+          ansible.builtin.systemd:
+            name: NetworkManager
+            state: reloaded
