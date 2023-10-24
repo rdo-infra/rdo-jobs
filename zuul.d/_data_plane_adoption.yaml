@@ -58,6 +58,7 @@
       - zuul: github.com/openstack-k8s-operators/ci-framework
     pre-run:
       - playbooks/data_plane_adoption/subnode_ip.yaml
+      - playbooks/data_plane_adoption/multinode-dns-pre.yaml
       - playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml
     run:
       - playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml
