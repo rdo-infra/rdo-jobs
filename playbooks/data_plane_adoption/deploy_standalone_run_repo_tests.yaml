@@ -4,7 +4,67 @@
     dpa_dir: "/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption"
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
+    cifmw_parameters_file: "/home/zuul/vars.yaml"
+    cifmw_installyamls_repos: "/home/zuul/src/github.com/openstack-k8s-operators/install_yamls"
+    bootstrap_vars: "/home/zuul/bootstrap_vars.yaml"
   tasks:
+    - name: Dump cifmw bootstrap parameters to a file to pass them easily
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/files/cifmw_bootstrap_vars.yaml.j2"
+        dest: "{{ bootstrap_vars }}"
+      when: dpa_cifmw_bootstrap_customization | default('false') | bool
+
+    - name: Install community.general collection
+      ansible.builtin.command: ansible-galaxy collection install community.general
+
+    - name: Prepare ci-framework environment and install openshift client
+      ansible.builtin.shell:
+        cmd: >
+          ansible-playbook ci_framework/playbooks/01-bootstrap.yml
+          {% if dpa_cifmw_bootstrap_customization is defined %}
+          -e "@{{ bootstrap_vars }}"
+          {% endif %}
+        chdir: "{{ framework_dir }}"
+
+    - name: Dump parameters to a file to pass them easily to cifmw playbooks
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/files/ci_framework_params.yaml.j2"
+        dest: "{{ cifmw_parameters_file }}"
+
+    - name: Prepare openshift and libvirt environment
+      ansible.builtin.shell:
+        cmd:
+          ansible-playbook -v ci_framework/playbooks/02-infra.yml -e "@{{cifmw_parameters_file}}"
+        chdir: "{{ framework_dir }}"
+
+    - name: Install operators via ci-framework using edpm code
+      ansible.builtin.shell:
+        cmd:
+          ansible-playbook -v ci_framework/playbooks/06-deploy-edpm.yml -e "@{{cifmw_parameters_file}}"
+        chdir: "{{ framework_dir }}"
+
+    - name: Copy kubeconfig to .kube folder where oc expects it
+      ansible.builtin.copy:
+        src: "{{ cifmw_openshift_kubeconfig }}"
+        dest: "/home/zuul/.kube/config"
+        remote_src: true
+
+    - name: Make sure all Openstack operators are deployed
+      ansible.builtin.shell: |
+        set -o pipefail && \
+        oc get csv -l operators.coreos.com/openstack-operator.openstack-operators -n "openstack-operators" --no-headers=true | grep -i "succeeded"
+      register: operator_status
+      until: operator_status.rc == 0
+      changed_when: false
+      retries: 30
+      delay: 30
+
+    - name: Get the name of the control plane deployed by 06-deploy-edpm.yml
+      ansible.builtin.command: oc get -n openstack openstackcontrolplane -o name
+      register: control_plane
+
+    - name: Delete control plane deployed by 06-deploy-edpm.yml
+      ansible.builtin.command: oc delete -n openstack "{{ control_plane.stdout }}"
     - name: Create inventory to run tasks inside vm
       ansible.builtin.template:
         src: "{{ playbook_dir }}/files/standalone_vm_inventory.yaml.j2"
