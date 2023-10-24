@@ -6,17 +6,22 @@
     cifmw_installyamls_repos: "/home/zuul/src/github.com/openstack-k8s-operators/install_yamls"
     cifwm_data_folder: "/home/zuul/ci-framework-data/artifacts/parameters"
   tasks:
+    - name: Install community.general collection
+      ansible.builtin.command: ansible-galaxy collection install community.general
+
     - name: Prepare ci-framework environment and install openshift client
       ansible.builtin.shell:
-        cmd: |
-          ansible-galaxy collection install community.general
-          ansible-playbook ci_framework/playbooks/01-bootstrap.yml --tags bootstrap
+        cmd: >
+          ansible-playbook ci_framework/playbooks/01-bootstrap.yml
+          {% if dpa_cifmw_bootstrap_vars is defined %}
+          -e "@{{ dpa_cifmw_bootstrap_vars }}"
+          {% endif %}
         chdir: "{{ framework_dir }}"
 
     - name: Dump parameters to a file to pass them easily to cifmw playbooks
       ansible.builtin.template:
         src: "{{ playbook_dir }}/files/ci_framework_params.yaml.j2"
-        dest: "{{cifmw_parameters_file}}"
+        dest: "{{ cifmw_parameters_file }}"
 
     - name: Prepare openshift and libvirt environment
       ansible.builtin.shell:
