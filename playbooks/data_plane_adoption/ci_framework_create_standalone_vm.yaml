@@ -71,6 +71,18 @@
             name: libvirtd
             state: restarted
 
+        - name: Make sure virtqemud service is running
+          become: true
+          ansible.builtin.service:
+            name: virtqemud
+            state: started
+
+        - name: Make sure virtnetworkd service is running
+          become: true
+          ansible.builtin.service:
+            name: virtnetworkd
+            state: started
+
         - name: Undefine existing default network
           community.libvirt.virt_net:
             name: default
