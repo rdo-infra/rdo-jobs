@@ -27,6 +27,5 @@
         -e openstack_operator_image_catalog={{ cifmw_operator_build_output['operators']['openstack-operator']['image_catalog'] }}
         -e openstack_operator_src_dir={{ cifmw_operator_build_output['operators']['openstack-operator']['git_src_dir'] }}
         {% endif %}
-
       args:
         chdir: "{{ framework_dir }}"
