@@ -32,3 +32,28 @@
       changed_when: false
       retries: 30
       delay: 30
+
+    - name: Get CA bundle data
+      ansible.builtin.command:
+        cmd: 'oc get secret combined-ca-bundle -n openstack -o "jsonpath={.data.tls-ca-bundle\.pem}" --ignore-not-found'
+      register: ca_bundle_data
+
+    - name: Get CA bundle
+      when: ca_bundle_data.stdout | length > 0
+      ansible.builtin.set_fact:
+        ca_bundle: >-
+          {{ ca_bundle_data.stdout | ansible.builtin.b64decode }}
+
+    - name: Creating tls-ca-bundle.pem
+      when: (ca_bundle is defined) and (ca_bundle | length > 0)
+      ansible.builtin.copy:
+        dest: "/home/zuul/ci-framework-data/tls-ca-bundle.pem"
+        content: "{{ ca_bundle }}"
+      register: ca_bundle_file
+
+    - name: Inject OpenStackControlplane CA bundle  # noqa: no-handler
+      when: ca_bundle_file is changed
+      vars:
+        cifmw_install_ca_bundle_src: "/home/zuul/ci-framework-data/tls-ca-bundle.pem"
+      ansible.builtin.include_role:
+        role: install_ca
