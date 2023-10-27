@@ -32,3 +32,45 @@
       changed_when: false
       retries: 30
       delay: 30
+
+    - name: Create dummy openstack deployment to get CA
+      ansible.builtin.command:
+        cmd: oc apply -f /home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption/tests/config/base/openstack_control_plane.yaml
+
+    - name: Make sure the TLS openstack secret exists
+      ansible.builtin.shell: |
+        set -o pipefail && \
+        oc get secret -n "openstack" | grep -i "combined-ca-bundle"
+      register: ca_secret_status
+      until: ca_secret_status.rc == 0
+      changed_when: false
+      retries: 10
+      delay: 10
+
+    - name: Get CA bundle data
+      ansible.builtin.command:
+        cmd: 'oc get secret combined-ca-bundle -n openstack -o "jsonpath={.data.tls-ca-bundle\.pem}" --ignore-not-found'
+      register: ca_bundle_data
+
+    - name: Get CA bundle
+      when: ca_bundle_data.stdout | length > 0
+      ansible.builtin.set_fact:
+        ca_bundle: >-
+          {{ ca_bundle_data.stdout | ansible.builtin.b64decode }}
+
+    - name: Creating tls-ca-bundle.pem
+      when: (ca_bundle is defined) and (ca_bundle | length > 0)
+      ansible.builtin.copy:
+        dest: "/home/zuul/ci-framework-data/tls-ca-bundle.pem"
+        content: "{{ ca_bundle }}"
+      register: ca_bundle_file
+
+    - name: Inject OpenStackControlplane CA bundle  # noqa: no-handler
+      when: ca_bundle_file is changed
+      vars:
+        cifmw_install_ca_bundle_src: "/home/zuul/ci-framework-data/tls-ca-bundle.pem"
+      ansible.builtin.include_role:
+        role: install_ca
+
+    - name: Delete dummy control plane deployment
+      ansible.builtin.command: oc delete -n openstack openstack
