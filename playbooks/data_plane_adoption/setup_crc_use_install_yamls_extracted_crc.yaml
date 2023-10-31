@@ -24,9 +24,13 @@
         chdir: "{{ framework_dir }}"
 
     - name: Install operators via ci-framework using edpm code
-      ansible.builtin.shell:
-        cmd:
-          ansible-playbook -v ci_framework/playbooks/06-deploy-edpm.yml -e "@{{cifmw_parameters_file}}"
+      ansible.builtin.shell: >
+        ansible-playbook -v ci_framework/playbooks/06-deploy-edpm.yml -e "@{{cifmw_parameters_file}}"
+        {% if cifmw_operator_build_output is defined and cifmw_operator_build_output %}
+        -e cifmw_operator_build_output="{{ cifmw_operator_build_output }}"
+        -e cifmw_operator_build_meta_name='openstack-operator'
+        {% endif %}
+      args:
         chdir: "{{ framework_dir }}"
 
     - name: Copy kubeconfig to .kube folder where oc expects it
