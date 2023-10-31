@@ -4,6 +4,7 @@
     cifmw_parameters_file: "/home/zuul/vars.yaml"
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
     cifmw_installyamls_repos: "/home/zuul/src/github.com/openstack-k8s-operators/install_yamls"
+    cifwm_data_folder: "/home/zuul/ci-framework-data/artifacts/parameters"
   tasks:
     - name: Prepare ci-framework environment and install openshift client
       ansible.builtin.shell:
@@ -23,10 +24,24 @@
           ansible-playbook -v ci_framework/playbooks/02-infra.yml -e "@{{cifmw_parameters_file}}"
         chdir: "{{ framework_dir }}"
 
+    - name: Write content-provider vars to file if present
+      when: cifmw_operator_build_output is defined and cifmw_operator_build_output
+      block:
+        - name: Set content-provider variables dictionary
+          ansible.builtin.set_fact:
+            cifmw_content_provider_params:
+              cifmw_operator_build_output: "{{ cifmw_operator_build_output }}"
+              cifmw_operator_build_meta_name: "{{ cifmw_operator_build_meta_name }}"
+
+        - name: Write variables to cifmw custom params file
+          ansible.builtin.lineinfile:
+            path: "{{ cifwm_data_folder }}/custom-params.yml"
+            line: "{{ cifmw_content_provider_params | to_nice_yaml }}"
+
     - name: Install operators via ci-framework using edpm code
       ansible.builtin.shell:
-        cmd:
-          ansible-playbook -v ci_framework/playbooks/06-deploy-edpm.yml -e "@{{cifmw_parameters_file}}"
+        ansible-playbook -v ci_framework/playbooks/06-deploy-edpm.yml -e "@{{cifmw_parameters_file}}"
+      args:
         chdir: "{{ framework_dir }}"
 
     - name: Copy kubeconfig to .kube folder where oc expects it
