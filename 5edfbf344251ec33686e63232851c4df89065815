@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c108f51_9193b467",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2023-11-01T12:56:40Z",
+      "side": 1,
+      "message": "Testing in install_yamls PR https://github.com/openstack-k8s-operators/install_yamls/pull/608. Seems like it\u0027s working: https://review.rdoproject.org/zuul/build/67bf33d013d3469499022cb15bafec77. \n\nFrom https://review.rdoproject.org/zuul/build/67bf33d013d3469499022cb15bafec77/log/job-output.txt#4029: \n\"OPENSTACK_IMG\": \"38.102.83.82:5001/openstack-k8s-operators/openstack-operator-index:1bd92866e9f1607501ca42f4b5b6a323570e5917\",\n\nand from the pods logs, https://review.rdoproject.org/zuul/build/67bf33d013d3469499022cb15bafec77/log/controller/pod/openstack-operator-index-s5j6q-describe.txt#38:  \nImage:          38.102.83.82:5001/openstack-k8s-operators/openstack-operator-index:1bd92866e9f1607501ca42f4b5b6a323570e5917",
+      "revId": "5edfbf344251ec33686e63232851c4df89065815",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
