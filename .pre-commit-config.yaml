@@ -11,6 +11,8 @@ repos:
       - id: check-merge-conflict
       - id: debug-statements
       - id: check-yaml
+        additional_dependencies:
+          - ruamel.yaml<=0.18.3
         files: .*\.(yaml|yml)$
   - repo: https://github.com/adrienverge/yamllint.git
     rev: v1.27.0
