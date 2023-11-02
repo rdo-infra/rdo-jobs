@@ -16,6 +16,24 @@
       "message": "hmm linters seems unrelated though 2023-11-02 09:03:26.213055 | rdo-centos-8-stream | SyntaxError: future feature annotations is not defined",
       "revId": "107aa2fb08e90026d2a5f1931a6ee7dcdec2e8f7",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d61b301b_5e1d3a2a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2023-11-02T09:33:22Z",
+      "side": 1,
+      "message": "yes, I\u0027m seeing the exact same error in the config repo patch. I tracked it to an update in a package used by the check-yaml pre-commit hook, I\u0027m looking how to pin that dependency",
+      "parentUuid": "44adbf83_a9abab93",
+      "revId": "107aa2fb08e90026d2a5f1931a6ee7dcdec2e8f7",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
