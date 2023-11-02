@@ -11,6 +11,8 @@ repos:
       - id: check-merge-conflict
       - id: debug-statements
       - id: check-yaml
+        additional_dependencies:
+          - 'ruamel.yaml<=0.18.3'
         files: .*\.(yaml|yml)$
   - repo: https://github.com/adrienverge/yamllint.git
     rev: v1.27.0
@@ -38,6 +40,7 @@ repos:
         additional_dependencies:
           - zuul
           - 'ansible-core<=2.12'
+          - 'ruamel.yaml<=0.18.3'
   - repo: https://github.com/openstack-dev/bashate.git
     rev: 1.0.0
     hooks:
