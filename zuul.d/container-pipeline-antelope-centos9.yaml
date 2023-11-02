@@ -17,9 +17,6 @@
               - periodic-edpm-container-image-quay-push-centos-9-antelope
     openstack-periodic-container-antelope-centos9:
       jobs:
-        - periodic-data-plane-adoption-github-rdo-centos-9-crc-single-node-antelope:
-            dependencies:
-              - periodic-container-tcib-build-push-centos-9-antelope
         - periodic-data-plane-adoption-github-rdo-centos-9-crc-extracted-crc-antelope:
             dependencies:
               - periodic-container-tcib-build-push-centos-9-antelope
