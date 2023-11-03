@@ -33,7 +33,7 @@
           sudo yum-config-manager --disable epel;
           virtualenv  --system-site-packages .venv
           . .venv/bin/activate
-          pip install ruamel.yaml rdopkg
+          pip install 'ruamel.yaml<=0.18.3' rdopkg
           pushd {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}/buildsys-tags
           # define logs variable with the URL wher logs will be pushed
           export logs="https://logserver.rdoproject.org/{{ zuul_log_path }}/buildset"
