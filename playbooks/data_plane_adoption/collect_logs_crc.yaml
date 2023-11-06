@@ -37,11 +37,13 @@
       changed_when: true
       failed_when: false
 
-    - name: Copy ci-framework-data directory into {{ ansible_user_dir }}/logs
+    # TODO(jgilaber): stop copying this here and rely on ci-framework post-run
+    # to gather the logs once we remove the single-node job everywhere
+    - name: Copy ci-framework-data directory into {{ ansible_user_dir }}/logs/controller
       failed_when: false
       ansible.builtin.copy:
         src: "{{ ansible_user_dir }}/ci-framework-data"
-        dest: "{{ ansible_user_dir }}/logs/"
+        dest: "{{ ansible_user_dir }}/logs/controller"
         remote_src: true
 
     - name: Gather logs from standalone deployment in single node jobs
