@@ -39,6 +39,12 @@
       args:
         chdir: "{{ ansible_user_dir }}/ci-framework/artifacts/repositories"
 
+    - name: Copy repo-setup generated repos to yum.repos.d directory
+      become: true
+      ansible.builtin.copy:
+        src: "{{ ansible_user_dir }}/ci-framework/artifacts/repositories/"
+        dest: "/etc/yum.repos.d/"
+
     # - name: Disable tripleo repo if it exists
     #   ansible.builtin.replace:
     #     path: "{{ repo_dir }}/delorean.repo"
@@ -51,5 +57,6 @@
       ansible.builtin.include_role:
         name: build_containers
       vars:
+        cifmw_build_containers_install_from_rpm: true
         cifmw_build_containers_openstack_release: "{{ openstack_release }}"
         cifmw_build_containers_image_tag: "{{ md5_value['content'] | b64decode | trim }}"
