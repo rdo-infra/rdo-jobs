@@ -2,6 +2,8 @@
   gather_facts: false
   vars:
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
+    cifmw_parameters_file: "/home/zuul/vars.yaml"
+    framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
   tasks:
     - name: Collect pod logs
       ansible.builtin.shell: |
@@ -36,6 +38,22 @@
         chdir: "{{ ansible_user_dir }}"
       changed_when: true
       failed_when: false
+
+    - name: Verify if "success" flag exists after successful tests execution
+      register: cifmw_success_flag
+      ansible.builtin.stat:
+        path: "{{ ansible_user_dir }}/cifmw-success"
+
+    - name: Call must-gather to collect more information if tests failed
+      when: dpa_must_gather and not cifmw_success_flag.stat.exists
+      ignore_errors: true  # noqa: ignore-errors
+      ansible.builtin.import_role:
+      ansible.builtin.shell: >
+        ansible-playbook {{ rdo_dir }}/ci_framework_must_gather.yaml
+        -e "@{{ ansible_user_dir }}/ci-framework-data/artifacts/parameters/custom-params.yml"
+        -e "@{{cifmw_parameters_file}}"
+      args:
+        chdir: "{{ framework_dir }}"
 
     - name: Copy ci-framework-data directory into {{ ansible_user_dir }}/logs
       failed_when: false
