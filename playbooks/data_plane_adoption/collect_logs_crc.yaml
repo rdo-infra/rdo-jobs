@@ -37,6 +37,8 @@
       changed_when: true
       failed_when: false
 
+    # TODO(jgilaber): stop copying this here and rely on ci-framework post-run
+    # to gather the logs once we remove the single-node job everywhere
     - name: Copy ci-framework-data directory into {{ ansible_user_dir }}/logs
       failed_when: false
       ansible.builtin.copy:
