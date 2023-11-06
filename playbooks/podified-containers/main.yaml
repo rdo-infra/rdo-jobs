@@ -39,6 +39,13 @@
       args:
         chdir: "{{ ansible_user_dir }}/ci-framework/artifacts/repositories"
 
+    - name: Copy repo-setup generated repos to yum.repos.d directory
+      become: true
+      ansible.builtin.copy:
+        remote_src: true
+        src: "{{ ansible_user_dir }}/ci-framework/artifacts/repositories/"
+        dest: "/etc/yum.repos.d/"
+
     # - name: Disable tripleo repo if it exists
     #   ansible.builtin.replace:
     #     path: "{{ repo_dir }}/delorean.repo"
