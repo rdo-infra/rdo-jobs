@@ -211,3 +211,10 @@
           TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"
       register: make_res
       failed_when: '"failed=0" not in "{{ make_res.stdout_lines[-1:] }}"'
+
+    # TODO(jgilaber): Set state to "touch" after we're made sure the must-gather tasks
+    # run
+    - name: Mark job as successful
+      ansible.builtin.file:
+        path: "{{ ansible_user_dir }}/cifmw-success"
+        state: absent
