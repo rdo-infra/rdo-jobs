@@ -33,6 +33,24 @@
       "message": "should this be conditional? it is only wired up in one place as far as i can see there : https://review.rdoproject.org/r/plugins/gitiles/rdo-jobs/+/refs/heads/master/zuul.d/container-jobs-master-centos9.yaml#56\n\nif that job is only periodic then no need to make it conditional i think",
       "revId": "add00118c8d8d51e3ea405ab786ce4285ed0c2c9",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f6828e3_8be00e38",
+        "filename": "playbooks/podified-containers/main.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2023-11-07T11:59:31Z",
+      "side": 1,
+      "message": "@marios, Thank you for the review. This playbook is only used in periodic job that\u0027s why we have not added any conditionals.",
+      "parentUuid": "2bc4161d_bc88de70",
+      "revId": "add00118c8d8d51e3ea405ab786ce4285ed0c2c9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
