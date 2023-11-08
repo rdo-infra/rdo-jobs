@@ -143,6 +143,12 @@
         regexp: 'heat_auth_encryption_key:'
         value: "heat_auth_encryption_key: {{ tripleo_passwords['content'] | b64decode | regex_search('HeatAuthEncryptionKey:.(.+)', '\\1') | first }}"
 
+    - name: Place manila password into secrets.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/secrets.yaml"
+        regexp: 'manila_password:'
+        value: "manila_password: {{ tripleo_passwords['content'] | b64decode | regex_search('ManilaPassword:.(.+)', '\\1') | first }}"
+
     - name: Set standalone login var controller1_ssh in secrets.yaml
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/secrets.yaml"
