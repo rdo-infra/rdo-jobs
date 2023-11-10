@@ -454,7 +454,7 @@
 
 - project-template:
     name: weirdo-antelope-promotion-pipeline
-    openstack-periodic-integration-stable4:
+    openstack-periodic-daily2:
       jobs:
         - weirdo-antelope-promote-consistent-to-puppet-ci-testing
         - weirdo-antelope-promote-puppet-scenario001-centos-stream-9:
@@ -494,7 +494,7 @@
 
 - project-template:
     name: weirdo-zed-promotion-pipeline
-    openstack-periodic-integration-stable4:
+    openstack-periodic-daily2:
       jobs:
         - weirdo-zed-promote-consistent-to-puppet-ci-testing
         - weirdo-zed-promote-puppet-scenario001-centos-stream-9:
@@ -534,7 +534,7 @@
 
 - project-template:
     name: weirdo-yoga-promotion-pipeline
-    openstack-periodic-integration-stable3:
+    openstack-periodic-daily:
       jobs:
         - weirdo-yoga-promote-consistent-to-puppet-ci-testing
         - weirdo-yoga-promote-puppet-scenario001-centos-stream-9:
@@ -570,7 +570,7 @@
 
 - project-template:
     name: weirdo-yoga-promotion-pipeline-centos-stream-8
-    openstack-periodic-integration-stable3:
+    openstack-periodic-daily:
       jobs:
         - weirdo-yoga-promote-consistent-to-puppet-ci-testing-centos-stream-8
         - weirdo-yoga-promote-puppet-scenario001-centos-stream-8:
@@ -606,7 +606,7 @@
 
 - project-template:
     name: weirdo-xena-promotion-pipeline
-    openstack-periodic-daily:
+    openstack-periodic-daily2:
       jobs:
         - weirdo-xena-promote-consistent-to-puppet-ci-testing
         - weirdo-xena-promote-puppet-scenario001-centos-stream-9:
@@ -642,7 +642,7 @@
 
 - project-template:
     name: weirdo-xena-promotion-pipeline-centos-stream-8
-    openstack-periodic-integration-stable3:
+    openstack-periodic-daily:
       jobs:
         - weirdo-xena-promote-consistent-to-puppet-ci-testing-centos-stream-8
         - weirdo-xena-promote-puppet-scenario001-centos-stream-8:
@@ -678,7 +678,7 @@
 
 - project-template:
     name: weirdo-wallaby-promotion-pipeline
-    openstack-periodic-integration-stable2:
+    openstack-periodic-daily2:
       jobs:
         - weirdo-wallaby-promote-consistent-to-puppet-ci-testing
         - weirdo-wallaby-promote-puppet-scenario001-centos-stream-9:
@@ -714,7 +714,7 @@
 
 - project-template:
     name: weirdo-wallaby-promotion-pipeline-centos-stream-8
-    openstack-periodic-integration-stable2:
+    openstack-periodic-daily2:
       jobs:
         - weirdo-wallaby-promote-consistent-to-puppet-ci-testing-centos-stream-8
         - weirdo-wallaby-promote-puppet-scenario001-centos-stream-8:
