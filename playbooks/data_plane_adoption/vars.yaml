@@ -7,7 +7,7 @@ reset_crc_storage: true
 oc_header: ''
 
 # External MariaDB IP for DB exports.
-external_mariadb_ip: CUSTOMIZE_THIS
+source_mariadb_ip: CUSTOMIZE_THIS
 
 # virsh --connect=qemu:///system -q domifaddr standalone | awk 'NF>1{print $NF}' | cut -d/ -f1
 # install_yamls default: 192.168.122.100

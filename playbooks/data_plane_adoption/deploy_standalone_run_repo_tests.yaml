@@ -76,14 +76,14 @@
     - name: Place standalone_ip into vars.yaml for MariaDB
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
-        regexp: '^external_mariadb_ip:'
-        value: "external_mariadb_ip: {{ standalone_ip }}"
+        regexp: '^source_mariadb_ip:'
+        value: "source_mariadb_ip: {{ standalone_ip }}"
 
     - name: Place standalone_ip into vars.yaml for OVN
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
-        regexp: '^external_ovndb_ip:'
-        value: "external_ovndb_ip: {{ standalone_ip }}"
+        regexp: '^source_ovndb_ip:'
+        value: "source_ovndb_ip: {{ standalone_ip }}"
 
     - name: Read the standalone ssh key downloaded from standalone vm
       ansible.builtin.slurp:
@@ -107,7 +107,7 @@
         regexp: "{{ item.key }}:"
         line: "{{ item.key }}: {{ tripleo_passwords['content'] | b64decode | regex_search(item.regex + ': (.+)', '\\1') | first }}"
       loop:
-        - key: 'external_db_root_password'
+        - key: 'source_db_root_password'
           regex: 'MysqlRootPassword'
         - key: 'glance_password'
           regex: 'GlancePassword'
