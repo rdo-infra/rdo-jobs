@@ -179,12 +179,12 @@
               container_namespace: "{{ dpa_container_namespace | default('podified-antelope-centos9') }}"
               container_tag: {{ dlrn_hash_tag | default(latest_podified_ci_testing.content) }}
 
-        - name: Set edpm_chrony_ntp_servers if dpa_standalone_ntp_server set
+        - name: Set timesync_ntp_servers if dpa_standalone_ntp_server set
           ansible.builtin.blockinfile:
             path: "{{ rdo_dir }}/vars.yaml"
             block: |
-              edpm_chrony_ntp_servers:
-                - {{ dpa_standalone_ntp_server }}
+              timesync_ntp_servers:
+                - hostname: {{ dpa_standalone_ntp_server }}
           when: dpa_standalone_ntp_server is defined
 
     - name: Run data-plane-adoption tests
