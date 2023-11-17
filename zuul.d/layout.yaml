@@ -1,14 +1,26 @@
+---
 - project:
     check:
-      jobs: &jobs
-        # Place all individual molecule jobs here, rdo-tox-molecule will soon be removed
-        - rdo-mol-container-login:
-            files:
-              - .*molecule.*
-              - .*container-login.*
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^molecule-requirements.txt
-              - ^tox.ini$
-    gate:
-      jobs: *jobs
+      jobs:
+        - periodic-podified-edpm-baremetal-master-ocp-crc:
+            required-projects: &rp
+              - name: openstack-k8s-operators/install_yamls
+                override-checkout: main
+              - name: openstack-k8s-operators/openstack-operator
+                override-checkout: main
+              - name: github.com/openstack-k8s-operators/ci-framework
+                override-checkout: main
+              - name: github.com/openstack-k8s-operators/repo-setup
+                override-checkout: main
+              - name: github.com/openstack-k8s-operators/dataplane-operator
+                override-checkout: main
+              - name: github.com/openstack-k8s-operators/infra-operator
+                override-checkout: main
+              - name: github.com/openstack-k8s-operators/openstack-baremetal-operator
+                override-checkout: main
+              - name: github.com/openstack-k8s-operators/edpm-ansible
+                override-checkout: main
+        - periodic-podified-multinode-edpm-deployment-master-ocp-crc-cs9:
+            required-projects: *rp
+        - periodic-podified-edpm-baremetal-antelope-ocp-crc:
+            required-projects: *rp

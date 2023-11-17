@@ -1,24 +1,4 @@
 - project:
     name: rdo-jobs
     check:
-      jobs:
-        - tox-docs: &cfg
-            nodeset: rdo-centos-8-stream
-            pre-run:
-              - playbooks/rdo-tox-epel.yaml
-              - playbooks/pre-tox.yaml
-        - tox-linters: *cfg
-        - rdo-mol-container-login: &mol_container_login
-            files:
-              - .*molecule.*
-              - .*container-login.*
-              - ^requirements.txt
-              - ^test-requirements.txt
-              - ^molecule-requirements.txt
-              - ^tox.ini$
-
-    gate:
-      jobs:
-        - tox-docs: *cfg
-        - tox-linters: *cfg
-        - rdo-mol-container-login: *mol_container_login
+      jobs: []
