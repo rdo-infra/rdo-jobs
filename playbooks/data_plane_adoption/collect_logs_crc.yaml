@@ -46,10 +46,11 @@
         dest: "{{ ansible_user_dir }}/logs/controller"
         remote_src: true
 
+    # TODO(bogdando): use sos-reports integration in must-gather instead of ansible-role-collect-logs
     - name: Gather logs from standalone deployment in single node jobs
       failed_when: false
       ansible.builtin.shell: |
-        ansible-galaxy collection install ansible.posix
+        ansible-galaxy collection install ansible.posix  git+https://opendev.org/openstack/ansible-role-collect-logs
         ansible-playbook {{ rdo_dir }}/standalone_collect_logs.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
 
     - name: Copy pod debug files from {{ ansible_user_dir }}/logs on node
