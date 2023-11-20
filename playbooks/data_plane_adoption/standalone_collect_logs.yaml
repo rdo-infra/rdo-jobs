@@ -1,10 +1,30 @@
 - hosts: standalone
+  collections:
+    - tripleo.collect_logs
   gather_facts: false
+  vars:
+    ansible_user: root
+    ansible_ssh_private_key_file: /home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa
   tasks:
     - name: Ensure logs/standalone folder exists
       ansible.builtin.file:
         path: '/home/zuul/logs/standalone'
         state: directory
+
+    # TODO(bogdando): remove this after sos-reports integrated into must-gather
+    - name: Include ansible-role-collect-logs role
+      become: true
+      vars:
+        ara_enabled: false
+        artcl_collect: true
+        artcl_collect_dir: '/root/'
+        artcl_publish: true
+        artcl_txt_rename: true
+        artcl_publish_timeout: 600
+        artcl_collect_list:
+          - /var/log/containers
+      ansible.builtin.include_role:
+        name: ansible-role-collect-logs
 
     - name: Copy log files from standalone vm
       ansible.posix.synchronize:
