@@ -1,10 +1,26 @@
 - hosts: standalone
   gather_facts: false
+  collections:
+    - tripleo.collect_logs
   tasks:
     - name: Ensure logs/standalone folder exists
       ansible.builtin.file:
         path: '/home/zuul/logs/standalone'
         state: directory
+
+    # TODO(bogdando): remove this after sos-reports integrated into must-gather
+    - name: Include ansible-role-collect-logs role
+      vars:
+        ara_enabled: false
+        artcl_collect: true
+        artcl_collect_dir: '/root/'
+        artcl_publish: true
+        artcl_txt_rename: true
+        artcl_publish_timeout: 600
+        artcl_collect_list:
+          - /var/log/containers
+      ansible.builtin.include_role:
+        name: tripleo.collect_logs
 
     - name: Copy log files from standalone vm
       ansible.posix.synchronize:
