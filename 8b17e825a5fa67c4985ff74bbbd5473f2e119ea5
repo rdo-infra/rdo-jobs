@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f816855_fb4c946e",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-11-21T06:25:47Z",
+      "side": 1,
+      "message": "do we want to keep both, until the other patch merges? i.e. https://github.com/openstack-k8s-operators/data-plane-adoption/pull/199/\n\nif we merged this, it breaks the job until the other side merges. same if the other side merges it breaks until this merges\n\nif we just add both vars into the vars file here it should be safer? with a TODO to remove the old one in followup patch wdyt",
+      "revId": "8b17e825a5fa67c4985ff74bbbd5473f2e119ea5",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
