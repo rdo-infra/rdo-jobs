@@ -5,6 +5,11 @@
     - name: Configure qemu and vm network for extracted crc
       when: "'extracted-crc' in job_name"
       block:
+        - name: Enable ip forwarding
+          become: true
+          ansible.builtin.shell:
+            sysctl -w net.ipv4.ip_forward=1
+
         - name: Get crc node MAC address for later use
           # register it now from the eth1 interface, instead of later
           # with the br1 brideg, as that could cause timing
