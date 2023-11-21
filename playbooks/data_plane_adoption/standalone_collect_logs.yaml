@@ -11,3 +11,10 @@
         src: '/root/'
         dest: '/home/zuul/logs/standalone/'
         mode: pull
+
+    - name: Copy container log files from standalone vm
+      ansible.posix.synchronize:
+        src: '/var/log/containers'
+        dest: '/home/zuul/logs/standalone/'
+        mode: pull
+
