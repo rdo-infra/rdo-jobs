@@ -53,6 +53,8 @@
       - name: openstack-k8s-operators/ci-framework
         override-checkout: main
       - rdo-jobs
+      - name: openstack-k8s-operators/openstack-must-gather
+        override-checkout: main
     roles:
       - zuul: rdo-jobs
       - zuul: github.com/openstack-k8s-operators/ci-framework
