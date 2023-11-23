@@ -50,7 +50,7 @@
         ansible-playbook {{ rdo_dir }}/standalone_prepare_tests.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
 
     - name: Configure networking to provide host access to internalapi network
-      when: single_node
+      when: single_node or isolated_networks
       block:
         - name: Get bridge used by standalone vm
           become: true
