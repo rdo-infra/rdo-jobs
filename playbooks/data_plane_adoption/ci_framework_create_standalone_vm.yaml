@@ -31,6 +31,13 @@
               - 192.168.122.11/24
             state: present
 
+        - name: WA add static ARP entries to acces the k8s LB
+          become: true
+          ansible.builtin.shell: >
+            dnf install net-tools -y
+            arp -s 172.17.0.85 {{ crc_mac.stdout }}
+            arp -s 172.17.0.86 {{ crc_mac.stdout }}
+
         - name: Turn down ci-private-network connection
           become: true
           community.general.nmcli:
