@@ -870,3 +870,46 @@
       - name: subnodes
         nodes:
           - secondary
+
+# IBM4 nodesets
+- nodeset:
+    name: single-centos-9-stream-node-ibm4
+    nodes:
+      - name: primary
+        label: ibm-bm4-nodepool-cloud-centos-9-stream-tripleo
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: centos-9-crc-6xlarge-ibm4
+    nodes:
+      - name: controller
+        label: ibm-bm4-nodepool-centos-9-stream-crc-6xlarge
+
+- nodeset:
+    name: multinode-centos-9-stream-crc-ibm4
+    nodes:
+      - name: controller
+        label: ibm-bm4-nodepool-cloud-centos-9-stream-tripleo-xl
+      - name: crc
+        label: ibm-bm4-nodepool-coreos-crc-extracted-xxl
+    groups:
+      - name: computes
+        nodes: []
+
+- nodeset:
+    name: multinode-centos-9-stream-crc-compute-ibm4
+    nodes:
+      - name: controller
+        label: ibm-bm4-nodepool-cloud-centos-9-stream-tripleo
+      - name: compute-0
+        label: ibm-bm4-nodepool-cloud-centos-9-stream-tripleo
+      - name: crc
+        label: ibm-bm4-nodepool-coreos-crc-extracted-xxl
+    groups:
+      - name: computes
+        nodes:
+          - compute-0
