@@ -48,16 +48,24 @@
             state: present
 
         - name: Turn down vlan interfaces to allow tagged traffic to be forwarded to vm
-          # jgilaber: keep vlan20 interface since we need it to ping ovn pods over the
-          # internal-api network, if in the future we move the ovn adoption to
-          # execute with 'oc run' it should be added here
           become: true
           community.general.nmcli:
             conn_name: "ci-private-network-{{ item }}"
             state: absent
           loop:
+            - 20
             - 21
             - 22
+
+        - name: Create vlan 20 on the br1 bridge
+          # creating the vlan on the brige allows the controller and standalone
+          # vm to talk to the internal-api network
+          become: true
+          ansible.builtin.shell: |
+            ip link add link br1 name br1.20 type vlan id 20
+            ip addr add 172.17.0.4/24 dev br1.20
+            ip link set br1.20 up
+            nmcli c modify br1 bridge.vlan-filtering yes
 
         - name: Ensure qemu is configured to use the zuul user
           become: true
