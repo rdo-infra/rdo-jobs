@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79dfd1ed_20aa343e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 48
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 242
+      },
+      "writtenOn": "2023-11-29T21:59:23Z",
+      "side": 1,
+      "message": "Genrally looks good ... a few comments in line. Thanks",
+      "revId": "fa34dc8b7ad6452c20ecf16353b83e53e76c4934",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed06c72b_8fdd6fb2",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 48
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 242
+      },
+      "writtenOn": "2023-11-29T21:59:23Z",
+      "side": 1,
+      "message": "As things stand, if something does between the register and this unregister, you will still hold a subscription. I assume this comment would address that:\nTODO(marios) add unregister after we merge rdo-jobs/+/50590/?",
+      "revId": "fa34dc8b7ad6452c20ecf16353b83e53e76c4934",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30a32565_109ecb66",
+        "filename": "zuul.d/_data_plane_adoption.yaml",
+        "patchSetId": 48
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 242
+      },
+      "writtenOn": "2023-11-29T21:59:23Z",
+      "side": 1,
+      "message": "what\u0027s the life expentency of tripleo-repos? Will that be maintained after wallaby tear down?",
+      "revId": "fa34dc8b7ad6452c20ecf16353b83e53e76c4934",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
