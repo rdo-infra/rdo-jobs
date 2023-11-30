@@ -35,7 +35,7 @@
 
     - name: Create dummy openstack deployment to get CA
       ansible.builtin.command:
-        cmd: oc apply -f /home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption/tests/config/base/openstack_control_plane.yaml
+        cmd: oc apply -n "openstack" -f /home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption/tests/config/base/openstack_control_plane.yaml
 
     - name: Make sure the TLS openstack secret exists
       ansible.builtin.shell: |
