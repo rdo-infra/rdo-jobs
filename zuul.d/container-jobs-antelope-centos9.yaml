@@ -84,3 +84,14 @@
       cifmw_repo_setup_promotion: podified-ci-testing
       cifmw_dlrn_report_result: true
       cifmw_repo_setup_branch: antelope
+
+- job:
+    name: periodic-data-plane-adoption-OSP-17-to-extracted-crc
+    parent: data-plane-adoption-OSP-17-to-extracted-crc
+    vars:
+      registry_namespace: podified-antelope-centos9
+      openstack_release: antelope
+      promote_source: podified-ci-testing
+      cifmw_repo_setup_promotion: podified-ci-testing
+      cifmw_dlrn_report_result: true
+      cifmw_repo_setup_branch: antelope
