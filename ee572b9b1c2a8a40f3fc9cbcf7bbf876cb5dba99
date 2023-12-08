@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84ee2f1a_8a56fe7e",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2023-12-08T15:39:19Z",
+      "side": 1,
+      "message": "working now with the markers:\n\n```\n[zuul@controller ~]$ cat src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption/vars.yaml \n..\n# BEGIN os-net-config vars ANSIBLE MANAGED BLOCK\ndataplane_os_net_config_iface: nic2\ndataplane_public_iface: eth1\ndataplane_os_net_config_set_route: false\n# END os-net-config vars ANSIBLE MANAGED BLOCK\n# BEGIN periodic container vars ANSIBLE MANAGED BLOCK\nperiodic: true\ncontainer_registry: \"quay.rdoproject.org\"\ncontainer_namespace: \"podified-antelope-centos9\"\ncontainer_tag: 5fb5e933a376cbed96ccb8f9c18ed98e\n# END periodic container vars ANSIBLE MANAGED BLOCK\n```",
+      "revId": "ee572b9b1c2a8a40f3fc9cbcf7bbf876cb5dba99",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
