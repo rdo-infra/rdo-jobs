@@ -52,14 +52,6 @@
           args:
             chdir: "{{ framework_dir }}"
 
-        - name: Insert vars for data plane operator and os-net-config with zuul native standalone node
-          ansible.builtin.blockinfile:
-            path: "{{ rdo_dir }}/vars.yaml"
-            block: |
-              dataplane_os_net_config_iface: nic2
-              dataplane_public_iface: eth1
-              dataplane_os_net_config_set_route: false
-
     - name: Wait for standalone vm to be available
       ansible.builtin.wait_for:
         port: 22
@@ -100,23 +92,24 @@
             sudo ip addr add dev vlan20 172.17.0.222/24
             sudo ip link set up dev vlan20
 
-    - name: Place standalone_ip into vars.yaml for EDPM
+    - name: Place standalone_ip into vars.yaml for edpm, mariadb, ovndb
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
-        regexp: '^edpm_node_ip:'
-        value: "edpm_node_ip: {{ standalone_ip }}"
+        regexp: "'^{{ item }}:'"
+        value: "{{ item }}: {{ standalone_ip }}"
+      loop:
+        - "edpm_node_ip"
+        - "source_mariadb_ip"
+        - "source_ovndb_ip"
 
-    - name: Place standalone_ip into vars.yaml for MariaDB
-      ansible.builtin.lineinfile:
+    - name: Insert vars for data plane operator and os-net-config with zuul native standalone node
+      when: skip_standalone_vm is defined and skip_standalone_vm
+      ansible.builtin.blockinfile:
         path: "{{ rdo_dir }}/vars.yaml"
-        regexp: '^source_mariadb_ip:'
-        value: "source_mariadb_ip: {{ standalone_ip }}"
-
-    - name: Place standalone_ip into vars.yaml for OVN
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/vars.yaml"
-        regexp: '^source_ovndb_ip:'
-        value: "source_ovndb_ip: {{ standalone_ip }}"
+        block: |
+          dataplane_os_net_config_iface: nic2
+          dataplane_public_iface: eth1
+          dataplane_os_net_config_set_route: false
 
     - name: Read the standalone ssh key downloaded from standalone vm
       ansible.builtin.slurp:
