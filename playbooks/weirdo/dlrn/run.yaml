@@ -117,6 +117,8 @@
           # (dmsimard) TODO: Clean this up ASAP
           if [[ "{{ zuul.job }}" == *"puppet"* ]]; then
               project="puppet-openstack"
+          elif [[ "{{ zuul.job }}" == *"tcib-container-build"* ]]; then
+              project="container-build"
           else
               project="packstack"
           fi
