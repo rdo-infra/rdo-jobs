@@ -355,6 +355,12 @@
       - rdo-infra/ansible-role-weirdo-logs
       - rdo-infra/ansible-role-weirdo-packstack
       - rdo-infra/ansible-role-weirdo-puppet-openstack
+      - name: github.com/openstack-k8s-operators/ci-framework
+        override-checkout: main
+      - name: github.com/openstack-k8s-operators/tcib
+        override-checkout: main
+    roles:
+      - zuul: github.com/openstack-k8s-operators/ci-framework
     vars:
       selinux_enforcing: "false"
     dependencies:
@@ -1160,6 +1166,12 @@
     parent: validate-buildsys-tags-caracal-testing-centos9-base
     vars:
       scenario: scenario003
+
+- job:
+    name: validate-buildsys-tags-caracal-testing-container-build-scenario001-centos9
+    parent: validate-buildsys-tags-caracal-testing-centos9-base
+    vars:
+      scenario: scenario001
 
 - job:
     name: validate-buildsys-tags-bobcat-testing-centos9-base
