@@ -29,6 +29,19 @@
             repository="${logs}/centos9/current"
           fi
 
+          # The rdoinfo-DLRN-check job may create different repos when it builds packages for more than
+          # one release. In that case, let us try to find the right one
+          curl -o /dev/null -sIf "${repository}"
+          if [ $? -ne 0 ]; then
+            STABLE_RELEASES="$(rdopkg release | grep -e 'name:' | awk '{print $2}' | tail -n +2 | awk 1 ORS='-rdo ')"
+            releases="rpm-master $STABLE_RELEASES"
+            for release in $releases; do
+                repository="${logs}/centos-${release}/current"
+                curl -o /dev/null -sIf "${repository}" || continue
+                break
+            done
+          fi
+
           # If we could not find a working repository, give up
           curl -o /dev/null -sIf "${repository}" || exit 1
       changed_when: true
@@ -59,6 +72,19 @@
             repository="${logs}/centos8/current"
           elif [ ${CENTOS_RELEASE} = "centos9" ]; then
             repository="${logs}/centos9/current"
+          fi
+
+          # The rdoinfo-DLRN-check job may create different repos when it builds packages for more than
+          # one release. In that case, let us try to find the right one
+          curl -o /dev/null -sIf "${repository}"
+          if [ $? -ne 0 ]; then
+            STABLE_RELEASES="$(rdopkg release | grep -e 'name:' | awk '{print $2}' | tail -n +2 | awk 1 ORS='-rdo ')"
+            releases="rpm-master $STABLE_RELEASES"
+            for release in $releases; do
+                repository="${logs}/centos-${release}/current"
+                curl -o /dev/null -sIf "${repository}" || continue
+                break
+            done
           fi
 
           # If we could not find a working repository, give up
