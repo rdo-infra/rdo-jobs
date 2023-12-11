@@ -80,6 +80,9 @@
       - mkdocs.yml
       - .gitignore
       - LICENSE
+      - ^docs_dev/.*$
+      - ^docs_user/.*$
+      - Gemfile
 
 - job:
     name: data-plane-adoption-OSP-17-to-extracted-crc
@@ -123,3 +126,6 @@
       - mkdocs.yaml
       - .gitignore
       - LICENSE
+      - ^docs_dev/.*$
+      - ^docs_user/.*$
+      - Gemfile
