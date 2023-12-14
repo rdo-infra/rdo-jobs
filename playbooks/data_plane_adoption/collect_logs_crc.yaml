@@ -3,30 +3,13 @@
   vars:
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
   tasks:
-    - name: Collect pod logs
+    - name: Collect data_plane_adoption files
       ansible.builtin.shell: |
         source ~/.bashrc
-        mkdir -p logs/controller/pod logs/controller/crs
+        mkdir -p logs/controller/
         pushd logs/controller
         ip a > network.txt
         ip ro ls >> network.txt
-        all_crds=$(oc get crd | awk '/openstack/ { print $1}' | awk -F '.' '{print $1}')
-        for cr in ${all_crds}; do
-          echo ${cr}
-          oc get -o yaml ${cr} > crs/${cr}.yaml
-        done
-        namespaces=("openstack-operators" "openstack")
-        for namespace in ${namespaces[@]}; do
-          oc project $namespace
-          oc get pods >> all_pods.txt
-          all_pods=$(oc get pods -o name)
-          for pod in $all_pods; do
-            echo $pod
-            oc logs $pod > ${pod}-logs.txt
-            oc get -o yaml $pod > ${pod}.yaml
-            oc describe $pod > ${pod}-describe.txt
-          done
-        done
         test -d /home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out && \
           rsync -r /home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out ./install_yamls_out
         rsync -r /home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption ./data-plane-adoption-tests-repo
@@ -37,8 +20,6 @@
       changed_when: true
       failed_when: false
 
-    # TODO(jgilaber): stop copying this here and rely on ci-framework post-run
-    # to gather the logs once we remove the single-node job everywhere
     - name: Copy ci-framework-data directory into {{ ansible_user_dir }}/logs/controller
       failed_when: false
       ansible.builtin.copy:
@@ -46,7 +27,7 @@
         dest: "{{ ansible_user_dir }}/logs/controller"
         remote_src: true
 
-    - name: Gather logs from standalone deployment in single node jobs
+    - name: Gather logs from standalone deployment
       failed_when: false
       ansible.builtin.shell: |
         ansible-galaxy collection install ansible.posix
