@@ -2,6 +2,17 @@
 - hosts: controller
   gather_facts: false
   tasks:
+    - name: Find path to must-gather logs
+      ansible.builtin.find:
+        paths: "/home/zuul/ci-framework-data/logs"
+        patterns: "quay-io-openstack-k8s-operators-openstack-must-gather*"
+        file_type: directory
+      register: must_gather_logs_path
+
+    - name: Debug
+      ansible.builtin.debug:
+        msg: "{{ must_gather_logs_path }}"
+
     - name: Return Zuul log artifacts for data plane adoption jobs
       zuul_return:
         data:
@@ -13,8 +24,8 @@
                 url: controller/data-plane-adoption-tests-repo/data_plane_adoption/secrets.yaml
               - name: vars.yaml passed to the test playbook
                 url: controller/data-plane-adoption-tests-repo/data_plane_adoption/vars.yaml
-              - name: Podified control plane - pod logs
-                url: controller/pod/
+              - name: Podified control plane - pod logs (check must-gather*/namespaces/openstack/pods folder)
+                url: controller/ci-framework-data/logs/
               - name: standalone deployment logs
                 url: standalone/
               - name: ci-framework logs
