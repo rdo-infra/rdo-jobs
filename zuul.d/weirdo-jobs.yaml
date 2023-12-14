@@ -1306,6 +1306,13 @@
       scenario: scenario003
 
 - job:
+    name: validate-buildsys-tags-antelope-testing-tcib-container-build-scenario000-centos9
+    parent: validate-buildsys-tags-antelope-testing-centos9-base
+    post-run: playbooks/podified-containers/collect-logs.yaml
+    vars:
+      scenario: scenario000
+
+- job:
     name: validate-buildsys-tags-zed-testing-centos9-base
     parent: weirdo-validate-buildsys-tags-base
     vars:
@@ -1481,6 +1488,13 @@
     parent: validate-buildsys-tags-antelope-release-centos9-base
     vars:
       scenario: scenario003
+
+- job:
+    name: validate-buildsys-tags-antelope-release-tcib-container-build-scenario000-centos9
+    parent: validate-buildsys-tags-antelope-release-centos9-base
+    post-run: playbooks/podified-containers/collect-logs.yaml
+    vars:
+      scenario: scenario000
 
 - job:
     name: validate-buildsys-tags-bobcat-release-centos9-base
