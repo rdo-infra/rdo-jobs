@@ -12,7 +12,7 @@
     - name: Prepare ci-framework environment and install openshift client
       ansible.builtin.shell:
         cmd: >
-          ansible-playbook ci_framework/playbooks/01-bootstrap.yml --tags bootstrap
+          ansible-playbook playbooks/01-bootstrap.yml --tags bootstrap
           {% if dpa_cifmw_bootstrap_vars is defined %}
           -e "@{{ dpa_cifmw_bootstrap_vars }}"
           {% endif %}
@@ -26,7 +26,7 @@
     - name: Prepare openshift and libvirt environment
       ansible.builtin.shell:
         cmd:
-          ansible-playbook -v ci_framework/playbooks/02-infra.yml -e "@{{cifmw_parameters_file}}"
+          ansible-playbook -v playbooks/02-infra.yml -e "@{{cifmw_parameters_file}}"
         chdir: "{{ framework_dir }}"
 
     - name: Write content-provider vars to file if present
@@ -46,7 +46,7 @@
     - name: Install operators via ci-framework using edpm code
       ansible.builtin.shell:
         cmd:
-          ansible-playbook -v ci_framework/playbooks/06-deploy-edpm.yml -e "@{{cifmw_parameters_file}}"
+          ansible-playbook -v playbooks/06-deploy-edpm.yml -e "@{{cifmw_parameters_file}}"
         chdir: "{{ framework_dir }}"
 
     - name: Copy kubeconfig to .kube folder where oc expects it
