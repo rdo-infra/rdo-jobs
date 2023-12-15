@@ -17,7 +17,7 @@
       ansible.builtin.shell:
         cmd: |
           ansible-galaxy collection install community.general
-          ansible-playbook ci_framework/playbooks/01-bootstrap.yml --tags bootstrap --skip-tags packages
+          ansible-playbook playbooks/01-bootstrap.yml --tags bootstrap --skip-tags packages
         chdir: "{{ framework_dir }}"
 
     - name: Run install_yamls via ci-framework
