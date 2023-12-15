@@ -26,8 +26,6 @@
         src: "{{ zuul.executor.src_root }}/{{ cifmw_installyamls_repos }}/devsetup/standalone/net_config.j2"
         dest: /etc/os-net-config/standalone_config.yaml
 
-    # TODO(marios) remove after https://review.rdoproject.org/r/c/config/+/50929
-    # and https://github.com/openstack-k8s-operators/ci-framework/pull/870
     - name: Remove ci-framework created Network Manager connections
       failed_when: false
       become: true
