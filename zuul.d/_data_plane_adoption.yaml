@@ -11,6 +11,8 @@
         override-checkout: main
       - name: openstack-k8s-operators/ci-framework
         override-checkout: main
+      - name: github.com/openstack-k8s-operators/openstack-must-gather
+        override-checkout: main
       - rdo-jobs
     roles:
       - zuul: rdo-jobs
@@ -51,6 +53,8 @@
       - name: openstack-k8s-operators/data-plane-adoption
         override-checkout: main
       - name: openstack-k8s-operators/ci-framework
+        override-checkout: main
+      - name: github.com/openstack-k8s-operators/openstack-must-gather
         override-checkout: main
       - rdo-jobs
     roles:
@@ -94,6 +98,8 @@
       - name: openstack-k8s-operators/data-plane-adoption
         override-checkout: main
       - name: openstack-k8s-operators/ci-framework
+        override-checkout: main
+      - name: github.com/openstack-k8s-operators/openstack-must-gather
         override-checkout: main
       - rdo-jobs
     roles:

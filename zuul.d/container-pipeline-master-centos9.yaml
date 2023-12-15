@@ -37,6 +37,8 @@
                 override-checkout: main
               - name: github.com/openstack-k8s-operators/edpm-ansible
                 override-checkout: main
+              - name: github.com/openstack-k8s-operators/openstack-must-gather
+                override-checkout: main
         - periodic-edpm-build-push-images-centos-9-master:
             dependencies: &promote_hash_to_testing
               - periodic-centos-9-master-promote-consistent-to-podified-ci-testing
