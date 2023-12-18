@@ -11,6 +11,8 @@
       - rdo-infra/ansible-role-weirdo-logs
       - rdo-infra/ansible-role-weirdo-packstack
       - rdo-infra/ansible-role-weirdo-puppet-openstack
+      - name: github.com/openstack-k8s-operators/ci-framework
+        override-checkout: main
     vars:
       selinux_enforcing: "false"
       periodic_job: true
