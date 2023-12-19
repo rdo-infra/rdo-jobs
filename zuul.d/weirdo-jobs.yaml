@@ -10,6 +10,8 @@
       - rdo-infra/ansible-role-weirdo-packstack
       - rdo-infra/ansible-role-weirdo-puppet-openstack
       - rdo-infra/weirdo
+      - name: github.com/openstack-k8s-operators/ci-framework
+        override-checkout: main
 
 - job:
     name: weirdo-docs
@@ -23,6 +25,8 @@
       - rdo-infra/ansible-role-weirdo-packstack
       - rdo-infra/ansible-role-weirdo-puppet-openstack
       - rdo-infra/weirdo
+      - name: github.com/openstack-k8s-operators/ci-framework
+        override-checkout: main
     files:
       - ^docs/.*$
       - ^.*\.rst$
@@ -42,6 +46,8 @@
       - rdo-infra/ansible-role-weirdo-packstack
       - rdo-infra/ansible-role-weirdo-puppet-openstack
       - rdo-infra/weirdo
+      - name: github.com/openstack-k8s-operators/ci-framework
+        override-checkout: main
 
 - job:
     name: weirdo-integration-master-packstack-scenario001-centos8
