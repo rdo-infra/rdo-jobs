@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32614354_87d49e11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-01-04T07:25:02Z",
+      "side": 1,
+      "message": "looks good but latest run had an issue with the artifacts please check",
+      "revId": "b21ac812345568f6ee078046f026894a67cfd9d7",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60f6f54c_ec119e1e",
+        "filename": "playbooks/data_plane_adoption/set_zuul_artifacts.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-01-04T07:25:02Z",
+      "side": 1,
+      "message": "there is a problem with this one needs some tweak\n\n2024-01-03 17:55:34.557430 | TASK [Return Zuul log artifacts for data plane adoption jobs]\n2024-01-03 17:55:34.592201 | controller | ERROR\n2024-01-03 17:55:34.592419 | controller | {\n2024-01-03 17:55:34.592468 | controller |   \"msg\": \"The task includes an option with an undefined variable. The error was: list object has no element 0\\n\\nThe error appears to be in \u0027/var/lib/zuul/builds/745eb267f1974bf19840f457f13ec2f4/untrusted/project_3/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption/set_zuul_artifacts.yaml\u0027: line 12, column 7, but may\\nbe elsewhere in the file depending on the exact syntax problem.\\n\\nThe offending line appears to be:\\n\\n\\n    - name: Return Zuul log artifacts for data plane adoption jobs\\n      ^ here\\n\"\n2024-01-03 17:55:34.592512 | controller | }",
+      "revId": "b21ac812345568f6ee078046f026894a67cfd9d7",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c926ad8b_6421f3f1",
+        "filename": "zuul.d/_data_plane_adoption.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-01-04T07:25:02Z",
+      "side": 1,
+      "message": "this can also be removed now (but fine to concentrate on one at a time)",
+      "revId": "b21ac812345568f6ee078046f026894a67cfd9d7",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
