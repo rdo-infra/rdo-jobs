@@ -15,24 +15,26 @@
                   enable_cron: false
                   enable_cron_c9: false
 
-    - name: Ensure ansible is installed
+    - name: Install required packages
       become: true
       ansible.builtin.package:
         name:
-          - ansible-core
+          - make
+          - python3
+          - podman
+          - python3-pip
 
     - name: Ensure dependency collections are installed
-      become: true
-      ansible.builtin.shell:
+      community.general.make:
         chdir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/ci-framework"
-        cmd: ansible-galaxy collection install -r requirements.yml
+        target: setup_molecule
 
     - name: install copy-containers
       environment:
         ANSIBLE_CONFIG: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/ci-framework/ansible.cfg"
       ansible.builtin.command:
         cmd: >-
-          ansible-playbook
+          {{ ansible_user_dir }}/test-python/bin/ansible-playbook
           -i localhost,
           -c local
           copy-container.yml
