@@ -5,31 +5,10 @@
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
   tasks:
-    - name: Create inventory to run tasks inside vm
-      ansible.builtin.template:
-        src: "{{ playbook_dir }}/files/standalone_vm_inventory.yaml.j2"
-        dest: "/home/zuul/{{ standalone_vm_inventory | default('standalone_vm_inventory') }}"
+    - name: Install collections to use nmcli, libvirt and synchronize ansible modules
+      ansible.builtin.command: ansible-galaxy collection install community.general community.libvirt ansible.posix
 
-    - name: Install collections to use nmcli and libvirt ansible modules
-      ansible.builtin.command: ansible-galaxy collection install community.general community.libvirt
-
-    - name: Create vm and deploy standalone using ci-framework
-      when: skip_standalone_vm is not defined
-      ansible.builtin.shell: >
-        ansible-playbook {{ rdo_dir }}/ci_framework_create_standalone_vm.yaml -e "job_name={{ zuul.job }}"
-        {% if dpa_standalone_ntp_server is defined %}
-        -e ntp_override={{ dpa_standalone_ntp_server }}
-        {% endif %}
-        {% if osp_release is defined %}
-        -e repo_setup_commands=/home/zuul/ci-framework-data/artifacts/edpm_compute/compute_repo-0.sh
-        {% endif %}
-        -e "standalone_ip={{ standalone_ip }}" -e "standalone_gateway={{ standalone_gateway }}"
-        -e "standalone_dns={{ standalone_dns | default(standalone_gateway) }}"
-      args:
-        chdir: "{{ framework_dir }}"
-
-    - name: Write repo commands and deploy standalone using ci-framework no vm
-      when: skip_standalone_vm is defined and skip_standalone_vm
+    - name: Write repo commands and deploy standalone using ci-framework without a vm
       block:
         - name: Write out the repo setup commands to file for standalone to use
           ansible.builtin.copy:
@@ -52,45 +31,29 @@
           args:
             chdir: "{{ framework_dir }}"
 
-    - name: Wait for standalone vm to be available
-      ansible.builtin.wait_for:
-        port: 22
-        host: "{{ standalone_ip }}"
-        delay: 10
-        timeout: 300
-      vars:
-        ansible_user: root
-        ansible_ssh_private_key_file: /home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa
+    - name: Pull the tripleo passwords from standalone node
+      ansible.posix.synchronize:
+        src: /root/tripleo-standalone-passwords.yaml
+        dest: /home/zuul/tripleo-standalone-passwords.yaml
+      delegate_to: standalone
 
-    - name: Accept standalone vm ssh host keys to avoid prompt connecting for the first time
-      connection: local
-      ansible.builtin.shell: |
-        ssh-keygen -F {{ standalone_ip }} ||
-          ssh-keyscan -H {{ standalone_ip }} >> ~/.ssh/known_hosts
-      register: known_hosts_script
-      changed_when: "'found' not in known_hosts_script.stdout"
+    - name: Pull the private key from standalone
+      ansible.posix.synchronize:
+        src: /root/.ssh/id_rsa
+        dest: /home/zuul/edpm_ssh_key
+      delegate_to: standalone
 
-    - name: Run test preparation in standalone vm
-      ansible.builtin.shell:
-        ansible-playbook {{ rdo_dir }}/standalone_prepare_tests.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
+    - name: Slurp crc public key for ssh access to standalone
+      ansible.builtin.slurp:
+        path: /home/zuul/.ssh/id_rsa.pub
+      register: crc_ssh_key
 
-    - name: Configure networking to provide host access to internalapi network
-      when: single_node
-      block:
-        - name: Get bridge used by standalone vm
-          become: true
-          ansible.builtin.shell:
-            virsh dumpxml edpm-compute-0 | grep -oP "(?<=bridge=').*(?=')"
-          register: epdm_bridge
-
-        # FIXME: the tag and the address should ideally be calculated from definitions
-        # The address should ideally be removed from the address pool available for CNI
-        # for allocation.
-        - name: Configure access of adoption host to internalapi network
-          ansible.builtin.shell: |
-            sudo ip link add link "{{ epdm_bridge.stdout }}" name vlan20 type vlan id 20
-            sudo ip addr add dev vlan20 172.17.0.222/24
-            sudo ip link set up dev vlan20
+    - name: Place crc public key to standalone authorized_keys
+      ansible.builtin.lineinfile:
+        path: "/root/.ssh/authorized_keys"
+        insertafter: "EOF"
+        value: "{{ crc_ssh_key['content'] | b64decode | trim }}"
+      delegate_to: standalone
 
     - name: Place standalone_ip into vars.yaml for edpm, mariadb, ovndb
       ansible.builtin.lineinfile:
@@ -103,7 +66,6 @@
         - "source_ovndb_ip"
 
     - name: Insert vars for data plane operator and os-net-config with zuul native standalone node
-      when: skip_standalone_vm is defined and skip_standalone_vm
       ansible.builtin.blockinfile:
         marker_begin: "BEGIN os-net-config vars"
         marker_end: "END os-net-config vars"
@@ -113,7 +75,7 @@
           dataplane_public_iface: eth1
           dataplane_os_net_config_set_route: false
 
-    - name: Read the standalone ssh key downloaded from standalone vm
+    - name: Read the standalone ssh key downloaded from standalone
       ansible.builtin.slurp:
         path: "{{ standalone_private_key | default('/home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa') }}"
       register: standalone_key
@@ -177,21 +139,6 @@
         name: python-openstackclient
         executable: pip3
 
-    - name: Configure hosts for nested crc
-      # this block is not needed in extracted crc job
-      when: single_node
-      block:
-        - name: grab the crc VM IP address
-          ansible.builtin.command: crc ip
-          register: crc_ip
-
-        - name: Set etc hosts entry for keystone glance placement cinder to crc VM IP
-          become: true
-          ansible.builtin.lineinfile:
-            path: "/etc/hosts"
-            insertafter: "EOF"
-            value: "{{ crc_ip.stdout }} keystone-public-openstack.apps-crc.testing glance-public-openstack.apps-crc.testing placement-public-openstack.apps-crc.testing cinder-public-openstack.apps-crc.testing"
-
     - name: Fetch hash and set ci_testing_hash fact for periodic
       when: "'periodic' in zuul.job or (force_periodic|default(false)|bool)"
       block:
@@ -222,9 +169,6 @@
             block: |
               timesync_ntp_servers:
                 - hostname: {{ dpa_standalone_ntp_server }}
-              #TODO: Remove after https://github.com/openstack-k8s-operators/data-plane-adoption/pull/199/ is merged
-              edpm_chrony_ntp_servers:
-                - {{ dpa_standalone_ntp_server }}
           when: dpa_standalone_ntp_server is defined
 
     - name: Store upstream dns server in vars.yaml if defined
@@ -248,12 +192,10 @@
       register: make_res
       failed_when: '"failed=0" not in "{{ make_res.stdout_lines[-1:] }}"'
 
-    - name: Unregister with subscription-manager when this was a CDN OSP 17.1 source job
-      when: skip_standalone_vm is defined and skip_standalone_vm
-      ansible.builtin.shell:
-        ansible-playbook {{ rdo_dir }}/unregister_RH_subscription_standalone.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }} -e "skip_standalone_vm={{ skip_standalone_vm | default(false) }}"
-
     - name: Mark job as successful
       ansible.builtin.file:
         path: "{{ ansible_user_dir }}/cifmw-success"
         state: touch
+
+- name: Unregister with subscription-manager when this was a CDN OSP 17.1 source job
+  ansible.builtin.import_playbook: "unregister_RH_subscription_standalone.yaml"
