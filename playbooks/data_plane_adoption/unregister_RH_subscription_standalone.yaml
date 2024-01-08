@@ -10,7 +10,6 @@
       ansible.builtin.shell: >
         subscription-manager unregister
       register: unsubscribe_res
-
     - name: Debug subscription-manager unsubscribe output
       when: unsubscribe_res is defined
       ansible.builtin.debug:
