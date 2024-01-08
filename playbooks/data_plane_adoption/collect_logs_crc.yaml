@@ -28,10 +28,32 @@
         remote_src: true
 
     - name: Gather logs from standalone deployment
-      failed_when: false
-      ansible.builtin.shell: |
-        ansible-galaxy collection install ansible.posix
-        ansible-playbook {{ rdo_dir }}/standalone_collect_logs.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
+      block:
+        - name: Ensure logs/standalone/root folder exists
+          ansible.builtin.file:
+            path: '/home/zuul/logs/standalone/root'
+            state: directory
+          failed_when: false
+
+        - name: Copy log files from standalone deployment
+          ansible.posix.synchronize:
+            src: '/root/'
+            dest: '/home/zuul/logs/standalone/root/'
+          delegate_to: standalone
+          failed_when: false
+
+        - name: Ensure logs/standalone/containers folder exists
+          ansible.builtin.file:
+            path: '/home/zuul/logs/standalone/containers'
+            state: directory
+          failed_when: false
+
+        - name: Copy container log files from standalone deployment
+          ansible.posix.synchronize:
+            src: '/var/log/containers/'
+            dest: '/home/zuul/logs/standalone/containers/'
+          delegate_to: standalone
+          failed_when: false
 
     - name: Copy pod debug files from {{ ansible_user_dir }}/logs on node
       failed_when: false
