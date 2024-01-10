@@ -1,8 +1,13 @@
 # Path to install_yamls repo
 install_yamls_path: /home/zuul/src/github.com/openstack-k8s-operators/install_yamls/
-# Whether to use 'make crc_storage_cleanup; make crc_storage' before the test
+# Whether to remove all the persistent data (databases, dumbs, ansible logs)
+# before the test
 reset_crc_storage: true
 
+# source SC for the local-storage SC to be created from it
+storage_class_name: crc-csi-hostpath-provisioner #CUSTOMIZE_THIS
+storage_reclaim_policy: Delete # or Retain
+#
 # Snippet to get the desired 'oc' command onto $PATH.
 oc_header: ''
 
