@@ -1,6 +1,6 @@
 - job:
-    name: data-plane-adoption-OSP-17-to-extracted-crc
-    parent: cifmw-adoption-standalone-base
+    name: data-plane-adoption-osp-17-to-extracted-crc
+    parent: cifmw-adoption-base
     required-projects:
       - name: openstack-k8s-operators/install_yamls
         override-checkout: main
@@ -42,3 +42,7 @@
       - ^docs_dev/.*$
       - ^docs_user/.*$
       - Gemfile
+
+- job:
+    name: data-plane-adoption-OSP-17-to-extracted-crc
+    parent: data-plane-adoption-osp-17-to-extracted-crc

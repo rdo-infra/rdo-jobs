@@ -75,8 +75,8 @@
 
 ## data plane adoption job
 - job:
-    name: periodic-data-plane-adoption-OSP-17-to-extracted-crc
-    parent: data-plane-adoption-OSP-17-to-extracted-crc
+    name: periodic-data-plane-adoption-osp-17-to-extracted-crc
+    parent: data-plane-adoption-osp-17-to-extracted-crc
     vars:
       registry_namespace: podified-antelope-centos9
       openstack_release: antelope
