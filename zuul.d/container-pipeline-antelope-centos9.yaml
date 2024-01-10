@@ -17,7 +17,7 @@
               - periodic-edpm-container-image-quay-push-centos-9-antelope
     openstack-periodic-container-antelope-centos9:
       jobs:
-        - periodic-data-plane-adoption-OSP-17-to-extracted-crc:
+        - periodic-data-plane-adoption-osp-17-to-extracted-crc:
             dependencies: &deps
               - periodic-container-tcib-build-push-centos-9-antelope
         - periodic-podified-multinode-edpm-deployment-antelope-ocp-crc-cs9:
