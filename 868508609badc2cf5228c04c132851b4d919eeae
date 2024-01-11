@@ -18,6 +18,24 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d3a33c8_7fbdf665",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-01-11T08:17:47Z",
+      "side": 1,
+      "message": "I\u0027m not sure now. The file you pointed to is for the ovn_adoption role, I was looking at https://github.com/openstack-k8s-operators/data-plane-adoption/pull/227/files#diff-6f25c8229846164687566453d595e61c463be52fd56dc8fcb4661e6fbe169147R7 and copied what is there. We actually need this change for 227 to pass otherwise the task in https://github.com/openstack-k8s-operators/data-plane-adoption/pull/227/files#diff-ec65742cee3a8ee55e1c43c0415b9960fdaaa4034c15180479b815650389c6c8R6 fails because the \"storage_class_name\" variable is not defined",
+      "parentUuid": "dc9f3d46_c6649b36",
+      "revId": "868508609badc2cf5228c04c132851b4d919eeae",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "28308797_9331dc2b",
