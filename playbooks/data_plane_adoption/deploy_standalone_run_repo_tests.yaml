@@ -183,6 +183,28 @@
         path: "{{ rdo_dir }}/vars.yaml"
         line: "upstream_dns: {{ upstream_control_plane_dns }}"
 
+    - name: Check if edpm-ansible.yml file was created
+      ansible.builtin.stat:
+        path: "/home/zuul/ci-framework-data/artifacts/edpm-ansible.yml"
+      register: edpm_ansible_file
+
+    - name: Read edpm_ansible  file and extract ansibleee_runner img
+      when: edpm_ansible_file.stat.exists
+      block:
+        - name: Read file
+          ansible.builtin.slurp:
+            path: "{{ ansible_user_dir }}/ci-framework-data/artifacts/edpm-ansible.yml"
+          register: edpm_ansible_output
+
+        - name: Extract ansiblee_runner img
+          ansible.builtin.set_fact:
+            ansibleee_runner_img: "{{ edpm_ansible_output['content'] | b64decode | regex_search('RELATED_IMAGE_ANSIBLEEE_IMAGE_URL_DEFAULT' + ': \"(.+)\"', '\\1') }}"
+
+        - name: Insert ansibleee_runner_img var into vars.yaml
+          ansible.builtin.lineinfile:
+            path: "{{ rdo_dir }}/vars.yaml"
+            line: "ansibleee_runner_img: {{ ansibleee_runner_img }}"
+
     - name: Run data-plane-adoption tests
       community.general.make:
         chdir: "{{ dpa_dir }}"
