@@ -16,6 +16,24 @@
       "message": "where is that happening do we need a depends-on",
       "revId": "32bdfa8a63712bdeae5e7e22cbc898c3eba5ce20",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f600ab5_caedd52e",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-01-12T08:32:14Z",
+      "side": 1,
+      "message": "created in https://github.com/openstack-k8s-operators/ci-framework/blob/main/ci/playbooks/build_runner_image.yml#L41, which is called by https://github.com/openstack-k8s-operators/ci-framework/blob/main/ci/playbooks/e2e-prepare.yml#L53 which is part of the pre-run taks of adoption-base: https://github.com/openstack-k8s-operators/ci-framework/blob/main/zuul.d/adoption.yaml#L25. The task to build the image was always running in adoption job, it was skipped because we never really had a use case of a edpm-ansible PR in depends-on",
+      "parentUuid": "fcde0bd2_1240802e",
+      "revId": "32bdfa8a63712bdeae5e7e22cbc898c3eba5ce20",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
