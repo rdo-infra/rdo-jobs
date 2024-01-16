@@ -1,0 +1,26 @@
+- hosts: undercloud
+  gather_facts: false
+  tasks:
+    - name: Ensure we have a logs/tripleo directory
+      delegate_to: localhost
+      ansible.builtin.file:
+        path: '/home/zuul/logs/tripleo/'
+        state: directory
+
+    - name: Copy log files from user home dir
+      ansible.posix.synchronize:
+        src: '/home/zuul/'
+        dest: '/home/zuul/logs/tripleo/'
+        mode: pull
+
+    - name: create logs/tripleo/containers folder
+      delegate_to: localhost
+      ansible.builtin.file:
+        path: '/home/zuul/logs/tripleo/containers'
+        state: directory
+
+    - name: Copy container log files
+      ansible.posix.synchronize:
+        src: '/var/log/containers/'
+        dest: '/home/zuul/logs/tripleo/containers/'
+        mode: pull
