@@ -1,7 +1,7 @@
 - job:
     name: data-plane-adoption-osp-17-to-extracted-crc
     parent: cifmw-adoption-base
-    required-projects:
+    required-projects: &dpa_required_projects
       - name: openstack-k8s-operators/install_yamls
         override-checkout: main
       - opendev.org/zuul/zuul-jobs
@@ -16,7 +16,7 @@
     pre-run:
       - playbooks/data_plane_adoption/subnode_ip.yaml
       - playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml
-      - playbooks/data_plane_adoption/setup_standalone_os_net_config.yaml
+      - playbooks/data_plane_adoption/setup_tripleo_os_net_config.yaml
     run:
       - playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml
     post-run:
@@ -41,3 +41,27 @@
       - ^docs_dev/.*$
       - ^docs_user/.*$
       - Gemfile
+
+- job:
+    name: data-plane-adoption-osp17-multinode-to-extracted-crc
+    parent: cifmw-adoption-base-source-multinode
+    required-projects: *dpa_required_projects
+    roles:
+      - zuul: rdo-jobs
+      - zuul: github.com/openstack-k8s-operators/ci-framework
+    pre-run:
+      - playbooks/data_plane_adoption/subnode_ip.yaml
+      - playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml
+      - playbooks/data_plane_adoption/setup_tripleo_os_net_config.yaml
+    run:
+      - playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml
+    post-run:
+      - playbooks/data_plane_adoption/unregister_RH_subscription_standalone.yaml
+      - playbooks/data_plane_adoption/collect_logs_crc.yaml
+      - playbooks/data_plane_adoption/set_zuul_artifacts.yaml
+      - playbooks/force_job_failure.yaml
+    vars:
+      standalone_ip: 192.168.122.100
+      standalone_gateway: 192.168.122.10
+      standalone_private_key: /home/zuul/.ssh/id_rsa
+      tripleo_ci_inventory: "tripleo_ci_inventory"
