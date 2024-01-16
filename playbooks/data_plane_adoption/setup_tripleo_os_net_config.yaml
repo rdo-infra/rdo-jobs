@@ -1,4 +1,4 @@
-- hosts: standalone
+- hosts: standalone,undercloud
   vars:
     cifmw_installyamls_repos: "github.com/openstack-k8s-operators/install_yamls"
     ctlplane_ip: "{{ standalone_ip }}"
@@ -57,3 +57,22 @@
         ip a
         ping -c 2 -W 2 192.168.122.10
         ping -c 2 -W 2 192.168.122.11
+
+    - name: Slurp controller public key for ssh access to standalone
+      delegate_to: controller
+      ansible.builtin.slurp:
+        path: /home/zuul/.ssh/id_rsa.pub
+      register: controller_ssh_pub
+
+    - name: Install ansible.posix collection from ansible-galaxy
+      ansible.builtin.shell: |
+        ansible-galaxy collection install ansible.posix
+
+    - name: Place controller public key in authorized_keys for zuul and root
+      become: "{{ item == 'root' }}"
+      ansible.posix.authorized_key:
+        user: "{{ item }}"
+        key: "{{ controller_ssh_pub['content'] | b64decode | trim }}"
+      loop:
+        - zuul
+        - root

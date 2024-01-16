@@ -1,7 +1,11 @@
-[standalone]
+[{{ tripleo_name|default('standalone') }}]
+{% if tripleo_name is defined -%}
+{{ tripleo_name }}
+{% else -%}
 nested_vm
+{% endif %}
 
-[standalone:vars]
+[{{ tripleo_name|default('standalone') }}:vars]
 ansible_host={{ standalone_ip }}
-ansible_user=root
+ansible_user={{ (tripleo_name|default('standalone') == 'undercloud') | ternary('zuul', 'root') }}
 ansible_ssh_private_key_file={{ standalone_private_key | default('/home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa') }}
