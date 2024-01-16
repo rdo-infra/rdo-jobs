@@ -1,0 +1,20 @@
+- hosts: all
+  vars:
+    framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
+  tasks:
+    - name: Deploy undercloud
+      ansible.builtin.include_role:
+        name: 'install_yamls_makes'
+        tasks_from: 'make_tripleo_deploy.yml'
+      vars:
+        make_tripleo_deploy_params:
+          SSH_KEY_FILE: "/home/zuul/.ssh/id_rsa"
+          NTP_SERVER: "{{ ntp_override | default('pool.ntp.org') }}"
+          OS_NET_CONFIG_IFACE: "nic2"
+          REPO_SETUP_CMDS: "{{ repo_setup_commands | default('/tmp/standalone_repos') }}"
+          GATEWAY: "{{ standalone_gateway }}"
+          EDPM_COMPUTE_NETWORK_IP: "192.168.122"
+          IP: "{{ standalone_ip }}"
+          IP_ADRESS_SUFFIX: "100"
+          DATAPLANE_DNS_SERVER: "{{ standalone_gateway }}"
+          HOST_PRIMARY_RESOLV_CONF_ENTRY: "{{ standalone_gateway }}"
