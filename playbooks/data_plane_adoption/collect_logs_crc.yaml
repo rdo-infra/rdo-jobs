@@ -27,11 +27,12 @@
         dest: "{{ ansible_user_dir }}/logs/controller"
         remote_src: true
 
-    - name: Gather logs from standalone deployment
+    - name: Gather logs from standalone or undercloud deployment
       failed_when: false
       ansible.builtin.shell: |
         ansible-galaxy collection install ansible.posix
         ansible-playbook {{ rdo_dir }}/standalone_collect_logs.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
+        ansible-playbook {{ rdo_dir }}/tripleo_collect_logs.yaml
 
     - name: Copy pod debug files from {{ ansible_user_dir }}/logs on node
       failed_when: false

@@ -1,0 +1,26 @@
+- hosts: undercloud
+  gather_facts: false
+  tasks:
+    - name: Ensure we have a logs/undercloud directory
+      delegate_to: localhost
+      ansible.builtin.file:
+        path: '/home/zuul/logs/undercloud/'
+        state: directory
+
+    - name: Copy log files from undercloud
+      ansible.posix.synchronize:
+        src: '/home/zuul/'
+        dest: '/home/zuul/logs/undercloud/'
+        mode: pull
+
+    - name: create logs/undercloud/containers folder
+      delegate_to: localhost
+      ansible.builtin.file:
+        path: '/home/zuul/logs/undercloud/containers'
+        state: directory
+
+    - name: Copy container log files from undercloud
+      ansible.posix.synchronize:
+        src: '/var/log/containers/'
+        dest: '/home/zuul/logs/undercloud/containers/'
+        mode: pull
