@@ -1,0 +1,48 @@
+- hosts: controller
+  gather_facts: false
+  vars:
+    dpa_dir: "/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption"
+    rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
+    framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
+  tasks:
+    - name: Create inventory to run tasks inside vm
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/files/standalone_vm_inventory.yaml.j2"
+        dest: "/home/zuul/{{ standalone_vm_inventory | default('standalone_vm_inventory') }}"
+
+    - name: Install collections to use nmcli and libvirt ansible modules
+      ansible.builtin.command: ansible-galaxy collection install community.general community.libvirt
+
+    - name: Write repo commands and deploy undercloud with install_yamls
+      block:
+        - name: Write out the repo setup commands to file for undercloud to use
+          ansible.builtin.copy:
+            dest: /home/zuul/cdn_subscription_repos.sh
+            content: |
+              sudo subscription-manager repos --enable=rhel-9-for-x86_64-baseos-eus-rpms \
+                --enable=rhel-9-for-x86_64-appstream-eus-rpms \
+                --enable=rhel-9-for-x86_64-highavailability-eus-rpms \
+                --enable=openstack-17.1-for-rhel-9-x86_64-rpms \
+                --enable=fast-datapath-for-rhel-9-x86_64-rpms
+
+        - name: Deploy the tripleo undercloud
+          ansible.builtin.shell: >
+            ansible-playbook {{ rdo_dir }}/install_yamls_deploy_tripleo.yaml -e "job_name={{ zuul.job }}"
+            {% if dpa_standalone_ntp_server is defined %}
+            -e ntp_override={{ dpa_standalone_ntp_server }}
+            {% endif %}
+            -e repo_setup_commands=/home/zuul/cdn_subscription_repos.sh
+            -e "standalone_ip={{ standalone_ip }}" -e "standalone_gateway={{ standalone_gateway }}"
+            -e "undercloud_dns={{ undercloud_dns | default(standalone_gateway) }}"
+          args:
+            chdir: "{{ framework_dir }}"
+
+    - name: Wait for undercloud vm to be available
+      ansible.builtin.wait_for:
+        port: 22
+        host: "{{ standalone_ip }}"
+        delay: 10
+        timeout: 300
+      vars:
+        ansible_user: root
+        ansible_ssh_private_key_file: /home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa

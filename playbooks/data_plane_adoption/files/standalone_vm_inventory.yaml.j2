@@ -5,3 +5,11 @@ nested_vm
 ansible_host={{ standalone_ip }}
 ansible_user=root
 ansible_ssh_private_key_file={{ standalone_private_key | default('/home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa') }}
+
+[undercloud]
+zuul_vm
+
+[undercloud:vars]
+ansible_host={{ standalone_ip }}
+ansible_user=zuul
+ansible_ssh_private_key_file={{ standalone_private_key | default('/home/zuul/.ssh/id_rsa') }}
