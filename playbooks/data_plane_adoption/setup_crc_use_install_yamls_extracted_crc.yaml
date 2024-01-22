@@ -5,6 +5,7 @@
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
     cifmw_installyamls_repos: "/home/zuul/src/github.com/openstack-k8s-operators/install_yamls"
     cifwm_data_folder: "/home/zuul/ci-framework-data/artifacts/parameters"
+    bootstrap_common_vars: "{{ rdo_dir }}/scenarios/common_bootstrap_params.yml"
   tasks:
     - name: Install community.general collection
       ansible.builtin.command: ansible-galaxy collection install community.general
@@ -13,6 +14,7 @@
       ansible.builtin.shell:
         cmd: >
           ansible-playbook playbooks/01-bootstrap.yml --tags bootstrap
+          -e "@{{ bootstrap_common_vars }}"
           {% if dpa_cifmw_bootstrap_vars is defined %}
           -e "@{{ dpa_cifmw_bootstrap_vars }}"
           {% endif %}
