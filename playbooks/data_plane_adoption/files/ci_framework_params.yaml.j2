@@ -9,6 +9,8 @@ cifmw_openshift_skip_tls_verify: "{{cifmw_openshift_skip_tls_verify}}"
 cifmw_openshift_setup_skip_internal_registry_tls_verify: "{{cifmw_openshift_setup_skip_internal_registry_tls_verify}}"
 cifmw_use_libvirt: "{{cifmw_use_libvirt}}"
 cifmw_use_crc: "{{cifmw_use_crc}}"
+cifmw_install_yamls_environment:
+  BMO_SETUP: false
 pre_deploy:
 - name: Fetch compute facts
   type: playbook
