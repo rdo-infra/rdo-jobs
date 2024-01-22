@@ -31,6 +31,7 @@
       standalone_private_key: /home/zuul/.ssh/id_rsa
       skip_standalone_vm: true
       upstream_control_plane_dns: 192.168.122.10
+      dpa_cifmw_bootstrap_vars: "/home/zuul/src/review.rdoproject.org/rdo-jobs/scenarios/data-plane-adoption/ci.yml"
     irrelevant-files:
       - ^.*\.md$
       - ^.*\.rst$
