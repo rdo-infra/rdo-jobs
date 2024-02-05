@@ -10,7 +10,6 @@
         make_standalone_deploy_params:
           SSH_KEY_FILE: "/home/zuul/.ssh/id_rsa"
           NTP_SERVER: "{{ ntp_override | default('pool.ntp.org') }}"
-          STANDALONE_VM: "false"
           OS_NET_CONFIG_IFACE: "nic2"
           REPO_SETUP_CMDS: "{{ repo_setup_commands | default('/tmp/standalone_repos') }}"
           GATEWAY: "{{ standalone_gateway }}"

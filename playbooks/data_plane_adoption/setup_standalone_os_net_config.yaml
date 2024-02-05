@@ -9,7 +9,6 @@
     interface_mtu: 1500
     ip_address_suffix: 100
     os_net_config_iface: nic2
-    standalone_vm: false
     additional_networks: []
   tasks:
     - name: Setup repos and install deps for running os-net-config
