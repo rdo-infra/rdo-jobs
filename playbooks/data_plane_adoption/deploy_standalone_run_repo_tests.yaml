@@ -218,9 +218,8 @@
       failed_when: '"failed=0" not in "{{ make_res.stdout_lines[-1:] }}"'
 
     - name: Unregister with subscription-manager when this was a CDN OSP 17.1 source job
-      when: skip_standalone_vm is defined and skip_standalone_vm
       ansible.builtin.shell:
-        ansible-playbook {{ rdo_dir }}/unregister_RH_subscription_standalone.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }} -e "skip_standalone_vm={{ skip_standalone_vm | default(false) }}"
+        ansible-playbook {{ rdo_dir }}/unregister_RH_subscription_standalone.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
 
     - name: Mark job as successful
       ansible.builtin.file:
