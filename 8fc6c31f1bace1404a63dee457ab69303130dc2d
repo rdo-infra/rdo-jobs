@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d06be1f3_6987283f",
+        "filename": "playbooks/data_plane_adoption/run_os_diff_tests.yaml",
+        "patchSetId": 127
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 289
+      },
+      "writtenOn": "2024-02-06T15:58:00Z",
+      "side": 1,
+      "message": "I think this would be better placed in the Adoption test suite? We avoid putting test code into CI infrastructure repos because that makes it impossible to execute the tests locally against development environments.",
+      "revId": "8fc6c31f1bace1404a63dee457ab69303130dc2d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f87d1af_aca31df6",
+        "filename": "zuul.d/_data_plane_adoption.yaml",
+        "patchSetId": 127
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 289
+      },
+      "writtenOn": "2024-02-06T15:58:00Z",
+      "side": 1,
+      "message": "Putting the tests into the Adoption test suite would also allow us to execute them in the correct place -- after control plane adoption, before EDPM adoption.",
+      "revId": "8fc6c31f1bace1404a63dee457ab69303130dc2d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
