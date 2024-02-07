@@ -33,19 +33,6 @@
             vars:
               force_periodic: false
 
-    tripleo-next-os:
-      jobs:
-        - puppet-openstack-integration-7-scenario000-tempest-centos-8-stream
-        - puppet-openstack-integration-7-scenario001-tempest-centos-8-stream
-        - puppet-openstack-integration-7-scenario002-tempest-centos-8-stream
-        - puppet-openstack-integration-7-scenario003-tempest-centos-8-stream
-        - puppet-openstack-integration-7-scenario004-tempest-centos-8-stream
-        - puppet-openstack-integration-7-scenario000-tempest-centos-9-stream
-        - puppet-openstack-integration-7-scenario001-tempest-centos-9-stream
-        - puppet-openstack-integration-7-scenario002-tempest-centos-9-stream
-        - puppet-openstack-integration-7-scenario003-tempest-centos-9-stream
-        - puppet-openstack-integration-7-scenario004-tempest-centos-9-stream
-
 ## wallaby
 #############################################################
 - project-template:
