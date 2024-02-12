@@ -48,7 +48,7 @@
           localhost log_destination=/var/log/weirdo
           EOF
 
-          REPOS_URL="http://trunk.rdoproject.org/centos${DIST_VER}-${O_RELEASE}/${dlrn_repo}/delorean.repo,https://trunk.rdoproject.org/centos${DIST_VER}-${O_RELEASE}/delorean-deps.repo" # noqa 204
+          REPOS_URL="http://trunk.rdoproject.org/centos${DIST_VER}-${O_RELEASE}/${dlrn_repo}/delorean.repo,https://trunk.rdoproject.org/centos${DIST_VER}-${O_RELEASE}/delorean-deps.repo,https://logserver.rdoproject.org/44/51644/3/check/DLRN-rpmbuild-centos9/5571ea2/buildset/centos9/current/delorean.repo" # noqa 204
 
           tox -e ansible-playbook -- -vv -b -i hosts playbooks/$project-$scenario.yml \
               -e version=$VERSION \
