@@ -822,24 +822,6 @@
         nodes:
           - controller
 
-- nodeset:
-    name: centos-9-crc-single-node-centos-9-standalone
-    nodes:
-      - name: controller
-        label: centos-9-stream-crc-3xl
-      - name: primary
-        label: cloud-centos-9-stream-tripleo-vexxhost
-    groups:
-      - name: switch
-        nodes:
-          - primary
-      - name: peers
-        nodes:
-          - controller
-      - name: subnodes
-        nodes:
-          - controller
-
 # Microshift
 - nodeset:
     name: centos-9-microshift-single-node
