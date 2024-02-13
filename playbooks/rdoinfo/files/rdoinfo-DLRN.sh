@@ -62,7 +62,7 @@ for PACKAGE in ${PACKAGES_TO_BUILD}; do
     PROJECT_DISTRO="$NAMESPACE/$(echo $PROJECT_DISTGIT | awk -F/ '{print $NF}' | sed 's/\.git$//')"
     PROJECT_DISTRO_DIR=${PROJECT_TO_BUILD_MAPPED}_distro
 
-    if [ "$PROJECT_DISTGIT" = "https://github.com/openstack/rpm-packaging" ]; then
+    if [ "$PROJECT_DISTGIT" = "https://opendev.org/openstack/rpm-packaging" ]; then
         GIT_BASE_URL=$(dirname $PROJECT_DISTGIT)
         GIT_BASE="review.openstack.org"
         PROJECT_DISTRO=$(basename $PROJECT_DISTGIT)
