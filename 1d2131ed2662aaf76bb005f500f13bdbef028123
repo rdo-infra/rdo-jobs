@@ -53,6 +53,24 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94d38076_b9940cef",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-02-22T10:03:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1999ab01_8fbb7951",
+      "revId": "1d2131ed2662aaf76bb005f500f13bdbef028123",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8bb52aef_4574f7a5",
@@ -88,6 +106,24 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83f1c4fd_9341207f",
+        "filename": "playbooks/data_plane_adoption/setup_tripleo_os_net_config.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-02-22T10:03:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abab07f7_454b16ac",
+      "revId": "1d2131ed2662aaf76bb005f500f13bdbef028123",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "07c732b3_2dded805",
@@ -119,6 +155,41 @@
       "side": 1,
       "message": "no this is run as the zuul user, invoked from there https://review.rdoproject.org/r/c/rdo-jobs/+/51227/17/playbooks/data_plane_adoption/collect_logs_crc.yaml\n\nand I think you are right, we aren\u0027t getting /var/log/containers from the undercloud\n\n```\n[zuul@undercloud ~]$ ll /var/log/containers\nls: cannot open directory \u0027/var/log/containers\u0027: Permission denied\n```",
       "parentUuid": "07c732b3_2dded805",
+      "revId": "1d2131ed2662aaf76bb005f500f13bdbef028123",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2392ee83_f9929566",
+        "filename": "playbooks/data_plane_adoption/tripleo_collect_logs.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-02-22T10:03:02Z",
+      "side": 1,
+      "message": "i am going to try a become: true instead of invoking the whole play as root. the rest of the stuff seems collected OK.",
+      "parentUuid": "4065275c_ac366d30",
+      "revId": "1d2131ed2662aaf76bb005f500f13bdbef028123",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d9f9521_e755f1fd",
+        "filename": "playbooks/data_plane_adoption/tripleo_collect_logs.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-02-22T10:03:02Z",
+      "side": 1,
+      "message": "here i mean @cedric become true",
       "revId": "1d2131ed2662aaf76bb005f500f13bdbef028123",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
