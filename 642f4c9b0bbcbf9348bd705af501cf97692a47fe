@@ -16,6 +16,40 @@
       "message": "wf-1 for testing run",
       "revId": "642f4c9b0bbcbf9348bd705af501cf97692a47fe",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4c0118e_3f5139f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2024-02-22T15:06:08Z",
+      "side": 1,
+      "message": "Looks good - I may be too picky on the rights ;)",
+      "revId": "642f4c9b0bbcbf9348bd705af501cf97692a47fe",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56debb29_954e046d",
+        "filename": "playbooks/data_plane_adoption/collect_logs_crc.yaml",
+        "patchSetId": 19
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2024-02-22T15:06:08Z",
+      "side": 1,
+      "message": "in the ci-framework, I\u0027ve switched nested ansible-playbook calls to a \"slightly\" better approach:\n- they get no_log: true\n- they have ANSIBLE_LOG_PATH in the environment to get a dedicated log file\n\nThat way, it allows a better handling, better reading and all. Of course this is in the framework, maybe something to consider later? I see a lot of \"nested playbook\".",
+      "revId": "642f4c9b0bbcbf9348bd705af501cf97692a47fe",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }

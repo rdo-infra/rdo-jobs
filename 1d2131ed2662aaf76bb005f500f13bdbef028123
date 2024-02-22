@@ -177,6 +177,24 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e8c775c_1b3dba30",
+        "filename": "playbooks/data_plane_adoption/tripleo_collect_logs.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2024-02-22T15:06:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2392ee83_f9929566",
+      "revId": "1d2131ed2662aaf76bb005f500f13bdbef028123",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d9f9521_e755f1fd",
@@ -190,6 +208,24 @@
       "writtenOn": "2024-02-22T10:03:02Z",
       "side": 1,
       "message": "here i mean @cedric become true",
+      "revId": "1d2131ed2662aaf76bb005f500f13bdbef028123",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b10ba9f5_4966255e",
+        "filename": "playbooks/data_plane_adoption/tripleo_collect_logs.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2024-02-22T15:06:08Z",
+      "side": 1,
+      "message": "maybe some chmod may be fancy - depending on the directories/files rights? We\u0027re doing this in the ci-framework:\nhttps://github.com/openstack-k8s-operators/ci-framework/blob/7527d0c8855b375bb30bfda6af47b3258421239c/roles/artifacts/tasks/edpm.yml#L76-L77\n\nnamely, running a couple of `sudo find ... -exec chmod ...` (one for -type d setting 0755, one for -type f setting 0644). This ensures everything is readable - of course, we do this in the *target* location, not the source (so you\u0027d do it in /hom/zuul/logs/....)",
+      "parentUuid": "1d9f9521_e755f1fd",
       "revId": "1d2131ed2662aaf76bb005f500f13bdbef028123",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
