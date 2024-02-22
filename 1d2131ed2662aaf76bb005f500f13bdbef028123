@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66465c34_80da59f8",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2024-02-22T08:58:25Z",
+      "side": 1,
+      "message": "I don\u0027t think this is needed for `wait_for`. IIRC it will just check for ssh to answer, not try to actually authenticate.",
+      "revId": "1d2131ed2662aaf76bb005f500f13bdbef028123",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bb52aef_4574f7a5",
+        "filename": "playbooks/data_plane_adoption/setup_tripleo_os_net_config.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2024-02-22T08:58:25Z",
+      "side": 1,
+      "message": "there\u0027s a module for that:\nhttps://docs.ansible.com/ansible/latest/collections/ansible/posix/authorized_key_module.html",
+      "revId": "1d2131ed2662aaf76bb005f500f13bdbef028123",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07c732b3_2dded805",
+        "filename": "playbooks/data_plane_adoption/tripleo_collect_logs.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 547
+      },
+      "writtenOn": "2024-02-22T08:58:25Z",
+      "side": 1,
+      "message": "Is this one launched as root? If not, we may face issues while collecting logs. If yes, we may face issues later with files having 0640 or 0600, or directories with 0750 or 0700 modes.\nAny thoughts?",
+      "revId": "1d2131ed2662aaf76bb005f500f13bdbef028123",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
