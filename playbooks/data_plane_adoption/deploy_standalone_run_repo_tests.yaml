@@ -33,6 +33,7 @@
             -e repo_setup_commands=/home/zuul/cdn_subscription_repos.sh
             -e "standalone_ip={{ standalone_ip }}" -e "standalone_gateway={{ standalone_gateway }}"
             -e "standalone_dns={{ standalone_dns | default(standalone_gateway) }}"
+            -e "use_ceph={{ use_ceph | default('true') }}"
           args:
             chdir: "{{ framework_dir }}"
 
@@ -124,6 +125,8 @@
           regex: 'NovaPassword'
         - key: 'octavia_password'
           regex: 'OctaviaPassword'
+        - key: 'swift_password'
+          regex: 'SwiftPassword'
 
     - name: Set standalone login var controller1_ssh in secrets.yaml
       ansible.builtin.lineinfile:
@@ -210,7 +213,7 @@
     - name: Run data-plane-adoption tests
       community.general.make:
         chdir: "{{ dpa_dir }}"
-        target: test-with-ceph
+        target: "{{ dpa_test_suite | default('test-with-ceph') }}"
         params:
           TEST_CONFIG: "{{ rdo_dir }}/ansible.cfg"
           TEST_SECRETS: "{{ rdo_dir}}/secrets.yaml"
