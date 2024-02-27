@@ -35,6 +35,23 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7148942_efbc3de7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-02-27T08:07:23Z",
+      "side": 1,
+      "message": "going to rebase - last test runs there are good https://review.rdoproject.org/r/c/testproject/+/51274/6#message-441fadff3c14cef8b21a7560afe6158d150fced1 and we\u0027ve had a few runs now on the existing job so it doesn\u0027t seem to break that\n\nthe POST_FAILURE is because of force_job_failure set in the zuul layout (I was trying to get a node hold).",
+      "revId": "642f4c9b0bbcbf9348bd705af501cf97692a47fe",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56debb29_954e046d",
@@ -48,6 +65,24 @@
       "writtenOn": "2024-02-22T15:06:08Z",
       "side": 1,
       "message": "in the ci-framework, I\u0027ve switched nested ansible-playbook calls to a \"slightly\" better approach:\n- they get no_log: true\n- they have ANSIBLE_LOG_PATH in the environment to get a dedicated log file\n\nThat way, it allows a better handling, better reading and all. Of course this is in the framework, maybe something to consider later? I see a lot of \"nested playbook\".",
+      "revId": "642f4c9b0bbcbf9348bd705af501cf97692a47fe",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84347fc8_df3d8962",
+        "filename": "playbooks/data_plane_adoption/collect_logs_crc.yaml",
+        "patchSetId": 19
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-02-27T08:07:23Z",
+      "side": 1,
+      "message": "ack sounds good to follow up with",
+      "parentUuid": "56debb29_954e046d",
       "revId": "642f4c9b0bbcbf9348bd705af501cf97692a47fe",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
