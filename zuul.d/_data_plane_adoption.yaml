@@ -16,7 +16,7 @@
     pre-run:
       - playbooks/data_plane_adoption/subnode_ip.yaml
       - playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml
-      - playbooks/data_plane_adoption/setup_tripleo_os_net_config.yaml
+      - playbooks/data_plane_adoption/setup_standalone_os_net_config.yaml
     run:
       - playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml
     post-run:
@@ -53,6 +53,7 @@
       - playbooks/data_plane_adoption/subnode_ip.yaml
       - playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml
       - playbooks/data_plane_adoption/setup_tripleo_os_net_config.yaml
+      - playbooks/data_plane_adoption/setup_tripleo_hostnamemap.yaml
     run:
       - playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml
     post-run:
@@ -65,3 +66,16 @@
       standalone_gateway: 192.168.122.10
       standalone_private_key: /home/zuul/.ssh/id_rsa
       tripleo_ci_inventory: "tripleo_ci_inventory"
+      os_net_config_file: "overcloud_net_config.j2"
+    host-vars:
+      undercloud:
+        address_suffix: 100
+        os_net_config_file: "net_config.j2"
+      overcloud-controller-0:
+        address_suffix: 103
+      overcloud-controller-1:
+        address_suffix: 104
+      overcloud-controller-2:
+        address_suffix: 105
+      overcloud-novacompute-0:
+        address_suffix: 106
