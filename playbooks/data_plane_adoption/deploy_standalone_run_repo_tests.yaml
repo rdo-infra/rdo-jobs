@@ -102,6 +102,8 @@
       loop:
         - key: 'source_db_root_password'
           regex: 'MysqlRootPassword'
+        - key: 'barbican_password'
+          regex: 'BarbicanPassword'
         - key: 'glance_password'
           regex: 'GlancePassword'
         - key: 'placement_password'
