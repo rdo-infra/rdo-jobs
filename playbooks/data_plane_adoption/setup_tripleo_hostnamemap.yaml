@@ -1,0 +1,22 @@
+- hosts: undercloud
+  vars:
+    rdo_dir: "review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
+  tasks:
+    - name: Fetch ansible hostnames from the controllers
+      delegate_to: "tripleo-controller-{{ item }}"
+      ansible.builtin.slurp:
+        path: /home/zuul/ansible_hostname
+      register: "tripleo_controller_{{ item }}_hostname"
+      with_items:
+        - 0
+        - 1
+        - 2
+
+    - name: Place hostnames to hostnamemap
+      ansible.builtin.template:
+        src: "{{ zuul.executor.src_root }}/{{ rdo_dir }}/files/hostnamemap.yaml.j2"
+        dest: /home/zuul/hostnamemap.yaml
+      vars:
+        tripleo_controller_0_hostname: "{{ tripleo_controller_0_hostname }}"
+        tripleo_controller_1_hostname: "{{ tripleo_controller_1_hostname }}"
+        tripleo_controller_2_hostname: "{{ tripleo_controller_2_hostname }}"
