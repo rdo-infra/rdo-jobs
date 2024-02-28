@@ -25,6 +25,12 @@
           else
               version="{{ openstack_release }}"
           fi
+
+          # (TODO) Hack to manage unmaintained/ rename in yoga until we have proper fix in rdoinfo/rdopkg
+          if [ $version  = "stable/yoga" ]; then
+            version = "unmaintained/yoga"
+          fi
+
           scenario="{{ scenario }}"
 
           if [[ "{{ zuul.pipeline }}" =~ "experimental" ]]; then
