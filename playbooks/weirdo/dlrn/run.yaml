@@ -130,6 +130,11 @@
               version="{{ openstack_release }}"
           fi
 
+          # (TODO) Hack to manage unmaintained/ rename in yoga until we have proper fix in rdoinfo/rdopkg
+          if [ $version  = "stable/yoga" ]; then
+            version="unmaintained/yoga"
+          fi
+
           delorean_deps_url="https://trunk.rdoproject.org/{{ centos_release }}-{{ openstack_release }}/delorean-deps.repo"
           if [[ "{{ zuul.pipeline }}" =~ "experimental" ]]; then
               delorean_url="https://trunk.rdoproject.org/{{ centos_release }}-{{ openstack_release }}/current/delorean.repo"
