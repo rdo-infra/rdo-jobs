@@ -32,6 +32,11 @@
             O_RELEASE="$RELEASE"
           fi
 
+          # (TODO) Hack to manage unmaintained/ rename in yoga until we have proper fix in rdoinfo/rdopkg
+          if [ $VERSION  = "stable/yoga" ]; then
+            VERSION = "unmaintained/yoga"
+          fi
+
           if [[ "{{ job_type | default('periodic') }}" == "promotion" ]]; then
             enable_puppet_modules_rpm=false
             dlrn_repo="puppet-ci-testing"

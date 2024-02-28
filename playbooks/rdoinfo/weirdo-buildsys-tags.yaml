@@ -108,6 +108,11 @@
             O_RELEASE="$RELEASE"
           fi
 
+          # (TODO) Hack to manage unmaintained/ rename in yoga until we have proper fix in rdoinfo/rdopkg
+          if [ $VERSION  = "stable/yoga" ]; then
+            VERSION = "unmaintained/yoga"
+          fi
+
           {% if not periodic_job|default(false) %}
           # Temporary repo URL
           logs={{ buildset_artifacts_url }}
