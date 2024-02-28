@@ -11,6 +11,7 @@
           export WORKSPACE="{{ ansible_user_dir }}/workspace"
           mkdir -p $WORKSPACE
           export ARA_DATABASE_NAME="$WORKSPACE/ara.sqlite"
+          source {{ ansible_user_dir }}/rdopkg-venv/bin/activate
 
           # Backwards compat for project and openstack_release
           # (dmsimard) TODO: Clean this up ASAP
@@ -23,8 +24,9 @@
           if [[ "{{ openstack_release }}" != "master" ]]; then
               version="stable/{{ openstack_release }}"
           else
-              version="{{ openstack_release }}"
+              version="$(rdopkg release -r {{ openstack_release }} | grep upstream_branch | awk '{print $2}')"
           fi
+
           scenario="{{ scenario }}"
 
           if [[ "{{ zuul.pipeline }}" =~ "experimental" ]]; then

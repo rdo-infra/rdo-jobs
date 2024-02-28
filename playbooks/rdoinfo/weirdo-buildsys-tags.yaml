@@ -104,7 +104,7 @@
             VERSION="master"
             O_RELEASE="master"
           else
-            VERSION="$(rdopkg release -r "$RELEASE" | grep source_branch | awk '{print $2}')"
+            VERSION="$(rdopkg release -r "$RELEASE" | grep upstream_branch | awk '{print $2}')"
             O_RELEASE="$RELEASE"
           fi
 
