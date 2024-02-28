@@ -1,13 +1,13 @@
-- hosts: standalone,undercloud
+- hosts: rh-subscription
   vars:
     cifmw_installyamls_repos: "github.com/openstack-k8s-operators/install_yamls"
-    ctlplane_ip: "{{ standalone_ip }}"
+    ctlplane_ip: "192.168.122.{{ address_suffix }}"
     ctlplane_cidr: 24
     ctlplane_vip: 192.168.122.99
     gateway_ip: "{{ standalone_gateway }}"
     dns_server: "{{ standalone_gateway }}"
     interface_mtu: 1500
-    ip_address_suffix: 100
+    ip_address_suffix: "{{ address_suffix }}"
     os_net_config_iface: nic2
     standalone_vm: false
     additional_networks: []
@@ -15,16 +15,21 @@
     - name: Setup repos and install deps for running os-net-config
       become: true
       ansible.builtin.shell: |
-        subscription-manager repos --enable openstack-17.1-for-rhel-9-x86_64-rpms
-        subscription-manager repos --enable fast-datapath-for-rhel-9-x86_64-rpms
+        sudo subscription-manager repos \
+           --enable=rhel-9-for-x86_64-baseos-eus-rpms \
+           --enable=rhel-9-for-x86_64-appstream-eus-rpms \
+           --enable=rhel-9-for-x86_64-highavailability-eus-rpms \
+           --enable=openstack-17.1-for-rhel-9-x86_64-rpms \
+           --enable=fast-datapath-for-rhel-9-x86_64-rpms \
+           --enable=openstack-deployment-tools-for-rhel-9-x86_64-rpms
         dnf install -y openvswitch os-net-config
         mkdir -p /etc/os-net-config/
 
     - name: Template out the os-net-config config from install_yamls src checkout
       become: true
       ansible.builtin.template:
-        src: "{{ zuul.executor.src_root }}/{{ cifmw_installyamls_repos }}/devsetup/standalone/net_config.j2"
-        dest: /etc/os-net-config/standalone_config.yaml
+        src: "{{ zuul.executor.src_root }}/{{ cifmw_installyamls_repos }}/devsetup/tripleo/{{ os_net_config_file }}"
+        dest: /etc/os-net-config/tripleo_config.yaml
 
     - name: Remove ci-framework created Network Manager connections
       failed_when: false
@@ -48,10 +53,10 @@
         - network
         - openvswitch
 
-    - name: Run os-net-config to create standalone networking
+    - name: Run os-net-config to create tripleo networking
       become: true
       ansible.builtin.shell: |
-        os-net-config -c /etc/os-net-config/standalone_config.yaml
+        os-net-config -c /etc/os-net-config/tripleo_config.yaml
 
     - name: Sanity check standalone can ping crc and controller nodes on 192.168.122.0/24
       ansible.builtin.shell: |
@@ -79,3 +84,38 @@
       loop:
         - zuul
         - root
+
+    - name: Put undercloud zuul pub key into overcloud nodes and set .ctlplane hostnames
+      when: "inventory_hostname != 'undercloud'"
+      block:
+        - name: Slurp undercloud public key for ssh access from undercloud to overcloud nodes
+          delegate_to: undercloud
+          ansible.builtin.slurp:
+            path: /home/zuul/.ssh/id_rsa.pub
+          register: undercloud_ssh_pub
+
+        - name: Place undercloud public key in authorized_keys for zuul and root
+          become: "{{ item == 'root' }}"
+          ansible.posix.authorized_key:
+            user: "{{ item }}"
+            key: "{{ undercloud_ssh_pub['content'] | b64decode | trim }}"
+          loop:
+            - zuul
+            - root
+
+        - name: Slurp overcloud ansible hostname for hostnamemap fom etc hostname
+          ansible.builtin.slurp:
+            path: /etc/hostname
+          register: overcloud_hostname
+
+        - name: Place ansible hostname into zuul home directory
+          ansible.builtin.shell: |
+            hostname="{{ overcloud_hostname['content'] | b64decode | trim }}"
+            hostname_str_array=(${hostname//./ })
+            echo ${hostname_str_array[0]} > /home/zuul/ansible_hostname
+
+        - name: Set expected overcloud hostname with .ctlplane.localdomain
+          become: true
+          ansible.builtin.shell: |
+            hostname=$(cat /home/zuul/ansible_hostname)
+            hostnamectl hostname "$hostname.ctlplane.localdomain"
