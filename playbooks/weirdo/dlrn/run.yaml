@@ -125,7 +125,7 @@
           scenario="{{ scenario }}"
 
           if [[ "{{ openstack_release }}" != "master" ]]; then
-              version="$(rdopkg release -r {{ openstack_release }}  | grep source_branch | awk '{print $2}')"
+              version="$(rdopkg release -r {{ openstack_release }}  | grep upstream_branch | awk '{print $2}')"
           else
               version="{{ openstack_release }}"
           fi
