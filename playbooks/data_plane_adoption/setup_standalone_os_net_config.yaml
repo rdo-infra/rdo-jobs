@@ -1,7 +1,7 @@
-- hosts: rh-subscription
+- hosts: standalone
   vars:
     cifmw_installyamls_repos: "github.com/openstack-k8s-operators/install_yamls"
-    ctlplane_ip: "192.168.122.{{ address_suffix }}"
+    ctlplane_ip: "{{ standalone_ip }}"
     ctlplane_cidr: 24
     ctlplane_vip: 192.168.122.99
     gateway_ip: "{{ standalone_gateway }}"
@@ -23,8 +23,8 @@
     - name: Template out the os-net-config config from install_yamls src checkout
       become: true
       ansible.builtin.template:
-        src: "{{ zuul.executor.src_root }}/{{ cifmw_installyamls_repos }}/devsetup/tripleo/{{ os_net_config_file }}"
-        dest: /etc/os-net-config/tripleo_config.yaml
+        src: "{{ zuul.executor.src_root }}/{{ cifmw_installyamls_repos }}/devsetup/standalone/net_config.j2"
+        dest: /etc/os-net-config/standalone_config.yaml
 
     - name: Remove ci-framework created Network Manager connections
       failed_when: false
@@ -50,31 +50,10 @@
     - name: Run os-net-config to create tripleo networking
       become: true
       ansible.builtin.shell: |
-        os-net-config -c /etc/os-net-config/tripleo_config.yaml
+        os-net-config -c /etc/os-net-config/standalone_config.yaml
 
     - name: Sanity check standalone can ping crc and controller nodes on 192.168.122.0/24
       ansible.builtin.shell: |
         ip a
         ping -c 2 -W 2 192.168.122.10
         ping -c 2 -W 2 192.168.122.11
-
-    - name: Slurp controller public key for ssh access to standalone
-      delegate_to: controller
-      ansible.builtin.slurp:
-        path: /home/zuul/.ssh/id_rsa.pub
-      register: controller_ssh_pub
-
-    - name: Install ansible.posix collection from ansible-galaxy
-      become: true
-      ansible.builtin.shell: |
-        sudo dnf install -y ansible-core
-        ansible-galaxy collection install ansible.posix
-
-    - name: Place controller public key in authorized_keys for zuul and root
-      become: "{{ item == 'root' }}"
-      ansible.posix.authorized_key:
-        user: "{{ item }}"
-        key: "{{ controller_ssh_pub['content'] | b64decode | trim }}"
-      loop:
-        - zuul
-        - root
