@@ -1253,6 +1253,74 @@
       scenario: scenario000
 
 - job:
+    name: weirdo-dlrn-bobcat-base-centos-9
+    parent: weirdo-dlrn-base-centos-9
+    vars:
+      openstack_release: bobcat
+    dependencies:
+      - rdoinfo-DLRN-check-centos9
+    files:
+      - ^tags/bobcat.yml$
+
+- job:
+    name: weirdo-dlrn-bobcat-packstack-scenario001-centos9
+    parent: weirdo-dlrn-bobcat-base-centos-9
+    vars:
+      scenario: scenario001
+      selinux_enforcing: "false"
+
+- job:
+    name: weirdo-dlrn-bobcat-packstack-scenario002-centos9
+    parent: weirdo-dlrn-bobcat-base-centos-9
+    vars:
+      scenario: scenario002
+      selinux_enforcing: "false"
+
+- job:
+    name: weirdo-dlrn-bobcat-packstack-scenario003-centos9
+    parent: weirdo-dlrn-bobcat-base-centos-9
+    vars:
+      scenario: scenario003
+      selinux_enforcing: "false"
+
+- job:
+    name: weirdo-dlrn-bobcat-puppet-scenario001-centos9
+    parent: weirdo-dlrn-bobcat-base-centos-9
+    vars:
+      scenario: scenario001
+
+- job:
+    name: weirdo-dlrn-bobcat-puppet-scenario002-centos9
+    parent: weirdo-dlrn-bobcat-base-centos-9
+    vars:
+      scenario: scenario002
+
+- job:
+    name: weirdo-dlrn-bobcat-puppet-scenario003-centos9
+    parent: weirdo-dlrn-bobcat-base-centos-9
+    vars:
+      scenario: scenario003
+
+- job:
+    name: weirdo-dlrn-bobcat-puppet-scenario004-centos9
+    parent: weirdo-dlrn-bobcat-base-centos-9
+    vars:
+      scenario: scenario004
+
+- job:
+    name: weirdo-dlrn-bobcat-puppet-scenario005-centos9
+    parent: weirdo-dlrn-bobcat-base-centos-9
+    vars:
+      scenario: scenario005
+
+- job:
+    name: weirdo-dlrn-bobcat-tcib-container-build-scenario000-centos9
+    parent: weirdo-dlrn-bobcat-base-centos-9
+    post-run: playbooks/podified-containers/collect-logs.yaml
+    vars:
+      scenario: scenario000
+
+- job:
     name: validate-buildsys-tags-antelope-testing-centos9-base
     parent: weirdo-validate-buildsys-tags-base
     vars:
