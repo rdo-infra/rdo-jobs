@@ -33,7 +33,7 @@ if [[ "${TAG}" != "caracal-uc" ]]; then
     branch=$(echo $TAG | awk -F- '{print $1}')
     tag=$TAG
     baseurl="http://trunk.rdoproject.org/${branch}/${CENTOS_VERSION}/"
-    src=$(rdopkg release -r ${TAG}  | grep source_branch | awk '{print $2}')
+    src=$(rdopkg release -r ${TAG}  | grep upstream_branch | awk '{print $2}')
     PROJECT_DISTRO_BRANCH="${TAG}-rdo"
 fi
 
