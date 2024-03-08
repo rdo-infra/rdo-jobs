@@ -1,12 +1,11 @@
 ---
 - name: Setup deps repo for mock
   get_url:
-    url: https://trunk.rdoproject.org/centos8-master/delorean-deps.repo
+    url: https://trunk.rdoproject.org/centos{{ ansible_distribution_major_version }}-master/delorean-deps.repo
     dest: /etc/yum.repos.d/delorean-deps.repo
   become: true
   when:
     - ansible_distribution == "CentOS"
-    - ansible_distribution_major_version == '8'
 
 - name: Ensure bindep.txt dependencies are installed
   include_role:
