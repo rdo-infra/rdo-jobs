@@ -103,7 +103,7 @@
     name: DLRN-rpmbuild-base
     run: playbooks/DLRN/rpmbuild.yaml
     post-run: playbooks/DLRN/post.yaml
-    nodeset: rdo-centos-7
+    nodeset: cloud-centos-9-stream
     required-projects:
       - DLRN
       - rdoinfo
@@ -146,7 +146,6 @@
     branches: ^((wallaby|xena|yoga)-rdo)$
     vars:
       centos_version: 'centos8'
-    nodeset: rdo-centos-8-stream
 
 - job:
     name: DLRN-rpmbuild-centos8-pinned
@@ -161,7 +160,6 @@
     branches: ^((rpm-master)|(^(?!train|ussuri|victoria)(\w+)-rdo))$
     vars:
       centos_version: 'centos9'
-    nodeset: rdo-centos-8-stream
 
 - job:
     name: DLRN-rpmbuild-centos9-compare-deps
