@@ -37,10 +37,10 @@
           export REPO_SERVER="https://trunk.rdoproject.org"
           export TARGET="centos"
           if [ ${CENTOS_VERS} = "centos8" ]; then
-             export PYTHON_VERSION="py36"
+             export PYTHON_VERSION="py39"
              export TARGET="centos8-stream"
           elif [ ${CENTOS_VERS} = "centos9" ]; then
-             export PYTHON_VERSION="py36"
+             export PYTHON_VERSION="py39"
              export TARGET="centos9-stream"
           fi
           #
