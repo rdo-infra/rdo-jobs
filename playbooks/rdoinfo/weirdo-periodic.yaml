@@ -57,6 +57,8 @@
               -e tempest_from_source=false \
               -e enable_puppet_modules_rpm=${enable_puppet_modules_rpm} \
               -e trunk_repositories=$REPOS_URL \
+              -e refspec=refs/changes/96/916896/1 \
+              -e install_from_source=true
 
       changed_when: true
       environment:
