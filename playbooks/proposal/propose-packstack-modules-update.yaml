@@ -1,0 +1,62 @@
+- hosts: all
+  tasks:
+    - name: Ensure pip
+      include_role:
+        name: ensure-pip
+
+    - name: Install git-review
+      pip:
+        name: git-review
+        virtualenv: /opt/git-review
+        virtualenv_command: '{{ ensure_pip_virtualenv_command }}'
+      become: yes
+
+    - name: Link git-review
+      file:
+        src: /opt/git-review/bin/git-review
+        dest: /usr/local/bin/git-review
+        owner: root
+        group: root
+        state: link
+      become: yes
+
+    - name: Copy scripts to the script dir on the node
+      copy:
+        dest: '{{ ansible_user_dir }}/'
+        src: '{{ item }}'
+        mode: 0755
+      with_items:
+        - generate_puppetfile.sh
+
+    - name: Run generate_puppetfile.sh script
+      command: "{{ ansible_user_dir }}/generate_puppetfile.sh {{ ansible_user_dir }}/{{ zuul.projects['opendev.org/x/packstack'].src_dir }} {{ ansible_user_dir }}/{{ zuul.projects['opendev.org/openstack/puppet-openstack-integration'].src_dir }}"
+      args:
+        chdir: "{{ ansible_user_dir }}"
+
+    - name:
+      shell:
+        cmd: |
+          set +e -x
+          mkdir -p ~/.ssh
+          cat >> ~/.ssh/config << EOF
+
+          Host review.rdoproject.org
+            IdentityFile ~/.ssh/rdoinfo_id_rsa
+          EOF
+
+          chmod 600 ~/.ssh/config
+          ssh-keyscan -p 29418 review.rdoproject.org >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+          git config --global --add user.name "rdo-trunk"
+          git config --global --add user.email "amoralej+rdo-trunk@redhat.com"
+          git config --global --add gitreview.username "rdo-trunk"
+
+          pushd {{ ansible_user_dir }}/{{ zuul.projects['opendev.org/x/packstack'].src_dir }}
+          DIFF=$(git diff Puppetfile)
+          if [ -n "$DIFF" ]; then
+            git add Puppetfile
+            COMMIT_MSG="Updated from Packstack modules constraints"
+            git commit -m "$COMMIT_MSG"
+            git review -t packstack-constraints
+          fi
+      changed_when: true
