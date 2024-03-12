@@ -165,6 +165,9 @@
           addFilter("puppet-horizon.noarch: E: explicit-lib-dependency puppet-openstacklib")
           addFilter("puppet-horizon.noarch: E: explicit-lib-dependency puppet-stdlib")
 
+          # Exceptions for puppet-systemd
+          addFilter("puppet-systemd.noarch: E: non-executable-script /usr/share/openstack-puppet/modules/systemd/tasks/systemctl_show.rb 644 /opt/puppetlabs/puppet/bin/ruby")
+
           # Exceptions for horizon
           addFilter("python-django-horizon.noarch: E: non-executable-script \
           /usr/lib/python2.7/site-packages/openstack_auth/tests/run_tests.py 0644L /usr/bin/env")
