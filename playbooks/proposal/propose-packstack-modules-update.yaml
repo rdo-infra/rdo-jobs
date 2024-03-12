@@ -1,0 +1,72 @@
+- hosts: all
+  tasks:
+    - name: Ensure pip
+      include_role:
+        name: ensure-pip
+
+    - name: Install git-review
+      pip:
+        name: git-review
+        virtualenv: /opt/git-review
+        virtualenv_command: '{{ ensure_pip_virtualenv_command }}'
+      become: yes
+
+    - name: Link git-review
+      file:
+        src: /opt/git-review/bin/git-review
+        dest: /usr/local/bin/git-review
+        owner: root
+        group: root
+        state: link
+      become: yes
+
+    - name: Copy scripts to the script dir on the node
+      copy:
+        dest: '{{ ansible_user_dir }}/'
+        src: '{{ item }}'
+        mode: 0755
+      with_items:
+        - generate_puppetfile.sh
+
+    - name:
+      shell:
+        cmd: |
+          set +e -x
+          mkdir -p ~/.ssh
+          cat >> ~/.ssh/config << EOF
+
+          Host review.rdoproject.org
+            IdentityFile ~/.ssh/rdoinfo_id_rsa
+          EOF
+
+          chmod 600 ~/.ssh/config
+          ssh-keyscan -p 29418 review.opendev.org >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+          git config --global --add user.name "rdo-trunk"
+          git config --global --add user.email "amoralej+rdo-trunk@redhat.com"
+          git config --global --add gitreview.username "rdo-trunk"
+
+          pushd {{ ansible_user_dir }}/{{ zuul.projects['opendev.org/x/packstack'].src_dir }}
+          SUBJECT="Updated from Packstack modules constraints"
+          opened_patch=$(curl --retry 3 --retry-delay 5 -L "http://review.opendev.org/changes/?q=project:x/packstack" | sed '1d' | jq --arg BRANCH "master" --arg SUBJECT "${SUBJECT}" -r '.[] | select(.branch == $BRANCH) | select(.status as $status | ["NEW"] | index ($status)) | select(.subject == $SUBJECT)')
+          id=$(echo "$opened_patch" | jq '._number')
+          REBASE=0
+          if [ ! -z "$id" ]; then
+            git review -d $id
+            REBASE=1
+          fi
+
+          bash -x {{ ansible_user_dir }}/generate_puppetfile.sh {{ ansible_user_dir }}/{{ zuul.projects['opendev.org/x/packstack'].src_dir }} {{ ansible_user_dir }}/{{ zuul.projects['opendev.org/openstack/puppet-openstack-integration'].src_dir }}
+
+          DIFF=$(git diff Puppetfile)
+          if [ -n "$DIFF" ]; then
+            git add Puppetfile
+            if [ $REBASE -eq 1 ]; then
+              git commit --amend --no-edit
+            else
+              git commit -m "$SUBJECT"
+            fi
+            git review -t packstack-constraints
+          fi
+          popd
+      changed_when: true
