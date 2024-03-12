@@ -1,0 +1,34 @@
+- hosts: all
+  tasks:
+    - name: Ensure pip
+      include_role:
+        name: ensure-pip
+
+    - name: Install git-review
+      pip:
+        name: git-review
+        virtualenv: /opt/git-review
+        virtualenv_command: '{{ ensure_pip_virtualenv_command }}'
+      become: yes
+
+    - name: Link git-review
+      file:
+        src: /opt/git-review/bin/git-review
+        dest: /usr/local/bin/git-review
+        owner: root
+        group: root
+        state: link
+      become: yes
+
+    - name: Copy scripts to the script dir on the node
+      copy:
+        dest: '{{ ansible_user_dir }}/'
+        src: '{{ item }}'
+        mode: 0755
+      with_items:
+        - generate_puppetfile.sh
+
+    - name: Run generate_puppetfile.sh script
+      command: "{{ ansible_user_dir }}/generate_puppetfile.sh {{ ansible_user_dir }}/{{ zuul.projects['opendev.org/x/packstack'].src_dir }} {{ ansible_user_dir }}/{{ zuul.projects['opendev.org/openstack/puppet-openstack-integration'].src_dir }}"
+      args:
+        chdir: "{{ ansible_user_dir }}"

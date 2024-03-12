@@ -48,6 +48,17 @@
     nodeset: rdo-centos-7
 
 - job:
+    name: propose-packstack-modules-update
+    description: |
+      Propose sync of the module versions between
+      Packstack and p-o-i projects.
+    run: playbooks/proposal/propose-packstack-modules-update.yaml
+    nodeset: rdo-centos-9-stream
+    required-projects:
+      - opendev.org/x/packstack
+      - opendev.org/openstack/puppet-openstack-integration
+
+- job:
     name: rdo-molecule-base
     abstract: true
     parent: mol
