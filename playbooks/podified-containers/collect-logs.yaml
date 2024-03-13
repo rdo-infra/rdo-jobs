@@ -9,6 +9,14 @@
         state: directory
         mode: 0755
 
+    - name: Ensure podman is installed
+      package:
+        name: "podman"
+        state: "latest"
+      retries: "3"
+      delay: "20"
+      become: true
+
     - name: Retrieve built images  # noqa risky-shell-pipe
       ansible.builtin.shell: "podman images | grep {{ cifmw_build_containers_container_name_prefix | default('openstack') }} "
       register: built_images
