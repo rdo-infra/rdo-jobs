@@ -9,19 +9,27 @@
         state: directory
         mode: 0755
 
-    - name: Retrieve built images  # noqa risky-shell-pipe
-      ansible.builtin.shell: "podman images | grep {{ cifmw_build_containers_container_name_prefix | default('openstack') }} "
-      register: built_images
-      become: true
-      changed_when: false
+    - name: Check if the test is needed
+      register: not_required_state
+      ansible.builtin.stat:
+        path: "{{ ansible_user_dir }}/workspace/not_required"
 
-    - name: Store built images to containers-built.log
-      ansible.builtin.copy:
-        content: |
-          {%  for item in built_images.stdout_lines %}
-          {{ item }}
-          {% endfor %}
-        dest: "{{ ansible_user_dir }}/zuul-output/logs/logs/containers-built.log"
+    - name: Retrieve built images  # noqa risky-shell-pipe
+      when:
+        - not_required_state.stat.exists | bool == false
+      block:
+        - ansible.builtin.shell: "podman images | grep {{ cifmw_build_containers_container_name_prefix | default('openstack') }} "
+          register: built_images
+          become: true
+          changed_when: false
+
+        - name: Store built images to containers-built.log
+          ansible.builtin.copy:
+            content: |
+              {%  for item in built_images.stdout_lines %}
+              {{ item }}
+              {% endfor %}
+            dest: "{{ ansible_user_dir }}/zuul-output/logs/logs/containers-built.log"
 
     - name: Check if we get ci-framework-data basedir
       register: cifmw_state
@@ -60,6 +68,7 @@
         # Copy repo-setup files
         rsync -var --no-links {{ ansible_user_dir }}/repos {{ ansible_user_dir }}/zuul-output/logs || true
       changed_when: true
+
     - name: Copy files from {{ work_dir }} on node
       include_role:
         name: fetch-output
