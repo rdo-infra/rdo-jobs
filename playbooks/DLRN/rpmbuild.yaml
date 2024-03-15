@@ -3,6 +3,8 @@
   tasks:
     - include_tasks: setup_dlrn.yaml
 
+    - include_tasks: install_rdopkg.yaml
+
     - name: Ensure mirrors are setup properly
       changed_when: true
       shell:
@@ -31,8 +33,10 @@
       changed_when: true
       shell:
         cmd: |
+          source {{ ansible_user_dir }}/rdopkg-venv/bin/activate
+          export MASTER_RELEASE="$(rdopkg release -s development)"
+          deactivate
           export REQUESTS_CA_BUNDLE=/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt
-          export TAG="{{  tag | default('') }}"
           export CENTOS_VERS="{{  centos_version | default('centos7') }}"
           export REPO_SERVER="https://trunk.rdoproject.org"
           export TARGET="centos"
@@ -44,10 +48,10 @@
              export TARGET="centos9-stream"
           fi
           #
-          if [ -z "$TAG" ];then
+          if [ -z "{{ pinned | default('') }}" ];then
           ARGS="$TARGET ${REPO_SERVER}/${CENTOS_VERS}/"
           else
-          ARGS="$TARGET ${REPO_SERVER}/${CENTOS_VERS}/ $TAG"
+          ARGS="$TARGET ${REPO_SERVER}/${CENTOS_VERS}/ ${MASTER_RELEASE}-uc"
           fi
           if [[ "{{ zuul.pipeline }}" =~ "openstack-" ]]; then
               ARGS=""

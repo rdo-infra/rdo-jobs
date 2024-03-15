@@ -1,0 +1,13 @@
+- name: install rdopkg dependencies
+  become: true
+  shell:
+    cmd: |
+      dnf install -y python3-pip rpmlint python3-rpm {{ 'python3-pyOpenSSL' if ansible_distribution_major_version == "8" }}
+
+- name: pip install rdopkg
+  # noqa 403
+  pip:
+    name: rdopkg
+    virtualenv: "{{ ansible_user_dir }}/rdopkg-venv"
+    virtualenv_command: "/usr/bin/python{{ ansible_python.version.major }} -m venv"
+    virtualenv_site_packages: true
