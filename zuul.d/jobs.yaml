@@ -92,13 +92,6 @@
       centos_version: 'centos8'
 
 - job:
-    name: DLRN-rpmbuild-centos8-pinned
-    parent: DLRN-rpmbuild-centos8
-    vars:
-      tag: 'yoga'
-      centos_version: 'centos8'
-
-- job:
     name: DLRN-rpmbuild-centos9
     parent: DLRN-rpmbuild-base
     branches: ^((rpm-master)|(^(?!train|ussuri|victoria)(\w+)-rdo))$
@@ -108,8 +101,9 @@
 - job:
     name: DLRN-rpmbuild-centos9-pinned
     parent: DLRN-rpmbuild-centos9
+    branches: ^rpm-master$
     vars:
-      tag: 'bobcat'
+      pinned: true
 
 - job:
     name: rpmlint
