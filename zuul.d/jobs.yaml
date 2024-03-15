@@ -121,26 +121,6 @@
       tag: 'yoga-uc'
 
 - job:
-    name: DLRN-rpmbuild-rpm-packaging-centos
-    timeout: 5400
-    run: playbooks/DLRN/rpmbuild-rpm-packaging-centos.yaml
-    post-run: playbooks/DLRN/post.yaml
-    nodeset: rdo-centos-7
-    required-projects:
-      - openstack/rpm-packaging
-      - DLRN
-
-- job:
-    name: DLRN-rpmbuild-rpm-packaging-centos-8
-    timeout: 10800
-    run: playbooks/DLRN/rpmbuild-rpm-packaging-centos-8.yaml
-    post-run: playbooks/DLRN/post.yaml
-    nodeset: rdo-centos-8-stream
-    required-projects:
-      - openstack/rpm-packaging
-      - DLRN
-
-- job:
     name: DLRN-rpmbuild-centos8
     parent: DLRN-rpmbuild-base
     branches: ^((wallaby|xena|yoga)-rdo)$
@@ -160,31 +140,6 @@
     branches: ^((rpm-master)|(^(?!train|ussuri|victoria)(\w+)-rdo))$
     vars:
       centos_version: 'centos9'
-
-- job:
-    name: DLRN-rpmbuild-centos9-compare-deps
-    parent: DLRN-rpmbuild-centos9-compare-files
-    vars:
-      compare_deps: true
-      compare_files: false
-
-- job:
-    name: DLRN-rpmbuild-centos9-compare-builddeps
-    parent: DLRN-rpmbuild-centos9-compare-files
-    vars:
-      compare_builddeps: true
-      compare_files: false
-
-- job:
-    name: DLRN-rpmbuild-centos9-compare-files
-    run: playbooks/DLRN/switch-to-pyproject-macros.yaml
-    branches: ^rpm-master$
-    vars:
-      compare_files: true
-    nodeset: rdo-centos-8-stream
-    voting: false
-    dependencies:
-      - DLRN-rpmbuild-centos9
 
 - job:
     name: DLRN-rpmbuild-centos9-pinned
