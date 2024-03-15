@@ -114,13 +114,6 @@
     branches: ^(queens-rdo)|(rocky-rdo)|(stein-rdo)|(train-rdo)$
 
 - job:
-    name: DLRN-rpmbuild-pinned
-    parent: DLRN-rpmbuild
-    voting: false
-    vars:
-      tag: 'yoga-uc'
-
-- job:
     name: DLRN-rpmbuild-rpm-packaging-centos
     timeout: 5400
     run: playbooks/DLRN/rpmbuild-rpm-packaging-centos.yaml
@@ -145,13 +138,6 @@
     parent: DLRN-rpmbuild-base
     branches: ^((wallaby|xena|yoga)-rdo)$
     vars:
-      centos_version: 'centos8'
-
-- job:
-    name: DLRN-rpmbuild-centos8-pinned
-    parent: DLRN-rpmbuild-centos8
-    vars:
-      tag: 'yoga'
       centos_version: 'centos8'
 
 - job:
@@ -189,8 +175,9 @@
 - job:
     name: DLRN-rpmbuild-centos9-pinned
     parent: DLRN-rpmbuild-centos9
+    branches: ^rpm-master$
     vars:
-      tag: 'bobcat'
+      pinned: true
 
 - job:
     name: rpmlint
