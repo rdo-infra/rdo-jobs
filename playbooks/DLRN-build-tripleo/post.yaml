@@ -1,9 +1,0 @@
----
-- hosts: all
-  tasks:
-    - name: Copy DLRN logs
-      synchronize:
-        src: "{{ ansible_user_dir }}/buildset/"
-        dest: "{{ zuul.executor.log_root }}/buildset"
-        mode: pull
-        verify_host: true
