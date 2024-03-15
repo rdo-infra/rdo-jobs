@@ -63,43 +63,6 @@
       mol_scenario: container-login
 
 - job:
-    name: DLRN-build-tripleo-base
-    parent: base
-    run: playbooks/DLRN-build-tripleo/run.yaml
-    post-run: playbooks/DLRN-build-tripleo/post.yaml
-    voting: false
-    nodeset: rdo-centos-7
-    required-projects:
-      - DLRN
-
-- job:
-    name: DLRN-build-tripleo
-    parent: DLRN-build-tripleo-base
-    branches: ^train-rdo$
-    dependencies:
-      - DLRN-rpmbuild
-
-- job:
-    name: DLRN-build-tripleo-centos8
-    parent: DLRN-build-tripleo-base
-    branches: ^(train|wallaby)-rdo$
-    dependencies:
-      - DLRN-rpmbuild-centos8
-    vars:
-      centos_version: 'centos8'
-    nodeset: rdo-centos-8-stream
-
-- job:
-    name: DLRN-build-tripleo-centos9
-    parent: DLRN-build-tripleo-base
-    branches: ^wallaby-rdo$
-    dependencies:
-      - DLRN-rpmbuild-centos9
-    vars:
-      centos_version: 'centos9'
-    nodeset: rdo-centos-8-stream
-
-- job:
     name: DLRN-rpmbuild-base
     run: playbooks/DLRN/rpmbuild.yaml
     post-run: playbooks/DLRN/post.yaml
