@@ -20,6 +20,8 @@
         - periodic-data-plane-adoption-osp-17-to-extracted-crc:
             dependencies: &deps
               - periodic-container-tcib-build-push-centos-9-antelope
+        - periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-no-ceph:
+            dependencies: *deps
         - periodic-podified-multinode-edpm-deployment-antelope-ocp-crc-cs9:
             dependencies: *deps
             required-projects: &rp
