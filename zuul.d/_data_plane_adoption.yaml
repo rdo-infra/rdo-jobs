@@ -43,7 +43,8 @@
       - Gemfile
 
 - job:
-    name: data-plane-adoption-osp17-multinode-to-extracted-crc
+    name: data-plane-adoption-osp17-multinode-to-extracted-crc-no-ceph
+    abstract: true
     parent: cifmw-adoption-base-source-multinode
     required-projects: *dpa_required_projects
     roles:
@@ -65,7 +66,6 @@
       standalone_ip: 192.168.122.100
       standalone_gateway: 192.168.122.10
       standalone_private_key: /home/zuul/.ssh/id_rsa
-      tripleo_ci_inventory: "tripleo_ci_inventory"
       os_net_config_file: "overcloud_net_config.j2"
     host-vars:
       undercloud:
