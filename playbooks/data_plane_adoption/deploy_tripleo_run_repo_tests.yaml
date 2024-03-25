@@ -8,7 +8,7 @@
     - name: Create inventory for logs collection on the undercloud
       ansible.builtin.template:
         src: "{{ playbook_dir }}/files/standalone_vm_inventory.yaml.j2"
-        dest: "/home/zuul/{{ tripleo_ci_inventory }}"
+        dest: "/home/zuul/tripleo_ci_inventory"
       vars:
         tripleo_name: 'undercloud'
 
@@ -27,7 +27,7 @@
                 --enable=openstack-17.1-for-rhel-9-x86_64-rpms \
                 --enable=fast-datapath-for-rhel-9-x86_64-rpms
 
-        - name: Deploy the tripleo undercloud
+        - name: Deploy the tripleo source environment
           ansible.builtin.shell: >
             ansible-playbook {{ rdo_dir }}/install_yamls_deploy_tripleo.yaml -e "job_name={{ zuul.job }}"
             {% if dpa_standalone_ntp_server is defined %}
@@ -45,3 +45,188 @@
         host: "{{ standalone_ip }}"
         delay: 10
         timeout: 300
+
+    - name: Accept undercloud ssh host keys to avoid prompt connecting for the first time
+      connection: local
+      ansible.builtin.shell: |
+        ssh-keygen -F {{ standalone_ip }} ||
+          ssh-keyscan -H {{ standalone_ip }} >> ~/.ssh/known_hosts
+      register: known_hosts_script
+      changed_when: "'found' not in known_hosts_script.stdout"
+
+    - name: Run test preparation in undercloud vm
+      ansible.builtin.shell:
+        ansible-playbook {{ rdo_dir }}/undercloud_prepare_tests.yaml -i /home/zuul/tripleo_ci_inventory
+
+    - name: Place standalone_ip into vars.yaml for edpm, mariadb, ovndb
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: "'^{{ item }}:'"
+        value: "{{ item }}: {{ standalone_ip }}"
+      loop:
+        - "edpm_node_ip"
+        - "source_mariadb_ip"
+        - "source_ovndb_ip"
+
+    - name: Insert vars for data plane operator and os-net-config with zuul native undercloud node
+      ansible.builtin.blockinfile:
+        marker_begin: "BEGIN os-net-config vars"
+        marker_end: "END os-net-config vars"
+        path: "{{ rdo_dir }}/vars.yaml"
+        block: |
+          dataplane_os_net_config_iface: nic2
+          dataplane_public_iface: eth1
+          dataplane_os_net_config_set_route: false
+          os_cloud_name: overcloud
+
+    - name: Read the standalone ssh key downloaded from standalone
+      ansible.builtin.slurp:
+        path: "{{ standalone_private_key | default('/home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa') }}"
+      register: standalone_key
+
+    - name: Place undercloud key into secrets.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/secrets.yaml"
+        regexp: '^edpm_encoded_privatekey:'
+        value: "edpm_encoded_privatekey: \"{{ standalone_key['content'] }}\""
+
+    - name: Read the tripleo passwords downloaded from undercloud
+      ansible.builtin.slurp:
+        path: /home/zuul/tripleo-passwords.yaml
+      register: tripleo_passwords
+
+    - name: Set tripleo passwords in secrets.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/secrets.yaml"
+        regexp: "{{ item.key }}:"
+        line: "{{ item.key }}: {{ tripleo_passwords['content'] | b64decode | regex_search(item.regex + ': (.+)', '\\1') | first }}"
+      loop:
+        - key: 'source_db_root_password'
+          regex: 'MysqlRootPassword'
+        - key: 'barbican_password'
+          regex: 'BarbicanPassword'
+        - key: 'glance_password'
+          regex: 'GlancePassword'
+        - key: 'placement_password'
+          regex: 'PlacementPassword'
+        - key: 'cinder_password'
+          regex: 'CinderPassword'
+        - key: 'neutron_password'
+          regex: 'NeutronPassword'
+        - key: 'heat_password'
+          regex: 'HeatPassword'
+        - key: 'heat_auth_encryption_key'
+          regex: 'HeatAuthEncryptionKey'
+        - key: 'manila_password'
+          regex: 'ManilaPassword'
+        - key: 'ironic_password'
+          regex: 'IronicPassword'
+        - key: 'nova_password'
+          regex: 'NovaPassword'
+        - key: 'octavia_password'
+          regex: 'OctaviaPassword'
+        - key: 'swift_password'
+          regex: 'SwiftPassword'
+
+    - name: Set standalone login var controller1_ssh in secrets.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/secrets.yaml"
+        regexp: 'controller1_ssh:'
+        value: "controller1_ssh: ssh -i {{ standalone_private_key | default('/home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa') }} root@{{ standalone_ip }}"
+
+    - name: Install required packages
+      become: true
+      ansible.builtin.package:
+        name:
+          - python3
+          - python3-pip
+
+    - name: pip install openstackclient for keystone adoption on crc
+      become: true
+      ansible.builtin.pip:
+        name: python-openstackclient
+        executable: pip3
+
+    - name: Fetch hash and set ci_testing_hash fact for periodic
+      when: "'periodic' in zuul.job or (force_periodic|default(false)|bool)"
+      block:
+        - name: Fetch latest c9 or rhel9 antelope podified-ci-testing from dlrn
+          when: dlrn_hash_tag is not defined
+          ansible.builtin.uri:
+            url: "https://{{ dpa_dlrn_server | default('trunk.rdoproject.org') }}/{{ dpa_dlrn_namespace | default('centos9-antelope') }}/podified-ci-testing/delorean.repo.md5"
+            return_content: true
+          register: latest_podified_ci_testing
+          until: latest_podified_ci_testing.status == 200
+          retries: 6
+          delay: 5
+
+        - name: Insert vars needed for periodic job into test vars.yaml
+          ansible.builtin.blockinfile:
+            marker_begin: "BEGIN periodic container vars"
+            marker_end: "END periodic container vars"
+            path: "{{ rdo_dir }}/vars.yaml"
+            block: |
+              periodic: true
+              container_registry: "{{ dpa_container_registry | default('quay.rdoproject.org') }}"
+              container_namespace: "{{ dpa_container_namespace | default('podified-antelope-centos9') }}"
+              container_tag: {{ dlrn_hash_tag | default(latest_podified_ci_testing.content) }}
+
+        - name: Set timesync_ntp_servers if dpa_standalone_ntp_server set
+          ansible.builtin.blockinfile:
+            path: "{{ rdo_dir }}/vars.yaml"
+            block: |
+              timesync_ntp_servers:
+                - hostname: {{ dpa_standalone_ntp_server }}
+          when: dpa_standalone_ntp_server is defined
+
+    - name: Store upstream dns server in vars.yaml if defined
+      # we need to expose this so that the tests can then point the dnsmasq in
+      # the controlplane to a working dns server to resolve names outside of
+      # openstack
+      when: upstream_control_plane_dns is defined
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        line: "upstream_dns: {{ upstream_control_plane_dns }}"
+
+    - name: Check if edpm-ansible.yml file was created
+      ansible.builtin.stat:
+        path: "/home/zuul/ci-framework-data/artifacts/edpm-ansible.yml"
+      register: edpm_ansible_file
+
+    - name: Read edpm_ansible  file and extract ansibleee_runner img
+      when: edpm_ansible_file.stat.exists
+      block:
+        - name: Read file
+          ansible.builtin.slurp:
+            path: "/home/zuul/ci-framework-data/artifacts/edpm-ansible.yml"
+          register: edpm_ansible_output
+
+        - name: Extract ansiblee_runner img
+          ansible.builtin.set_fact:
+            ansibleee_runner_img: "{{ edpm_ansible_output['content'] | b64decode | regex_search('RELATED_IMAGE_ANSIBLEEE_IMAGE_URL_DEFAULT' + ': \"(.+)\"', '\\1') | first }}"
+
+        - name: Insert ansibleee_runner_img var into vars.yaml
+          ansible.builtin.lineinfile:
+            path: "{{ rdo_dir }}/vars.yaml"
+            line: "ansibleee_runner_img: {{ ansibleee_runner_img }}"
+
+    - name: Run data-plane-adoption tests test-minimal target
+      community.general.make:
+        chdir: "{{ dpa_dir }}"
+        target: "test-minimal"
+        params:
+          TEST_CONFIG: "{{ rdo_dir }}/ansible.cfg"
+          TEST_SECRETS: "{{ rdo_dir}}/secrets.yaml"
+          TEST_VARS: "{{ rdo_dir }}/vars.yaml"
+          TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"
+      register: make_res
+      failed_when: '"failed=0" not in "{{ make_res.stdout_lines[-1:] }}"'
+
+    - name: Unregister with subscription-manager when this was a CDN OSP 17.1 source job
+      ansible.builtin.shell:
+        ansible-playbook {{ rdo_dir }}/unregister_RH_subscription_standalone.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
+
+    - name: Mark job as successful
+      ansible.builtin.file:
+        path: "{{ ansible_user_dir }}/cifmw-success"
+        state: touch
