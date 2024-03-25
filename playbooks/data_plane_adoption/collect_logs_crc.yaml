@@ -33,11 +33,12 @@
         ansible-galaxy collection install ansible.posix
         ansible-playbook {{ rdo_dir }}/standalone_collect_logs.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
 
+    # os_net_config_file is only defined for multinode tripleo deploy job (not standalone)
     - name: Gather logs from undercloud deployment
       failed_when: false
-      when: tripleo_ci_inventory is defined
+      when: os_net_config_file is defined
       ansible.builtin.shell: |
-        ansible-playbook {{ rdo_dir }}/tripleo_collect_logs.yaml -i /home/zuul/{{ tripleo_ci_inventory }}
+        ansible-playbook {{ rdo_dir }}/tripleo_collect_logs.yaml -i /home/zuul/tripleo_ci_inventory
 
     - name: Copy pod debug files from {{ ansible_user_dir }}/logs on node
       failed_when: false
