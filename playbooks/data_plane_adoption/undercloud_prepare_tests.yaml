@@ -1,0 +1,26 @@
+- hosts: undercloud
+  gather_facts: false
+  tasks:
+    - name: Pull the tripleo passwords from undercloud vm
+      ansible.builtin.fetch:
+        src: /home/zuul/overcloud-deploy/overcloud/overcloud-passwords.yaml
+        dest: /home/zuul/tripleo-passwords.yaml
+        flat: true
+
+    - name: Pull the private key from undercloud
+      ansible.builtin.fetch:
+        src: /home/zuul/.ssh/id_rsa
+        dest: /home/zuul/edpm_ssh_key
+        flat: true
+
+    - name: Slurp crc public key for ssh access to standalone
+      delegate_to: localhost  # localhost is the controller node in this case
+      ansible.builtin.slurp:
+        path: /home/zuul/.ssh/id_rsa.pub
+      register: crc_ssh_key
+
+    - name: Place crc public key to undercloud authorized_keys
+      ansible.builtin.lineinfile:
+        path: "/home/zuul/.ssh/authorized_keys"
+        insertafter: "EOF"
+        value: "{{ crc_ssh_key['content'] | b64decode | trim }}"
