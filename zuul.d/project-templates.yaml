@@ -406,6 +406,46 @@
     name: weirdo-master-promotion-pipeline
     openstack-periodic-daily:
       jobs:
+        - weirdo-dalmatian-promote-consistent-to-puppet-ci-testing
+        - weirdo-dalmatian-promote-puppet-scenario001-centos-stream-9:
+            dependencies:
+              - weirdo-dalmatian-promote-consistent-to-puppet-ci-testing
+        - weirdo-dalmatian-promote-puppet-scenario002-centos-stream-9:
+            dependencies:
+              - weirdo-dalmatian-promote-consistent-to-puppet-ci-testing
+        - weirdo-dalmatian-promote-puppet-scenario003-centos-stream-9:
+            dependencies:
+              - weirdo-dalmatian-promote-consistent-to-puppet-ci-testing
+        - weirdo-dalmatian-promote-puppet-scenario004-centos-stream-9:
+            dependencies:
+              - weirdo-dalmatian-promote-consistent-to-puppet-ci-testing
+        - weirdo-dalmatian-promote-puppet-scenario005-centos-stream-9:
+            dependencies:
+              - weirdo-dalmatian-promote-consistent-to-puppet-ci-testing
+        - weirdo-dalmatian-promote-packstack-scenario001-centos-stream-9:
+            dependencies:
+              - weirdo-dalmatian-promote-consistent-to-puppet-ci-testing
+        - weirdo-dalmatian-promote-packstack-scenario002-centos-stream-9:
+            dependencies:
+              - weirdo-dalmatian-promote-consistent-to-puppet-ci-testing
+        - weirdo-dalmatian-promote-packstack-scenario003-centos-stream-9:
+            dependencies:
+              - weirdo-dalmatian-promote-consistent-to-puppet-ci-testing
+        - weirdo-dalmatian-promote-puppet-ci-testing-to-puppet-passed-ci:
+            dependencies:
+              - weirdo-dalmatian-promote-puppet-scenario001-centos-stream-9
+              - weirdo-dalmatian-promote-puppet-scenario002-centos-stream-9
+              - weirdo-dalmatian-promote-puppet-scenario003-centos-stream-9
+              - weirdo-dalmatian-promote-puppet-scenario004-centos-stream-9
+              - weirdo-dalmatian-promote-puppet-scenario005-centos-stream-9
+              - weirdo-dalmatian-promote-packstack-scenario001-centos-stream-9
+              - weirdo-dalmatian-promote-packstack-scenario002-centos-stream-9
+              - weirdo-dalmatian-promote-packstack-scenario003-centos-stream-9
+
+- project-template:
+    name: weirdo-master-promotion-pipeline
+    openstack-periodic-daily:
+      jobs:
         - weirdo-caracal-promote-consistent-to-puppet-ci-testing
         - weirdo-caracal-promote-puppet-scenario001-centos-stream-9:
             dependencies:
