@@ -354,16 +354,28 @@
       promote_target: puppet-passed-ci
 
 - job:
-    name: weirdo-caracal-promote-consistent-to-puppet-ci-testing
+    name: weirdo-dalmatian-promote-consistent-to-puppet-ci-testing
     parent: weirdo-base-promote-consistent-to-puppet-ci-testing
     vars:
       release: master
 
 - job:
-    name: weirdo-caracal-promote-puppet-ci-testing-to-puppet-passed-ci
+    name: weirdo-dalmatian-promote-puppet-ci-testing-to-puppet-passed-ci
     parent: weirdo-base-promote-puppet-ci-testing-to-puppet-passed-ci
     vars:
       release: master
+
+- job:
+    name: weirdo-caracal-promote-consistent-to-puppet-ci-testing
+    parent: weirdo-base-promote-consistent-to-puppet-ci-testing
+    vars:
+      release: caracal
+
+- job:
+    name: weirdo-caracal-promote-puppet-ci-testing-to-puppet-passed-ci
+    parent: weirdo-base-promote-puppet-ci-testing-to-puppet-passed-ci
+    vars:
+      release: caracal
 
 - job:
     name: weirdo-bobcat-promote-consistent-to-puppet-ci-testing
@@ -524,7 +536,7 @@
         override-checkout: main
     vars:
       selinux_enforcing: "false"
-      rdoinfo_release: caracal
+      rdoinfo_release: dalmatian
       centos_releasever: 9
       job_type: promotion
     nodeset: rdo-centos-9-stream
@@ -550,6 +562,62 @@
       centos_releasever: 8
       job_type: promotion
     nodeset: rdo-centos-8-stream
+
+- job:
+    name: weirdo-dalmatian-promote-puppet-scenario001-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: dalmatian
+      scenario: scenario001
+
+- job:
+    name: weirdo-dalmatian-promote-puppet-scenario002-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: dalmatian
+      scenario: scenario002
+
+- job:
+    name: weirdo-dalmatian-promote-puppet-scenario003-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: dalmatian
+      scenario: scenario003
+
+- job:
+    name: weirdo-dalmatian-promote-puppet-scenario004-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: dalmatian
+      scenario: scenario004
+
+- job:
+    name: weirdo-dalmatian-promote-puppet-scenario005-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: dalmatian
+      scenario: scenario005
+
+- job:
+    name: weirdo-dalmatian-promote-packstack-scenario001-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: dalmatian
+      scenario: scenario001
+
+- job:
+    name: weirdo-dalmatian-promote-packstack-scenario002-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: dalmatian
+      scenario: scenario002
+
+- job:
+    name: weirdo-dalmatian-promote-packstack-scenario003-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: dalmatian
+      scenario: scenario003
 
 - job:
     name: weirdo-caracal-promote-puppet-scenario001-centos-stream-9
