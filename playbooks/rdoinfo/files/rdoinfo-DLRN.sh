@@ -2,7 +2,7 @@
 set -ex
 
 # Simple script to test several DLRN packages
-TAG="${1:-caracal-uc}"
+TAG="${1:-dalmatian-uc}"
 PACKAGES_TO_BUILD="${2:-python-glanceclient}"
 CENTOS_VERSION="${3:-centos7}"
 PROJECT_DISTRO_BRANCH="rpm-master"
@@ -21,7 +21,7 @@ fi
 baseurl="http://trunk.rdoproject.org/${CENTOS_VERSION}/"
 src="master"
 branch=""
-tag="caracal-uc"
+tag="dalmatian-uc"
 components="false"
 
 # Setup virtualenv with tox and use it
@@ -29,7 +29,7 @@ tox -e${PYTHON_VERSION} --notest
 . .tox/${PYTHON_VERSION}/bin/activate
 
 # If we are testing a commit on a specific branch, make sure we are using it
-if [[ "${TAG}" != "caracal-uc" ]]; then
+if [[ "${TAG}" != "dalmatian-uc" ]]; then
     branch=$(echo $TAG | awk -F- '{print $1}')
     tag=$TAG
     baseurl="http://trunk.rdoproject.org/${branch}/${CENTOS_VERSION}/"

@@ -1121,6 +1121,72 @@
       scenario: scenario003
 
 - job:
+    name: validate-buildsys-tags-dalmatian-testing-centos9-base
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: dalmatian
+      rdoinfo_phase: testing
+      centos_releasever: 9s
+    nodeset: rdo-centos-9-stream
+    files:
+      - ^buildsys-tags/cloud9s-openstack-dalmatian-testing.yml$
+
+- job:
+    name: validate-buildsys-tags-dalmatian-testing-puppet-scenario001-centos9
+    parent: validate-buildsys-tags-dalmatian-testing-centos9-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-dalmatian-testing-puppet-scenario002-centos9
+    parent: validate-buildsys-tags-dalmatian-testing-centos9-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-dalmatian-testing-puppet-scenario003-centos9
+    parent: validate-buildsys-tags-dalmatian-testing-centos9-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: validate-buildsys-tags-dalmatian-testing-puppet-scenario004-centos9
+    parent: validate-buildsys-tags-dalmatian-testing-centos9-base
+    vars:
+      scenario: scenario004
+
+- job:
+    name: validate-buildsys-tags-dalmatian-testing-puppet-scenario005-centos9
+    parent: validate-buildsys-tags-dalmatian-testing-centos9-base
+    vars:
+      scenario: scenario005
+
+- job:
+    name: validate-buildsys-tags-dalmatian-testing-packstack-scenario001-centos9
+    parent: validate-buildsys-tags-dalmatian-testing-centos9-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-dalmatian-testing-packstack-scenario002-centos9
+    parent: validate-buildsys-tags-dalmatian-testing-centos9-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-dalmatian-testing-packstack-scenario003-centos9
+    parent: validate-buildsys-tags-dalmatian-testing-centos9-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: validate-buildsys-tags-dalmatian-testing-tcib-container-build-scenario000-centos9
+    parent: validate-buildsys-tags-dalmatian-testing-centos9-base
+    post-run: playbooks/podified-containers/collect-logs.yaml
+    vars:
+      scenario: scenario000
+
+- job:
     name: validate-buildsys-tags-caracal-testing-centos9-base
     parent: weirdo-validate-buildsys-tags-base
     vars:
