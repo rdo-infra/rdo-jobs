@@ -124,6 +124,18 @@
         regexp: "'^edpm_node_ip:'"
         value: "edpm_node_ip: {{ edpm_node_ip }}"
 
+    - name: Set EDPM node hostname in vars.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: "'^edpm_node_hostname:'"
+        value: "edpm_node_hostname: {{ compute_hostname['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
+
+    - name: Set TLS Everywhere in vars.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: "'^enable_tlse:'"
+        value: "enable_tlse: {{ enable_tls | default('false') }}"
+
     - name: Fetch compute hostname to set edpm_node_hostname var
       delegate_to: "overcloud-novacompute-0"
       ansible.builtin.slurp:
@@ -140,13 +152,12 @@
           dataplane_public_iface: eth1
           dataplane_os_net_config_set_route: false
           os_cloud_name: overcloud
-          edpm_node_hostname: "{{ compute_hostname['content'] | b64decode | trim }}.localdomain"
           edpm_user: zuul
           standalone_ip: "{{ standalone_ip | default('192.168.122.100') }}"
           neutron_physical_bridge_name: br-ex
           edpm_nodes:
             {{ compute_hostname['content'] | b64decode | trim }}:
-              hostName: "{{ compute_hostname['content'] | b64decode | trim }}.localdomain"
+              hostName: "{{ compute_hostname['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
               ansible:
                 ansibleHost: {{ edpm_node_ip }}
               networks:
