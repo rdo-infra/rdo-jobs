@@ -25,3 +25,5 @@
           # https://github.com/openstack-k8s-operators/data-plane-adoption/pull/280
           # EDPM_COMPUTE_CEPH_NOVA: "{{ use_ceph | default('true') }}"
           EDPM_COMPUTE_CEPH_NOVA: "false"
+          DNS_DOMAIN: "{{ cloud_domain | default('ooo.test') }}"
+          TLS_ENABLED: "{{ enable_tls | default('true') }}"
