@@ -4,6 +4,7 @@
     dpa_dir: "/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption"
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
+    cifmw_datadir: "/home/zuul/ci-framework-data"
   tasks:
     - name: Create inventory for logs collection on the undercloud
       ansible.builtin.template:
@@ -45,3 +46,8 @@
         host: "{{ standalone_ip }}"
         delay: 10
         timeout: 300
+
+    - name: Allow ssh connection to overcloud nodes
+      ansible.builtin.shell: >
+        ansible-playbook -i {{ cifmw_datadir }}/artifacts/zuul_inventory.yml
+        {{rdo_dir}}/allow_zuul_connect_tripleo.yaml
