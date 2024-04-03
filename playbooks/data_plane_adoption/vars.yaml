@@ -1,5 +1,12 @@
 # Path to install_yamls repo
 install_yamls_path: /home/zuul/src/github.com/openstack-k8s-operators/install_yamls/
+
+# This flag signifies if TLS Everywhere is enabled on the source cloud
+enable_tlse: CUSTOMIZE_THIS
+
+# To enable TLS-E, the standalone hostname must be set to standalone.ooo.test
+edpm_node_hostname: CUSTOMIZE_THIS
+
 # Whether to remove all the persistent data (databases, dumbs, ansible logs)
 # before the test
 reset_crc_storage: true
