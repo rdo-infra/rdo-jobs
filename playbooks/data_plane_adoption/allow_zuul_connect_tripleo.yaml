@@ -1,0 +1,40 @@
+- hosts: undercloud
+  tasks:
+    - name: Add hosts to access all tripleo nodes via controlplane
+      vars:
+        undercloud_ip: "{{ hostvars['undercloud']['ansible_host'] }}"
+      ansible.builtin.add_host:
+        name: "192.168.122.{{ hostvars[item]['address_suffix'] }}"
+        ansible_ssh_common_args: '-o StrictHostKeyChecking=no -J zuul@{{ undercloud_ip }}'
+        ansible_user: zuul
+        groups: tripleo_nodes
+      loop: "{{ groups.all | select('match', '^overcloud*')  }}"
+
+- hosts: localhost
+  tasks:
+    - name: Check access to overcloud node jumping through undercloud
+      vars:
+        undercloud_ip: "{{ hostvars['undercloud']['ansible_host'] }}"
+      ansible.builtin.command: ssh -vv -o StrictHostKeyChecking=no -J zuul@{{ undercloud_ip }} zuul@192.168.122.103 exit
+      register: ssh_output
+
+    - name: Debug
+      ansible.builtin.debug:
+        msg: "ssh_output"
+
+- hosts: tripleo_nodes
+  become: true
+  tasks:
+    - name: Ensure iptables package is installed
+      ansible.builtin.package:
+        name: iptables
+
+    - name: Add firewall rule to allow zuul executor to reach tripleo nodes
+      ansible.builtin.iptables:
+        action: "insert"
+        chain: "INPUT"
+        comment: "allow ssh access for zuul executor"
+        in_interface: "eth0"
+        jump: "ACCEPT"
+        protocol: "tcp"
+        source: "{{ zuul.executor.hostname }}"
