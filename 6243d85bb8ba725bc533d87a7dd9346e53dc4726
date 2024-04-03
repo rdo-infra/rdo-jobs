@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56ddd71e_b481b618",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-04-03T09:39:30Z",
+      "side": 1,
+      "message": "looks good, just have a question about repos nad it needs a rebase",
+      "revId": "6243d85bb8ba725bc533d87a7dd9346e53dc4726",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "650beb78_3b32123a",
+        "filename": "playbooks/data_plane_adoption/setup_tripleo_os_net_config.yaml",
+        "patchSetId": 16
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-04-03T09:39:30Z",
+      "side": 1,
+      "message": "why do we need different repos here vs standalone if we only install openvswitch and os-net-config? Is this setting up the repos for the tripleo deployment done later?",
+      "revId": "6243d85bb8ba725bc533d87a7dd9346e53dc4726",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
