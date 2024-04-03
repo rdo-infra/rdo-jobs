@@ -34,6 +34,7 @@
             -e "standalone_ip={{ standalone_ip }}" -e "standalone_gateway={{ standalone_gateway }}"
             -e "standalone_dns={{ standalone_dns | default(standalone_gateway) }}"
             -e "use_ceph={{ use_ceph | default('true') }}"
+            -e "enable_tls={{ enable_tls | default('true') }}"
           args:
             chdir: "{{ framework_dir }}"
 
@@ -68,6 +69,12 @@
         - "edpm_node_ip"
         - "source_mariadb_ip"
         - "source_ovndb_ip"
+
+    - name: Set TLS Everywhere in vars.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: "'^enable_tlse:'"
+        value: "enable_tlse: {{ enable_tls | default('true') }}"
 
     - name: Insert vars for data plane operator and os-net-config with zuul native standalone node
       ansible.builtin.blockinfile:
