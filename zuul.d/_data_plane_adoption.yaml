@@ -57,6 +57,7 @@
     run:
       - playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml
     post-run:
+      - playbooks/data_plane_adoption/allow_zuul_connect_tripleo.yaml
       - playbooks/data_plane_adoption/unregister_RH_subscription_standalone.yaml
       - playbooks/data_plane_adoption/collect_logs_crc.yaml
       - playbooks/data_plane_adoption/set_zuul_artifacts.yaml
