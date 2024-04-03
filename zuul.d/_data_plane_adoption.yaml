@@ -25,6 +25,7 @@
       - playbooks/data_plane_adoption/set_zuul_artifacts.yaml
       - playbooks/force_job_failure.yaml
     vars:
+      enable_tls: "false"
       standalone_vm_inventory: "standalone_vm_inventory"
       standalone_ip: 192.168.122.100
       standalone_gateway: 192.168.122.10
@@ -46,6 +47,7 @@
     name: data-plane-adoption-osp-17-to-extracted-crc-minimal-no-ceph
     parent: data-plane-adoption-osp-17-to-extracted-crc
     vars:
+      enable_tls: "true"
       use_ceph: "false"
       dpa_test_suite: "test-minimal"
 
@@ -91,4 +93,5 @@
     name: data-plane-adoption-osp17-multinode-to-extracted-crc-with-ceph
     parent: data-plane-adoption-osp17-multinode-to-extracted-crc-no-ceph
     vars:
-      use_ceph: 'true'
+      use_ceph: "true"
+      enable_tls: "false"
