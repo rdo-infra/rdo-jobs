@@ -21,3 +21,5 @@
           HOST_PRIMARY_RESOLV_CONF_ENTRY: "{{ standalone_gateway }}"
           EDPM_COMPUTE_CEPH_ENABLED: "{{ use_ceph | default('true') }}"
           EDPM_COMPUTE_CEPH_NOVA: "{{ use_ceph | default('true') }}"
+          DNS_DOMAIN: "{{ cloud_domain | default('ooo.test') }}"
+          TLS_ENABLED: "{{ enable_tls | default('true') }}"
