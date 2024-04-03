@@ -46,6 +46,8 @@
     name: data-plane-adoption-osp-17-to-extracted-crc-minimal-no-ceph
     parent: data-plane-adoption-osp-17-to-extracted-crc
     vars:
+      enable_tls: "true"
+      cloud_domain: "ooo.test"
       use_ceph: "false"
       dpa_test_suite: "test-minimal"
 
@@ -91,4 +93,4 @@
     name: data-plane-adoption-osp17-multinode-to-extracted-crc-with-ceph
     parent: data-plane-adoption-osp17-multinode-to-extracted-crc-no-ceph
     vars:
-      use_ceph: 'true'
+      use_ceph: "true"

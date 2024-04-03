@@ -130,6 +130,18 @@
         path: /home/zuul/ansible_hostname
       register: compute_hostname
 
+    - name: Set EDPM node hostname in vars.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: "'^edpm_node_hostname:'"
+        value: "edpm_node_hostname: {{ compute_hostname['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
+
+    - name: Set TLS Everywhere in vars.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: "'^enable_tlse:'"
+        value: "enable_tlse: {{ enable_tls | default('false') }}"
+
     - name: Insert vars for data plane operator and os-net-config with zuul native undercloud node
       ansible.builtin.blockinfile:
         marker_begin: "BEGIN os-net-config vars"
@@ -140,13 +152,12 @@
           dataplane_public_iface: eth1
           dataplane_os_net_config_set_route: false
           os_cloud_name: overcloud
-          edpm_node_hostname: "{{ compute_hostname['content'] | b64decode | trim }}.localdomain"
           edpm_user: zuul
           standalone_ip: "{{ standalone_ip | default('192.168.122.100') }}"
           neutron_physical_bridge_name: br-ex
           edpm_nodes:
             {{ compute_hostname['content'] | b64decode | trim }}:
-              hostName: "{{ compute_hostname['content'] | b64decode | trim }}.localdomain"
+              hostName: "{{ compute_hostname['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
               ansible:
                 ansibleHost: {{ edpm_node_ip }}
               networks:
