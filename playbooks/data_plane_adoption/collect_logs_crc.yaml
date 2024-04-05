@@ -2,6 +2,7 @@
   gather_facts: false
   vars:
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
+    collect_logs_src_dir: "/home/zuul/src/github.com/openstack-archive/ansible-role-collect-logs"
   tasks:
     - name: Collect data_plane_adoption files
       ansible.builtin.shell: |
@@ -34,11 +35,26 @@
         ansible-playbook {{ rdo_dir }}/standalone_collect_logs.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
 
     # os_net_config_file is only defined for multinode tripleo deploy job (not standalone)
-    - name: Gather logs from undercloud deployment
-      failed_when: false
+    - name: Checkout collect_logs commit and gather logs from undercloud deployment
       when: os_net_config_file is defined
-      ansible.builtin.shell: |
-        ansible-playbook {{ rdo_dir }}/tripleo_collect_logs.yaml -i /home/zuul/tripleo_ci_inventory
+      block:
+        - name: Fetch the tripleo inventory from undercloud
+          delegate_to: undercloud
+          failed_when: false
+          ansible.builtin.fetch:
+            src: /home/zuul/overcloud-deploy/overcloud/config-download/overcloud/tripleo-ansible-inventory.yaml
+            dest: "{{ tripleo_ansible_inventory }}"
+            flat: true
+        - name: Run the tripleo_collect_logs play
+          failed_when: false
+          ansible.builtin.shell: |
+            git checkout 910efeb55838f076893ae97a1085ad55062ef05e
+            sed -i 's/tripleo-admin/zuul/g' {{ tripleo_ansible_inventory }}
+            ansible-playbook {{ rdo_dir }}/tripleo_collect_logs.yaml -i {{ tripleo_ansible_inventory }}
+          args:
+            chdir: "{{ collect_logs_src_dir }}"
+      vars:
+        tripleo_ansible_inventory: /home/zuul/tripleo-ansible-inventory.yaml
 
     - name: Copy pod debug files from {{ ansible_user_dir }}/logs on node
       failed_when: false

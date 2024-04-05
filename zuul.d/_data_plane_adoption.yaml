@@ -46,7 +46,17 @@
     name: data-plane-adoption-osp17-multinode-to-extracted-crc-no-ceph
     abstract: true
     parent: cifmw-adoption-base-source-multinode
-    required-projects: *dpa_required_projects
+    required-projects:
+      - name: openstack-k8s-operators/install_yamls
+        override-checkout: main
+      - opendev.org/zuul/zuul-jobs
+      - name: openstack-k8s-operators/data-plane-adoption
+        override-checkout: main
+      - name: openstack-k8s-operators/ci-framework
+        override-checkout: main
+      - rdo-jobs
+      - name: openstack-archive/ansible-role-collect-logs
+        override-checkout: 910efeb55838f076893ae97a1085ad55062ef05e
     roles:
       - zuul: rdo-jobs
       - zuul: github.com/openstack-k8s-operators/ci-framework
