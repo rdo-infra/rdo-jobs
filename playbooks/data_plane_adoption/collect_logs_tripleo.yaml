@@ -1,0 +1,6 @@
+- hosts: rh-subscription
+  gather_facts: false
+  vars:
+    undercloud_user: zuul
+  roles:
+    - collect_logs
