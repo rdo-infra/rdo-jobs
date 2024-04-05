@@ -69,6 +69,7 @@
     post-run:
       - playbooks/data_plane_adoption/unregister_RH_subscription_standalone.yaml
       - playbooks/data_plane_adoption/collect_logs_crc.yaml
+      - playbooks/data_plane_adoption/collect_logs_tripleo.yaml
       - playbooks/data_plane_adoption/set_zuul_artifacts.yaml
       - playbooks/force_job_failure.yaml
     vars:
