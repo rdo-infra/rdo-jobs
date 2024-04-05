@@ -311,6 +311,15 @@
             path: "{{ rdo_dir }}/vars.yaml"
             line: "ansibleee_runner_img: {{ ansibleee_runner_img }}"
 
+    #TODO(marios): REMOVE THIS
+    - name: Unregister with subscription-manager when this was a CDN OSP 17.1 source job
+      ansible.builtin.shell:
+        ansible-playbook {{ rdo_dir }}/unregister_RH_subscription_standalone.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
+    - name: debug
+      ansible.builtin.debug:
+        msg: "this is a fail task"
+      failed_when: true
+
     - name: Run data-plane-adoption tests test-minimal target
       community.general.make:
         chdir: "{{ dpa_dir }}"
