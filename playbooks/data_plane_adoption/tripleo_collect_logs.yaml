@@ -1,4 +1,4 @@
-- hosts: undercloud
+- hosts: undercloud,overcloud
   gather_facts: false
   tasks:
     - name: Ensure we have a logs/tripleo directory
@@ -25,3 +25,10 @@
         src: '/var/log/containers/'
         dest: '/home/zuul/logs/tripleo/containers/'
         mode: pull
+
+    - name: run collect_logs
+      ansible.builtin.include_role:
+        name: collect_logs
+      vars:
+        undercloud_user: zuul
+        # artcl_collect_dir: /home/zuul/logs/tripleo
