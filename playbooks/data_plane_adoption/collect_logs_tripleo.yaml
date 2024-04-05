@@ -1,0 +1,37 @@
+- hosts: rh-subscription
+  gather_facts: false
+  tasks:
+    - name: Ensure we have a tripleo/hostname/home directory for each tripleo node
+      delegate_to: localhost
+      ansible.builtin.file:
+        path: "{{ zuul.executor.log_root }}/tripleo/{{ inventory_hostname }}"
+        state: directory
+
+    - name: Copy user home dir to log_root
+      failed_when: false
+      ansible.posix.synchronize:
+        src: "{{ ansible_user_dir }}"
+        dest: "{{ zuul.executor.log_root }}/tripleo/{{ inventory_hostname }}/"
+        mode: pull
+        copy_links: true
+        verify_host: true
+        rsync_opts:
+          - --exclude=.local
+          - --exclude=.ansible
+          - --exclude=.config
+
+    - name: Copy system logs and other files to log_root
+      become: true
+      failed_when: false
+      ansible.posix.synchronize:
+        src: "{{ item }}"
+        dest: "{{ zuul.executor.log_root }}/tripleo/{{ inventory_hostname }}/"
+        mode: pull
+        copy_links: true
+        verify_host: true
+        rsync_opts:
+          - --max-size=50m
+      loop:
+        - /var/log
+        - /etc
+        - /proc
