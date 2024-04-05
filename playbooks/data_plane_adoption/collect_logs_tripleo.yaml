@@ -1,0 +1,7 @@
+- hosts: rh-subscription
+  gather_facts: false
+  vars:
+    rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
+    undercloud_user: zuul
+  roles:
+    - collect-logs

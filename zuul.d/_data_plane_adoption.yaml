@@ -45,10 +45,14 @@
 - job:
     name: data-plane-adoption-osp17-multinode-to-extracted-crc
     parent: cifmw-adoption-base-source-multinode
-    required-projects: *dpa_required_projects
+    required-projects:
+      <<: *dpa_required_projects
+      - name: openstack-archive/ansible-role-collect-logs
+        override-checkout: 910efeb55838f076893ae97a1085ad55062ef05e
     roles:
       - zuul: rdo-jobs
       - zuul: github.com/openstack-k8s-operators/ci-framework
+      - zuul: github.com/openstack-archive/ansible-role-collect-logs
     pre-run:
       - playbooks/data_plane_adoption/subnode_ip.yaml
       - playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml
@@ -58,6 +62,7 @@
       - playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml
     post-run:
       - playbooks/data_plane_adoption/unregister_RH_subscription_standalone.yaml
+      - playbooks/data_plane_adoption/collec_logs_tripleo.yaml
       - playbooks/data_plane_adoption/collect_logs_crc.yaml
       - playbooks/data_plane_adoption/set_zuul_artifacts.yaml
       - playbooks/force_job_failure.yaml
