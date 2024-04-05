@@ -1,27 +1,40 @@
-- hosts: undercloud
+- hosts: rh-subscription
   gather_facts: false
   tasks:
-    - name: Ensure we have a logs/tripleo directory
+    - name: Ensure we have a logs/tripleo/containers directory per tripleo host
       delegate_to: localhost
       ansible.builtin.file:
-        path: '/home/zuul/logs/tripleo/'
-        state: directory
-
-    - name: Copy log files from user home dir
-      ansible.posix.synchronize:
-        src: '/home/zuul/'
-        dest: '/home/zuul/logs/tripleo/'
-        mode: pull
-
-    - name: create logs/tripleo/containers folder
-      delegate_to: localhost
-      ansible.builtin.file:
-        path: '/home/zuul/logs/tripleo/containers'
+        path: "/home/zuul/logs/tripleo/{{ inventory_hostname }}/containers"
         state: directory
 
     - name: Copy container log files
       become: true
+      failed_when: false
       ansible.posix.synchronize:
-        src: '/var/log/containers/'
-        dest: '/home/zuul/logs/tripleo/containers/'
+        src: "/var/log/containers/"
+        dest: "/home/zuul/logs/tripleo/{{ inventory_hostname }}/containers/"
         mode: pull
+
+    - name: Copy log files from user home dir
+      failed_when: false
+      ansible.posix.synchronize:
+        src: "/home/zuul/"
+        dest: "/home/zuul/logs/tripleo/{{ inventory_hostname }}/"
+        mode: pull
+        rsync_opts:
+          - --exclude=logs
+
+    - name: copy {{ ansible_user_dir }}/logs to zuul executor logs
+      failed_when: false
+      synchronize:
+        src: '{{ ansible_user_dir }}/logs/'
+        dest: '{{ zuul.executor.log_root }}'
+        mode: pull
+        copy_links: true
+        verify_host: true
+        rsync_opts:
+          - --include=/etc/**
+          - --include=/conf/**
+          - --include=/logs/**
+          - --include=*/
+          - --prune-empty-dirs
