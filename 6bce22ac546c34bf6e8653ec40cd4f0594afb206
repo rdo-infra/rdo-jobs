@@ -16,6 +16,24 @@
       "message": "not really sure if I should name it SOURCE_COMPUTE_CEPH_NOVA or the like, as that is not for greenfield but adoption (source cloud)?",
       "revId": "6bce22ac546c34bf6e8653ec40cd4f0594afb206",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6198ea42_960bd789",
+        "filename": "playbooks/data_plane_adoption/ci_framework_deploy_standalone_vm.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 411
+      },
+      "writtenOn": "2024-04-09T11:58:53Z",
+      "side": 1,
+      "message": "nah, the name seems reasonable, sorry for confususion...\nthis does (will) apply to edpm as well, see https://github.com/openstack-k8s-operators/data-plane-adoption/blob/main/docs_dev/assemblies/development_environment.adoc#L113\n\nThis case will be for \"\nIf `EDPM_COMPUTE_CEPH_ENABLED\u003dfalse` is set, TripleO configures `Glance` with\n`Swift` as a backend.\n+ If `EDPM_COMPUTE_CEPH_NOVA\u003dfalse` is set, TripleO configures `Nova/Libvirt` with\na local storage backend.\n\"",
+      "parentUuid": "5f269b2d_b45e2d61",
+      "revId": "6bce22ac546c34bf6e8653ec40cd4f0594afb206",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
