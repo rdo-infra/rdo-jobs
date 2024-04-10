@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae2b8cb7_f8588a98",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-04-10T06:43:07Z",
+      "side": 1,
+      "message": "hello @data-plane-adoption ci o/ sanity check:\n\nthe mariadb and ovndb we want are from the overcloud control plane, i.e. this points to controller 1 at 192.168.122.103",
+      "revId": "c9319a15e7362ed5c9dc6ed91f994e1b76f5e1d9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35581235_1f853720",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-04-10T06:43:07Z",
+      "side": 1,
+      "message": "the edpm_node_ip here points to the undercloud (\u0027standalone_ip\u0027). We were previously re-using the standalone \u0027source\u0027 env for the deployment of the \u0027destination\u0027 data plane. I assume we want to use the undercloud for that in this multinode job?\n\nis that correct?",
+      "revId": "c9319a15e7362ed5c9dc6ed91f994e1b76f5e1d9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
