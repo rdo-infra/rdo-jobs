@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b74b3cff_3ac9836b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-04-11T06:31:49Z",
+      "side": 1,
+      "message": "really nice work @Joan \nmainly just question/comment inline.",
+      "revId": "c7525f0a645dcc92969bf9826cda229e72c1b6ab",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "106c01e8_6031c1c3",
+        "filename": "playbooks/data_plane_adoption/allow_zuul_connect_tripleo.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-04-11T06:31:49Z",
+      "side": 1,
+      "message": "so the -J is the significant thing here (connect via undercloud to reach the named ansible_host)\n\n```\n     -J destination\n             Connect to the target host by first making a ssh connection to the jump host described by destination and then establishing a TCP forwarding to the ulti‐\n             mate destination from there.  Multiple jump hops may be specified separated by comma characters.  This is a shortcut to specify a ProxyJump configuration\n             directive.  Note that configuration directives supplied on the command-line generally apply to the destination host and not any specified jump hosts.  Use\n             ~/.ssh/config to specify configuration for jump hosts.\n```",
+      "revId": "c7525f0a645dcc92969bf9826cda229e72c1b6ab",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f2dd825_ddce6861",
+        "filename": "playbooks/data_plane_adoption/allow_zuul_connect_tripleo.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-04-11T06:31:49Z",
+      "side": 1,
+      "message": "so, even though we\u0027re using the in memory inventory with add_host and the -J option to go through the undercloud, we also need to open the firewall rule?\ni guess the ssh connection goes *through* the undercloud, but ultimately is still originating elsewhere so the tripleo firewall rules block access?",
+      "revId": "c7525f0a645dcc92969bf9826cda229e72c1b6ab",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
