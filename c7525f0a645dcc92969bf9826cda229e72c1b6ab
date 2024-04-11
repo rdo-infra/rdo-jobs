@@ -20,6 +20,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "5ea24165_14e9d269",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-04-11T07:00:36Z",
+      "side": 1,
+      "message": "Last run is green and it shows that works as expected, overcloud nodes can be unregistered:",
+      "revId": "c7525f0a645dcc92969bf9826cda229e72c1b6ab",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "106c01e8_6031c1c3",
         "filename": "playbooks/data_plane_adoption/allow_zuul_connect_tripleo.yaml",
         "patchSetId": 14
@@ -48,6 +65,24 @@
       "writtenOn": "2024-04-11T06:31:49Z",
       "side": 1,
       "message": "so, even though we\u0027re using the in memory inventory with add_host and the -J option to go through the undercloud, we also need to open the firewall rule?\ni guess the ssh connection goes *through* the undercloud, but ultimately is still originating elsewhere so the tripleo firewall rules block access?",
+      "revId": "c7525f0a645dcc92969bf9826cda229e72c1b6ab",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4624811_097e22e4",
+        "filename": "playbooks/data_plane_adoption/allow_zuul_connect_tripleo.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-04-11T07:00:36Z",
+      "side": 1,
+      "message": "my idea was to add the in memory inventory to have a temporary way to reach the overcloud to open the firewall for the executor. I\u0027m not sure but I don\u0027t think we can easily override the zuul inventory so that the connection from the executor to the overcloud nodes could jump through the undercloud. This option also seemed clearer for someone trying to debug something here in 6 months (even us :) )",
+      "parentUuid": "5f2dd825_ddce6861",
       "revId": "c7525f0a645dcc92969bf9826cda229e72c1b6ab",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
