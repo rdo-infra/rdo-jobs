@@ -149,7 +149,7 @@
     parent: base
     run: playbooks/validate-buildsys-tags/run.yaml
     post-run: playbooks/validate-buildsys-tags/post.yaml
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
     required-projects:
       - review.rdoproject.org/gating_scripts
     timeout: 10800

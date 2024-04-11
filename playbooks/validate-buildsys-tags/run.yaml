@@ -5,14 +5,16 @@
       include_role:
         name: set-zuul-log-path-fact
 
-    - name: Setup deps repo for mock
-      get_url:
-        url: https://trunk.rdoproject.org/centos8-master/delorean-deps.repo
-        dest: /etc/yum.repos.d/delorean-deps.repo
-      become: true
-      when:
-        - ansible_distribution == "CentOS"
-        - ansible_distribution_major_version == '8'
+    - name: Temporary install centos-packager from EPEL for CS9
+      shell:
+        cmd: |
+          sudo {{ ansible_pkg_mgr }} install -y 'dnf-command(config-manager)';
+          sudo {{ ansible_pkg_mgr }} config-manager --set-enabled crb;
+          sudo {{ ansible_pkg_mgr }} install -y epel-release;
+          sudo {{ ansible_pkg_mgr }} install -y centos-packager;
+          sudo {{ ansible_pkg_mgr }} remove -y epel-release
+      changed_when: true
+      when: ansible_distribution_major_version|int == 9
 
     - name: Validate buildsys tag updates
       shell:
@@ -21,17 +23,8 @@
           # Install requirements
           YUM="{{ ansible_pkg_mgr }}"
           PROJECT="{{ zuul.project.name }}"
-          sudo $YUM install -y mock;
-          # python3-urllib3-1.25.7 not work with old six from base, so need to update six
-          # cbs command fails with Failed to parse: https://cbs.centos.org/kojihub/
-          sudo $YUM update -y python3-six;
-          sudo $YUM install -y epel-release wget yum-utils;
-          sudo yum-config-manager --enable epel;
-          sudo $YUM install -y https://download.copr.fedorainfracloud.org/results/ykarel/ykarel-centos-stream/centos-stream-x86_64/01239149-python-centos/python-centos-0.1.1-2.el8.noarch.rpm;  # noqa 204
-          sudo $YUM install -y https://download.copr.fedorainfracloud.org/results/ykarel/ykarel-centos-stream/centos-stream-x86_64/01239164-centos-packager/centos-packager-0.5.5-2.el8.noarch.rpm;  # noqa 204
-          sudo $YUM install -y createrepo git yum
-          sudo yum-config-manager --disable epel;
-          virtualenv  --system-site-packages .venv
+          sudo $YUM install -y wget yum-utils createrepo git yum
+          python3 -m venv  --system-site-packages .venv
           . .venv/bin/activate
           pip install 'ruamel.yaml<=0.18.3' rdopkg
           pushd {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}/buildsys-tags
