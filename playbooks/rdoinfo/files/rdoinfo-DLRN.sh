@@ -8,12 +8,12 @@ CENTOS_VERSION="${3:-centos7}"
 PROJECT_DISTRO_BRANCH="rpm-master"
 
 # Prepare config
-if [ "$CENTOS_VERSION" = "centos7" ];then
-    target="centos"
-    PYTHON_VERSION="py27"
-elif [ "$CENTOS_VERSION" = "centos8" ];then
+if [ "$CENTOS_VERSION" = "centos8" ];then
     target="centos8-stream"
     PYTHON_VERSION="py36"
+elif [ "$CENTOS_VERSION" = "centos9" ];then
+    target="centos9-stream"
+    PYTHON_VERSION="py39"
 else
     target=${CENTOS_VERSION}
     PYTHON_VERSION="py36"
