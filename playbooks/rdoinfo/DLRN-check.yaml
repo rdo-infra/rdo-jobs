@@ -19,12 +19,11 @@
 
     - name: Setup deps repo for mock
       get_url:
-        url: https://trunk.rdoproject.org/centos8-master/delorean-deps.repo
+        url: https://trunk.rdoproject.org/centos{{ ansible_distribution_major_version }}-master/delorean-deps.repo
         dest: /etc/yum.repos.d/delorean-deps.repo
       become: true
       when:
         - ansible_distribution == "CentOS"
-        - ansible_distribution_major_version == '8'
 
     - name: Ensure bindep.txt dependencies are installed
       include_role:
@@ -45,16 +44,6 @@
       become: true
       when:
         - ansible_distribution == "CentOS"
-        - ansible_distribution_major_version == '8'
-
-    - name: Update ca-certificates package in CentOS 7
-      package:
-        name: ca-certificates
-        state: latest
-      become: true
-      when:
-        - ansible_distribution == "CentOS"
-        - ansible_distribution_major_version == '7'
 
     - name: Ensure user in mock group
       user:
@@ -77,7 +66,7 @@
       shell:
         cmd: |
           set +e -x
-          virtualenv --system-site-packages -p /usr/bin/python3 .venv
+          python3 -m venv --system-site-packages -p /usr/bin/python3 .venv
           . .venv/bin/activate
           pip install rdopkg
 
