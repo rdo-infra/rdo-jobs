@@ -1,0 +1,43 @@
+- hosts: all
+  vars:
+    framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
+  tasks:
+    - name: Install nmstate operator
+      ansible.builtin.include_role:
+        name: 'install_yamls_makes'
+        tasks_from: 'make_nmstate.yml'
+
+    - name: Create namespace
+      ansible.builtin.include_role:
+        name: 'install_yamls_makes'
+        tasks_from: 'make_namespace.yml'
+
+    - name: Deploy install_yamls BMaaS
+      ansible.builtin.include_role:
+        name: 'install_yamls_makes'
+        tasks_from: 'make_bmaas.yml'
+      vars:
+        make_bmaas_params:
+          BMAAS_NODE_COUNT=2
+
+    - name: Deploy standalone
+      ansible.builtin.include_role:
+        name: 'install_yamls_makes'
+        tasks_from: 'make_standalone_deploy.yml'
+      vars:
+        make_standalone_deploy_params:
+          SSH_KEY_FILE: "/home/zuul/.ssh/id_rsa"
+          NTP_SERVER: "{{ ntp_override | default('pool.ntp.org') }}"
+          STANDALONE_VM: "false"
+          OS_NET_CONFIG_IFACE: "nic2"
+          REPO_SETUP_CMDS: "{{ repo_setup_commands | default('/tmp/standalone_repos') }}"
+          GATEWAY: "{{ standalone_gateway }}"
+          EDPM_COMPUTE_NETWORK_IP: "192.168.122"
+          IP: "{{ standalone_ip }}"
+          IP_ADRESS_SUFFIX: "100"
+          DATAPLANE_DNS_SERVER: "{{ standalone_gateway }}"
+          HOST_PRIMARY_RESOLV_CONF_ENTRY: "{{ standalone_gateway }}"
+          EDPM_COMPUTE_CEPH_ENABLED: "false"
+          EDPM_COMPUTE_ADDITIONAL_NETWORKS: "[{"type":"network","name":"crc-bmaas","standalone_config":{"type":"ovs_bridge","name":"baremetal","mtu":1500,"vip":true,"ip_subnet":"172.20.1.0/24","allocation_pools":[{"start":"172.20.1.100","end":"172.20.1.150"}],"host_routes":[{"destination":"192.168.130.0/24","nexthop":"172.20.1.1"}]}}]""
+          STANDALONE_COMPUTE_DRIVER: "ironic"
+          EDPM_COMPUTE_SRIOV_ENABLED: "false"

@@ -13,6 +13,15 @@
     - name: Install collections to use nmcli and libvirt ansible modules
       ansible.builtin.command: ansible-galaxy collection install community.general community.libvirt
 
+    - name: Set standalone deploy playbook fact
+      ansible.builtin.set_fact:
+        standalone_deploy_playbook: >-
+          {%- if dpa_test_suite is defined and "ironic" in dpa_test_suite -%}
+          ci_framework_deploy_standalone_ironic_vm.yaml
+          {%- else -%}
+          ci_framework_deploy_standalone_vm.yaml
+          {%- endif -%}
+
     - name: Write repo commands and deploy standalone using ci-framework without a vm
       block:
         - name: Write out the repo setup commands to file for standalone to use
@@ -26,12 +35,13 @@
 
         - name: Deploy the standalone with ci_framework_deploy_standalone_vm.yaml
           ansible.builtin.shell: >
-            ansible-playbook {{ rdo_dir }}/ci_framework_deploy_standalone_vm.yaml -e "job_name={{ zuul.job }}"
+            ansible-playbook {{ rdo_dir }}/{{ standalone_deploy_playbook }} -e "job_name={{ zuul.job }}"
             {% if dpa_standalone_ntp_server is defined %}
             -e ntp_override={{ dpa_standalone_ntp_server }}
             {% endif %}
             -e repo_setup_commands=/home/zuul/cdn_subscription_repos.sh
-            -e "standalone_ip={{ standalone_ip }}" -e "standalone_gateway={{ standalone_gateway }}"
+            -e "standalone_ip={{ standalone_ip }}"
+            -e "standalone_gateway={{ standalone_gateway }}"
             -e "standalone_dns={{ standalone_dns | default(standalone_gateway) }}"
             -e "use_ceph={{ use_ceph | default('true') }}"
           args:
@@ -68,6 +78,15 @@
         - "edpm_node_ip"
         - "source_mariadb_ip"
         - "source_ovndb_ip"
+
+    - name: Set var prelaunch_test_instance_script for ironic
+      when:
+        - dpa_test_suite is defined
+        - "ironic" in dpa_test_suite
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: '^prelaunch_test_instance_script:'
+        value: "prelaunch_test_instance_script: pre_launch_ironic.bash"
 
     - name: Insert vars for data plane operator and os-net-config with zuul native standalone node
       ansible.builtin.blockinfile:
