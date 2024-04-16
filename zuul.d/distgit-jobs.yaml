@@ -17,7 +17,6 @@
 
 - job:
     name: distgit-tripleo-wallaby-testing-centos-9-standalone-scenario001
-    parent: tripleo-ci-centos-9-scenario001-standalone
     override-checkout: "stable/wallaby"
     nodeset: single-centos-9-stream-node-vexxhost
     run: playbooks/run-distgit.yaml
@@ -27,7 +26,6 @@
 
 - job:
     name: distgit-tripleo-wallaby-testing-centos-9-standalone-scenario002
-    parent: tripleo-ci-centos-9-scenario002-standalone
     override-checkout: "stable/wallaby"
     nodeset: single-centos-9-stream-node-vexxhost
     run: playbooks/run-distgit.yaml
@@ -37,7 +35,6 @@
 
 - job:
     name: distgit-tripleo-wallaby-testing-centos-9-standalone-scenario003
-    parent: tripleo-ci-centos-9-scenario003-standalone
     override-checkout: "stable/wallaby"
     nodeset: single-centos-9-stream-node-vexxhost
     run: playbooks/run-distgit.yaml
@@ -47,7 +44,6 @@
 
 - job:
     name: distgit-tripleo-wallaby-testing-centos-9-standalone-scenario004
-    parent: tripleo-ci-centos-9-scenario004-standalone
     override-checkout: "stable/wallaby"
     nodeset: single-centos-9-stream-node-vexxhost
     run: playbooks/run-distgit.yaml

@@ -9,19 +9,12 @@
     vars:
       release: master
 
-- job:
-    name: periodic-tripleo-ci-centos-9-containers-multinode-master
-    parent: tripleo-ci-containers-multinode-options
 
 - job:
     name: periodic-tripleo-ci-centos-8-containers-multinode-master
     parent: tripleo-ci-base-multinode-periodic-centos-8
     vars:
       release: master
-
-- job:
-    name: periodic-tripleo-ci-centos-8-containers-multinode-master
-    parent: tripleo-ci-containers-multinode-options
 
 - job:
     name: periodic-tripleo-ci-centos-9-scenario007-multinode-oooq-container-master

@@ -13,7 +13,6 @@
         Base abstract job to add required-projects for RDO
         Build Images Jobs
     abstract: true
-    parent: tripleo-ci-base-images-standard
     required-projects:
       - opendev.org/openstack/diskimage-builder
       - opendev.org/openstack/heat-agents

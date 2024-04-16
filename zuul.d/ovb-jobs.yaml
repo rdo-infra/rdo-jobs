@@ -6,7 +6,6 @@
 # ================= OVB PARENT JOBS ================== #
 - job:
     name: tripleo-ci-base-ovb-required-projects-rdo
-    parent: tripleo-ci-base-ovb-standard
     description: |
       Base abstract job for OVB required projects in RDO CI zuulv3 jobs
     timeout: 14400
@@ -24,7 +23,6 @@
 
 - job:
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset001
-    parent: tripleo-ci-ovb-rdo-centos-9
     branches: ^(?!stable/(train|ussuri|victoria)).*$
     vars:
       nodes: 3ctlr_1comp
@@ -32,7 +30,6 @@
 
 - job:
     name: tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset001
-    parent: tripleo-ci-ovb-rdo-centos-9
     branches: ^(?!stable/(train|ussuri|victoria)).*$
     vars:
       nodes: 1ctlr_1comp
@@ -40,7 +37,6 @@
 
 - job:
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp-featureset035
-    parent: tripleo-ci-ovb-rdo-centos-9
     branches: ^(?!stable/(train|ussuri|victoria)).*$
     vars:
       nodes: 3ctlr_1comp
@@ -48,7 +44,6 @@
 
 - job:
     name: tripleo-ci-centos-9-ovb-3ctlr_1comp_1supp-featureset039
-    parent: tripleo-ci-ovb-rdo-centos-9
     branches: ^(?!stable/(train|ussuri|victoria)).*$
     vars: &fs39_vars
       nodes: 3ctlr_1comp_1supp
@@ -63,7 +58,6 @@
 
 - job:
     name: tripleo-ci-centos-9-ovb-1ctlr_1comp-featureset002-upload
-    parent: tripleo-ci-ovb-rdo-centos-9
     branches: ^(?!stable/(train|ussuri|victoria)).*$
     vars:
       nodes: 1ctlr_1comp
@@ -71,7 +65,6 @@
 
 - job:
     name: tripleo-ci-centos-9-ovb-1ctlr_2comp-featureset020
-    parent: tripleo-ci-ovb-rdo-centos-9
     timeout: 18000
     branches: ^(?!stable/(train|ussuri|victoria)).*$
     vars:
