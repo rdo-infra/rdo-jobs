@@ -18,3 +18,4 @@
           IP_ADRESS_SUFFIX: "100"
           DATAPLANE_DNS_SERVER: "{{ standalone_gateway }}"
           HOST_PRIMARY_RESOLV_CONF_ENTRY: "{{ standalone_gateway }}"
+          EDPM_COMPUTE_CEPH_ENABLED: "{{ use_ceph | default('true') }}"
