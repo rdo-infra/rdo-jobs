@@ -114,8 +114,8 @@
             hostname_str_array=(${hostname//./ })
             echo ${hostname_str_array[0]} > /home/zuul/ansible_hostname
 
-        - name: Set expected overcloud hostname with .ctlplane.localdomain
+        - name: Set expected overcloud hostname with .localdomain
           become: true
           ansible.builtin.shell: |
             hostname=$(cat /home/zuul/ansible_hostname)
-            hostnamectl hostname "$hostname.ctlplane.localdomain"
+            hostnamectl hostname "$hostname.localdomain"
