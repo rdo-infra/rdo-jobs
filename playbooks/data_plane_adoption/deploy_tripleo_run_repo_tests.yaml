@@ -16,6 +16,19 @@
     - name: Install collections to use nmcli and libvirt ansible modules
       ansible.builtin.command: ansible-galaxy collection install community.general community.libvirt
 
+    - name: Copy ci-framework to undercloud to use when deploying ceph
+      when: use_ceph | default('false')
+      ansible.posix.synchronize:
+        src: "{{ framework_dir }}/"
+        dest: "/home/zuul/ci-framework"
+        mode: pull
+        rsync_opts:
+          - "--exclude=.git"
+          - "--exclude=tests"
+          - "--exclude=zuul.d"
+          - "--exclude=docs"
+      delegate_to: undercloud
+
     - name: Write repo commands and deploy undercloud with install_yamls
       block:
         - name: Write out the repo setup commands to file for undercloud to use
@@ -26,6 +39,9 @@
                 --enable=rhel-9-for-x86_64-appstream-eus-rpms \
                 --enable=rhel-9-for-x86_64-highavailability-eus-rpms \
                 --enable=openstack-17.1-for-rhel-9-x86_64-rpms \
+                {% if use_ceph is defined and use_ceph == 'true' %}
+                --enable=rhceph-6-tools-for-rhel-9-x86_64-rpms \
+                {% endif %}
                 --enable=fast-datapath-for-rhel-9-x86_64-rpms
 
         - name: Deploy the tripleo undercloud
@@ -37,6 +53,7 @@
             -e repo_setup_commands=/home/zuul/cdn_subscription_repos.sh
             -e "standalone_ip={{ standalone_ip }}" -e "standalone_gateway={{ standalone_gateway }}"
             -e "undercloud_dns={{ undercloud_dns | default(standalone_gateway) }}"
+            -e "use_ceph={{ use_ceph | default('false') }}"
           args:
             chdir: "{{ framework_dir }}"
 
