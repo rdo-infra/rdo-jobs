@@ -19,7 +19,6 @@
     abstract: true
     description: |
         Base abstract container build job for singlenode in RDO CI zuulv3 jobs
-    parent: tripleo-ci-containers-rdo-upstream-pre
     required-projects:
       # Upstream required projects
       - opendev.org/openstack/ansible-role-container-registry

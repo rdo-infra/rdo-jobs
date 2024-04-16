@@ -10,7 +10,6 @@
 
 - job:
     name: rdoinfo-tripleo-centos-7-multinode-base
-    parent: tripleo-ci-base-multinode-rdo
     nodeset: two-centos-7-nodes-vexxhost
 
 - job:
@@ -146,7 +145,6 @@
 
 - job:
     name: rdoinfo-tripleo-wallaby-release-centos-8-scenario001-standalone
-    parent: tripleo-ci-base-standalone-centos-8
     run: playbooks/run-rdoinfo-cbs-centos8.yaml
     post-run: playbooks/post-rdoinfo.yaml
     override-checkout: "stable/wallaby"
@@ -170,7 +168,6 @@
 
 - job:
     name: rdoinfo-tripleo-base-testing-centos-8-standalone
-    parent: tripleo-ci-centos-8-standalone
     nodeset: single-centos-8-node-vexxhost
     run: playbooks/run-rdoinfo.yaml
     vars:
@@ -181,7 +178,6 @@
 
 - job:
     name: rdoinfo-tripleo-base-testing-centos-8-scenario001-standalone
-    parent: tripleo-ci-base-standalone-standard
     nodeset: single-centos-8-node-vexxhost
     run: playbooks/run-rdoinfo.yaml
     post-run: playbooks/post-rdoinfo.yaml
@@ -229,7 +225,6 @@
 
 - job:
     name: rdoinfo-tripleo-base-testing-centos-8-containers-multinode
-    parent: tripleo-ci-centos-8-containers-multinode
     nodeset: two-centos-8-nodes-vexxhost
     run: playbooks/run-rdoinfo.yaml
     vars:
@@ -316,7 +311,6 @@
 
 - job:
     name: rdoinfo-tripleo-wallaby-testing-centos-9-scenario001-standalone
-    parent: tripleo-ci-base-standalone-centos-9
     run: playbooks/run-rdoinfo.yaml
     post-run: playbooks/post-rdoinfo.yaml
     override-checkout: "stable/wallaby"
@@ -382,7 +376,6 @@
 
 - job:
     name: rdoinfo-tripleo-zed-release-centos-9-scenario001-standalone
-    parent: tripleo-ci-base-standalone-centos-9
     run: playbooks/run-rdoinfo-cbs-centos9.yaml
     post-run: playbooks/post-rdoinfo.yaml
     override-checkout: "stable/zed"
@@ -491,7 +484,6 @@
 
 - job:
     name: rdoinfo-tripleo-zed-release-centos-9-undercloud-containers
-    parent: tripleo-ci-centos-9-undercloud-containers
     run: playbooks/run-rdoinfo-cbs-centos9.yaml
     override-checkout: "stable/zed"
     vars:

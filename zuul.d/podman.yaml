@@ -48,7 +48,6 @@
 
 - job:
     name: tripleo-ci-centos-8-standalone-podman-ansible
-    parent: tripleo-ci-centos-8-standalone
     pre-run: playbooks/podman/pre-ansible-collection.yaml
     required-projects:
       - name: github.com/containers/ansible-podman-collections
