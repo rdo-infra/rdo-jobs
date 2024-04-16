@@ -9,13 +9,11 @@
 
 - job:
     name: tripleo-ci-centos-9-scenario001-standalone-ceph-updates-master
-    parent: tripleo-ci-centos-9-scenario001-standalone
     vars: &ceph_updates_vars
       standalone_container_ceph_updates: true
 
 - job:
     name: tripleo-ci-centos-9-scenario004-standalone-ceph-updates-master
-    parent: tripleo-ci-centos-9-scenario004-standalone
     vars: *ceph_updates_vars
 
 # zed Jobs
