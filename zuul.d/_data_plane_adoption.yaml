@@ -43,6 +43,13 @@
       - Gemfile
 
 - job:
+    name: data-plane-adoption-osp-17-to-extracted-crc-minimal-no-ceph
+    parent: data-plane-adoption-osp-17-to-extracted-crc
+    vars:
+      use_ceph: "false"
+      dpa_test_suite: "test-minimal"
+
+- job:
     name: data-plane-adoption-osp17-multinode-to-extracted-crc-no-ceph
     abstract: true
     parent: cifmw-adoption-base-source-multinode
@@ -81,8 +88,7 @@
         address_suffix: 106
 
 - job:
-    name: data-plane-adoption-osp-17-to-extracted-crc-minimal-no-ceph
-    parent: data-plane-adoption-osp-17-to-extracted-crc
+    name: data-plane-adoption-osp17-multinode-to-extracted-crc-with-ceph
+    parent: data-plane-adoption-osp17-multinode-to-extracted-crc-no-ceph
     vars:
-      use_ceph: "false"
-      dpa_test_suite: "test-minimal"
+      use_ceph: 'true'
