@@ -79,3 +79,9 @@
         address_suffix: 105
       overcloud-novacompute-0:
         address_suffix: 106
+
+- job:
+    name: data-plane-adoption-osp17-multinode-to-extracted-crc-with-ceph
+    parent: data-plane-adoption-osp17-multinode-to-extracted-crc
+    vars:
+      use_ceph: true
