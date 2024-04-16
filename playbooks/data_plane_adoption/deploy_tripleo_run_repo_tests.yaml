@@ -16,6 +16,44 @@
     - name: Install collections to use nmcli and libvirt ansible modules
       ansible.builtin.command: ansible-galaxy collection install community.general community.libvirt
 
+    - name: Copy ci-framework to undercloud to use when deploying ceph
+      when: use_ceph | default('false')
+      ansible.posix.synchronize:
+        src: "{{ framework_dir }}/"
+        dest: "/home/zuul/ci-framework"
+        mode: pull
+        rsync_opts:
+          - "--exclude=.git"
+          - "--exclude=tests"
+          - "--exclude=zuul.d"
+          - "--exclude=docs"
+      delegate_to: undercloud
+
+    - name: Prepare controller node to deploy with ceph
+      become: true
+      when: use_ceph == 'true' | default(false)
+      block:
+        - name: Enable ceph repository
+          delegate_to: overcloud-controller-0
+          ansible.builtin.command:
+            cmd: subscription-manager repos --enable=rhceph-6-tools-for-rhel-9-x86_64-rpms
+
+        - name: Install cephadm
+          delegate_to: overcloud-controller-0
+          ansible.buitin.package:
+            name: cephadm
+            state: present
+
+        - name: Install packages needed for ceph deployment on the overcloud nodes
+          delegate_to: "{{ item }}"
+          when: item != 'undercloud'
+          ansible.buitin.package:
+            name:
+              - lvm2
+              - jq
+            state: present
+          loop: "{{ groups['rh-subscription'] }}"
+
     - name: Write repo commands and deploy undercloud with install_yamls
       block:
         - name: Write out the repo setup commands to file for undercloud to use
@@ -26,7 +64,11 @@
                 --enable=rhel-9-for-x86_64-appstream-eus-rpms \
                 --enable=rhel-9-for-x86_64-highavailability-eus-rpms \
                 --enable=openstack-17.1-for-rhel-9-x86_64-rpms \
+                {% if use_ceph is defined and use_ceph == 'true' %}
+                --enable=rhceph-6-tools-for-rhel-9-x86_64-rpms \
+                {% endif %}
                 --enable=fast-datapath-for-rhel-9-x86_64-rpms
+
 
         - name: Deploy the tripleo undercloud
           ansible.builtin.shell: >
@@ -37,6 +79,7 @@
             -e repo_setup_commands=/home/zuul/cdn_subscription_repos.sh
             -e "standalone_ip={{ standalone_ip }}" -e "standalone_gateway={{ standalone_gateway }}"
             -e "undercloud_dns={{ undercloud_dns | default(standalone_gateway) }}"
+            -e "use_ceph={{ use_ceph | default('false') }}"
           args:
             chdir: "{{ framework_dir }}"
 
