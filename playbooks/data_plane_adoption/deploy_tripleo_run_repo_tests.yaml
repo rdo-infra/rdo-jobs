@@ -192,13 +192,13 @@
     - name: Fetch hash and set ci_testing_hash fact for periodic
       when: "'periodic' in zuul.job or (force_periodic|default(false)|bool)"
       block:
-        - name: Fetch latest c9 or rhel9 antelope podified-ci-testing from dlrn
+        - name: Fetch latest c9 or rhel9 antelope tag from dlrn
           when: dlrn_hash_tag is not defined
           ansible.builtin.uri:
-            url: "https://{{ dpa_dlrn_server | default('trunk.rdoproject.org') }}/{{ dpa_dlrn_namespace | default('centos9-antelope') }}/podified-ci-testing/delorean.repo.md5"
+            url: "https://{{ dpa_dlrn_server | default('trunk.rdoproject.org') }}/{{ dpa_dlrn_namespace | default('centos9-antelope') }}/{{ dpa_dlrn_tag | default('podified-ci-testing') }}/delorean.repo.md5"
             return_content: true
-          register: latest_podified_ci_testing
-          until: latest_podified_ci_testing.status == 200
+          register: latest_dlrn_tag
+          until: latest_dlrn_tag.status == 200
           retries: 6
           delay: 5
 
@@ -211,7 +211,7 @@
               periodic: true
               container_registry: "{{ dpa_container_registry | default('quay.rdoproject.org') }}"
               container_namespace: "{{ dpa_container_namespace | default('podified-antelope-centos9') }}"
-              container_tag: {{ dlrn_hash_tag | default(latest_podified_ci_testing.content) }}
+              container_tag: {{ dlrn_hash_tag | default(latest_dlrn_tag.content) }}
 
         - name: Set timesync_ntp_servers if dpa_standalone_ntp_server set
           ansible.builtin.blockinfile:
