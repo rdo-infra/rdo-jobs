@@ -23,7 +23,5 @@
         set -euox
         {{ ansible_python.executable }} -m pip install --user 'tox>=3.8.0'
         {{ ansible_python.executable }} -m tox --version
-      args:
-        warn: false
       register: result
       changed_when: "'Successfully installed' in result.stdout"

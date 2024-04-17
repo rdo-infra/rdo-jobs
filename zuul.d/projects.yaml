@@ -3,7 +3,7 @@
     check:
       jobs:
         - tox-docs: &cfg
-            nodeset: rdo-centos-8-stream
+            nodeset: rdo-centos-9-stream
             pre-run:
               - playbooks/rdo-tox-epel.yaml
               - playbooks/pre-tox.yaml

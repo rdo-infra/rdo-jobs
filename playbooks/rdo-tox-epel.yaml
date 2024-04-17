@@ -1,20 +1,22 @@
 - hosts: all
   tasks:
-    - name: Hacks for EPEL
-      block:
-        - name: Install and enable EPEL for Centos-8
-          become: true
-          shell: |
-            set -euox pipefail
-            dnf -y install epel-release yum-utils
-            yum-config-manager --enable epel
-          changed_when: true
-
-        - name: Install re2-devel package
+    - block:
+        - name: Install EPEL
           become: true
           package:
-            name: re2-devel
+            name:
+              - epel-release
+
+        - name: Install dependencies
+          become: true
+          package:
+            name:
+              - python3-pip
+              - re2-devel
+              - yum-utils
             state: present
+            enablerepo: epel
+            update_cache: true
       when:
-        - ansible_distribution_major_version == "8"
+        - ansible_distribution_major_version == "9"
         - ansible_distribution == "CentOS"
