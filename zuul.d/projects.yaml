@@ -8,6 +8,7 @@
               - playbooks/rdo-tox-epel.yaml
               - playbooks/pre-tox.yaml
         - tox-linters: *cfg
+            nodeset: rdo-centos-9-stream
         - rdo-mol-container-login: &mol_container_login
             files:
               - .*molecule.*
