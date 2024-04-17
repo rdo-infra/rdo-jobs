@@ -1,9 +1,6 @@
 ---
-roles:
-  - name: tripleo_ansible
-    src: git+https://opendev.org/openstack/tripleo-ansible
-
 collections:
   - containers.podman
   - community.general
   - ansible.posix
+  - git+https://github.com/openstack-k8s-operators/edpm-ansible
