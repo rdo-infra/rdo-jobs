@@ -20,8 +20,4 @@
           DATAPLANE_DNS_SERVER: "{{ standalone_gateway }}"
           HOST_PRIMARY_RESOLV_CONF_ENTRY: "{{ standalone_gateway }}"
           EDPM_COMPUTE_CEPH_ENABLED: "{{ use_ceph | default('true') }}"
-          # TODO(bogdando): enable it back after merging these:
-          # https://github.com/openstack-k8s-operators/install_yamls/pull/757
-          # https://github.com/openstack-k8s-operators/data-plane-adoption/pull/280
-          # EDPM_COMPUTE_CEPH_NOVA: "{{ use_ceph | default('true') }}"
-          EDPM_COMPUTE_CEPH_NOVA: "false"
+          EDPM_COMPUTE_CEPH_NOVA: "{{ use_ceph | default('true') }}"
