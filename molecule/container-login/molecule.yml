@@ -1,14 +1,11 @@
 ---
-driver:
-  name: delegated
 log: true
 platforms:
   - name: instance
 provisioner:
   name: ansible
   env:
-    # tripleo_ansible is not a single role repo
-    ANSIBLE_ROLES_PATH: "../../roles:${MOLECULE_EPHEMERAL_DIRECTORY}/roles/tripleo_ansible/tripleo_ansible/roles/"
+    ANSIBLE_ROLES_PATH: "../../roles:${MOLECULE_EPHEMERAL_DIRECTORY}/roles"
 
 dependency:
   name: galaxy
