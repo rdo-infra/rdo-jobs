@@ -9,6 +9,7 @@
               - playbooks/pre-tox.yaml
         - tox-linters: *cfg
         - rdo-mol-container-login: &mol_container_login
+            nodeset: rdo-centos-9-stream
             files:
               - .*molecule.*
               - .*container-login.*
