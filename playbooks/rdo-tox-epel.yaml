@@ -2,7 +2,7 @@
   tasks:
     - name: Hacks for EPEL
       block:
-        - name: Install and enable EPEL for Centos-8
+        - name: Install and enable EPEL
           become: true
           shell: |
             set -euox pipefail
@@ -16,5 +16,4 @@
             name: re2-devel
             state: present
       when:
-        - ansible_distribution_major_version == "8"
         - ansible_distribution == "CentOS"
