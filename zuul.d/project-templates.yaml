@@ -7,6 +7,9 @@
     merge-check:
       jobs:
         - noop
+    check:
+      jobs:
+        - tox-linters-centos9
 
 - project-template:
     name: package-check-jobs
@@ -358,6 +361,8 @@
       Jobs to gate tags in rdoinfo
     check:
       jobs:
+        - tox-linters-centos9
+        - tox-py39-centos9
         - weirdo-dlrn-antelope-puppet-scenario001-centos9
         - weirdo-dlrn-antelope-puppet-scenario002-centos9
         - weirdo-dlrn-antelope-puppet-scenario001-centos9
