@@ -3,10 +3,7 @@
     check:
       jobs:
         - tox-docs: &cfg
-            nodeset: rdo-centos-8-stream
-            pre-run:
-              - playbooks/rdo-tox-epel.yaml
-              - playbooks/pre-tox.yaml
+            nodeset: rdo-centos-9-stream
         - tox-linters: *cfg
         - rdo-mol-container-login: &mol_container_login
             files:
