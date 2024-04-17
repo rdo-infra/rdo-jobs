@@ -1152,3 +1152,13 @@
     vars:
       rdoinfo_release: train
       scenario: scenario003
+
+- job:
+    name: tox-linters-centos9
+    parent: tox-linters
+    nodeset: rdo-centos-9-stream
+
+- job:
+    name: tox-py39-centos9
+    parent: tox-py39
+    nodeset: rdo-centos-9-stream
