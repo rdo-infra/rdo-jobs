@@ -16,6 +16,24 @@
       "message": "do we have a testproject to confirm?",
       "revId": "945306bacc56840c8991233d6ef987f70b0b44cb",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "983f01c2_629c1503",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 739
+      },
+      "writtenOn": "2024-04-17T22:07:44Z",
+      "side": 1,
+      "message": "\u003e do we have a testproject to confirm?\n\nNo. Since we use this role to do registry login, we need secrets, and the depends-on will not work on config projects.\nThe molecule job itself do test the role by starting 2 container registries and calling the role to login.",
+      "parentUuid": "2f1b16d1_f2269e81",
+      "revId": "945306bacc56840c8991233d6ef987f70b0b44cb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
