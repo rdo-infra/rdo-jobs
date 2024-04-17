@@ -23,54 +23,30 @@
 - name: Registry login
   no_log: true
   vars:
-    tripleo_container_registry_logins: "{{ container_registry_logins }}"
-    tripleo_podman_buildah_login: "{{ push_containers|default(false)|bool }}"
+    edpm_container_registry_logins: "{{ container_registry_logins }}"
+    edpm_podman_buildah_login: "{{ push_containers|default(false)|bool }}"
   block:
-    - name: Set tripleo podman role name for train
-      no_log: false
-      set_fact:
-        tripleo_podman_role_name: tripleo-podman
-      when:
-        (release is defined and release == 'train')
-         or (branch_override is defined and branch_override == 'stable/train')
-         or (zuul.branch is defined and zuul.branch == 'stable/train')
-
-    - name: set tripleo podman task name prefix for train/wallaby/zed
-      no_log: false
-      set_fact:
-        tripleo_podman_task_prefix: tripleo_podman_
-      when:
-        (release is defined and release in ['train', 'wallaby', 'zed'] )
-        or (branch_override is defined and branch_override in ['stable/train', 'stable/wallaby', 'stable/zed'])
-        or (zuul.branch is defined and zuul.branch in ['stable/train', 'stable/wallaby', 'stable/zed'])
-
     - name: Load vars and install podman
       no_log: false
       block:
-        - name: Load var file for Installing and configuring podman
-          include_role:
-            name: "{{ tripleo_podman_role_name | default('tripleo_podman') }}"
-            tasks_from: load_vars.yaml
-
         - name: Install podman
           include_role:
-            name: "{{ tripleo_podman_role_name | default('tripleo_podman') }}"
-            tasks_from: "{{ tripleo_podman_task_prefix | default('') }}install.yml"
-            vars_from: "{{ ansible_os_family | lower }}.yml"
+            name: edpm_podman
+            tasks_from: install.yml
       when:
         - ansible_distribution_major_version is version(8, '>=')
 
     - name: Perform podman login
       include_role:
-        name: "{{ tripleo_podman_role_name | default('tripleo_podman') }}"
-        tasks_from: "{{ tripleo_podman_task_prefix | default('') }}login.yml"
+        name: edpm_podman
+        tasks_from: login.yml
 
     - name: Perform podman buildah login
       include_role:
-        name: "{{ tripleo_podman_role_name | default('tripleo_podman') }}"
-        tasks_from: "{{ tripleo_podman_task_prefix | default('') }}buildah_login.yml"
+        name: edpm_podman
+        tasks_from: buildah_login.yml
       when:
-        - tripleo_podman_buildah_login | bool
+        - edpm_podman_buildah_login | bool
 
   always:
     - name: Assert which issue happened in login step
