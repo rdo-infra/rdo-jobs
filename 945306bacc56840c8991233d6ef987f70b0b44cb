@@ -51,6 +51,24 @@
       "message": "looks good, are we waiting on more testing?\n\ni found one more hit with grep, but probably it is just not being used by us so we leave it alone?\n\n./playbooks/integration/registry-login.yaml:24:            tasks_from: tripleo_podman_install.yml\n./playbooks/integration/registry-login.yaml-25-        - name: Check for podman login\n./playbooks/integration/registry-login.yaml-26-          include_role:\n./playbooks/integration/registry-login.yaml:27:            name: tripleo_podman\n./playbooks/integration/registry-login.yaml:28:            tasks_from: tripleo_podman_login.yml",
       "revId": "945306bacc56840c8991233d6ef987f70b0b44cb",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa014753_6b1605d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 739
+      },
+      "writtenOn": "2024-04-18T12:05:01Z",
+      "side": 1,
+      "message": "We can only test in jobs after merging, since the role depends on secrets and the role being called in a trusted playbook (so no depends-on).\nTest was made using the molecule job,which starts 2 registries with podman and perform the container login with the role: https://logserver.rdoproject.org/37/52937/8/check/rdo-mol-container-login/e081e47/tox/reports.html\nAt this point, the role is already broken since tripleo_ansible code was removed.",
+      "parentUuid": "b65f781b_f5d66428",
+      "revId": "945306bacc56840c8991233d6ef987f70b0b44cb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
