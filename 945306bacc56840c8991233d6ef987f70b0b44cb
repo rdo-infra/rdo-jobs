@@ -34,6 +34,23 @@
       "parentUuid": "2f1b16d1_f2269e81",
       "revId": "945306bacc56840c8991233d6ef987f70b0b44cb",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b65f781b_f5d66428",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-04-18T06:06:44Z",
+      "side": 1,
+      "message": "looks good, are we waiting on more testing?\n\ni found one more hit with grep, but probably it is just not being used by us so we leave it alone?\n\n./playbooks/integration/registry-login.yaml:24:            tasks_from: tripleo_podman_install.yml\n./playbooks/integration/registry-login.yaml-25-        - name: Check for podman login\n./playbooks/integration/registry-login.yaml-26-          include_role:\n./playbooks/integration/registry-login.yaml:27:            name: tripleo_podman\n./playbooks/integration/registry-login.yaml:28:            tasks_from: tripleo_podman_login.yml",
+      "revId": "945306bacc56840c8991233d6ef987f70b0b44cb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
