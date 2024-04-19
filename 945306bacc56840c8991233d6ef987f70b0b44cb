@@ -104,6 +104,23 @@
       "message": "W+1 since we need this merged to fix jobs that use this role.\nAnd also to fix the molecule job in this repo",
       "revId": "945306bacc56840c8991233d6ef987f70b0b44cb",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d7a1e81_663c2cec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 324
+      },
+      "writtenOn": "2024-04-19T21:15:54Z",
+      "side": 1,
+      "message": "Hello,\n\nThis patch block all promotions downstream because we use it, and edpm_podman is failing:\n\nhttps://sf.hosted.upshift.rdu2.redhat.com/logs/openstack-periodic-integration-rhos-16.2/code.engineering.redhat.com/tripleo-ci/master/periodic-tripleo-build-containers-rhel-8-internal-build-push-upload-rhos-16.2/972c96a/job-output.txt",
+      "revId": "945306bacc56840c8991233d6ef987f70b0b44cb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ],
   "submitRequirementResults": []
