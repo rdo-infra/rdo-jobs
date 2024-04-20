@@ -1,6 +1,6 @@
 # container-login
 
-Role to login into registries, using Zuul's secrets or any other defined credential. It uses `edpm_podman`_ role to
+Role to login into registries, using Zuul's secrets or any other defined credential. It uses `tripleo_podman`_ role to
 login into registries using `podman`.
 
 ## Variables
@@ -12,10 +12,10 @@ login into registries using `podman`.
     * The role accepts as *password* key: `password`, `passwd` or `token`.
 * 'push_containers': (Boolean) When set to true, podman buildah login is also performed. Default: False.
 
-See additional variables in `edpm_podman`_  role documentation.
+See additional variables in `tripleo_podman`_  role documentation.
 
 ## Dependencies
-This role depends on `edpm_podman`_ role to work. Make sure that you have this role on your ROLES path before make
+This role depends on `tripleo_podman`_ role to work. Make sure that you have this role on your ROLES path before make
 use of it.
 
 Example 1:
@@ -26,7 +26,7 @@ Example 1:
       include_role:
         name: container-login
       vars:
-        edpm_podman_tls_verify: false
+        tripleo_podman_tls_verify: false
         registry_secrets:
           localhost:5000: "test_secret"
           localhost:5001: "test_secret_2"
@@ -38,4 +38,4 @@ Example 1:
           token: "testpassword2"
   ```
 
-.. _edpm_podman: https://github.com/openstack-k8s-operators/edpm-ansible/tree/main/roles/edpm_podman
+.. _tripleo_podman: https://docs.openstack.org/tripleo-ansible/latest/roles/role-tripleo_podman.html

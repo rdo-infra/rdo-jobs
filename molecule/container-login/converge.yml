@@ -1,6 +1,6 @@
 - hosts: all
   vars:
-    edpm_container_registry_insecure_registries:
+    tripleo_container_registry_insecure_registries:
       - localhost:5000
       - localhost:5001
   tasks:
@@ -8,7 +8,7 @@
       include_role:
         name: container-login
       vars:
-        edpm_podman_tls_verify: false
+        tripleo_podman_tls_verify: false
         registry_secrets:
           localhost:5000: "test_secret0"
           localhost:5001: "test_secret1"
