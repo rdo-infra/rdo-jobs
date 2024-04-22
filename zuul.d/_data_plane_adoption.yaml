@@ -79,3 +79,18 @@
         address_suffix: 105
       overcloud-novacompute-0:
         address_suffix: 106
+
+- job:
+    name: data-plane-adoption-osp-17-to-extracted-crc-minimal-no-ceph-rdojobs
+    parent: data-plane-adoption-osp-17-to-extracted-crc
+    vars:
+      use_ceph: "false"
+      dpa_test_suite: "test-minimal"
+
+- job:
+    name: adoption-docs-preview-rdojobs
+    parent: cifmw-doc
+    vars:
+      asciidoc_available: true
+      # This var is specific to ci-framework docs directory using sphinx
+      doc_available: false
