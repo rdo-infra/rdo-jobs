@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c14cdedf_ee4debba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-04-26T13:39:09Z",
+      "side": 1,
+      "message": "left a few comments, but nothing that should block this patch",
+      "revId": "f6baf91104b90d954e2ab082eb4e0daf1474eec1",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c42ae83b_ec553ade",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 23
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-04-26T13:39:09Z",
+      "side": 1,
+      "message": "I think in a follow-up patch (or rather housekeeping task) we can get rid of the nested playbook invocation here, it was needed originally for the nested vm standalone, but now that nodes are part of the zuul inventory the tasks in undercloud_prepare_tests could be part of this playbook",
+      "revId": "f6baf91104b90d954e2ab082eb4e0daf1474eec1",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b191b12b_66c1ca40",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 23
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-04-26T13:39:09Z",
+      "side": 1,
+      "message": "maybe stupid question, but are mariadb and ovn ports only exposed on the first controller node, or any controller could be used?",
+      "revId": "f6baf91104b90d954e2ab082eb4e0daf1474eec1",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8432b79_b0d9e960",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 23
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-04-26T13:39:09Z",
+      "side": 1,
+      "message": "we probably should rename this task to avoid standalone references (and in the future we should probably rename the standalone* vars, since it\u0027ll get confusing)",
+      "revId": "f6baf91104b90d954e2ab082eb4e0daf1474eec1",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b7951dd_c1f15765",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 23
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-04-26T13:39:09Z",
+      "side": 1,
+      "message": "not really related for this review, but do we really need this task anymore? I suspect that we used to need this but we don\u0027t anymore since we the openstackclient pod in the tests",
+      "revId": "f6baf91104b90d954e2ab082eb4e0daf1474eec1",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
