@@ -18,6 +18,23 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "577d3afc_f4f38070",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-04-29T07:41:49Z",
+      "side": 1,
+      "message": "thanks minor update incoming",
+      "revId": "f6baf91104b90d954e2ab082eb4e0daf1474eec1",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c42ae83b_ec553ade",
@@ -31,6 +48,24 @@
       "writtenOn": "2024-04-26T13:39:09Z",
       "side": 1,
       "message": "I think in a follow-up patch (or rather housekeeping task) we can get rid of the nested playbook invocation here, it was needed originally for the nested vm standalone, but now that nodes are part of the zuul inventory the tasks in undercloud_prepare_tests could be part of this playbook",
+      "revId": "f6baf91104b90d954e2ab082eb4e0daf1474eec1",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5d23844_4bc808f9",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 23
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-04-29T07:41:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c42ae83b_ec553ade",
       "revId": "f6baf91104b90d954e2ab082eb4e0daf1474eec1",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
@@ -54,6 +89,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ba0cc6f9_4b378937",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 23
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-04-29T07:41:49Z",
+      "side": 1,
+      "message": "i think any controller, but we arbitrarily chose the first after some discussion in one of the adoption ci calls.",
+      "parentUuid": "b191b12b_66c1ca40",
+      "revId": "f6baf91104b90d954e2ab082eb4e0daf1474eec1",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a8432b79_b0d9e960",
         "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
         "patchSetId": 23
@@ -65,6 +118,24 @@
       "writtenOn": "2024-04-26T13:39:09Z",
       "side": 1,
       "message": "we probably should rename this task to avoid standalone references (and in the future we should probably rename the standalone* vars, since it\u0027ll get confusing)",
+      "revId": "f6baf91104b90d954e2ab082eb4e0daf1474eec1",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57642076_8ce909de",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 23
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-04-29T07:41:49Z",
+      "side": 1,
+      "message": "Ack going to update",
+      "parentUuid": "a8432b79_b0d9e960",
       "revId": "f6baf91104b90d954e2ab082eb4e0daf1474eec1",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
@@ -82,6 +153,24 @@
       "writtenOn": "2024-04-26T13:39:09Z",
       "side": 1,
       "message": "not really related for this review, but do we really need this task anymore? I suspect that we used to need this but we don\u0027t anymore since we the openstackclient pod in the tests",
+      "revId": "f6baf91104b90d954e2ab082eb4e0daf1474eec1",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfd8cf69_369d3f00",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 23
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-04-29T07:41:49Z",
+      "side": 1,
+      "message": "ok we can revisit with the other one(s) ... i think we\u0027ll need another round of tidying up plays vars etc after this is all done \\o/",
+      "parentUuid": "7b7951dd_c1f15765",
       "revId": "f6baf91104b90d954e2ab082eb4e0daf1474eec1",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
