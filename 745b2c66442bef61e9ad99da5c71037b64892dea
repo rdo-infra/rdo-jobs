@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f7cdfe0_c192ac5e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-04-29T07:26:54Z",
+      "side": 1,
+      "message": "but it breaks the downstream case we need to work that out too\n\ndlrn_hash_tag was chosen because it was the \u0027old\u0027 var we had from tripleo and it was agreed that this works across the ci framework repos when re-running jobs (I brought it to reviews at the time)",
+      "revId": "745b2c66442bef61e9ad99da5c71037b64892dea",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "090232c7_7bb7649b",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-04-29T07:26:54Z",
+      "side": 1,
+      "message": "been staring at this some more. i think we will still need to work out the downstream testproject case, where i expect to be able to pass dlrn_hash_tag to run a specific hash but indeed, this is also a valid request. we allow override for the delorean server and namespace but not the named tag (we didn\u0027t have a use case before this, it was always podified-ci-testing, or dlrn_hash_tag you pass)",
+      "revId": "745b2c66442bef61e9ad99da5c71037b64892dea",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef24d63a_349bb1c1",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-04-29T07:26:54Z",
+      "side": 1,
+      "message": "here we can make it:",
+      "revId": "745b2c66442bef61e9ad99da5c71037b64892dea",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
