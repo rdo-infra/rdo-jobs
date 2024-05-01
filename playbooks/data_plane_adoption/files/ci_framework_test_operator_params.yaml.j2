@@ -1,0 +1,13 @@
+---
+cifmw_test_operator_tempest_image: "quay.io/podified-antelope-centos9/openstack-tempest-extras"
+cifmw_test_operator_tempest_image_tag: "current-podified"
+cifmw_test_operator_timeout: 7200
+cifmw_test_operator_tempest_container: openstack-tempest-extras
+cifmw_tempest_tempestconf_config:
+  overrides: |
+    identity.v3_endpoint_type public
+    share.run_share_group_tests false
+cifmw_extras:
+  - '@scenarios/centos-9/ci.yml'
+  - '@scenarios/centos-9/multinode-ci.yml'
+  - '@scenarios/centos-9/hci_ceph_backends.yml'
