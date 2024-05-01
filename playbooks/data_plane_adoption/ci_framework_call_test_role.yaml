@@ -1,0 +1,7 @@
+- hosts: all
+  vars:
+    framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
+  tasks:
+    - name: Deploy standalone
+      ansible.builtin.import_role:
+        name: "{{ test_role }}"
