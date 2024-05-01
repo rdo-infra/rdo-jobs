@@ -100,6 +100,7 @@
           edpm_user: zuul
           standalone_ip: "{{ standalone_ip | default('192.168.122.100') }}"
           neutron_physical_bridge_name: br-ex
+          edpm_pre_adoption_validation_tuned_enabled: false
           edpm_nodes:
             {{ compute_hostname['content'] | b64decode | trim }}:
               hostName: "{{ compute_hostname['content'] | b64decode | trim }}.localdomain"
