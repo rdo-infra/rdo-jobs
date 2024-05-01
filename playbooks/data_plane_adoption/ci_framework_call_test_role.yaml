@@ -1,0 +1,16 @@
+- hosts: all
+  vars:
+    framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
+  tasks:
+
+    - name: Debug cifmw vars cifmw_test_operator_timeout
+      ansible.builtin.debug:
+        var: cifmw_test_operator_timeout
+
+    - name: Debug cifmw vars cifmw_test_operator_tempest_image
+      ansible.builtin.debug:
+        var: cifmw_test_operator_tempest_image
+
+    - name: Call test role
+      ansible.builtin.import_role:
+        name: "{{ test_role }}"
