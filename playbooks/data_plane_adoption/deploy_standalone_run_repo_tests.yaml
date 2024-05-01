@@ -210,17 +210,21 @@
             path: "{{ rdo_dir }}/vars.yaml"
             line: "ansibleee_runner_img: {{ ansibleee_runner_img }}"
 
-    - name: Run data-plane-adoption tests
-      community.general.make:
-        chdir: "{{ dpa_dir }}"
-        target: "{{ dpa_test_suite | default('test-with-ceph') }}"
-        params:
-          TEST_CONFIG: "{{ rdo_dir }}/ansible.cfg"
-          TEST_SECRETS: "{{ rdo_dir}}/secrets.yaml"
-          TEST_VARS: "{{ rdo_dir }}/vars.yaml"
-          TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"
-      register: make_res
-      failed_when: '"failed=0" not in "{{ make_res.stdout_lines[-1:] }}"'
+#    - name: Run data-plane-adoption tests
+#      community.general.make:
+#        chdir: "{{ dpa_dir }}"
+#        target: "{{ dpa_test_suite | default('test-with-ceph') }}"
+#        params:
+#          TEST_CONFIG: "{{ rdo_dir }}/ansible.cfg"
+#          TEST_SECRETS: "{{ rdo_dir}}/secrets.yaml"
+#          TEST_VARS: "{{ rdo_dir }}/vars.yaml"
+#          TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"
+#      register: make_res
+#      failed_when: '"failed=0" not in "{{ make_res.stdout_lines[-1:] }}"'
+
+    - name: Run test role
+      ansible.builtin.import_role:
+        name: "{{ cifmw_run_test_role | default('tempest') }}"
 
     - name: Unregister with subscription-manager when this was a CDN OSP 17.1 source job
       ansible.builtin.shell:
