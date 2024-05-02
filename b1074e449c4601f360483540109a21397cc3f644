@@ -16,6 +16,23 @@
       "message": "To unblock CI https://review.rdoproject.org/r/c/rdo-jobs/+/53075 is OK to me. However the check actually worked properly, it detected that the 18 deployment during adoption would change the tuned profile of the compute which we should not allow as that can only be changed with a node reboot, which won\u0027t happen leaving config changes not applied and causing surprises at the next edpm node restart when it is applied.",
       "revId": "b1074e449c4601f360483540109a21397cc3f644",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b0e9b73_c9697950",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 935
+      },
+      "writtenOn": "2024-05-02T15:25:21Z",
+      "side": 1,
+      "message": "I think I need to change my mind. The 17 job is explicitly configured to use the non default virtual-host profile https://logserver.rdoproject.org/61/53061/2/check/periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-no-ceph/c9fde95/tripleo/overcloud_roles.yaml So to be able to adoption work properly we either need to remove this specific configuration from 17 side and use the default. Or we need to also add this specifi configuration to the 18 NodeSet to match the 17 config.",
+      "revId": "b1074e449c4601f360483540109a21397cc3f644",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
