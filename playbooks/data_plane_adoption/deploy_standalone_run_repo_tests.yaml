@@ -210,6 +210,13 @@
             path: "{{ rdo_dir }}/vars.yaml"
             line: "ansibleee_runner_img: {{ ansibleee_runner_img }}"
 
+        - name: Insert edpm_bootstrap_command var into dataplane tests vars
+          ansible.builtin.blockinfile:
+            path: "{{ rdo_dir }}/vars.yaml"
+            block: |
+              {{ edpm_bootstrap_command }}
+            when: edpm_bootstrap_command is defined
+
     - name: Run data-plane-adoption tests
       community.general.make:
         chdir: "{{ dpa_dir }}"
