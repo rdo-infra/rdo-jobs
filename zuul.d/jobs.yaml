@@ -91,10 +91,12 @@
     vars:
       centos_version: 'centos8'
 
+# TODO: replace back lint branches: ^((rpm-master)|(^(?!train|ussuri|victoria)(\w+)-rdo))$
+
 - job:
     name: DLRN-rpmbuild-centos9
     parent: DLRN-rpmbuild-base
-    branches: ^((rpm-master)|(^(?!train|ussuri|victoria)(\w+)-rdo))$
+    branches: ^((rpm-master)|(^(\w+)-rdo)$
     vars:
       centos_version: 'centos9'
 
