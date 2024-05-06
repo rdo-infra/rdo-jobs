@@ -326,6 +326,16 @@
         name: python-openstackclient
         executable: pip3
 
+    - name: Insert edpm_bootstrap_command var into dataplane tests vars
+      ansible.builtin.blockinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        marker_begin: "BEGIN edpm_bootstrap_command vars"
+        marker_end: "END edpm_bootstrap_command vars"
+        block: |
+          edpm_bootstrap_command: |
+            {{ edpm_bootstrap_command | indent(2) }}
+      when: edpm_bootstrap_command is defined
+
     - name: Fetch hash and set ci_testing_hash fact for periodic
       when: "'periodic' in zuul.job or (force_periodic|default(false)|bool)"
       block:
@@ -398,7 +408,6 @@
         name: sos
         state: latest
       loop: "{{ groups['tripleo_computes'] }}"
-
 
     - name: "Run data-plane-adoption tests from {{ dpa_dir }}"
       community.general.make:
