@@ -244,6 +244,15 @@
             path: "{{ rdo_dir }}/vars.yaml"
             line: "ansibleee_runner_img: {{ ansibleee_runner_img }}"
 
+    - name: Insert edpm_bootstrap_command var into dataplane tests vars
+      ansible.builtin.blockinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        marker_begin: "BEGIN edpm_bootstrap_command vars"
+        marker_end: "END edpm_bootstrap_command vars"
+        block: |
+          edpm_bootstrap_command: |
+            {{ edpm_bootstrap_command | indent(2) }}
+      when: edpm_bootstrap_command is defined
 
     - name: "Run data-plane-adoption tests from {{ dpa_dir }}"
       community.general.make:
@@ -251,7 +260,7 @@
         target: "{{ dpa_test_suite | default('test-with-ceph') }}"
         params:
           TEST_CONFIG: "{{ dpa_test_ansible_cfg | default(rdo_dir  ~ '/ansible.cfg') }}"
-          TEST_SECRETS: "{{ rdo_dir}}/secrets.yaml"
+          TEST_SECRETS: "{{ rdo_dir }}/secrets.yaml"
           TEST_VARS: "{{ rdo_dir }}/vars.yaml"
           TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"
       register: make_res

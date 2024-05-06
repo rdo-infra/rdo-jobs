@@ -156,7 +156,9 @@
         - DLRN-rpmbuild-centos9
         - distgit-cbs-final-build-centos8
         - distgit-cbs-final-build-centos9
-
+# TODO return ( here
+#branches: ^((rpm-master)|(^(train|ussuri|victoria)(\w+)-rdo))$
+#branches: ^((rpm-master)|(^(train|ussuri|victoria)(\w+)-rdo))$
 - project-template:
     name: weirdo-dlrn-master-gnocchi
     check:
@@ -173,7 +175,7 @@
               - DLRN-rpmbuild-centos9-pinned
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9:
-            branches: ^((?!rpm-master)|(^(?!train|ussuri|victoria)(\w+)-rdo))$
+            branches: ^((rpm-master)|(^(train|ussuri|victoria)(\w+)-rdo))$
         - DLRN-rpmbuild-centos9-pinned:
             branches: ^rpm-master$
         - DLRN-rpmbuild
@@ -183,7 +185,7 @@
       jobs:
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9:
-            branches: ^((?!rpm-master)|(^(?!train|ussuri|victoria)(\w+)-rdo))$
+            branches: ^((rpm-master)|(^(train|ussuri|victoria)(\w+)-rdo))$
         - DLRN-rpmbuild-centos9-pinned:
             branches: ^rpm-master$
         - DLRN-rpmbuild
