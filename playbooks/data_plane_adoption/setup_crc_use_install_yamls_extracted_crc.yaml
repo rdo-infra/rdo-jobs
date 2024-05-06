@@ -45,6 +45,22 @@
             path: "{{ cifwm_data_folder }}/custom-params.yml"
             line: "{{ cifmw_content_provider_params | to_nice_yaml }}"
 
+    - name: Write build-push-openstack-operator-catalog vars to file if present
+      when: operators_catalog_img is defined and operators_catalog_img
+      block:
+        - name: Set content-provider variables dictionary
+          ansible.builtin.set_fact:
+            cifmw_content_provider_params:
+              cifmw_operator_build_output:
+                openstack-operator:
+                  image_catalog: "{{ operators_catalog_img.openstack-operator }}"
+              cifmw_operator_build_meta_name: 'openstack-operator'
+
+        - name: Write variables to cifmw custom params file
+          ansible.builtin.lineinfile:
+            path: "{{ cifwm_data_folder }}/custom-params.yml"
+            line: "{{ cifmw_content_provider_params | to_nice_yaml }}"
+
     - name: Install operators via ci-framework using edpm code
       ansible.builtin.shell:
         cmd:
