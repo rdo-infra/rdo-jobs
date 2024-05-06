@@ -1,0 +1,5 @@
+- hosts: all
+  roles:
+    - role: add-authorized-keys
+      public_keys:
+        - public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDU/SbhnGcrryVr6R5E1Y/OxIC+oJZbjr3jhcD6xa53vGFUVRbsL3Fpcw0ZFPGBPrrLZQi//lVm2nEGBuZmi3l5YOrLugUa3nj28pVm0t0oLakUvistJ/YtNDAU436/9uuo7QFY9T/2i26RNBEWQQICkNzcZLJ4vIdkhmBKWWtZxnKMa61U9CaVwJRkXp+0pT764hLrNub/kJZTnla/6pe0AMrmUJTZph+o9UcpSXpsBRY1GzuIGjTJuMBuWepPjIs5b3jHuz/1hXaY1v5BxhAaSEsqqNs8SyoVrNKmNEAgF8ohTd2l20XfouSX8YQi23OvoVcQOGmJj2Ldqo9rxtJ+bfBsP7CM+fgxoCBFzGqBb+FhsazJyPFup2g0FQpPumfgHhCQ7dcN6fdlfqBQ0Dv94wmARkaLiL9rYhlq3yyltvrOm44XgJSu74nc7FHIkBsuSPss/soEW619PUR3kpneLlTp7rFqk0/mMvy3cXpV8hhJXM+M/Sotk1t3eVDwCGM= r@r20"
