@@ -33,6 +33,24 @@
       "message": "I think I need to change my mind. The 17 job is explicitly configured to use the non default virtual-host profile https://logserver.rdoproject.org/61/53061/2/check/periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-no-ceph/c9fde95/tripleo/overcloud_roles.yaml So to be able to adoption work properly we either need to remove this specific configuration from 17 side and use the default. Or we need to also add this specifi configuration to the 18 NodeSet to match the 17 config.",
       "revId": "b1074e449c4601f360483540109a21397cc3f644",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4b7e78b_0707f168",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-05-08T08:01:27Z",
+      "side": 1,
+      "message": "slack thread there https://redhat-internal.slack.com/archives/CQXJFGMK6/p1715149288982149?thread_ts\u003d1714661926.998599\u0026cid\u003dCQXJFGMK6\n\nbut a discussed I am not setting this explicitly anywhere we are getting the tripleo vanila defaults (though roles is meant to be edited by the deployer)\n\nas discussed, i am going to set this to throughput-performance for the job with https://github.com/openstack-k8s-operators/install_yamls/pull/825 but the wider issue needs resolution",
+      "parentUuid": "3b0e9b73_c9697950",
+      "revId": "b1074e449c4601f360483540109a21397cc3f644",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
