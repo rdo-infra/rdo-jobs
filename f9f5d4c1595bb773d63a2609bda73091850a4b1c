@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "56460419_d77640f2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-05-09T07:42:52Z",
+      "side": 1,
+      "message": "this is more like \n\nenable tls everywhere for data plane adoption jobs",
+      "revId": "f9f5d4c1595bb773d63a2609bda73091850a4b1c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "b5d6c40e_6aba6e11",
@@ -31,6 +48,57 @@
       "writtenOn": "2024-05-09T07:35:23Z",
       "side": 1,
       "message": "https://review.rdoproject.org/r/c/testproject/+/52922 is passing",
+      "revId": "f9f5d4c1595bb773d63a2609bda73091850a4b1c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d09448f_e8f4177a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-05-09T07:42:52Z",
+      "side": 1,
+      "message": "-1 mainly because i am not sure about the multinode readiness for that yet",
+      "revId": "f9f5d4c1595bb773d63a2609bda73091850a4b1c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2470f763_8ff3a91e",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-05-09T07:42:52Z",
+      "side": 1,
+      "message": "do we really want to default true here (yet?)",
+      "revId": "f9f5d4c1595bb773d63a2609bda73091850a4b1c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dd3ae66_cc811e2c",
+        "filename": "zuul.d/_data_plane_adoption.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-05-09T07:42:52Z",
+      "side": 1,
+      "message": "are we really ready to do this with multinode? have you run a testproject with it yet?\n\nalso if we are adding to the with-ceph job what about the no-ceph multinode above it",
       "revId": "f9f5d4c1595bb773d63a2609bda73091850a4b1c",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
