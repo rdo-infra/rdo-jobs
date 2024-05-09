@@ -69,6 +69,23 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd3fb2f5_89d66359",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-05-09T07:44:44Z",
+      "side": 1,
+      "message": "OK revoting because you aren\u0027t enabling this for multinode i read it too quickly",
+      "revId": "f9f5d4c1595bb773d63a2609bda73091850a4b1c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2470f763_8ff3a91e",
@@ -99,6 +116,24 @@
       "writtenOn": "2024-05-09T07:42:52Z",
       "side": 1,
       "message": "are we really ready to do this with multinode? have you run a testproject with it yet?\n\nalso if we are adding to the with-ceph job what about the no-ceph multinode above it",
+      "revId": "f9f5d4c1595bb773d63a2609bda73091850a4b1c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b2981d6_d45ddc1b",
+        "filename": "zuul.d/_data_plane_adoption.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-05-09T07:44:44Z",
+      "side": 1,
+      "message": "OH, i read this too quickly, you are adding false here. you just switched \u0027 to \"\"",
+      "parentUuid": "6dd3ae66_cc811e2c",
       "revId": "f9f5d4c1595bb773d63a2609bda73091850a4b1c",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
