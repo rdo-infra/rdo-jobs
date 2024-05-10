@@ -1,3 +1,7 @@
+# NOTE(bogdando): these values are suit a multi-cell setup.
+# The multi-node / standalone cases require different values templated in by
+# playbooks/data_plane_adoption/*_tests.yaml
+
 # Path to install_yamls repo
 install_yamls_path: /home/zuul/src/github.com/openstack-k8s-operators/install_yamls/
 
@@ -19,7 +23,66 @@ storage_reclaim_policy: Delete  # or Retain
 oc_header: ''
 
 # External MariaDB IP for DB exports.
-source_mariadb_ip: CUSTOMIZE_THIS
+source_mariadb_ip:
+  default: 172.17.0.103
+  cell1: 172.17.0.106
+  cell2: 172.17.0.109
+
+source_galera_members:
+  default:
+    - name: edpm-compute-1.localdomain
+      ip: 172.17.0.103
+  cell1:
+    - name: edpm-compute-2.localdomain
+      ip: 172.17.0.106
+  cell2:
+    - name: edpm-compute-4.localdomain
+      ip: 172.17.0.109
+
+edpm_nodes:
+  cell1:
+    standalone:
+      hostName: edpm-compute-2.localdomain
+      ansible:
+        ansibleHost: 192.168.122.102
+      networks:
+        - defaultRoute: true
+          fixedIP: 192.168.122.102
+          name: ctlplane
+          subnetName: subnet1
+        - name: internalapi
+          subnetName: subnet1
+        - name: storage
+          subnetName: subnet1
+        - name: tenant
+          subnetName: subnet1
+        - name: storagemgmt
+          subnetName: subnet1
+  cell2:
+    standalone:
+      hostName: edpm-compute-4.localdomain
+      ansible:
+        ansibleHost: 192.168.122.104
+      networks:
+        - defaultRoute: true
+          fixedIP: 192.168.122.104
+          name: ctlplane
+          subnetName: subnet1
+        - name: internalapi
+          subnetName: subnet1
+        - name: storage
+          subnetName: subnet1
+        - name: tenant
+          subnetName: subnet1
+        - name: storagemgmt
+          subnetName: subnet1
+
+cells:
+  - default
+  - cell1
+  - cell2
+
+default_cell_name: cell3
 
 # virsh --connect=qemu:///system -q domifaddr standalone | awk 'NF>1{print $NF}' | cut -d/ -f1
 # install_yamls default: 192.168.122.100
@@ -30,3 +93,10 @@ auth_url: http://keystone-public-openstack.apps-crc.testing
 
 # Set verbose logging for CI jobs (no secrets here)
 use_no_log: false
+
+# Adopt source cloud with additional compute cells v2
+multi_cell: true
+
+run_pre_adoption_validation: true
+
+os_cloud_name: overcloud
