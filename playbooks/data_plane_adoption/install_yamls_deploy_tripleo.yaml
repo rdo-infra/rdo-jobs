@@ -19,6 +19,11 @@
           DATAPLANE_DNS_SERVER: "{{ standalone_gateway }}"
           HOST_PRIMARY_RESOLV_CONF_ENTRY: "{{ standalone_gateway }}"
           EDPM_COMPUTE_CEPH_ENABLED: "{{ use_ceph | default('true') }}"
+          EDPM_COMPUTE_CEPH_NOVA: "{{ use_ceph | default('true') }}"
+          EDPM_COMPUTE_CELLS: "{% if multi_cell | default('false') %}3{% else %}1{% endif %}"
+          EDPM_CONFIGURE_NETWORKING: false
+          RH_REGISTRY_PWD: ""
+          RH_REGISTRY_USER: ""
           TELEMETRY_ENABLED: "{{ enable_telemetry | default('false') }}"
           # keep octavia disabled by default due to CIX
           OCTAVIA_ENABLED: "{{ enable_octavia | default('false') }}"
