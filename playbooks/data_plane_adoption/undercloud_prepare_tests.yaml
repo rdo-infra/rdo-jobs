@@ -2,10 +2,25 @@
   gather_facts: false
   tasks:
     - name: Pull the tripleo passwords from undercloud vm
+      when: not multi_cell | default(False) | bool
       ansible.builtin.fetch:
         src: /home/zuul/overcloud-deploy/overcloud/overcloud-passwords.yaml
         dest: /home/zuul/tripleo-passwords.yaml
         flat: true
+
+    - name: Pull the tripleo passwords from undercloud vm for a multi-stack
+      when: multi_cell | default(False) | bool
+      ansible.builtin.fetch:
+        src: /home/zuul/{{ item.src }}
+        dest: /home/zuul/{{ item.dst }}
+        flat: true
+      loop:
+        - src: overcloud-deploy/overcloud/overcloud-passwords.yaml
+          dst: overcloud-passwords.yaml
+        - src: cell1/cell1-passwords.yaml
+          dst: cell1-passwords.yaml
+        - src: cell2/cell2-passwords.yaml
+          dst: cell2-passwords.yaml
 
     - name: Pull the private key from undercloud
       ansible.builtin.fetch:
