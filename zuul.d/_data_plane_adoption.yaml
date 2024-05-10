@@ -10,7 +10,7 @@
       - name: openstack-k8s-operators/ci-framework
         override-checkout: main
       - rdo-jobs
-    roles:
+    roles: &adoption_common_roles
       - zuul: rdo-jobs
       - zuul: github.com/openstack-k8s-operators/ci-framework
     pre-run:
@@ -52,13 +52,11 @@
       dpa_test_suite: "test-minimal"
 
 - job:
+    # TODO: remove this job after HCI ceph multi-cell done
     name: data-plane-adoption-osp17-multinode-to-extracted-crc-no-ceph
-    abstract: true
-    parent: cifmw-adoption-base-source-multinode
+    parent: cifmw-adoption-base-source-multinode-novacells
     required-projects: *dpa_required_projects
-    roles:
-      - zuul: rdo-jobs
-      - zuul: github.com/openstack-k8s-operators/ci-framework
+    roles: *adoption_common_roles
     pre-run:
       - playbooks/data_plane_adoption/subnode_ip.yaml
       - playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml
@@ -73,21 +71,24 @@
       - playbooks/data_plane_adoption/set_zuul_artifacts.yaml
       - playbooks/force_job_failure.yaml
     vars:
+      use_ceph: "true"
+      use_ceph: false
+      multi_cell: true
       standalone_ip: 192.168.122.100
       standalone_gateway: 192.168.122.10
       standalone_private_key: /home/zuul/.ssh/id_rsa
-      os_net_config_file: "overcloud_net_config.j2"
+      os_net_config_file: "overcloud_net_config_leafs.j2"
     host-vars:
       undercloud:
         address_suffix: 100
         os_net_config_file: "net_config.j2"
       overcloud-controller-0:
         address_suffix: 103
-      overcloud-controller-1:
+      cell1-compute-0:
         address_suffix: 104
-      overcloud-controller-2:
+      cell2-controller-compute-0:
         address_suffix: 105
-      overcloud-novacompute-0:
+      cell1-controller-0:
         address_suffix: 106
 
 - job:
