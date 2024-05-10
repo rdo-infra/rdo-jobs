@@ -12,6 +12,8 @@
         - controller-1
         - controller-2
         - novacompute-0
+        - novacompute-1
+        - novacompute-2
 
     - name: Template out hostnamemap with tripleo hostnames
       ansible.builtin.template:
@@ -22,3 +24,5 @@
         controller_1_hostname: "{{ tripleo_hostnames.results[1]['content'] | b64decode | trim }}"
         controller_2_hostname: "{{ tripleo_hostnames.results[2]['content'] | b64decode | trim }}"
         compute_0_hostname: "{{ tripleo_hostnames.results[3]['content'] | b64decode | trim }}"
+        compute_1_hostname: "{{ tripleo_hostnames.results[4]['content'] | b64decode | trim }}"
+        compute_2_hostname: "{{ tripleo_hostnames.results[5]['content'] | b64decode | trim }}"
