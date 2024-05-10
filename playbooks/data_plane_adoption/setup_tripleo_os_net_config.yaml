@@ -11,6 +11,7 @@
     os_net_config_iface: nic2
     standalone_vm: false
     additional_networks: []
+    manage_default_route: false
   tasks:
     - name: Setup repos and install deps for running os-net-config
       become: true
