@@ -11,7 +11,11 @@
     os_net_config_iface: nic2
     standalone_vm: false
     additional_networks: []
-    manage_default_route: false
+    # NOTE(bogdando): for local libvirt setups, we need all tripleo_network flags enabled
+    # this replicates the current CI setup.
+    manage_undercloud_default_route: "{{ tripleo_network.manage_undercloud_default_route | default(false) | bool }}"
+    tripleo_networking: "{{ tripleo_network.configure_networking | default(false) | bool }}"
+    attach_external_net: "{{ tripleo_network.attach_external_net | default(false) bool }}"
   tasks:
     - name: Setup repos and install deps for running os-net-config
       become: true
