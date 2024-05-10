@@ -20,7 +20,7 @@
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
         regexp: "'^source_mariadb_ip:'"
-        value: "source_mariadb_ip: {{ source_mariadb_ips[0] }}"
+        value: "source_mariadb_ip:\n  default: {{ source_mariadb_ips[0] }}"
 
     - name: Place control0 IP into vars.yaml for ovndb
       ansible.builtin.lineinfile:
@@ -65,6 +65,8 @@
         controller{{ item }}_hostname: "{{ controller_hostnames.results[item | int]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
       with_sequence: start=0 end="{{ (groups['tripleo_controllers'] | length - 1) }}"
 
+    # NOTE: source of trurh are cifmw-adoption-base-source-multinode-* jobs.
+    # inline via adoption_extra_vars directly instead of templating here
     - name: Set edpm_node_ip, _hostname, edpm_nodes, edpm_nodes_networker, edpm_computes in vars.yaml with compute hostnames
       ansible.builtin.blockinfile:
         marker_begin: "BEGIN edpm_node_ip hostname vars"
@@ -73,10 +75,6 @@
         block: |
           edpm_node_hostname:  {{ compute0_hostname }}
           edpm_node_ip: {{ edpm_node_ips[0] }}
-          edpm_computes: |
-          {% for i in range(edpm_node_ips | length) %}
-            ["{{ lookup('vars', 'compute' ~ i ~ '_hostname') }}"]="{{ edpm_node_ips[i | int] }}"
-          {% endfor %}
           {%+ if edpm_node_networker_ips is defined +%}
           edpm_networkers: |
           {% for i in range(edpm_node_networker_ips | length) %}
@@ -85,60 +83,62 @@
           {%+ endif +%}
 
           source_galera_members: |
-          {% for i in range(source_mariadb_ips | length) %}
-            ["{{ lookup('vars', 'controller' ~ i ~ '_hostname') }}"]="{{ source_mariadb_ips[i | int] }}"
-          {% endfor %}
+          default:
+            {% for i in range(source_mariadb_ips | length) %}
+              ["{{ lookup('vars', 'controller' ~ i ~ '_hostname') }}"]="{{ source_mariadb_ips[i | int] }}"
+            {% endfor %}
 
           edpm_nodes:
-          {% for i in range(edpm_node_ips | length) %}
-            {{ compute_hostnames.results[i | int]['content'] | b64decode | trim }}:
-              hostName: "{{ lookup('vars', 'compute' ~ i ~ '_hostname') }}"
-              ansible:
-                ansibleHost: {{ edpm_node_ips[i | int] }}
-              networks:
-                - defaultRoute: true
-                  fixedIP: {{ edpm_node_ips[i | int] }}
-                  name: ctlplane
-                  subnetName: subnet1
-                - name: internalapi
-                  fixedIP: 172.17.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
-                  subnetName: subnet1
-                - name: storage
-                  fixedIP: 172.18.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
-                  subnetName: subnet1
-                - name: tenant
-                  fixedIP: 172.19.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
-                  subnetName: subnet1
-                - name: storagemgmt
-                  fixedIP: 172.20.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
-                  subnetName: subnet1
-          {% endfor %}
-          {%+ if edpm_node_networker_ips is defined +%}
-          edpm_nodes_networker:
-          {% for i in range(edpm_node_networker_ips | length) %}
-            {{ networker_hostnames.results[i | int]['content'] | b64decode | trim }}:
-              hostName: "{{ lookup('vars', 'networker' ~ i ~ '_hostname') }}"
-              ansible:
-                ansibleHost: {{ edpm_node_networker_ips[i | int] }}
-              networks:
-                - defaultRoute: true
-                  fixedIP: {{ edpm_node_networker_ips[i | int] }}
-                  name: ctlplane
-                  subnetName: subnet1
-                - name: internalapi
-                  fixedIP: 172.17.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
-                  subnetName: subnet1
-                - name: storage
-                  fixedIP: 172.18.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
-                  subnetName: subnet1
-                - name: tenant
-                  fixedIP: 172.19.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
-                  subnetName: subnet1
-                - name: storagemgmt
-                  fixedIP: 172.20.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
-                  subnetName: subnet1
-          {% endfor %}
-          {%+ endif +%}
+            default:
+              {% for i in range(edpm_node_ips | length) %}
+                {{ compute_hostnames.results[i | int]['content'] | b64decode | trim }}:
+                  hostName: "{{ lookup('vars', 'compute' ~ i ~ '_hostname') }}"
+                  ansible:
+                    ansibleHost: {{ edpm_node_ips[i | int] }}
+                  networks:
+                    - defaultRoute: true
+                      fixedIP: {{ edpm_node_ips[i | int] }}
+                      name: ctlplane
+                      subnetName: subnet1
+                    - name: internalapi
+                      fixedIP: 172.17.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
+                      subnetName: subnet1
+                    - name: storage
+                      fixedIP: 172.18.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
+                      subnetName: subnet1
+                    - name: tenant
+                      fixedIP: 172.19.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
+                      subnetName: subnet1
+                    - name: storagemgmt
+                      fixedIP: 172.20.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
+                      subnetName: subnet1
+              {% endfor %}
+              {%+ if edpm_node_networker_ips is defined +%}
+              edpm_nodes_networker:
+              {% for i in range(edpm_node_networker_ips | length) %}
+                {{ networker_hostnames.results[i | int]['content'] | b64decode | trim }}:
+                  hostName: "{{ lookup('vars', 'networker' ~ i ~ '_hostname') }}"
+                  ansible:
+                    ansibleHost: {{ edpm_node_networker_ips[i | int] }}
+                  networks:
+                    - defaultRoute: true
+                      fixedIP: {{ edpm_node_networker_ips[i | int] }}
+                      name: ctlplane
+                      subnetName: subnet1
+                    - name: internalapi
+                      fixedIP: 172.17.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
+                      subnetName: subnet1
+                    - name: storage
+                      fixedIP: 172.18.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
+                      subnetName: subnet1
+                    - name: tenant
+                      fixedIP: 172.19.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
+                      subnetName: subnet1
+                    - name: storagemgmt
+                      fixedIP: 172.20.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
+                      subnetName: subnet1
+              {% endfor %}
+              {%+ endif +%}
 
     - name: Set TLS Everywhere in vars.yaml
       ansible.builtin.lineinfile:
