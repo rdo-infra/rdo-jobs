@@ -124,10 +124,11 @@
         ansible-playbook {{ rdo_dir }}/undercloud_prepare_tests.yaml -i /home/zuul/tripleo_ci_inventory
 
     - name: Place internal IP into vars.yaml for Mariadb
+      when: not multi_cell | default(false) | bool
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
         regexp: "'^source_mariadb_ip:'"
-        value: "source_mariadb_ip: {{ source_mariadb_ips[0] }}"
+        value: "source_mariadb_ip:\n  default: {{ source_mariadb_ips[0] }}"
 
     - name: Place control0 IP into vars.yaml for ovndb
       ansible.builtin.lineinfile:
@@ -135,44 +136,75 @@
         regexp: "'^source_ovndb_ip:'"
         value: "source_ovndb_ip: {{ source_ovndb_ip }}"
 
-    - name: Fetch controller hostnames to set source_galera_members var
-      delegate_to: "{{ item }}"
-      ansible.builtin.slurp:
-        path: /home/zuul/ansible_hostname
-      register: controller_hostnames
-      loop: "{{ groups['tripleo_controllers'] }}"
+    - name: Fetch hostnames for a single-cell multi-node setup
+      when: not multi_cell | default(false) | bool
+      block:
+        - name: Fetch controller hostnames to set source_galera_members var
+          delegate_to: "{{ item }}"
+          ansible.builtin.slurp:
+            path: /home/zuul/ansible_hostname
+          register: controller_hostnames
+          loop: "{{ groups['tripleo_controllers'] }}"
 
-    - name: Fetch compute hostnames to set edpm_node_hostname vars
-      delegate_to: "{{ item }}"
-      ansible.builtin.slurp:
-        path: /home/zuul/ansible_hostname
-      register: compute_hostnames
-      loop: "{{ groups['tripleo_computes'] }}"
+        - name: Fetch compute hostnames to set edpm_node_hostname vars
+          delegate_to: "{{ item }}"
+          ansible.builtin.slurp:
+            path: /home/zuul/ansible_hostname
+          register: compute_hostnames
+          loop: "{{ groups['tripleo_computes'] }}"
 
-    - name: Fetch networker hostnames to set edpm_node_hostname vars
-      delegate_to: "{{ item }}"
-      ansible.builtin.slurp:
-        path: /home/zuul/ansible_hostname
-      register: networker_hostnames
-      loop: "{{ groups['tripleo_networkers'] | default([]) }}"
+        - name: Fetch networker hostnames to set edpm_node_hostname vars
+          delegate_to: "{{ item }}"
+          ansible.builtin.slurp:
+            path: /home/zuul/ansible_hostname
+          register: networker_hostnames
+          loop: "{{ groups['tripleo_networkers'] | default([]) }}"
 
-    - name: Set compute hostname facts to prevent repetition
-      ansible.builtin.set_fact:
-        compute{{ item }}_hostname: "{{ compute_hostnames.results[item | int]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
-      with_sequence: start=0 end="{{ (groups['tripleo_computes'] | length - 1) }}"
+        - name: Set compute hostname facts to prevent repetition
+          ansible.builtin.set_fact:
+            compute{{ item }}_hostname: "{{ compute_hostnames.results[item | int]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
+          with_sequence: start=0 end="{{ (groups['tripleo_computes'] | length - 1) }}"
 
-    - name: Set networker hostname facts to prevent repetition
-      when: "'tripleo_networkers' in groups"
-      ansible.builtin.set_fact:
-        networker{{ item }}_hostname: "{{ networker_hostnames.results[item | int]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
-      with_sequence: start=0 end="{{ (groups['tripleo_networkers'] | length - 1) }}"
+        - name: Set networker hostname facts to prevent repetition
+          when: "'tripleo_networkers' in groups"
+          ansible.builtin.set_fact:
+            networker{{ item }}_hostname: "{{ networker_hostnames.results[item | int]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
+          with_sequence: start=0 end="{{ (groups['tripleo_networkers'] | length - 1) }}"
 
-    - name: Set controller hostname facts to prevent repetition
-      ansible.builtin.set_fact:
-        controller{{ item }}_hostname: "{{ controller_hostnames.results[item | int]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
-      with_sequence: start=0 end="{{ (groups['tripleo_controllers'] | length - 1) }}"
+        - name: Set controller hostname facts to prevent repetition
+          ansible.builtin.set_fact:
+            controller{{ item }}_hostname: "{{ controller_hostnames.results[item | int]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
+          with_sequence: start=0 end="{{ (groups['tripleo_controllers'] | length - 1) }}"
 
-    - name: Set edpm_node_ip, _hostname, edpm_nodes, edpm_nodes_networker, edpm_computes in vars.yaml with compute hostnames
+    - name: Fetch hostnames for a multi-cell multi-node setup
+      when: multi_cell | default(false) | bool
+      block:
+        - name: Fetch controller hostnames to set source_galera_members var
+          delegate_to: "{{ item }}"
+          ansible.builtin.slurp:
+            path: /home/zuul/ansible_hostname
+          register: controller_hostnames
+          loop: "{{ groups['tripleo_controllers'] }}"
+
+        - name: Fetch compute hostnames to set edpm_node_hostname vars
+          delegate_to: "{{ item }}"
+          ansible.builtin.slurp:
+            path: /home/zuul/ansible_hostname
+          register: compute_hostnames
+          loop: "{{ groups['tripleo_computes'] }}"
+
+        - name: Set compute and controller hostname facts to prevent repetition
+          ansible.builtin.set_fact:
+            compute0_hostname: "{{ compute_hostnames.results[0]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
+            compute1_hostname: "{{ compute_hostnames.results[1]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
+            compute2_hostname: "{{ compute_hostnames.results[2]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
+            controller0_hostname: "{{ controller_hostnames.results[0]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
+            controller1_hostname: "{{ controller_hostnames.results[1]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
+            controller2_hostname: "{{ controller_hostnames.results[2]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
+
+    # NOTE: source of trurh are cifmw-adoption-base-source-multinode-* jobs
+    - name: Set edpm_node_ip, _hostname, edpm_nodes, edpm_nodes_networker in vars.yaml with compute hostnames
+      when: not multi_cell | default(false) | bool
       ansible.builtin.blockinfile:
         marker_begin: "BEGIN edpm_node_ip hostname vars"
         marker_end: "END edpm_node_ip hostname vars"
@@ -180,10 +212,7 @@
         block: |
           edpm_node_hostname:  {{ compute0_hostname }}
           edpm_node_ip: {{ edpm_node_ips[0] }}
-          edpm_computes: |
-          {% for i in range(edpm_node_ips | length) %}
-            ["{{ lookup('vars', 'compute' ~ i ~ '_hostname') }}"]="{{ edpm_node_ips[i | int] }}"
-          {% endfor %}
+
           {%+ if edpm_node_networker_ips is defined +%}
           edpm_networkers: |
           {% for i in range(edpm_node_networker_ips | length) %}
@@ -192,60 +221,62 @@
           {%+ endif +%}
 
           source_galera_members: |
-          {% for i in range(source_mariadb_ips | length) %}
-            ["{{ lookup('vars', 'controller' ~ i ~ '_hostname') }}"]="{{ source_mariadb_ips[i | int] }}"
-          {% endfor %}
+          default:
+            {% for i in range(source_mariadb_ips | length) %}
+              ["{{ lookup('vars', 'controller' ~ i ~ '_hostname') }}"]="{{ source_mariadb_ips[i | int] }}"
+            {% endfor %}
 
           edpm_nodes:
-          {% for i in range(edpm_node_ips | length) %}
-            {{ compute_hostnames.results[i | int]['content'] | b64decode | trim }}:
-              hostName: "{{ lookup('vars', 'compute' ~ i ~ '_hostname') }}"
-              ansible:
-                ansibleHost: {{ edpm_node_ips[i | int] }}
-              networks:
-                - defaultRoute: true
-                  fixedIP: {{ edpm_node_ips[i | int] }}
-                  name: ctlplane
-                  subnetName: subnet1
-                - name: internalapi
-                  fixedIP: 172.17.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
-                  subnetName: subnet1
-                - name: storage
-                  fixedIP: 172.18.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
-                  subnetName: subnet1
-                - name: tenant
-                  fixedIP: 172.19.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
-                  subnetName: subnet1
-                - name: storagemgmt
-                  fixedIP: 172.20.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
-                  subnetName: subnet1
-          {% endfor %}
-          {%+ if edpm_node_networker_ips is defined +%}
-          edpm_nodes_networker:
-          {% for i in range(edpm_node_networker_ips | length) %}
-            {{ networker_hostnames.results[i | int]['content'] | b64decode | trim }}:
-              hostName: "{{ lookup('vars', 'networker' ~ i ~ '_hostname') }}"
-              ansible:
-                ansibleHost: {{ edpm_node_networker_ips[i | int] }}
-              networks:
-                - defaultRoute: true
-                  fixedIP: {{ edpm_node_networker_ips[i | int] }}
-                  name: ctlplane
-                  subnetName: subnet1
-                - name: internalapi
-                  fixedIP: 172.17.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
-                  subnetName: subnet1
-                - name: storage
-                  fixedIP: 172.18.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
-                  subnetName: subnet1
-                - name: tenant
-                  fixedIP: 172.19.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
-                  subnetName: subnet1
-                - name: storagemgmt
-                  fixedIP: 172.20.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
-                  subnetName: subnet1
-          {% endfor %}
-          {%+ endif +%}
+            default:
+              {% for i in range(edpm_node_ips | length) %}
+                {{ compute_hostnames.results[i | int]['content'] | b64decode | trim }}:
+                  hostName: "{{ lookup('vars', 'compute' ~ i ~ '_hostname') }}"
+                  ansible:
+                    ansibleHost: {{ edpm_node_ips[i | int] }}
+                  networks:
+                    - defaultRoute: true
+                      fixedIP: {{ edpm_node_ips[i | int] }}
+                      name: ctlplane
+                      subnetName: subnet1
+                    - name: internalapi
+                      fixedIP: 172.17.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
+                      subnetName: subnet1
+                    - name: storage
+                      fixedIP: 172.18.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
+                      subnetName: subnet1
+                    - name: tenant
+                      fixedIP: 172.19.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
+                      subnetName: subnet1
+                    - name: storagemgmt
+                      fixedIP: 172.20.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
+                      subnetName: subnet1
+              {% endfor %}
+              {%+ if edpm_node_networker_ips is defined +%}
+              edpm_nodes_networker:
+              {% for i in range(edpm_node_networker_ips | length) %}
+                {{ networker_hostnames.results[i | int]['content'] | b64decode | trim }}:
+                  hostName: "{{ lookup('vars', 'networker' ~ i ~ '_hostname') }}"
+                  ansible:
+                    ansibleHost: {{ edpm_node_networker_ips[i | int] }}
+                  networks:
+                    - defaultRoute: true
+                      fixedIP: {{ edpm_node_networker_ips[i | int] }}
+                      name: ctlplane
+                      subnetName: subnet1
+                    - name: internalapi
+                      fixedIP: 172.17.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
+                      subnetName: subnet1
+                    - name: storage
+                      fixedIP: 172.18.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
+                      subnetName: subnet1
+                    - name: tenant
+                      fixedIP: 172.19.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
+                      subnetName: subnet1
+                    - name: storagemgmt
+                      fixedIP: 172.20.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
+                      subnetName: subnet1
+              {% endfor %}
+              {%+ endif +%}
 
     - name: Set TLS Everywhere in vars.yaml
       ansible.builtin.lineinfile:
@@ -298,9 +329,28 @@
         value: "edpm_encoded_privatekey: \"{{ undercloud_key['content'] }}\""
 
     - name: Read the tripleo passwords downloaded from undercloud
+      when: not multi_cell | default(False) | bool
       ansible.builtin.slurp:
         path: /home/zuul/tripleo-passwords.yaml
       register: tripleo_passwords
+
+    - name: Read the tripleo passwords downloaded from undercloud ('default' cell)
+      when: multi_cell | default(False) | bool
+      ansible.builtin.slurp:
+        path: /home/zuul/overcloud-passwords.yaml
+      register: tripleo_passwords
+
+    - name: Read the tripleo passwords downloaded from undercloud (cell1)
+      when: multi_cell | default(False) | bool
+      ansible.builtin.slurp:
+        path: /home/zuul/cell1-passwords.yaml
+      register: tripleo_passwords_cell1
+
+    - name: Read the tripleo passwords downloaded from undercloud (cell2)
+      when: multi_cell | default(False) | bool
+      ansible.builtin.slurp:
+        path: /home/zuul/cell2-passwords.yaml
+      register: tripleo_passwords_cell2
 
     - name: Set tripleo passwords in secrets.yaml
       ansible.builtin.lineinfile:
@@ -308,7 +358,7 @@
         regexp: "{{ item.key }}:"
         line: "{{ item.key }}: {{ tripleo_passwords['content'] | b64decode | regex_search(item.regex + ': (.+)', '\\1') | first }}"
       loop:
-        - key: 'source_db_root_password'
+        - key: 'source_db_root_password.default'
           regex: 'MysqlRootPassword'
         - key: 'aodh_password'
           regex: 'AodhPassword'
@@ -339,7 +389,22 @@
         - key: 'swift_password'
           regex: 'SwiftPassword'
 
+    - name: Set tripleo passwords in secrets.yaml (multi-cell)
+      when: multi_cell | default(False) | bool
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/secrets.yaml"
+        regexp: "{{ item.key }}:"
+        line: "{{ item.key }}: {{ item.source | b64decode | regex_search(item.regex + ': (.+)', '\\1') | first  }}"
+      loop:
+        - key: 'source_db_root_password.cell1'
+          regex: 'MysqlRootPassword'
+          source: "{{ tripleo_passwords_cell1['content'] }}"
+        - key: 'source_db_root_password.cell2'
+          regex: 'MysqlRootPassword'
+          source: "{{ tripleo_passwords_cell2['content']}}"
+
     - name: Set controller ssh login vars controller1_ssh in secrets.yaml
+      when: not multi_cell | default(False) | bool
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/secrets.yaml"
         regexp: "controller{{ item.ctrl }}_ssh:"
@@ -349,12 +414,24 @@
         - {ctrl: "2", suffix: "4"}
         - {ctrl: "3", suffix: "5"}
 
+    - name: Set controller ssh login vars controllerX_ssh in secrets.yaml (multi-cell)
+      when: multi_cell | default(False) | bool
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/secrets.yaml"
+        regexp: "controller{{ item.ctrl }}_ssh:"
+        value: "controller{{ item.ctrl }}_ssh: ssh -o StrictHostKeyChecking=accept-new -i {{ standalone_private_key | default('/home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa') }} root@192.168.122.10{{ item.suffix }}"
+      loop:
+        - {ctrl: "1", suffix: "1"}
+        - {ctrl: "2", suffix: "2"}
+        - {ctrl: "3", suffix: "4"}
+
     - name: Install required packages
       become: true
       ansible.builtin.package:
         name:
           - python3
           - python3-pip
+          - crudini
 
     - name: pip install openstackclient for keystone adoption on crc
       become: true
