@@ -2,6 +2,12 @@
 parameter_defaults:
   HostnameMap:
     overcloud-controller-0: "{{ controller_0_hostname }}"
+{% if not multi_cell | default(False) | bool %}
     overcloud-controller-1: "{{ controller_1_hostname }}"
     overcloud-controller-2: "{{ controller_2_hostname }}"
     overcloud-novacompute-0: "{{ compute_0_hostname }}"
+{% else %}
+    cell1-controller-0: "{{ compute_0_hostname }}"
+    cell1-compute-0: "{{ compute_1_hostname }}"
+    cell2-controller-compute-0: "{{ compute_2_hostname }}"
+{% endif %}
