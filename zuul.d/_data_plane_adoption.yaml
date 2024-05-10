@@ -16,7 +16,7 @@
       - name: openstack-k8s-operators/ci-framework
         override-checkout: main
       - rdo-jobs
-    roles:
+    roles: &adoption_common_roles
       - zuul: rdo-jobs
       - zuul: github.com/openstack-k8s-operators/ci-framework
     pre-run:
@@ -69,9 +69,7 @@
     abstract: true
     parent: cifmw-adoption-base-source-multinode
     required-projects: *dpa_required_projects
-    roles: &multinode_adoption_roles
-      - zuul: rdo-jobs
-      - zuul: github.com/openstack-k8s-operators/ci-framework
+    roles: *adoption_common_roles
     pre-run: &multinode_adoption_pre_run
       - playbooks/data_plane_adoption/subnode_ip.yaml
       - playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml
@@ -112,13 +110,101 @@
         address_suffix: 108
 
 - job:
+    name: adoption-multinode-to-extracted-crc-no-ceph-novacells
+    description: multiple Nova cells source OSP17.1 adopted to RHOSO 18. No Ceph, no tls.
+    parent: cifmw-adoption-base-source-multinode-novacells
+    required-projects: *dpa_required_projects
+    roles: *adoption_common_roles
+    pre-run: *multinode_adoption_pre_run
+    run: *multinode_adoption_run
+    post-run: *multinode_adoption_post_run
+    vars:
+      use_ceph: false
+      multi_cell: true
+      default_cell_name: cell3
+      ironic_adoption: false
+      compute_adoption: true
+      standalone_ip: 192.168.122.100
+      standalone_gateway: 192.168.122.10
+      standalone_private_key: /home/zuul/.ssh/id_rsa
+      os_net_config_file: "overcloud_net_config.j2"
+      cells:
+        - default
+        - cell1
+        - cell2
+      source_mariadb_ip:
+        default: 172.17.0.103
+        cell1: 172.17.0.106
+        cell2: 172.17.0.109
+      source_galera_members:
+        default:
+          - name: edpm-compute-1.localdomain
+            ip: 172.17.0.103
+        cell1:
+          - name: edpm-compute-2.localdomain
+            ip: 172.17.0.106
+        cell2:
+          - name: edpm-compute-4.localdomain
+            ip: 172.17.0.109
+      edpm_nodes:
+        cell1:
+          edpm-compute-2:
+            hostName: edpm-compute-2.localdomain
+            ansible:
+              ansibleHost: 192.168.122.102
+            networks:
+              - defaultRoute: true
+                fixedIP: 192.168.122.102
+                name: ctlplane
+                subnetName: subnet1
+              - name: internalapi
+                subnetName: subnet1
+              - name: storage
+                subnetName: subnet1
+              - name: tenant
+                subnetName: subnet1
+              - name: storagemgmt
+                subnetName: subnet1
+        cell2:
+          edpm-compute-4:
+            hostName: edpm-compute-4.localdomain
+            ansible:
+              ansibleHost: 192.168.122.104
+            networks:
+              - defaultRoute: true
+                fixedIP: 192.168.122.104
+                name: ctlplane
+                subnetName: subnet1
+              - name: internalapi
+                subnetName: subnet1
+              - name: storage
+                subnetName: subnet1
+              - name: tenant
+                subnetName: subnet1
+              - name: storagemgmt
+                subnetName: subnet1
+    host-vars:
+      undercloud:
+        address_suffix: 100
+        os_net_config_file: "net_config.j2"
+      # NOTE: must match those in install_yamls config-download-multistack.j2 and ci-framework adoption.yaml
+      overcloud-controller-0:
+        address_suffix: 103
+      cell1-controller-0:
+        address_suffix: 106
+      cell1-compute-0:
+        address_suffix: 107
+      cell2-controller-compute-0:
+        address_suffix: 109
+
+- job:
     name: adoption-multinode-networker-to-crc
     description: |
         base (abstract) multinode source OSP17.1 with networker nodes adopted to crc RHOSO 18.
     abstract: true
     parent: cifmw-adoption-base-multinode-networker
     required-projects: *dpa_required_projects
-    roles: *multinode_adoption_roles
+    roles: *adoption_common_roles
     pre-run:
       - playbooks/data_plane_adoption/subnode_ip.yaml
       - playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml
