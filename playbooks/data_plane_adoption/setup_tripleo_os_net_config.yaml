@@ -12,6 +12,7 @@
     standalone_vm: false
     additional_networks: []
     manage_default_route: false
+    attach_external_net: false
   tasks:
     - name: Setup repos and install deps for running os-net-config
       become: true
