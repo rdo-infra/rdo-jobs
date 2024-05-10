@@ -72,7 +72,7 @@
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
         regexp: "'^source_mariadb_ip:'"
-        value: "source_mariadb_ip: {{ source_mariadb_ip }}"
+        value: "source_mariadb_ip:\n  default: {{ source_mariadb_ip }}"
 
     - name: Place standalone_ip into vars.yaml for edpm, mariadb, ovndb
       ansible.builtin.lineinfile:
