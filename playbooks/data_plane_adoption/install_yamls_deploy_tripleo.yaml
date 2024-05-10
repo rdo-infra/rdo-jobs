@@ -2,7 +2,7 @@
   vars:
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
   tasks:
-    - name: Deploy undercloud
+    - name: Deploy tripleo
       ansible.builtin.include_role:
         name: 'install_yamls_makes'
         tasks_from: 'make_tripleo_deploy.yml'
@@ -19,6 +19,7 @@
           DATAPLANE_DNS_SERVER: "{{ standalone_gateway }}"
           HOST_PRIMARY_RESOLV_CONF_ENTRY: "{{ standalone_gateway }}"
           EDPM_COMPUTE_CEPH_ENABLED: "{{ use_ceph | default('true') }}"
+          EDPM_COMPUTE_CEPH_NOVA: "{{ use_ceph | default('true') }}"
           EDPM_COMPUTE_CELLS: "{% if multi_cell | bool | default(false) %}3{% else %}1{% endif %}"
           EDPM_CONFIGURE_NETWORKING: 'false'
           DNS_DOMAIN: "{{ cloud_domain | default('localdomain') }}"
