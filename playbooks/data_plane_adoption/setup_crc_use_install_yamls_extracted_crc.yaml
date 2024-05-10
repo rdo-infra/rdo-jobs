@@ -35,78 +35,78 @@
         src: "{{ playbook_dir }}/files/ci_framework_params.yaml.j2"
         dest: "{{ cifmw_parameters_file }}"
 
-    - name: Prepare openshift and libvirt environment
-      ansible.builtin.shell:
-        cmd: >
-          ansible-playbook -v playbooks/02-infra.yml -e "@{{cifmw_parameters_file}}"
-          {%- if cifmw_extras is defined %}
-          {%-   for extra_vars in cifmw_extras %}
-          -e "{{   extra_vars }}"
-          {%-   endfor %}
-          {%- endif %}
-        chdir: "{{ framework_dir }}"
+    # - name: Prepare openshift and libvirt environment
+    #   ansible.builtin.shell:
+    #     cmd: >
+    #       ansible-playbook -v playbooks/02-infra.yml -e "@{{cifmw_parameters_file}}"
+    #       {%- if cifmw_extras is defined %}
+    #       {%-   for extra_vars in cifmw_extras %}
+    #       -e "{{   extra_vars }}"
+    #       {%-   endfor %}
+    #       {%- endif %}
+    #     chdir: "{{ framework_dir }}"
 
-    - name: Write content-provider vars to file if present
-      when: cifmw_operator_build_output is defined and cifmw_operator_build_output
-      block:
-        - name: Set content-provider variables dictionary
-          ansible.builtin.set_fact:
-            cifmw_content_provider_params:
-              cifmw_operator_build_output: "{{ cifmw_operator_build_output }}"
-              cifmw_operator_build_meta_name: 'openstack-operator'
+    # - name: Write content-provider vars to file if present
+    #   when: cifmw_operator_build_output is defined and cifmw_operator_build_output
+    #   block:
+    #     - name: Set content-provider variables dictionary
+    #       ansible.builtin.set_fact:
+    #         cifmw_content_provider_params:
+    #           cifmw_operator_build_output: "{{ cifmw_operator_build_output }}"
+    #           cifmw_operator_build_meta_name: 'openstack-operator'
 
-        - name: Write variables to cifmw custom params file
-          ansible.builtin.lineinfile:
-            path: "{{ cifwm_data_folder }}/custom-params.yml"
-            line: "{{ cifmw_content_provider_params | to_nice_yaml }}"
+    #     - name: Write variables to cifmw custom params file
+    #       ansible.builtin.lineinfile:
+    #         path: "{{ cifwm_data_folder }}/custom-params.yml"
+    #         line: "{{ cifmw_content_provider_params | to_nice_yaml }}"
 
-    - name: Write build-push-openstack-operator-catalog vars to file if present
-      when: operators_catalog_img is defined and operators_catalog_img and 'openstack-operator' in operators_catalog_img
-      block:
-        - name: Set content-provider variables dictionary
-          ansible.builtin.set_fact:
-            cifmw_content_provider_params:
-              cifmw_operator_build_output:
-                operators:
-                  openstack-operator:
-                    image_catalog: "{{ operators_catalog_img['openstack-operator'] }}"
-              cifmw_operator_build_meta_name: 'openstack-operator'
+    # - name: Write build-push-openstack-operator-catalog vars to file if present
+    #   when: operators_catalog_img is defined and operators_catalog_img and 'openstack-operator' in operators_catalog_img
+    #   block:
+    #     - name: Set content-provider variables dictionary
+    #       ansible.builtin.set_fact:
+    #         cifmw_content_provider_params:
+    #           cifmw_operator_build_output:
+    #             operators:
+    #               openstack-operator:
+    #                 image_catalog: "{{ operators_catalog_img['openstack-operator'] }}"
+    #           cifmw_operator_build_meta_name: 'openstack-operator'
 
-        - name: Write variables to cifmw custom params file
-          ansible.builtin.lineinfile:
-            path: "{{ cifwm_data_folder }}/custom-params.yml"
-            line: "{{ cifmw_content_provider_params | to_nice_yaml }}"
+    #     - name: Write variables to cifmw custom params file
+    #       ansible.builtin.lineinfile:
+    #         path: "{{ cifwm_data_folder }}/custom-params.yml"
+    #         line: "{{ cifmw_content_provider_params | to_nice_yaml }}"
 
-    - name: Install operators via ci-framework using edpm code
-      ansible.builtin.shell:
-        cmd: >
-          ansible-playbook -v playbooks/06-deploy-edpm.yml -e "@{{cifmw_parameters_file}}"
-          {%- if cifmw_extras is defined %}
-          {%-   for extra_vars in cifmw_extras %}
-          -e "{{   extra_vars }}"
-          {%-   endfor %}
-          {%- endif %}
-        chdir: "{{ framework_dir }}"
+    # - name: Install operators via ci-framework using edpm code
+    #   ansible.builtin.shell:
+    #     cmd: >
+    #       ansible-playbook -v playbooks/06-deploy-edpm.yml -e "@{{cifmw_parameters_file}}"
+    #       {%- if cifmw_extras is defined %}
+    #       {%-   for extra_vars in cifmw_extras %}
+    #       -e "{{   extra_vars }}"
+    #       {%-   endfor %}
+    #       {%- endif %}
+    #     chdir: "{{ framework_dir }}"
 
-    - name: Copy kubeconfig to .kube folder where oc expects it
-      ansible.builtin.copy:
-        src: "{{ cifmw_openshift_kubeconfig }}"
-        dest: "/home/zuul/.kube/config"
-        remote_src: true
+    # - name: Copy kubeconfig to .kube folder where oc expects it
+    #   ansible.builtin.copy:
+    #     src: "{{ cifmw_openshift_kubeconfig }}"
+    #     dest: "/home/zuul/.kube/config"
+    #     remote_src: true
 
-    - name: Make sure all Openstack operators are deployed
-      ansible.builtin.shell: |
-        set -o pipefail && \
-        oc get csv -l operators.coreos.com/openstack-operator.openstack-operators -n "openstack-operators" --no-headers=true | grep -i "succeeded"
-      register: operator_status
-      until: operator_status.rc == 0
-      changed_when: false
-      retries: 30
-      delay: 30
+    # - name: Make sure all Openstack operators are deployed
+    #   ansible.builtin.shell: |
+    #     set -o pipefail && \
+    #     oc get csv -l operators.coreos.com/openstack-operator.openstack-operators -n "openstack-operators" --no-headers=true | grep -i "succeeded"
+    #   register: operator_status
+    #   until: operator_status.rc == 0
+    #   changed_when: false
+    #   retries: 30
+    #   delay: 30
 
-    - name: Get the name of the control plane deployed by 06-deploy-edpm.yml
-      ansible.builtin.command: oc get -n openstack openstackcontrolplane -o name
-      register: control_plane
+    # - name: Get the name of the control plane deployed by 06-deploy-edpm.yml
+    #   ansible.builtin.command: oc get -n openstack openstackcontrolplane -o name
+    #   register: control_plane
 
-    - name: Delete control plane deployed by 06-deploy-edpm.yml
-      ansible.builtin.command: oc delete -n openstack "{{ control_plane.stdout }}"
+    # - name: Delete control plane deployed by 06-deploy-edpm.yml
+    #   ansible.builtin.command: oc delete -n openstack "{{ control_plane.stdout }}"
