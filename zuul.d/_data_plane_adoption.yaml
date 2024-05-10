@@ -70,10 +70,31 @@
       - playbooks/data_plane_adoption/set_zuul_artifacts.yaml
       - playbooks/force_job_failure.yaml
     vars:
+      use_ceph: 'false'
+      multi_cell: "true"
       standalone_ip: 192.168.122.100
       standalone_gateway: 192.168.122.10
       standalone_private_key: /home/zuul/.ssh/id_rsa
       os_net_config_file: "overcloud_net_config.j2"
+    host-vars:
+      undercloud:
+        address_suffix: 100
+        os_net_config_file: "net_config.j2"
+      overcloud-controller-0:
+        address_suffix: 103
+      cell1-compute-0:
+        address_suffix: 104
+      cell2-controller-compute-0:
+        address_suffix: 105
+      cell1-controller-0:
+        address_suffix: 106
+
+- job:
+    name: data-plane-adoption-osp17-multinode-to-extracted-crc-with-ceph
+    parent: data-plane-adoption-osp17-multinode-to-extracted-crc-no-ceph
+    vars:
+      use_ceph: 'true'
+      multi_cell: 'false'
     host-vars:
       undercloud:
         address_suffix: 100
@@ -86,9 +107,3 @@
         address_suffix: 105
       overcloud-novacompute-0:
         address_suffix: 106
-
-- job:
-    name: data-plane-adoption-osp17-multinode-to-extracted-crc-with-ceph
-    parent: data-plane-adoption-osp17-multinode-to-extracted-crc-no-ceph
-    vars:
-      use_ceph: 'true'
