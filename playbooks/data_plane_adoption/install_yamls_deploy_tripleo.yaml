@@ -20,7 +20,8 @@
           HOST_PRIMARY_RESOLV_CONF_ENTRY: "{{ standalone_gateway }}"
           EDPM_COMPUTE_CEPH_ENABLED: "{{ use_ceph | default('true') }}"
           EDPM_COMPUTE_CELLS: "{% if multi_cell | bool | default(false) %}3{% else %}1{% endif %}"
-          EDPM_CONFIGURE_NETWORKING: 'false'
+          EDPM_CONFIGURE_DEFAULT_ROUTE: "{{ tripleo_network.manage_undercloud_default_route | default('false') | string | quote }}"
+          EDPM_CONFIGURE_NETWORKING: "{{ tripleo_network.configure_networking | default('false') | string | quote }}"
           DNS_DOMAIN: "{{ cloud_domain | default('localdomain') }}"
           TLS_ENABLED: "{{ enable_tls | default('false') }}"
           RH_REGISTRY_PWD: ""
