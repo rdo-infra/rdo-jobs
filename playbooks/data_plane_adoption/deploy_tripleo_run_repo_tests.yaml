@@ -129,6 +129,7 @@
             -e repo_setup_commands=/home/zuul/cdn_subscription_repos.sh
             -e "standalone_ip={{ standalone_ip }}" -e "standalone_gateway={{ standalone_gateway }}"
             -e "undercloud_dns={{ undercloud_dns | default(standalone_gateway) }}"
+            -e "tripleo_network={{ tripleo_network | default({}) }}"
             -e "use_ceph={{ use_ceph | default('false') }}"
             -e "multi_cell={{ multi_cell | default(false) }}"
             -e "enable_telemetry={{ enable_telemetry | default('false') }}"
