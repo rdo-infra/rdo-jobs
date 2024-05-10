@@ -188,12 +188,18 @@
         path: "{{ rdo_dir }}/vars.yaml"
         line: "upstream_dns: {{ upstream_control_plane_dns }}"
 
+    - name: Set var to skip ansibleee csv patching
+      when: dpa_skip_patch_csv is defined and dpa_skip_patch_csv
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        line: "skip_patching_ansibleee_csv: {{ dpa_skip_patch_csv }}"
+
     - name: Check if edpm-ansible.yml file was created
       ansible.builtin.stat:
         path: "/home/zuul/ci-framework-data/artifacts/edpm-ansible.yml"
       register: edpm_ansible_file
 
-    - name: Read edpm_ansible  file and extract ansibleee_runner img
+    - name: Read edpm_ansible file and extract ansibleee_runner img
       when: edpm_ansible_file.stat.exists
       block:
         - name: Read file
