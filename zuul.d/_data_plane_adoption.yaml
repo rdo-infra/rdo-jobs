@@ -10,7 +10,7 @@
       - name: openstack-k8s-operators/ci-framework
         override-checkout: main
       - rdo-jobs
-    roles:
+    roles: &adoption_common_roles
       - zuul: rdo-jobs
       - zuul: github.com/openstack-k8s-operators/ci-framework
     pre-run:
@@ -50,6 +50,45 @@
       cloud_domain: "ooo.test"
       use_ceph: "false"
       dpa_test_suite: "test-minimal"
+
+- job:
+    name: data-plane-adoption-osp17-multinode-to-extracted-crc-no-ceph-novacells
+    parent: cifmw-adoption-base-source-multinode-novacells
+    required-projects: *dpa_required_projects
+    roles: *adoption_common_roles
+    pre-run:
+      - playbooks/data_plane_adoption/subnode_ip.yaml
+      - playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml
+      - playbooks/data_plane_adoption/setup_tripleo_os_net_config.yaml
+      - playbooks/data_plane_adoption/setup_tripleo_hostnamemap.yaml
+    run:
+      - playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml
+    post-run:
+      - playbooks/data_plane_adoption/unregister_RH_subscription_standalone.yaml
+      - playbooks/data_plane_adoption/collect_logs_crc.yaml
+      - playbooks/data_plane_adoption/collect_logs_tripleo.yaml
+      - playbooks/data_plane_adoption/set_zuul_artifacts.yaml
+      - playbooks/force_job_failure.yaml
+    vars:
+      use_ceph: false
+      multi_cell: true
+      standalone_ip: 192.168.122.100
+      standalone_gateway: 192.168.122.10
+      standalone_private_key: /home/zuul/.ssh/id_rsa
+      os_net_config_file: "overcloud_net_config.j2"
+    host-vars:
+      undercloud:
+        address_suffix: 100
+        os_net_config_file: "net_config.j2"
+      # NOTE: must match those in install_yamls config-download-multistack.j2 and ci-framework adoption.yaml
+      overcloud-controller-0:
+        address_suffix: 103
+      cell1-controller-0:
+        address_suffix: 106
+      cell1-compute-0:
+        address_suffix: 107
+      cell2-controller-compute-0:
+        address_suffix: 109
 
 - job:
     name: data-plane-adoption-osp17-multinode-to-extracted-crc-no-ceph
