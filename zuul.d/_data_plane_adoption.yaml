@@ -10,7 +10,7 @@
       - name: openstack-k8s-operators/ci-framework
         override-checkout: main
       - rdo-jobs
-    roles:
+    roles: &adoption_common_roles
       - zuul: rdo-jobs
       - zuul: github.com/openstack-k8s-operators/ci-framework
     pre-run:
@@ -52,19 +52,17 @@
       dpa_test_suite: "test-minimal"
 
 - job:
-    name: data-plane-adoption-osp17-multinode-to-extracted-crc-no-ceph
+    name: data-plane-adoption-osp17-multinode-to-extracted-crc-with-ceph
     abstract: true
     parent: cifmw-adoption-base-source-multinode
     required-projects: *dpa_required_projects
-    roles:
-      - zuul: rdo-jobs
-      - zuul: github.com/openstack-k8s-operators/ci-framework
-    pre-run:
+    roles: *adoption_common_roles
+    pre-run: &multinode_prerun
       - playbooks/data_plane_adoption/subnode_ip.yaml
       - playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml
       - playbooks/data_plane_adoption/setup_tripleo_os_net_config.yaml
       - playbooks/data_plane_adoption/setup_tripleo_hostnamemap.yaml
-    run:
+    run: &multinode_run
       - playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml
     post-run:
       - playbooks/data_plane_adoption/unregister_RH_subscription_standalone.yaml
@@ -73,6 +71,8 @@
       - playbooks/data_plane_adoption/set_zuul_artifacts.yaml
       - playbooks/force_job_failure.yaml
     vars:
+      use_ceph: true
+      multi_cell: false # TODO: make it multi-cell eventually
       standalone_ip: 192.168.122.100
       standalone_gateway: 192.168.122.10
       standalone_private_key: /home/zuul/.ssh/id_rsa
@@ -88,6 +88,46 @@
       overcloud-controller-2:
         address_suffix: 105
       overcloud-novacompute-0:
+        address_suffix: 106
+
+- job:
+    # TODO: remove this job after HCI ceph multi-cell done
+    name: data-plane-adoption-osp17-multinode-to-extracted-crc-no-ceph
+    parent: cifmw-adoption-base-source-multinode-novacells
+    required-projects: *dpa_required_projects
+    roles: *adoption_common_roles
+    pre-run:
+      - playbooks/data_plane_adoption/subnode_ip.yaml
+      - playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml
+      - playbooks/data_plane_adoption/setup_tripleo_os_net_config.yaml
+      - playbooks/data_plane_adoption/setup_tripleo_hostnamemap.yaml
+    run:
+      - playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml
+    post-run:
+      - playbooks/data_plane_adoption/unregister_RH_subscription_standalone.yaml
+      - playbooks/data_plane_adoption/collect_logs_crc.yaml
+      - playbooks/data_plane_adoption/collect_logs_tripleo.yaml
+      - playbooks/data_plane_adoption/set_zuul_artifacts.yaml
+      - playbooks/force_job_failure.yaml
+    vars:
+      use_ceph: "true"
+      use_ceph: false
+      multi_cell: true
+      standalone_ip: 192.168.122.100
+      standalone_gateway: 192.168.122.10
+      standalone_private_key: /home/zuul/.ssh/id_rsa
+      os_net_config_file: "overcloud_net_config_leafs.j2"
+    host-vars:
+      undercloud:
+        address_suffix: 100
+        os_net_config_file: "net_config.j2"
+      overcloud-controller-0:
+        address_suffix: 103
+      cell1-compute-0:
+        address_suffix: 104
+      cell2-controller-compute-0:
+        address_suffix: 105
+      cell1-controller-0:
         address_suffix: 106
 
 - job:
