@@ -127,50 +127,6 @@
         regexp: '^edpm_encoded_privatekey:'
         value: "edpm_encoded_privatekey: \"{{ standalone_key['content'] }}\""
 
-    - name: Read the tripleo passwords downloaded from standalone
-      ansible.builtin.slurp:
-        path: /home/zuul/tripleo-standalone-passwords.yaml
-      register: tripleo_passwords
-
-    - name: Set tripleo passwords in secrets.yaml
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/secrets.yaml"
-        regexp: "{{ item.key }}:"
-        line: "{{ item.key }}: {{ tripleo_passwords['content'] | b64decode | regex_search(item.regex + ': (.+)', '\\1') | first }}"
-      loop:
-        - key: 'source_db_root_password'
-          regex: 'MysqlRootPassword'
-        - key: 'aodh_password'
-          regex: 'AodhPassword'
-        - key: 'barbican_password'
-          regex: 'BarbicanPassword'
-        - key: 'ceilometer_password'
-          regex: 'CeilometerPassword'
-        - key: 'glance_password'
-          regex: 'GlancePassword'
-        - key: 'placement_password'
-          regex: 'PlacementPassword'
-        - key: 'cinder_password'
-          regex: 'CinderPassword'
-        - key: 'neutron_password'
-          regex: 'NeutronPassword'
-        - key: 'heat_password'
-          regex: 'HeatPassword'
-        - key: 'heat_stack_domain_admin_password'
-          regex: 'HeatStackDomainAdminPassword'
-        - key: 'heat_auth_encryption_key'
-          regex: 'HeatAuthEncryptionKey'
-        - key: 'manila_password'
-          regex: 'ManilaPassword'
-        - key: 'ironic_password'
-          regex: 'IronicPassword'
-        - key: 'nova_password'
-          regex: 'NovaPassword'
-        - key: 'octavia_password'
-          regex: 'OctaviaPassword'
-        - key: 'swift_password'
-          regex: 'SwiftPassword'
-
     - name: Set standalone login var controller1_ssh in secrets.yaml
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/secrets.yaml"
