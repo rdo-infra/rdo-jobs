@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6978fb67_3a0c3db2",
+        "filename": "playbooks/data_plane_adoption/setup_tripleo_hostnamemap.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-05-13T07:16:32Z",
+      "side": 0,
+      "message": "we must grab the compute1 and 2 hostnames too then\n\nbut before we do that we must add those to the nodeset \nhttps://github.com/openstack-k8s-operators/ci-framework/blob/d004459c233e3acd26c95d8526d54218d945164e/zuul.d/nodeset.yaml#L80\n\nand also the bootstrap networking https://github.com/openstack-k8s-operators/ci-framework/blob/d004459c233e3acd26c95d8526d54218d945164e/zuul.d/adoption.yaml#L154\n\n\nthat is next on our list to complete the multinode job ie add the 2 other computes",
+      "revId": "a469449dde8033b4e1215d0c6d4c45c8a5990f69",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
