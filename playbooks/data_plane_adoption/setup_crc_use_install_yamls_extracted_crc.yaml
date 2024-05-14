@@ -18,6 +18,11 @@
           {% if dpa_cifmw_bootstrap_vars is defined %}
           -e "@{{ dpa_cifmw_bootstrap_vars }}"
           {% endif %}
+          {%- if cifmw_extras is defined %}
+          {%-   for extra_vars in cifmw_extras %}
+          -e "{{   extra_vars }}"
+          {%-   endfor %}
+          {%- endif %}
         chdir: "{{ framework_dir }}"
 
     - name: Dump parameters to a file to pass them easily to cifmw playbooks
@@ -27,8 +32,13 @@
 
     - name: Prepare openshift and libvirt environment
       ansible.builtin.shell:
-        cmd:
+        cmd: >
           ansible-playbook -v playbooks/02-infra.yml -e "@{{cifmw_parameters_file}}"
+          {%- if cifmw_extras is defined %}
+          {%-   for extra_vars in cifmw_extras %}
+          -e "{{   extra_vars }}"
+          {%-   endfor %}
+          {%- endif %}
         chdir: "{{ framework_dir }}"
 
     - name: Write content-provider vars to file if present
@@ -64,8 +74,13 @@
 
     - name: Install operators via ci-framework using edpm code
       ansible.builtin.shell:
-        cmd:
+        cmd: >
           ansible-playbook -v playbooks/06-deploy-edpm.yml -e "@{{cifmw_parameters_file}}"
+          {%- if cifmw_extras is defined %}
+          {%-   for extra_vars in cifmw_extras %}
+          -e "{{   extra_vars }}"
+          {%-   endfor %}
+          {%- endif %}
         chdir: "{{ framework_dir }}"
 
     - name: Copy kubeconfig to .kube folder where oc expects it
