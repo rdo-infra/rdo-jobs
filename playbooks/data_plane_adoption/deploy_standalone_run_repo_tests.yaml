@@ -4,6 +4,7 @@
     dpa_dir: "/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption"
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
+    source_mariadb_ip: 172.17.0.100
   tasks:
     - name: Create inventory to run tasks inside vm
       ansible.builtin.template:
@@ -61,6 +62,12 @@
       ansible.builtin.shell:
         ansible-playbook {{ rdo_dir }}/standalone_prepare_tests.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
 
+    - name: Place internal IP into vars.yaml for Mariadb
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: "'^source_mariadb_ip:'"
+        value: "source_mariadb_ip: {{ source_mariadb_ip }}"
+
     - name: Place standalone_ip into vars.yaml for edpm, mariadb, ovndb
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
@@ -68,7 +75,6 @@
         value: "{{ item }}: {{ standalone_ip }}"
       loop:
         - "edpm_node_ip"
-        - "source_mariadb_ip"
         - "source_ovndb_ip"
 
     - name: Set EDPM node hostname in vars.yaml
