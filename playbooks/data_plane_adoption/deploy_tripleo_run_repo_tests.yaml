@@ -6,6 +6,8 @@
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
     cifmw_datadir: "/home/zuul/ci-framework-data"
     edpm_node_ip: 192.168.122.106
+    source_mariadb_ip: 172.17.0.100
+    source_ovndb_ip: 192.168.122.103
   tasks:
     - name: Create inventory for logs collection on the undercloud
       ansible.builtin.template:
@@ -109,14 +111,17 @@
       ansible.builtin.shell:
         ansible-playbook {{ rdo_dir }}/undercloud_prepare_tests.yaml -i /home/zuul/tripleo_ci_inventory
 
-    - name: Place control0 IP into vars.yaml for mariadb, ovndb
+    - name: Place internal IP into vars.yaml for Mariadb
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
-        regexp: "'^{{ item }}:'"
-        value: "{{ item }}: 192.168.122.103"
-      loop:
-        - "source_mariadb_ip"
-        - "source_ovndb_ip"
+        regexp: "'^source_mariadb_ip:'"
+        value: "source_mariadb_ip: {{ source_mariadb_ip }}"
+
+    - name: Place control0 IP into vars.yaml for ovndb
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: "'^source_ovndb_ip:'"
+        value: "source_ovndb_ip: {{ source_ovndb_ip }}"
 
     - name: Place compute IP into vars.yaml for edpm_node_ip
       ansible.builtin.lineinfile:
