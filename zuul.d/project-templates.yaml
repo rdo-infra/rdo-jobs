@@ -846,6 +846,30 @@
         - centos-opstools-collectd-5-distgit-cbs-final-build-centos9s
 
 - project-template:
+    name: centos-opstools-el9s-only
+    queue: centos-release-opstools
+    description: |
+      Jobs that are used by opstools projects with CentOS9s support only.
+    check:
+      jobs:
+        - centos-opstools-rpmlint
+	- centos-opstools-rpmbuild-centos8s:
+            voting: false
+        - centos-opstools-rpmbuild-centos9s
+        - centos-opstools-collectd-5-distgit-cbs-validate-centos8s:
+            voting: false
+        - centos-opstools-collectd-5-distgit-cbs-validate-centos9s
+    gate:
+      jobs:
+        - centos-opstools-rpmlint
+        - centos-opstools-rpmbuild-centos8s:
+            voting: false
+        - centos-opstools-rpmbuild-centos9s
+        - centos-opstools-collectd-5-distgit-cbs-validate-centos8s:
+            voting: false
+        - centos-opstools-collectd-5-distgit-cbs-final-build-centos9s
+
+- project-template:
     name: centos-opstools-unsupported
     queue: centos-release-opstools
     check:
