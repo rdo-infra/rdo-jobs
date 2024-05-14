@@ -138,6 +138,7 @@
         block: |
           dataplane_os_net_config_iface: nic2
           dataplane_public_iface: eth1
+          upstream_dns: "{{ standalone_gateway }}"
           dataplane_os_net_config_set_route: false
           os_cloud_name: overcloud
           edpm_node_hostname: "{{ compute_hostname['content'] | b64decode | trim }}.localdomain"
