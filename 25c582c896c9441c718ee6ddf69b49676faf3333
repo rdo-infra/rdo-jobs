@@ -16,6 +16,23 @@
       "message": "Thanks Sergii!",
       "revId": "25c582c896c9441c718ee6ddf69b49676faf3333",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2b857d8_c5f0e07c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 289
+      },
+      "writtenOn": "2024-05-14T08:21:10Z",
+      "side": 1,
+      "message": "Context for other reviewers: this needs to be paired up with Harald\u0027s install_yamls patch: https://github.com/openstack-k8s-operators/install_yamls/pull/758\n\nMaybe we should add a depends-on into the install_yamls PR if that works? Or do we need a testproject change to test this?",
+      "revId": "25c582c896c9441c718ee6ddf69b49676faf3333",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
