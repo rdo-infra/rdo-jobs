@@ -308,8 +308,10 @@
           register: edpm_ansible_output
 
         - name: Extract ansiblee_runner img
+          vars:
+            edpm_ansible_dict: "{{ edpm_ansible_output['content'] | b64decode | from_yaml }}"
           ansible.builtin.set_fact:
-            ansibleee_runner_img: "{{ edpm_ansible_output['content'] | b64decode | regex_search('RELATED_IMAGE_ANSIBLEEE_IMAGE_URL_DEFAULT' + ': \"(.+)\"', '\\1') | first }}"
+            ansibleee_runner_img: "{{ edpm_ansible_dict['cifmw_update_containers_ansibleee_image_url'] }}"
 
         - name: Insert ansibleee_runner_img var into vars.yaml
           ansible.builtin.lineinfile:
