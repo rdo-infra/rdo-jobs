@@ -7,7 +7,7 @@
     cifmw_datadir: "/home/zuul/ci-framework-data"
     edpm_node_ip: 192.168.122.106
     source_mariadb_ip: 172.17.0.103
-    source_ovndb_ip: 192.168.122.103
+    source_ovndb_ip: 172.17.0.103
   tasks:
     - name: Create inventory for logs collection on the undercloud
       ansible.builtin.template:
