@@ -3,6 +3,16 @@
   vars:
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
   tasks:
+    # DNM: jgilaber just for debugging
+    - name: Check if loopback devices are there
+      delegate_to: overcloud-novacompute-0
+      ansible.builtin.command: lsblk
+      register: lsblk_output
+
+    - name: Debug lsblk output
+      ansible.builtin.debug:
+        msg: "{{ lsblk_output }}"
+
     - name: Collect data_plane_adoption files
       ansible.builtin.shell: |
         source ~/.bashrc
