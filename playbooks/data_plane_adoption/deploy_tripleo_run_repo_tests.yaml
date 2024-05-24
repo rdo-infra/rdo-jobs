@@ -318,10 +318,10 @@
             path: "{{ rdo_dir }}/vars.yaml"
             line: "ansibleee_runner_img: {{ ansibleee_runner_img }}"
 
-    - name: Run data-plane-adoption tests test-minimal target
+    - name: Run data-plane-adoption tests
       community.general.make:
         chdir: "{{ dpa_dir }}"
-        target: "test-minimal"
+        target: "{{ dpa_test_suite | default('test-minimal') }}"
         params:
           TEST_CONFIG: "{{ rdo_dir }}/ansible.cfg"
           TEST_SECRETS: "{{ rdo_dir}}/secrets.yaml"
@@ -335,6 +335,7 @@
         ansible-playbook {{ rdo_dir }}/unregister_RH_subscription_standalone.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
 
     - name: Mark job as successful
+      when: not force_job_failure | default(false)
       ansible.builtin.file:
         path: "{{ ansible_user_dir }}/cifmw-success"
         state: touch
