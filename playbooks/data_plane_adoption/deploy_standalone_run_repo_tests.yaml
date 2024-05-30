@@ -1,7 +1,7 @@
 - hosts: controller
   gather_facts: false
   vars:
-    dpa_dir: "/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption"
+    dpa_dir: "{{ dpa_dir }} | default('/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption')"
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
     source_mariadb_ip: 172.17.0.100
