@@ -5,7 +5,10 @@
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
     cifmw_datadir: "/home/zuul/ci-framework-data"
-    edpm_node_ip: 192.168.122.106
+    edpm_node_ips:
+      - 192.168.122.106
+      - 192.168.122.107
+      - 192.168.122.108
     source_mariadb_ip: 172.17.0.103
     source_ovndb_ip: 172.17.0.103
   tasks:
@@ -123,23 +126,131 @@
         regexp: "'^source_ovndb_ip:'"
         value: "source_ovndb_ip: {{ source_ovndb_ip }}"
 
-    - name: Place compute IP into vars.yaml for edpm_node_ip
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/vars.yaml"
-        regexp: "'^edpm_node_ip:'"
-        value: "edpm_node_ip: {{ edpm_node_ip }}"
+    - name: Prep and insert vars for multiple computes
+      when: not single_compute|default('true')|bool
+      block:
+        - name: Fetch compute hostnames to set edpm_node_hostname vars
+          delegate_to: "overcloud-novacompute-{{ item }}"
+          ansible.builtin.slurp:
+            path: /home/zuul/ansible_hostname
+          register: compute_hostnames
+          loop:
+            - 0
+            - 1
+            - 2
+        - name: Set compute hostnames facts to prevent repetition
+          ansible.builtin.set_fact:
+            compute0_hostname: "{{ compute_hostnames.results[0]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
+            compute1_hostname: "{{ compute_hostnames.results[1]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
+            compute2_hostname: "{{ compute_hostnames.results[2]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
 
-    - name: Fetch compute hostname to set edpm_node_hostname var
-      delegate_to: "overcloud-novacompute-0"
-      ansible.builtin.slurp:
-        path: /home/zuul/ansible_hostname
-      register: compute_hostname
+        - name: Set edpm_node_ip, _hostname, edpm_nodes, edpm_computes in vars.yaml with compute hostnames
+          ansible.builtin.blockinfile:
+            marker_begin: "BEGIN edpm_node_ip hostname vars"
+            marker_end: "END edpm_node_ip hostname vars"
+            path: "{{ rdo_dir }}/vars.yaml"
+            block: |
+              edpm_node_hostname:  {{ compute0_hostname }}
+              edpm_node_ip: {{ edpm_node_ips[0] }}
+              edpm_node1_hostname:  {{ compute1_hostname }}
+              edpm_node1_ip: {{ edpm_node_ips[1] }}
+              edpm_node2_hostname:  {{ compute2_hostname }}
+              edpm_node2_ip: {{ edpm_node_ips[2] }}
+              edpm_computes: |
+              ["{{ compute0_hostname }}"]="{{ edpm_node_ips[0] }}"
+              ["{{ compute1_hostname }}"]="{{ edpm_node_ips[1] }}"
+              ["{{ compute2_hostname }}"]="{{ edpm_node_ips[2] }}"
+              edpm_nodes:
+                {{ compute_hostnames.results[0]['content'] | b64decode | trim }}:
+                  hostName: "{{ compute0_hostname }}"
+                  ansible:
+                    ansibleHost: {{ edpm_node_ips[0] }}
+                  networks:
+                    - defaultRoute: true
+                      fixedIP: {{ edpm_node_ips[0] }}
+                      name: ctlplane
+                      subnetName: subnet1
+                    - name: internalapi
+                      fixedIP: 172.17.0.106
+                      subnetName: subnet1
+                    - name: storage
+                      fixedIP: 172.18.0.106
+                      subnetName: subnet1
+                    - name: tenant
+                      fixedIP: 172.19.0.106
+                      subnetName: subnet1
+                {{ compute_hostnames.results[1]['content'] | b64decode | trim }}:
+                  hostName: "{{ compute1_hostname }}"
+                  ansible:
+                    ansibleHost: {{ edpm_node_ips[1] }}
+                  networks:
+                    - defaultRoute: true
+                      fixedIP: {{ edpm_node_ips[1] }}
+                      name: ctlplane
+                      subnetName: subnet1
+                    - name: internalapi
+                      fixedIP: 172.17.0.107
+                      subnetName: subnet1
+                    - name: storage
+                      fixedIP: 172.18.0.107
+                      subnetName: subnet1
+                    - name: tenant
+                      fixedIP: 172.19.0.107
+                      subnetName: subnet1
+                {{ compute_hostnames.results[2]['content'] | b64decode | trim }}:
+                  hostName: "{{ compute2_hostname }}"
+                  ansible:
+                    ansibleHost: {{ edpm_node_ips[2] }}
+                  networks:
+                    - defaultRoute: true
+                      fixedIP: {{ edpm_node_ips[2] }}
+                      name: ctlplane
+                      subnetName: subnet1
+                    - name: internalapi
+                      fixedIP: 172.17.0.108
+                      subnetName: subnet1
+                    - name: storage
+                      fixedIP: 172.18.0.108
+                      subnetName: subnet1
+                    - name: tenant
+                      fixedIP: 172.19.0.108
+                      subnetName: subnet1
 
-    - name: Set EDPM node hostname in vars.yaml
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/vars.yaml"
-        regexp: "'^edpm_node_hostname:'"
-        value: "edpm_node_hostname: {{ compute_hostname['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
+    - name: Prep and insert vars for single compute
+      when: single_compute|default('true')|bool
+      block:
+        - name: Fetch compute hostname to set edpm_node_hostname var
+          delegate_to: "overcloud-novacompute-0"
+          ansible.builtin.slurp:
+            path: /home/zuul/ansible_hostname
+          register: compute_hostname
+        - name: Set edpm_node_ip, _hostname, edpm_nodes, edpm_computes in vars.yaml with compute hostname
+          ansible.builtin.blockinfile:
+            marker_begin: "BEGIN edpm_node_ip hostname vars"
+            marker_end: "END edpm_node_ip hostname vars"
+            path: "{{ rdo_dir }}/vars.yaml"
+            block: |
+              edpm_node_ip: {{ edpm_node_ips[0] }}
+              edpm_node_hostname: {{ compute_hostname['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}
+              edpm_nodes:
+                {{ compute_hostname['content'] | b64decode | trim }}:
+                  hostName: "{{ compute_hostname['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
+                  ansible:
+                    ansibleHost: {{ edpm_node_ips[0] }}
+                  networks:
+                    - defaultRoute: true
+                      fixedIP: {{ edpm_node_ips[0] }}
+                      name: ctlplane
+                      subnetName: subnet1
+                    - name: internalapi
+                      fixedIP: 172.17.0.106
+                      subnetName: subnet1
+                    - name: storage
+                      fixedIP: 172.18.0.106
+                      subnetName: subnet1
+                    - name: tenant
+                      fixedIP: 172.19.0.106
+                      subnetName: subnet1
 
     - name: Set TLS Everywhere in vars.yaml
       ansible.builtin.lineinfile:
@@ -161,25 +272,6 @@
           edpm_user: zuul
           standalone_ip: "{{ standalone_ip | default('192.168.122.100') }}"
           neutron_physical_bridge_name: br-ex
-          edpm_nodes:
-            {{ compute_hostname['content'] | b64decode | trim }}:
-              hostName: "{{ compute_hostname['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
-              ansible:
-                ansibleHost: {{ edpm_node_ip }}
-              networks:
-                - defaultRoute: true
-                  fixedIP: {{ edpm_node_ip }}
-                  name: ctlplane
-                  subnetName: subnet1
-                - name: internalapi
-                  fixedIP: 172.17.0.106
-                  subnetName: subnet1
-                - name: storage
-                  fixedIP: 172.18.0.106
-                  subnetName: subnet1
-                - name: tenant
-                  fixedIP: 172.19.0.106
-                  subnetName: subnet1
 
     - name: Read the ssh key downloaded from undercloud
       ansible.builtin.slurp:
