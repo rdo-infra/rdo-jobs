@@ -77,6 +77,7 @@
       standalone_gateway: 192.168.122.10
       standalone_private_key: /home/zuul/.ssh/id_rsa
       os_net_config_file: "overcloud_net_config.j2"
+      single_compute: false
     host-vars:
       undercloud:
         address_suffix: 100
@@ -89,6 +90,11 @@
         address_suffix: 105
       overcloud-novacompute-0:
         address_suffix: 106
+      overcloud-novacompute-1:
+        address_suffix: 107
+      overcloud-novacompute-2:
+        address_suffix: 108
+
 
 - job:
     name: data-plane-adoption-osp17-multinode-to-extracted-crc-with-ceph
