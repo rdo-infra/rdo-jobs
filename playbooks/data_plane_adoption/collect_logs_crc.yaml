@@ -1,6 +1,7 @@
 - hosts: controller
   gather_facts: false
   vars:
+    dpa_dir: "{{ dpa_dir_override | default('/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption') }}"
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
   tasks:
     - name: Collect data_plane_adoption files
@@ -12,8 +13,8 @@
         ip ro ls >> network.txt
         test -d /home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out && \
           rsync -r /home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out ./install_yamls_out
-        rsync -r /home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption ./data-plane-adoption-tests-repo
-        rsync -r /home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption ./data-plane-adoption-tests-repo
+        rsync -r {{ dpa_dir }} ./data-plane-adoption-tests-repo
+        rsync -r {{ rdo_dir }} ./data-plane-adoption-tests-repo
         popd
       args:
         chdir: "{{ ansible_user_dir }}"
