@@ -1,7 +1,8 @@
 - hosts: controller
   gather_facts: false
   vars:
-    dpa_dir: "/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption"
+    #dpa_dir: "/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption"
+    dpa_dir: "{{ dpa_dir_override | default('/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption') }}"
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
     source_mariadb_ip: 172.17.0.100
@@ -244,7 +245,8 @@
             path: "{{ rdo_dir }}/vars.yaml"
             line: "ansibleee_runner_img: {{ ansibleee_runner_img }}"
 
-    - name: Run data-plane-adoption tests
+
+    - name: "Run data-plane-adoption tests from {{ dpa_dir }}"
       community.general.make:
         chdir: "{{ dpa_dir }}"
         target: "{{ dpa_test_suite | default('test-with-ceph') }}"
