@@ -1,7 +1,7 @@
 - hosts: controller
   gather_facts: false
   vars:
-    dpa_dir: "/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption"
+    dpa_dir: "{{ dpa_dir_override | default('/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption') }}"
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
     cifmw_datadir: "/home/zuul/ci-framework-data"
@@ -323,7 +323,7 @@
         chdir: "{{ dpa_dir }}"
         target: "{{ dpa_test_suite | default('test-minimal') }}"
         params:
-          TEST_CONFIG: "{{ rdo_dir }}/ansible.cfg"
+          TEST_CONFIG: "{{ dpa_test_ansible_cfg | default(rdo_dir  ~ '/ansible.cfg') }}"
           TEST_SECRETS: "{{ rdo_dir}}/secrets.yaml"
           TEST_VARS: "{{ rdo_dir }}/vars.yaml"
           TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"
