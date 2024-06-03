@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aadacc2e_bb4f84d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 26
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-06-03T07:22:08Z",
+      "side": 1,
+      "message": "but not sure if this is ready for review yet or I think you are still working here @bogdan right?",
+      "revId": "9009d1f132dd0fc7388665712a6880121d6c5368",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6550215_362e094f",
+        "filename": "zuul.d/_data_plane_adoption.yaml",
+        "patchSetId": 26
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-06-03T07:22:08Z",
+      "side": 1,
+      "message": "did you remove abstract on purpose? we\u0027ve agreed that we should not run these multinode jobs in check/gate because of resources.",
+      "revId": "9009d1f132dd0fc7388665712a6880121d6c5368",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "323beda8_3ad5d118",
+        "filename": "zuul.d/_data_plane_adoption.yaml",
+        "patchSetId": 26
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-06-03T07:22:08Z",
+      "side": 1,
+      "message": "can you please use a duplicate/new job that will change these, instead of making changes to the existing no-ceph job?",
+      "revId": "9009d1f132dd0fc7388665712a6880121d6c5368",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
