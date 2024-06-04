@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f84ce7c_09486d7c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 930
+      },
+      "writtenOn": "2024-06-04T00:57:30Z",
+      "side": 1,
+      "message": "Thanks Doug, this looks good to be beside one small nit",
+      "revId": "584b31516a34b1d65dd1b5123c845a5fa2b39ec0",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "106dfa9c_5adbe4e4",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 930
+      },
+      "writtenOn": "2024-06-04T00:57:30Z",
+      "side": 1,
+      "message": "I think we should add `from {{ dpa_dir }}` to this task name as well to match the other.",
+      "revId": "584b31516a34b1d65dd1b5123c845a5fa2b39ec0",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
