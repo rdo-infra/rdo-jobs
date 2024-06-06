@@ -1,0 +1,33 @@
+- hosts: all
+  gather_facts: false
+
+  vars:
+    framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
+    zuul_url: "https://review.rdoproject.org/zuul/api"
+
+  tasks:
+    - name: Call the API
+      ansible.builtin.uri:
+        url: "{{ zuul_url }}/builds?uuid={{ build_uuid }}"
+        return_content: true
+      register: build_data
+      when: build_uuid | length > 0
+
+    - name: Get the start_time
+      ansible.builtin.set_fact:
+        build_start_time: "{{ build_data.json[0]['start_time'] | default('') }}"
+
+    - name: Test run name
+      ansible.builtin.debug:
+        msg: "Test run name: {{ job_name }}-{{ build_start_time }}"
+
+    - name: Set test run title
+      ansible.builtin.set_fact:
+        cifmw_polarion_jump_extra_vars: >-
+           {{ cifmw_polarion_jump_extra_vars | default('') }}
+           --project-id RHOSO
+           --testrun-title {{ job_name }}-{{ build_start_time }}
+           --testrun-status finished
+
+    - ansible.builtin.include_role:
+        name: "polarion"

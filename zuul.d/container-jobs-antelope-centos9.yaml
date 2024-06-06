@@ -103,7 +103,6 @@
         tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsIpV6TestJSON
         tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsTestJSON
 
-
 - job:
     name: periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-no-ceph
     parent: data-plane-adoption-osp17-multinode-to-extracted-crc-no-ceph
@@ -132,7 +131,6 @@
         tempest.api.network.admin.test_dhcp_agent_scheduler.DHCPAgentSchedulersTestJSON
         tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsIpV6TestJSON
         tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsTestJSON
-
 
 - job:
     name: periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-with-ceph
