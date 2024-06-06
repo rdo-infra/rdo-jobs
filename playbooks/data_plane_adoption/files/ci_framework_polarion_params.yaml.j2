@@ -1,0 +1,6 @@
+---
+{% for key, value in polarion_params.items() %}
+{% if value is not none %}
+{{ key }}: "{{ value }}"
+{% endif %}
+{% endfor %}
