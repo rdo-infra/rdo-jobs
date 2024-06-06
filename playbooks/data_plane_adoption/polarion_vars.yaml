@@ -1,0 +1,7 @@
+polarion_params:
+  cifmw_polarion_fqdn: "{{ cifmw_polarion_fqdn | default(omit) }}"
+  cifmw_polarion_stage_fqdn: "{{ cifmw_polarion_stage_fqdn | default(omit) }}"
+  cifmw_polarion_testrun_id: "{{ cifmw_polarion_testrun_id | default(omit) }}"
+  cifmw_polarion_jump_repo_url: "{{ cifmw_polarion_jump_repo_url | default(omit) }}"
+  cifmw_polarion_jump_result_dir: "{{ cifmw_polarion_jump_result_dir | default(omit) }}"
+  cifmw_polarion_update_testcases: "{{ cifmw_polarion_update_testcases | default(omit) }}" 
