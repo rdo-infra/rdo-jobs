@@ -102,7 +102,20 @@
         tempest.api.network.admin.test_dhcp_agent_scheduler.DHCPAgentSchedulersTestJSON
         tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsIpV6TestJSON
         tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsTestJSON
-
+      cifmw_polarion_jump_repo_url: "https://code.engineering.redhat.com/gerrit/jump"
+      cifmw_polarion_testrun_id: "create-new-test-run"
+      cifmw_polarion_fqdn: "polarion.engineering.redhat.com"
+      cifmw_polarion_stage_fqdn: "polarion.stage.engineering.redhat.com"
+      cifmw_polarion_report_results: true
+      cifmw_polarion_use_stage: true
+      cifmw_polarion_jump_result_dir: >-
+       {{
+        (
+         ansible_user_dir,
+         'logs/controller-0',
+         'ci-framework-data/tests/test_operator/tempest-tests'
+        ) | ansible.builtin.path_join
+       }}
 
 - job:
     name: periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-no-ceph
@@ -132,7 +145,20 @@
         tempest.api.network.admin.test_dhcp_agent_scheduler.DHCPAgentSchedulersTestJSON
         tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsIpV6TestJSON
         tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsTestJSON
-
+      cifmw_polarion_jump_repo_url: "https://code.engineering.redhat.com/gerrit/jump"
+      cifmw_polarion_testrun_id: "create-new-test-run"
+      cifmw_polarion_fqdn: "polarion.engineering.redhat.com"
+      cifmw_polarion_stage_fqdn: "polarion.stage.engineering.redhat.com"
+      cifmw_polarion_report_results: true
+      cifmw_polarion_use_stage: true
+      cifmw_polarion_jump_result_dir: >-
+       {{
+        (
+         ansible_user_dir,
+         'logs/controller-0',
+         'ci-framework-data/tests/test_operator/tempest-tests'
+        ) | ansible.builtin.path_join
+       }}
 
 - job:
     name: periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-with-ceph
