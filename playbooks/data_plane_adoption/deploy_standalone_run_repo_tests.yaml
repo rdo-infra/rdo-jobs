@@ -257,6 +257,19 @@
       register: make_res
       failed_when: '"failed=0" not in "{{ make_res.stdout_lines[-1:] }}"'
 
+    - name: Create cifmw polarion parameters file
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/files/ci_framework_polarion_params.yaml.j2"
+        dest: "{{ cifmw_polarion_params_file | default('/home/zuul/polarion_params.yaml') }}"
+
+    - name: Call cifmw polarion role to report tempest test results
+      when:
+        - cifmw_polarion_report_results | default(false)
+      ansible.builtin.shell: >
+        ansible-playbook {{ rdo_dir }}/ci_framework_report_polarion.yaml -e "job_name={{ zuul.job }}" -e "build_uuid={{ zuul.build }}" -e "@{{cifmw_polarion_params_file | default('/home/zuul/polarion_params.yaml')}}"
+      args:
+        chdir: "{{ framework_dir }}"
+
     - name: Unregister with subscription-manager when this was a CDN OSP 17.1 source job
       ansible.builtin.shell:
         ansible-playbook {{ rdo_dir }}/unregister_RH_subscription_standalone.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
