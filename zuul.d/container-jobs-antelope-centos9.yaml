@@ -84,6 +84,15 @@
       cifmw_repo_setup_promotion: podified-ci-testing
       cifmw_dlrn_report_result: true
       cifmw_repo_setup_branch: antelope
+      cifmw_run_test_role: test_operator
+      cifmw_test_operator_tempest_image: "quay.io/podified-antelope-centos9/openstack-tempest-extras"
+      cifmw_test_operator_tempest_image_tag: "current-podified"
+      cifmw_test_operator_timeout: 10000
+      cifmw_test_operator_tempest_container: openstack-tempest-all
+      # The space in the cifmw_test_operator_tempest_include_list var is intended
+      cifmw_test_operator_tempest_include_list: |
+
+        tempest.api.identity.*.v3
 
 - job:
     name: periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-no-ceph
@@ -95,6 +104,15 @@
       cifmw_repo_setup_promotion: podified-ci-testing
       cifmw_dlrn_report_result: true
       cifmw_repo_setup_branch: antelope
+      cifmw_run_test_role: test_operator
+      cifmw_test_operator_tempest_image: "quay.io/podified-antelope-centos9/openstack-tempest-extras"
+      cifmw_test_operator_tempest_image_tag: "current-podified"
+      cifmw_test_operator_timeout: 10000
+      cifmw_test_operator_tempest_container: openstack-tempest-all
+      # The space in the cifmw_test_operator_tempest_include_list var is intended
+      cifmw_test_operator_tempest_include_list: |
+
+        tempest.api.identity.*.v3
 
 - job:
     name: periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-with-ceph
