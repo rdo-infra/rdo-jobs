@@ -1147,3 +1147,15 @@
     vars:
       rdoinfo_release: train
       scenario: scenario003
+
+- job:
+    name: tox-linters
+    parent: tox
+    nodeset: rdo-centos-9-stream
+    description: |
+      Runs code linting tests.
+
+      Uses tox with the ``linters`` environment.
+    vars:
+      tox_envlist: linters
+      test_setup_skip: true
