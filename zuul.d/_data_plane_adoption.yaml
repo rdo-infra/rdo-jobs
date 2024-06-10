@@ -41,6 +41,25 @@
       - ^docs_dev/.*$
       - ^docs_user/.*$
       - Gemfile
+      cifmw_run_test_role: test_operator
+      cifmw_test_operator_tempest_image: "quay.io/podified-antelope-centos9/openstack-tempest-extras"
+      cifmw_test_operator_tempest_image_tag: "current-podified"
+      cifmw_test_operator_timeout: 7200
+      cifmw_test_operator_tempest_container: openstack-tempest-extras
+      cifmw_test_operator_tempest_include_list: |
+        tempest.api.compute
+        tempest.api.identity.*.v3
+        ^keystone_tempest_plugin.*
+        ^tempest.api.object_storage..*
+        ^tempest.scenario.test_object_storage_basic_ops..*
+        ^tempest.api.network.*
+        ^tempest.scenario.test_network_advanced_server_ops
+        ^tempest.scenario.test_network_basic_ops
+        ^tempest.scenario.test_network_v6
+        ^tempest.scenario.test_security_groups_basic_ops
+        tempest.scenario.test_server_basic_ops.TestServerBasicOps.test_server_basic_ops
+        neutron_tempest_plugin.*
+        whitebox_neutron_tempest_plugin.*
 
 - job:
     name: data-plane-adoption-osp-17-to-extracted-crc-minimal-no-ceph
@@ -50,6 +69,25 @@
       cloud_domain: "ooo.test"
       use_ceph: "false"
       dpa_test_suite: "test-minimal"
+      cifmw_run_test_role: test_operator
+      cifmw_test_operator_tempest_image: "quay.io/podified-antelope-centos9/openstack-tempest-extras"
+      cifmw_test_operator_tempest_image_tag: "current-podified"
+      cifmw_test_operator_timeout: 7200
+      cifmw_test_operator_tempest_container: openstack-tempest-extras
+      cifmw_test_operator_tempest_include_list: |
+        tempest.api.compute
+        tempest.api.identity.*.v3
+        ^keystone_tempest_plugin.*
+        ^tempest.api.object_storage..*
+        ^tempest.scenario.test_object_storage_basic_ops..*
+        ^tempest.api.network.*
+        ^tempest.scenario.test_network_advanced_server_ops
+        ^tempest.scenario.test_network_basic_ops
+        ^tempest.scenario.test_network_v6
+        ^tempest.scenario.test_security_groups_basic_ops
+        tempest.scenario.test_server_basic_ops.TestServerBasicOps.test_server_basic_ops
+        neutron_tempest_plugin.*
+        whitebox_neutron_tempest_plugin.*
 
 - job:
     name: data-plane-adoption-osp17-multinode-to-extracted-crc-no-ceph
