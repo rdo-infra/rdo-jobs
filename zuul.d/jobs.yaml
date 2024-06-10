@@ -4,6 +4,7 @@
     # Default since Zuul 3.19
     # if your jobs rely on code that does need an older version of ansible
     # you can still override this in them.
+    nodeset: rdo-centos-9-stream
     description:
       The base job for RDO's installation of Zuul.
 
