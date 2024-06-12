@@ -258,7 +258,7 @@
           TEST_VARS: "{{ rdo_dir }}/vars.yaml"
           TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"
       register: make_res
-      failed_when: '"failed=0" not in make_res.stdout_lines[-1:]'
+      failed_when: '"failed=0" not in make_res.stdout_lines[-1]'
 
     - name: Mark job as successful
       when: not force_job_failure | default(false)
