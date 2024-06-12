@@ -318,10 +318,6 @@
             path: "{{ rdo_dir }}/vars.yaml"
             line: "ansibleee_runner_img: {{ ansibleee_runner_img }}"
 
-    - name: Unregister with subscription-manager when this was a CDN OSP 17.1 source job
-      ansible.builtin.shell:
-        ansible-playbook {{ rdo_dir }}/unregister_RH_subscription_standalone.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
-
     - name: "Run data-plane-adoption tests from {{ dpa_dir }}"
       community.general.make:
         chdir: "{{ dpa_dir }}"
@@ -333,6 +329,10 @@
           TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"
       register: make_res
       failed_when: '"failed=0" not in make_res.stdout_lines[-1:]'
+
+    - name: Unregister with subscription-manager when this was a CDN OSP 17.1 source job
+      ansible.builtin.shell:
+        ansible-playbook {{ rdo_dir }}/unregister_RH_subscription_standalone.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
 
     - name: Mark job as successful
       when: not force_job_failure | default(false)
