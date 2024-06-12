@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "88af7539_4390ef31",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2024-06-12T06:40:08Z",
+      "side": 1,
+      "message": "Thank you @marios for the quick fix. I think we can improve the commit message with reason around moving  subscription manager unregister to before adoption tests.\nLike this.\n```\nrhosp-release package is getting installed during edpm bootstrap service from rhos-17 repos enabled via subscription manager. Which we wanted to avoid installing anything from rhos-17 repos during edpm deployment. That\u0027s why we are Mmoving subscription manager unregister to before adoption tests\n```",
+      "revId": "f67494fa9f3760db32fec5e8d05d4e820122cbcc",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "b8994a46_d0eb2a70",
