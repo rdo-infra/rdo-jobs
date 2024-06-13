@@ -10,6 +10,11 @@
     - name: Install community.general collection
       ansible.builtin.command: ansible-galaxy collection install community.general
 
+    - name: Create bootstrap_common_vars file
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/files/common_bootstrap_params.yml.j2"
+        dest: "{{ bootstrap_common_vars }}"
+
     - name: Prepare ci-framework environment and install openshift client
       ansible.builtin.shell:
         cmd: >
