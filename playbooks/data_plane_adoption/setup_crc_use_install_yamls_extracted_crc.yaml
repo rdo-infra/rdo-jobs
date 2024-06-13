@@ -5,10 +5,15 @@
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
     cifmw_installyamls_repos: "/home/zuul/src/github.com/openstack-k8s-operators/install_yamls"
     cifwm_data_folder: "/home/zuul/ci-framework-data/artifacts/parameters"
-    bootstrap_common_vars: "{{ rdo_dir }}/scenarios/common_bootstrap_params.yml"
+    bootstrap_common_vars: "{{ rdo_dir }}/common_bootstrap_params.yml"
   tasks:
     - name: Install community.general collection
       ansible.builtin.command: ansible-galaxy collection install community.general
+
+    - name: Create bootstrap_common_vars file
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/files/common_bootstrap_params.yml.j2"
+        dest: "{{ bootstrap_common_vars }}"
 
     - name: Prepare ci-framework environment and install openshift client
       ansible.builtin.shell:

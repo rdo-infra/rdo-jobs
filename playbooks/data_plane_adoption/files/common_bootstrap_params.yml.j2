@@ -1,0 +1,5 @@
+cifmw_install_yamls_vars:
+  BMO_SETUP: false
+{% if dpa_install_yamls_vars_override is defined %}
+  {{ dpa_install_yamls_vars_override | to_nice_yaml| indent(2) }}
+{%- endif %}
