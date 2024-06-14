@@ -1,0 +1,7 @@
+---
+# EDPM job with single node
+- job:
+    name: test-cifmw-crc-podified-edpm-deployment
+    parent: cifmw-crc-podified-edpm-baremetal
+    vars:
+      crc_parameters: "--memory 32000 --disk-size 240 --cpus 12"
