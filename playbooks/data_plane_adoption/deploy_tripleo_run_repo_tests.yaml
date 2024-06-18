@@ -513,6 +513,14 @@
       ansible.builtin.shell: "subscription-manager repos --disable {{ osp_17_ceph_repos | join(' --disable ') }}"
       loop: "{{ groups['rh-subscription'] }}"
 
+    - name: Add custom variables to vars.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        insertafter: EOF
+        line: "{{ item.key }}: {{ item.value }}"
+      with_dict: "{{ adoption_test_custom_vars }}"
+      when: adoption_test_custom_vars
+
     - name: "Run data-plane-adoption tests from {{ dpa_dir }}"
       community.general.make:
         chdir: "{{ dpa_dir }}"
