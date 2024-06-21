@@ -30,6 +30,7 @@
       standalone_gateway: 192.168.122.10
       standalone_private_key: /home/zuul/.ssh/id_rsa
       upstream_control_plane_dns: 192.168.122.10
+      prelaunch_barbican_secret: true
     irrelevant-files:
       - ^.*\.md$
       - ^.*\.rst$
