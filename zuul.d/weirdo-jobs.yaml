@@ -1,7 +1,7 @@
 - job:
     name: weirdo-ansible-lint
     parent: base
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
     run: playbooks/weirdo/ansible-lint/run.yaml
     required-projects:
       - rdo-infra/ansible-role-weirdo-common
@@ -16,7 +16,7 @@
 - job:
     name: weirdo-docs
     parent: base
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
     run: playbooks/weirdo/docs/run.yaml
     required-projects:
       - rdo-infra/ansible-role-weirdo-common
@@ -34,7 +34,7 @@
 - job:
     name: weirdo-integration-base
     parent: base
-    nodeset: rdo-centos-7
+    nodeset: rdo-centos-9-stream
     run: playbooks/weirdo/integration/run.yaml
     post-run: playbooks/weirdo/integration/post.yaml
     timeout: 7200
@@ -57,7 +57,7 @@
       scenario: scenario001
       selinux_enforcing: "false"
       centos_releasever: 8s
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
 
 - job:
     name: weirdo-integration-yoga-packstack-scenario001-centos8
@@ -67,7 +67,7 @@
       scenario: scenario001
       selinux_enforcing: "false"
       centos_releasever: 8s
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
 
 - job:
     name: weirdo-integration-xena-packstack-scenario001-centos8
@@ -77,7 +77,7 @@
       scenario: scenario001
       selinux_enforcing: "false"
       centos_releasever: 8s
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
 
 - job:
     name: weirdo-integration-master-packstack-scenario003-centos8
@@ -87,7 +87,7 @@
       scenario: scenario003
       selinux_enforcing: "false"
       centos_releasever: 8s
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
 
 - job:
     name: weirdo-integration-yoga-packstack-scenario003-centos8
@@ -97,7 +97,7 @@
       scenario: scenario003
       selinux_enforcing: "false"
       centos_releasever: 8s
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
 
 - job:
     name: weirdo-integration-master-puppet-scenario001-centos8
@@ -106,7 +106,7 @@
       openstack_release: master
       scenario: scenario001
       centos_releasever: 8s
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
 
 - job:
     name: weirdo-integration-yoga-puppet-scenario001-centos8
@@ -115,7 +115,7 @@
       openstack_release: yoga
       scenario: scenario001
       centos_releasever: 8s
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
 
 - job:
     name: weirdo-integration-master-puppet-scenario003-centos8
@@ -124,7 +124,7 @@
       openstack_release: master
       scenario: scenario003
       centos_releasever: 8s
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
 
 - job:
     name: weirdo-integration-yoga-puppet-scenario003-centos8
@@ -133,7 +133,7 @@
       openstack_release: yoga
       scenario: scenario003
       centos_releasever: 8s
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
 
 - job:
     name: weirdo-integration-master-puppet-scenario004-centos8
@@ -142,7 +142,7 @@
       openstack_release: master
       scenario: scenario004
       centos_releasever: 8s
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
 
 - job:
     name: weirdo-integration-wallaby-puppet-scenario004-centos8
@@ -151,7 +151,7 @@
       openstack_release: wallaby
       scenario: scenario004
       centos_releasever: 8s
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
 
 - job:
     name: weirdo-integration-master-packstack-scenario001-centos9
@@ -267,7 +267,7 @@
     post-run: playbooks/weirdo/dlrn/post.yaml
     timeout: 7200
     voting: false
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
     branches: ^(rpm-)?master$
     required-projects:
       - openstack/packstack
@@ -377,7 +377,7 @@
       selinux_enforcing: "false"
     dependencies:
       - validate-buildsys-tags
-    nodeset: rdo-centos-7
+    nodeset: rdo-centos-9-stream
 
 - job:
     name: validate-buildsys-tags-train-testing-centos7-base
@@ -385,7 +385,7 @@
     vars:
       rdoinfo_release: train
       rdoinfo_phase: testing
-    nodeset: rdo-centos-7
+    nodeset: rdo-centos-9-stream
     files:
       - ^buildsys-tags/cloud7-openstack-train-testing.yml$
 
@@ -438,7 +438,7 @@
       rdoinfo_release: train
       rdoinfo_phase: testing
       centos_releasever: 8s
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
     files:
       - ^buildsys-tags/cloud8s-openstack-train-testing.yml$
 
@@ -491,7 +491,7 @@
       rdoinfo_release: ussuri
       rdoinfo_phase: testing
       centos_releasever: 8s
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
     files:
       - ^buildsys-tags/cloud8s-openstack-ussuri-testing.yml$
 
@@ -544,7 +544,7 @@
       rdoinfo_release: victoria
       rdoinfo_phase: testing
       centos_releasever: 8s
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
     files:
       - ^buildsys-tags/cloud8s-openstack-victoria-testing.yml$
 
@@ -597,7 +597,7 @@
       rdoinfo_release: victoria
       rdoinfo_phase: release
       centos_releasever: 8s
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
     files:
       - ^buildsys-tags/cloud8s-openstack-victoria-release.yml$
 
@@ -650,7 +650,7 @@
       rdoinfo_release: wallaby
       rdoinfo_phase: testing
       centos_releasever: 8s
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
     files:
       - ^buildsys-tags/cloud8s-openstack-wallaby-testing.yml$
 
@@ -703,7 +703,7 @@
       rdoinfo_release: wallaby
       rdoinfo_phase: release
       centos_releasever: 8s
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
     files:
       - ^buildsys-tags/cloud8s-openstack-wallaby-release.yml$
 
@@ -809,7 +809,7 @@
       rdoinfo_release: xena
       rdoinfo_phase: testing
       centos_releasever: 8s
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
     files:
       - ^buildsys-tags/cloud8s-openstack-xena-testing.yml$
 
@@ -862,7 +862,7 @@
       rdoinfo_release: xena
       rdoinfo_phase: release
       centos_releasever: 8s
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
     files:
       - ^buildsys-tags/cloud8s-openstack-xena-release.yml$
 
@@ -915,7 +915,7 @@
       rdoinfo_release: yoga
       rdoinfo_phase: testing
       centos_releasever: 8s
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
     files:
       - ^buildsys-tags/cloud8s-openstack-yoga-testing.yml$
 
@@ -968,7 +968,7 @@
       rdoinfo_release: yoga
       rdoinfo_phase: release
       centos_releasever: 8s
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
     files:
       - ^buildsys-tags/cloud8s-openstack-yoga-release.yml$
 
