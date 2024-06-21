@@ -1187,6 +1187,30 @@
       scenario: scenario000
 
 - job:
+    name: validate-buildsys-tags-dalmatian-testing-cifmw-crc-podified-edpm-baremetal
+    parent: cifmw-crc-podified-edpm-baremetal
+    nodeset: centos-9-crc-2-30-0-6xlarge
+    dependencies:
+      - validate-buildsys-tags-dalmatian-testing-tcib-container-build-scenario000-centos9
+    override-checkout: main
+    vars:
+      crc_config_okd_preset: true
+      crc_ocp_bundle: 'docker://quay.io/crcont/okd-bundle:4.14.0-0.okd-2023-12-01-225814'
+      crc_parameters: '--memory 32000 --cpus 12 --disk-size 200'
+      cifmw_update_containers_openstack: true
+      # Ask ci-fmw to update containers with image built by TCIB in weirdo job
+      cifmw_update_containers: true
+      cifmw_update_containers_metadata: openstack-galera-network-isolation
+      cifmw_update_containers_namespace: openstack
+      cifmw_update_containers_registry: "{{ content_provider_registry_ip }}:{{ content_provider_registry_port }}"
+      cifmw_update_containers_org: openstack
+      cifmw_update_containers_tag: trunk-{{ rdoinfo_release }}
+      cifmw_install_yamls_vars:
+        OKD: 'true'
+        BMO_SETUP: 'false'
+        INSTALL_CERT_MANAGER: false
+
+- job:
     name: validate-buildsys-tags-caracal-testing-centos9-base
     parent: weirdo-validate-buildsys-tags-base
     vars:
