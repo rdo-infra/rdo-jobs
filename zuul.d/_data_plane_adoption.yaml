@@ -30,6 +30,7 @@
       standalone_gateway: 192.168.122.10
       standalone_private_key: /home/zuul/.ssh/id_rsa
       upstream_control_plane_dns: 192.168.122.10
+      enable_barbican: "true"
     irrelevant-files:
       - ^.*\.md$
       - ^.*\.rst$
@@ -47,6 +48,7 @@
     parent: data-plane-adoption-osp-17-to-extracted-crc
     vars:
       enable_tls: "true"
+      enable_barbican: "false"
       cloud_domain: "ooo.test"
       use_ceph: "false"
       dpa_test_suite: "test-minimal"

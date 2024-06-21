@@ -239,6 +239,12 @@
         regexp: "'^enable_tlse:'"
         value: "enable_tlse: {{ enable_tls | default('false') }}"
 
+    - name: Set prelaunch_barbican_secret in vars.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: "'^prelaunch_barbican_secret:'"
+        value: "prelaunch_barbican_secret: {{ enable_barbican | default('false') }}"
+
     - name: Insert vars for data plane operator and os-net-config with zuul native undercloud node
       ansible.builtin.blockinfile:
         marker_begin: "BEGIN os-net-config vars"
