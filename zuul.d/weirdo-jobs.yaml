@@ -353,7 +353,18 @@
 - job:
     name: weirdo-dlrn-master-tcib-container-build-scenario000-centos9
     parent: weirdo-dlrn-base-centos-9
-    post-run: playbooks/podified-containers/collect-logs.yaml
+    pre-run:
+      - playbooks/crc/podman.yaml
+    post-run:
+      - playbooks/podified-containers/collect-logs.yaml
+    required-projects:
+      - name: github.com/openstack-k8s-operators/tcib
+        override-checkout: main
+      - name: github.com/openstack-k8s-operators/ci-framework
+        override-checkout: main
+    roles:
+      - zuul: github.com/openstack-k8s-operators/tcib
+      - zuul: github.com/openstack-k8s-operators/ci-framework
     vars:
       openstack_release: master
       scenario: scenario000
