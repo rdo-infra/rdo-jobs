@@ -461,10 +461,29 @@
 
 - job:
     name: validate-buildsys-tags-dalmatian-testing-tcib-container-build-scenario000-centos9
+    nodeset: cloud-centos-9-stream-vexxhost
     parent: validate-buildsys-tags-dalmatian-testing-centos9-base
     post-run: playbooks/podified-containers/collect-logs.yaml
     vars:
       scenario: scenario000
+
+- job:
+    name: validate-buildsys-tags-dalmatian-testing-cifmw-crc-podified-edpm-baremetal
+    parent: cifmw-crc-podified-edpm-baremetal
+    nodeset: centos-9-crc-2-30-0-6xlarge
+    dependencies:
+      - validate-buildsys-tags-dalmatian-testing-tcib-container-build-scenario000-centos9
+    override-checkout: main
+    vars:
+      crc_config_okd_preset: true
+      crc_ocp_bundle: 'docker://quay.io/crcont/okd-bundle:4.14.0-0.okd-2023-12-01-225814'
+      crc_parameters: '--memory 32000 --cpus 12 --disk-size 200'
+      cifmw_update_containers_openstack: true
+      cifmw_update_containers: true
+      cifmw_install_yamls_vars:
+        OKD: 'true'
+        BMO_SETUP: 'true'
+        INSTALL_CERT_MANAGER: false
 
 - job:
     name: validate-buildsys-tags-caracal-testing-centos9-base
