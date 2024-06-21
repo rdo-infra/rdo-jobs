@@ -4,6 +4,10 @@ install_yamls_path: /home/zuul/src/github.com/openstack-k8s-operators/install_ya
 # This flag signifies if TLS Everywhere is enabled on the source cloud
 enable_tlse: CUSTOMIZE_THIS
 
+# This flag signifies if the tests should create a barbican secret before
+# adoption to check it after the adoption
+prelaunch_barbican_secret: CUSTOMIZE_THIS
+
 # To enable TLS-E, the standalone hostname must be set to standalone.ooo.test
 edpm_node_hostname: CUSTOMIZE_THIS
 
