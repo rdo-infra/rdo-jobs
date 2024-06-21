@@ -19,6 +19,12 @@
       ansible.builtin.include_tasks:
         file: "../weirdo/common.yaml"
 
+    - name: Set content registry ip and port
+      ansible.builtin.set_fact:
+        registry_ip_address: "{{ ansible_default_ipv4.address }}"
+        registry_port: "5001"
+      when: "'tcib-container-build' in zuul.job"
+
     - name: Check if job needs to be run or not based on changes
       shell:
         cmd: |
@@ -163,9 +169,24 @@
           {% if not periodic_job|default(false) %}
               -e trunk_repositories=$REPOS_URL \
           {% endif %}
+              -e enable_puppet_modules_rpm=true \
+          {% if 'tcib-container-build' in zuul.job %}
+              -e content_provider_registry_ip="{{ registry_ip_address }}" \
+              -e content_provider_registry_port="{{ registry_port }}" \
+              -e openstack_release=$RELEASE \
+          {% endif %}
               $ADDITIONAL_OPTS
 
       changed_when: true
       environment:
         LANG: 'en_US.UTF-8'
       when: not stop_file.stat.exists|default(true) or periodic_job|default(false)
+
+    - name: Set up content registry IP address and pause the job
+      zuul_return:
+        data:
+          zuul:
+            pause: true
+          content_provider_registry_ip: "{{ registry_ip_address | default('nowhere') | trim }}"
+          content_provider_registry_port: "{{ registry_port }}"
+      when: "'tcib-container-build' in zuul.job"
