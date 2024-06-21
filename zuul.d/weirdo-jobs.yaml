@@ -353,7 +353,8 @@
 - job:
     name: weirdo-dlrn-master-tcib-container-build-scenario000-centos9
     parent: weirdo-dlrn-base-centos-9
-    post-run: playbooks/podified-containers/collect-logs.yaml
+    post-run:
+      - playbooks/podified-containers/collect-logs.yaml
     vars:
       openstack_release: master
       scenario: scenario000
