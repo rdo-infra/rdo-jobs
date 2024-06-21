@@ -1187,6 +1187,29 @@
       scenario: scenario000
 
 - job:
+    name: validate-buildsys-tags-dalmatian-testing-cifmw-crc-podified-edpm-baremetal
+    parent: cifmw-crc-podified-edpm-baremetal
+    # from https://github.com/openstack-k8s-operators/ci-framework/blob/main/zuul.d/nodeset.yaml
+    # there is only CRC 2.30 and 2.36 available but there is not OKD release supported on 2.36
+    # so we are using CRC 2.30. 
+    nodeset: centos-9-crc-2-30-0-6xlarge
+    dependencies:
+      - validate-buildsys-tags-dalmatian-testing-tcib-container-build-scenario000-centos9
+    override-checkout: main
+    vars:
+      cifmw_extras:
+        - 'openshift_release_type: okd'
+      crc_config_okd_preset: true
+      # https://github.com/crc-org/crc/releases/tag/v2.30.0 
+      # 4.14.0-0.okd-2023-12-01-225814 is supported on CRC 2.30
+      # There is only OKD/FCOS supported on 2.30 (no OKD/SCOS), so we are testing 
+      # on OKD/FCOS for the time being.
+      crc_ocp_bundle: 'docker://quay.io/crcont/okd-bundle:4.14.0-0.okd-2023-12-01-225814'
+      cifmw_install_yamls_vars:
+        OKD: 'true'
+        INSTALL_CERT_MANAGER: false
+
+- job:
     name: validate-buildsys-tags-caracal-testing-centos9-base
     parent: weirdo-validate-buildsys-tags-base
     vars:
