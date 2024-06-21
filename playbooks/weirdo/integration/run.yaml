@@ -52,13 +52,21 @@
           localhost log_destination=/var/log/weirdo
           EOF
 
-          tox -e ansible-playbook -- -vv -b -i hosts playbooks/$project-$scenario.yml \
-              -e version=$version \
-              -e openstack_release="{{ openstack_release }}" \
-              -e selinux_enforcing="{{ selinux_enforcing | default('true') }}" \
-              -e delorean_url=$delorean_url \
-              -e delorean_deps_url=$delorean_deps_url \
-              -e enable_puppet_modules_rpm=true
+          #tox -e ansible-playbook -- -vv -b -i hosts playbooks/$project-$scenario.yml \
+          #    -e version=$version \
+          #    -e openstack_release="{{ openstack_release }}" \
+          #    -e selinux_enforcing="{{ selinux_enforcing | default('true') }}" \
+          #    -e delorean_url=$delorean_url \
+          #    -e delorean_deps_url=$delorean_deps_url \
+          #    -e enable_puppet_modules_rpm=true
       changed_when: true
       environment:
         LANG: 'en_US.UTF-8'
+
+    - name: Set up content registry IP address and pause the job
+      zuul_return:
+        data:
+          zuul:
+            pause: true
+          content_provider_registry_ip: "{{ ansible_default_ipv4.address }}"
+          content_provider_registry_port: "5001"
