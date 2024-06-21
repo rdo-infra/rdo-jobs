@@ -154,18 +154,26 @@
           ;;
           esac
 
-          tox -e ansible-playbook -- -vv -b -i hosts playbooks/$project-$scenario.yml \
-              -e version=$VERSION \
-              -e openstack_release=$O_RELEASE \
-              -e selinux_enforcing="{{ selinux_enforcing | default('true') }}" \
-              -e tempest_from_source=false \
-              -e enable_puppet_modules_rpm=true \
-          {% if not periodic_job|default(false) %}
-              -e trunk_repositories=$REPOS_URL \
-          {% endif %}
-              $ADDITIONAL_OPTS
+          #tox -e ansible-playbook -- -vv -b -i hosts playbooks/$project-$scenario.yml \
+          #    -e version=$VERSION \
+          #    -e openstack_release=$O_RELEASE \
+          #    -e selinux_enforcing="{{ selinux_enforcing | default('true') }}" \
+          #    -e tempest_from_source=false \
+          #    -e enable_puppet_modules_rpm=true \
+          #{% if not periodic_job|default(false) %}
+          #    -e trunk_repositories=$REPOS_URL \
+          #{% endif %}
+          #    $ADDITIONAL_OPTS
 
       changed_when: true
       environment:
         LANG: 'en_US.UTF-8'
       when: not stop_file.stat.exists|default(true) or periodic_job|default(false)
+
+    - name: Set up content registry IP address and pause the job
+      zuul_return:
+        data:
+          zuul:
+            pause: true
+          content_provider_registry_ip: "{{ ansible_default_ipv4.address }}"
+          content_provider_registry_port: "5001"
