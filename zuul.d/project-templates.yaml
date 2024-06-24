@@ -26,16 +26,12 @@
               - DLRN-rpmbuild-centos9
             branches: ^rpm-master$
         - DLRN-rpmbuild
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
     gate:
       jobs:
         - DLRN-rpmbuild
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - distgit-cbs-final-build-centos8
         - distgit-cbs-final-build-centos9
     experimental:
       jobs:
