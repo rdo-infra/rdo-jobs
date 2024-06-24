@@ -35,6 +35,23 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a74e6721_e5cb1eff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 266
+      },
+      "writtenOn": "2024-06-24T22:50:10Z",
+      "side": 1,
+      "message": "the jobs use test-operator and the given tests are passing, if the job tests what is meant to be tested by it, then this lgtm .. although I made a few comments about the set variables",
+      "revId": "4b57a76af5323fee743d197fe076ead21555966e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2caab009_ce1fbe6e",
@@ -60,6 +77,98 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1aedc4bc_d7731488",
+        "filename": "zuul.d/container-jobs-antelope-centos9.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 266
+      },
+      "writtenOn": "2024-06-24T22:50:10Z",
+      "side": 1,
+      "message": "why the extras one? I\u0027d expect either openstack-tempest or openstack-tempest-all, not openstack-tempest-extras one .. the extras image was meant for experimentation (mainly with dependencies and avoiding the whole rpm build process by simply cloning the needed dep in the image)",
+      "range": {
+        "startLine": 88,
+        "startChar": 94,
+        "endLine": 88,
+        "endChar": 100
+      },
+      "revId": "4b57a76af5323fee743d197fe076ead21555966e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2246899_24916d3f",
+        "filename": "zuul.d/container-jobs-antelope-centos9.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 266
+      },
+      "writtenOn": "2024-06-24T22:50:10Z",
+      "side": 1,
+      "message": "this var is set indirectly by setting cifmw_test_operator_tempest_registry, cifmw_test_operator_tempest_namespace and cifmw_test_operator_tempest_container",
+      "range": {
+        "startLine": 88,
+        "startChar": 6,
+        "endLine": 88,
+        "endChar": 39
+      },
+      "revId": "4b57a76af5323fee743d197fe076ead21555966e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe69d4e9_9aae8e51",
+        "filename": "zuul.d/container-jobs-antelope-centos9.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 266
+      },
+      "writtenOn": "2024-06-24T22:50:10Z",
+      "side": 1,
+      "message": "current-podified, is the default value, so maybe we don\u0027t need this then?\n\nhttps://github.com/openstack-k8s-operators/ci-framework/blob/66cc56ebd403aa1d77d44e267b126243d3c7e8ae/roles/test_operator/defaults/main.yml#L43",
+      "range": {
+        "startLine": 89,
+        "startChar": 6,
+        "endLine": 89,
+        "endChar": 43
+      },
+      "revId": "4b57a76af5323fee743d197fe076ead21555966e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8b46882_7a58c43c",
+        "filename": "zuul.d/container-jobs-antelope-centos9.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 266
+      },
+      "writtenOn": "2024-06-24T22:50:10Z",
+      "side": 1,
+      "message": "this doesn\u0027t seem to be needed if you set cifmw_test_operator_tempest_image as it is now .. in ci-framework, cifmw_test_operator_tempest_container is set using the cifmw_test_operator_tempest_image see https://github.com/openstack-k8s-operators/ci-framework/blob/66cc56ebd403aa1d77d44e267b126243d3c7e8ae/roles/test_operator/defaults/main.yml#L42",
+      "range": {
+        "startLine": 91,
+        "startChar": 6,
+        "endLine": 91,
+        "endChar": 43
+      },
+      "revId": "4b57a76af5323fee743d197fe076ead21555966e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4c899b68_a6c6cfad",
         "filename": "zuul.d/container-jobs-antelope-centos9.yaml",
         "patchSetId": 11
@@ -76,6 +185,99 @@
         "startChar": 8,
         "endLine": 102,
         "endChar": 15
+      },
+      "revId": "4b57a76af5323fee743d197fe076ead21555966e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfc506e0_927ea095",
+        "filename": "zuul.d/container-jobs-antelope-centos9.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 266
+      },
+      "writtenOn": "2024-06-24T22:50:10Z",
+      "side": 1,
+      "message": "hacky in what? why do we need the new line there? f.e. i don\u0027t see one here:\nhttps://github.com/openstack-k8s-operators/ci-framework/blob/66cc56ebd403aa1d77d44e267b126243d3c7e8ae/zuul.d/tempest_multinode.yaml#L83",
+      "parentUuid": "4c899b68_a6c6cfad",
+      "range": {
+        "startLine": 102,
+        "startChar": 8,
+        "endLine": 102,
+        "endChar": 15
+      },
+      "revId": "4b57a76af5323fee743d197fe076ead21555966e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e06391f8_44cec929",
+        "filename": "zuul.d/container-jobs-antelope-centos9.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 266
+      },
+      "writtenOn": "2024-06-24T22:50:10Z",
+      "side": 1,
+      "message": "same as the comment above",
+      "range": {
+        "startLine": 118,
+        "startChar": 94,
+        "endLine": 118,
+        "endChar": 100
+      },
+      "revId": "4b57a76af5323fee743d197fe076ead21555966e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70fa8700_7a14abcd",
+        "filename": "zuul.d/container-jobs-antelope-centos9.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 266
+      },
+      "writtenOn": "2024-06-24T22:50:10Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 119,
+        "startChar": 6,
+        "endLine": 119,
+        "endChar": 63
+      },
+      "revId": "4b57a76af5323fee743d197fe076ead21555966e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "366a85b5_b1a6f2fa",
+        "filename": "zuul.d/container-jobs-antelope-centos9.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 266
+      },
+      "writtenOn": "2024-06-24T22:50:10Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 121,
+        "startChar": 6,
+        "endLine": 121,
+        "endChar": 66
       },
       "revId": "4b57a76af5323fee743d197fe076ead21555966e",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
