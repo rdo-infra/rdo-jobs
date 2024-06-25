@@ -173,7 +173,7 @@
               - DLRN-rpmbuild-centos9-pinned
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9:
-            branches: ^((?!rpm-master)|(^(?!train|ussuri|victoria)(\w+)-rdo))$
+            branches: ^((?!rpm-master)|(^(\w+)-rdo))$
         - DLRN-rpmbuild-centos9-pinned:
             branches: ^rpm-master$
         - DLRN-rpmbuild
@@ -183,7 +183,7 @@
       jobs:
         - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9:
-            branches: ^((?!rpm-master)|(^(?!train|ussuri|victoria)(\w+)-rdo))$
+            branches: ^((?!rpm-master)|(^(\w+)-rdo))$
         - DLRN-rpmbuild-centos9-pinned:
             branches: ^rpm-master$
         - DLRN-rpmbuild
