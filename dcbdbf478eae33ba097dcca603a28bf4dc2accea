@@ -16,6 +16,40 @@
       "message": "looks good, left a few coments for follow-up, waiting for depends-on to merge",
       "revId": "dcbdbf478eae33ba097dcca603a28bf4dc2accea",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0970c5ce_079674a6",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-06-28T10:06:18Z",
+      "side": 1,
+      "message": "as a follow-up, for this and other tasks it might be a good idea to add groups to the nodeset, so we could use different amounts of computes/controllers easily",
+      "revId": "dcbdbf478eae33ba097dcca603a28bf4dc2accea",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88a38324_de8ab13e",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-06-28T10:06:18Z",
+      "side": 1,
+      "message": "also note for the future, given the amount of vars that we are using, it might make sense to move the vars file to a template",
+      "revId": "dcbdbf478eae33ba097dcca603a28bf4dc2accea",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
