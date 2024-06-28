@@ -257,6 +257,12 @@
       register: make_res
       failed_when: '"failed=0" not in make_res.stdout_lines[-1]'
 
+    - name: Update sos-reports package to use it with must-gather
+      delegate_to: standalone
+      ansible.builtin.dnf:
+        name: sos
+        state: latest
+
     - name: Unregister with subscription-manager when this was a CDN OSP 17.1 source job
       ansible.builtin.shell:
         ansible-playbook {{ rdo_dir }}/unregister_RH_subscription_standalone.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
