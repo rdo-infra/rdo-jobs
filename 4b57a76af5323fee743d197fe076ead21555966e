@@ -77,6 +77,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "20de0741_58321331",
+        "filename": "playbooks/data_plane_adoption/files/ci_framework_test_operator_params.yaml.j2",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 716
+      },
+      "writtenOn": "2024-07-01T07:35:34Z",
+      "side": 1,
+      "message": "I tried like this:\n```\n\n---\ncifmw_test_operator_tempest_image: {{ cifmw_test_operator_tempest_image | default(omit)}}\ncifmw_test_operator_tempest_image_tag: {{ cifmw_test_operator_tempest_image_tag | default(omit)}}\ncifmw_test_operator_timeout: {{ cifmw_test_operator_timeout | default(omit)}}\ncifmw_test_operator_tempest_container: {{cifmw_test_operator_tempest_container | default(omit)}}\ncifmw_test_operator_tempest_include_list: |\n    {{ cifmw_test_operator_tempest_include_list | to_nice_yaml | default(omit)}}\ncifmw_test_operator_tempest_exclude_list: |\n    {{ cifmw_test_operator_tempest_exclude_list | to_nice_yaml | default(omit)}}\ncifmw_test_operator_default_groups:\n    {{ cifmw_test_operator_default_groups | default(omit)}}\ncifmw_test_operator_default_jobs:\n    {{ cifmw_test_operator_default_jobs | default(omit)}}\n\n```\nBut when I tested with cases where the vars were undefined I got \n``` RepresenterError: (\u0027cannot represent an object\u0027, AnsibleUndefined) ```\n\nDo you have another way in mind?",
+      "parentUuid": "2caab009_ce1fbe6e",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 11
+      },
+      "revId": "4b57a76af5323fee743d197fe076ead21555966e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1aedc4bc_d7731488",
         "filename": "zuul.d/container-jobs-antelope-centos9.yaml",
         "patchSetId": 11
