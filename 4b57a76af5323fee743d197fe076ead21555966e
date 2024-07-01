@@ -240,6 +240,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "73bc0816_f7f6e5b3",
+        "filename": "zuul.d/container-jobs-antelope-centos9.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 716
+      },
+      "writtenOn": "2024-07-01T15:39:32Z",
+      "side": 1,
+      "message": "the data plane adoption jobs do not by default get the cifmw variables. I am passing the cifmw vars (defined in the job def) to the task that calls the test role https://review.rdoproject.org/r/c/rdo-jobs/+/53563/12/playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml#264 \nvia this jinja template https://review.rdoproject.org/r/c/rdo-jobs/+/53563/12/playbooks/data_plane_adoption/files/ci_framework_test_operator_params.yaml.j2\n\nI tried some syntaxes and some of then threw errors. There is a slack thread where I pasted some of the issues. https://redhat-internal.slack.com/archives/C03MD4LG22Z/p1718259329379569\n\n\nPls lemme know if you have some suggestions - this way of adding a hacky \"/n\" doesnt look good.",
+      "parentUuid": "dfc506e0_927ea095",
+      "range": {
+        "startLine": 102,
+        "startChar": 8,
+        "endLine": 102,
+        "endChar": 15
+      },
+      "revId": "4b57a76af5323fee743d197fe076ead21555966e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e06391f8_44cec929",
         "filename": "zuul.d/container-jobs-antelope-centos9.yaml",
         "patchSetId": 11
