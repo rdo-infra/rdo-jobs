@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b38ac0cb_0527cb86",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-07-02T06:49:54Z",
+      "side": 1,
+      "message": "lgtm",
+      "revId": "6ff67a330434b633acdba54434f30ff5afd5973f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87376a08_592f0d02",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-07-02T06:49:54Z",
+      "side": 1,
+      "message": "There are likely many points we could insert this. I like this proposal as it is very targeted and only updates the packages where we need them exactly i.e. edpm_nodes \n\nI was looking at that for example https://github.com/rdo-infra/rdo-jobs/blob/26759e89cf92285465aeb00e59a15f9b8b813868/playbooks/data_plane_adoption/setup_tripleo_os_net_config.yaml#L1-L25 because it is running against rh-subscription so would hit all nodes, but that\u0027s not what we need here...",
+      "revId": "6ff67a330434b633acdba54434f30ff5afd5973f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
