@@ -310,6 +310,7 @@
           regex: 'SwiftPassword'
 
     - name: Set controller ssh login vars controller1_ssh in secrets.yaml
+      when: not multi_cell | default(False) | bool
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/secrets.yaml"
         regexp: "controller{{ item.ctrl }}_ssh:"
@@ -318,6 +319,17 @@
         - {ctrl: "1", suffix: "3"}
         - {ctrl: "2", suffix: "4"}
         - {ctrl: "3", suffix: "5"}
+
+    - name: Set controller ssh login vars controllerX_ssh in secrets.yaml (multi-cell)
+      when: multi_cell | default(False) | bool
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/secrets.yaml"
+        regexp: "controller{{ item.ctrl }}_ssh:"
+        value: "controller{{ item.ctrl }}_ssh: ssh -o StrictHostKeyChecking=accept-new -i {{ standalone_private_key | default('/home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa') }} root@192.168.122.10{{ item.suffix }}"
+      loop:
+        - {ctrl: "1", suffix: "1"}
+        - {ctrl: "2", suffix: "2"}
+        - {ctrl: "3", suffix: "4"}
 
     - name: Install required packages
       become: true
