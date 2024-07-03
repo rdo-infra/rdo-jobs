@@ -145,3 +145,11 @@
         address_suffix: 108
       overcloud-networker-1:
         address_suffix: 109
+- job:
+    name: data-plane-adoption-osp17-multinode-to-extracted-crc-with-ceph
+    parent: data-plane-adoption-osp17-multinode-to-extracted-crc-no-ceph
+    abstract: true
+    vars:
+      use_ceph: "true"
+      migrate_ceph: true
+      dpa_test_suite: "test-with-ceph"
