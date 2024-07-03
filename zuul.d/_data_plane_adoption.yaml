@@ -61,7 +61,7 @@
       - zuul: github.com/openstack-k8s-operators/ci-framework
     pre-run:
       - playbooks/data_plane_adoption/subnode_ip.yaml
-      - playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml
+      #- playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml
       - playbooks/data_plane_adoption/setup_tripleo_os_net_config.yaml
       - playbooks/data_plane_adoption/setup_tripleo_hostnamemap.yaml
     run:
@@ -101,4 +101,5 @@
     abstract: true
     vars:
       use_ceph: "true"
+      migrate_ceph: true
       dpa_test_suite: "test-with-ceph"
