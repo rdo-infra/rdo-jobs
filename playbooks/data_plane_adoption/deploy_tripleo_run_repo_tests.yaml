@@ -408,8 +408,9 @@
         - 1
         - 2
 
-
     - name: "Run data-plane-adoption tests from {{ dpa_dir }}"
+      # WORKAROUND TO ONLY TEST THE CEPH MIGRATION PLAYBOOK
+      when: adopt | default(false)
       community.general.make:
         chdir: "{{ dpa_dir }}"
         target: "{{ dpa_test_suite | default('test-minimal') }}"
@@ -420,6 +421,56 @@
           TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"
       register: make_res
       failed_when: '"failed=0" not in make_res.stdout_lines[-1]'
+
+    - name: Ceph Migration tests
+      when: migrate_ceph | default('false')
+      block:
+        - name: Ceph Migration - Build the list of src and target nodes
+          ansible.builtin.blockinfile:
+            marker_begin: "BEGIN ceph nodes vars"
+            marker_end: "END ceph nodes vars"
+            path: "{{ rdo_dir }}/ceph_overrides.yaml"
+            block: |
+              decomm_nodes:
+                - {{ controller0_hostname }}
+                - {{ controller1_hostname }}
+                - {{ controller2_hostname }}
+              target_nodes:
+                - {{ compute0_hostname }}
+                - {{ compute1_hostname }}
+                - {{ compute2_hostname }}
+
+        - name: Set nodemap fact
+          ansible.builtin.set_fact:
+            nodemap:
+              - {"hostname": "{{ controller0_hostname }}", "ip": "192.168.122.103"}
+              - {"hostname": "{{ controller1_hostname }}", "ip": "192.168.122.104"}
+              - {"hostname": "{{ controller2_hostname }}", "ip": "192.168.122.105"}
+              - {"hostname": "{{ compute0_hostname }}", "ip": "192.168.122.106"}
+              - {"hostname": "{{ compute1_hostname }}", "ip": "192.168.122.107"}
+              - {"hostname": "{{ compute2_hostname }}", "ip": "192.168.122.108"}
+
+        - name: DEBUG
+          ansible.builtin.debug:
+            msg: "{{ nodemap }}"
+
+        - name: Generate a TripleO/Ceph compatible inventory
+          ansible.builtin.template:
+            src: "{{ playbook_dir }}/templates/ceph_inventory.j2"
+            dest: "{{ rdo_dir }}/ceph_inventory.yaml"
+
+        - name: "Run data-plane-adoption Ceph migration tests from {{ dpa_dir }}"
+          community.general.make:
+            chdir: "{{ dpa_dir }}"
+            target: "test-ceph-migration"
+            params:
+              TEST_CONFIG: "{{ dpa_test_ansible_cfg | default(rdo_dir  ~ '/ansible.cfg') }}"
+              TEST_SECRETS: "{{ rdo_dir}}/secrets.yaml"
+              TEST_VARS: "{{ rdo_dir }}/vars.yaml"
+              TEST_CEPH_OVERRIDES: "{{ rdo_dir }}/ceph_overrides.yaml"
+              TEST_INVENTORY: "{{ rdo_dir }}/ceph_inventory.yaml"
+          register: make_ceph_res
+          failed_when: '"failed=0" not in make_ceph_res.stdout_lines[-1]'
 
     - name: Unregister with subscription-manager when this was a CDN OSP 17.1 source job
       ansible.builtin.shell:
