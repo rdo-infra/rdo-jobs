@@ -526,6 +526,80 @@
       ansible.builtin.shell: subscription-manager unregister
       loop: "{{ groups['rh-subscription'] }}"
 
+    - name: Ceph Migration tests
+      when: migrate_ceph | default('false')
+      block:
+        - name: Set Ceph relevant network facts
+          ansible.builtin.set_fact:
+            ceph_storage_net_prefix: "172.18.0"
+            ceph_nodes_ctlplane_prefix: "192.168.122"
+            ceph_storage_vlan_id: 21
+
+        - name: Ceph Migration - Build the list of src and target nodes
+          ansible.builtin.blockinfile:
+            marker_begin: "BEGIN ceph nodes vars"
+            marker_end: "END ceph nodes vars"
+            path: "{{ rdo_dir }}/ceph_overrides.yaml"
+            block: |
+              # CI related overrides:
+              # - 172.18 is the Ceph cluster storage network on vlan_id: 21
+              # - 172.18.0.200 is chosen as the client ip used to temporary
+              #   access the ceph cluster from the current automation while
+              #   migrating mons
+              # - 172.18.0.100 is used as VIP on the storage network is RGW
+              #   is present
+              decomm_nodes:
+                - {{ controller0_hostname }}
+                - {{ controller1_hostname }}
+                - {{ controller2_hostname }}
+              target_nodes:
+                - {{ compute0_hostname }}
+                - {{ compute1_hostname }}
+                - {{ compute2_hostname }}
+              node_map:
+                - {"hostname": "{{ controller0_hostname }}", "ip": "{{ ceph_storage_net_prefix }}.103"}
+                - {"hostname": "{{ controller1_hostname }}", "ip": "{{ ceph_storage_net_prefix }}.104"}
+                - {"hostname": "{{ controller2_hostname }}", "ip": "{{ ceph_storage_net_prefix }}.105"}
+                - {"hostname": "{{ compute0_hostname }}", "ip": "{{ ceph_storage_net_prefix }}.106"}
+                - {"hostname": "{{ compute1_hostname }}", "ip": "{{ ceph_storage_net_prefix }}.107"}
+                - {"hostname": "{{ compute2_hostname }}", "ip": "{{ ceph_storage_net_prefix }}.108"}
+              client_node: "{{ controller0_hostname }}"
+              ceph_keep_mon_ipaddr: true
+              ceph_net_manual_migration: true
+              # override os-net-config conf file
+              os_net_conf_path: "/etc/os-net-config/tripleo_config.yaml"
+              ceph_storage_net_prefix: "{{ ceph_storage_net_prefix }}"
+              ceph_client_ip: {{ ceph_storage_net_prefix }}.200
+              vlan_id: {{ ceph_storage_vlan_id }}
+              ceph_rgw_virtual_ips_list:
+                - {{ ceph_storage_net_prefix }}.100/24
+
+        - name: Generate a TripleO/Ceph compatible inventory
+          ansible.builtin.template:
+            src: "{{ playbook_dir }}/templates/ceph_inventory.j2"
+            dest: "{{ rdo_dir }}/ceph_inventory.yaml"
+          vars:
+            inventory_map:
+              - {"hostname": "{{ controller0_hostname }}", "ip": "{{ ceph_nodes_ctlplane_prefix }}.103"}
+              - {"hostname": "{{ controller1_hostname }}", "ip": "{{ ceph_nodes_ctlplane_prefix }}.104"}
+              - {"hostname": "{{ controller2_hostname }}", "ip": "{{ ceph_nodes_ctlplane_prefix }}.105"}
+              - {"hostname": "{{ compute0_hostname }}", "ip": "{{ ceph_nodes_ctlplane_prefix }}.106"}
+              - {"hostname": "{{ compute1_hostname }}", "ip": "{{ ceph_nodes_ctlplane_prefix }}.107"}
+              - {"hostname": "{{ compute2_hostname }}", "ip": "{{ ceph_nodes_ctlplane_prefix }}.108"}
+
+        - name: "Run data-plane-adoption Ceph migration tests from {{ dpa_dir }}"
+          community.general.make:
+            chdir: "{{ dpa_dir }}"
+            target: "test-ceph-migration"
+            params:
+              TEST_CONFIG: "{{ dpa_test_ansible_cfg | default(rdo_dir  ~ '/ansible.cfg') }}"
+              TEST_SECRETS: "{{ rdo_dir}}/secrets.yaml"
+              TEST_VARS: "{{ rdo_dir }}/vars.yaml"
+              TEST_CEPH_OVERRIDES: "{{ rdo_dir }}/ceph_overrides.yaml"
+              TEST_INVENTORY: "{{ rdo_dir }}/ceph_inventory.yaml"
+          register: make_ceph_res
+          failed_when: '"failed=0" not in make_ceph_res.stdout_lines[-1]'
+
     - name: Call test role
       when:
         - dpa_run_post_adoption_tempest | default(true) | bool
