@@ -397,6 +397,18 @@
             path: "{{ rdo_dir }}/vars.yaml"
             line: "ansibleee_runner_img: {{ ansibleee_runner_img }}"
 
+    - name: Update sos-reports package to use it with must-gather
+      delegate_to: "overcloud-novacompute-{{ item }}"
+      become: true
+      ansible.builtin.dnf:
+        name: sos
+        state: latest
+      loop:
+        - 0
+        - 1
+        - 2
+
+
     - name: "Run data-plane-adoption tests from {{ dpa_dir }}"
       community.general.make:
         chdir: "{{ dpa_dir }}"
@@ -408,17 +420,6 @@
           TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"
       register: make_res
       failed_when: '"failed=0" not in make_res.stdout_lines[-1]'
-
-    - name: Update sos-reports package to use it with must-gather
-      delegate_to: "overcloud-novacompute-{{ item }}"
-      become: true
-      ansible.builtin.dnf:
-        name: sos
-        state: latest
-      loop:
-        - 0
-        - 1
-        - 2
 
     - name: Unregister with subscription-manager when this was a CDN OSP 17.1 source job
       ansible.builtin.shell:
