@@ -155,6 +155,7 @@
     parent: periodic-adoption-multinode-to-crc-no-ceph
     vars:
       use_ceph: "true"
+      migrate_ceph: true
       dpa_test_suite: "test-with-ceph"
       registry_namespace: podified-antelope-centos9
       openstack_release: antelope
