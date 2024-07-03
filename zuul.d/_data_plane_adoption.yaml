@@ -145,3 +145,13 @@
         address_suffix: 108
       overcloud-networker-1:
         address_suffix: 109
+- job:
+    name: periodic-adoption-multinode-to-crc-ceph
+    parent: periodic-adoption-multinode-to-crc-no-ceph
+    # abstract: true
+    vars:
+      # temp workaround to not let the job hit the timeout
+      timeout: 28800
+      use_ceph: "true"
+      migrate_ceph: true
+      dpa_test_suite: "test-with-ceph"
