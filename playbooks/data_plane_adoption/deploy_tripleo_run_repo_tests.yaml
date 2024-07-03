@@ -398,6 +398,8 @@
             line: "ansibleee_runner_img: {{ ansibleee_runner_img }}"
 
     - name: "Run data-plane-adoption tests from {{ dpa_dir }}"
+      # WORKAROUND TO ONLY TEST THE CEPH MIGRATION PLAYBOOK
+      when: adopt | default(false)
       community.general.make:
         chdir: "{{ dpa_dir }}"
         target: "{{ dpa_test_suite | default('test-minimal') }}"
@@ -408,6 +410,37 @@
           TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"
       register: make_res
       failed_when: '"failed=0" not in make_res.stdout_lines[-1]'
+
+    - name: Ceph Migration tests
+      when: migrate_ceph | default('false')
+      block:
+        - name: Ceph Migration - Build the list of src and target nodes
+          ansible.builtin.blockinfile:
+            marker_begin: "BEGIN ceph nodes vars"
+            marker_end: "END ceph nodes vars"
+            path: "{{ rdo_dir }}/ceph_overrides.yaml"
+            block: |
+              decomm_nodes:
+                - {{ controller0_hostname }}
+                - {{ controller1_hostname }}
+                - {{ controller2_hostname }}
+              target_nodes:
+                - {{ compute0_hostname }}
+                - {{ compute1_hostname }}
+                - {{ compute2_hostname }}
+
+        - name: "Run data-plane-adoption Ceph migration tests from {{ dpa_dir }}"
+          community.general.make:
+            chdir: "{{ dpa_dir }}"
+            target: "test-ceph-migration"
+            params:
+              TEST_CONFIG: "{{ dpa_test_ansible_cfg | default(rdo_dir  ~ '/ansible.cfg') }}"
+              TEST_SECRETS: "{{ rdo_dir}}/secrets.yaml"
+              TEST_VARS: "{{ rdo_dir }}/vars.yaml"
+              TEST_CEPH_OVERRIDES: "{{ rdo_dir }}/ceph_overrides.yaml"
+              TEST_INVENTORY: "{{ cifmw_datadir }}/artifacts/zuul_inventory.yml"
+          register: make_ceph_res
+          failed_when: '"failed=0" not in make_ceph_res.stdout_lines[-1]'
 
     - name: Update sos-reports package to use it with must-gather
       delegate_to: "overcloud-novacompute-{{ item }}"
