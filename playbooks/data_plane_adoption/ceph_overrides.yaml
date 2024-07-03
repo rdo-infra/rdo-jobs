@@ -1,0 +1,27 @@
+# The ceph base image is split into ns/img/tag for backward compatibility with
+# tripleo modules
+ceph_container_ns: registry.redhat.io/rhceph
+ceph_container_image: rhceph-6-rhel9
+ceph_container_tag: latest
+# Ceph dashboard and Ceph ingress related images
+ceph_haproxy_container_image: "registry.redhat.io/rhceph/rhceph-haproxy-rhel9:latest"
+ceph_keepalived_container_image: "registry.redhat.io/rhceph/keepalived-rhel9:latest"
+ceph_alertmanager_container_image: "registry.redhat.io/openshift4/ose-prometheus-alertmanager:v4.12"
+ceph_grafana_container_image: "registry.redhat.io/rhceph/rhceph-6-dashboard-rhel9:latest"
+ceph_node_exporter_container_image: "registry.redhat.io/openshift4/ose-prometheus-node-exporter:v4.12"
+ceph_prometheus_container_image: "registry.redhat.io/openshift4/ose-prometheus:v4.12"
+ceph_spec_render_dir: "/home/tripleo-admin"
+ceph_daemons_layout:
+  monitoring: false
+  rbd: true
+  rgw: true
+  mds: true
+# Fixed based on the current EDPM nodes
+ceph_rgw_virtual_ips_list:
+  - 172.18.0.100/24
+# CI related overrides:
+# - 172.18 is the Ceph cluster storage network 
+# - 172.18.0.200 is the client ip used to temporary access the ceph cluster
+#   from the current automation while migrating mons
+ceph_client_ip: 172.18.0.200
+ceph_storage_net_prefix: "172.18.0."
