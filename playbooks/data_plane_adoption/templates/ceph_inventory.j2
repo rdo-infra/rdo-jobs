@@ -1,0 +1,7 @@
+overcloud:
+  hosts:
+{% for h in nodes | default({}) %}
+    {{ h.hostname }}:
+      ansible_user = tripleo-admin
+      ansible_host: {{ h.ip }}
+{% endfor %}
