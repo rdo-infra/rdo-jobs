@@ -1,8 +1,8 @@
 ---
-cifmw_test_operator_tempest_image: {{ cifmw_test_operator_tempest_image }}
-cifmw_test_operator_tempest_image_tag: {{ cifmw_test_operator_tempest_image_tag }}
-cifmw_test_operator_timeout: {{ cifmw_test_operator_timeout }}
-cifmw_test_operator_tempest_container: {{cifmw_test_operator_tempest_container}}
+cifmw_test_operator_tempest_image: {{ cifmw_test_operator_tempest_image | default(omit) }}
+cifmw_test_operator_tempest_image_tag: {{ cifmw_test_operator_tempest_image_tag | default(omit) }}
+cifmw_test_operator_timeout: {{ cifmw_test_operator_timeout | default(omit) }}
+cifmw_test_operator_tempest_container: {{cifmw_test_operator_tempest_container | default(omit) }}
 {% if cifmw_test_operator_tempest_include_list is defined %}
 cifmw_test_operator_tempest_include_list: |
     {{ cifmw_test_operator_tempest_include_list | to_nice_yaml }}
