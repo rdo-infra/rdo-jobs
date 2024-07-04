@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8275192_6152d782",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-07-04T11:45:45Z",
+      "side": 1,
+      "message": "seems to work at https://logserver.rdoproject.org/90/53690/3/check/periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-with-ceph/f8c1b37/job-output.txt\n\n```\n2024-07-03 15:35:01.842344 | LOOP [Fetch controller hostnames to set source_galera_members var]\n2024-07-03 15:35:02.367451 | controller -\u003e 38.129.56.116 | ok: \"overcloud-controller-0\"\n2024-07-03 15:35:02.367709 | controller -\u003e 38.129.56.116 | changed: All items complete\n2024-07-03 15:35:02.367745 | \n2024-07-03 15:35:02.836737 | controller -\u003e 38.102.83.199 | ok: \"overcloud-controller-1\"\n2024-07-03 15:35:03.313473 | controller -\u003e 38.102.83.132 | ok: \"overcloud-controller-2\"\n2024-07-03 15:35:03.340020 | \n2024-07-03 15:35:03.340186 | LOOP [Fetch compute hostnames to set edpm_node_hostname vars]\n2024-07-03 15:35:03.801643 | controller -\u003e 38.102.83.184 | ok: \"overcloud-novacompute-0\"\n2024-07-03 15:35:04.240385 | controller -\u003e 38.102.83.195 | ok: \"overcloud-novacompute-1\"\n2024-07-03 15:35:04.664441 | controller -\u003e 38.102.83.163 | ok: \"overcloud-novacompute-2\"\n2024-07-03 15:35:04.686564 | \n```",
+      "revId": "177453de92963d41f44505a050a853d6784d5574",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "150ec106_e50aa808",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-07-04T11:45:45Z",
+      "side": 1,
+      "message": "https://logserver.rdoproject.org/90/53690/3/check/periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-with-ceph/f8c1b37/job-output.txt\n\n```\n2024-07-03 16:39:50.312383 | LOOP [Update sos-reports package to use it with must-gather]\n2024-07-03 16:39:55.352797 | controller -\u003e 38.102.83.184 | changed\n2024-07-03 16:39:55.353010 | controller -\u003e 38.102.83.184 | changed: All items complete\n2024-07-03 16:39:55.353058 | \n2024-07-03 16:40:00.270785 | controller -\u003e 38.102.83.195 | changed\n2024-07-03 16:40:05.746825 | controller -\u003e 38.102.83.163 | changed\n```\n\n\nwhere\n\n```\n2024-07-03 13:47:12.469703 | localhost | Inventory Hostname: overcloud-novacompute-0\n2024-07-03 13:47:12.469721 | localhost | Hostname: np0004759057\n2024-07-03 13:47:12.469737 | localhost | Username: zuul\n2024-07-03 13:47:12.469753 | localhost | Distro: RedHat 9.2\n2024-07-03 13:47:12.469768 | localhost | Provider: vexxhost-nodepool-tripleo\n2024-07-03 13:47:12.469784 | localhost | Label: cloud-rhel-9-2-tripleo\n2024-07-03 13:47:12.469798 | localhost | Interface IP: 38.102.83.184\n2024-07-03 13:47:12.512864 | localhost | ok:\n2024-07-03 13:47:12.512936 | localhost | # Node Information\n2024-07-03 13:47:12.512958 | localhost | Inventory Hostname: overcloud-novacompute-1\n2024-07-03 13:47:12.512999 | localhost | Hostname: np0004759074\n2024-07-03 13:47:12.513017 | localhost | Username: zuul\n2024-07-03 13:47:12.513033 | localhost | Distro: RedHat 9.2\n2024-07-03 13:47:12.513066 | localhost | Provider: vexxhost-nodepool-tripleo\n2024-07-03 13:47:12.513083 | localhost | Label: cloud-rhel-9-2-tripleo\n2024-07-03 13:47:12.513098 | localhost | Interface IP: 38.102.83.195\n2024-07-03 13:47:12.556690 | localhost | ok:\n2024-07-03 13:47:12.556769 | localhost | # Node Information\n2024-07-03 13:47:12.556792 | localhost | Inventory Hostname: overcloud-novacompute-2\n2024-07-03 13:47:12.556809 | localhost | Hostname: np0004759075\n2024-07-03 13:47:12.556827 | localhost | Username: zuul\n2024-07-03 13:47:12.556843 | localhost | Distro: RedHat 9.2\n2024-07-03 13:47:12.556860 | localhost | Provider: vexxhost-nodepool-tripleo\n2024-07-03 13:47:12.556879 | localhost | Label: cloud-rhel-9-2-tripleo\n2024-07-03 13:47:12.556896 | localhost | Interface IP: 38.102.83.163\n\n```",
+      "revId": "177453de92963d41f44505a050a853d6784d5574",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
