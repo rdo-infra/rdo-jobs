@@ -130,24 +130,18 @@
         value: "source_ovndb_ip: {{ source_ovndb_ip }}"
 
     - name: Fetch controller hostnames to set source_galera_members var
-      delegate_to: "overcloud-controller-{{ item }}"
+      delegate_to: "{{ item }}"
       ansible.builtin.slurp:
         path: /home/zuul/ansible_hostname
       register: controller_hostnames
-      loop:
-        - 0
-        - 1
-        - 2
+      loop: "{{ groups['tripleo_controllers'] }}"
 
     - name: Fetch compute hostnames to set edpm_node_hostname vars
-      delegate_to: "overcloud-novacompute-{{ item }}"
+      delegate_to: "{{ item }}"
       ansible.builtin.slurp:
         path: /home/zuul/ansible_hostname
       register: compute_hostnames
-      loop:
-        - 0
-        - 1
-        - 2
+      loop: "{{ groups['tripleo_computes'] }}"
 
     - name: Set compute and controller hostname facts to prevent repetition
       ansible.builtin.set_fact:
@@ -398,15 +392,12 @@
             line: "ansibleee_runner_img: {{ ansibleee_runner_img }}"
 
     - name: Update sos-reports package to use it with must-gather
-      delegate_to: "overcloud-novacompute-{{ item }}"
+      delegate_to: "{{ item }}"
       become: true
       ansible.builtin.dnf:
         name: sos
         state: latest
-      loop:
-        - 0
-        - 1
-        - 2
+      loop: "{{ groups['tripleo_computes'] }}"
 
 
     - name: "Run data-plane-adoption tests from {{ dpa_dir }}"
