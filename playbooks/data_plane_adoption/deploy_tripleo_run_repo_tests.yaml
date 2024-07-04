@@ -452,7 +452,8 @@
       loop: "{{ groups['rh-subscription'] }}"
 
     - name: Call test role
-      when: "'periodic' in zuul.job or (force_periodic|default(false)|bool)"
+      when:
+        - cifmw_run_test_role is defined
       block:
         - name: Dump cifmw test operator parameters to a file
           ansible.builtin.template:
