@@ -490,6 +490,8 @@
     voting: false
     dependencies:
       - validate-buildsys-tags-dalmatian-testing-tcib-container-build-scenario000-centos9
+    files:
+      - ^buildsys-tags/cloud9s-openstack-dalmatian-testing.yml$
 
 - job:
     name: validate-buildsys-tags-caracal-testing-centos9-base
