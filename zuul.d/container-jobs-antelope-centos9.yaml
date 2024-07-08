@@ -136,8 +136,10 @@
 
 - job:
     name: periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-with-ceph
-    parent: data-plane-adoption-osp17-multinode-to-extracted-crc-with-ceph
+    parent: periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-no-ceph
     vars:
+      use_ceph: "true"
+      dpa_test_suite: "test-with-ceph"
       registry_namespace: podified-antelope-centos9
       openstack_release: antelope
       promote_source: podified-ci-testing
