@@ -110,3 +110,19 @@
 
     - name: Delete control plane deployed by 06-deploy-edpm.yml
       ansible.builtin.command: oc delete -n openstack "{{ control_plane.stdout }}"
+
+    - name: Install dig
+      become: true
+      ansible.builtin.dnf:
+        name: bind-utils
+        state: present
+
+    - name: Fetch latest c9 or rhel9 antelope tag from dlrn
+      when: dlrn_hash_tag is not defined
+      ansible.builtin.uri:
+        url: "https://{{ dpa_dlrn_server | default('trunk.rdoproject.org') }}/{{ dpa_dlrn_namespace | default('centos9-antelope') }}/{{ dpa_dlrn_tag | default('podified-ci-testing') }}/delorean.repo.md5"
+        return_content: true
+      register: latest_dlrn_tag
+      until: latest_dlrn_tag.status == 200
+      retries: 6
+      delay: 5
