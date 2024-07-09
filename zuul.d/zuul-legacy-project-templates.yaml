@@ -17,23 +17,16 @@
             branches: ^rpm-master$
         - weirdo-dlrn-master-packstack-scenario003-centos9
         - weirdo-dlrn-master-puppet-scenario001-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild
-        - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
     experimental:
       jobs:
         - weirdo-dlrn-master-packstack-scenario003-centos9
         - weirdo-dlrn-master-puppet-scenario001-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
     gate:
       jobs:
-        - DLRN-rpmbuild
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - distgit-cbs-final-build-centos8
         - distgit-cbs-final-build-centos9
 
 - project-template:
@@ -45,22 +38,15 @@
               - DLRN-rpmbuild-centos9
             branches: ^rpm-master$
         - weirdo-dlrn-master-puppet-scenario002-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild
-        - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
     experimental:
       jobs:
         - weirdo-dlrn-master-puppet-scenario002-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
     gate:
       jobs:
-        - DLRN-rpmbuild
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - distgit-cbs-final-build-centos8
         - distgit-cbs-final-build-centos9
 
 - project-template:
@@ -73,23 +59,16 @@
             branches: ^rpm-master$
         - weirdo-dlrn-master-packstack-scenario003-centos9
         - weirdo-dlrn-master-puppet-scenario001-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild
-        - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
     experimental:
       jobs:
         - weirdo-dlrn-master-packstack-scenario003-centos9
         - weirdo-dlrn-master-puppet-scenario001-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
     gate:
       jobs:
-        - DLRN-rpmbuild
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - distgit-cbs-final-build-centos8
         - distgit-cbs-final-build-centos9
 
 - project-template:
@@ -103,24 +82,17 @@
         - weirdo-dlrn-master-packstack-scenario001-centos9
         - weirdo-dlrn-master-puppet-scenario001-centos9
         - weirdo-dlrn-master-puppet-scenario002-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild
-        - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
     experimental:
       jobs:
         - weirdo-dlrn-master-packstack-scenario001-centos9
         - weirdo-dlrn-master-puppet-scenario001-centos9
         - weirdo-dlrn-master-puppet-scenario002-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
     gate:
       jobs:
-        - DLRN-rpmbuild
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - distgit-cbs-final-build-centos8
         - distgit-cbs-final-build-centos9
 
 - project-template:
@@ -135,10 +107,7 @@
         - weirdo-dlrn-master-puppet-scenario001-centos9
         - weirdo-dlrn-master-puppet-scenario002-centos9
         - weirdo-dlrn-master-puppet-scenario005-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild
-        - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
     experimental:
       jobs:
@@ -147,14 +116,10 @@
         - weirdo-dlrn-master-puppet-scenario002-centos9
         - weirdo-dlrn-master-puppet-scenario004-centos9
         - weirdo-dlrn-master-puppet-scenario005-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
     gate:
       jobs:
-        - DLRN-rpmbuild
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - distgit-cbs-final-build-centos8
         - distgit-cbs-final-build-centos9
 
 - project-template:
@@ -171,23 +136,17 @@
         - weirdo-dlrn-master-puppet-scenario001-centos9:
             dependencies:
               - DLRN-rpmbuild-centos9-pinned
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9:
             branches: ^((?!rpm-master)|(^(?!train|ussuri|victoria)(\w+)-rdo))$
         - DLRN-rpmbuild-centos9-pinned:
             branches: ^rpm-master$
-        - DLRN-rpmbuild
-        - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
     gate:
       jobs:
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9:
             branches: ^((?!rpm-master)|(^(?!train|ussuri|victoria)(\w+)-rdo))$
         - DLRN-rpmbuild-centos9-pinned:
             branches: ^rpm-master$
-        - DLRN-rpmbuild
-        - distgit-cbs-final-build-centos8
         - distgit-cbs-final-build-centos9
     experimental:
       jobs:
@@ -204,23 +163,16 @@
             branches: ^rpm-master$
         - weirdo-dlrn-master-packstack-scenario003-centos9
         - weirdo-dlrn-master-puppet-scenario003-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild
-        - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
     experimental:
       jobs:
         - weirdo-dlrn-master-packstack-scenario003-centos9
         - weirdo-dlrn-master-puppet-scenario003-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
     gate:
       jobs:
-        - DLRN-rpmbuild
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - distgit-cbs-final-build-centos8
         - distgit-cbs-final-build-centos9
 
 - project-template:
@@ -232,22 +184,15 @@
               - DLRN-rpmbuild-centos9
             branches: ^rpm-master$
         - weirdo-dlrn-master-puppet-scenario003-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild
-        - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
     experimental:
       jobs:
         - weirdo-dlrn-master-puppet-scenario003-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
     gate:
       jobs:
-        - DLRN-rpmbuild
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - distgit-cbs-final-build-centos8
         - distgit-cbs-final-build-centos9
 
 - project-template:
@@ -260,23 +205,16 @@
             branches: ^rpm-master$
         - weirdo-dlrn-master-packstack-scenario001-centos9
         - weirdo-dlrn-master-puppet-scenario003-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild
-        - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
     experimental:
       jobs:
         - weirdo-dlrn-master-packstack-scenario001-centos9
         - weirdo-dlrn-master-puppet-scenario003-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
     gate:
       jobs:
-        - DLRN-rpmbuild
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - distgit-cbs-final-build-centos8
         - distgit-cbs-final-build-centos9
 
 - project-template:
@@ -289,23 +227,16 @@
             branches: ^rpm-master$
         - weirdo-dlrn-master-puppet-scenario004-centos9
         - weirdo-dlrn-master-puppet-scenario005-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild
-        - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
     experimental:
       jobs:
         - weirdo-dlrn-master-puppet-scenario004-centos9
         - weirdo-dlrn-master-puppet-scenario005-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
     gate:
       jobs:
-        - DLRN-rpmbuild
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - distgit-cbs-final-build-centos8
         - distgit-cbs-final-build-centos9
 
 - project-template:
@@ -320,24 +251,17 @@
         - weirdo-dlrn-master-puppet-scenario001-centos9
         - weirdo-dlrn-master-puppet-scenario003-centos9
         - weirdo-dlrn-master-puppet-scenario005-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild
-        - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
     experimental:
       jobs:
         - weirdo-dlrn-master-packstack-scenario001-centos9
         - weirdo-dlrn-master-puppet-scenario001-centos9
         - weirdo-dlrn-master-puppet-scenario003-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
     gate:
       jobs:
-        - DLRN-rpmbuild
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - distgit-cbs-final-build-centos8
         - distgit-cbs-final-build-centos9
 
 - project-template:
@@ -351,23 +275,16 @@
         - weirdo-dlrn-master-packstack-scenario001-centos9
         - weirdo-dlrn-master-puppet-scenario001-centos9
         - weirdo-dlrn-master-puppet-scenario005-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild
-        - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
     experimental:
       jobs:
         - weirdo-dlrn-master-packstack-scenario001-centos9
         - weirdo-dlrn-master-puppet-scenario001-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
     gate:
       jobs:
-        - DLRN-rpmbuild
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - distgit-cbs-final-build-centos8
         - distgit-cbs-final-build-centos9
 
 - project-template:
@@ -381,24 +298,17 @@
         - weirdo-dlrn-master-packstack-scenario002-centos9
         - weirdo-dlrn-master-puppet-scenario001-centos9
         - weirdo-dlrn-master-puppet-scenario003-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild
-        - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
     experimental:
       jobs:
         - weirdo-dlrn-master-packstack-scenario002-centos9
         - weirdo-dlrn-master-puppet-scenario001-centos9
         - weirdo-dlrn-master-puppet-scenario003-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
     gate:
       jobs:
-        - DLRN-rpmbuild
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - distgit-cbs-final-build-centos8
         - distgit-cbs-final-build-centos9
 
 - project-template:
@@ -410,23 +320,16 @@
               - DLRN-rpmbuild-centos9
             branches: ^rpm-master$
         - weirdo-dlrn-master-puppet-scenario004-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild
-        - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
     experimental:
       jobs:
         - weirdo-dlrn-master-puppet-scenario004-centos9
         - weirdo-dlrn-master-puppet-scenario005-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
     gate:
       jobs:
-        - DLRN-rpmbuild
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - distgit-cbs-final-build-centos8
         - distgit-cbs-final-build-centos9
 
 - project-template:
@@ -438,20 +341,13 @@
               - DLRN-rpmbuild-centos9
             branches: ^rpm-master$
         - weirdo-dlrn-master-puppet-scenario002-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - DLRN-rpmbuild
-        - distgit-cbs-validate-centos8-stream
         - distgit-cbs-validate-centos9
     experimental:
       jobs:
         - weirdo-dlrn-master-puppet-scenario002-centos9
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
     gate:
       jobs:
-        - DLRN-rpmbuild
-        - DLRN-rpmbuild-centos8
         - DLRN-rpmbuild-centos9
-        - distgit-cbs-final-build-centos8
         - distgit-cbs-final-build-centos9
