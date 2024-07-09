@@ -399,6 +399,13 @@
         state: latest
       loop: "{{ groups['tripleo_computes'] }}"
 
+    - name: Unregister with subscription-manager to remove OSP17.1 repos before running OSP 18 setup and adoption
+      delegate_to: "{{ item }}"
+      become: true
+      failed_when: false
+      ansible.builtin.shell: >
+        subscription-manager unregister
+      loop: "{{ groups['rh-subscription'] }}"
 
     - name: "Run data-plane-adoption tests from {{ dpa_dir }}"
       community.general.make:
@@ -411,10 +418,6 @@
           TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"
       register: make_res
       failed_when: '"failed=0" not in make_res.stdout_lines[-1]'
-
-    - name: Unregister with subscription-manager when this was a CDN OSP 17.1 source job
-      ansible.builtin.shell:
-        ansible-playbook {{ rdo_dir }}/unregister_RH_subscription_standalone.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
 
     - name: Call test role
       when: "'periodic' in zuul.job or (force_periodic|default(false)|bool)"
