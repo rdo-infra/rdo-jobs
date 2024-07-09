@@ -14,6 +14,14 @@
       - 172.17.0.104
       - 172.17.0.105
     source_ovndb_ip: 172.17.0.103
+    osp_17_repos:
+      - rhel-9-for-x86_64-baseos-eus-rpms
+      - rhel-9-for-x86_64-appstream-eus-rpms
+      - rhel-9-for-x86_64-highavailability-eus-rpms
+      - openstack-17.1-for-rhel-9-x86_64-rpms
+      - fast-datapath-for-rhel-9-x86_64-rpms
+    osp_17_ceph_repos:
+      - rhceph-6-tools-for-rhel-9-x86_64-rpms
   tasks:
     - name: Create inventory for logs collection on the undercloud
       ansible.builtin.template:
@@ -68,17 +76,19 @@
     - name: Write repo commands and deploy undercloud with install_yamls
       block:
         - name: Write out the repo setup commands to file for undercloud to use
-          ansible.builtin.copy:
-            dest: /home/zuul/cdn_subscription_repos.sh
-            content: |
-              sudo subscription-manager repos --enable=rhel-9-for-x86_64-baseos-eus-rpms \
-                --enable=rhel-9-for-x86_64-appstream-eus-rpms \
-                --enable=rhel-9-for-x86_64-highavailability-eus-rpms \
-                --enable=openstack-17.1-for-rhel-9-x86_64-rpms \
-                {% if use_ceph is defined and use_ceph == 'true' %}
-                --enable=rhceph-6-tools-for-rhel-9-x86_64-rpms \
-                {% endif %}
-                --enable=fast-datapath-for-rhel-9-x86_64-rpms
+          ansible.builtin.lineinfile:
+            create: true
+            path: "/home/zuul/cdn_subscription_repos.sh"
+            value: "subscription-manager repos --enable {{ item }}"
+          loop: "{{ osp_17_repos }}"
+
+        - name: Write ceph repo commands when use_ceph is set
+          when: use_ceph is defined and use_ceph
+          ansible.builtin.lineinfile:
+            create: true
+            path: "/home/zuul/cdn_subscription_repos.sh"
+            value: "subscription-manager repos --enable {{ item }}"
+          loop: "{{ osp_17_ceph_repos }}"
 
         - name: Deploy the tripleo source environment
           ansible.builtin.shell: >
@@ -409,6 +419,19 @@
         state: latest
       loop: "{{ groups['tripleo_computes'] }}"
 
+    - name: Disable OSP17.1 repos before running OSP 18 setup and adoption
+      delegate_to: "{{ item.0 }}"
+      become: true
+      ansible.builtin.shell: "subscription-manager repos --disable {{ item.1 }}"
+      loop: "{{ groups['rh-subscription'] | product(osp_17_repos) | list }}"
+
+    - name: Disable OSP17.1 ceph repos before running OSP 18 setup and adoption
+      when: use_ceph is defined and use_ceph
+      delegate_to: "{{ item.0 }}"
+      become: true
+      ansible.builtin.shell: "subscription-manager repos --disable {{ item.1 }}"
+      loop: "{{ groups['rh-subscription'] | product(osp_17_ceph_repos) | list }}"
+
     - name: "Run data-plane-adoption tests from {{ dpa_dir }}"
       community.general.make:
         chdir: "{{ dpa_dir }}"
@@ -421,9 +444,12 @@
       register: make_res
       failed_when: '"failed=0" not in make_res.stdout_lines[-1]'
 
-    - name: Unregister with subscription-manager when this was a CDN OSP 17.1 source job
-      ansible.builtin.shell:
-        ansible-playbook {{ rdo_dir }}/unregister_RH_subscription_standalone.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
+    - name: Unregister tripleo osp17.1 nodes with subscription-manager
+      delegate_to: "{{ item }}"
+      become: true
+      failed_when: false
+      ansible.builtin.shell: subscription-manager unregister
+      loop: "{{ groups['rh-subscription'] }}"
 
     - name: Call test role
       when: "'periodic' in zuul.job or (force_periodic|default(false)|bool)"
