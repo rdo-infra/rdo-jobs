@@ -75,8 +75,9 @@
 
 ## data plane adoption job
 - job:
-    name: periodic-data-plane-adoption-osp-17-to-extracted-crc
-    parent: data-plane-adoption-osp-17-to-extracted-crc
+    name: periodic-adoption-standalone-to-crc-ceph
+    description: Standalone source OSP 17.1 node adopted to crc RHOSO 18. Has ceph, no TLS.
+    parent: adoption-standalone-to-crc-ceph
     vars:
       registry_namespace: podified-antelope-centos9
       openstack_release: antelope
@@ -103,10 +104,10 @@
         tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsIpV6TestJSON
         tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsTestJSON
 
-
 - job:
-    name: periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-no-ceph
-    parent: data-plane-adoption-osp17-multinode-to-extracted-crc-no-ceph
+    name: periodic-adoption-multinode-to-crc-no-ceph
+    description: multinode source OSP 17.1 adopted to crc RHOSO 18. No Ceph, no TLS.
+    parent: adoption-multinode-to-crc-no-ceph
     vars:
       registry_namespace: podified-antelope-centos9
       openstack_release: antelope
@@ -133,10 +134,10 @@
         tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsIpV6TestJSON
         tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsTestJSON
 
-
 - job:
-    name: periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-with-ceph
-    parent: periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-no-ceph
+    name: periodic-adoption-multinode-to-crc-ceph
+    description: multinode source OSP 17.1 adopted to crc RHOSO 18. Has Ceph, no TLS.
+    parent: periodic-adoption-multinode-to-crc-no-ceph
     vars:
       use_ceph: "true"
       dpa_test_suite: "test-with-ceph"
