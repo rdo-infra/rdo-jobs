@@ -51,6 +51,24 @@
       "parentUuid": "2793db1f_d43a7e1f",
       "revId": "b3d256a57a63aa81648a2e5feacd67eb54854004",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82f02880_b7f232cf",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-07-11T08:00:54Z",
+      "side": 1,
+      "message": "I doubt it changes \"soon\" (maybe it never ends up changing), but this does not seem intuitive, considering that this variable is not mandatory in the framework. Besides, what is the goal of adding this extra check? Is it to make user \u0027cifmw_run_test_role\u0027 is always set or to add extra control over the tempest task? If the latter then IMO we should be explicit. The var should be on the zuul vars,yes, and to follow the existing pattern something like \u0027dpa_run_tempest\u0027 would be ok IMO",
+      "parentUuid": "6fa77dd5_c3da8e3c",
+      "revId": "b3d256a57a63aa81648a2e5feacd67eb54854004",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
