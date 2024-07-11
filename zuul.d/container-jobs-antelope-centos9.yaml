@@ -75,8 +75,8 @@
 
 ## data plane adoption job
 - job:
-    name: periodic-data-plane-adoption-osp-17-to-extracted-crc
-    parent: data-plane-adoption-osp-17-to-extracted-crc
+    name: periodic-adoption-standalone-to-crc-ceph
+    parent: adoption-standalone-to-crc-ceph
     vars:
       registry_namespace: podified-antelope-centos9
       openstack_release: antelope
@@ -103,10 +103,9 @@
         tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsIpV6TestJSON
         tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsTestJSON
 
-
 - job:
-    name: periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-no-ceph
-    parent: data-plane-adoption-osp17-multinode-to-extracted-crc-no-ceph
+    name: periodic-adoption-multinode-to-crc-no-ceph
+    parent: adoption-multinode-to-crc-no-ceph
     vars:
       registry_namespace: podified-antelope-centos9
       openstack_release: antelope
@@ -133,10 +132,9 @@
         tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsIpV6TestJSON
         tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsTestJSON
 
-
 - job:
-    name: periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-with-ceph
-    parent: periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-no-ceph
+    name: periodic-adoption-multinode-to-crc-ceph
+    parent: periodic-adoption-multinode-to-crc-no-ceph
     vars:
       use_ceph: "true"
       dpa_test_suite: "test-with-ceph"

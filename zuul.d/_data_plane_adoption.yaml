@@ -1,5 +1,10 @@
+# TODO(marios): remove this after we merge and reparent across openstack-k8s-operators OSPRH-8452
 - job:
     name: data-plane-adoption-osp-17-to-extracted-crc
+    parent: adoption-standalone-to-crc-ceph
+
+- job:
+    name: adoption-standalone-to-crc-ceph
     parent: cifmw-adoption-base
     required-projects: &dpa_required_projects
       - name: openstack-k8s-operators/install_yamls
@@ -42,9 +47,14 @@
       - ^docs_user/.*$
       - Gemfile
 
+# TODO(marios): remove this after we merge and reparent across openstack-k8s-operators OSPRH-8452
 - job:
     name: data-plane-adoption-osp-17-to-extracted-crc-minimal-no-ceph
-    parent: data-plane-adoption-osp-17-to-extracted-crc
+    parent: adoption-standalone-to-crc-no-ceph
+
+- job:
+    name: adoption-standalone-to-crc-no-ceph
+    parent: adoption-standalone-to-crc-ceph
     vars:
       enable_tls: "true"
       cloud_domain: "ooo.test"
@@ -52,7 +62,7 @@
       dpa_test_suite: "test-minimal"
 
 - job:
-    name: data-plane-adoption-osp17-multinode-to-extracted-crc-no-ceph
+    name: adoption-multinode-to-crc-no-ceph
     abstract: true
     parent: cifmw-adoption-base-source-multinode
     required-projects: *dpa_required_projects
