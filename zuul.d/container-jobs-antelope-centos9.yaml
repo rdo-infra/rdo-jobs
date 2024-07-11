@@ -75,8 +75,8 @@
 
 ## data plane adoption job
 - job:
-    name: periodic-data-plane-adoption-osp-17-to-extracted-crc
-    parent: data-plane-adoption-osp-17-to-extracted-crc
+    name: periodic-adoption-rhel-osp17-standalone-to-crc-ceph
+    parent: adoption-rhel-osp17-standalone-to-crc-ceph
     vars:
       registry_namespace: podified-antelope-centos9
       openstack_release: antelope
@@ -105,8 +105,8 @@
 
 
 - job:
-    name: periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-no-ceph
-    parent: data-plane-adoption-osp17-multinode-to-extracted-crc-no-ceph
+    name: periodic-adoption-rhel-osp17-multinode-to-crc-no-ceph
+    parent: adoption-rhel-osp17-multinode-to-crc-no-ceph
     vars:
       registry_namespace: podified-antelope-centos9
       openstack_release: antelope
@@ -135,8 +135,8 @@
 
 
 - job:
-    name: periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-with-ceph
-    parent: periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-no-ceph
+    name: periodic-adoption-rhel-osp17-multinode-to-crc-ceph
+    parent: periodic-adoption-rhel-osp17-multinode-to-crc-no-ceph
     vars:
       use_ceph: "true"
       dpa_test_suite: "test-with-ceph"
