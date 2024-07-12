@@ -572,6 +572,15 @@
         state: latest
       loop: "{{ groups['tripleo_computes'] }}"
 
+    - name: Call test role before adoption tests
+      become: true
+      delegate_to: undercloud
+      tags:
+        - tempest
+      when:
+        - dpa_run_pre_adoption_tempest | default(false) | bool
+      import_tasks: run_tempest.yaml
+
     - name: Disable OSP17.1 repos before running OSP 18 setup and adoption
       delegate_to: "{{ item }}"
       become: true
@@ -687,70 +696,11 @@
           register: make_ceph_res
           failed_when: '"failed=0" not in make_ceph_res.stdout_lines[-1]'
 
-    - name: Call test role
+    - name: Call test role after adoption tests
       when:
         - dpa_run_post_adoption_tempest | default(true) | bool
         - cifmw_run_test_role is defined
-      block:
-        # Tempest role does not support use of both main skiplist and exclude list
-        # TODO (anbanerj): Remove this task when tempest supports it
-        - name: Load skiplist from list of known failures
-          ansible.builtin.slurp:
-            path: "{{ framework_dir }}/roles/test_operator/files/list_skipped.yml"
-          register: skiplist_file
-
-        - name: Slurp data from list_skipped.yml
-          ansible.builtin.set_fact:
-            skiplist: "{{ skiplist_file['content'] | b64decode | from_yaml }}"
-
-        - name: Get names of excluded tests
-          no_log: true
-          ansible.builtin.set_fact:
-            test_names: "{{ test_names | default([]) + [item.test] }}"
-          loop: "{{ skiplist.known_failures }}"
-
-        - name: Merge tests from exclude list and known skiplist
-          when: cifmw_test_operator_tempest_exclude_list is defined
-          ansible.builtin.set_fact:
-            test_names: "{{ test_names | default([]) + [item] }}"
-          loop: "{{ cifmw_test_operator_tempest_exclude_list | trim | split('\n') }}"
-
-        - name: Convert list of tests to string to pass to test-operator
-          set_fact:
-            exclude_list: |
-              {% for item in test_names %}
-                {{ item }}
-              {% endfor %}
-
-        - name: Execute pre_tests hook
-          when:
-            - pre_tests is defined
-          block:
-            - name: Dump hooks parameters to a file
-              ansible.builtin.template:
-                src: "{{ playbook_dir }}/files/ci_framework_hooks_params.yaml.j2"
-                dest: "{{ cifmw_test_operator_parameters_file | default('/home/zuul/hooks_vars.yaml')}}"
-
-            - name: Call pre_tests hook
-              ansible.builtin.command: >
-                ansible-playbook {{ rdo_dir }}/ci_framework_call_hook.yaml
-                -e "step=pre_tests"
-                -e "@{{cifmw_hooks_parameters_file | default('/home/zuul/hooks_vars.yaml')}}"
-              args:
-                chdir: "{{ framework_dir }}"
-
-        - name: Dump cifmw test operator parameters to a file
-          ansible.builtin.template:
-            src: "{{ playbook_dir }}/files/ci_framework_test_operator_params.yaml.j2"
-            dest: "{{ cifmw_test_operator_parameters_file | default('/home/zuul/test_operator_vars.yaml')}}"
-
-        - name: Call test role with ci_framework_call_test_role
-          ansible.builtin.shell: >
-            ansible-playbook {{ rdo_dir }}/ci_framework_call_test_role.yaml -e "job_name={{ zuul.job }}"
-            -e "test_role={{ cifmw_run_test_role | default('tempest') }}"
-            -e "@{{cifmw_test_operator_parameters_file | default('/home/zuul/test_operator_vars.yaml')}}"
-          args:
-            chdir: "{{ framework_dir }}"
+      import_tasks: run_test_operator_tests.yaml
 
     - name: Mark job as successful
       when: not force_job_failure | default(false)
