@@ -5,6 +5,7 @@
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
     cifmw_datadir: "/home/zuul/ci-framework-data"
+    pre_adoption_tempest_dir: "/home/zuul/ci-framework-data/tests/pre-adoption-tempest/"
     source_mariadb_ip: 172.17.0.100
     osp_17_repos:
       - openstack-17.1-for-rhel-9-x86_64-rpms
@@ -321,6 +322,80 @@
         name: sos
         state: latest
 
+    - name: Call test role before adoption tests
+      become: true
+      delegate_to: standalone
+      tags:
+        - tempest
+      when:
+        - dpa_run_pre_adoption_tempest | default(false) | bool
+      block:
+        - name: Install openstack-tempest
+          ansible.builtin.dnf:
+            name: openstack-tempest
+            state: latest
+
+        - name: Install python-subunit
+          ansible.builtin.dnf:
+            name: python-subunit
+            state: latest
+
+        - name: Install openstack tempest plugins
+          when: dpa_pre_adoption_tempest_plugins is defined
+          ansible.builtin.dnf:
+            name: item
+            state: latest
+          loop: "{{ dpa_pre_adoption_tempest_plugins }}"
+
+        - name: Make sure tempest workspace directory exists
+          ansible.builtin.file:
+            path: "{{ pre_adoption_tempest_dir }}"
+            state: directory
+            mode: '0755'
+
+        - name: Initialize tempest workspace
+          ansible.builtin.command: "tempest init {{ pre_adoption_tempest_dir }}/dpa_tempest_workspace"
+          args:
+            creates: "{{ pre_adoption_tempest_dir }}/dpa_tempest_workspace"
+
+        - name: Create network for tempest
+          shell:
+            cmd: OS_CLOUD=standalone openstack network create tempest-ext-nw --external --provider-network-type flat --provider-physical-network datacentre -f json
+          register: network_create
+
+        - name: Get network details
+          set_fact:
+            network_details: "{{ network_create.stdout | from_json }}"
+
+        - name: Create subnet for tempest
+          shell:
+            cmd: OS_CLOUD=standalone openstack subnet create tempest-ext-nw-subnet --subnet-range 192.168.24.0/24 --allocation-pool start=192.168.24.150,end=192.168.24.250 --gateway 192.168.24.1 --no-dhcp --network tempest-ext-nw  -f json
+          register: subnet_create
+
+        - name: Get subnet details
+          set_fact:
+            subnet_details: "{{ subnet_create.stdout | from_json }}"
+
+        - name: Generate tempest.conf
+          ansible.builtin.command:
+            cmd: "discover-tempest-config --out {{ pre_adoption_tempest_dir }}/dpa_tempest_workspace/etc/tempest.conf --deployer-input ~/tempest-deployer-input.conf --os-cloud standalone --create --network {{ network_details.id }} --create default.log_file {{ pre_adoption_tempest_dir }}/dpa_tempest_workspace/logs/tempest.log"
+
+        - name: Run pre adoption tempest tests on standalone
+          ansible.builtin.command:
+            cmd: "tempest run --config-file {{ pre_adoption_tempest_dir }}/dpa_tempest_workspace/etc/tempest.conf -r tempest.api.identity"
+
+        - name: Generate html output
+          ansible.builtin.command:
+            cmd: "subunit2html .stestr/0 tempest.html"
+
+        - name: Delete subnet created for tempest
+          shell:
+            cmd: OS_CLOUD=standalone openstack subnet delete {{ subnet_details.id }}
+
+        - name: Delete network created for tempest
+          shell:
+            cmd: OS_CLOUD=standalone openstack network delete {{ network_details.id }}
+
     - name: Disable OSP17.1 repos before running OSP 18 setup and adoption
       delegate_to: standalone
       become: true
@@ -344,7 +419,7 @@
       failed_when: false
       ansible.builtin.shell: subscription-manager unregister
 
-    - name: Call test role
+    - name: Call test role after adoption tests
       when:
         - cifmw_run_test_role is defined
       block:
