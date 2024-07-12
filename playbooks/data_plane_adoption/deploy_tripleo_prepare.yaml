@@ -1,6 +1,12 @@
 - name: Prepare for TripleO deployment
   hosts: controller
   gather_facts: false
+  vars:
+    dpa_dir: "{{ dpa_dir_override | default('/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption') }}"
+    rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
+    framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
+    cifmw_datadir: "/home/zuul/ci-framework-data"
+    pre_adoption_tempest_dir: "/home/zuul/ci-framework-data/tests/pre-adoption-tempest/"
   tasks:
     - name: Create inventory for logs collection on the undercloud
       ansible.builtin.template:
@@ -330,6 +336,17 @@
         name: sos
         state: latest
       loop: "{{ groups['tripleo_computes'] }}"
+
+    - name: Call test role before adoption tests
+      become: true
+      delegate_to: undercloud
+      tags:
+        - tempest
+      when:
+        - dpa_run_pre_adoption_tempest | default(false) | bool
+      import_tasks: run_tempest.yaml
+      vars:
+        os_cloud_name: overcloud
 
     - name: Disable OSP17.1 repos before running OSP 18 setup and adoption
       delegate_to: "{{ item }}"
