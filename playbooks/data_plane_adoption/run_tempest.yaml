@@ -1,0 +1,78 @@
+---
+# This is called pre adoption
+- name: Install packages required for tempest
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: latest
+  become: true
+  loop:
+    - openstack-tempest
+    - python-subunit
+
+- name: Install plugins required for tempest
+  when: dpa_pre_adoption_tempest_plugins is defined
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ dpa_pre_adoption_tempest_plugins }}"
+
+- name: Make sure tempest workspace directory exists
+  ansible.builtin.file:
+    path: "{{ pre_adoption_tempest_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: Initialize tempest workspace
+  ansible.builtin.command: "tempest init {{ pre_adoption_tempest_dir }}/dpa_tempest_workspace"
+  args:
+    creates: "{{ pre_adoption_tempest_dir }}/dpa_tempest_workspace"
+
+- name: Create network for tempest
+  shell:
+    cmd: "OS_CLOUD={{ os_cloud_name }} openstack network create tempest-ext-nw --external --provider-network-type flat --provider-physical-network datacentre -f json"
+  register: network_create
+
+- name: Get network details
+  set_fact:
+    network_details: "{{ network_create.stdout | from_json }}"
+
+- name: Create subnet for tempest
+  shell:
+    cmd: "OS_CLOUD={{ os_cloud_name }} openstack subnet create tempest-ext-nw-subnet --subnet-range 192.168.24.0/24 --allocation-pool start=192.168.24.150,end=192.168.24.250 --gateway 192.168.24.1 --no-dhcp --network tempest-ext-nw  -f json"
+  register: subnet_create
+
+- name: Get subnet details
+  set_fact:
+    subnet_details: "{{ subnet_create.stdout | from_json }}"
+
+- name: Generate tempest.conf
+  ansible.builtin.command:
+    cmd: "discover-tempest-config --out {{ pre_adoption_tempest_dir }}/dpa_tempest_workspace/etc/tempest.conf --deployer-input ~/tempest-deployer-input.conf --os-cloud {{ os_cloud_name }} --create --network {{ network_details.id }} --create DEFAULT.log_file {{ pre_adoption_tempest_dir }}dpa_tempest_workspace/logs/tempest.log"
+
+- name: Run pre adoption tempest tests
+  ansible.builtin.command:
+    cmd: "tempest run --config-file {{ pre_adoption_tempest_dir }}/dpa_tempest_workspace/etc/tempest.conf -r tempest.api.identity"
+  ignore_errors: true
+  register: tempest_run_output
+
+- name: Write tempest_run_output to a file
+  ansible.builtin.copy:
+    content: "{{ tempest_run_output.stdout_lines }} \n {{ tempest_run_output.stderr}}"
+    dest: "{{ pre_adoption_tempest_dir }}/dpa_tempest_workspace/tempest_run_output.txt"
+
+- name: REMOVE BEFORE MERGE!!!
+  debug:
+    var: tempest_run_output
+
+- name: Delete subnet created for tempest
+  shell:
+    cmd: "OS_CLOUD={{ os_cloud_name }} openstack subnet delete {{ subnet_details.id }}"
+
+- name: Delete network created for tempest
+  shell:
+    cmd: "OS_CLOUD={{ os_cloud_name }} openstack network delete {{ network_details.id }}"
+
+- name: Check if the pre adoption tempest tests passed
+  shell:
+    cmd: "echo 'Check if the pre adoption tempest tests passed'"
+  failed_when: tempest_run_output.rc != 0
