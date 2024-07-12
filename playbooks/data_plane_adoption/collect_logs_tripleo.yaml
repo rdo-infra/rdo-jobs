@@ -45,3 +45,15 @@
           - --max-size=50m
       loop:
         - "{{ ansible_user_dir }}"
+
+    - name: Ensure logs/undercloud/tests/ folder exists
+      delegate_to: localhost
+      ansible.builtin.file:
+        path: '/home/zuul/logs/undercloud/tests'
+        state: directory
+
+    - name: Copy pre adoption tempest log files from standalone vm
+      ansible.posix.synchronize:
+        src: '/home/zuul/ci-framework-data/tests/pre-adoption-tempest/'
+        dest: '/home/zuul/logs/undercloud/tests'
+        mode: pull
