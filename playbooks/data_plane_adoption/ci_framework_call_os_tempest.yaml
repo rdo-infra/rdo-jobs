@@ -1,0 +1,18 @@
+- hosts: all
+  vars:
+    framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
+  tasks:
+    - name: Install tempest
+      ansible.builtin.dnf:
+        name: openstack-tempest
+        state: present
+    - name: Install tempest plugins
+      ansible.builtin.dnf:
+        name: {{ item }}
+        state: present
+      loop:
+        - python3-keystone-tests-tempest
+        - python3-neutron-tests-tempest
+        - python3-cinder-tests-tempest
+        - python3-telemetry-tests-tempest
+
