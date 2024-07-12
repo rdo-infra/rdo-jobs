@@ -666,6 +666,7 @@
           failed_when: '"failed=0" not in make_ceph_res.stdout_lines[-1]'
 
     - name: Call test role
+    - name: Call test role after adoption tests
       when:
         - dpa_run_post_adoption_tempest | default(true) | bool
         - cifmw_run_test_role is defined
