@@ -69,6 +69,24 @@
       "parentUuid": "6fa77dd5_c3da8e3c",
       "revId": "b3d256a57a63aa81648a2e5feacd67eb54854004",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60b9e69f_477cb39e",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 716
+      },
+      "writtenOn": "2024-07-12T10:46:16Z",
+      "side": 1,
+      "message": "The cifmw_run_test_role var here is this one https://github.com/rdo-infra/rdo-jobs/blob/master/zuul.d/container-jobs-antelope-centos9.yaml#L87\n\nWe want the block `Call test role` to run only when we want to run tempest tests. There might be scenarios where we have a periodic data plane adoption job which calls the `deploy_tripleo/standalone_run_repo_tests` playbook but we do not want to run tempest there. In that case we dont want this block to run.\nSo in periodic adoption jobs where we want tempest we need to define cifmw_run_test_role (or parent it off the existing periodic jobs where this is already set)",
+      "parentUuid": "82f02880_b7f232cf",
+      "revId": "b3d256a57a63aa81648a2e5feacd67eb54854004",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
