@@ -175,6 +175,7 @@
       ansible.builtin.pip:
         name: python-openstackclient
         executable: pip3
+      failed_when: true
 
     - name: Insert edpm_bootstrap_command var into dataplane tests vars
       ansible.builtin.blockinfile:
@@ -270,6 +271,54 @@
       ansible.builtin.shell: "subscription-manager repos --disable {{ item }}"
       loop: "{{ osp_17_repos }}"
 
+    - name: Call test role before adoption tests
+      when:
+        - dpa_run_pre_adoption_tempest | default(false) | bool
+      block:
+        - name: Install openstack-tempest
+          ansible.builtin.dnf:
+            name: openstack-tempest
+            state: latest
+
+        - name: Install openstack tempest plugins
+          when: dpa_pre_adoption_tempest_plugins is defined
+          ansible.builtin.dnf:
+            name: item
+            state: latest
+          loop: "{{ dpa_pre_adoption_tempest_plugins }}"
+
+        - name: Initialize tempest workspace
+          ansible.builtin.command:
+            cmd: tempest init dpa_tempest_workspace
+
+        - name: Create public network for tempest
+          openstack.cloud.network:
+            cloud: standalone
+            name: tempest_ext_nw
+            state: present
+            external: true
+            provider_network_type: flat
+            provider_physical_network: datacentre
+
+        - name: Create subnet for public network for tempest
+          openstack.cloud.subnet:
+            cloud: standalone
+            name: tempest_ext_nw_subnet
+            state: present
+            network_name: tempest_ext_nw
+            cidr: 192.168.24.0/24
+            dns_nameservers:
+               - 8.8.8.7
+               - 8.8.8.8
+            is_dhcp_enabled: false
+            allocation_pool_start: 192.168.24.150
+            allocation_pool_end: 192.168.24.250
+            gateway_ip: 192.168.24.1
+
+        - name: Generate tempest.conf
+          ansible.builtin.command:
+            cmd: tempest init dpa_tempest_workspace
+
     - name: "Run data-plane-adoption tests from {{ dpa_dir }}"
       community.general.make:
         chdir: "{{ dpa_dir }}"
@@ -288,7 +337,7 @@
       failed_when: false
       ansible.builtin.shell: subscription-manager unregister
 
-    - name: Call test role
+    - name: Call test role after adoption tests
       when:
         - cifmw_run_test_role is defined
       block:
