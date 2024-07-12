@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42e51ef8_fe876e71",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 716
+      },
+      "writtenOn": "2024-07-12T10:30:46Z",
+      "side": 1,
+      "message": "I think zuul is complaining about a Tab here instead of space\n\nhttps://logserver.rdoproject.org/64/53564/2/check/periodic-data-plane-adoption-osp-17-to-extracted-crc-tempest/9ca2bcd/job-output.txt \n\n2024-07-11 20:40:27.114818 | Syntax Error while loading YAML.\n2024-07-11 20:40:27.114822 |   found character that cannot start any token",
+      "revId": "6588bfef5d7516dd450f415f4dd8cc30de78bf20",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "223c2eb9_fda76b73",
+        "filename": "zuul.d/container-jobs-antelope-centos9.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 716
+      },
+      "writtenOn": "2024-07-12T10:30:46Z",
+      "side": 1,
+      "message": "probably the ` \\n ` here is not needed. It may be adding an extra ` \\n ` in the `cifmw_polarion_jump_result_dir` var here: https://logserver.rdoproject.org/64/53564/2/check/periodic-data-plane-adoption-osp-17-to-extracted-crc-tempest/9ca2bcd/zuul-info/inventory.yaml",
+      "revId": "6588bfef5d7516dd450f415f4dd8cc30de78bf20",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
