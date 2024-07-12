@@ -277,6 +277,69 @@
         name: sos
         state: latest
 
+    - name: Call test role before adoption tests
+      delegate_to: standalone
+      when:
+        - dpa_run_pre_adoption_tempest | default(false) | bool
+      block:
+        - name: Install openstack-tempest
+          become: true
+          ansible.builtin.dnf:
+            name: openstack-tempest
+            state: latest
+
+        - name: Install openstack tempest plugins
+          when: dpa_pre_adoption_tempest_plugins is defined
+          become: true
+          ansible.builtin.dnf:
+            name: item
+            state: latest
+          loop: "{{ dpa_pre_adoption_tempest_plugins }}"
+
+        - name: Initialize tempest workspace
+          ansible.builtin.command:
+            cmd: tempest init dpa_tempest_workspace
+
+        - name: Copy clouds.yaml to current dir
+          ansible.builtin.copy:
+            src: /root/.config/openstack/clouds.yaml
+            dest: "{{ playbook_dir }}"
+            mode: '0755'
+            remote_src: true
+          become: true
+
+        - name: Create public network for tempest
+          become: true
+          openstack.cloud.network:
+            name: tempest_ext_nw
+            state: present
+            external: true
+            provider_network_type: flat
+            provider_physical_network: datacentre
+          environment:
+            OS_CLOUD: "standalone"
+
+        - name: Create subnet for public network for tempest
+          become: true
+          openstack.cloud.subnet:
+            cloud: standalone
+            name: tempest_ext_nw_subnet
+            state: present
+            network_name: tempest_ext_nw
+            cidr: 192.168.24.0/24
+            dns_nameservers:
+               - 8.8.8.7
+               - 8.8.8.8
+            is_dhcp_enabled: false
+            allocation_pool_start: 192.168.24.150
+            allocation_pool_end: 192.168.24.250
+            gateway_ip: 192.168.24.1
+
+        - name: Generate tempest.conf
+          become: true
+          ansible.builtin.command:
+            cmd: discover-tempest-config --deployer-input ~/tempest-deployer-input.conf --os-cloud standalone --create --network tempest_ext_nw
+
     - name: Disable OSP17.1 repos before running OSP 18 setup and adoption
       delegate_to: standalone
       become: true
@@ -301,7 +364,7 @@
       failed_when: false
       ansible.builtin.shell: subscription-manager unregister
 
-    - name: Call test role
+    - name: Call test role after adoption tests
       when:
         - cifmw_run_test_role is defined
       block:
