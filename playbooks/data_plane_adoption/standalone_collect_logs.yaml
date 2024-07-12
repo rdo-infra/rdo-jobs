@@ -24,3 +24,15 @@
         src: '/var/log/containers/'
         dest: '/home/zuul/logs/standalone/containers/'
         mode: pull
+
+    - name: Ensure logs/standalone/tests/ folder exists
+      delegate_to: localhost
+      ansible.builtin.file:
+        path: '/home/zuul/logs/standalone/tests'
+        state: directory
+
+    - name: Copy container log files from standalone vm
+      ansible.posix.synchronize:
+        src: '/home/zuul/ci-framework-data/tests/pre-adoption-tempest/'
+        dest: '/home/zuul/logs/standalone/tests'
+        mode: pull
