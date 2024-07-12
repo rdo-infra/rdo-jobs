@@ -358,6 +358,7 @@
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
         line: "upstream_dns: {{ upstream_control_plane_dns }}"
+      failed_when: true
 
     - name: Check if edpm-ansible.yml file was created
       ansible.builtin.stat:
@@ -404,6 +405,24 @@
       ansible.builtin.shell: "subscription-manager repos --disable {{ item.1 }}"
       loop: "{{ groups['rh-subscription'] | product(osp_17_ceph_repos) | list }}"
 
+    - name: Call test role before adoption tests
+      when:
+        - cifmw_run_test_role is defined
+      block:
+        - name: Dump cifmw test operator parameters to a file
+          ansible.builtin.template:
+            src: "{{ playbook_dir }}/files/ci_framework_test_operator_params.yaml.j2"
+            dest: "{{ cifmw_test_operator_parameters_file | default('/home/zuul/test_operator_vars.yaml')}}"
+
+        - name: Call test role with ci_framework_call_test_role
+          ansible.builtin.shell: >
+            ansible-playbook {{ rdo_dir }}/ci_framework_call_test_role.yaml -e "job_name={{ zuul.job }}"
+            -e "test_role='tempest'"
+            -e "@{{cifmw_test_operator_parameters_file | default('/home/zuul/test_operator_vars.yaml')}}"
+          args:
+            chdir: "{{ framework_dir }}"
+
+
     - name: "Run data-plane-adoption tests from {{ dpa_dir }}"
       community.general.make:
         chdir: "{{ dpa_dir }}"
@@ -423,7 +442,7 @@
       ansible.builtin.shell: subscription-manager unregister
       loop: "{{ groups['rh-subscription'] }}"
 
-    - name: Call test role
+    - name: Call test role after adoption tests
       when:
         - cifmw_run_test_role is defined
       block:
