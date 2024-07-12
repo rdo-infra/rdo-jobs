@@ -331,6 +331,17 @@
         state: latest
       loop: "{{ groups['tripleo_computes'] }}"
 
+    - name: Call test role before adoption tests
+      become: true
+      delegate_to: undercloud
+      tags:
+        - tempest
+      when:
+        - dpa_run_pre_adoption_tempest | default(false) | bool
+      import_tasks: run_tempest.yaml
+      vars:
+        os_cloud_name: overcloud
+
     - name: Disable OSP17.1 repos before running OSP 18 setup and adoption
       delegate_to: "{{ item }}"
       become: true
