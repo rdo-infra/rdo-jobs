@@ -516,7 +516,7 @@
       ansible.builtin.shell: subscription-manager unregister
       loop: "{{ groups['rh-subscription'] }}"
 
-    - name: Call test role
+    - name: Call test role after adoption tests
       when:
         - cifmw_run_test_role is defined
       block:
