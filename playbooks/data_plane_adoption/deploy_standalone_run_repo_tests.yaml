@@ -270,6 +270,22 @@
       ansible.builtin.shell: "subscription-manager repos --disable {{ item }}"
       loop: "{{ osp_17_repos }}"
 
+    - name: Call test role before adoption tests
+      when: "'periodic' in zuul.job or (force_periodic|default(false)|bool)"
+      block:
+        - name: Dump cifmw test operator parameters to a file
+          ansible.builtin.template:
+            src: "{{ playbook_dir }}/files/ci_framework_test_operator_params.yaml.j2"
+            dest: "{{ cifmw_test_operator_parameters_file | default('/home/zuul/test_operator_vars.yaml')}}"
+
+        - name: Call test role with ci_framework_call_test_role
+          ansible.builtin.shell: >
+            ansible-playbook {{ rdo_dir }}/ci_framework_call_test_role.yaml -e "job_name={{ zuul.job }}"
+            -e "test_role={{ cifmw_run_test_role | default('tempest') }}"
+            -e "@{{cifmw_test_operator_parameters_file | default('/home/zuul/test_operator_vars.yaml')}}"
+          args:
+            chdir: "{{ framework_dir }}"
+
     - name: "Run data-plane-adoption tests from {{ dpa_dir }}"
       community.general.make:
         chdir: "{{ dpa_dir }}"
@@ -288,7 +304,7 @@
       failed_when: false
       ansible.builtin.shell: subscription-manager unregister
 
-    - name: Call test role
+    - name: Call test role after adoption tests
       when:
         - cifmw_run_test_role is defined
       block:
