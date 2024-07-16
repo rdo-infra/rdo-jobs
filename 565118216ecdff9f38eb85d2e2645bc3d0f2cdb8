@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deceb6f0_de0e34bb",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-07-16T13:48:46Z",
+      "side": 1,
+      "message": "test jobs failed on unrelated https://issues.redhat.com/browse/OSPCIX-374 but\nthe multinode case was successful for this step, the tasks were xecuted and the adoption tests completed without error:\n\n```\nhttps://logserver.rdoproject.org/67/53767/2/check/periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-with-ceph/4093ca4/controller/data-plane-adoption-tests-repo/data-plane-adoption/tests/logs/test_with_ceph_out_2024-07-15T09:28:21EDT.log\n        * localhost                  : ok\u003d183  changed\u003d146  unreachable\u003d0    failed\u003d0    skipped\u003d21   rescued\u003d0    ignored\u003d0   \n```        \n        \n\nhttps://logserver.rdoproject.org/67/53767/2/check/periodic-data-plane-adoption-multinode-osp-17-to-extracted-crc-with-ceph/4093ca4/job-output.txt\n\n```\n2024-07-15 13:22:39.773193 | LOOP [Disable OSP17.1 repos before running OSP 18 setup and adoption]\n2024-07-15 13:22:48.153768 | controller -\u003e 38.102.83.214 | changed\n2024-07-15 13:22:56.001665 | controller -\u003e 38.102.83.214 | changed\n2024-07-15 13:23:03.054117 | controller -\u003e 38.102.83.214 | changed\n2024-07-15 13:23:10.094677 | controller -\u003e 38.102.83.214 | changed\n2024-07-15 13:23:17.167670 | controller -\u003e 38.102.83.214 | changed\n2024-07-15 13:23:25.433310 | controller -\u003e 38.102.83.132 | changed\n2024-07-15 13:23:32.995770 | controller -\u003e 38.102.83.132 | changed\n2024-07-15 13:23:41.127823 | controller -\u003e 38.102.83.132 | changed\n2024-07-15 13:23:47.637088 | controller -\u003e 38.102.83.132 | changed\n        * 2024-07-15 13:27:30.234705 | LOOP [Disable OSP17.1 ceph repos before running OSP 18 setup and adoption]\n2024-07-15 13:27:42.076459 | controller -\u003e 38.102.83.214 | changed\n2024-07-15 13:27:42.076738 | controller -\u003e 38.102.83.214 | changed: All items complete\n2024-07-15 13:27:42.076801 |        \n```",
+      "revId": "565118216ecdff9f38eb85d2e2645bc3d0f2cdb8",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
