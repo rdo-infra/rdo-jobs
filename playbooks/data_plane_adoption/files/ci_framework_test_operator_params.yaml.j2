@@ -13,12 +13,12 @@ cifmw_test_operator_tempest_container: {{ cifmw_test_operator_tempest_container 
 {% endif %}
 {% if cifmw_test_operator_tempest_include_list is defined %}
 cifmw_test_operator_tempest_include_list: |
-    {{ cifmw_test_operator_tempest_include_list | to_nice_yaml }}
+{{ cifmw_test_operator_tempest_include_list | to_nice_yaml }}
 {% endif %}
-{% if cifmw_test_operator_tempest_exclude_list is defined %}
+{%- if exclude_list is defined -%}
 cifmw_test_operator_tempest_exclude_list: |
-    {{ cifmw_test_operator_tempest_exclude_list | to_nice_yaml }}
-{% endif %}
+{{ exclude_list }}
+{%- endif -%}
 {% if cifmw_test_operator_default_groups is defined %}
 cifmw_test_operator_default_groups:
     {{ cifmw_test_operator_default_groups }}
@@ -26,4 +26,7 @@ cifmw_test_operator_default_groups:
 {% if cifmw_test_operator_default_jobs is defined %}
 cifmw_test_operator_default_jobs:
     {{ cifmw_test_operator_default_jobs }}
+{% endif %}
+{% if cifmw_test_operator_tempest_tests_exclude_override_scenario is defined %}
+cifmw_test_operator_tempest_tests_exclude_override_scenario: {{ cifmw_test_operator_tempest_tests_exclude_override_scenario }}
 {% endif %}
