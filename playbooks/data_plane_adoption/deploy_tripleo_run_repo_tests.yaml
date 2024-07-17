@@ -455,6 +455,35 @@
       when:
         - cifmw_run_test_role is defined
       block:
+        # Tempest role does not support use of both main skiplist and exclude list
+        # Remove this task when tempest supports it
+        - name: Load skiplist from list of known failures
+          ansible.builtin.slurp:
+            path: "{{ framework_dir }}/roles/test_operator/files/list_skipped.yml"
+          register: skiplist_file
+
+        - name: Filter slurp data from list_skipped.yml
+          ansible.builtin.set_fact:
+            skiplist: "{{ skiplist_file['content'] | b64decode | from_yaml }}"
+
+        - name: Get names of excluded tests
+          ansible.builtin.set_fact:
+            test_names: "{{ test_names | default([]) + [item.test] }}"
+          loop: "{{ skiplist.known_failures }}"
+
+        - name: Merge tests from exclude list and known skiplist
+          when: cifmw_test_operator_tempest_exclude_list is defined
+          ansible.builtin.set_fact:
+            test_names: "{{ test_names | default([]) + [item] }}"
+          loop: "{{ cifmw_test_operator_tempest_exclude_list | trim | split('\n') }}"
+
+        - name: Convert list of tests to string to pass to test-operator
+          set_fact:
+            exclude_list: |
+              {% for item in test_names %}
+              {{ item }}
+              {% endfor %}
+
         - name: Dump cifmw test operator parameters to a file
           ansible.builtin.template:
             src: "{{ playbook_dir }}/files/ci_framework_test_operator_params.yaml.j2"
