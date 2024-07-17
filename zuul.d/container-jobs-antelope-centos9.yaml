@@ -98,11 +98,6 @@
         - openstack-operator
         - keystone-operator
         - neutron-operator
-      cifmw_test_operator_tempest_exclude_list: |
-
-        tempest.api.network.admin.test_dhcp_agent_scheduler.DHCPAgentSchedulersTestJSON
-        tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsIpV6TestJSON
-        tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsTestJSON
 
 - job:
     name: periodic-adoption-multinode-to-crc-no-ceph
@@ -128,11 +123,6 @@
         - openstack-operator
         - keystone-operator
         - neutron-operator
-      cifmw_test_operator_tempest_exclude_list: |
-
-        tempest.api.network.admin.test_dhcp_agent_scheduler.DHCPAgentSchedulersTestJSON
-        tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsIpV6TestJSON
-        tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsTestJSON
 
 - job:
     name: periodic-adoption-multinode-to-crc-ceph
