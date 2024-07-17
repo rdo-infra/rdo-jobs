@@ -94,15 +94,14 @@
         - openstack-operator
         - keystone-operator
         - neutron-operator
+        - nova-operator
       cifmw_test_operator_default_jobs:
         - openstack-operator
         - keystone-operator
         - neutron-operator
+        - nova-operator
       cifmw_test_operator_tempest_exclude_list: |
-
-        tempest.api.network.admin.test_dhcp_agent_scheduler.DHCPAgentSchedulersTestJSON
-        tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsIpV6TestJSON
-        tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsTestJSON
+        tempest.api.compute.servers.test_server_metadata.*
 
 - job:
     name: periodic-adoption-multinode-to-crc-no-ceph
@@ -124,15 +123,20 @@
         - openstack-operator
         - keystone-operator
         - neutron-operator
+        - nova-operator
       cifmw_test_operator_default_jobs:
         - openstack-operator
         - keystone-operator
         - neutron-operator
+        - nova-operator
       cifmw_test_operator_tempest_exclude_list: |
-
-        tempest.api.network.admin.test_dhcp_agent_scheduler.DHCPAgentSchedulersTestJSON
-        tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsIpV6TestJSON
-        tempest.api.network.admin.test_ports.PortsAdminExtendedAttrsTestJSON
+        tempest.api.compute.servers.test_server_metadata.*
+        tempest.api.compute.admin.test_servers_on_multinodes.ServersOnMultiNodesTest
+        tempest.api.compute.admin.test_migrations.MigrationsAdminTest.*
+        tempest.api.compute.servers.test_delete_server.DeleteServersTestJSON.test_delete_server_while_in_verify_resize_state
+        tempest.api.compute.servers.test_disk_config.ServerDiskConfigTestJSON.test_resize_server_from_auto_to_manual
+        tempest.api.compute.servers.test_disk_config.ServerDiskConfigTestJSON.test_resize_server_from_manual_to_auto
+        tempest.api.network.admin.test_floating_ips_admin_actions.FloatingIPAdminTestJSON.test_list_floating_ips_from_admin_and_nonadmin
 
 - job:
     name: periodic-adoption-multinode-to-crc-ceph
