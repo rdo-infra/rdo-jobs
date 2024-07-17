@@ -27,3 +27,6 @@ cifmw_test_operator_default_groups:
 cifmw_test_operator_default_jobs:
     {{ cifmw_test_operator_default_jobs }}
 {% endif %}
+{% if cifmw_test_operator_tempest_tests_exclude_override_scenario is defined %}
+cifmw_test_operator_tempest_tests_exclude_override_scenario: {{ cifmw_test_operator_tempest_tests_exclude_override_scenario }}
+{% endif %}
