@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5483f6d_b14dfad2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 716
+      },
+      "writtenOn": "2024-07-19T08:43:19Z",
+      "side": 1,
+      "message": "Summary of tests done:\n\n- TP: https://review.rdoproject.org/r/c/testproject/+/53686/9/.zuul.yaml#10 - here I am adding nova operator tests to the list that will be run\n- tempest log [1]: where for example tempest.api.compute.admin.test_assisted_volume_snapshots.VolumesAssistedSnapshotsTest.test_volume_assisted_snapshot_create_delete  is running and failing though it is already listed in masket skiplist [2]\n\n\nWhen I ran the  TP after removing the exclude list var the same test ^^ was now excluded [3]\n\n[1] https://logserver.rdoproject.org/86/53686/9/check/periodic-data-plane-adoption-osp-17-to-extracted-crc/b3292e1/controller/ci-framework-data/logs/openstack-k8s-operators-openstack-must-gather/namespaces/openstack/pods/tempest-tests-xvr7m/logs/tempest-tests-tests-runner.log\n\n[2] https://github.com/openstack-k8s-operators/ci-framework/blob/main/roles/test_operator/files/list_skipped.yml#L1139\n\n[3] https://logserver.rdoproject.org/86/53686/11/check/periodic-data-plane-adoption-osp-17-to-extracted-crc/c549e20/controller/ci-framework-data/logs/openstack-k8s-operators-openstack-must-gather/namespaces/openstack/pods/tempest-tests-l28ts/logs/tempest-tests-tests-runner.log",
+      "revId": "4dae613443bb71b7b027e25d4c8dc1f335a72f2f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
