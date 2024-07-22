@@ -35,6 +35,24 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "087e9308_f81370dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2024-07-22T07:29:56Z",
+      "side": 1,
+      "message": "The additional barbican test already merged: https://github.com/openstack-k8s-operators/data-plane-adoption/pull/497",
+      "parentUuid": "0292e367_ac088893",
+      "revId": "e02ea99eb4966f2d77faf301a87a020a95af7204",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66875911_a4d62c61",
@@ -48,6 +66,24 @@
       "writtenOn": "2024-07-22T06:47:29Z",
       "side": 1,
       "message": "is there a significance to the choice here\ni mean, one job with no TLS, with barbican and the other with TLS no barbican.",
+      "revId": "e02ea99eb4966f2d77faf301a87a020a95af7204",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d50cc288_65431fe7",
+        "filename": "zuul.d/_data_plane_adoption.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2024-07-22T07:29:56Z",
+      "side": 1,
+      "message": "No significance, I removed it from here, since the job has minimal in the name.",
+      "parentUuid": "66875911_a4d62c61",
       "revId": "e02ea99eb4966f2d77faf301a87a020a95af7204",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
