@@ -82,7 +82,6 @@
           CURRENT_MASTER_TAG="dalmatian-uc"
 
           PACKAGES_UPDATED_MASTER=""
-          PACKAGES_UPDATED_WALLABY=""
 
           TAGS_DIFF=$(rdopkg info-tags-diff .)
 
@@ -106,23 +105,6 @@
                   fi
                   if [[ -n $(echo "$line" | grep -w yoga) ]]; then
                       PACKAGES_UPDATED_YOGA="$PACKAGES_UPDATED_YOGA $PKGNAME"
-                  fi
-                  if [[ -n $(echo "$line" | grep -w xena) ]]; then
-                      PACKAGES_UPDATED_XENA="$PACKAGES_UPDATED_XENA $PKGNAME"
-                  fi
-                  if [[ -n $(echo "$line" | grep -w wallaby) ]]; then
-                      PACKAGES_UPDATED_WALLABY="$PACKAGES_UPDATED_WALLABY $PKGNAME"
-                  fi
-              fi
-              if [ "${CENTOS_VERS}" = "centos8" ]; then
-                  if [[ -n $(echo "$line" | grep -w yoga) ]]; then
-                      PACKAGES_UPDATED_YOGA="$PACKAGES_UPDATED_YOGA $PKGNAME"
-                  fi
-                  if [[ -n $(echo "$line" | grep -w xena) ]]; then
-                      PACKAGES_UPDATED_XENA="$PACKAGES_UPDATED_XENA $PKGNAME"
-                  fi
-                  if [[ -n $(echo "$line" | grep -w wallaby) ]]; then
-                      PACKAGES_UPDATED_WALLABY="$PACKAGES_UPDATED_WALLABY $PKGNAME"
                   fi
               fi
           done <<< "${TAGS_DIFF}"
@@ -184,26 +166,6 @@
           fi
           if [ -n "${PACKAGES_UPDATED_YOGA}" ]; then
               timeout --signal=SIGKILL $TIMEOUT  {{ ansible_user_dir }}/rdoinfo-DLRN.sh yoga "${PACKAGES_UPDATED_YOGA}" "${CENTOS_VERS}"
-              ret1=$?
-              if [ $ret1 -ne 0 ]; then
-                  ret=$ret1
-              fi
-              # The data/ contents have been archived already, remove to avoid issues with the next branch
-              rm -rf data
-              sudo rm -rf /var/cache/mock/*
-          fi
-          if [ -n "${PACKAGES_UPDATED_XENA}" ]; then
-              timeout --signal=SIGKILL $TIMEOUT  {{ ansible_user_dir }}/rdoinfo-DLRN.sh xena "${PACKAGES_UPDATED_XENA}" "${CENTOS_VERS}"
-              ret1=$?
-              if [ $ret1 -ne 0 ]; then
-                  ret=$ret1
-              fi
-              # The data/ contents have been archived already, remove to avoid issues with the next branch
-              rm -rf data
-              sudo rm -rf /var/cache/mock/*
-          fi
-          if [ -n "${PACKAGES_UPDATED_WALLABY}" ]; then
-              timeout --signal=SIGKILL $TIMEOUT  {{ ansible_user_dir }}/rdoinfo-DLRN.sh wallaby "${PACKAGES_UPDATED_WALLABY}" "${CENTOS_VERS}"
               ret1=$?
               if [ $ret1 -ne 0 ]; then
                   ret=$ret1
