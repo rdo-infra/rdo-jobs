@@ -1,0 +1,28 @@
+- hosts: undercloud
+  vars:
+    rdo_dir: "review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
+  tasks:
+    - name: Fetch ansible hostnames from the tripleo nodes
+      delegate_to: "{{ item }}"
+      when: item != 'undercloud'
+      ansible.builtin.slurp:
+        path: /home/zuul/ansible_hostname
+      register: "tripleo_hostnames"
+      loop: "{{ groups['rh-subscription'] }}"
+
+    - name: marios debug
+      ansible.builtin.debug:
+        var: tripleo_hostnames
+
+    - name: Template out hostnamemap with tripleo hostnames
+      ansible.builtin.template:
+        src: "{{ zuul.executor.src_root }}/{{ rdo_dir }}/files/hostnamemap_networker.yaml.j2"
+        dest: /home/zuul/hostnamemap.yaml
+      vars:
+        controller_0_hostname: "{{ tripleo_hostnames.results[0]['content'] | b64decode | trim }}"
+        controller_1_hostname: "{{ tripleo_hostnames.results[1]['content'] | b64decode | trim }}"
+        controller_2_hostname: "{{ tripleo_hostnames.results[2]['content'] | b64decode | trim }}"
+        compute_0_hostname: "{{ tripleo_hostnames.results[3]['content'] | b64decode | trim }}"
+        compute_1_hostname: "{{ tripleo_hostnames.results[4]['content'] | b64decode | trim }}"
+        networker_0_hostname: "{{ tripleo_hostnames.results[5]['content'] | b64decode | trim }}"
+        networker_1_hostname: "{{ tripleo_hostnames.results[6]['content'] | b64decode | trim }}"
