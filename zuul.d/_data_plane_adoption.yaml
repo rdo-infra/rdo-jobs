@@ -69,17 +69,17 @@
     abstract: true
     parent: cifmw-adoption-base-source-multinode
     required-projects: *dpa_required_projects
-    roles:
+    roles: &multinode_adoption_roles
       - zuul: rdo-jobs
       - zuul: github.com/openstack-k8s-operators/ci-framework
-    pre-run:
+    pre-run: &multinode_adoption_pre_run
       - playbooks/data_plane_adoption/subnode_ip.yaml
       - playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml
       - playbooks/data_plane_adoption/setup_tripleo_os_net_config.yaml
       - playbooks/data_plane_adoption/setup_tripleo_hostnamemap.yaml
-    run:
+    run: &multinode_adoption_run
       - playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml
-    post-run:
+    post-run: &multinode_adoption_post_run
       - playbooks/data_plane_adoption/unregister_RH_subscription_standalone.yaml
       - playbooks/data_plane_adoption/collect_logs_crc.yaml
       - playbooks/data_plane_adoption/collect_logs_tripleo.yaml
@@ -106,3 +106,38 @@
         address_suffix: 107
       overcloud-novacompute-2:
         address_suffix: 108
+
+- job:
+    name: adoption-multinode-networker-to-crc
+    description: |
+        base (abstract) multinode source OSP17.1 with networker nodes adopted to crc RHOSO 18.
+    abstract: true
+    parent: cifmw-adoption-base-multinode-networker
+    required-projects: *dpa_required_projects
+    roles: *multinode_adoption_roles
+    pre-run: *multinode_adoption_pre_run
+    run: *multinode_adoption_run
+    post-run: *multinode_adoption_post_run
+    vars:
+      standalone_ip: 192.168.122.100
+      standalone_gateway: 192.168.122.10
+      standalone_private_key: /home/zuul/.ssh/id_rsa
+      os_net_config_file: "overcloud_net_config.j2"
+    host-vars:
+      undercloud:
+        address_suffix: 100
+        os_net_config_file: "net_config.j2"
+      overcloud-controller-0:
+        address_suffix: 103
+      overcloud-controller-1:
+        address_suffix: 104
+      overcloud-controller-2:
+        address_suffix: 105
+      overcloud-novacompute-0:
+        address_suffix: 106
+      overcloud-novacompute-1:
+        address_suffix: 107
+      overcloud-networker-0:
+        address_suffix: 108
+      overcloud-networker-1:
+        address_suffix: 109
