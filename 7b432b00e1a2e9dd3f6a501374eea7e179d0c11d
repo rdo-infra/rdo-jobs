@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e63f83ef_ead53d45",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-07-25T09:20:43Z",
+      "side": 1,
+      "message": "zuul is complaining because it is checking branches too, for example 18.0.0-proposed\n\n    https://github.com/openstack-k8s-operators/edpm-ansible/blob/36c8386a7a6e2efa88d9bdd019e5850e167c4dd1/zuul.d/projects.yaml#L20\n    https://github.com/openstack-k8s-operators/data-plane-adoption/blob/0c462899d04417149dfa0cb4197766b9732fb327/zuul.d/jobs-layout.yaml#L6\n    https://github.com/openstack-k8s-operators/install_yamls/blob/b0284c7fb871515022e22b548160f0808e0d6252/zuul.d/projects.yaml#L11\n\nEven if we fix those, we\u0027d have to check all branches and update them too. So probably we will have to keep the older jobs around.",
+      "revId": "7b432b00e1a2e9dd3f6a501374eea7e179d0c11d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
