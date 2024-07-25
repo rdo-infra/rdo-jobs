@@ -1,4 +1,4 @@
-# TODO(marios): remove this after we merge and reparent across openstack-k8s-operators OSPRH-8452
+# NOTE(marios): need to keep this old job because of zuul branches, see comments at OSPRH-8452
 - job:
     name: data-plane-adoption-osp-17-to-extracted-crc
     parent: adoption-standalone-to-crc-ceph
@@ -48,7 +48,7 @@
       - ^docs_user/.*$
       - Gemfile
 
-# TODO(marios): remove this after we merge and reparent across openstack-k8s-operators OSPRH-8452
+# NOTE(marios): need to keep this old job because of zuul branches, see comments at OSPRH-8452
 - job:
     name: data-plane-adoption-osp-17-to-extracted-crc-minimal-no-ceph
     parent: adoption-standalone-to-crc-no-ceph
