@@ -1,8 +1,3 @@
-# TODO(marios): remove this after we merge and reparent across openstack-k8s-operators OSPRH-8452
-- job:
-    name: data-plane-adoption-osp-17-to-extracted-crc
-    parent: adoption-standalone-to-crc-ceph
-
 - job:
     name: adoption-standalone-to-crc-ceph
     description: Standalone source OSP 17.1 node adopted to crc RHOSO 18. Has ceph, not TLS.
@@ -47,11 +42,6 @@
       - ^docs_dev/.*$
       - ^docs_user/.*$
       - Gemfile
-
-# TODO(marios): remove this after we merge and reparent across openstack-k8s-operators OSPRH-8452
-- job:
-    name: data-plane-adoption-osp-17-to-extracted-crc-minimal-no-ceph
-    parent: adoption-standalone-to-crc-no-ceph
 
 - job:
     name: adoption-standalone-to-crc-no-ceph
