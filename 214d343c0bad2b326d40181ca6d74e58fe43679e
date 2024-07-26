@@ -52,6 +52,24 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac4a92da_f8464ce4",
+        "filename": "playbooks/data_plane_adoption/ci_framework_report_polarion.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 962
+      },
+      "writtenOn": "2024-07-26T14:53:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab995af8_17fd2630",
+      "revId": "214d343c0bad2b326d40181ca6d74e58fe43679e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36c9fb06_05d6ec8c",
@@ -122,6 +140,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "036769bd_decf8af5",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 962
+      },
+      "writtenOn": "2024-07-26T14:53:11Z",
+      "side": 1,
+      "message": "For now, We are running it for downstream jobs. For upstream jobs there is DNS issue while cloning jump.",
+      "parentUuid": "c2e37318_c6983f83",
+      "revId": "214d343c0bad2b326d40181ca6d74e58fe43679e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "44b68778_707e01a4",
         "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
         "patchSetId": 12
@@ -173,6 +209,24 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48e9c7b7_6218cd21",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 962
+      },
+      "writtenOn": "2024-07-26T14:53:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e901c0d_bace2943",
+      "revId": "214d343c0bad2b326d40181ca6d74e58fe43679e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c292eac7_4267cc4c",
@@ -203,6 +257,24 @@
       "writtenOn": "2024-07-26T07:50:10Z",
       "side": 1,
       "message": "Instead of multiple {% if ... %} statements, we can use a loop to iterate over a dictionary of variables and only set those that are defined.\ndefine a dictionary containing all the potential parameters.\n\nvars:\n  polarion_params:\n    cifmw_polarion_fqdn: \"{{ cifmw_polarion_fqdn | default(omit) }}\"\n    cifmw_polarion_stage_fqdn: \"{{ cifmw_polarion_stage_fqdn | default(omit) }}\"\n    cifmw_polarion_testrun_id: \"{{ cifmw_polarion_testrun_id | default(omit) }}\"\n    cifmw_polarion_jump_repo_url: \"{{ cifmw_polarion_jump_repo_url | default(omit) }}\"\n    cifmw_polarion_jump_result_dir: \"{{ cifmw_polarion_jump_result_dir | default(omit) }}\"\n    cifmw_polarion_update_testcases: \"{{ cifmw_polarion_update_testcases | default(omit) }}\"\n\nuse a loop to iterate over the dir and update the deploy_tripleo_run_repo_tests.yaml and deploy_run_repo_tests.yaml playbooks accordingly\n{% for key, value in polarion_params.items() %}\n{% if value is not none %}\n{{ key }}: \"{{ value }}\"\n{% endif %}\n{% endfor %}",
+      "revId": "214d343c0bad2b326d40181ca6d74e58fe43679e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59395e77_e99acece",
+        "filename": "playbooks/data_plane_adoption/files/ci_framework_polarion_params.yaml.j2",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 962
+      },
+      "writtenOn": "2024-07-26T14:53:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5617149e_46143155",
       "revId": "214d343c0bad2b326d40181ca6d74e58fe43679e",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
