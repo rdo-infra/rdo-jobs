@@ -18,6 +18,91 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "537784a3_b683925f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 651
+      },
+      "writtenOn": "2024-07-26T07:50:10Z",
+      "side": 1,
+      "message": "Hello @arcsingh, couple of suggestions below.",
+      "revId": "214d343c0bad2b326d40181ca6d74e58fe43679e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab995af8_17fd2630",
+        "filename": "playbooks/data_plane_adoption/ci_framework_report_polarion.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 651
+      },
+      "writtenOn": "2024-07-26T07:50:10Z",
+      "side": 1,
+      "message": "1. can you add comments at the beginning of each task to describe what they do.\n \n  -  name: Call the API to fetch build data\n      \"This task makes an API call to the Zuul endpoint to fetch build data\"\n   ansible.builtin.uri:\n     url: \"{{ zuul_url }}/builds?uuid\u003d{{ build_uuid }}\"\n     return_content: true\n   register: build_data\n   when: build_uuid | length \u003e 0\n\n  - name: Set the start time of the build\n     \"Extracts the start_time from the API response and sets it as a fact\"\n   ansible.builtin.set_fact:\n     build_start_time: \"{{ build_data.json[0][\u0027start_time\u0027] | default(\u0027\u0027) }}\"\n     \n 2. Add error handling for the API call to ensure that the playbook doesn\u0027t fail silently.\n \n  - name: Call the API\n    ansible.builtin.uri:\n      url: \"{{ zuul_url }}/builds?uuid\u003d{{ build_uuid }}\"\n      return_content: true\n    register: build_data\n    failed_when: build_data.status !\u003d 200\n    when: build_uuid | length \u003e 0",
+      "revId": "214d343c0bad2b326d40181ca6d74e58fe43679e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36c9fb06_05d6ec8c",
+        "filename": "playbooks/data_plane_adoption/ci_framework_report_polarion.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 651
+      },
+      "writtenOn": "2024-07-26T07:50:10Z",
+      "side": 1,
+      "message": "Simplify the when condition by ensuring it checks only necessary conditions.\nwhen: build_uuid is defined and build_uuid | length \u003e 0",
+      "revId": "214d343c0bad2b326d40181ca6d74e58fe43679e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a293f4a_6d0ea305",
+        "filename": "playbooks/data_plane_adoption/ci_framework_report_polarion.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 651
+      },
+      "writtenOn": "2024-07-26T07:50:10Z",
+      "side": 1,
+      "message": "- name: Configure test run title for Polarion reporting. Sounds good?",
+      "revId": "214d343c0bad2b326d40181ca6d74e58fe43679e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9750ad5_60e24f64",
+        "filename": "playbooks/data_plane_adoption/ci_framework_report_polarion.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 651
+      },
+      "writtenOn": "2024-07-26T07:50:10Z",
+      "side": 1,
+      "message": "task name is missing. you can consider something like this - name: Include Polarion role\n\nplease consider grouping related tasks together so that in future if this playbook is required to expand it would be easier to place in relevant groups.\nfor example:\n\n  tasks:\n    # Fetch build data from Zuul API\n    - name: Fetch build data from Zuul API\n      ansible.builtin.uri:\n        url: \"{{ zuul_url }}/builds?uuid\u003d{{ build_uuid }}\"\n        return_content: true\n      register: build_data\n      when: build_uuid | length \u003e 0\n\n    # Extract start time from the build data\n    - name: Set the start time of the build\n      ansible.builtin.set_fact:\n        build_start_time: \"{{ build_data.json[0][\u0027start_time\u0027] | default(\u0027\u0027) }}\"\n\n    # Debugging: Display the test run name\n    - name: Display the test run name\n      ansible.builtin.debug:\n        msg: \"Test run name: {{ job_name }}-{{ build_start_time }}\"\n\n    # Configure Polarion parameters\n    - name: Configure test run title for Polarion reporting\n      ansible.builtin.set_fact:\n        cifmw_polarion_jump_extra_vars: \u003e-\n           {{ cifmw_polarion_jump_extra_vars | default(\u0027\u0027) }}\n           --testrun-title {{ job_name }}-{{ build_start_time }}\n           --testrun-status finished\n\n    # Include Polarion role\n    - name: Include Polarion role\n      ansible.builtin.include_role:\n        name: \"polarion\"",
+      "revId": "214d343c0bad2b326d40181ca6d74e58fe43679e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44b68778_707e01a4",
@@ -49,6 +134,40 @@
       "side": 1,
       "message": "(also do you have any pointers to testing is this working as expected)",
       "parentUuid": "44b68778_707e01a4",
+      "revId": "214d343c0bad2b326d40181ca6d74e58fe43679e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c292eac7_4267cc4c",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 651
+      },
+      "writtenOn": "2024-07-26T07:50:10Z",
+      "side": 1,
+      "message": "please consider using DRY(Don\u0027t Repeat Yourself) Principle and Reusable Tasks\n1. In run_repo_tests.yaml - we are using this same code again 😊\n2. To avoid repetition, we can create a dedicated role or include tasks for creating the Polarion parameters file and calling the Polarion role. you can create a new role \"polarion_reporting\" that includes tasks for creating the parameters file and reporting the results and modify the above playbook and this one accordingly.\n\n ---\n - name: Create cifmw polarion parameters file\n   ansible.builtin.template:\n     src: \"ci_framework_polarion_params.yaml.j2\"\n     dest: \"{{ cifmw_polarion_params_file | default(\u0027/home/zuul/ polarion_params.yaml\u0027) }}\"\n\n - name: Call cifmw polarion role to report tempest test results\n   when:\n     - cifmw_polarion_report_results | default(false)\n   ansible.builtin.shell: \u003e\n     ansible-playbook {{ rdo_dir }}/ci_framework_report_polarion.yaml -e  \"job_name\u003d{{ zuul.job }}\" -e \"build_uuid\u003d{{ zuul.build }}\" -e \"@{{  cifmw_polarion_params_file | default(\u0027/home/zuul/polarion_params.yaml\u0027)}}\"\n   args:\n     chdir: \"{{ framework_dir }}\"",
+      "revId": "214d343c0bad2b326d40181ca6d74e58fe43679e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5617149e_46143155",
+        "filename": "playbooks/data_plane_adoption/files/ci_framework_polarion_params.yaml.j2",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 651
+      },
+      "writtenOn": "2024-07-26T07:50:10Z",
+      "side": 1,
+      "message": "Instead of multiple {% if ... %} statements, we can use a loop to iterate over a dictionary of variables and only set those that are defined.\ndefine a dictionary containing all the potential parameters.\n\nvars:\n  polarion_params:\n    cifmw_polarion_fqdn: \"{{ cifmw_polarion_fqdn | default(omit) }}\"\n    cifmw_polarion_stage_fqdn: \"{{ cifmw_polarion_stage_fqdn | default(omit) }}\"\n    cifmw_polarion_testrun_id: \"{{ cifmw_polarion_testrun_id | default(omit) }}\"\n    cifmw_polarion_jump_repo_url: \"{{ cifmw_polarion_jump_repo_url | default(omit) }}\"\n    cifmw_polarion_jump_result_dir: \"{{ cifmw_polarion_jump_result_dir | default(omit) }}\"\n    cifmw_polarion_update_testcases: \"{{ cifmw_polarion_update_testcases | default(omit) }}\"\n\nuse a loop to iterate over the dir and update the deploy_tripleo_run_repo_tests.yaml and deploy_run_repo_tests.yaml playbooks accordingly\n{% for key, value in polarion_params.items() %}\n{% if value is not none %}\n{{ key }}: \"{{ value }}\"\n{% endif %}\n{% endfor %}",
       "revId": "214d343c0bad2b326d40181ca6d74e58fe43679e",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
