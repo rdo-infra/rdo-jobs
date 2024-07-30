@@ -20,6 +20,8 @@
         - periodic-adoption-standalone-to-crc-ceph:
             dependencies: &deps
               - periodic-container-tcib-build-push-centos-9-antelope
+        - periodic-adoption-standalone-to-crc-no-ceph:
+            dependencies: *deps
         - periodic-adoption-multinode-to-crc-ceph:
             dependencies: *deps
         - periodic-adoption-multinode-to-crc-no-ceph:

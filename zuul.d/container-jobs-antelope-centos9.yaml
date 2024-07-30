@@ -104,6 +104,16 @@
         tempest.api.compute.servers.test_server_metadata.*
 
 - job:
+    name: periodic-adoption-standalone-to-crc-no-ceph
+    description: Standalone source OSP 17.1 node adopted to crc RHOSO 18. Has TLS, not Ceph.
+    parent: periodic-adoption-standalone-to-crc-ceph
+    vars:
+      enable_tls: "true"
+      cloud_domain: "ooo.test"
+      use_ceph: "false"
+      dpa_test_suite: "test-minimal"
+
+- job:
     name: periodic-adoption-multinode-to-crc-no-ceph
     description: multinode source OSP 17.1 adopted to crc RHOSO 18. No Ceph, no TLS.
     parent: adoption-multinode-to-crc-no-ceph
