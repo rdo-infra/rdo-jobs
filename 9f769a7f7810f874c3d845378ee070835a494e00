@@ -16,6 +16,24 @@
       "message": "pending testing as discussed in today\u0027s review call... we can try \n\n              include-branches:\n              - ^main$\n              \n              \nfor the projects at https://github.com/rdo-infra/review.rdoproject.org-config/blob/master/zuul/rdo.yaml#L1258 and see if it will let us remove",
       "revId": "9f769a7f7810f874c3d845378ee070835a494e00",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c6988b5_9f7b0dfe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-07-30T13:28:15Z",
+      "side": 1,
+      "message": "i am making a call not to go with https://review.rdoproject.org/r/c/config/+/53909 as that runs the risk of breaking any jobs that rely on a particular branch.\n\nwe\u0027d have to include master, and 18.0.0-proposed branch and then we\u0027ll have to go and remove/rename the jobs on the 18.0.0 branch as well.\n\ninstead lets just keep these old definitions here. if it becomes necessary to port these name changes to 18.0.0 branch then we can revisit but for now i think this is acceptable",
+      "parentUuid": "d8b56dd0_569da7e8",
+      "revId": "9f769a7f7810f874c3d845378ee070835a494e00",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
