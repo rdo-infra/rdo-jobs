@@ -157,7 +157,9 @@
                   ADDITIONAL_OPTS=""
               else
                   REPOS_URL="$TEMP_REPO_URL"
-                  ADDITIONAL_OPTS="-e stable_repositories=https://rdoproject.org/repos/openstack-${RELEASE}/${RELEASE_RPM} -e testing_repository=false"
+                  EXTRAS_MIRROR_URL="https://mirror.stream.centos.org/SIGs/9-stream/extras/x86_64/extras-common/Packages"
+                  LATEST_RPM=$(curl -sL ${EXTRAS_MIRROR_URL}/c/ | grep -i centos-release-openstack-${RELEASE} | tail -n1 | sed 's/.*href="\(.*\)">c.*/\1/')
+                  ADDITIONAL_OPTS="-e stable_repositories=${EXTRAS_MIRROR_URL}/c/${LATEST_RPM} -e testing_repository=false"
               fi
           ;;
           esac
