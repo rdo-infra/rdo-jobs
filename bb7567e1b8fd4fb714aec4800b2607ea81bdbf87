@@ -1,0 +1,135 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "115a0d82_6f98e53a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-07-30T06:24:58Z",
+      "side": 1,
+      "message": "please check inline -1 is mainly for the conditional in the jinja and some minor task name/comment issue\ngenerally lgtm though i think we can merge this soon thanks for your work on this",
+      "revId": "bb7567e1b8fd4fb714aec4800b2607ea81bdbf87",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1872adf_514c311d",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-07-30T06:24:58Z",
+      "side": 1,
+      "message": "can you please include a name here so we know who might know more about this thing in the future and maybe add reference to the relevant jira for this work.\n\n```\nTODO(anbanerj): remove this task when tempest supports it OSPRH-XXXX\n```",
+      "revId": "bb7567e1b8fd4fb714aec4800b2607ea81bdbf87",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cf416b1_ba38c485",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-07-30T06:24:58Z",
+      "side": 1,
+      "message": "\"Filter\"? More like \"Set fact for skiplist from slurped list_skipped\"",
+      "range": {
+        "startLine": 302,
+        "startChar": 16,
+        "endLine": 302,
+        "endChar": 22
+      },
+      "revId": "bb7567e1b8fd4fb714aec4800b2607ea81bdbf87",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79d0d94b_f345a7e9",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-07-30T06:24:58Z",
+      "side": 1,
+      "message": "so, does cifmw_test_operator_tempest_exclude_list have to be a string?\nI was going to suggest that you can just concatenate the \"two lists\" here with +\n\ni.e.\n```\nmerged_list: {{ test_names + cifmw_test_operator_tempest_exclude_list }}\n```\n\nno loop necessary. but as it is a string you have to do it like that.\nI think it may be confusing that it is defined as a string? sorry if we have discussed this already :/",
+      "revId": "bb7567e1b8fd4fb714aec4800b2607ea81bdbf87",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32561618_ffd296b0",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-07-30T06:24:58Z",
+      "side": 1,
+      "message": "hmm... so maybe this is the reason... test-operator expects a string?",
+      "revId": "bb7567e1b8fd4fb714aec4800b2607ea81bdbf87",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88fe8876_9a218dc5",
+        "filename": "playbooks/data_plane_adoption/files/ci_framework_test_operator_params.yaml.j2",
+        "patchSetId": 13
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-07-30T06:24:58Z",
+      "side": 1,
+      "message": "should this be \n\n{%- if exclude_list is defined -%}\n\n\nsome job might indeed have cifmw_test_operator_tempest_exclude_list defined but for some reason we don\u0027t run those tempest tasks (like if cifmw_run_test_role is not defined or whatever) in which case exclude_list is not generated",
+      "revId": "bb7567e1b8fd4fb714aec4800b2607ea81bdbf87",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfb8f62f_8b06f334",
+        "filename": "zuul.d/container-jobs-antelope-centos9.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-07-30T06:24:58Z",
+      "side": 1,
+      "message": "wondering the relevance to the exclude/skip list merge. perhaps needs a note in the commit message?",
+      "range": {
+        "startLine": 97,
+        "startChar": 15,
+        "endLine": 97,
+        "endChar": 23
+      },
+      "revId": "bb7567e1b8fd4fb714aec4800b2607ea81bdbf87",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
