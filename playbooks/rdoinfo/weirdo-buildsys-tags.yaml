@@ -128,16 +128,6 @@
           echo "${REPO}${UPDATED_PKGS}" |sudo tee -a /var/log/weirdo/tested_pkgs_updates.txt
           {% endif %}
 
-          # Release RPM name is different for el7 and el8
-          if [[ ${DIST_VER} = 9* ]]; then
-              export RELEASE_RPM="rdo-release-${RELEASE}.el9s.rpm"
-          elif [[ ${DIST_VER} = 8* ]]; then
-              export RELEASE_RPM="rdo-release-${RELEASE}.el8.rpm"
-          else
-              export RELEASE_RPM="rdo-release-${RELEASE}.rpm"
-          fi
-
-
           # Prepare Ansible inventory to use localhost
           pushd {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdo-infra/weirdo'].src_dir }}
           cat <<EOF >hosts
@@ -157,7 +147,7 @@
                   ADDITIONAL_OPTS=""
               else
                   REPOS_URL="$TEMP_REPO_URL"
-                  ADDITIONAL_OPTS="-e stable_repositories=https://rdoproject.org/repos/openstack-${RELEASE}/${RELEASE_RPM} -e testing_repository=false"
+                  ADDITIONAL_OPTS="-e stable_repositories=centos-release-openstack-${RELEASE} -e testing_repository=false"
               fi
           ;;
           esac
