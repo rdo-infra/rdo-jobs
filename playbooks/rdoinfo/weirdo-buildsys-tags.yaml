@@ -157,7 +157,7 @@
                   ADDITIONAL_OPTS=""
               else
                   REPOS_URL="$TEMP_REPO_URL"
-                  ADDITIONAL_OPTS="-e stable_repositories=https://rdoproject.org/repos/openstack-${RELEASE}/${RELEASE_RPM} -e testing_repository=false"
+                  ADDITIONAL_OPTS="-e stable_repositories=https://mirror.stream.centos.org/SIGs/9-stream/extras/x86_64/extras-common/Packages/c/centos-release-openstack-caracal-1-1.el9s.noarch.rpm -e testing_repository=false"
               fi
           ;;
           esac
