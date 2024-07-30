@@ -35,6 +35,24 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4f21bb9_4f7dd9cb",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 716
+      },
+      "writtenOn": "2024-07-30T08:02:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1872adf_514c311d",
+      "revId": "bb7567e1b8fd4fb714aec4800b2607ea81bdbf87",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6cf416b1_ba38c485",
@@ -58,6 +76,30 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d75172f9_40265cea",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 716
+      },
+      "writtenOn": "2024-07-30T08:02:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6cf416b1_ba38c485",
+      "range": {
+        "startLine": 302,
+        "startChar": 16,
+        "endLine": 302,
+        "endChar": 22
+      },
+      "revId": "bb7567e1b8fd4fb714aec4800b2607ea81bdbf87",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "79d0d94b_f345a7e9",
@@ -71,6 +113,24 @@
       "writtenOn": "2024-07-30T06:24:58Z",
       "side": 1,
       "message": "so, does cifmw_test_operator_tempest_exclude_list have to be a string?\nI was going to suggest that you can just concatenate the \"two lists\" here with +\n\ni.e.\n```\nmerged_list: {{ test_names + cifmw_test_operator_tempest_exclude_list }}\n```\n\nno loop necessary. but as it is a string you have to do it like that.\nI think it may be confusing that it is defined as a string? sorry if we have discussed this already :/",
+      "revId": "bb7567e1b8fd4fb714aec4800b2607ea81bdbf87",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c22dd19_45e88bfc",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 716
+      },
+      "writtenOn": "2024-07-30T08:02:22Z",
+      "side": 1,
+      "message": "Yeah, that would have been easier 😞 \nThe test-operator expects the `cifmw_test_operator_tempest_exclude_list` to be a string. In our case, we are not passing the `cifmw_test_operator_tempest_exclude_list` defined in the job directly to test-operator. We are adding the two exclude lists. So we can define `cifmw_test_operator_tempest_exclude_list` in our jobs as a list instead of string and simplify the logic. But then it will differ from all the other jobs which use `cifmw_test_operator_tempest_exclude_list` to pass values to test-operator. And in the future if we remove this logic of merging the two lists we need to change the lists back to string everywhere it is defined.",
+      "parentUuid": "79d0d94b_f345a7e9",
       "revId": "bb7567e1b8fd4fb714aec4800b2607ea81bdbf87",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
