@@ -244,6 +244,30 @@
       },
       "revId": "bb7567e1b8fd4fb714aec4800b2607ea81bdbf87",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d112a8aa_059384cb",
+        "filename": "zuul.d/container-jobs-antelope-centos9.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 716
+      },
+      "writtenOn": "2024-07-31T13:12:10Z",
+      "side": 1,
+      "message": "There are many tests in nova-operator which have a known CIX. I could not add it last time as exclude list was not working. Adding nova-operator here + the tests passing proves that the exclude list logic works. I will add this to the commit msg",
+      "parentUuid": "cfb8f62f_8b06f334",
+      "range": {
+        "startLine": 97,
+        "startChar": 15,
+        "endLine": 97,
+        "endChar": 23
+      },
+      "revId": "bb7567e1b8fd4fb714aec4800b2607ea81bdbf87",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
