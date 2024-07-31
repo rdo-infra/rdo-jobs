@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "643f89ce_17046466",
+        "filename": "playbooks/rdoinfo/weirdo-buildsys-tags.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2024-07-31T07:23:22Z",
+      "side": 1,
+      "message": "centos-release-openstack-* requires other centos-release-* rpms from extras-common as nfv, rabbitmq, etc... so i think we need to actually enable the extras-common repo in the server. Do we need to specify the full url for the latest rpm instead of just using c-e stable_repositories\u003dcentos-release-openstack-${release}? iiuc this is just used as name in a ansible package declaration in https://github.com/rdo-infra/ansible-role-weirdo-common/blob/master/tasks/repositories/stable.yml#L18",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 11
+      },
+      "revId": "a7ba7872b14c15ddcf6ad64bebc380240c7b854e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
