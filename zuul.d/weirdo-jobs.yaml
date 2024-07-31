@@ -244,11 +244,11 @@
 - job:
     name: weirdo-validate-buildsys-tags-cifmw-crc-podified-edpm-baremetal-base
     parent: cifmw-crc-podified-edpm-baremetal
-    nodeset: centos-9-crc-2-30-0-6xlarge
+    nodeset: centos-9-crc-2-39-0-6xlarge
     override-checkout: main
     vars:
       crc_config_okd_preset: true
-      crc_ocp_bundle: 'docker://quay.io/crcont/okd-bundle:4.14.0-0.okd-2023-12-01-225814'
+      crc_ocp_bundle: 'docker://quay.io/crcont/okd-bundle:4.15.0-0.okd-2024-02-23-163410'
       crc_parameters: '--memory 32000 --cpus 12 --disk-size 200'
       cifmw_update_containers_openstack: true
       cifmw_update_containers: true
