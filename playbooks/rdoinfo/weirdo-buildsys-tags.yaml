@@ -146,7 +146,7 @@
                   REPOS_URL="http://trunk.rdoproject.org/{{ centos_release }}-master/puppet-passed-ci/delorean.repo,https://trunk.rdoproject.org/{{ centos_release }}-master/delorean-deps.repo{% if not periodic_job|default(false) %},$TEMP_REPO_URL{% endif %}" # noqa 204
                   ADDITIONAL_OPTS=""
               else
-                  REPOS_URL="$TEMP_REPO_URL"
+                  REPOS_URL="$TEMP_REPO_URL https://trunk.rdoproject.org/centos9-bobcat/component/puppet/40/df/40df6bf454ed94f23c3106271dcdae3991a8c2fe_cdd4593a/"
                   ADDITIONAL_OPTS="-e stable_repositories=centos-release-openstack-${RELEASE} -e testing_repository=false"
               fi
           ;;
