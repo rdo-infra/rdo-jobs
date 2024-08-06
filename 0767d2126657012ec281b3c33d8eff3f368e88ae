@@ -16,6 +16,58 @@
       "message": "Testproject: https://gitlab.cee.redhat.com/ci-framework/ci-framework-testproject/-/merge_requests/491\nLogs: https://sf.hosted.upshift.rdu2.redhat.com/zuul/t/tripleo-ci-internal/build/48530f809b95409db6145eeffefa34d2/log/job-output.txt\nTestrun Polarion: https://polarion.engineering.redhat.com/polarion/#/project/RHOSO/testrun?id\u003d20240806-1111_3",
       "revId": "0767d2126657012ec281b3c33d8eff3f368e88ae",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7466ad7a_1a3aec82",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-08-06T13:23:56Z",
+      "side": 1,
+      "message": "I wouldn\u0027t link internal resources here, even if they are behind vpn",
+      "parentUuid": "2ffc10db_508832e1",
+      "revId": "0767d2126657012ec281b3c33d8eff3f368e88ae",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e1c7851_f12b1782",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-08-06T13:23:56Z",
+      "side": 1,
+      "message": "I would copy the same \u0027when\u0027 clause for the next task here, no point generating the file if polarion should not run",
+      "revId": "0767d2126657012ec281b3c33d8eff3f368e88ae",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a2bb429_3cc9083c",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-08-06T13:23:56Z",
+      "side": 1,
+      "message": "same as in the other file",
+      "revId": "0767d2126657012ec281b3c33d8eff3f368e88ae",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
