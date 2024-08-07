@@ -38,6 +38,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "562c03ac_3f119071",
+        "filename": "playbooks/data_plane_adoption/ci_framework_report_polarion.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-08-07T06:41:23Z",
+      "side": 1,
+      "message": "trailing/unnecessary quote \"",
+      "revId": "0767d2126657012ec281b3c33d8eff3f368e88ae",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e1c7851_f12b1782",
         "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
         "patchSetId": 7
@@ -49,6 +66,24 @@
       "writtenOn": "2024-08-06T13:23:56Z",
       "side": 1,
       "message": "I would copy the same \u0027when\u0027 clause for the next task here, no point generating the file if polarion should not run",
+      "revId": "0767d2126657012ec281b3c33d8eff3f368e88ae",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8be36d4_f8c2b689",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-08-07T06:41:23Z",
+      "side": 1,
+      "message": "+1\n\nin fact, it might be nice to have this in a block.\n\ni.e. we have one block for tempest run as above, with\n\n```\nwhen: cifmw_run_test_role is defined\n```              \n\nand another block for this here with\n\n```\nwhen: cifmw_polarion_report_results\n```",
+      "parentUuid": "8e1c7851_f12b1782",
       "revId": "0767d2126657012ec281b3c33d8eff3f368e88ae",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
