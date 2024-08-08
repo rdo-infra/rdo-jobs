@@ -218,6 +218,19 @@
                 - hostname: {{ dpa_standalone_ntp_server }}
           when: dpa_standalone_ntp_server is defined
 
+    - name: Insert vars needed to override edpm images into test vars.yaml
+      when:
+        - dpa_container_registry is defined
+        - dpa_container_namespace is defined
+      ansible.builtin.blockinfile:
+        marker_begin: "BEGIN dataplane container vars"
+        marker_end: "END dataplane container vars"
+        path: "{{ rdo_dir }}/vars.yaml"
+        block: |
+          registry_name: "{{ dpa_container_registry }}"
+          registry_namespace: "{{ dpa_container_namespace }}"
+          image_tag: {{ dpa_container_tag | default('current-podified') }}
+
     - name: Store upstream dns server in vars.yaml if defined
       # we need to expose this so that the tests can then point the dnsmasq in
       # the controlplane to a working dns server to resolve names outside of
