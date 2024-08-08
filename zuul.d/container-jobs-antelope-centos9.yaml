@@ -86,6 +86,7 @@
       cifmw_dlrn_report_result: true
       cifmw_repo_setup_branch: antelope
       cifmw_run_test_role: test_operator
+      cifmw_test_operator_concurrency: 4 # reduce tempest concurrency to alleviate load on compute nodes
       cifmw_test_operator_tempest_image: "quay.io/podified-antelope-centos9/openstack-tempest-extras"
       cifmw_test_operator_tempest_image_tag: "current-podified"
       cifmw_test_operator_timeout: 10000
@@ -128,6 +129,7 @@
       cifmw_test_operator_tempest_image: "quay.io/podified-antelope-centos9/openstack-tempest-extras"
       cifmw_test_operator_tempest_image_tag: "current-podified"
       cifmw_test_operator_timeout: 10000
+      cifmw_test_operator_concurrency: 4 # reduce tempest concurrency to alleviate load on compute nodes
       cifmw_test_operator_tempest_container: openstack-tempest-all
       cifmw_test_operator_default_groups:
         - openstack-operator
