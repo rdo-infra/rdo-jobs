@@ -5,10 +5,6 @@
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
     cifmw_datadir: "/home/zuul/ci-framework-data"
-    edpm_node_ips:
-      - 192.168.122.106
-      - 192.168.122.107
-      - 192.168.122.108
     source_mariadb_ips:
       - 172.17.0.103
       - 172.17.0.104
@@ -153,14 +149,15 @@
       register: compute_hostnames
       loop: "{{ groups['tripleo_computes'] }}"
 
-    - name: Set compute and controller hostname facts to prevent repetition
+    - name: Set compute hostname facts to prevent repetition
       ansible.builtin.set_fact:
-        compute0_hostname: "{{ compute_hostnames.results[0]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
-        compute1_hostname: "{{ compute_hostnames.results[1]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
-        compute2_hostname: "{{ compute_hostnames.results[2]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
-        controller0_hostname: "{{ controller_hostnames.results[0]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
-        controller1_hostname: "{{ controller_hostnames.results[1]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
-        controller2_hostname: "{{ controller_hostnames.results[2]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
+        compute{{ item }}_hostname: "{{ compute_hostnames.results[item | int]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
+      with_sequence: start=0 end="{{ (groups['tripleo_computes'] | length - 1) }}"
+
+    - name: Set controller hostname facts to prevent repetition
+      ansible.builtin.set_fact:
+        controller{{ item }}_hostname: "{{ controller_hostnames.results[item | int]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
+      with_sequence: start=0 end="{{ (groups['tripleo_controllers'] | length - 1) }}"
 
     - name: Set edpm_node_ip, _hostname, edpm_nodes, edpm_computes in vars.yaml with compute hostnames
       ansible.builtin.blockinfile:
@@ -173,7 +170,6 @@
           edpm_computes: |
             ["{{ compute0_hostname }}"]="{{ edpm_node_ips[0] }}"
             ["{{ compute1_hostname }}"]="{{ edpm_node_ips[1] }}"
-            ["{{ compute2_hostname }}"]="{{ edpm_node_ips[2] }}"
           source_galera_members: |
             ["{{ controller0_hostname }}"]="{{ source_mariadb_ips[0] }}"
             ["{{ controller1_hostname }}"]="{{ source_mariadb_ips[1] }}"
@@ -221,27 +217,27 @@
                 - name: storagemgmt
                   fixedIP: 172.20.0.107
                   subnetName: subnet1
-            {{ compute_hostnames.results[2]['content'] | b64decode | trim }}:
-              hostName: "{{ compute2_hostname }}"
-              ansible:
-                ansibleHost: {{ edpm_node_ips[2] }}
-              networks:
-                - defaultRoute: true
-                  fixedIP: {{ edpm_node_ips[2] }}
-                  name: ctlplane
-                  subnetName: subnet1
-                - name: internalapi
-                  fixedIP: 172.17.0.108
-                  subnetName: subnet1
-                - name: storage
-                  fixedIP: 172.18.0.108
-                  subnetName: subnet1
-                - name: tenant
-                  fixedIP: 172.19.0.108
-                  subnetName: subnet1
-                - name: storagemgmt
-                  fixedIP: 172.20.0.108
-                  subnetName: subnet1
+#            {{ compute_hostnames.results[2]['content'] | b64decode | trim }}:
+#              hostName: "{{ compute2_hostname }}"
+#              ansible:
+#                ansibleHost: {{ edpm_node_ips[2] }}
+#              networks:
+#                - defaultRoute: true
+#                  fixedIP: {{ edpm_node_ips[2] }}
+#                  name: ctlplane
+#                  subnetName: subnet1
+#                - name: internalapi
+#                  fixedIP: 172.17.0.108
+#                  subnetName: subnet1
+#                - name: storage
+#                  fixedIP: 172.18.0.108
+#                  subnetName: subnet1
+#                - name: tenant
+#                  fixedIP: 172.19.0.108
+#                  subnetName: subnet1
+#                - name: storagemgmt
+#                  fixedIP: 172.20.0.108
+#                  subnetName: subnet1
 
     - name: Set TLS Everywhere in vars.yaml
       ansible.builtin.lineinfile:
