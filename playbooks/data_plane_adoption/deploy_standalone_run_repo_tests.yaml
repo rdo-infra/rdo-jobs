@@ -377,6 +377,16 @@
                 {{ item }}
               {% endfor %}
 
+        - name: Convert list of config overrides to string to pass to test-operator
+          when:
+            - cifmw_tempest_tempestconf_config is defined
+            - cifmw_tempest_tempestconf_config.overrides is defined
+          set_fact:
+            tempestconf_overrides: |
+              {% for item in cifmw_tempest_tempestconf_config.overrides %}
+                  {{ item }}
+              {% endfor %}
+
         - name: Set right tag for tempest image
           when: "'periodic' in zuul.job or (force_periodic|default(false)|bool)"
           ansible.builtin.set_fact:
@@ -403,6 +413,19 @@
           ansible.builtin.template:
             src: "{{ playbook_dir }}/files/ci_framework_test_operator_params.yaml.j2"
             dest: "{{ cifmw_test_operator_parameters_file | default('/home/zuul/test_operator_vars.yaml')}}"
+
+        - name: DEBUG cat the test operator parameters file
+          ansible.builtin.command:
+            cmd: "cat {{ cifmw_test_operator_parameters_file | default('/home/zuul/test_operator_vars.yaml')}}"
+          register: output
+
+        - name: DEBUG output the test operator parameters file
+          ansible.builtin.debug:
+            var: output.stdout
+
+        - name: DEBUG output tempest conf var
+          ansible.builtin.debug:
+            var: cifmw_tempest_tempestconf_config
 
         - name: Call test role with ci_framework_call_test_role
           ansible.builtin.shell: >
