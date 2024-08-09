@@ -90,6 +90,10 @@
       standalone_gateway: 192.168.122.10
       standalone_private_key: /home/zuul/.ssh/id_rsa
       os_net_config_file: "overcloud_net_config.j2"
+      edpm_node_ips:
+        - 192.168.122.106
+        - 192.168.122.107
+        - 192.168.122.108
     host-vars:
       undercloud:
         address_suffix: 100
@@ -127,6 +131,9 @@
       standalone_gateway: 192.168.122.10
       standalone_private_key: /home/zuul/.ssh/id_rsa
       os_net_config_file: "overcloud_net_config.j2"
+      edpm_node_ips:
+        - 192.168.122.106
+        - 192.168.122.107
     host-vars:
       undercloud:
         address_suffix: 100
