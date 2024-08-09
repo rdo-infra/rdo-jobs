@@ -96,13 +96,28 @@
         - keystone-operator
         - neutron-operator
         - nova-operator
+        - telemetry-operator
+        - telemetry-operator-scenario
       cifmw_test_operator_default_jobs:
         - openstack-operator
         - keystone-operator
         - neutron-operator
         - nova-operator
+        - telemetry-operator
+        - telemetry-operator-scenario
       cifmw_test_operator_tempest_exclude_list: |
         tempest.api.compute.servers.test_server_metadata.*
+        # Disable prometheus based autoscaling testing until we have Caracal content.
+        telemetry_tempest_plugin.scenario.test_telemetry_integration_prometheus.PrometheusGabbiTest.test_autoscaling
+      cifmw_tempest_tempestconf_config:
+        overrides: |
+          service_available.sg_core true
+          service_available.ceilometer true
+          telemetry.ceilometer_polling_interval 120
+          telemetry.prometheus_scrape_interval 30
+          telemetry.prometheus_service_url "http://metric-storage-prometheus.openstack.svc.cluster.local:9090"
+          telemetry.sg_core_service_url "http://ceilometer-internal.openstack.svc.cluster.local:3000"
+
 
 - job:
     name: periodic-adoption-standalone-to-crc-no-ceph
@@ -113,6 +128,14 @@
       cloud_domain: "ooo.test"
       use_ceph: "false"
       dpa_test_suite: "test-minimal"
+      cifmw_tempest_tempestconf_config:
+        overrides: |
+          service_available.sg_core true
+          service_available.ceilometer true
+          telemetry.ceilometer_polling_interval 120
+          telemetry.prometheus_scrape_interval 30
+          telemetry.prometheus_service_url "https://metric-storage-prometheus.openstack.svc.cluster.local:9090"
+          telemetry.sg_core_service_url "https://ceilometer-internal.openstack.svc.cluster.local:3000"
 
 - job:
     name: periodic-adoption-multinode-to-crc-no-ceph
@@ -138,11 +161,15 @@
         - keystone-operator
         - neutron-operator
         - nova-operator
+        - telemetry-operator
+        - telemetry-operator-scenario
       cifmw_test_operator_default_jobs:
         - openstack-operator
         - keystone-operator
         - neutron-operator
         - nova-operator
+        - telemetry-operator
+        - telemetry-operator-scenario
       cifmw_test_operator_tempest_exclude_list: |
         tempest.api.compute.servers.test_server_metadata.*
         tempest.api.compute.admin.test_servers_on_multinodes.ServersOnMultiNodesTest
@@ -151,6 +178,16 @@
         tempest.api.compute.servers.test_disk_config.ServerDiskConfigTestJSON.test_resize_server_from_auto_to_manual
         tempest.api.compute.servers.test_disk_config.ServerDiskConfigTestJSON.test_resize_server_from_manual_to_auto
         tempest.api.network.admin.test_floating_ips_admin_actions.FloatingIPAdminTestJSON.test_list_floating_ips_from_admin_and_nonadmin
+        # Disable prometheus based autoscaling testing until we have Caracal content.
+        telemetry_tempest_plugin.scenario.test_telemetry_integration_prometheus.PrometheusGabbiTest.test_autoscaling
+      cifmw_tempest_tempestconf_config:
+        overrides: |
+          service_available.sg_core true
+          service_available.ceilometer true
+          telemetry.ceilometer_polling_interval 120
+          telemetry.prometheus_scrape_interval 30
+          telemetry.prometheus_service_url "http://metric-storage-prometheus.openstack.svc.cluster.local:9090"
+          telemetry.sg_core_service_url "http://ceilometer-internal.openstack.svc.cluster.local:3000"
 
 - job:
     name: periodic-adoption-multinode-to-crc-ceph
