@@ -87,7 +87,7 @@
       cifmw_dlrn_report_result: true
       cifmw_repo_setup_branch: antelope
       cifmw_run_test_role: test_operator
-      cifmw_test_operator_tempest_image: "quay.io/podified-antelope-centos9/openstack-tempest-extras"
+      cifmw_test_operator_tempest_image: "quay.io/podified-antelope-centos9/openstack-tempest-all"
       cifmw_test_operator_tempest_image_tag: "current-podified"
       cifmw_test_operator_timeout: 10000
       cifmw_test_operator_tempest_container: openstack-tempest-all
@@ -96,13 +96,26 @@
         - keystone-operator
         - neutron-operator
         - nova-operator
+        - telemetry-operator
+        - telemetry-operator-scenario
       cifmw_test_operator_default_jobs:
         - openstack-operator
         - keystone-operator
         - neutron-operator
         - nova-operator
+        - telemetry-operator
+        - telemetry-operator-scenario
       cifmw_test_operator_tempest_exclude_list: |
         tempest.api.compute.servers.test_server_metadata.*
+      cifmw_tempest_tempestconf_config:
+        overrides: |
+          service_available.sg_core true
+          service_available.ceilometer true
+          telemetry.ceilometer_polling_interval 120
+          telemetry.prometheus_scrape_interval 30
+          telemetry.Prometheus_service_url "https://metric-storage-prometheus.openstack.svc.cluster.local:9090"
+          telemetry.sg_core_service_url "https://ceilometer-internal.openstack.svc.cluster.local:3000"
+
 
 - job:
     name: periodic-adoption-standalone-to-crc-no-ceph
@@ -126,7 +139,7 @@
       cifmw_dlrn_report_result: true
       cifmw_repo_setup_branch: antelope
       cifmw_run_test_role: test_operator
-      cifmw_test_operator_tempest_image: "quay.io/podified-antelope-centos9/openstack-tempest-extras"
+      cifmw_test_operator_tempest_image: "quay.io/podified-antelope-centos9/openstack-tempest-all"
       cifmw_test_operator_tempest_image_tag: "current-podified"
       cifmw_test_operator_timeout: 10000
       cifmw_test_operator_tempest_container: openstack-tempest-all
@@ -135,11 +148,13 @@
         - keystone-operator
         - neutron-operator
         - nova-operator
+        - telemetry-operator
       cifmw_test_operator_default_jobs:
         - openstack-operator
         - keystone-operator
         - neutron-operator
         - nova-operator
+        - telemetry-operator
       cifmw_test_operator_tempest_exclude_list: |
         tempest.api.compute.servers.test_server_metadata.*
         tempest.api.compute.admin.test_servers_on_multinodes.ServersOnMultiNodesTest
