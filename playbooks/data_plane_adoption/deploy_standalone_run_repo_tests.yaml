@@ -377,6 +377,16 @@
                 {{ item }}
               {% endfor %}
 
+        - name: Convert list of config overrides to string to pass to test-operator
+          when:
+            - cifmw_tempest_tempestconf_config is defined
+            - cifmw_tempest_tempestconf_config.overrides is defined
+          set_fact:
+            tempestconf_overrides: |
+              {% for item in cifmw_tempest_tempestconf_config.overrides | trim | split('\n') %}
+                  {{ item }}
+              {% endfor %}
+
         - name: Set right tag for tempest image
           when: "'periodic' in zuul.job or (force_periodic|default(false)|bool)"
           ansible.builtin.set_fact:
