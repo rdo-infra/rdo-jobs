@@ -96,11 +96,13 @@
         - keystone-operator
         - neutron-operator
         - nova-operator
+        - telemetry-operator
       cifmw_test_operator_default_jobs:
         - openstack-operator
         - keystone-operator
         - neutron-operator
         - nova-operator
+        - telemetry-operator
       cifmw_test_operator_tempest_exclude_list: |
         tempest.api.compute.servers.test_server_metadata.*
 
@@ -135,11 +137,13 @@
         - keystone-operator
         - neutron-operator
         - nova-operator
+        - telemetry-operator
       cifmw_test_operator_default_jobs:
         - openstack-operator
         - keystone-operator
         - neutron-operator
         - nova-operator
+        - telemetry-operator
       cifmw_test_operator_tempest_exclude_list: |
         tempest.api.compute.servers.test_server_metadata.*
         tempest.api.compute.admin.test_servers_on_multinodes.ServersOnMultiNodesTest
