@@ -16,6 +16,24 @@
       "message": "I\u0027m mot sure we have much in the zuul-output dir of the tripleo nodes, do we have a testproject with this patch to check what is collected?",
       "revId": "b337e552c35a30a590678632751a1c8dc8e94571",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8bce794_5da6c303",
+        "filename": "playbooks/data_plane_adoption/collect_logs_tripleo.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-08-12T13:20:34Z",
+      "side": 1,
+      "message": "yeah this bit will need some thought as we briefly discussed in our call last week.\n\nthe undercloud is a special case and we want the files in /home/zuul i.e. https://sf.hosted.upshift.rdu2.redhat.com/logs/13/513/98305e192034b0f2ec3f96eac9caf302b8eb808b/check-gitlab-cee/periodic-internal-adoption-multinode-networker-to-crc/f490429/undercloud/zuul/\n\nall the OSP17.1 deployment logs ^^\n\nbut for the other nodes probably we only want that file https://sf.hosted.upshift.rdu2.redhat.com/logs/13/513/98305e192034b0f2ec3f96eac9caf302b8eb808b/check-gitlab-cee/periodic-internal-adoption-multinode-networker-to-crc/f490429/overcloud-novacompute-0/zuul/ansible_hostname",
+      "parentUuid": "16ed2abc_1ed61a57",
+      "revId": "b337e552c35a30a590678632751a1c8dc8e94571",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
