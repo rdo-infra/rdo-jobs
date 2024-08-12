@@ -21,5 +21,4 @@
           - --max-size=50m
       loop:
         - /var/log
-        - /etc
         - "{{ ansible_user_dir }}"
