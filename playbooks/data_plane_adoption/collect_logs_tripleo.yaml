@@ -21,5 +21,11 @@
           - --max-size=50m
       loop:
         - /var/log
-        - /etc
-        - "{{ ansible_user_dir }}"
+        - /etc/containers/registries.d
+        - /etc/containers/networks
+        - /etc/containers/containers.conf
+        - /etc/ceph
+        - /etc/ci
+        - /etc/yum.conf
+        - /etc/yum.repos.d
+        - "{{ ansible_user_dir }}/zuul-output"
