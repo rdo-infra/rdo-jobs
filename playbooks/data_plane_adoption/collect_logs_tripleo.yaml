@@ -7,9 +7,8 @@
         path: "{{ zuul.executor.log_root }}/{{ inventory_hostname }}"
         state: directory
 
-    - name: Copy user home, system logs and other files to log_root
+    - name: Copy common log files files to log_root for all nodes
       become: true
-      no_log: true
       failed_when: false
       ansible.posix.synchronize:
         src: "{{ item }}"
@@ -21,5 +20,27 @@
           - --max-size=50m
       loop:
         - /var/log
-        - /etc
-        - "{{ ansible_user_dir }}"
+        - /etc/containers/networks
+        - /etc/containers/containers.conf
+        - /etc/ceph
+        - /etc/ci
+        - /etc/yum.conf
+        - /etc/yum.repos.d
+        - "{{ ansible_user_dir }}/zuul/ansible_hostname"
+
+- hosts: undercloud
+  gather_facts: false
+  tasks:
+    - name: Copy zuul only for undercloud
+      become: true
+      failed_when: false
+      ansible.posix.synchronize:
+        src: "{{ item }}"
+        dest: "{{ zuul.executor.log_root }}/{{ inventory_hostname }}/"
+        mode: pull
+        copy_links: true
+        verify_host: true
+        rsync_opts:
+          - --max-size=50m
+      loop:
+        - "{{ ansible_user_dir }}/zuul"
