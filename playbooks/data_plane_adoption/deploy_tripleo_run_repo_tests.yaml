@@ -284,8 +284,12 @@
       loop:
         - key: 'source_db_root_password'
           regex: 'MysqlRootPassword'
+        - key: 'aodh_password'
+          regex: 'AodhPassword'
         - key: 'barbican_password'
           regex: 'BarbicanPassword'
+        - key: 'ceilometer_password'
+          regex: 'CeilometerPassword'
         - key: 'glance_password'
           regex: 'GlancePassword'
         - key: 'placement_password'
