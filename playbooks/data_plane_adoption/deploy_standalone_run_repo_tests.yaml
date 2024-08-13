@@ -186,6 +186,27 @@
             {{ edpm_bootstrap_command | indent(2) }}
       when: edpm_bootstrap_command is defined
 
+    - name: Store node-exporter image in vars.yaml if defined
+      when: edpm_telemetry_node_exporter_image is defined
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        line: "edpm_telemetry_node_exporter_image: {{ edpm_telemetry_node_exporter_image }}"
+
+    - name: Insert edpm_container_registry_logins var into dataplane tests vars
+      ansible.builtin.blockinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        marker_begin: "BEGIN edpm_container_registry_logins vars"
+        marker_end: "END edpm_container_registry_logins vars"
+        block: |
+          edpm_container_registry_logins: >
+            {% for login, value in edpm_container_registry_logins.items() -%}
+            {{ login | indent(2) }}:
+              {{ value | to_nice_yaml | trim }}
+            {% endfor -%}
+      when:
+        - edpm_container_registry_logins is defined
+        - edpm_container_registry_logins is mapping
+
     - name: Fetch hash and set ci_testing_hash fact for periodic
       when: "'periodic' in zuul.job or (force_periodic|default(false)|bool)"
       block:
