@@ -231,6 +231,17 @@
           registry_namespace: "{{ dpa_container_namespace }}"
           image_tag: "{{ dpa_container_tag | default('current-podified') }}"
 
+    - name: Insert edpm_container_registry_insecure_registries into dataplane test vars
+      ansible.builtin.blockinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        marker_begin: "BEGIN edpm_container_registry_insecure_registries vars"
+        marker_end: "END edpm_container_registry_insecure_registries vars"
+        block: |
+          edpm_container_registry_insecure_registries:
+          {{ edpm_container_registry_insecure_registries | to_nice_yaml }}
+      when:
+        - edpm_container_registry_insecure_registries is defined
+
     - name: Store upstream dns server in vars.yaml if defined
       # we need to expose this so that the tests can then point the dnsmasq in
       # the controlplane to a working dns server to resolve names outside of
