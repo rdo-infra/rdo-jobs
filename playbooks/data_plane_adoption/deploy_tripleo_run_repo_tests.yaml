@@ -96,6 +96,8 @@
             -e "use_ceph={{ use_ceph | default('false') }}"
             -e "multi_cell={{ multi_cell | default(false) }}"
             -e "enable_telemetry={{ enable_telemetry | default('false') }}"
+            -e "cloud_domain={{ cloud_domain | default('localdomain') }}"
+            -e "enable_tls={{ enable_tls | default('false') }}"
           args:
             chdir: "{{ framework_dir }}"
 
@@ -213,6 +215,12 @@
         path: "{{ rdo_dir }}/vars.yaml"
         regexp: "'^prelaunch_barbican_secret:'"
         value: "prelaunch_barbican_secret: {{ enable_barbican | default('false') }}"
+
+    - name: Set ipa_ssh var in secrets.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/secrets.yaml"
+        regexp: 'ipa_ssh:'
+        value: "ipa_ssh: ssh -i {{ standalone_private_key | default('/home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa') }} root@{{ standalone_ip }} podman exec -ti freeipa-server-container"
 
     - name: Insert vars for data plane operator and os-net-config with zuul native undercloud node
       ansible.builtin.blockinfile:
