@@ -22,6 +22,7 @@
           EDPM_COMPUTE_CELLS: "{% if multi_cell | bool | default(false) %}3{% else %}1{% endif %}"
           EDPM_CONFIGURE_NETWORKING: 'false'
           DNS_DOMAIN: "{{ cloud_domain | default('localdomain') }}"
+          TLS_ENABLED: "{{ enable_tls | default('false') }}"
           RH_REGISTRY_PWD: ""
           RH_REGISTRY_USER: ""
           TELEMETRY_ENABLED: "{{ enable_telemetry | default('false') }}"

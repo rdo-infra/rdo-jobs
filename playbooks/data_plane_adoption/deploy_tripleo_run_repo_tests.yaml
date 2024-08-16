@@ -69,6 +69,32 @@
             state: present
           loop: "{{ groups['rh-subscription'] }}"
 
+    - name: Add free-ipa as nameserver for overcloud nodes when enable_tls true
+      when: enable_tls|default('false')
+      block:
+        - name: Template etc resolv.conf on tripleo overcloud nodes when enable_tls
+          delegate_to: "{{ item }}"
+          become: true
+          ansible.builtin.template:
+            src: "{{ playbook_dir }}/files/ipa_resolv_conf.j2"
+            dest: "/etc/resolv.conf"
+            owner: root
+            group: root
+            mode: 0644
+          loop: "{{ rh-subscription | reject('search', 'undercloud') | list }}"
+        - name: Add ip route via ctlplane for overcloud nodes to reach the ipaserver dns
+          delegate_to: "{{ item }}"
+          become: true
+          ansible.builtin.shell: "ip route add {{ ipa_container_ip | default('10.255.255.25') }} via 192.168.122.100 dev br-ex"
+          loop: "{{ rh-subscription | reject('search', 'undercloud') | list }}"
+        - name: Install ipa-client on all nodes
+          delegate_to: "{{ item }}"
+          become: true
+          ansible.builtin.package:
+            name: ipa-client
+            state: present
+          loop: "{{ rh-subscription }}"
+
     - name: Write repo commands and deploy undercloud with install_yamls
       block:
         - name: Write out the repo setup commands to file for undercloud to use
@@ -96,6 +122,8 @@
             -e "use_ceph={{ use_ceph | default('false') }}"
             -e "multi_cell={{ multi_cell | default(false) }}"
             -e "enable_telemetry={{ enable_telemetry | default('false') }}"
+            -e "cloud_domain={{ cloud_domain | default('localdomain') }}"
+            -e "enable_tls={{ enable_tls | default('false') }}"
           args:
             chdir: "{{ framework_dir }}"
 
@@ -213,6 +241,12 @@
         path: "{{ rdo_dir }}/vars.yaml"
         regexp: "'^prelaunch_barbican_secret:'"
         value: "prelaunch_barbican_secret: {{ enable_barbican | default('false') }}"
+
+    - name: Set ipa_ssh var in secrets.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/secrets.yaml"
+        regexp: 'ipa_ssh:'
+        value: "ipa_ssh: ssh -i {{ standalone_private_key | default('/home/zuul/src/github.com/openstack-k8s-operators/install_yamls/out/edpm/ansibleee-ssh-key-id_rsa') }} root@{{ standalone_ip }} podman exec -ti freeipa-server-container"
 
     - name: Insert vars for data plane operator and os-net-config with zuul native undercloud node
       ansible.builtin.blockinfile:
