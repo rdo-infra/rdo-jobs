@@ -118,6 +118,8 @@
     description: multinode source OSP 17.1 adopted to crc RHOSO 18. No Ceph, no TLS.
     parent: adoption-multinode-to-crc-no-ceph
     vars:
+      enable_tls: "true"
+      cloud_domain: "ooo.test"
       registry_namespace: podified-antelope-centos9
       openstack_release: antelope
       promote_source: podified-ci-testing
