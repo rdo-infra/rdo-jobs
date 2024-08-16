@@ -21,8 +21,7 @@
            --enable=rhel-9-for-x86_64-appstream-eus-rpms \
            --enable=rhel-9-for-x86_64-highavailability-eus-rpms \
            --enable=openstack-17.1-for-rhel-9-x86_64-rpms \
-           --enable=fast-datapath-for-rhel-9-x86_64-rpms \
-           --enable=openstack-deployment-tools-for-rhel-9-x86_64-rpms
+           --enable=fast-datapath-for-rhel-9-x86_64-rpms
         dnf install -y openvswitch os-net-config
         mkdir -p /etc/os-net-config/
 
@@ -115,8 +114,8 @@
             hostname_str_array=(${hostname//./ })
             echo ${hostname_str_array[0]} > /home/zuul/ansible_hostname
 
-        - name: Set expected overcloud hostname with .localdomain
+        - name: "Set expected overcloud hostname with {{ cloud_domain | default('localdomain') }}"
           become: true
           ansible.builtin.shell: |
             hostname=$(cat /home/zuul/ansible_hostname)
-            hostnamectl hostname "$hostname.localdomain"
+            hostnamectl hostname "$hostname.{{ cloud_domain | default('localdomain') }}"
