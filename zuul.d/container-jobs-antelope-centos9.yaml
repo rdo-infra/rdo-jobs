@@ -76,12 +76,13 @@
 ## data plane adoption job
 - job:
     name: periodic-adoption-standalone-to-crc-ceph
-    description: Standalone source OSP 17.1 node adopted to crc RHOSO 18. Has ceph, no TLS.
+    description: Standalone source OSP 17.1 node adopted to crc RHOSO 18. Has ceph, telemetry enabled and no TLS.
     parent: adoption-standalone-to-crc-ceph
     vars:
       registry_namespace: podified-antelope-centos9
       openstack_release: antelope
       promote_source: podified-ci-testing
+      enable_telemetry: true
       cifmw_repo_setup_promotion: podified-ci-testing
       cifmw_dlrn_report_result: true
       cifmw_repo_setup_branch: antelope
@@ -150,7 +151,7 @@
 
 - job:
     name: periodic-adoption-multinode-to-crc-ceph
-    description: multinode source OSP 17.1 adopted to crc RHOSO 18. Has Ceph, no TLS.
+    description: multinode source OSP 17.1 adopted to crc RHOSO 18. Has Ceph, telemetry enabled and no TLS.
     parent: periodic-adoption-multinode-to-crc-no-ceph
     vars:
       use_ceph: "true"
@@ -161,3 +162,4 @@
       cifmw_repo_setup_promotion: podified-ci-testing
       cifmw_dlrn_report_result: true
       cifmw_repo_setup_branch: antelope
+      enable_telemetry: "true"
