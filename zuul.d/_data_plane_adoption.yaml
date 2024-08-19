@@ -5,7 +5,7 @@
 
 - job:
     name: adoption-standalone-to-crc-ceph
-    description: Standalone source OSP 17.1 node adopted to crc RHOSO 18. Has ceph, not TLS.
+    description: Standalone source OSP 17.1 node adopted to crc RHOSO 18. Has ceph, telemetry enabled and no TLS.
     parent: cifmw-adoption-base
     required-projects: &dpa_required_projects
       - name: openstack-k8s-operators/install_yamls
@@ -36,6 +36,7 @@
       standalone_gateway: 192.168.122.10
       standalone_private_key: /home/zuul/.ssh/id_rsa
       upstream_control_plane_dns: 192.168.122.10
+      enable_telemetry: "true"
     irrelevant-files:
       - ^.*\.md$
       - ^.*\.rst$
