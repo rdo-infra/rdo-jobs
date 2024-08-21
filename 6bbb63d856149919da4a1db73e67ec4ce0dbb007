@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "393aea8f_6f8ed1b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 785
+      },
+      "writtenOn": "2024-08-21T03:45:59Z",
+      "side": 1,
+      "message": "I was able to verify this fix for the issue that surfaced here [1]. Ceilometer reports keystone authentication issue.\n\nI raised MR [2] to test out this fix and authentication issue no longer occurs, this can be verified in these logs [3]\n\nNOTE: the swiftclient exception is a new issue and will be addressed in a different fix\n\n[1] https://logserver.rdoproject.org/66/566/2733b20f9dc26a431a1b9d9def72aa730c462067/github-check/adoption-standalone-to-crc-no-ceph/c3541cd/controller/ci-framework-data/logs/openstack-k8s-operators-openstack-must-gather/namespaces/openstack/pods/ceilometer-0/logs/ceilometer-central-agent.log\n\n[2] https://gitlab.cee.redhat.com/ci-framework/ci-framework-testproject/-/merge_requests/584\n\n[3] https://sf.hosted.upshift.rdu2.redhat.com/logs/84/584/a4dbf710a48257ca0b9d42526b22cb794e81880b/check-gitlab-cee/periodic-internal-adoption-standalone-to-crc-no-ceph/b0dfe4e/controller/ci-framework-data/logs/openstack-k8s-operators-openstack-must-gather/namespaces/openstack/pods/ceilometer-0/logs/ceilometer-central-agent.log",
+      "revId": "6bbb63d856149919da4a1db73e67ec4ce0dbb007",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
