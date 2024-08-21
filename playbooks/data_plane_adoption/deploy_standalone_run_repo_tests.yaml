@@ -42,6 +42,7 @@
             -e "enable_tls={{ enable_tls | default('false') }}"
             -e "enable_telemetry={{ enable_telemetry | default('false') }}"
             -e "enable_barbican={{ enable_barbican | default('false') }}"
+            -e "enable_octavia={{ enable_octavia | default('true') }}"
           args:
             chdir: "{{ framework_dir }}"
 
@@ -99,6 +100,11 @@
         path: "{{ rdo_dir }}/vars.yaml"
         regexp: "'^prelaunch_barbican_secret:'"
         value: "prelaunch_barbican_secret: {{ enable_barbican | default('false') }}"
+
+    - name: Configure whether to run octavia adoption
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        line: "octavia_adoption: {{ enable_octavia | default('true') }}"
 
     - name: Insert vars for data plane operator and os-net-config with zuul native standalone node
       ansible.builtin.blockinfile:
