@@ -97,6 +97,7 @@
             -e "undercloud_dns={{ undercloud_dns | default(standalone_gateway) }}"
             -e "use_ceph={{ use_ceph | default('false') }}"
             -e "enable_telemetry={{ enable_telemetry | default('false') }}"
+            -e "enable_octavia={{ enable_octavia | default('false') }}"
           args:
             chdir: "{{ framework_dir }}"
 
