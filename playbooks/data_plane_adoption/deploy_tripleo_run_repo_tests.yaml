@@ -96,6 +96,7 @@
             -e "use_ceph={{ use_ceph | default('false') }}"
             -e "multi_cell={{ multi_cell | default(false) }}"
             -e "enable_telemetry={{ enable_telemetry | default('false') }}"
+            -e "enable_octavia={{ enable_octavia | default('false') }}"
           args:
             chdir: "{{ framework_dir }}"
 
