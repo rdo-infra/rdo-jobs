@@ -38,6 +38,7 @@
       upstream_control_plane_dns: 192.168.122.10
       enable_telemetry: "true"
       enable_barbican: "true"
+      enable_octavia: "true"
     irrelevant-files:
       - ^.*\.md$
       - ^.*\.rst$
@@ -97,6 +98,7 @@
         - 192.168.122.106
         - 192.168.122.107
         - 192.168.122.108
+      enable_octavia: "true"
     host-vars:
       undercloud:
         address_suffix: 100
