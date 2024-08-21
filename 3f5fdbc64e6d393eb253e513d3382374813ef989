@@ -33,6 +33,24 @@
       "message": "Not seeing the undercloud zuul folder in the undercloud logs https://logserver.rdoproject.org/69/54069/3/check/periodic-adoption-multinode-to-crc-no-ceph/5eefd42/undercloud/",
       "revId": "3f5fdbc64e6d393eb253e513d3382374813ef989",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfcbbc8f_016ee572",
+        "filename": "playbooks/data_plane_adoption/collect_logs_tripleo.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 716
+      },
+      "writtenOn": "2024-08-21T08:58:37Z",
+      "side": 1,
+      "message": "from the logs: \nrsync: [sender] link_stat \"/home/zuul/zuul\" failed: No such file or directory \n\nLooks like the file patch I specified was wrong. Trying now  with \n\"{{ ansible_user_dir }}/ansible_hostname\"\ninstead of\n\"{{ ansible_user_dir }}/zuul/ansible_hostname\"",
+      "parentUuid": "9bedca09_dab2090b",
+      "revId": "3f5fdbc64e6d393eb253e513d3382374813ef989",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
