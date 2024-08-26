@@ -30,3 +30,6 @@ cifmw_test_operator_default_jobs:
 {% if cifmw_test_operator_tempest_tests_exclude_override_scenario is defined %}
 cifmw_test_operator_tempest_tests_exclude_override_scenario: {{ cifmw_test_operator_tempest_tests_exclude_override_scenario }}
 {% endif %}
+{% if cifmw_test_operator_tempest_workflow is defined %}
+cifmw_test_operator_tempest_workflow: {{ cifmw_test_operator_tempest_workflow }}
+{% endif %}
