@@ -30,7 +30,7 @@
       ansible.builtin.command: ansible-galaxy collection install community.general community.libvirt
 
     - name: Prepare nodes to deploy ceph
-      when: use_ceph | default('false')
+      when: use_ceph | default('false') | bool
       block:
         - name: Copy ci-framework to undercloud to use when deploying ceph
           delegate_to: undercloud
@@ -441,7 +441,7 @@
       loop: "{{ groups['rh-subscription'] | product(osp_17_repos) | list }}"
 
     - name: Disable OSP17.1 ceph repos before running OSP 18 setup and adoption
-      when: use_ceph is defined and use_ceph
+      when: use_ceph | default('false') | bool
       delegate_to: "{{ item.0 }}"
       become: true
       ansible.builtin.shell: "subscription-manager repos --disable {{ item.1 }}"
