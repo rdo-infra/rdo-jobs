@@ -30,7 +30,7 @@
       ansible.builtin.command: ansible-galaxy collection install community.general community.libvirt
 
     - name: Prepare nodes to deploy ceph
-      when: use_ceph | default('false')
+      when: use_ceph | default('false') | bool
       block:
         - name: Copy ci-framework to undercloud to use when deploying ceph
           delegate_to: undercloud
@@ -75,16 +75,14 @@
           ansible.builtin.lineinfile:
             create: true
             path: "/home/zuul/cdn_subscription_repos.sh"
-            value: "subscription-manager repos --enable {{ item }}"
-          loop: "{{ osp_17_repos }}"
+            value: "subscription-manager repos --enable {{ osp_17_repos | join(' ') }}"
 
         - name: Write ceph repo commands when use_ceph is set
           when: use_ceph is defined and use_ceph
           ansible.builtin.lineinfile:
             create: true
             path: "/home/zuul/cdn_subscription_repos.sh"
-            value: "subscription-manager repos --enable {{ item }}"
-          loop: "{{ osp_17_ceph_repos }}"
+            value: "subscription-manager repos --enable {{ osp_17_ceph_repos | join(' ') }}"
 
         - name: Deploy the tripleo source environment
           ansible.builtin.shell: >
@@ -435,17 +433,17 @@
       loop: "{{ groups['tripleo_computes'] }}"
 
     - name: Disable OSP17.1 repos before running OSP 18 setup and adoption
-      delegate_to: "{{ item.0 }}"
+      delegate_to: "{{ item }}"
       become: true
-      ansible.builtin.shell: "subscription-manager repos --disable {{ item.1 }}"
-      loop: "{{ groups['rh-subscription'] | product(osp_17_repos) | list }}"
+      ansible.builtin.shell: "subscription-manager repos --disable {{ osp_17_repos | join(' ') }}"
+      loop: "{{ groups['rh-subscription'] }}"
 
     - name: Disable OSP17.1 ceph repos before running OSP 18 setup and adoption
-      when: use_ceph is defined and use_ceph
-      delegate_to: "{{ item.0 }}"
+      when: use_ceph | default('false') | bool
+      delegate_to: "{{ item }}"
       become: true
-      ansible.builtin.shell: "subscription-manager repos --disable {{ item.1 }}"
-      loop: "{{ groups['rh-subscription'] | product(osp_17_ceph_repos) | list }}"
+      ansible.builtin.shell: "subscription-manager repos --disable {{ osp_17_ceph_repos | join(' ') }}"
+      loop: "{{ groups['rh-subscription'] }}"
 
     - name: "Run data-plane-adoption tests from {{ dpa_dir }}"
       community.general.make:
