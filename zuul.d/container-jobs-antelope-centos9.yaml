@@ -161,3 +161,11 @@
       cifmw_dlrn_report_result: true
       cifmw_repo_setup_branch: antelope
       enable_telemetry: "true"
+
+- job:
+    name: periodic-adoption-multinode-to-crc-no-ceph-rollback
+    description: multinode source OSP 17.1 adopted to crc RHOSO 18. Runs test suites that rolls back to OSP 17.1.
+    parent: periodic-adoption-multinode-to-crc-no-ceph
+    vars:
+      dpa_test_suite: "test-rollback-minimal"
+      dpa_run_pre_adoption_tempest: false
