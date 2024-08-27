@@ -4,6 +4,7 @@
     dpa_dir: "{{ dpa_dir_override | default('/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption') }}"
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
+    cifmw_datadir: "/home/zuul/ci-framework-data"
     source_mariadb_ip: 172.17.0.100
     osp_17_repos:
       - openstack-17.1-for-rhel-9-x86_64-rpms
@@ -400,7 +401,7 @@
 
         - name: Call cifmw polarion role to report tempest test results
           ansible.builtin.shell: >
-            ansible-playbook {{ rdo_dir }}/ci_framework_report_polarion.yaml -e "job_name={{ zuul.job }}" -e "build_uuid={{ zuul.build }}" -e "@{{cifmw_polarion_params_file | default('/home/zuul/polarion_params.yaml')}}"
+            ansible-playbook {{ rdo_dir }}/ci_framework_report_polarion.yaml -e "job_name={{ zuul.job }}" -e "build_uuid={{ zuul.build }}" -e "@{{cifmw_polarion_params_file | default('/home/zuul/polarion_params.yaml')}}" -e "@{{ cifmw_datadir }}/artifacts/parameters/zuul-params.yml"
           args:
             chdir: "{{ framework_dir }}"
 
