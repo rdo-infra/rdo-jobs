@@ -26,6 +26,8 @@
             dependencies: *deps
         - periodic-adoption-multinode-to-crc-no-ceph:
             dependencies: *deps
+        - periodic-adoption-multinode-to-crc-no-ceph-rollback:
+            dependencies: *deps
         - periodic-podified-multinode-edpm-deployment-antelope-ocp-crc-cs9:
             dependencies: *deps
             required-projects: &rp
