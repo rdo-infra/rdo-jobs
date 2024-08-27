@@ -467,6 +467,7 @@
 
     - name: Call test role
       when:
+        - dpa_run_pre_adoption_tempest | default(true) | bool
         - cifmw_run_test_role is defined
       block:
         # Tempest role does not support use of both main skiplist and exclude list
