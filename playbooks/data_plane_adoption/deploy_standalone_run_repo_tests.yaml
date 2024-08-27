@@ -400,7 +400,7 @@
 
         - name: Call cifmw polarion role to report tempest test results
           ansible.builtin.shell: >
-            ansible-playbook {{ rdo_dir }}/ci_framework_report_polarion.yaml -e "job_name={{ zuul.job }}" -e "build_uuid={{ zuul.build }}" -e "@{{cifmw_polarion_params_file | default('/home/zuul/polarion_params.yaml')}}"
+            ansible-playbook {{ rdo_dir }}/ci_framework_report_polarion.yaml -e "job_name={{ zuul.job }}" -e "build_uuid={{ zuul.build }}" -e "@{{cifmw_polarion_params_file | default('/home/zuul/polarion_params.yaml')}}" -e "@{{ cifmw_datadir }}/artifacts/parameters/zuul-params.yml"
           args:
             chdir: "{{ framework_dir }}"
 
