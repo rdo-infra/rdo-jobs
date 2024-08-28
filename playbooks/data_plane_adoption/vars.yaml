@@ -10,6 +10,7 @@ prelaunch_barbican_secret: CUSTOMIZE_THIS
 
 # To enable TLS-E, the standalone hostname must be set to standalone.ooo.test
 edpm_node_hostname: CUSTOMIZE_THIS
+edpm_node_networker_hostname: CUSTOMIZE_THIS
 
 # Whether to remove all the persistent data (databases, dumbs, ansible logs)
 # before the test
@@ -28,9 +29,13 @@ source_mariadb_ip: CUSTOMIZE_THIS
 # virsh --connect=qemu:///system -q domifaddr standalone | awk 'NF>1{print $NF}' | cut -d/ -f1
 # install_yamls default: 192.168.122.100
 edpm_node_ip: CUSTOMIZE_THIS
+edpm_node_networker_ip: CUSTOMIZE_THIS
 
 # Auth URL to use for adopted Keystone.
 auth_url: http://keystone-public-openstack.apps-crc.testing
 
 # Set verbose logging for CI jobs (no secrets here)
 use_no_log: false
+
+# Optional test
+neutron_qe_test: false

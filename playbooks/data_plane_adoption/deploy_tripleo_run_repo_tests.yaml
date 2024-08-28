@@ -148,17 +148,29 @@
       register: compute_hostnames
       loop: "{{ groups['tripleo_computes'] }}"
 
+    - name: Fetch networker hostnames to set edpm_node_hostname vars
+      delegate_to: "{{ item }}"
+      ansible.builtin.slurp:
+        path: /home/zuul/ansible_hostname
+      register: networker_hostnames
+      loop: "{{ groups['tripleo_networkers'] }}"
+
     - name: Set compute hostname facts to prevent repetition
       ansible.builtin.set_fact:
         compute{{ item }}_hostname: "{{ compute_hostnames.results[item | int]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
       with_sequence: start=0 end="{{ (groups['tripleo_computes'] | length - 1) }}"
+
+    - name: Set networker hostname facts to prevent repetition
+      ansible.builtin.set_fact:
+        networker{{ item }}_hostname: "{{ networker_hostnames.results[item | int]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
+      with_sequence: start=0 end="{{ (groups['tripleo_networkers'] | length - 1) }}"
 
     - name: Set controller hostname facts to prevent repetition
       ansible.builtin.set_fact:
         controller{{ item }}_hostname: "{{ controller_hostnames.results[item | int]['content'] | b64decode | trim }}.{{ cloud_domain | default('localdomain') }}"
       with_sequence: start=0 end="{{ (groups['tripleo_controllers'] | length - 1) }}"
 
-    - name: Set edpm_node_ip, _hostname, edpm_nodes, edpm_computes in vars.yaml with compute hostnames
+    - name: Set edpm_node_ip, _hostname, edpm_nodes, edpm_nodes_networker, edpm_computes in vars.yaml with compute hostnames
       ansible.builtin.blockinfile:
         marker_begin: "BEGIN edpm_node_ip hostname vars"
         marker_end: "END edpm_node_ip hostname vars"
@@ -169,6 +181,10 @@
           edpm_computes: |
           {% for i in range(edpm_node_ips | length) %}
             ["{{ lookup('vars', 'compute' ~ i ~ '_hostname') }}"]="{{ edpm_node_ips[i | int] }}"
+          {% endfor %}
+          edpm_networkers: |
+          {% for i in range(edpm_node_networker_ips | length) %}
+            ["{{ lookup('vars', 'networker' ~ i ~ '_hostname') }}"]="{{ edpm_node_networker_ips[i | int] }}"
           {% endfor %}
 
           source_galera_members: |
@@ -198,6 +214,30 @@
                   subnetName: subnet1
                 - name: storagemgmt
                   fixedIP: 172.20.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
+                  subnetName: subnet1
+          {% endfor %}
+          edpm_nodes_networker:
+          {% for i in range(edpm_node_networker_ips | length) %}
+            {{ networker_hostnames.results[i | int]['content'] | b64decode | trim }}:
+              hostName: "{{ lookup('vars', 'networker' ~ i ~ '_hostname') }}"
+              ansible:
+                ansibleHost: {{ edpm_node_networker_ips[i | int] }}
+              networks:
+                - defaultRoute: true
+                  fixedIP: {{ edpm_node_networker_ips[i | int] }}
+                  name: ctlplane
+                  subnetName: subnet1
+                - name: internalapi
+                  fixedIP: 172.17.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
+                  subnetName: subnet1
+                - name: storage
+                  fixedIP: 172.18.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
+                  subnetName: subnet1
+                - name: tenant
+                  fixedIP: 172.19.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
+                  subnetName: subnet1
+                - name: storagemgmt
+                  fixedIP: 172.20.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
                   subnetName: subnet1
           {% endfor %}
 
