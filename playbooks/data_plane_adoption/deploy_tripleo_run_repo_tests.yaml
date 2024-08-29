@@ -94,6 +94,7 @@
             -e "standalone_ip={{ standalone_ip }}" -e "standalone_gateway={{ standalone_gateway }}"
             -e "undercloud_dns={{ undercloud_dns | default(standalone_gateway) }}"
             -e "use_ceph={{ use_ceph | default('false') }}"
+            -e "multi_cell={{ multi_cell | default('false') }}"
             -e "enable_telemetry={{ enable_telemetry | default('false') }}"
           args:
             chdir: "{{ framework_dir }}"
