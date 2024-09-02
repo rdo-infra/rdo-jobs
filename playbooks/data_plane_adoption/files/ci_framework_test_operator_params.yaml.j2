@@ -13,7 +13,7 @@ cifmw_test_operator_tempest_container: {{ cifmw_test_operator_tempest_container 
 {% endif %}
 {% if cifmw_test_operator_tempest_include_list is defined %}
 cifmw_test_operator_tempest_include_list: |
-{{ cifmw_test_operator_tempest_include_list | to_nice_yaml }}
+ {{ cifmw_test_operator_tempest_include_list | replace("\n", "\n ") }}
 {% endif %}
 {%- if exclude_list is defined -%}
 cifmw_test_operator_tempest_exclude_list: |
