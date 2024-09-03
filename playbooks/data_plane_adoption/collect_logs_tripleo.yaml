@@ -26,6 +26,7 @@
         - /etc/ci
         - /etc/yum.conf
         - /etc/yum.repos.d
+        - /etc/os-net-config
         - "{{ ansible_user_dir }}/ansible_hostname"
 
 - hosts: undercloud
