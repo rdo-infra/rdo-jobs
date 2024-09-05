@@ -1,0 +1,11 @@
+testcases:
+  - "deploy_podified_cinder_scheduler_and_API"
+  - "wait_for_cinder_pods_to_start_up"
+  - "check_that_cinder_is_reachable_and_its_endpoints_are_defined"
+  - "cinder_online_data_migrations"
+  - "deploy_podified_Horizon"
+  - "wait_for_horizon_to_start_up"
+  - "check_that_horizon_instance_is_deployed_successfully"
+  - "check_horizon_dashboard_is_reachable"
+  - "deploy_podified_heat"
+  - "wait_for_Heat_to_start_up"
