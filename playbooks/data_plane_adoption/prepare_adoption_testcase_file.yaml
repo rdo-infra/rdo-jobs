@@ -1,0 +1,17 @@
+---
+- name: Get the status of the testcase
+  shell: |
+    sed -n '/TASK.* {{ item }}/I,/^$/p' {{ adoption_logfile.stdout }}
+  register: task_out
+
+- name: Update result XML file with testcase details
+  xml:
+    path: "{{ test_file }}"
+    xpath: "/testsuite"
+    state: present
+    add_children:
+      - testcase:
+          classname: "adoption.virtual"
+          name: "{{ item | replace(' ', '_') }}"
+          status: "{{ 'failed' if 'fatal:' in task_out.stdout else 'passed' }}"
+  when: task_out.stdout | length > 0
