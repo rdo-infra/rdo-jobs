@@ -5,12 +5,15 @@
     rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
     cifmw_datadir: "/home/zuul/ci-framework-data"
+    test_file: "{{ ansible_user_dir }}/ci-framework-data/tests/test_operator/tempest-tests/manual_results.xml"
     source_mariadb_ip: 172.17.0.100
     osp_17_repos:
       - openstack-17.1-for-rhel-9-x86_64-rpms
       - rhceph-6-tools-for-rhel-9-x86_64-rpms
       - fast-datapath-for-rhel-9-x86_64-rpms
       - rhel-9-for-x86_64-highavailability-eus-rpms
+  vars_files:
+    - "{{ playbook_dir }}/files/testcases_list.yaml"
   tasks:
     - name: Create inventory to run tasks inside vm
       ansible.builtin.template:
@@ -390,10 +393,32 @@
           args:
             chdir: "{{ framework_dir }}"
 
-    - name: Call polarion reporting role
+    - name: Prepare non-tempest testcase file and call polarion reporting role
       when:
         - cifmw_polarion_report_results | default(false)
       block:
+        - name: Delete old testcase file if exists
+          ansible.builtin.file:
+            path: "{{ test_file }}"
+            state: absent
+          ignore_errors: true
+
+        - name: Ensure test result XML file exists
+          ansible.builtin.copy:
+            dest: "{{ test_file }}"
+            content: |
+              <testsuite>
+              </testsuite>
+
+        - name: Get the adoption logfilename
+          ansible.builtin.shell: |
+            ls -t {{ dpa_dir }}/tests/logs/*.log
+          register: adoption_logfile
+
+        - name: Fetch the result of testcase from adoption logfile and update in test result file
+          ansible.builtin.include_tasks: "{{ rdo_dir }}/prepare_adoption_testcase_file.yaml"
+          loop: "{{ testcases }}"
+
         - name: Create cifmw polarion parameters file
           ansible.builtin.template:
             src: "{{ playbook_dir }}/files/ci_framework_polarion_params.yaml.j2"
