@@ -26,6 +26,7 @@
     run:
       - playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml
     post-run:
+      - playbooks/data_plane_adoption/ci_framework_report_polarion.yaml
       - playbooks/data_plane_adoption/unregister_RH_subscription_standalone.yaml
       - playbooks/data_plane_adoption/collect_logs_crc.yaml
       - playbooks/data_plane_adoption/set_zuul_artifacts.yaml
@@ -83,6 +84,7 @@
     run: &multinode_adoption_run
       - playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml
     post-run: &multinode_adoption_post_run
+      - playbooks/data_plane_adoption/ci_framework_report_polarion.yaml
       - playbooks/data_plane_adoption/unregister_RH_subscription_standalone.yaml
       - playbooks/data_plane_adoption/collect_logs_crc.yaml
       - playbooks/data_plane_adoption/collect_logs_tripleo.yaml
