@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "088caab9_ecfc8867",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-09-06T07:24:05Z",
+      "side": 1,
+      "message": "Depends-On: https://github.com/openstack-k8s-operators/data-plane-adoption/pull/570/",
+      "revId": "5d3995712d8b212c0bbb399ef776a81c5e200092",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "7116ec12_27122f68",
@@ -31,6 +48,41 @@
       "writtenOn": "2024-09-06T06:27:39Z",
       "side": 1,
       "message": "I think this will make jobs fail because this variable is not defined in any of the jobs not having a networker node, this should have a condition and only be created when a networker node exists",
+      "revId": "5d3995712d8b212c0bbb399ef776a81c5e200092",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21301071_829ad4ad",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-09-06T07:24:05Z",
+      "side": 1,
+      "message": "where is that being set @Fiorella is it coming from the job definition? edpm_node_networker_ips i mean",
+      "parentUuid": "ebea50ae_859aeed8",
+      "revId": "5d3995712d8b212c0bbb399ef776a81c5e200092",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39552396_67166c69",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-09-06T07:24:05Z",
+      "side": 1,
+      "message": "where is that consumed I don\u0027t see it in https://github.com/openstack-k8s-operators/data-plane-adoption/pull/570/files#diff-0d721d5c31018c7d1dff0df6f5732b2d29a0cd1e814a5af5ce80d2d6c23c80d3",
       "revId": "5d3995712d8b212c0bbb399ef776a81c5e200092",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
