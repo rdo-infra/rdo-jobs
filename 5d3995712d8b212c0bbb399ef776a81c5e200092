@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7116ec12_27122f68",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-09-06T06:27:39Z",
+      "side": 1,
+      "message": "All the tasks adding variables for networker nodes should have a conditional and run when a networker node exists, this could be done checking if edpm_node_networker_ips exists, or checking if the tripleo_networkers ansible groups is empty",
+      "revId": "5d3995712d8b212c0bbb399ef776a81c5e200092",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebea50ae_859aeed8",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-09-06T06:27:39Z",
+      "side": 1,
+      "message": "I think this will make jobs fail because this variable is not defined in any of the jobs not having a networker node, this should have a condition and only be created when a networker node exists",
+      "revId": "5d3995712d8b212c0bbb399ef776a81c5e200092",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
