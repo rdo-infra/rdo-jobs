@@ -503,6 +503,19 @@
           ansible.builtin.set_fact:
             cifmw_test_operator_tempest_image_tag: "{{ dlrn_hash_tag | default(latest_dlrn_tag.content) }}"
 
+        - name: Dump hooks parameters to a file
+          ansible.builtin.template:
+            src: "{{ playbook_dir }}/files/ci_framework_hooks_params.yaml.j2"
+            dest: "{{ cifmw_test_operator_parameters_file | default('/home/zuul/hooks_vars.yaml')}}"
+
+        - name: Call pre_tests hook
+          ansible.builtin.command: >
+            ansible-playbook {{ rdo_dir }}/ci_framework_call_hook.yaml
+            -e "step=pre_tests"
+            -e "@{{cifmw_hooks_parameters_file | default('/home/zuul/hooks_vars.yaml')}}"
+          args:
+            chdir: "{{ framework_dir }}"
+
         - name: Dump cifmw test operator parameters to a file
           ansible.builtin.template:
             src: "{{ playbook_dir }}/files/ci_framework_test_operator_params.yaml.j2"
