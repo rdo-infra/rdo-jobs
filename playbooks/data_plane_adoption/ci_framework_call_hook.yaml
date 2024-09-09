@@ -1,0 +1,8 @@
+- hosts: all
+  vars:
+    framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
+  tasks:
+
+    - name: Call run_hook role
+      ansible.builtin.import_role:
+        name: run_hook
