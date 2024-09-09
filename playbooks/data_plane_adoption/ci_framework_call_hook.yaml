@@ -1,0 +1,7 @@
+- hosts: all
+  tasks:
+    - name: Call run_hook role
+      vars:
+        step: pre_tests
+      ansible.builtin.import_role:
+        name: run_hook
