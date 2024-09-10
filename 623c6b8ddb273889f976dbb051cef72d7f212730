@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9597c92_cc882164",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-09-10T10:23:24Z",
+      "side": 1,
+      "message": "this will execute in the current d/stream jobs that have polarion reporting. can we please sanity check the multinodes too (the testproject you have is for standalone)\n\nwe currently have a cix against the polarion reporting https://issues.redhat.com/browse/OSPCIX-470 (likely a service side issue) so i want to be careful we don\u0027t introduce anything else at the moment please",
+      "revId": "623c6b8ddb273889f976dbb051cef72d7f212730",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "0b0a1fd1_e7f23117",
