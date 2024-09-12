@@ -68,6 +68,24 @@
       "parentUuid": "df79b7ff_98268e29",
       "revId": "900e195c7029924d0d019d17cea7e41b1e8938e9",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a329af1_564614e4",
+        "filename": "playbooks/data_plane_adoption/setup_tripleo_os_net_config.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-09-12T11:35:50Z",
+      "side": 1,
+      "message": "but aren\u0027t you passing that in as EDPM_CONFIGURE_NETWORKING and setting\n\n```\nmanage_default_route: ${TRIPLEO_NETWORKING}\n```\n\nin https://github.com/openstack-k8s-operators/install_yamls/pull/826/files#diff-66217dcd52416a1c2c137246eae386a8a42ac651b6c7e30c5937757764675b1b\n\nbefore calling the jinja templating \n\nis the one here being passed through?",
+      "parentUuid": "64e177ae_7c847045",
+      "revId": "900e195c7029924d0d019d17cea7e41b1e8938e9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
