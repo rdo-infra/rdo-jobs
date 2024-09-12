@@ -121,6 +121,24 @@
       "parentUuid": "1a329af1_564614e4",
       "revId": "900e195c7029924d0d019d17cea7e41b1e8938e9",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24b41e7c_90e8e6b5",
+        "filename": "playbooks/data_plane_adoption/setup_tripleo_os_net_config.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-09-12T11:42:31Z",
+      "side": 1,
+      "message": "i understand that but you are already passing this with    \nEDPM_CONFIGURE_NETWORKING: \u0027false\u0027\n\n(passed in make tripleo ^^ right?)\n\nwhich then gets set to TRIPLEO_NETWORKING and finally as you pointed it is used to set the value of manage_default_route in the jinja \n\nso where is the one you are setting here used? sorry if i am missing an obvious thing :(",
+      "parentUuid": "c4389bc6_3540caa4",
+      "revId": "900e195c7029924d0d019d17cea7e41b1e8938e9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
