@@ -139,6 +139,24 @@
       "parentUuid": "c4389bc6_3540caa4",
       "revId": "900e195c7029924d0d019d17cea7e41b1e8938e9",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c958589_fccdd78b",
+        "filename": "playbooks/data_plane_adoption/setup_tripleo_os_net_config.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 411
+      },
+      "writtenOn": "2024-09-12T11:46:29Z",
+      "side": 1,
+      "message": "See playbooks/data_plane_adoption/setup_tripleo_os_net_config.yaml#L32, w/o that var, the ansible templating task fails (and it doesn\u0027t use install_yamls)",
+      "parentUuid": "24b41e7c_90e8e6b5",
+      "revId": "900e195c7029924d0d019d17cea7e41b1e8938e9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
