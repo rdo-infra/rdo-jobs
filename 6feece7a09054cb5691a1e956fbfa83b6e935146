@@ -51,6 +51,40 @@
       "message": "The hook seems to run the correct playbook [1] in the TP [2]\n\n[1] https://sf.hosted.upshift.rdu2.redhat.com/logs/48/648/3fa94562be3769ab94e596b28f69547e02a22242/check-gitlab-cee/periodic-internal-adoption-standalone-to-crc-ceph-storage/cef0fb3/controller/ci-framework-data/logs/ci_script_012_run_05_create_manila.log\n[2] https://gitlab.cee.redhat.com/ci-framework/ci-framework-testproject/-/merge_requests/648/diffs#be7b2d3c90fdd69bb36011ba6dea8ad3964367fa_5_12",
       "revId": "6feece7a09054cb5691a1e956fbfa83b6e935146",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58764c37_00996cf3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-09-17T11:29:58Z",
+      "side": 1,
+      "message": "we should also add the tasks to the deploy_tripleo playbook as well, so we have that option for those jobs",
+      "revId": "6feece7a09054cb5691a1e956fbfa83b6e935146",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30160d64_df77c3b9",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-09-17T11:29:58Z",
+      "side": 1,
+      "message": "Do we need to pass the job_name to this task?",
+      "revId": "6feece7a09054cb5691a1e956fbfa83b6e935146",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
