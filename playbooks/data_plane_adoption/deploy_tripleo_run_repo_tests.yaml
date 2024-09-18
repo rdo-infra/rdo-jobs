@@ -425,6 +425,19 @@
             path: "{{ rdo_dir }}/vars.yaml"
             line: "ansibleee_runner_img: {{ ansibleee_runner_img }}"
 
+    - name: Workaround systemd-container
+      become: true
+      hosts: 192.168.122.106, 192.168.122.107, 192.168.122.108, 192.168.122.109
+      ansible.builtin.dnf:
+        name:
+          - systemd-container
+        state: present
+
+    - name: Workaround reboot after systemd-container installed
+      become: true
+      hosts: 192.168.122.106, 192.168.122.107, 192.168.122.108, 192.168.122.109
+      ansible.builtin.reboot:
+
     - name: Update sos-reports package to use it with must-gather
       delegate_to: "{{ item }}"
       become: true
