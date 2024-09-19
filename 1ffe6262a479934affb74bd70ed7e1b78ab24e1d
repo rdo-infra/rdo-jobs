@@ -16,6 +16,23 @@
       "message": "testproject failed in specific tempest tests now, that are being tracked in other CIX. This patch works in the end, since we can check that openstack-tempest image used is now the podified-ci-testing image:\n1) https://logserver.rdoproject.org/56/36356/119/check/periodic-adoption-standalone-to-crc-no-ceph/1da0d1d/controller/ci-framework-data/logs/openstack-k8s-operators-openstack-must-gather/namespaces/openstack/pods/tempest-tests-l48vn/tempest-tests-l48vn-describe\n2) https://logserver.rdoproject.org/56/36356/119/check/periodic-adoption-multinode-to-crc-no-ceph/041a53b/controller/ci-framework-data/logs/openstack-k8s-operators-openstack-must-gather/namespaces/openstack/pods/tempest-tests-m8cdg/tempest-tests-m8cdg-describe",
       "revId": "1ffe6262a479934affb74bd70ed7e1b78ab24e1d",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d326cf9_8abdbbc1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2024-09-19T03:56:53Z",
+      "side": 1,
+      "message": "Thanks Douglas, this will also help downstream jobs, would still require fixing some job defs as done here.",
+      "revId": "1ffe6262a479934affb74bd70ed7e1b78ab24e1d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
