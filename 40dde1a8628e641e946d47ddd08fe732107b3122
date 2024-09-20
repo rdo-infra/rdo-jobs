@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee253b50_4608b8e6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-09-20T07:02:13Z",
+      "side": 1,
+      "message": "really nice! rollback seems to be working:\n\nTASK [control_plane_rollback : verify that the source control plane is responding] ***\nchanged: [localhost] \u003d\u003e {\"attempts\": 1, \"changed\": true, \"cmd\": \"set -euxo pipefail\\n\\nCONTROLLER1_SSH\u003d\\\"ssh -o StrictHostKeyChecking\u003daccept-new -i /home/zuul/.ssh/id_rsa root@192.168.122.103\\\"\\nCONTROLLER2_SSH\u003d\\\"ssh -o StrictHostKeyChecking\u003daccept-new -i /home/zuul/.ssh/id_rsa root@192.168.122.104\\\"\\nCONTROLLER3_SSH\u003d\\\"ssh -o StrictHostKeyChecking\u003daccept-new -i /home/zuul/.ssh/id_rsa root@192.168.122.105\\\"\\n\\nssh root@192.168.122.100 OS_CLOUD\u003dovercloud openstack user list\\n\", \"delta\": \"0:00:02.835274\", \"end\": \"2024-09-19 10:02:19.099285\", \"msg\": \"\", \"rc\": 0, \"start\": \"2024-09-19 10:02:16.264011\", \"stderr\": \"+ CONTROLLER1_SSH\u003d\u0027ssh -o",
+      "revId": "40dde1a8628e641e946d47ddd08fe732107b3122",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
