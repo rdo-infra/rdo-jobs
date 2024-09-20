@@ -2,14 +2,20 @@
 {% if cifmw_test_operator_tempest_image is defined %}
 cifmw_test_operator_tempest_image: {{ cifmw_test_operator_tempest_image }}
 {% endif %}
+{% if cifmw_test_operator_tempest_registry is defined %}
+cifmw_test_operator_tempest_registry: {{ cifmw_test_operator_tempest_registry }}
+{% endif %}
+{% if cifmw_test_operator_tempest_namespace is defined %}
+cifmw_test_operator_tempest_namespace: {{ cifmw_test_operator_tempest_namespace }}
+{% endif %}
+{% if cifmw_test_operator_tempest_container is defined %}
+cifmw_test_operator_tempest_container: {{ cifmw_test_operator_tempest_container }}
+{% endif %}
 {% if cifmw_test_operator_tempest_image_tag is defined %}
 cifmw_test_operator_tempest_image_tag: {{ cifmw_test_operator_tempest_image_tag }}
 {% endif %}
 {% if cifmw_test_operator_timeout is defined %}
 cifmw_test_operator_timeout: {{ cifmw_test_operator_timeout }}
-{% endif %}
-{% if cifmw_test_operator_tempest_container is defined %}
-cifmw_test_operator_tempest_container: {{ cifmw_test_operator_tempest_container }}
 {% endif %}
 {% if cifmw_test_operator_tempest_include_list is defined %}
 cifmw_test_operator_tempest_include_list: |
