@@ -87,9 +87,8 @@
       cifmw_dlrn_report_result: true
       cifmw_repo_setup_branch: antelope
       cifmw_run_test_role: test_operator
-      cifmw_test_operator_tempest_image: "quay.rdoproject.org/podified-antelope-centos9/openstack-tempest-extras"
+      cifmw_test_operator_tempest_image: "quay.rdoproject.org/podified-antelope-centos9/openstack-tempest-all"
       cifmw_test_operator_timeout: 10000
-      cifmw_test_operator_tempest_container: openstack-tempest-extras
       cifmw_test_operator_default_groups:
         - openstack-operator
         - keystone-operator
@@ -125,9 +124,8 @@
       cifmw_dlrn_report_result: true
       cifmw_repo_setup_branch: antelope
       cifmw_run_test_role: test_operator
-      cifmw_test_operator_tempest_image: "quay.rdoproject.org/podified-antelope-centos9/openstack-tempest-extras"
+      cifmw_test_operator_tempest_image: "quay.rdoproject.org/podified-antelope-centos9/openstack-tempest-all"
       cifmw_test_operator_timeout: 10000
-      cifmw_test_operator_tempest_container: openstack-tempest-extras
       cifmw_test_operator_default_groups:
         - openstack-operator
         - keystone-operator
