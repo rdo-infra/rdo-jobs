@@ -34,6 +34,24 @@
       "parentUuid": "9a0b993f_e5c678c8",
       "revId": "bb1c726a1315743d30758751731da83dcdafbec9",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f74331e6_30c22681",
+        "filename": "playbooks/data_plane_adoption/ci_framework_call_hook.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-09-23T11:39:02Z",
+      "side": 1,
+      "message": "this one is not being used here? or is it expected by the run_hook role?\n\nin any case, we already have this defined on the other plays as discussed in slack just now. for the trunk/downstream cases we can override as usual i.e. we have different values for vars upstream/downstream\n\nso please remove this unused one @ananya but to Ronelle\u0027s point what is the alternative i mean how else can we handle a difference up/downstream than through vars like this",
+      "parentUuid": "9a0b993f_e5c678c8",
+      "revId": "bb1c726a1315743d30758751731da83dcdafbec9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
