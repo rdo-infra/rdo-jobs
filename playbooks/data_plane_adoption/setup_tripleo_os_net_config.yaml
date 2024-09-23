@@ -22,7 +22,7 @@
            --enable=rhel-9-for-x86_64-highavailability-eus-rpms \
            --enable=openstack-17.1-for-rhel-9-x86_64-rpms \
            --enable=fast-datapath-for-rhel-9-x86_64-rpms \
-           --enable=openstack-deployment-tools-for-rhel-9-x86_64-rpms
+           --enable=openstack-17.1-deployment-tools-for-rhel-9-x86_64-rpms
         dnf install -y openvswitch os-net-config
         mkdir -p /etc/os-net-config/
 
