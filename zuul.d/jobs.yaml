@@ -260,17 +260,28 @@
       promote_target: puppet-passed-ci
 
 - job:
-    name: weirdo-dalmatian-promote-consistent-to-puppet-ci-testing
+    name: weirdo-epoxy-promote-consistent-to-puppet-ci-testing
     parent: weirdo-base-promote-consistent-to-puppet-ci-testing
     vars:
       release: master
 
 - job:
-    name: weirdo-dalmatian-promote-puppet-ci-testing-to-puppet-passed-ci
+    name: weirdo-epoxy-promote-puppet-ci-testing-to-puppet-passed-ci
     parent: weirdo-base-promote-puppet-ci-testing-to-puppet-passed-ci
     vars:
       release: master
 
+- job:
+    name: weirdo-dalmatian-promote-consistent-to-puppet-ci-testing
+    parent: weirdo-base-promote-consistent-to-puppet-ci-testing
+    vars:
+      release: dalmatian
+
+- job:
+    name: weirdo-dalmatian-promote-puppet-ci-testing-to-puppet-passed-ci
+    parent: weirdo-base-promote-puppet-ci-testing-to-puppet-passed-ci
+    vars:
+      release: dalmatian
 - job:
     name: weirdo-caracal-promote-consistent-to-puppet-ci-testing
     parent: weirdo-base-promote-consistent-to-puppet-ci-testing
@@ -390,7 +401,7 @@
         override-checkout: main
     vars:
       selinux_enforcing: "false"
-      rdoinfo_release: dalmatian
+      rdoinfo_release: epoxy
       centos_releasever: 9
       job_type: promotion
     nodeset: rdo-centos-9-stream
@@ -416,6 +427,62 @@
       centos_releasever: 8
       job_type: promotion
     nodeset: rdo-centos-8-stream
+
+- job:
+    name: weirdo-epoxy-promote-puppet-scenario001-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: epoxy
+      scenario: scenario001
+
+- job:
+    name: weirdo-epoxy-promote-puppet-scenario002-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: epoxy
+      scenario: scenario002
+
+- job:
+    name: weirdo-epoxy-promote-puppet-scenario003-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: epoxy
+      scenario: scenario003
+
+- job:
+    name: weirdo-epoxy-promote-puppet-scenario004-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: epoxy
+      scenario: scenario004
+
+- job:
+    name: weirdo-epoxy-promote-puppet-scenario005-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: epoxy
+      scenario: scenario005
+
+- job:
+    name: weirdo-epoxy-promote-packstack-scenario001-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: epoxy
+      scenario: scenario001
+
+- job:
+    name: weirdo-epoxy-promote-packstack-scenario002-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: epoxy
+      scenario: scenario002
+
+- job:
+    name: weirdo-epoxy-promote-packstack-scenario003-centos-stream-9
+    parent: weirdo-promote-base-centos9
+    vars:
+      rdoinfo_release: epoxy
+      scenario: scenario003
 
 - job:
     name: weirdo-dalmatian-promote-puppet-scenario001-centos-stream-9
