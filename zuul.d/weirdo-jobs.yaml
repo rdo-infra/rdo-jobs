@@ -364,6 +364,82 @@
       scenario: scenario003
 
 - job:
+    name: validate-buildsys-tags-epoxy-testing-centos9-base
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: epoxy
+      rdoinfo_phase: testing
+      centos_releasever: 9s
+    nodeset: rdo-centos-9-stream
+    files:
+      - ^buildsys-tags/cloud9s-openstack-epoxy-testing.yml$
+
+- job:
+    name: validate-buildsys-tags-epoxy-testing-puppet-scenario001-centos9
+    parent: validate-buildsys-tags-epoxy-testing-centos9-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-epoxy-testing-puppet-scenario002-centos9
+    parent: validate-buildsys-tags-epoxy-testing-centos9-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-epoxy-testing-puppet-scenario003-centos9
+    parent: validate-buildsys-tags-epoxy-testing-centos9-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: validate-buildsys-tags-epoxy-testing-puppet-scenario004-centos9
+    parent: validate-buildsys-tags-epoxy-testing-centos9-base
+    vars:
+      scenario: scenario004
+
+- job:
+    name: validate-buildsys-tags-epoxy-testing-puppet-scenario005-centos9
+    parent: validate-buildsys-tags-epoxy-testing-centos9-base
+    vars:
+      scenario: scenario005
+
+- job:
+    name: validate-buildsys-tags-epoxy-testing-packstack-scenario001-centos9
+    parent: validate-buildsys-tags-epoxy-testing-centos9-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-epoxy-testing-packstack-scenario002-centos9
+    parent: validate-buildsys-tags-epoxy-testing-centos9-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-epoxy-testing-packstack-scenario003-centos9
+    parent: validate-buildsys-tags-epoxy-testing-centos9-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: validate-buildsys-tags-epoxy-testing-tcib-container-build-scenario000-centos9
+    nodeset: cloud-centos-9-stream-vexxhost
+    parent: validate-buildsys-tags-epoxy-testing-centos9-base
+    post-run: playbooks/podified-containers/collect-logs.yaml
+    vars:
+      scenario: scenario000
+
+- job:
+    name: validate-buildsys-tags-epoxy-testing-cifmw-crc-podified-edpm-baremetal
+    parent: weirdo-validate-buildsys-tags-cifmw-crc-podified-edpm-baremetal-base
+    voting: false
+    dependencies:
+      - validate-buildsys-tags-epoxy-testing-tcib-container-build-scenario000-centos9
+    files:
+      - ^buildsys-tags/cloud9s-openstack-epoxy-testing.yml$
+
+- job:
     name: validate-buildsys-tags-dalmatian-testing-centos9-base
     parent: weirdo-validate-buildsys-tags-base
     vars:
@@ -703,6 +779,74 @@
 - job:
     name: weirdo-dlrn-caracal-tcib-container-build-scenario000-centos9
     parent: weirdo-dlrn-caracal-base-centos-9
+    post-run: playbooks/podified-containers/collect-logs.yaml
+    vars:
+      scenario: scenario000
+
+- job:
+    name: weirdo-dlrn-dalmatian-base-centos-9
+    parent: weirdo-dlrn-base-centos-9
+    vars:
+      openstack_release: dalmatian
+    dependencies:
+      - rdoinfo-DLRN-check-centos9
+    files:
+      - ^tags/dalmatian.yml$
+
+- job:
+    name: weirdo-dlrn-dalmatian-packstack-scenario001-centos9
+    parent: weirdo-dlrn-dalmatian-base-centos-9
+    vars:
+      scenario: scenario001
+      selinux_enforcing: "false"
+
+- job:
+    name: weirdo-dlrn-dalmatian-packstack-scenario002-centos9
+    parent: weirdo-dlrn-dalmatian-base-centos-9
+    vars:
+      scenario: scenario002
+      selinux_enforcing: "false"
+
+- job:
+    name: weirdo-dlrn-dalmatian-packstack-scenario003-centos9
+    parent: weirdo-dlrn-dalmatian-base-centos-9
+    vars:
+      scenario: scenario003
+      selinux_enforcing: "false"
+
+- job:
+    name: weirdo-dlrn-dalmatian-puppet-scenario001-centos9
+    parent: weirdo-dlrn-dalmatian-base-centos-9
+    vars:
+      scenario: scenario001
+
+- job:
+    name: weirdo-dlrn-dalmatian-puppet-scenario002-centos9
+    parent: weirdo-dlrn-dalmatian-base-centos-9
+    vars:
+      scenario: scenario002
+
+- job:
+    name: weirdo-dlrn-dalmatian-puppet-scenario003-centos9
+    parent: weirdo-dlrn-dalmatian-base-centos-9
+    vars:
+      scenario: scenario003
+
+- job:
+    name: weirdo-dlrn-dalmatian-puppet-scenario004-centos9
+    parent: weirdo-dlrn-dalmatian-base-centos-9
+    vars:
+      scenario: scenario004
+
+- job:
+    name: weirdo-dlrn-dalmatian-puppet-scenario005-centos9
+    parent: weirdo-dlrn-dalmatian-base-centos-9
+    vars:
+      scenario: scenario005
+
+- job:
+    name: weirdo-dlrn-dalmatian-tcib-container-build-scenario000-centos9
+    parent: weirdo-dlrn-dalmatian-base-centos-9
     post-run: playbooks/podified-containers/collect-logs.yaml
     vars:
       scenario: scenario000

@@ -79,7 +79,7 @@
 
           export CENTOS_VERS="{{  centos_version | default('centos7') }}"
 
-          CURRENT_MASTER_TAG="dalmatian-uc"
+          CURRENT_MASTER_TAG="epoxy-uc"
 
           PACKAGES_UPDATED_MASTER=""
 
@@ -90,6 +90,9 @@
               if [ "${CENTOS_VERS}" = "centos9" ]; then
                   if [[ -n $(echo "$line" | grep -w $CURRENT_MASTER_TAG) ]]; then
                       PACKAGES_UPDATED_MASTER="$PACKAGES_UPDATED_MASTER $PKGNAME"
+                  fi
+                  if [[ -n $(echo "$line" | grep -w dalmatian) ]]; then
+                      PACKAGES_UPDATED_DALMATIAN="$PACKAGES_UPDATED_DALMATIAN $PKGNAME"
                   fi
                   if [[ -n $(echo "$line" | grep -w caracal) ]]; then
                       PACKAGES_UPDATED_CARACAL="$PACKAGES_UPDATED_CARACAL $PKGNAME"
@@ -116,6 +119,16 @@
           TIMEOUT="{{ zuul.timeout | default('10800') }}"
           if [ -n "${PACKAGES_UPDATED_MASTER}" ]; then
               timeout --signal=SIGKILL $TIMEOUT  {{ ansible_user_dir }}/rdoinfo-DLRN.sh $CURRENT_MASTER_TAG "${PACKAGES_UPDATED_MASTER}" "${CENTOS_VERS}"
+              ret1=$?
+              if [ $ret1 -ne 0 ]; then
+                  ret=$ret1
+              fi
+              # The data/ contents have been archived already, remove to avoid issues with the next branch
+              rm -rf data
+              sudo rm -rf /var/cache/mock/*
+          fi
+          if [ -n "${PACKAGES_UPDATED_DALMATIAN}" ]; then
+              timeout --signal=SIGKILL $TIMEOUT  {{ ansible_user_dir }}/rdoinfo-DLRN.sh dalmatian "${PACKAGES_UPDATED_DALMATIAN}" "${CENTOS_VERS}"
               ret1=$?
               if [ $ret1 -ne 0 ]; then
                   ret=$ret1
