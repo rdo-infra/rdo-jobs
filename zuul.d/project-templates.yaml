@@ -380,6 +380,46 @@
     name: weirdo-master-promotion-pipeline
     openstack-periodic-daily:
       jobs:
+        - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
+        - weirdo-epoxy-promote-puppet-scenario001-centos-stream-9:
+            dependencies:
+              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
+        - weirdo-epoxy-promote-puppet-scenario002-centos-stream-9:
+            dependencies:
+              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
+        - weirdo-epoxy-promote-puppet-scenario003-centos-stream-9:
+            dependencies:
+              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
+        - weirdo-epoxy-promote-puppet-scenario004-centos-stream-9:
+            dependencies:
+              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
+        - weirdo-epoxy-promote-puppet-scenario005-centos-stream-9:
+            dependencies:
+              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
+        - weirdo-epoxy-promote-packstack-scenario001-centos-stream-9:
+            dependencies:
+              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
+        - weirdo-epoxy-promote-packstack-scenario002-centos-stream-9:
+            dependencies:
+              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
+        - weirdo-epoxy-promote-packstack-scenario003-centos-stream-9:
+            dependencies:
+              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
+        - weirdo-epoxy-promote-puppet-ci-testing-to-puppet-passed-ci:
+            dependencies:
+              - weirdo-epoxy-promote-puppet-scenario001-centos-stream-9
+              - weirdo-epoxy-promote-puppet-scenario002-centos-stream-9
+              - weirdo-epoxy-promote-puppet-scenario003-centos-stream-9
+              - weirdo-epoxy-promote-puppet-scenario004-centos-stream-9
+              - weirdo-epoxy-promote-puppet-scenario005-centos-stream-9
+              - weirdo-epoxy-promote-packstack-scenario001-centos-stream-9
+              - weirdo-epoxy-promote-packstack-scenario002-centos-stream-9
+              - weirdo-epoxy-promote-packstack-scenario003-centos-stream-9
+
+- project-template:
+    name: weirdo-dalmatian-promotion-pipeline
+    openstack-periodic-daily:
+      jobs:
         - weirdo-dalmatian-promote-consistent-to-puppet-ci-testing
         - weirdo-dalmatian-promote-puppet-scenario001-centos-stream-9:
             dependencies:
