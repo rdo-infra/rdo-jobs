@@ -533,6 +533,7 @@
             skiplist: "{{ skiplist_file['content'] | b64decode | from_yaml }}"
 
         - name: Get names of excluded tests
+          no_log: true
           ansible.builtin.set_fact:
             test_names: "{{ test_names | default([]) + [item.test] }}"
           loop: "{{ skiplist.known_failures }}"
