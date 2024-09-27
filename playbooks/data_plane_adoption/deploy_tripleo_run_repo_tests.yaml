@@ -476,6 +476,16 @@
             path: "{{ rdo_dir }}/vars.yaml"
             line: "ansibleee_runner_img: {{ ansibleee_runner_img }}"
 
+    - name: Workaround systemd-container
+      # Note: This WA applies to version <= 17.1.3
+      become: true
+      delegate_to: "{{ item }}"
+      ansible.builtin.dnf:
+        name:
+          - systemd-container
+        state: present
+      loop: "{{ groups['tripleo_computes'] | default([]) }}"
+
     - name: Update sos-reports package to use it with must-gather
       delegate_to: "{{ item }}"
       become: true
