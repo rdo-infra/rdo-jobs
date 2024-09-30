@@ -17,6 +17,12 @@ cifmw_test_operator_tempest_image_tag: {{ cifmw_test_operator_tempest_image_tag 
 {% if cifmw_test_operator_timeout is defined %}
 cifmw_test_operator_timeout: {{ cifmw_test_operator_timeout }}
 {% endif %}
+{% if cifmw_test_operator_timeout is defined %}
+cifmw_test_operator_tempest_extra_images: {{ cifmw_test_operator_tempest_extra_images }}
+{% endif %}
+{% if cifmw_test_operator_timeout is defined %}
+cifmw_tempest_tempestconf_config: {{ cifmw_tempest_tempestconf_config }}
+{% endif %}
 {% if cifmw_test_operator_tempest_include_list is defined %}
 cifmw_test_operator_tempest_include_list: |
  {{ cifmw_test_operator_tempest_include_list | replace("\n", "\n ") }}
