@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4dc2e153_28eb1aa3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-10-01T12:27:31Z",
+      "side": 1,
+      "message": "but is the polarion reporting code tested anywhere yet?",
+      "revId": "a63602fd21226a1d04b4cd1ba0c1353ee1c5e3a1",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad2aabdc_91ac6710",
+        "filename": "playbooks/data_plane_adoption/ci_framework_report_polarion.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-10-01T12:27:31Z",
+      "side": 1,
+      "message": "in the multinode test you are not actually executing this code i mean we don\u0027t have cifmw_polarion_report_results set there https://gitlab.cee.redhat.com/ci-framework/ci-framework-testproject/-/merge_requests/662/diffs#be7b2d3c90fdd69bb36011ba6dea8ad3964367fa_5_9",
+      "revId": "a63602fd21226a1d04b4cd1ba0c1353ee1c5e3a1",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93b109cc_e5961426",
+        "filename": "zuul.d/_data_plane_adoption.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-10-01T12:27:31Z",
+      "side": 1,
+      "message": "this wasn\u0027t executed in the test run  ... after run_repo_tests we have the unregister play:\nhttps://sf.hosted.upshift.rdu2.redhat.com/logs/62/662/418ce8d46a50b8417ac16174d0d8b8e76a4314ee/check-gitlab-cee/adoption-multinode-to-crc-no-ceph-archana/1ff6a77/job-output.txt\n\n```\n2024-10-01 08:36:00.938141 | RUN END RESULT_NORMAL: [untrusted : review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml@master]\n2024-10-01 08:36:00.979319 | POST-RUN START: [untrusted : review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption/unregister_RH_subscription_standalone.yaml@master]\n```",
+      "revId": "a63602fd21226a1d04b4cd1ba0c1353ee1c5e3a1",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
