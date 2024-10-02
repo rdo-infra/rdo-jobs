@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a4b1e22_b67fcdd4",
+        "filename": "playbooks/data_plane_adoption/files/ci_framework_test_operator_params.yaml.j2",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 716
+      },
+      "writtenOn": "2024-10-02T11:52:01Z",
+      "side": 1,
+      "message": "Could you pls try with \n```\n{% if cifmw_tempest_tempestconf_config is defined -%}\ncifmw_tempest_tempestconf_config: {{ cifmw_tempest_tempestconf_config | to_yaml }}\n{%- endif -%}\n```\n\nThis seems to pass the yaml validator",
+      "revId": "34a5ad88404822e9cb37510a0489acaf88a1b075",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
