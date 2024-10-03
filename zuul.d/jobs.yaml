@@ -959,3 +959,14 @@
     vars:
       rdoinfo_release: train
       scenario: scenario003
+
+- job:
+    name: create-ftbfs-report-test
+    parent: base
+    pre-run: playbooks/rdo-ftbts-dashboard/pre.yaml
+    run: playbooks/rdo-ftbts-dashboard/run.yaml
+    timeout: 3600
+    nodeset:
+      nodes:
+        - name: fedora_container
+          label: fedora-latest-container
