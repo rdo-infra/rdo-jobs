@@ -1,0 +1,14 @@
+- hosts: all
+  name: Create-ftbfs-report playbook
+  tasks:
+    - name: Run create-ftbfs-report.sh script
+      become: true
+      ansible.builtin.script: ./create-ftbfs-report.sh
+
+    - name: Install ci-log-processing repo
+      ansible.builtin.pip:
+        name: git+https://opendev.org/openstack/ci-log-processing
+
+    - name: Test logsender
+      ansible.builtin.shell:
+        cmd: logsender --help
