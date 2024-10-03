@@ -1,0 +1,11 @@
+- hosts: all
+  name: Create-ftbfs-report playbook
+  tasks:
+    - name: Run create-ftbfs-report.sh script
+      become: true
+      ansible.builtin.script: ./create-ftbfs-report.sh
+
+    - name: Send report to elasticsearch 
+      ansible.builtin.script: ./send_ftbfs_report.py
+      args:
+        executable: python3 
