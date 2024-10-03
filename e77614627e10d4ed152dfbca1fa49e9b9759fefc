@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0c51332_51547b7a",
+        "filename": "playbooks/data_plane_adoption/ci_framework_report_polarion.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-10-03T07:31:34Z",
+      "side": 1,
+      "message": "sanity check does this need to run on all the nodes or just the ci framework controller",
+      "revId": "e77614627e10d4ed152dfbca1fa49e9b9759fefc",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bc8e1f4_b1f74e4e",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-10-03T07:31:34Z",
+      "side": 1,
+      "message": "the Polarion reporting bits and now removed from the \u0027main\u0027 deploy source and run adoption playbook and are now an independent post-run playbook.\nCombined with the other comment about the error you are having trying to run this from the downstream zuul, I wonder if a better approach is to move this post-run play into the downstream job completely? It should allow us to test it and it also makes more sense since this polarion reporting IS downstream (?).\n\nAny thoughts @Joan @Ananya? \n\nIt means we put a new post-run: playbooks/data_plane_adoption/ci_framework_report_polarion.yaml\n\ndirectly into periodic-internal-adoption-multinode-to-crc-no-ceph\n\nhttps://gitlab.cee.redhat.com/ci-framework/ci-framework-jobs/-/blob/main/zuul.d/adoption.yaml?ref_type\u003dheads#L157\n\nand move the polarion playbook and testcases there.",
+      "revId": "e77614627e10d4ed152dfbca1fa49e9b9759fefc",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73d6cec0_c3b7f7ff",
+        "filename": "zuul.d/_data_plane_adoption.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-10-03T07:31:34Z",
+      "side": 1,
+      "message": "@Archana this is why you are getting the \u0027depends on a change with invalid configuration\u0027 in your downstream testproject.\n\nThere is no error in your config here, its just that zuul won\u0027t let you test across zuul servers when you change a parent job that you are depending on. The CI team has encountered this many times before. In other words you are changing the post-run of the parent job in this depends-on patch that your downstream test job parents from.",
+      "revId": "e77614627e10d4ed152dfbca1fa49e9b9759fefc",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
