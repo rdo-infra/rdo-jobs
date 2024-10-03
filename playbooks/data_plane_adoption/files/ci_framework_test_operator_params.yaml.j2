@@ -2,6 +2,9 @@
 {% if cifmw_test_operator_tempest_image is defined %}
 cifmw_test_operator_tempest_image: {{ cifmw_test_operator_tempest_image }}
 {% endif %}
+{% if cifmw_test_operator_tempest_extra_images is defined %}
+cifmw_test_operator_tempest_extra_images: {{ cifmw_test_operator_tempest_extra_images }}
+{% endif %}
 {% if cifmw_test_operator_tempest_registry is defined %}
 cifmw_test_operator_tempest_registry: {{ cifmw_test_operator_tempest_registry }}
 {% endif %}
@@ -38,3 +41,28 @@ cifmw_test_operator_default_jobs:
 {% if cifmw_test_operator_tempest_tests_exclude_override_scenario is defined %}
 cifmw_test_operator_tempest_tests_exclude_override_scenario: {{ cifmw_test_operator_tempest_tests_exclude_override_scenario }}
 {% endif %}
+{% if cifmw_test_operator_concurrency is defined %}
+cifmw_test_operator_concurrency: {{ cifmw_test_operator_concurrency }}
+{% endif %}
+{% if cifmw_test_operator_tempest_network_attachments is defined %}
+cifmw_test_operator_tempest_network_attachments: {{ cifmw_test_operator_tempest_network_attachments }}
+{% endif %}
+{% if cifmw_test_operator_tempest_external_plugin is defined %}
+cifmw_test_operator_tempest_external_plugin: {{ cifmw_test_operator_tempest_external_plugin }}
+{% endif %}
+{% if cifmw_test_operator_tobiko_workflow is defined %}
+cifmw_test_operator_tobiko_workflow: {{ cifmw_test_operator_tobiko_workflow }}
+{% endif %}
+{% if cifmw_run_tobiko is defined %}
+cifmw_run_tobiko: {{ cifmw_run_tobiko }}
+{% endif %}
+{% if cifmw_block_device_size is defined %}
+cifmw_block_device_size: {{ cifmw_block_device_size }}
+{% endif %}
+{% if cifmw_tempest_tempestconf_config is defined -%}
+cifmw_tempest_tempestconf_config: {{ cifmw_tempest_tempestconf_config | to_yaml }}
+{%- endif -%}
+{% if cifmw_test_operator_tempest_workflow is defined -%}
+cifmw_test_operator_tempest_workflow: |
+  {{ cifmw_test_operator_tempest_workflow | to_yaml }}
+{%- endif -%}
