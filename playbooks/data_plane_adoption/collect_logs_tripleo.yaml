@@ -45,3 +45,12 @@
           - --max-size=50m
       loop:
         - "{{ ansible_user_dir }}"
+
+- hosts: controller
+  gather_facts: false
+  tasks:
+    - name: Copy container log files from standalone vm
+      ansible.posix.synchronize:
+        src: '/home/zuul/test_operator_vars.yaml'
+        dest: '/home/zuul/logs/standalone/test_operator_vars.yaml'
+        mode: pull
