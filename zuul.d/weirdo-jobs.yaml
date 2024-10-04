@@ -1300,3 +1300,69 @@
     post-run: playbooks/podified-containers/collect-logs.yaml
     vars:
       scenario: scenario000
+
+- job:
+    name: validate-buildsys-tags-dalmatian-release-centos9-base
+    parent: weirdo-validate-buildsys-tags-base
+    vars:
+      rdoinfo_release: dalmatian
+      rdoinfo_phase: release
+      centos_releasever: 9s
+    nodeset: rdo-centos-9-stream
+    files:
+      - ^buildsys-tags/cloud9s-openstack-dalmatian-release.yml$
+
+- job:
+    name: validate-buildsys-tags-dalmatian-release-puppet-scenario001-centos9
+    parent: validate-buildsys-tags-dalmatian-release-centos9-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-dalmatian-release-puppet-scenario002-centos9
+    parent: validate-buildsys-tags-dalmatian-release-centos9-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-dalmatian-release-puppet-scenario003-centos9
+    parent: validate-buildsys-tags-dalmatian-release-centos9-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: validate-buildsys-tags-dalmatian-release-puppet-scenario004-centos9
+    parent: validate-buildsys-tags-dalmatian-release-centos9-base
+    vars:
+      scenario: scenario004
+
+- job:
+    name: validate-buildsys-tags-dalmatian-release-puppet-scenario005-centos9
+    parent: validate-buildsys-tags-dalmatian-release-centos9-base
+    vars:
+      scenario: scenario005
+
+- job:
+    name: validate-buildsys-tags-dalmatian-release-packstack-scenario001-centos9
+    parent: validate-buildsys-tags-dalmatian-release-centos9-base
+    vars:
+      scenario: scenario001
+
+- job:
+    name: validate-buildsys-tags-dalmatian-release-packstack-scenario002-centos9
+    parent: validate-buildsys-tags-dalmatian-release-centos9-base
+    vars:
+      scenario: scenario002
+
+- job:
+    name: validate-buildsys-tags-dalmatian-release-packstack-scenario003-centos9
+    parent: validate-buildsys-tags-dalmatian-release-centos9-base
+    vars:
+      scenario: scenario003
+
+- job:
+    name: validate-buildsys-tags-dalmatian-release-tcib-container-build-scenario000-centos9
+    parent: validate-buildsys-tags-dalmatian-release-centos9-base
+    post-run: playbooks/podified-containers/collect-logs.yaml
+    vars:
+      scenario: scenario000
