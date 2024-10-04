@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1a47d1b_96e71bfc",
+        "filename": "playbooks/data_plane_adoption/files/ci_framework_test_operator_params.yaml.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-10-04T10:15:46Z",
+      "side": 1,
+      "message": "I would add a check to ensure at least one of \u0027dlrn_hash_tag\u0027 or \u0027latest_dlrn_tag\u0027 is defined. Right now we only run tempest in periodic jobs, but have already a variable to run tempest in other jobs, and if \u0027cifmw_test_operator_tempest_image_tag\u0027 was not defined then this would crash",
+      "revId": "66d3292273b9c13915082bf7759c642f9160c4dd",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
