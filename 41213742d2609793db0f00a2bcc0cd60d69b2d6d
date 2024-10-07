@@ -33,6 +33,40 @@
       "message": "setting ready for review. With the latest changes we got a green run at https://softwarefactory-project.io/zuul/t/rdoproject.org/build/61b17dc1e88f4461a54898d451e42d46\n\n(the subsequent run failed but i think it was a transient issue/re-running)",
       "revId": "41213742d2609793db0f00a2bcc0cd60d69b2d6d",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d687672d_83152586",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-10-07T09:57:42Z",
+      "side": 1,
+      "message": "+1 I think this is good to go, but we have to wait until depends-on PR merges",
+      "revId": "41213742d2609793db0f00a2bcc0cd60d69b2d6d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f55d7eb8_93c0572e",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 16
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-10-07T09:57:42Z",
+      "side": 1,
+      "message": "this is very nice, I like this way of filtering out the undercloud node, as a nit, we could even put this in a variable since it\u0027s used in more than one task through the playbook (not something worth updating the patch for though)",
+      "revId": "41213742d2609793db0f00a2bcc0cd60d69b2d6d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
