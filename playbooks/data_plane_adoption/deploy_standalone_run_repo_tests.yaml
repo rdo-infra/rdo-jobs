@@ -321,6 +321,15 @@
         name: sos
         state: latest
 
+    - name: Install sysbench
+      delegate_to: standalone
+      become: true
+      ansible.builtin.dnf:
+        name:
+          - sysbench
+          - bpftrace
+        state: present
+
     - name: Disable OSP17.1 repos before running OSP 18 setup and adoption
       delegate_to: standalone
       become: true
