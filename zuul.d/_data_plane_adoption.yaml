@@ -65,6 +65,23 @@
       cloud_domain: "ooo.test"
       use_ceph: "false"
       dpa_test_suite: "test-minimal"
+      # Workaround due to OSPRH-10283
+      edpm_bootstrap_command: |
+        curl -k -o /tmp/rhos-release.rpm https://download.eng.brq.redhat.com/rcm-guest/puddles/OpenStack/rhos-release/rhos-release-latest.noarch.rpm
+        dnf install -y /tmp/rhos-release.rpm
+        rhos-release -x
+        rhos-release 18.0
+        # This is required for FIPS enabled until trunk.rdoproject.org
+        # is not being served from a centos7 host, tracked by
+        # https://issues.redhat.com/browse/RHOSZUUL-1517
+        dnf -y install crypto-policies
+        update-crypto-policies --set FIPS:NO-ENFORCE-EMS
+        # FIXME: perform dnf upgrade for other packages in EDPM ansible
+        # here we only ensuring that decontainerized libvirt can start
+        dnf -y upgrade openstack-selinux
+        rm -f /run/virtlogd.pid
+        sed -i '/nameserver/d' /etc/resolv.conf
+        sed -i '\$anameserver 192.168.122.80' /etc/resolv.conf
 
 - job:
     name: adoption-multinode-to-crc-no-ceph
