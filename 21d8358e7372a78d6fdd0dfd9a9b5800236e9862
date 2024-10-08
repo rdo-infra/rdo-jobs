@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00efbdc7_252195d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 70
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 602
+      },
+      "writtenOn": "2024-10-08T09:51:38Z",
+      "side": 1,
+      "message": "Marios / Joan I think I was able to both apply the change to zuul.d/container-jobs-antelope-centos9.yaml and have a green CI run [1].\nI can see the overrides are properly generated [2], and the inventory is the expected one [3].\n\nI\u0027m open to make changes that could improve the codebase here, but I\u0027m wondering if you have the chance to review it and eventually merge if you\u0027re ok to have this playbook executed as part of the multinode-ceph job. \n\n[1] https://logserver.rdoproject.org/96/53696/2/check/periodic-adoption-multinode-to-crc-ceph/dc18320/controller/data-plane-adoption-tests-repo/data-plane-adoption/tests/logs/\n[2] https://logserver.rdoproject.org/96/53696/2/check/periodic-adoption-multinode-to-crc-ceph/dc18320/controller/data-plane-adoption-tests-repo/data_plane_adoption/ceph_overrides.yaml\n\n[3] https://logserver.rdoproject.org/96/53696/2/check/periodic-adoption-multinode-to-crc-ceph/dc18320/controller/data-plane-adoption-tests-repo/data_plane_adoption/ceph_inventory.yaml",
+      "revId": "21d8358e7372a78d6fdd0dfd9a9b5800236e9862",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
