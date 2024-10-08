@@ -259,6 +259,12 @@
         regexp: "'^neutron_qe_test:'"
         value: "neutron_qe_test: {{ neutron_qe_test | default('false') }}"
 
+    - name: Set neutron_qe_dir in vars.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: "'^neutron_qe_dir:'"
+        value: "neutron_qe_dir: {{ neutron_qe_dir | default('false') }}"
+
     - name: Set prelaunch_barbican_secret in vars.yaml
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
