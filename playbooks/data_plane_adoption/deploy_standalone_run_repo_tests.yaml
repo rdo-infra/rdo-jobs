@@ -326,6 +326,15 @@
       become: true
       ansible.builtin.shell: "subscription-manager repos --disable {{ osp_17_repos | join(' --disable ') }}"
 
+    - name: Insert adoption extra vars when defined
+      when: adoption_extra_vars is defined
+      ansible.builtin.blockinfile:
+        marker_begin: "BEGIN adoption extra vars"
+        marker_end: "END adoption extra vars"
+        path: "{{ rdo_dir }}/vars.yaml"
+        block: |
+          {{ adoption_extra_vars }}
+
     - name: "Run data-plane-adoption tests from {{ dpa_dir }}"
       community.general.make:
         chdir: "{{ dpa_dir }}"
