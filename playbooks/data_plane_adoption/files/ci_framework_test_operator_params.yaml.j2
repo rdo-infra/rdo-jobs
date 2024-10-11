@@ -16,7 +16,7 @@ cifmw_test_operator_tempest_container: {{ cifmw_test_operator_tempest_container 
 {% endif %}
 {% if cifmw_test_operator_tempest_image_tag is defined %}
 cifmw_test_operator_tempest_image_tag: {{ cifmw_test_operator_tempest_image_tag }}
-{% elif (dlrn_hash_tag is defined) or (latest_dlrn_tag is defined) %}
+{% elif (dlrn_hash_tag is defined) or (latest_dlrn_tag is defined and "content" in latest_dlrn_tag) %}
 cifmw_test_operator_tempest_image_tag: "{{ dlrn_hash_tag | default(latest_dlrn_tag.content) }}"
 {% endif %}
 {% if cifmw_test_operator_timeout is defined %}
