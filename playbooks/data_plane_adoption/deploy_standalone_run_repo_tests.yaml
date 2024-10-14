@@ -43,6 +43,7 @@
             -e "enable_telemetry={{ enable_telemetry | default('false') }}"
             -e "enable_barbican={{ enable_barbican | default('false') }}"
             -e "enable_octavia={{ enable_octavia | default('true') }}"
+            -e "swift_replicated={{ swift_replicated | default('false') }}"
           args:
             chdir: "{{ framework_dir }}"
 
