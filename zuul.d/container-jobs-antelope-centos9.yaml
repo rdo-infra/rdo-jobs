@@ -209,6 +209,7 @@
     description: multinode source OSP 17.1 adopted to crc RHOSO 18. Has Ceph, telemetry enabled and no TLS.
     parent: periodic-adoption-multinode-to-crc-no-ceph
     vars:
+      tripleo_prerequisites: true
       use_ceph: "true"
       migrate_ceph: true
       dpa_test_suite: "test-with-ceph"
