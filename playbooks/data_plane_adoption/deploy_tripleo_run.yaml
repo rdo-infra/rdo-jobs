@@ -68,6 +68,9 @@
               vlan_id: {{ ceph_storage_vlan_id }}
               ceph_rgw_virtual_ips_list:
                 - {{ ceph_storage_net_prefix }}.100/24
+              propagate_storage_nfs: false # we currently do not deploy ControllerStorageNFS role in CI
+              ceph_nfs_vip: {{ ceph_storage_net_prefix }}.201
+              manila_backend: "cephnfs"
 
         - name: Generate a TripleO/Ceph compatible inventory
           ansible.builtin.template:
@@ -81,6 +84,20 @@
               - {"hostname": "{{ compute0_hostname }}", "ip": "{{ ceph_nodes_ctlplane_prefix }}.106"}
               - {"hostname": "{{ compute1_hostname }}", "ip": "{{ ceph_nodes_ctlplane_prefix }}.107"}
               - {"hostname": "{{ compute2_hostname }}", "ip": "{{ ceph_nodes_ctlplane_prefix }}.108"}
+
+        - name: "Run data-plane-adoption TripleO prerequisites tests from {{ dpa_dir }}"
+          when: tripleo_prerequisites | bool | default(false)
+          community.general.make:
+            chdir: "{{ dpa_dir }}"
+            target: "test-tripleo-requirements"
+            params:
+              TEST_CONFIG: "{{ dpa_test_ansible_cfg | default(rdo_dir  ~ '/ansible.cfg') }}"
+              TEST_SECRETS: "{{ rdo_dir}}/secrets.yaml"
+              TEST_VARS: "{{ rdo_dir }}/vars.yaml"
+              TEST_CEPH_OVERRIDES: "{{ rdo_dir }}/ceph_overrides.yaml"
+              TEST_INVENTORY: "{{ rdo_dir }}/ceph_inventory.yaml"
+          register: make_tripleo_req
+          failed_when: '"failed=0" not in make_tripleo_req.stdout_lines[-1]'
 
         - name: "Run data-plane-adoption Ceph migration tests from {{ dpa_dir }}"
           community.general.make:
