@@ -28,3 +28,4 @@
           TELEMETRY_ENABLED: "{{ enable_telemetry | default('false') }}"
           # keep octavia disabled by default due to CIX
           OCTAVIA_ENABLED: "{{ enable_octavia | default('false') }}"
+          SWIFT_REPLICATED: "{{ swift_replicated | default('false') }}"
