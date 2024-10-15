@@ -1,0 +1,12 @@
+- hosts: all
+  vars:
+    # for test purpose
+    buildset_artifacts_url: "https://logserver.rdoproject.org/42/55042/2/check/DLRN-rpmbuild-centos9/6712703/buildset/"
+  tasks:
+    - block:
+        - name: Do not run weirdo if there are no logs directory in parent job
+          debug:
+            msg: "No logs repo in parent job, skiping weirdo execution"
+
+        - meta: end_play
+      when: buildset_artifacts_url is not defined
