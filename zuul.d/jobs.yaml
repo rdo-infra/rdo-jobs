@@ -99,6 +99,16 @@
       pinned: true
 
 - job:
+    name: mock-rebuild-fedora-rawhide
+    parent: base
+    run: playbooks/mock-rebuild/run.yaml
+    nodeset: fedora-latest-container
+    vars:
+      buildset_artifacts_url: "https://logserver.rdoproject.org/42/55042/2/check/DLRN-rpmbuild-centos9/6712703/buildset/"
+    # dependencies:
+    #   - DLRN-rpmbuild-centos10
+
+- job:
     name: rpmlint
     run: playbooks/rpmlint/run.yaml
     dependencies:
