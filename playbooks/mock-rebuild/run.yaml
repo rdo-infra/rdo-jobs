@@ -1,0 +1,44 @@
+- hosts: all
+  tasks:
+    - block:
+        - name: Do not run weirdo if there are no logs directory in parent job
+          debug:
+            msg: "No logs repo in parent job, skiping weirdo execution"
+
+        - meta: end_play
+      when: buildset_artifacts_url is not defined
+
+    - name: Ensure the CRB repository is enabled
+      become: true
+      community.general.dnf_config_manager:
+        name: crb
+        state: enabled
+
+    - name: Ensure the EPEL repository is enabled
+      become: true
+      package:
+        name:
+          - epel-release
+        state: present
+
+    - name: Install required packages
+      become: true
+      package:
+        name:
+          - mock
+          - wget
+        state: present
+
+    - name: Ensure user in mock group
+      become: true
+      user:
+        name: "{{ ansible_user }}"
+        groups: mock
+        append: true
+
+    - name: Run mock
+      changed_when: true
+      shell:
+        cmd: |
+          wget --no-verbose --no-parent --no-directories --recursive --level=3 -A src.rpm {{ buildset_artifacts_url }}
+          mock -r {{ chroot_config | default('fedora-rawhide-x86_64')}} --rebuild *.src.rpm
