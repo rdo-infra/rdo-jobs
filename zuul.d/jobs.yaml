@@ -99,6 +99,14 @@
       pinned: true
 
 - job:
+    name: mock-rebuild-fedora-rawhide
+    parent: base
+    run: playbooks/mock-rebuild/rpmbuild.yaml
+    nodeset: rdo-centos-9-stream
+    #dependencies:
+    #  - DLRN-rpmbuild-centos9
+
+- job:
     name: rpmlint
     run: playbooks/rpmlint/run.yaml
     dependencies:
