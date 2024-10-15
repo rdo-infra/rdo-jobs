@@ -121,6 +121,7 @@
             -e "cloud_domain={{ cloud_domain | default('localdomain') }}"
             -e "enable_tls={{ enable_tls | default('false') }}"
             -e "enable_octavia={{ enable_octavia | default('true') }}"
+            -e "swift_replicated={{ swift_replicated | default('false') }}"
           args:
             chdir: "{{ framework_dir }}"
 
