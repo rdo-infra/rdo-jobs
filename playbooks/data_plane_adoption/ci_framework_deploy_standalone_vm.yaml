@@ -27,3 +27,4 @@
           # keep octavia disabled by default due to CIX
           OCTAVIA_ENABLED: "{{ enable_octavia | default('false') }}"
           BARBICAN_SERVICE_ENABLED: "{{ enable_barbican | default('false') }}"
+          SWIFT_REPLICATED: "{{ swift_replicated | default('false') }}"
