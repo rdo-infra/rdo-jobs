@@ -99,6 +99,21 @@
       pinned: true
 
 - job:
+    name: mock-rebuild-base
+    parent: base
+    run: playbooks/mock-rebuild/run.yaml
+    nodeset: fedora-latest-pod
+    vars:
+      buildset_artifacts_url: "https://logserver.rdoproject.org/42/55042/2/check/DLRN-rpmbuild-centos9/6712703/buildset/"
+      chroot_config: fedora-rawhide-x86_64
+    # dependencies:
+    #   - DLRN-rpmbuild-centos9
+
+- job:
+    name: mock-rebuild-fedora-rawhide
+    parent: mock-rebuild-base
+
+- job:
     name: rpmlint
     run: playbooks/rpmlint/run.yaml
     dependencies:
