@@ -1,0 +1,9 @@
+- hosts: all
+  tasks:
+    - name: Ensure community general module is installed
+      ansible.builtin.shell: |
+        ansible-galaxy collection install --force-with-deps community.general
+      register: install_result
+      until: install_result.rc == 0
+      retries: 30
+      delay: 5
