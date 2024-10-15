@@ -95,6 +95,21 @@
           register: make_ceph_res
           failed_when: '"failed=0" not in make_ceph_res.stdout_lines[-1]'
 
+    - name: "Run data-plane-adoption Swift migration tests from {{ dpa_dir }}"
+      when:
+        - migrate_swift | default(false) | bool
+        - not migrate_ceph | default(false) | bool
+      community.general.make:
+        chdir: "{{ dpa_dir }}"
+        target: "test-swift-migration"
+        params:
+          TEST_CONFIG: "{{ dpa_test_ansible_cfg | default(rdo_dir  ~ '/ansible.cfg') }}"
+          TEST_SECRETS: "{{ rdo_dir}}/secrets.yaml"
+          TEST_VARS: "{{ rdo_dir }}/vars.yaml"
+          TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"
+      register: make_swift_res
+      failed_when: '"failed=0" not in make_swift_res.stdout_lines[-1]'
+
     - name: Call test role
       when:
         - dpa_run_post_adoption_tempest | default(true) | bool
