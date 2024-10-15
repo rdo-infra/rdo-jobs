@@ -99,6 +99,26 @@
       pinned: true
 
 - job:
+    name: mock-rebuild-base
+    parent: base
+    run: playbooks/mock-rebuild/run.yaml
+    post-run: playbooks/mock-rebuild/post.yaml
+    nodeset: rdo-centos-9-stream
+    voting: false
+    vars:
+      chroot_config: fedora-rawhide-x86_64
+
+- job:
+    name: mock-rebuild-fedora-rawhide
+    parent: mock-rebuild-base
+
+- job:
+    name: mock-rebuild-fedora-epel9
+    parent: mock-rebuild-base
+    vars:
+      chroot_config: centos-stream+epel-next-9-x86_64
+
+- job:
     name: rpmlint
     run: playbooks/rpmlint/run.yaml
     dependencies:

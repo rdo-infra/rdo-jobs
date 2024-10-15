@@ -1,0 +1,9 @@
+---
+- hosts: all
+  tasks:
+    - name: Copy mock results
+      synchronize:
+        src: "/tmp/mock_results/"
+        dest: "{{ zuul.executor.log_root }}/mock_results"
+        mode: pull
+        verify_host: true
