@@ -1,0 +1,17 @@
+- hosts: all
+  tasks:
+    - name: Install ansible-core
+      become: true
+      package:
+        name:
+          - ansible-core
+        state: present
+
+    - name: Ensure community general module is installed
+      become: true
+      ansible.builtin.shell: |
+        ansible-galaxy collection install --force-with-deps community.general
+      register: install_result
+      until: install_result.rc == 0
+      retries: 30
+      delay: 5
