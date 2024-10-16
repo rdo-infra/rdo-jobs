@@ -162,6 +162,18 @@
       ansible.builtin.shell:
         ansible-playbook {{ rdo_dir }}/undercloud_prepare_tests.yaml -i /home/zuul/tripleo_ci_inventory
 
+    - name: Place supported storage backends into vars.yaml for Cinder volume
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: "'^supported_volume_backends:'"
+        value: "supported_volume_backends: {{ supported_volume_backends | to_json }}"
+
+    - name: Place supported storage backends into vars.yaml for Cinder backup
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: "'^supported_backup_backends:'"
+        value: "supported_backup_backends: {{ supported_backup_backends | to_json }}"
+
     - name: Place internal IP into vars.yaml for Mariadb
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"

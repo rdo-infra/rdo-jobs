@@ -31,6 +31,8 @@
       - playbooks/data_plane_adoption/set_zuul_artifacts.yaml
       - playbooks/force_job_failure.yaml
     vars:
+      supported_volume_backends: ['ceph']
+      supported_backup_backends: ['ceph']
       standalone_vm_inventory: "standalone_vm_inventory"
       standalone_ip: 192.168.122.100
       standalone_gateway: 192.168.122.10
@@ -66,6 +68,8 @@
       cloud_domain: "ooo.test"
       use_ceph: "false"
       dpa_test_suite: "test-minimal"
+      supported_volume_backends: []
+      supported_backup_backends: []
 
 - job:
     name: adoption-multinode-to-crc-no-ceph
@@ -90,6 +94,8 @@
       - playbooks/data_plane_adoption/set_zuul_artifacts.yaml
       - playbooks/force_job_failure.yaml
     vars:
+      supported_volume_backends: []
+      supported_backup_backends: []
       standalone_ip: 192.168.122.100
       standalone_gateway: 192.168.122.10
       standalone_private_key: /home/zuul/.ssh/id_rsa

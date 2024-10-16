@@ -26,6 +26,10 @@ oc_header: ''
 # External MariaDB IP for DB exports.
 source_mariadb_ip: CUSTOMIZE_THIS
 
+# Supported storage backends for Cinder
+supported_volume_backends: CUSTOMIZE_THIS
+supported_backup_backends: CUSTOMIZE_THIS
+
 # virsh --connect=qemu:///system -q domifaddr standalone | awk 'NF>1{print $NF}' | cut -d/ -f1
 # install_yamls default: 192.168.122.100
 edpm_node_ip: CUSTOMIZE_THIS
