@@ -83,6 +83,7 @@
       openstack_release: antelope
       promote_source: podified-ci-testing
       enable_telemetry: true
+      enable_octavia: false  # keep octavia disabled until adoption procedure is finished
       cifmw_repo_setup_promotion: podified-ci-testing
       cifmw_dlrn_report_result: true
       cifmw_repo_setup_branch: antelope
@@ -143,6 +144,7 @@
     parent: adoption-multinode-to-crc-no-ceph
     vars:
       enable_tls: "true"
+      enable_octavia: false  # keep octavia disabled until adoption procedure is finished
       cloud_domain: "ooo.test"
       ipa_container_ip: "10.255.255.25"
       registry_namespace: podified-antelope-centos9
