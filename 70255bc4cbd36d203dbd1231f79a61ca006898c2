@@ -51,6 +51,24 @@
       "message": "standalone jobs are passing on this change, here is the testresults: https://review.rdoproject.org/r/c/testproject/+/52789/17#message-a6fb4458fd513f45d10322951755c558560a5ef6\n\nI think we are good enough to merge this change. Multinode jobs are also failing but those are on ceph migration tests.",
       "revId": "70255bc4cbd36d203dbd1231f79a61ca006898c2",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74b369ad_25e05138",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-10-17T06:58:08Z",
+      "side": 1,
+      "message": "just a small clarification for future reference, this patch is disabling octavia for the periodic jobs (multinode and standalone) but keeping it enabled in the check jobs (which don\u0027t have tempest) to allow for further development of octavia adoption easily",
+      "parentUuid": "17cb8b15_36ae4f61",
+      "revId": "70255bc4cbd36d203dbd1231f79a61ca006898c2",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
