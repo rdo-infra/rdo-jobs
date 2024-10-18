@@ -17,7 +17,7 @@
       - openstack-17.1-for-rhel-9-x86_64-rpms
       - fast-datapath-for-rhel-9-x86_64-rpms
     osp_17_ceph_repos:
-      - rhceph-6-tools-for-rhel-9-x86_64-rpms
+      - rhceph-7-tools-for-rhel-9-x86_64-rpms
   tasks:
     - name: Create inventory for logs collection on the undercloud
       ansible.builtin.template:
@@ -49,7 +49,7 @@
           become: true
           delegate_to: overcloud-controller-0
           ansible.builtin.command:
-            cmd: subscription-manager repos --enable=rhceph-6-tools-for-rhel-9-x86_64-rpms
+            cmd: subscription-manager repos --enable=rhceph-7-tools-for-rhel-9-x86_64-rpms
 
         - name: Install cephadm
           become: true
