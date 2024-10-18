@@ -16,6 +16,23 @@
       "message": "Testing in combination with the install_yamls patch via [1]\n\n[1] https://review.rdoproject.org/r/c/testproject/+/53696",
       "revId": "33187387f531d9c27adee52808827ffde65fcf77",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89fb78db_e6df8d6a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 602
+      },
+      "writtenOn": "2024-10-18T14:05:20Z",
+      "side": 1,
+      "message": "Looks like there\u0027s a problem with tripleo-ansible.\n\n```\n2024-10-18 08:56:22.077192 | controller |     2024-10-18 12:56:21.144371 | fa163e4b-bd53-5050-ba44-00000000006d |      FATAL | Run cephadm bootstrap | np0004954182 | error\u003d{\"changed\": true, \"cmd\": \"/usr/sbin/cephadm --image registry.redhat.io/rhceph/rhceph-7-rhel9:latest \\\\bootstrap --yes-i-know --skip-firewalld --skip-prepare-host --ssh-private-key /home/ceph-admin/.ssh/id_rsa --ssh-public-key /home/ceph-admin/.ssh/id_rsa.pub --ssh-user ceph-admin --allow-fqdn-hostname --output-keyring /etc/ceph/ceph.client.admin.keyring --output-config /etc/ceph/ceph.conf --fsid 4fe6d19e-3f31-57e8-8cdc-41f2d88f8a97 --config /home/ceph-admin/assimilate_ceph.conf \\\\--skip-monitoring-stack --skip-dashboard --mon-ip 172.18.0.103\\n\", \"delta\": \"0:00:00.260727\", \"end\": \"2024-10-18 12:56:21.109675\", \"msg\": \"non-zero return code\", \"rc\": 2, \"start\": \"2024-10-18 12:56:20.848948\", \"stderr\": \"usage: cephadm [-h] [--image IMAGE] [--docker] [--data-dir DATA_DIR]\\n               [--log-dir LOG_DIR] [--logrotate-dir LOGROTATE_DIR]\\n               [--sysctl-dir SYSCTL_DIR] [--unit-dir UNIT_DIR] [--verbose]\\n               [--timeout TIMEOUT] [--retry RETRY] [--env ENV]\\n               [--no-container-init] [--no-cgroups-split]\\n               {version,pull,inspect-image,ls,list-networks,adopt,rm-daemon,rm-cluster,run,shell,enter,ceph-volume,zap-osds,unit,logs,bootstrap,deploy,_orch,check-host,prepare-host,add-repo,rm-repo,install,registry-login,gather-facts,host-maintenance,agent,disk-rescan,sos}\\n               ...\\ncephadm: error: unrecognized arguments: --yes-i-know\", \"stderr_lines\": [\"usage: cephadm [-h] [--image IMAGE] [--docker] [--data-dir DATA_DIR]\", \"               [--log-dir LOG_DIR] [--logrotate-dir LOGROTATE_DIR]\", \"               [--sysctl-dir SYSCTL_DIR] [--unit-dir UNIT_DIR] [--verbose]\", \"               [--timeout TIMEOUT] [--retry RETRY] [--env ENV]\", \"               [--no-container-init] [--no-cgroups-split]\", \"               {version,pull,inspect-image,ls,list-networks,adopt,rm-daemon,rm-cluster,run,shell,enter,ceph-volume,zap-osds,unit,logs,bootstrap,deploy,_orch,check-host,prepare-host,add-repo,rm-repo,install,registry-login,gather-facts,host-maintenance,agent,disk-rescan,sos}\", \"               ...\", \"cephadm: error: unrecognized arguments: --yes-i-know\"], \"stdout\": \"\", \"stdout_lines\": []}\n```\n\nThere\u0027s a parameter that is no longer supported in RHCS 7:\n\n```\ncephadm: error: unrecognized arguments: --yes-i-know\"\n```\n\nand I\u0027m wondering which is the best way to remove that option from the code",
+      "revId": "33187387f531d9c27adee52808827ffde65fcf77",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
