@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad08ab2f_3895a419",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 602
+      },
+      "writtenOn": "2024-10-19T11:41:34Z",
+      "side": 1,
+      "message": "Good (partial) results from the testprojects:\n\n```\n[ceph: root@np0004955600 /]# ceph versions\n{\n    \"mon\": {\n        \"ceph version 18.2.1-229.el9cp (ef652b206f2487adfc86613646a4cac946f6b4e0) reef (stable)\": 3\n    },\n    \"mgr\": {\n        \"ceph version 18.2.1-229.el9cp (ef652b206f2487adfc86613646a4cac946f6b4e0) reef (stable)\": 3\n    },\n    \"osd\": {\n        \"ceph version 18.2.1-229.el9cp (ef652b206f2487adfc86613646a4cac946f6b4e0) reef (stable)\": 3\n    },\n    \"mds\": {\n        \"ceph version 18.2.1-229.el9cp (ef652b206f2487adfc86613646a4cac946f6b4e0) reef (stable)\": 3\n    },\n    \"overall\": {\n        \"ceph version 18.2.1-229.el9cp (ef652b206f2487adfc86613646a4cac946f6b4e0) reef (stable)\": 12\n    }\n}\n```\n\nand the cluster is healthy:\n\n\n```\n[ceph: root@np0004955600 /]# ceph -s\n  cluster:\n    id:     742860c4-2bdf-5098-b14f-ce122d7a9d5a\n    health: HEALTH_OK\n\n  services:\n    mon: 3 daemons, quorum np0004955600,np0004955628,np0004955627 (age 41m)\n    mgr: np0004955600.pykami(active, since 43m), standbys: np0004955628.xsixgu, np0004955627.saudib\n    mds: 1/1 daemons up, 2 standby\n    osd: 3 osds: 3 up (since 40m), 3 in (since 40m)\n\n  data:\n    volumes: 1/1 healthy\n    pools:   7 pools, 177 pgs\n    objects: 24 objects, 451 KiB\n    usage:   135 MiB used, 21 GiB / 21 GiB avail\n    pgs:     177 active+clean\n````",
+      "revId": "058e6b280c60aac7be6c37fb5e5b5eb4290cc2c3",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
