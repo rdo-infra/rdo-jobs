@@ -110,6 +110,7 @@
         tempest.api.compute.servers.test_server_metadata.*
         # Disable prometheus based autoscaling testing until we have Caracal content.
         telemetry_tempest_plugin.scenario.test_telemetry_integration_prometheus.PrometheusGabbiTest.test_autoscaling
+        tempest.api.image.v2.test_images_dependency.ImageDependencyTests.test_image_volume_server_snapshot_dependency
       cifmw_tempest_tempestconf_config:
         overrides: |
           service_available.sg_core true
@@ -163,12 +164,16 @@
         - keystone-operator
         - neutron-operator
         - nova-operator
+        - glance-operator
+        - swift-operator
         - telemetry-operator
         - telemetry-operator-scenario
       cifmw_test_operator_default_jobs:
         - openstack-operator
         - keystone-operator
         - neutron-operator
+        - glance-operator
+        - swift-operator
         - nova-operator
         - telemetry-operator
         - telemetry-operator-scenario
@@ -182,6 +187,8 @@
         tempest.api.network.admin.test_floating_ips_admin_actions.FloatingIPAdminTestJSON.test_list_floating_ips_from_admin_and_nonadmin
         # Disable prometheus based autoscaling testing until we have Caracal content.
         telemetry_tempest_plugin.scenario.test_telemetry_integration_prometheus.PrometheusGabbiTest.test_autoscaling
+        # Disable image tests that require an active cinder-volume (disabled in the "no-ceph" adoption job)
+        tempest.api.image.v2.test_images_dependency.ImageDependencyTests.test_image_volume_server_snapshot_dependency
       cifmw_tempest_tempestconf_config:
         overrides: |
           service_available.sg_core true
