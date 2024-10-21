@@ -172,6 +172,7 @@
         - neutron-operator
         - nova-operator
         - glance-operator
+        - cinder-operator
         - swift-operator
         - telemetry-operator
         - telemetry-operator-scenario
@@ -180,6 +181,7 @@
         - keystone-operator
         - neutron-operator
         - glance-operator
+        - cinder-operator
         - swift-operator
         - nova-operator
         - telemetry-operator
@@ -196,7 +198,8 @@
         tempest.api.network.admin.test_floating_ips_admin_actions.FloatingIPAdminTestJSON.test_list_floating_ips_from_admin_and_nonadmin
         # Disable prometheus based autoscaling testing until we have Caracal content.
         telemetry_tempest_plugin.scenario.test_telemetry_integration_prometheus.PrometheusGabbiTest.test_autoscaling
-        manila_tempest_tests.tests.api.test_share_network_subnets.ShareNetworkSubnetsTest.test_create_delete_subnet
+        # Disable Cinder volume tests (cinder-volume not deployed in no-ceph jobs)
+        tempest.api.volume
       cifmw_tempest_tempestconf_config: *tempestconf_config_tls
 
 - job:
@@ -224,6 +227,7 @@
         - nova-operator
         - glance-operator
         - swift-operator
+        - cinder-operator
         - manila-operator
         - telemetry-operator
         - telemetry-operator-scenario
@@ -235,8 +239,21 @@
         - swift-operator
         - nova-operator
         - manila-operator
+        - cinder-operator
         - telemetry-operator
         - telemetry-operator-scenario
+      cifmw_test_operator_tempest_exclude_list: |
+        tempest.api.image.v2.test_images_dependency.ImageDependencyTests.*
+        tempest.api.compute.servers.test_server_metadata.*
+        tempest.api.compute.admin.test_servers_on_multinodes.ServersOnMultiNodesTest
+        tempest.api.compute.admin.test_migrations.MigrationsAdminTest.*
+        tempest.api.compute.servers.test_delete_server.DeleteServersTestJSON.test_delete_server_while_in_verify_resize_state
+        tempest.api.compute.servers.test_disk_config.ServerDiskConfigTestJSON.test_resize_server_from_auto_to_manual
+        tempest.api.compute.servers.test_disk_config.ServerDiskConfigTestJSON.test_resize_server_from_manual_to_auto
+        tempest.api.network.admin.test_floating_ips_admin_actions.FloatingIPAdminTestJSON.test_list_floating_ips_from_admin_and_nonadmin
+        # Disable prometheus based autoscaling testing until we have Caracal content.
+        telemetry_tempest_plugin.scenario.test_telemetry_integration_prometheus.PrometheusGabbiTest.test_autoscaling
+        manila_tempest_tests.tests.api.test_share_network_subnets.ShareNetworkSubnetsTest.test_create_delete_subnet
 
 - job:
     name: periodic-adoption-multinode-to-crc-no-ceph-rollback
