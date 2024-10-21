@@ -248,16 +248,16 @@
                   name: ctlplane
                   subnetName: subnet1
                 - name: internalapi
-                  fixedIP: 172.17.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
+                  fixedIP: {{ tripleo_deploy_internalapi_cidr | default('172.17.0') }}.{{ edpm_node_ips[i | int].split('.')[-1] }}
                   subnetName: subnet1
                 - name: storage
-                  fixedIP: 172.18.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
+                  fixedIP: {{ tripleo_deploy_storage_cidr | default('172.18.0') }}.{{ edpm_node_ips[i | int].split('.')[-1] }}
                   subnetName: subnet1
                 - name: tenant
-                  fixedIP: 172.19.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
+                  fixedIP: {{ tripleo_deploy_tenant_cidr | default('172.19.0') }}.{{ edpm_node_ips[i | int].split('.')[-1] }}
                   subnetName: subnet1
                 - name: storagemgmt
-                  fixedIP: 172.20.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
+                  fixedIP: {{ tripleo_deploy_storagemgmt_cidr | default('172.20.0') }}.{{ edpm_node_ips[i | int].split('.')[-1] }}
                   subnetName: subnet1
           {% endfor %}
           {%+ if edpm_node_networker_ips is defined +%}
@@ -618,7 +618,7 @@
       block:
         - name: Set Ceph relevant network facts
           ansible.builtin.set_fact:
-            ceph_storage_net_prefix: "172.18.0"
+            ceph_storage_net_prefix: "{{ tripleo_deploy_storage_cidr | default('172.18.0') }}"
             ceph_nodes_ctlplane_prefix: "192.168.122"
             ceph_storage_vlan_id: 21
 
