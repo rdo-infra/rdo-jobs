@@ -164,6 +164,7 @@
         - neutron-operator
         - nova-operator
         - glance-operator
+        - cinder-operator
         - swift-operator
         - telemetry-operator
         - telemetry-operator-scenario
@@ -172,6 +173,7 @@
         - keystone-operator
         - neutron-operator
         - glance-operator
+        - cinder-operator
         - swift-operator
         - nova-operator
         - telemetry-operator
@@ -212,6 +214,17 @@
       cifmw_dlrn_report_result: true
       cifmw_repo_setup_branch: antelope
       enable_telemetry: "true"
+      # override the list: cinder-operator skips don't apply here
+      # because cinder has a backend
+      cifmw_test_operator_default_jobs:
+        - openstack-operator
+        - keystone-operator
+        - neutron-operator
+        - glance-operator
+        - swift-operator
+        - nova-operator
+        - telemetry-operator
+        - telemetry-operator-scenario
 
 - job:
     name: periodic-adoption-multinode-to-crc-no-ceph-rollback
