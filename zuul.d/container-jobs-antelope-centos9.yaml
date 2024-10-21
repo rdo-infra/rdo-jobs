@@ -163,16 +163,22 @@
         - keystone-operator
         - neutron-operator
         - nova-operator
+        - glance-operator
+        - swift-operator
         - telemetry-operator
         - telemetry-operator-scenario
       cifmw_test_operator_default_jobs:
         - openstack-operator
         - keystone-operator
         - neutron-operator
+        - glance-operator
+        - swift-operator
         - nova-operator
         - telemetry-operator
         - telemetry-operator-scenario
       cifmw_test_operator_tempest_exclude_list: |
+        # Disable image tests that require an active cinder-volume (disabled in the "no-ceph" adoption job)
+        tempest.api.image.v2.test_images_dependency.ImageDependencyTests.*
         tempest.api.compute.servers.test_server_metadata.*
         tempest.api.compute.admin.test_servers_on_multinodes.ServersOnMultiNodesTest
         tempest.api.compute.admin.test_migrations.MigrationsAdminTest.*
