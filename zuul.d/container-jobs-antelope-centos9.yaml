@@ -163,12 +163,16 @@
         - keystone-operator
         - neutron-operator
         - nova-operator
+        - glance-operator
+        - swift-operator
         - telemetry-operator
         - telemetry-operator-scenario
       cifmw_test_operator_default_jobs:
         - openstack-operator
         - keystone-operator
         - neutron-operator
+        - glance-operator
+        - swift-operator
         - nova-operator
         - telemetry-operator
         - telemetry-operator-scenario
