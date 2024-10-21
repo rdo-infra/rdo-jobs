@@ -50,6 +50,24 @@
       "message": "not related to the bump just noticed we could be using the osp_17_ceph_repos var here",
       "revId": "058e6b280c60aac7be6c37fb5e5b5eb4290cc2c3",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8224b731_1eff2cd4",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 602
+      },
+      "writtenOn": "2024-10-21T07:13:54Z",
+      "side": 1,
+      "message": "I\u0027ll follow up on this after landing the main patch. Note I\u0027m simply trying to reduce the scope of the changes to move to RHCS 7. But I\u0027m ok to optimize more the code involved there.",
+      "parentUuid": "1b13ba22_720e31f0",
+      "revId": "058e6b280c60aac7be6c37fb5e5b5eb4290cc2c3",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
