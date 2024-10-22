@@ -158,14 +158,14 @@
       cifmw_test_operator_tempest_namespace: podified-antelope-centos9
       cifmw_test_operator_tempest_container: openstack-tempest-all
       cifmw_test_operator_timeout: 10000
-      cifmw_test_operator_default_groups:
+      cifmw_test_operator_default_groups: &cifmw_test_operator_default_groups_no_ceph
         - openstack-operator
         - keystone-operator
         - neutron-operator
         - nova-operator
         - telemetry-operator
         - telemetry-operator-scenario
-      cifmw_test_operator_default_jobs:
+      cifmw_test_operator_default_jobs: &cifmw_test_operator_default_jobs_no_ceph
         - openstack-operator
         - keystone-operator
         - neutron-operator
@@ -182,6 +182,7 @@
         tempest.api.network.admin.test_floating_ips_admin_actions.FloatingIPAdminTestJSON.test_list_floating_ips_from_admin_and_nonadmin
         # Disable prometheus based autoscaling testing until we have Caracal content.
         telemetry_tempest_plugin.scenario.test_telemetry_integration_prometheus.PrometheusGabbiTest.test_autoscaling
+        manila_tempest_tests.tests.api.test_share_network_subnets.ShareNetworkSubnetsTest.test_create_delete_subnet
       cifmw_tempest_tempestconf_config: *tempestconf_config_tls
 
 - job:
@@ -202,6 +203,12 @@
       cifmw_repo_setup_branch: antelope
       enable_telemetry: "true"
       cifmw_tempest_tempestconf_config: *tempestconf_config_notls
+      cifmw_test_operator_default_groups:
+        - <<: *cifmw_test_operator_default_groups_no_ceph
+        - manila-operator
+      cifmw_test_operator_default_jobs:
+        - <<: *cifmw_test_operator_default_jobs_no_ceph
+        - manila-operator
 
 - job:
     name: periodic-adoption-multinode-to-crc-no-ceph-rollback
