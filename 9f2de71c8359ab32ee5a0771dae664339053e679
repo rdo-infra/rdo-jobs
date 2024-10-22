@@ -16,6 +16,24 @@
       "message": "Luigi, do we need manila-operator in this list to enable Manila API tests in the \"ceph\" job?",
       "revId": "9f2de71c8359ab32ee5a0771dae664339053e679",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84154a80_e5611416",
+        "filename": "zuul.d/container-jobs-antelope-centos9.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 141
+      },
+      "writtenOn": "2024-10-22T14:28:31Z",
+      "side": 1,
+      "message": "maybe, but not in this review. I\u0027ve split the review which adds also glance and swift into https://review.rdoproject.org/r/c/rdo-jobs/+/55161/. Let\u0027s add them one by one.",
+      "parentUuid": "b8106de3_d13d39df",
+      "revId": "9f2de71c8359ab32ee5a0771dae664339053e679",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
