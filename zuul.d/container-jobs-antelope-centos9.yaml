@@ -118,6 +118,14 @@
           telemetry.prometheus_scrape_interval 30
           telemetry.prometheus_service_url "http://metric-storage-prometheus.openstack.svc.cluster.local:9090"
           telemetry.sg_core_service_url "http://ceilometer-internal.openstack.svc.cluster.local:3000"
+          share.capability_storage_protocol CEPHFS
+          share.default_share_type_name 'default'
+          share.run_share_group_tests False
+          share.suppress_errors_in_cleanup True
+          share.enable_cephx_rules_for_protocols cephfs
+          share.storage_protocol CEPHFS
+          share.enable_cert_rules_for_protocols ""
+          share.enable_ip_rules_for_protocols ""
 
 
 - job:
@@ -158,7 +166,7 @@
       cifmw_test_operator_tempest_namespace: podified-antelope-centos9
       cifmw_test_operator_tempest_container: openstack-tempest-all
       cifmw_test_operator_timeout: 10000
-      cifmw_test_operator_default_groups:
+      cifmw_test_operator_default_groups: &cifmw_test_operator_default_groups
         - openstack-operator
         - keystone-operator
         - neutron-operator
@@ -188,6 +196,7 @@
         tempest.api.network.admin.test_floating_ips_admin_actions.FloatingIPAdminTestJSON.test_list_floating_ips_from_admin_and_nonadmin
         # Disable prometheus based autoscaling testing until we have Caracal content.
         telemetry_tempest_plugin.scenario.test_telemetry_integration_prometheus.PrometheusGabbiTest.test_autoscaling
+        manila_tempest_tests.tests.api.test_share_network_subnets.ShareNetworkSubnetsTest.test_create_delete_subnet
       cifmw_tempest_tempestconf_config: *tempestconf_config_tls
 
 - job:
@@ -208,6 +217,17 @@
       cifmw_repo_setup_branch: antelope
       enable_telemetry: "true"
       cifmw_tempest_tempestconf_config: *tempestconf_config_notls
+      cifmw_test_operator_default_groups:
+        - *cifmw_test_operator_default_groups
+        - manila-operator
+      cifmw_test_operator_default_jobs:
+        - openstack-operator
+        - keystone-operator
+        - neutron-operator
+        - nova-operator
+        - manila-operator
+        - telemetry-operator
+        - telemetry-operator-scenario
 
 - job:
     name: periodic-adoption-multinode-to-crc-no-ceph-rollback
