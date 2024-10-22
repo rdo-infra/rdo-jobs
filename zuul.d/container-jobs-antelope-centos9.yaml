@@ -208,6 +208,22 @@
       cifmw_dlrn_report_result: true
       cifmw_repo_setup_branch: antelope
       enable_telemetry: "true"
+      cifmw_test_operator_default_groups:
+        - openstack-operator
+        - keystone-operator
+        - neutron-operator
+        - nova-operator
+        - manila-operator
+        - telemetry-operator
+        - telemetry-operator-scenario
+      cifmw_test_operator_default_jobs:
+        - openstack-operator
+        - keystone-operator
+        - neutron-operator
+        - nova-operator
+        - manila-operator
+        - telemetry-operator
+        - telemetry-operator-scenario
 
 - job:
     name: periodic-adoption-multinode-to-crc-no-ceph-rollback
