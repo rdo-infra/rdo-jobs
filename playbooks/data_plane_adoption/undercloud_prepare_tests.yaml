@@ -1,6 +1,10 @@
 - hosts: undercloud
   gather_facts: false
   tasks:
+    - name: Debug groups info
+      ansible.builtin.debug:
+        var:  "{{ groups | to_nice_yaml }}"
+
     - name: Pull the tripleo passwords from undercloud vm
       ansible.builtin.fetch:
         src: /home/zuul/overcloud-deploy/overcloud/overcloud-passwords.yaml
