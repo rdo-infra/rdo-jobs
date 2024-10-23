@@ -130,7 +130,7 @@
 
 - job:
     name: periodic-adoption-standalone-to-crc-no-ceph
-    description: Standalone source OSP 17.1 node adopted to crc RHOSO 18. Has TLS, not Ceph.
+    description: Standalone source OSP 17.1 node adopted to crc RHOSO 18. Has TLS, hugepages, not Ceph.
     parent: periodic-adoption-standalone-to-crc-ceph
     vars:
       enable_tls: "true"
@@ -207,6 +207,7 @@
     description: multinode source OSP 17.1 adopted to crc RHOSO 18. Has Ceph, telemetry enabled and no TLS.
     parent: periodic-adoption-multinode-to-crc-no-ceph
     vars:
+      use_hugepages: "false"
       use_ceph: "true"
       migrate_ceph: true
       dpa_test_suite: "test-with-ceph"
