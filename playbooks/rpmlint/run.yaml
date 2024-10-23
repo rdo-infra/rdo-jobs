@@ -349,6 +349,10 @@
           # Exception for vitrage+openstack
           addFilter("python3-vitrage\+openstack.noarch: W: obsolete-not-provided python39-vitrage\+openstack")
           addFilter("python3-vitrage\+openstack.noarch: W: spelling-error.*")
+          # dashboard exceptions
+          addFilter("openstack-dashboard.noarch: E: non-standard-dir-perm /etc/openstack-dashboard/local_settings.d 750")
+          addFilter("openstack-dashboard.noarch: E: non-standard-dir-perm /usr/share/openstack-dashboard/openstack_dashboard/local/local_settings.d.rpmmoved")
+          addFilter("openstack-dashboard.noarch: W: dangerous-command-in-%preun rm")
           EOF
 
           RPMLINT_CMD="rpmlint -f $HOME/.rpmlintrc"
