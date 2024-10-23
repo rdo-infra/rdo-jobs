@@ -24,3 +24,29 @@
         path: "/home/zuul/.ssh/authorized_keys"
         insertafter: "EOF"
         value: "{{ crc_ssh_key['content'] | b64decode | trim }}"
+
+- hosts: tripleo_computes[0]
+  gather_facts: false
+  tasks:
+    - name: Reboot the 1st compute node to apply kernel args
+      when:
+        - use_hugepages|bool
+        - prelaunch_test_instance|bool
+      block:
+        - name: Reboot to apply kernel args
+          become: true
+          ansible.builtin.reboot:
+            post_reboot_delay: 60
+            reboot_timeout: 600
+
+        - name: Wait for connection
+          ansible.builtin.wait_for_connection:
+            delay: 10
+            timeout: 600
+
+        - name: Wait for service 'tripleo_nova_compute' to be running
+          service_facts:
+          register: services_result
+          until: services_result.ansible_facts.services['tripleo_nova_compute.service'].state == 'running'
+          retries: 20
+          delay: 10
