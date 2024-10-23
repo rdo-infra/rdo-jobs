@@ -16,6 +16,74 @@
       "message": "Tp: https://softwarefactory-project.io/zuul/t/rdoproject.org/build/e181672431594545b21ee0709d20514e",
       "revId": "2a8fa3aa22ab9ded587b0d3fb10ebeaa99e7130f",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1716efd4_556215bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 75
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-10-23T10:36:35Z",
+      "side": 1,
+      "message": "overall looks good, I left a couple of comments that are suitable for follow-up improvements, and a couple of small things to improve this patch",
+      "revId": "2a8fa3aa22ab9ded587b0d3fb10ebeaa99e7130f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad344744_6604ed13",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 75
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-10-23T10:36:35Z",
+      "side": 1,
+      "message": "nit: task name should be updated to reflect what the block actually does (run tempest after installing it from rpms)",
+      "revId": "2a8fa3aa22ab9ded587b0d3fb10ebeaa99e7130f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18e4bf1a_aaa18ffe",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 75
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-10-23T10:36:35Z",
+      "side": 1,
+      "message": "in a follow-up, this block should probably be moved to a task file so it can be included in both standalone and multinodes, unless there need to be significant differences between the two cases when running tempest",
+      "revId": "2a8fa3aa22ab9ded587b0d3fb10ebeaa99e7130f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a436aea0_4b5eea13",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 75
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2024-10-23T10:36:35Z",
+      "side": 1,
+      "message": "Can we join together all the tasks installing packages?",
+      "revId": "2a8fa3aa22ab9ded587b0d3fb10ebeaa99e7130f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
