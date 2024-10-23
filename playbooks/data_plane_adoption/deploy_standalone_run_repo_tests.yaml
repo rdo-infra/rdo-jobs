@@ -40,6 +40,7 @@
             -e "standalone_ip={{ standalone_ip }}" -e "standalone_gateway={{ standalone_gateway }}"
             -e "standalone_dns={{ standalone_dns | default(standalone_gateway) }}"
             -e "use_ceph={{ use_ceph | default('true') }}"
+            -e "use_hugepages={{ use_hugepages | default('false') }}"
             -e "cloud_domain={{ cloud_domain | default('localdomain') }}"
             -e "enable_tls={{ enable_tls | default('false') }}"
             -e "enable_telemetry={{ enable_telemetry | default('false') }}"
@@ -69,7 +70,10 @@
 
     - name: Run test preparation in standalone vm
       ansible.builtin.shell:
-        ansible-playbook {{ rdo_dir }}/standalone_prepare_tests.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
+        ansible-playbook {{ rdo_dir }}/standalone_prepare_tests.yaml \
+        -e "use_hugepages={{ use_hugepages | default('false') }}" \
+        -e "prelaunch_test_instance={{ prelaunch_test_instance | default('true') }}" \
+        -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
 
     - name: Place internal IP into vars.yaml for Mariadb multi-cell
       when: multi_cell|default(false)

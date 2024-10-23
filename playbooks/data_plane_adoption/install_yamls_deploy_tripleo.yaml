@@ -19,6 +19,7 @@
           DATAPLANE_DNS_SERVER: "{{ standalone_gateway }}"
           HOST_PRIMARY_RESOLV_CONF_ENTRY: "{{ standalone_gateway }}"
           EDPM_COMPUTE_CEPH_ENABLED: "{{ use_ceph | default('true') }}"
+          EDPM_CONFIGURE_HUGEPAGES: "{{ use_hugepages | default('false') }}"
           EDPM_COMPUTE_CEPH_NOVA: "{{ use_ceph | default('true') }}"
           EDPM_COMPUTE_CELLS: "{% if multi_cell | bool | default(false) %}3{% else %}1{% endif %}"
           EDPM_CONFIGURE_DEFAULT_ROUTE: "{{ manage_default_route | default('false') | string | lower }}"
