@@ -61,7 +61,7 @@
 
 - job:
     name: adoption-standalone-to-crc-no-ceph
-    description: Standalone source OSP 17.1 node adopted to crc RHOSO 18. Has TLS, not ceph.
+    description: Standalone source OSP 17.1 node adopted to crc RHOSO 18. Has TLS and hugepages, not ceph.
     parent: adoption-standalone-to-crc-ceph
     vars:
       enable_tls: "true"
@@ -69,7 +69,11 @@
       cloud_domain: "ooo.test"
       use_ceph: "false"
       dpa_test_suite: "test-minimal"
+      # str, for install_yamls
+      use_hugepages: "true"
       adoption_extra_vars: |
+        # bool, for adoption test suites
+        use_hugepages: true
         supported_volume_backends: []
         supported_backup_backends: []
 
