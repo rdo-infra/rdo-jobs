@@ -116,6 +116,8 @@
             -e 'configure_networking={{ tripleo_network.configure_networking | default('false') }}'
             -e 'attach_external_net={{ tripleo_network.attach_external_net | default('true') }}'
             -e "use_ceph={{ use_ceph | default('false') }}"
+            -e "use_hugepages={{ use_hugepages | default('false') }}"
+            -e "prelaunch_test_instance={{ prelaunch_test_instance | default('true') }}"
             -e "multi_cell={{ multi_cell | default('false') }}"
             -e "enable_telemetry={{ enable_telemetry | default('false') }}"
             -e "cloud_domain={{ cloud_domain | default('localdomain') }}"
@@ -146,7 +148,10 @@
 
     - name: Run test preparation in undercloud vm
       ansible.builtin.shell:
-        ansible-playbook {{ rdo_dir }}/undercloud_prepare_tests.yaml -i /home/zuul/tripleo_ci_inventory
+        ansible-playbook {{ rdo_dir }}/undercloud_prepare_tests.yaml \
+        -e "use_hugepages={{ use_hugepages | default('false') }}" \
+        -e "prelaunch_test_instance={{ prelaunch_test_instance | default('true') }}" \
+        -i /home/zuul/tripleo_ci_inventory
 
     - name: Read the ssh key downloaded from undercloud
       ansible.builtin.slurp:
