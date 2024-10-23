@@ -128,6 +128,7 @@
       enable_tls: "true"
       cloud_domain: "ooo.test"
       use_ceph: "false"
+      use_hugepages: "false"
       dpa_test_suite: "test-minimal"
       cifmw_tempest_tempestconf_config: &tempestconf_config_tls
         overrides: |
@@ -186,9 +187,10 @@
 
 - job:
     name: periodic-adoption-multinode-to-crc-ceph
-    description: multinode source OSP 17.1 adopted to crc RHOSO 18. Has Ceph, telemetry enabled and no TLS.
+    description: multinode source OSP 17.1 adopted to crc RHOSO 18. Has Ceph, telemetry, hugepages enabled and no TLS.
     parent: periodic-adoption-multinode-to-crc-no-ceph
     vars:
+      use_hugepages: "true"
       use_ceph: "true"
       migrate_ceph: true
       dpa_test_suite: "test-with-ceph"
