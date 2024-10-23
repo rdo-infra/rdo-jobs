@@ -208,12 +208,13 @@
 
 - job:
     name: periodic-adoption-multinode-to-crc-ceph
-    description: multinode source OSP 17.1 adopted to crc RHOSO 18. Has Ceph, telemetry enabled and no TLS.
+    description: multinode source OSP 17.1 adopted to crc RHOSO 18. Has Ceph, hugepages, telemetry enabled and no TLS.
     parent: periodic-adoption-multinode-to-crc-no-ceph
     vars:
       use_ceph: "true"
       migrate_ceph: true
       dpa_test_suite: "test-with-ceph"
+      # NOTE: TLSe with hugepages cannot be used together, because freeipa container does not survive a node reboot
       enable_tls: "false"
       cloud_domain: "localdomain"
       registry_namespace: podified-antelope-centos9
@@ -223,6 +224,11 @@
       cifmw_dlrn_report_result: true
       cifmw_repo_setup_branch: antelope
       enable_telemetry: "true"
+      # str, for install_yamls
+      use_hugepages: "true"
+      adoption_extra_vars: |
+        # bool, for adoption test suites
+        use_hugepages: true
       cifmw_tempest_tempestconf_config: *tempestconf_config_notls
       cifmw_test_operator_default_groups:
         - openstack-operator
