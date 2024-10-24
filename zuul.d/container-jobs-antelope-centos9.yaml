@@ -204,6 +204,381 @@
       cifmw_tempest_tempestconf_config: *tempestconf_config_notls
 
 - job:
+    name: periodic-adoption-multinode-to-crc-ceph-scenario-a
+    description: multinode source OSP 17.1 adopted to crc RHOSO 18. Has Ceph, telemetry enabled, no TLS and different subnetworks between OSP17.1 and RHOSO 18.
+    parent: periodic-adoption-multinode-to-crc-ceph
+    extra-vars:
+              # Underlying network schema, defining a new subnets called (adopted_[internalapi|tenant...]), this networks
+              # will have a different subnet than original [internalapi|tenant..] to test adoption to different subnets
+              # It is not possible to modify storage subnet during adoption due to the possibility of nova having some vm volumes
+              # there, as it will break the VM. Currently only modifying internalapi, tenant and external.
+              # Due to how underlying network is configured it does not accept to have multiple non-vlan networks defined
+              # hence adopted and wallaby environment will share default control plane network
+              crc_ci_bootstrap_networking:
+                networks:
+                  default:
+                    mtu: "{{ ('ibm' in nodepool.cloud) | ternary('1440', '1500') }}"
+                    router_net: "{{ ('ibm' in nodepool.cloud) | ternary('hostonly', 'public') }}"
+                    range: 192.168.122.0/24
+                  internal-api:
+                    vlan: 20
+                    range: 172.17.0.0/24
+                  storage:
+                    vlan: 21
+                    range: 172.18.0.0/24
+                  tenant:
+                    vlan: 22
+                    range: 172.19.0.0/24
+                  storage_mgmt:
+                    vlan: 23
+                    range: 172.20.0.0/24
+                  external:
+                    vlan: 44
+                    range: 172.21.0.0/24
+                  adopted-internal-api:
+                    vlan: 20
+                    range: 172.17.1.0/24
+                  adopted-tenant:
+                    vlan: 22
+                    range: 172.19.1.0/24
+                  adopted-external:
+                    vlan: 44
+                    range: 172.21.1.0/24
+                instances:
+                  controller:
+                    networks:
+                      default:
+                        ip: 192.168.122.11
+                      adopted-internal-api:
+                        ip: 172.17.1.4
+                      storage:
+                        ip: 172.18.0.4
+                      adopted-tenant:
+                        ip: 172.19.1.4
+                      storage_mgmt:
+                        ip: 172.20.0.4
+                  crc:
+                    networks:
+                      default:
+                        ip: 192.168.122.10
+                      adopted-internal-api:
+                        ip: 172.17.1.5
+                      storage:
+                        ip: 172.18.0.5
+                      adopted-tenant:
+                        ip: 172.19.1.5
+                      storage_mgmt:
+                        ip: 172.20.0.5
+                      adopted-external:
+                        ip: 172.21.1.5
+                  undercloud:
+                    networks:
+                      default:
+                        ip: 192.168.122.100
+                        config_nm: false
+                      internal-api:
+                        ip: 172.17.0.100
+                        config_nm: false
+                      storage:
+                        ip: 172.18.0.100
+                        config_nm: false
+                      tenant:
+                        ip: 172.19.0.100
+                        config_nm: false
+                      storage_mgmt:
+                        ip: 172.20.0.100
+                        config_nm: false
+                      external:
+                        ip: 172.21.0.100
+                        config_nm: false
+                  overcloud-controller-0:
+                    networks:
+                      default:
+                        ip: 192.168.122.103
+                        config_nm: false
+                      internal-api:
+                        ip: 172.17.0.103
+                        config_nm: false
+                      storage:
+                        ip: 172.18.0.103
+                        config_nm: false
+                      tenant:
+                        ip: 172.19.0.103
+                        config_nm: false
+                      storage_mgmt:
+                        ip: 172.20.0.103
+                        config_nm: false
+                      external:
+                        ip: 172.21.0.103
+                        config_nm: false
+                  overcloud-controller-1:
+                    networks:
+                      default:
+                        ip: 192.168.122.104
+                        config_nm: false
+                      internal-api:
+                        ip: 172.17.0.104
+                        config_nm: false
+                      storage:
+                        ip: 172.18.0.104
+                        config_nm: false
+                      tenant:
+                        ip: 172.19.0.104
+                        config_nm: false
+                      storage_mgmt:
+                        ip: 172.20.0.104
+                        config_nm: false
+                      external:
+                        ip: 172.21.0.104
+                        config_nm: false
+                  overcloud-controller-2:
+                    networks:
+                      default:
+                        ip: 192.168.122.105
+                        config_nm: false
+                      internal-api:
+                        ip: 172.17.0.105
+                        config_nm: false
+                      storage:
+                        ip: 172.18.0.105
+                        config_nm: false
+                      tenant:
+                        ip: 172.19.0.105
+                        config_nm: false
+                      storage_mgmt:
+                        ip: 172.20.0.105
+                        config_nm: false
+                      external:
+                        ip: 172.21.0.105
+                        config_nm: false
+                  overcloud-novacompute-0:
+                    networks:
+                      default:
+                        ip: 192.168.122.106
+                        config_nm: false
+                      internal-api:
+                        ip: 172.17.0.106
+                        config_nm: false
+                      storage:
+                        ip: 172.18.0.106
+                        config_nm: false
+                      tenant:
+                        ip: 172.19.0.106
+                        config_nm: false
+                      storage_mgmt:
+                        ip: 172.20.0.106
+                        config_nm: false
+                      external:
+                        ip: 172.21.0.106
+                        config_nm: false
+                  overcloud-novacompute-1:
+                    networks:
+                      default:
+                        ip: 192.168.122.107
+                        config_nm: false
+                      internal-api:
+                        ip: 172.17.0.107
+                        config_nm: false
+                      storage:
+                        ip: 172.18.0.107
+                        config_nm: false
+                      tenant:
+                        ip: 172.19.0.107
+                        config_nm: false
+                      storage_mgmt:
+                        ip: 172.20.0.107
+                        config_nm: false
+                      external:
+                        ip: 172.21.0.107
+                        config_nm: false
+                  overcloud-novacompute-2:
+                    networks:
+                      default:
+                        ip: 192.168.122.108
+                        config_nm: false
+                      internal-api:
+                        ip: 172.17.0.108
+                        config_nm: false
+                      storage:
+                        ip: 172.18.0.108
+                        config_nm: false
+                      tenant:
+                        ip: 172.19.0.108
+                        config_nm: false
+                      storage_mgmt:
+                        ip: 172.20.0.108
+                        config_nm: false
+                      external:
+                        ip: 172.21.0.108
+                        config_nm: false
+              # Need to modify all loadBalancerIPs from openstackcontrolplane CR since sample used
+              # is using default internalapi range (which is 172.17.0.0/24)
+              cifmw_edpm_prepare_kustomizations:
+                - apiVersion: kustomize.config.k8s.io/v1beta1
+                  kind: Kustomization
+                  resources:
+                  - ./core_v1beta1_openstackcontrolplane_galera_network_isolation.yaml
+                  namespace: openstack
+                  patches:
+                  - target:
+                      kind: OpenStackControlPlane
+                    patch: |-
+                      - op: replace
+                        path: /spec/barbican/template/barbicanAPI/override/service/internal/metadata/annotations
+                        value: {
+                          "metallb.universe.tf/address-pool": "internalapi",
+                          "metallb.universe.tf/allow-shared-ip": "internalapi",
+                          "metallb.universe.tf/loadBalancerIPs": "172.17.1.80",
+                        }
+                      - op: replace
+                        path: /spec/cinder/template/cinderAPI/override/service/internal/metadata/annotations
+                        value: {
+                          "metallb.universe.tf/address-pool": "internalapi",
+                          "metallb.universe.tf/allow-shared-ip": "internalapi",
+                          "metallb.universe.tf/loadBalancerIPs": "172.17.1.80",
+                        }
+                      - op: replace
+                        path: /spec/designate/template/designateAPI/override/service/internal/metadata/annotations
+                        value: {
+                          "metallb.universe.tf/address-pool": "internalapi",
+                          "metallb.universe.tf/allow-shared-ip": "internalapi",
+                          "metallb.universe.tf/loadBalancerIPs": "172.17.1.80",
+                        }
+                      - op: replace
+                        path: /spec/glance/template/glanceAPIs/default/override/service/internal/metadata/annotations
+                        value: {
+                          "metallb.universe.tf/address-pool": "internalapi",
+                          "metallb.universe.tf/allow-shared-ip": "internalapi",
+                          "metallb.universe.tf/loadBalancerIPs": "172.17.1.80",
+                        }
+                      - op: replace
+                        path: /spec/heat/template/heatAPI/override/service/internal/metadata/annotations
+                        value: {
+                          "metallb.universe.tf/address-pool": "internalapi",
+                          "metallb.universe.tf/allow-shared-ip": "internalapi",
+                          "metallb.universe.tf/loadBalancerIPs": "172.17.1.80",
+                        }
+                      - op: replace
+                        path: /spec/heat/template/heatEngine/override/service/internal/metadata/annotations
+                        value: {
+                          "metallb.universe.tf/address-pool": "internalapi",
+                          "metallb.universe.tf/allow-shared-ip": "internalapi",
+                          "metallb.universe.tf/loadBalancerIPs": "172.17.1.80",
+                        }
+                      - op: replace
+                        path: /spec/keystone/template/override/service/internal/metadata/annotations
+                        value: {
+                          "metallb.universe.tf/address-pool": "internalapi",
+                          "metallb.universe.tf/allow-shared-ip": "internalapi",
+                          "metallb.universe.tf/loadBalancerIPs": "172.17.1.80",
+                        }
+                      - op: replace
+                        path: /spec/manila/template/manilaAPI/override/service/internal/metadata/annotations
+                        value: {
+                          "metallb.universe.tf/address-pool": "internalapi",
+                          "metallb.universe.tf/allow-shared-ip": "internalapi",
+                          "metallb.universe.tf/loadBalancerIPs": "172.17.1.80",
+                        }
+                      - op: replace
+                        path: /spec/neutron/template/override/service/internal/metadata/annotations
+                        value: {
+                          "metallb.universe.tf/address-pool": "internalapi",
+                          "metallb.universe.tf/allow-shared-ip": "internalapi",
+                          "metallb.universe.tf/loadBalancerIPs": "172.17.1.80",
+                        }
+                      - op: replace
+                        path: /spec/nova/template/apiServiceTemplate/override/service/internal/metadata/annotations
+                        value: {
+                          "metallb.universe.tf/address-pool": "internalapi",
+                          "metallb.universe.tf/allow-shared-ip": "internalapi",
+                          "metallb.universe.tf/loadBalancerIPs": "172.17.1.80",
+                        }
+                      - op: replace
+                        path: /spec/nova/template/metadataServiceTemplate/override/service/metadata/annotations
+                        value: {
+                          "metallb.universe.tf/address-pool": "internalapi",
+                          "metallb.universe.tf/allow-shared-ip": "internalapi",
+                          "metallb.universe.tf/loadBalancerIPs": "172.17.1.80",
+                        }
+                      - op: replace
+                        path: /spec/placement/template/override/service/internal/metadata/annotations
+                        value: {
+                          "metallb.universe.tf/address-pool": "internalapi",
+                          "metallb.universe.tf/allow-shared-ip": "internalapi",
+                          "metallb.universe.tf/loadBalancerIPs": "172.17.1.80",
+                        }
+                      - op: replace
+                        path: /spec/swift/template/swiftProxy/override/service/internal/metadata/annotations
+                        value: {
+                          "metallb.universe.tf/address-pool": "internalapi",
+                          "metallb.universe.tf/allow-shared-ip": "internalapi",
+                          "metallb.universe.tf/loadBalancerIPs": "172.17.1.80",
+                        }
+                      - op: replace
+                        path: /spec/rabbitmq/templates/rabbitmq/override/service/metadata/annotations
+                        value: {
+                          "metallb.universe.tf/address-pool": "internalapi",
+                          "metallb.universe.tf/loadBalancerIPs": "172.17.1.85",
+                        }
+                      - op: replace
+                        path: /spec/rabbitmq/templates/rabbitmq-cell1/override/service/metadata/annotations
+                        value: {
+                          "metallb.universe.tf/address-pool": "internalapi",
+                          "metallb.universe.tf/loadBalancerIPs": "172.17.1.86",
+                        }
+                      - op: replace
+                        path: /spec/telemetry/template/logging/ipaddr
+                        value: 172.17.1.80
+            vars:
+              # Failing on cleanup of the environment, skipping it as adoption and tests are
+              # already completed
+              crc_ci_bootstrap_skip_cleanup: true
+              # Needed to populate vars into make openstack, from BMO_SETUP until KUBECONFIG
+              # it's a copy of the content of that variable on normal run, added manually
+              # bc if not, playbook won't set this vars and gate will fail
+              cifmw_install_yamls_environment:
+                NETWORK_INTERNALAPI_ADDRESS_PREFIX: 172.17.1
+                NETWORK_STORAGE_ADDRESS_PREFIX: 172.18.0
+                NETWORK_TENANT_ADDRESS_PREFIX: 172.19.1
+                NETWORK_STORAGEMGMT_ADDRESS_PREFIX: 172.20.0
+                NETWORK_DESIGNATE_ADDRESS_PREFIX: 172.28.1
+                INTERNALAPI_HOST_ROUTES: 172.17.0.0/24
+                STORAGE_HOST_ROUTES: 172.18.0.0/24
+                TENANT_HOST_ROUTES: 172.19.0.0/24
+                STORAGEMGMT_HOST_ROUTES: 172.20.0.0/24
+                BMO_SETUP: false
+                CHECKOUT_FROM_OPENSTACK_REF: 'true'
+                OPENSTACK_K8S_BRANCH: main
+                OUT: /home/zuul/ci-framework-data/artifacts/manifests
+                OUTPUT_DIR: /home/zuul/ci-framework-data/artifacts/edpm
+                KUBECONFIG: /home/zuul/.crc/machines/crc/kubeconfig
+              # Needed to customize values during the actual adoption test
+              # need to test if cifm_install_yamls_environment is actually needed.
+              adoption_test_custom_vars:
+                internalapi_prefix: 172.17.1
+                internalapi_allocation_end: 172.17.1.250
+                internalapi_allocation_start: 172.17.1.100
+                internalapi_cidr: "172.17.1.0/24"
+                tenant_allocation_end: 172.19.1.250
+                tenant_allocation_start: 172.19.1.100
+                tenant_cidr: "172.19.1.0/24"
+              source_mariadb_ip: "172.17.1.103"
+              # Needed to configure correctly the overcloud controllers
+              os_net_config_file: "overcloud_net_config_scenario_a.j2"
+              # Variables used by os_net_config_file, vars missing using default
+              adopted_internal_net: "172.17.1.0/24"
+              adopted_tenant_net: "172.19.1.0/24"
+              # Variables used by tripleo_deploy, vars missing using default
+              # used to setup openstackdataplanenodeset network
+              tripleo_deploy_internalapi_cidr: "172.17.1"
+              tripleo_deploy_tenant_cidr: "172.19.1"
+            host-vars:
+              undercloud:
+                address_suffix: 100
+                os_net_config_file: "net_config.j2"
+
+
+- job:
     name: periodic-adoption-multinode-to-crc-no-ceph-rollback
     description: multinode source OSP 17.1 adopted to crc RHOSO 18. Runs test suites that rolls back to OSP 17.1.
     parent: periodic-adoption-multinode-to-crc-no-ceph
