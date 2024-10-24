@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3eb3d63_57907557",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 602
+      },
+      "writtenOn": "2024-10-24T21:37:22Z",
+      "side": 1,
+      "message": "This patch adds more coverage for glance and swift, which is good as we can introduce more sanity check against the adopted services.\nThe dependency already merged, and this patch has been tested using testproject [1], which is green except for telemetry (unrelated to this patch).\n\nCan we merge this change so we can move forward with the other Storage components (cinder and manila)?\n\n\n[1] https://review.rdoproject.org/r/c/testproject/+/55167",
+      "revId": "041929cbcd891fe9e76ce57a24bc5fa65ce5bff9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
