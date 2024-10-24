@@ -35,6 +35,23 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0985c33c_8a7c9f1b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 75
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-10-24T06:39:04Z",
+      "side": 1,
+      "message": "-1 mainly for rebase please check inline about the directory name",
+      "revId": "2a8fa3aa22ab9ded587b0d3fb10ebeaa99e7130f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad344744_6604ed13",
@@ -88,6 +105,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e80e2670_16c8e0d7",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 75
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-10-24T06:39:04Z",
+      "side": 1,
+      "message": "I think this name can be more explicitly descriptive, e.g. \"pre_adoption_tempest\" or something similar wdyt? that is also substring of the variable name \"dpa_run_pre_adoption_tempest\"\nour logs are already pretty spread out so small things like this might make it easier to find or navigate",
+      "revId": "2a8fa3aa22ab9ded587b0d3fb10ebeaa99e7130f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "967458d9_c8f5b273",
         "filename": "playbooks/data_plane_adoption/set_zuul_artifacts.yaml",
         "patchSetId": 75
@@ -99,6 +133,23 @@
       "writtenOn": "2024-10-23T10:39:31Z",
       "side": 1,
       "message": "this url is wrong https://logserver.rdoproject.org/95/53795/11/check/periodic-adoption-standalone-to-crc-ceph/e181672/controller/ci-framework-data/tests/pre-adoption-tempest/ I think it should be \u0027standalone/tests/dpa_tempest_workspace/\u0027",
+      "revId": "2a8fa3aa22ab9ded587b0d3fb10ebeaa99e7130f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47201954_306f9c40",
+        "filename": "playbooks/data_plane_adoption/standalone_collect_logs.yaml",
+        "patchSetId": 75
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-10-24T06:39:04Z",
+      "side": 1,
+      "message": "but i am confused .. in the logs you posted there is no pre-adoption-tempest it is dpa_tempest_workspace https://logserver.rdoproject.org/95/53795/11/check/periodic-adoption-standalone-to-crc-ceph/e181672/standalone/tests/dpa_tempest_workspace/",
       "revId": "2a8fa3aa22ab9ded587b0d3fb10ebeaa99e7130f",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
