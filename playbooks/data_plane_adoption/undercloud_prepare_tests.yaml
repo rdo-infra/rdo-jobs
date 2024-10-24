@@ -1,4 +1,4 @@
-- hosts: undercloud
+- hosts: "{{ undercloud_host | default('undercloud') }}"
   gather_facts: false
   tasks:
     - name: Pull the tripleo passwords from undercloud vm
@@ -16,7 +16,7 @@
     - name: Slurp crc public key for ssh access to standalone
       delegate_to: localhost  # localhost is the controller node in this case
       ansible.builtin.slurp:
-        path: /home/zuul/.ssh/id_rsa.pub
+        path: "{{ controller_public_key | default('/home/zuul/.ssh/id_rsa.pub')  }}"
       register: crc_ssh_key
 
     - name: Place crc public key to undercloud authorized_keys
