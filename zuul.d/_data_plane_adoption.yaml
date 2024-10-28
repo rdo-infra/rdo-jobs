@@ -143,7 +143,7 @@
       tripleo_network:
         manage_undercloud_default_route: false
         configure_networking: false
-        attach_external_net: false
+        attach_external_net: true
       adoption_extra_vars: |
         default_cell_name: cell3
         ironic_adoption: false
