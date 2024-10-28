@@ -12,7 +12,7 @@
     standalone_vm: false
     additional_networks: []
     # NOTE(bogdando): for local libvirt setups, we need all tripleo_network flags enabled
-    # this replicates the current CI setup. 
+    # this replicates the current CI setup.
     manage_undercloud_default_route: "{{ tripleo_network.manage_undercloud_default_route | default(false) | bool }}"
     tripleo_networking: "{{ tripleo_network.configure_networking | default(false) | bool }}"
     attach_external_net: "{{ tripleo_network.attach_external_net | default(false) bool }}"
