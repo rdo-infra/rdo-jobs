@@ -87,7 +87,7 @@
 - job:
     name: DLRN-rpmbuild-centos9
     parent: DLRN-rpmbuild-base
-    branches: ^((rpm-master)|(^(?!train|ussuri|victoria)(\w+)-rdo))$
+    branches: ^(rpm-master|wallaby-rdo)$
     vars:
       centos_version: 'centos9'
 
