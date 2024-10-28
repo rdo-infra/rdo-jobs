@@ -49,9 +49,6 @@
       register: check_repo
       ignore_errors: true
 
-    - meta: end_play
-      when: check_repo.rc != 0
-
     - name: Setup testing repository
       shell:
         cmd: |
@@ -102,7 +99,7 @@
           gpgcheck=0
           priority=1
           EOF"
-      changed_when: true
+      when: check_repo.rc == 0
 
     - name: Run weirdo scenario
       shell:
@@ -112,6 +109,35 @@
           mkdir -p $WORKSPACE
           export ARA_DATABASE_NAME="$WORKSPACE/ara.sqlite"
           source {{ ansible_user_dir }}/rdopkg-venv/bin/activate
+
+          # Detecting if projects where removed
+          status_report_url="https://trunk.rdoproject.org/{{ centos_release }}-{{ openstack_release }}/status_report.csv"
+          status_report_dir="{{ ansible_user_dir }}/{{ zuul.project.src_dir }}"
+
+          wget "$status_report_url" -P "$status_report_dir"
+          pushd "{{ ansible_user_dir }}/{{ zuul.project.src_dir }}/rdoinfo"
+          removed_projects=$(git diff HEAD~  | grep -e "^-- project:" | sort | uniq |  awk '{print $3}')
+          popd
+
+          if [ -n "$removed_projects" ]; then
+              while IFS= read -r project; do
+                 # translate projects into proper package names
+                 project_name=$(rdopkg findpkg "$project" | grep name: | awk '{print $2}')
+                 dependent_pkgs=$(grep "$project_name," "$status_report_dir/status_report.csv" | sed -e "s/,/ /g" | awk '{print $8}' | sed -e "s/|/\n/g")
+                 exlude_pkgs=$(while IFS= read -r pkg; do basename $pkg | sed 's|-[0-9]*\..*||g';  done <<< "$dependent_pkgs" | uniq)
+                 total_pkgs_to_exclude+=$exlude_pkgs
+                 echo Project "$project_name" has following packages to exclude: $exlude_pkgs
+              done <<< "$removed_projects"
+          fi
+          set -x
+          cmd=$(echo exclude=$total_pkgs_to_exclude)
+          sudo sh -c "echo $cmd >> /etc/dnf/dnf.conf"
+          sudo cat /etc/dnf/dnf.conf
+
+          # testing installation of removed package
+          sudo dnf install python-vitrageclient openstack-watcher
+          set +x
+          exit 0
 
           # Backwards compat for project and openstack_release
           # (dmsimard) TODO: Clean this up ASAP
