@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fdbd1f57_b6f4afbf",
+        "filename": "zuul.d/container-jobs-antelope-centos9.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 602
+      },
+      "writtenOn": "2024-10-29T08:27:12Z",
+      "side": 1,
+      "message": "no, we simply inherit the tempest tests from `no-ceph`, hence instead of redefining the whole list and duplicating it I\u0027m adding a single line among those tests, where manila will be skipped anyway because it\u0027s not present in `no-ceph` (and tempest won\u0027t discover the endpoint and the associated services).",
+      "parentUuid": "a0f19549_33eaceb4",
+      "revId": "e1ab7e5acaed44d837246ca33c3030ca5573235f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3e6b54db_ce62a72c",
         "filename": "zuul.d/container-jobs-antelope-centos9.yaml",
         "patchSetId": 10
@@ -48,6 +66,24 @@
       "writtenOn": "2024-10-29T08:17:40Z",
       "side": 1,
       "message": "this bit seems beyond \u0027adds manila\u0027 though should these have been there previously? was tempest not configured correctly before this and we didn\u0027t notice?",
+      "revId": "e1ab7e5acaed44d837246ca33c3030ca5573235f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9db0d253_b9ddc347",
+        "filename": "zuul.d/container-jobs-antelope-centos9.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 602
+      },
+      "writtenOn": "2024-10-29T08:27:12Z",
+      "side": 1,
+      "message": "This is the same list for `no-ceph` with the additional `manila-operator` group that is defined for ceph only.\nI tried using anchors but zuul complained w/ wrong syntax.\nSince I\u0027m not a zuul expert, I\u0027m wondering if it is possible to have a follow up change where I optimize the data structures, but in the meantime I can verify the Jira associated to Manila.",
+      "parentUuid": "3e6b54db_ce62a72c",
       "revId": "e1ab7e5acaed44d837246ca33c3030ca5573235f",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
