@@ -18,6 +18,24 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "acc210d3_8a7cc7fd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-10-29T09:00:55Z",
+      "side": 1,
+      "message": "as discussed in slack\n\nwe are adding vars into standalone, but they don\u0027t run the tempest tests hence no need for the testproject run (should be same as the one in the adoption depends-on)",
+      "parentUuid": "eba1ba18_f606a47d",
+      "revId": "e1ab7e5acaed44d837246ca33c3030ca5573235f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0f19549_33eaceb4",
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "This is the same list for `no-ceph` with the additional `manila-operator` group that is defined for ceph only.\nI tried using anchors but zuul complained w/ wrong syntax.\nSince I\u0027m not a zuul expert, I\u0027m wondering if it is possible to have a follow up change where I optimize the data structures, but in the meantime I can verify the Jira associated to Manila.",
       "parentUuid": "3e6b54db_ce62a72c",
+      "revId": "e1ab7e5acaed44d837246ca33c3030ca5573235f",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b41e2ba_c054d860",
+        "filename": "zuul.d/container-jobs-antelope-centos9.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 192
+      },
+      "writtenOn": "2024-10-29T09:00:55Z",
+      "side": 1,
+      "message": "ack thanks as discussed in slack.",
+      "parentUuid": "9db0d253_b9ddc347",
       "revId": "e1ab7e5acaed44d837246ca33c3030ca5573235f",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
