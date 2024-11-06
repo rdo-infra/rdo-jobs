@@ -118,6 +118,7 @@
           telemetry.prometheus_scrape_interval 30
           telemetry.prometheus_service_url "http://metric-storage-prometheus.openstack.svc.cluster.local:9090"
           telemetry.sg_core_service_url "http://ceilometer-internal.openstack.svc.cluster.local:3000"
+          telemetry.alarm_threshold 10000000000
           share.capability_storage_protocol CEPHFS
           share.default_share_type_name 'default'
           share.run_share_group_tests False
@@ -145,6 +146,7 @@
           telemetry.prometheus_scrape_interval 30
           telemetry.prometheus_service_url "https://metric-storage-prometheus.openstack.svc.cluster.local:9090"
           telemetry.sg_core_service_url "https://ceilometer-internal.openstack.svc.cluster.local:3000"
+          telemetry.alarm_threshold 10000000000
 
 - job:
     name: periodic-adoption-multinode-to-crc-no-ceph
