@@ -29,8 +29,7 @@
     - name: Install collections to use nmcli and libvirt ansible modules
       ansible.builtin.command: ansible-galaxy collection install community.general community.libvirt
 
-    - name: Prepare nodes to deploy ceph
-      when: use_ceph | default('false') | bool
+    - name: Prepare nodes with repos
       block:
         - name: Copy ci-framework to undercloud to use when deploying ceph
           delegate_to: undercloud
@@ -45,29 +44,26 @@
               - "--exclude=docs"
               - "-q"  # make rsync less verbose
 
-        - name: Enable ceph repository
-          become: true
-          delegate_to: overcloud-controller-0
-          ansible.builtin.command:
-            cmd: subscription-manager repos --enable=rhceph-7-tools-for-rhel-9-x86_64-rpms
-
-        - name: Install cephadm
-          become: true
-          delegate_to: overcloud-controller-0
-          ansible.builtin.package:
-            name: cephadm
-            state: present
-
-        - name: Install packages needed for ceph deployment on the overcloud nodes
+        - name: install rhos-release
           become: true
           delegate_to: "{{ item }}"
-          when: item != 'undercloud'
-          ansible.builtin.package:
-            name:
-              - lvm2
-              - jq
-            state: present
           loop: "{{ groups['rh-subscription'] }}"
+          ansible.builtin.command:
+            cmd: dnf install -y http://download.devel.redhat.com/rcm-guest/puddles/OpenStack/rhos-release/rhos-release-latest.noarch.rpm
+
+        - name: remove repos
+          become: true
+          delegate_to: "{{ item }}"
+          loop: "{{ groups['rh-subscription'] }}"
+          ansible.builtin.command:
+            cmd: rhos-release -x
+
+        - name: install repos
+          become: true
+          delegate_to: "{{ item }}"
+          loop: "{{ groups['rh-subscription'] }}"
+          ansible.builtin.command:
+            cmd: rhos-release -p passed_phase2 17.1 ceph-7.0 -r 9.2
 
     - name: Setup overcloud nodes for free-ipa when enable_tls true
       when: enable_tls|default('false')|bool
@@ -111,14 +107,19 @@
           ansible.builtin.lineinfile:
             create: true
             path: "/home/zuul/cdn_subscription_repos.sh"
-            value: "subscription-manager repos --enable {{ osp_17_repos | join(' --enable ') }}"
+            value: "sudo dnf install -y http://download.devel.redhat.com/rcm-guest/puddles/OpenStack/rhos-release/rhos-release-latest.noarch.rpm"
 
-        - name: Write ceph repo commands when use_ceph is set
-          when: use_ceph is defined and use_ceph
+        - name: Install 17.1 internal repos
           ansible.builtin.lineinfile:
             create: true
             path: "/home/zuul/cdn_subscription_repos.sh"
-            value: "subscription-manager repos --enable {{ osp_17_ceph_repos | join(' --enable ') }}"
+            value: "sudo rhos-release -x;sudo rhos-release -p passed_phase2 17.1 -r 9.2"
+
+        - name: Create containers prepare file if defined
+          when: containers_prepare_content is defined
+          copy:
+            content: "{{ containers_prepare_content }}"
+            dest: /home/zuul/containers-prepare-parameters.yaml
 
         - name: Deploy the tripleo source environment
           ansible.builtin.shell: >
@@ -555,14 +556,7 @@
     - name: Disable OSP17.1 repos before running OSP 18 setup and adoption
       delegate_to: "{{ item }}"
       become: true
-      ansible.builtin.shell: "subscription-manager repos --disable {{ osp_17_repos | join(' --disable ') }}"
-      loop: "{{ groups['rh-subscription'] }}"
-
-    - name: Disable OSP17.1 ceph repos before running OSP 18 setup and adoption
-      when: use_ceph | default('false') | bool
-      delegate_to: "{{ item }}"
-      become: true
-      ansible.builtin.shell: "subscription-manager repos --disable {{ osp_17_ceph_repos | join(' --disable ') }}"
+      ansible.builtin.shell: "sudo rhos-release -x"
       loop: "{{ groups['rh-subscription'] }}"
 
     - name: Insert adoption extra vars when defined
@@ -585,13 +579,6 @@
           TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"
       register: make_res
       failed_when: '"failed=0" not in make_res.stdout_lines[-1]'
-
-    - name: Unregister tripleo osp17.1 nodes with subscription-manager
-      delegate_to: "{{ item }}"
-      become: true
-      failed_when: false
-      ansible.builtin.shell: subscription-manager unregister
-      loop: "{{ groups['rh-subscription'] }}"
 
     - name: Ceph Migration tests
       when: migrate_ceph | default(false) | bool
