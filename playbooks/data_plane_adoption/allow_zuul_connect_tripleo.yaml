@@ -19,13 +19,4 @@
         name: iptables
 
     - name: Add firewall rule to allow zuul executor to reach tripleo nodes
-      vars:
-        executor_ip: "{{ lookup('env', 'SSH_CLIENT') | split | first }}"
-      ansible.builtin.iptables:
-        action: "insert"
-        chain: "INPUT"
-        comment: "allow ssh access for zuul executor"
-        in_interface: "eth0"
-        jump: "ACCEPT"
-        protocol: "tcp"
-        source: "{{ executor_ip }}"
+      ansible.builtin.shell: "nft add rule inet filter INPUT tcp dport 22 accept"

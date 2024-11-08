@@ -22,6 +22,9 @@
            --enable=rhel-9-for-x86_64-highavailability-eus-rpms \
            --enable=openstack-17.1-for-rhel-9-x86_64-rpms \
            --enable=fast-datapath-for-rhel-9-x86_64-rpms
+        dnf install -y http://download.devel.redhat.com/rcm-guest/puddles/OpenStack/rhos-release/rhos-release-latest.noarch.rpm
+        rhos-release -x
+        rhos-release -p passed_phase2 17.1 ceph-7.0 -r 9.2
         dnf install -y openvswitch os-net-config
         mkdir -p /etc/os-net-config/
 
