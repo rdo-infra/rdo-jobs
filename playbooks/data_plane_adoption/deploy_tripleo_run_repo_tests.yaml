@@ -446,6 +446,19 @@
         - edpm_container_registry_logins is defined
         - edpm_container_registry_logins is mapping
 
+    - name: Insert ping test related variables
+      when: ping_test | default(false) | bool
+      ansible.builtin.blockinfile:
+        marker_begin: "BEGIN ping test related vars"
+        marker_end: "END ping test related vars"
+        path: "{{ rdo_dir }}/vars.yaml"
+        block: |
+          ping_test: true
+          prelaunch_test_instance: true
+          ping_test_loss_threshold: {{ ping_test_loss_threshold | default(0) }}
+          ping_test_loss_threshold_percent: {{ ping_test_loss_threshold_percent | default(0) }}
+
+
     - name: Fetch hash and set ci_testing_hash fact for periodic
       when: "'periodic' in zuul.job or (force_periodic|default(false)|bool)"
       block:
