@@ -35,6 +35,24 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd9ccee4_cfc9b37b",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 716
+      },
+      "writtenOn": "2024-11-13T10:48:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "950fa970_6a94930c",
+      "revId": "ea2e11269599435d4020bccc145f39eb4f610395",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "567b8c02_c2e21976",
@@ -48,6 +66,24 @@
       "writtenOn": "2024-11-13T10:28:29Z",
       "side": 1,
       "message": "Patching a structured file, like a yaml file using string manipulation is horrible. Why aren\u0027t you reading the file, patching and writing it using to_nice_yaml that handles the indentation and formatting?",
+      "revId": "ea2e11269599435d4020bccc145f39eb4f610395",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1597168_03e289a7",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 716
+      },
+      "writtenOn": "2024-11-13T10:48:55Z",
+      "side": 1,
+      "message": "This needs to be done for almost all the vars that we add to the vars file for adoption. We had a cleanup/refractor card on the board for this.\nFor now I am trying to keeo this consistent with https://github.com/rdo-infra/rdo-jobs/blob/master/playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml#L297",
+      "parentUuid": "567b8c02_c2e21976",
       "revId": "ea2e11269599435d4020bccc145f39eb4f610395",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
