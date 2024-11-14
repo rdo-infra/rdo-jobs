@@ -237,8 +237,6 @@
         override-checkout: main
     vars:
       selinux_enforcing: "false"
-    dependencies:
-      - validate-buildsys-tags
     nodeset: rdo-centos-9-stream
 
 - job:
@@ -424,11 +422,11 @@
 
 - job:
     name: validate-buildsys-tags-epoxy-testing-tcib-container-build-scenario000-centos9
-    nodeset: cloud-centos-9-stream-vexxhost
     parent: validate-buildsys-tags-epoxy-testing-centos9-base
     post-run: playbooks/podified-containers/collect-logs.yaml
     vars:
       scenario: scenario000
+      buildset_artifacts_url: "https://logserver.rdoproject.org/82/55382/5/check/validate-buildsys-tags/9801355/buildset"
 
 - job:
     name: validate-buildsys-tags-epoxy-testing-cifmw-crc-podified-edpm-baremetal

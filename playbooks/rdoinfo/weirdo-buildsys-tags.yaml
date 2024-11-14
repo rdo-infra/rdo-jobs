@@ -1,5 +1,8 @@
 - hosts: all
   tasks:
+    - name: Set mocked buildset
+      set_fact:
+        buildset_artifacts_url: "https://logserver.rdoproject.org/82/55382/5/check/validate-buildsys-tags/9801355/buildset"
 
     - name: Create periodic_job fact
       set_fact:
