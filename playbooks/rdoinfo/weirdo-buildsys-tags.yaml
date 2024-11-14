@@ -57,7 +57,7 @@
           fi
 
           # Set log path
-          logs={{ buildset_artifacts_url }}
+          logs=https://logserver.rdoproject.org/82/55382/5/check/validate-buildsys-tags/9801355/buildset
 
           # If we could not find a working repository, give up
           curl -o $CREPOS_FILE -sf "$logs/repos/changed_repos.txt" || exit 1
