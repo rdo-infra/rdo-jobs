@@ -66,7 +66,10 @@
 
     - name: Run test preparation in standalone vm
       ansible.builtin.shell:
-        ansible-playbook {{ rdo_dir }}/standalone_prepare_tests.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
+        ansible-playbook {{ rdo_dir }}/standalone_prepare_tests.yaml \
+        -e "use_hugepages={{ use_hugepages | default('false') }}" \
+        -e "use_hugepages={{ prelaunch_test_instance | default('true') }}" \
+        -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
 
     - name: Place internal IP into vars.yaml for Mariadb
       ansible.builtin.lineinfile:
