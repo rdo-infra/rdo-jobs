@@ -4,7 +4,7 @@
     - name: Pull the tripleo passwords from standalone vm
       ansible.builtin.fetch:
         src: /root/tripleo-standalone-passwords.yaml
-        dest: /home/zuul/tripleo-standalone-passwords.yaml
+        dest: /home/zuul/overcloud-passwords.yaml
         flat: true
 
     - name: Pull the private key from standalone
