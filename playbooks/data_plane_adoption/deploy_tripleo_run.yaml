@@ -1,0 +1,167 @@
+- name: Run TripleO deployment
+  hosts: controller
+  gather_facts: false
+  tasks:
+    - name: "Run data-plane-adoption tests from {{ dpa_dir }}"
+      community.general.make:
+        chdir: "{{ dpa_dir }}"
+        target: "{{ dpa_test_suite | default('test-minimal') }}"
+        params:
+          TEST_CONFIG: "{{ dpa_test_ansible_cfg | default(rdo_dir  ~ '/ansible.cfg') }}"
+          TEST_SECRETS: "{{ rdo_dir}}/secrets.yaml"
+          TEST_VARS: "{{ rdo_dir }}/vars.yaml"
+          TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"
+      register: make_res
+      failed_when: '"failed=0" not in make_res.stdout_lines[-1]'
+
+    - name: Unregister tripleo osp17.1 nodes with subscription-manager
+      delegate_to: "{{ item }}"
+      become: true
+      failed_when: false
+      ansible.builtin.shell: subscription-manager unregister
+      loop: "{{ groups['rh-subscription'] }}"
+
+    - name: Ceph Migration tests
+      when: migrate_ceph | default(false) | bool
+      block:
+        - name: Set Ceph relevant network facts
+          ansible.builtin.set_fact:
+            ceph_storage_net_prefix: "172.18.0"
+            ceph_nodes_ctlplane_prefix: "192.168.122"
+            ceph_storage_vlan_id: 21
+
+        - name: Ceph Migration - Build the list of src and target nodes
+          ansible.builtin.blockinfile:
+            marker_begin: "BEGIN ceph nodes vars"
+            marker_end: "END ceph nodes vars"
+            path: "{{ rdo_dir }}/ceph_overrides.yaml"
+            block: |
+              # CI related overrides:
+              # - 172.18 is the Ceph cluster storage network on vlan_id: 21
+              # - 172.18.0.200 is chosen as the client ip used to temporary
+              #   access the ceph cluster from the current automation while
+              #   migrating mons
+              # - 172.18.0.100 is used as VIP on the storage network is RGW
+              #   is present
+              decomm_nodes:
+                - {{ controller0_hostname }}
+                - {{ controller1_hostname }}
+                - {{ controller2_hostname }}
+              target_nodes:
+                - {{ compute0_hostname }}
+                - {{ compute1_hostname }}
+                - {{ compute2_hostname }}
+              node_map:
+                - {"hostname": "{{ controller0_hostname }}", "ip": "{{ ceph_storage_net_prefix }}.103"}
+                - {"hostname": "{{ controller1_hostname }}", "ip": "{{ ceph_storage_net_prefix }}.104"}
+                - {"hostname": "{{ controller2_hostname }}", "ip": "{{ ceph_storage_net_prefix }}.105"}
+                - {"hostname": "{{ compute0_hostname }}", "ip": "{{ ceph_storage_net_prefix }}.106"}
+                - {"hostname": "{{ compute1_hostname }}", "ip": "{{ ceph_storage_net_prefix }}.107"}
+                - {"hostname": "{{ compute2_hostname }}", "ip": "{{ ceph_storage_net_prefix }}.108"}
+              client_node: "{{ controller0_hostname }}"
+              ceph_keep_mon_ipaddr: true
+              ceph_net_manual_migration: true
+              # override os-net-config conf file
+              os_net_conf_path: "/etc/os-net-config/tripleo_config.yaml"
+              ceph_storage_net_prefix: "{{ ceph_storage_net_prefix }}"
+              ceph_client_ip: {{ ceph_storage_net_prefix }}.200
+              vlan_id: {{ ceph_storage_vlan_id }}
+              ceph_rgw_virtual_ips_list:
+                - {{ ceph_storage_net_prefix }}.100/24
+
+        - name: Generate a TripleO/Ceph compatible inventory
+          ansible.builtin.template:
+            src: "{{ playbook_dir }}/templates/ceph_inventory.j2"
+            dest: "{{ rdo_dir }}/ceph_inventory.yaml"
+          vars:
+            inventory_map:
+              - {"hostname": "{{ controller0_hostname }}", "ip": "{{ ceph_nodes_ctlplane_prefix }}.103"}
+              - {"hostname": "{{ controller1_hostname }}", "ip": "{{ ceph_nodes_ctlplane_prefix }}.104"}
+              - {"hostname": "{{ controller2_hostname }}", "ip": "{{ ceph_nodes_ctlplane_prefix }}.105"}
+              - {"hostname": "{{ compute0_hostname }}", "ip": "{{ ceph_nodes_ctlplane_prefix }}.106"}
+              - {"hostname": "{{ compute1_hostname }}", "ip": "{{ ceph_nodes_ctlplane_prefix }}.107"}
+              - {"hostname": "{{ compute2_hostname }}", "ip": "{{ ceph_nodes_ctlplane_prefix }}.108"}
+
+        - name: "Run data-plane-adoption Ceph migration tests from {{ dpa_dir }}"
+          community.general.make:
+            chdir: "{{ dpa_dir }}"
+            target: "test-ceph-migration"
+            params:
+              TEST_CONFIG: "{{ dpa_test_ansible_cfg | default(rdo_dir  ~ '/ansible.cfg') }}"
+              TEST_SECRETS: "{{ rdo_dir}}/secrets.yaml"
+              TEST_VARS: "{{ rdo_dir }}/vars.yaml"
+              TEST_CEPH_OVERRIDES: "{{ rdo_dir }}/ceph_overrides.yaml"
+              TEST_INVENTORY: "{{ rdo_dir }}/ceph_inventory.yaml"
+          register: make_ceph_res
+          failed_when: '"failed=0" not in make_ceph_res.stdout_lines[-1]'
+
+    - name: Call test role
+      when:
+        - dpa_run_post_adoption_tempest | default(true) | bool
+        - cifmw_run_test_role is defined
+      block:
+        # Tempest role does not support use of both main skiplist and exclude list
+        # TODO (anbanerj): Remove this task when tempest supports it
+        - name: Load skiplist from list of known failures
+          ansible.builtin.slurp:
+            path: "{{ framework_dir }}/roles/test_operator/files/list_skipped.yml"
+          register: skiplist_file
+
+        - name: Slurp data from list_skipped.yml
+          ansible.builtin.set_fact:
+            skiplist: "{{ skiplist_file['content'] | b64decode | from_yaml }}"
+
+        - name: Get names of excluded tests
+          no_log: true
+          ansible.builtin.set_fact:
+            test_names: "{{ test_names | default([]) + [item.test] }}"
+          loop: "{{ skiplist.known_failures }}"
+
+        - name: Merge tests from exclude list and known skiplist
+          when: cifmw_test_operator_tempest_exclude_list is defined
+          ansible.builtin.set_fact:
+            test_names: "{{ test_names | default([]) + [item] }}"
+          loop: "{{ cifmw_test_operator_tempest_exclude_list | trim | split('\n') }}"
+
+        - name: Convert list of tests to string to pass to test-operator
+          set_fact:
+            exclude_list: |
+              {% for item in test_names %}
+                {{ item }}
+              {% endfor %}
+
+        - name: Dump cifmw test operator parameters to a file
+          ansible.builtin.template:
+            src: "{{ playbook_dir }}/files/ci_framework_test_operator_params.yaml.j2"
+            dest: "{{ cifmw_test_operator_parameters_file | default('/home/zuul/test_operator_vars.yaml')}}"
+
+        - name: Execute pre_tests hook
+          when:
+            - pre_tests is defined
+          block:
+            - name: Dump hooks parameters to a file
+              ansible.builtin.template:
+                src: "{{ playbook_dir }}/files/ci_framework_hooks_params.yaml.j2"
+                dest: "{{ cifmw_test_operator_parameters_file | default('/home/zuul/hooks_vars.yaml')}}"
+
+            - name: Call pre_tests hook
+              ansible.builtin.command: >
+                ansible-playbook {{ rdo_dir }}/ci_framework_call_hook.yaml
+                -e "step=pre_tests"
+                -e "@{{cifmw_hooks_parameters_file | default('/home/zuul/hooks_vars.yaml')}}"
+              args:
+                chdir: "{{ framework_dir }}"
+
+        - name: Call test role with ci_framework_call_test_role
+          ansible.builtin.shell: >
+            ansible-playbook {{ rdo_dir }}/ci_framework_call_test_role.yaml -e "job_name={{ zuul.job }}"
+            -e "test_role={{ cifmw_run_test_role | default('tempest') }}"
+            -e "@{{cifmw_test_operator_parameters_file | default('/home/zuul/test_operator_vars.yaml')}}"
+          args:
+            chdir: "{{ framework_dir }}"
+
+    - name: Mark job as successful
+      when: not force_job_failure | default(false)
+      ansible.builtin.file:
+        path: "{{ ansible_user_dir }}/cifmw-success"
+        state: touch
