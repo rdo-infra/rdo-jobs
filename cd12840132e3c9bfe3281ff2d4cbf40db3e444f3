@@ -18,6 +18,24 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd9f11ec_a60a09f2",
+        "filename": "zuul.d/ovb-jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2024-11-19T12:55:36Z",
+      "side": 1,
+      "message": "We only want to run tripleo jobs for Wallaby, but I could remove the stict match tbh",
+      "parentUuid": "adc8a0c1_2aaa8d47",
+      "revId": "cd12840132e3c9bfe3281ff2d4cbf40db3e444f3",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9367358_3e1e1a4e",
@@ -49,6 +67,24 @@
       "side": 1,
       "message": "not sure if that\u0027s on purpouse",
       "parentUuid": "f9367358_3e1e1a4e",
+      "revId": "cd12840132e3c9bfe3281ff2d4cbf40db3e444f3",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a534d51c_f428bb14",
+        "filename": "zuul.d/zuul-legacy-project-templates.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2024-11-19T12:55:36Z",
+      "side": 1,
+      "message": "For rpm-master we run the \"DLRN-rpmbuild-centos9-pinned\" job",
+      "parentUuid": "b5588b96_72f273c7",
       "revId": "cd12840132e3c9bfe3281ff2d4cbf40db3e444f3",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
