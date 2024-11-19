@@ -4,7 +4,7 @@
     - name: Pull the tripleo passwords from undercloud vm
       ansible.builtin.fetch:
         src: /home/zuul/overcloud-deploy/overcloud/overcloud-passwords.yaml
-        dest: /home/zuul/tripleo-passwords.yaml
+        dest: /home/zuul/overcloud-passwords.yaml
         flat: true
 
     - name: Pull the private key from undercloud
