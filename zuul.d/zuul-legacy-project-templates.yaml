@@ -137,14 +137,14 @@
             dependencies:
               - DLRN-rpmbuild-centos9-pinned
         - DLRN-rpmbuild-centos9:
-            branches: ^((?!rpm-master)|(^(?!train|ussuri|victoria)(\w+)-rdo))$
+            branches: ^(\w+)-rdo$
         - DLRN-rpmbuild-centos9-pinned:
             branches: ^rpm-master$
         - distgit-cbs-validate-centos9
     gate:
       jobs:
         - DLRN-rpmbuild-centos9:
-            branches: ^((?!rpm-master)|(^(?!train|ussuri|victoria)(\w+)-rdo))$
+            branches: ^(\w+)-rdo$
         - DLRN-rpmbuild-centos9-pinned:
             branches: ^rpm-master$
         - distgit-cbs-final-build-centos9
