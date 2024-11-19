@@ -129,7 +129,7 @@
 
     - name: Read the tripleo passwords downloaded from standalone
       ansible.builtin.slurp:
-        path: /home/zuul/tripleo-standalone-passwords.yaml
+        path: /home/zuul/overcloud-passwords.yaml
       register: tripleo_passwords
 
     - name: Set tripleo passwords in secrets.yaml
