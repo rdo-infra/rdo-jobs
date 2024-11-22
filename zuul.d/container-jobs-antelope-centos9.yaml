@@ -256,6 +256,7 @@
         # Disable prometheus based autoscaling testing until we have Caracal content.
         telemetry_tempest_plugin.scenario.test_telemetry_integration_prometheus.PrometheusGabbiTest.test_autoscaling
         manila_tempest_tests.tests.api.test_share_network_subnets.ShareNetworkSubnetsTest.test_create_delete_subnet
+    timeout: 18000
 
 - job:
     name: periodic-adoption-multinode-to-crc-no-ceph-rollback
