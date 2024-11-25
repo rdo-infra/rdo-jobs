@@ -72,7 +72,7 @@
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
         regexp: "'^source_mariadb_ip:'"
-        value: "source_mariadb_ip: {{ source_mariadb_ip }}"
+        value: "source_mariadb_ip:\n  default: {{ source_mariadb_ip }}"
 
     - name: Place standalone_ip into vars.yaml for edpm, mariadb, ovndb
       ansible.builtin.lineinfile:
@@ -138,8 +138,6 @@
         regexp: "{{ item.key }}:"
         line: "{{ item.key }}: {{ tripleo_passwords['content'] | b64decode | regex_search(item.regex + ': (.+)', '\\1') | first }}"
       loop:
-        - key: 'source_db_root_password'
-          regex: 'MysqlRootPassword'
         - key: 'aodh_password'
           regex: 'AodhPassword'
         - key: 'barbican_password'
