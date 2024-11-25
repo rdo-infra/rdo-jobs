@@ -146,7 +146,7 @@
 
     - name: Run test preparation in undercloud vm
       ansible.builtin.shell:
-        ansible-playbook {{ rdo_dir }}/undercloud_prepare_tests.yaml -i /home/zuul/tripleo_ci_inventory
+        ansible-playbook {{ rdo_dir }}/undercloud_prepare_tests.yaml -e multi_cell={{ multi_cell|default(false) }} -i /home/zuul/tripleo_ci_inventory
 
     - name: Read the ssh key downloaded from undercloud
       ansible.builtin.slurp:
@@ -374,8 +374,6 @@
         regexp: "{{ item.key }}:"
         line: "{{ item.key }}: {{ tripleo_passwords_result['content'] | b64decode | regex_search(item.regex + ': (.+)', '\\1') | first }}"
       loop:
-        - key: 'source_db_root_password'
-          regex: 'MysqlRootPassword'
         - key: 'aodh_password'
           regex: 'AodhPassword'
         - key: 'barbican_password'
