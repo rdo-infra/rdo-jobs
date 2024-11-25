@@ -1,0 +1,13 @@
+- name: Prepare for tripleo deployment
+  vars: &ooo_vars
+    dpa_dir: "{{ dpa_dir_override | default('/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption') }}"
+    rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
+    framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
+    cifmw_datadir: "/home/zuul/ci-framework-data"
+    tripleo_passwords_file: "{{ tripleo_passwords | default('/home/zuul/overcloud-passwords.yaml') }}"
+    multi_cell: true
+  ansible.builtin.import_playbook: deploy_tripleo_prepare.yaml
+
+- name: Run tripleo deployment
+  vars: *ooo_vars
+  ansible.builtin.import_playbook: deploy_tripleo_run.yaml
