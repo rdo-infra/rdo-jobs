@@ -374,7 +374,7 @@
         regexp: "{{ item.key }}:"
         line: "{{ item.key }}: {{ tripleo_passwords_result['content'] | b64decode | regex_search(item.regex + ': (.+)', '\\1') | first }}"
       loop:
-        - key: 'source_db_root_password'
+        - key: 'source_db_root_password.default'
           regex: 'MysqlRootPassword'
         - key: 'aodh_password'
           regex: 'AodhPassword'
