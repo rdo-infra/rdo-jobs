@@ -1,0 +1,40 @@
+- name: Prepare for tripleo deployment
+  vars: &ooo_vars
+    dpa_dir: "{{ dpa_dir_override | default('/home/zuul/src/github.com/openstack-k8s-operators/data-plane-adoption') }}"
+    rdo_dir: "/home/zuul/src/review.rdoproject.org/rdo-jobs/playbooks/data_plane_adoption"
+    framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
+    cifmw_datadir: "/home/zuul/ci-framework-data"
+    tripleo_passwords_file: /home/zuul/overcloud-passwords.yaml
+    multi_cell: true
+  ansible.builtin.import_playbook: deploy_tripleo_prepare.yaml
+
+- hosts: controller
+  gather_facts: false
+  vars: *ooo_vars
+  tasks:
+    - name: Read the tripleo passwords downloaded from undercloud (cell1)
+      ansible.builtin.slurp:
+        path: /home/zuul/cell1-passwords.yaml
+      register: tripleo_passwords_cell1
+
+    - name: Read the tripleo passwords downloaded from undercloud (cell2)
+      ansible.builtin.slurp:
+        path: /home/zuul/cell2-passwords.yaml
+      register: tripleo_passwords_cell2
+
+    - name: Set tripleo passwords in secrets.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/secrets.yaml"
+        regexp: "{{ item.key }}:"
+        line: "{{ item.key }}: {{ item.source | b64decode | regex_search(item.regex + ': (.+)', '\\1') | first  }}"
+      loop:
+        - key: 'source_db_root_password.cell1'
+          regex: 'MysqlRootPassword'
+          source: "{{ tripleo_passwords_cell1['content'] }}"
+        - key: 'source_db_root_password.cell2'
+          regex: 'MysqlRootPassword'
+          source: "{{ tripleo_passwords_cell2['content']}}"
+
+- name: Run tripleo deployment
+  vars: *ooo_vars
+  ansible.builtin.import_playbook: deploy_tripleo_run.yaml
