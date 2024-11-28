@@ -66,6 +66,8 @@
       with_sequence: start=0 end="{{ (groups['tripleo_controllers'] | length - 1) }}"
 
     - name: Set edpm_node_ip, _hostname, edpm_nodes, edpm_nodes_networker, edpm_computes in vars.yaml with compute hostnames
+      tags:
+        - testx
       ansible.builtin.blockinfile:
         marker_begin: "BEGIN edpm_node_ip hostname vars"
         marker_end: "END edpm_node_ip hostname vars"
@@ -113,8 +115,8 @@
                   fixedIP: 172.20.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
                   subnetName: subnet1
           {% endfor %}
-          {%+ if edpm_node_networker_ips is defined +%}
           edpm_nodes_networker:
+          {%+ if edpm_node_networker_ips is defined +%}
           {% for i in range(edpm_node_networker_ips | length) %}
             {{ networker_hostnames.results[i | int]['content'] | b64decode | trim }}:
               hostName: "{{ lookup('vars', 'networker' ~ i ~ '_hostname') }}"
@@ -139,6 +141,29 @@
                   subnetName: subnet1
           {% endfor %}
           {%+ endif +%}
+          {% for i in range(controller_hostnames | length) %}
+            {{ controller_hostnames.results[i | int]['content'] | b64decode | trim }}:
+              hostName: "{{ lookup('vars', 'controller' ~ i ~ '_hostname') }}"
+              ansible:
+                ansibleHost: 192.168.122.{{ 3 + i }}
+              networks:
+                - defaultRoute: true
+                  fixedIP: 192.168.122.{{ 3 + i }}
+                  name: ctlplane
+                  subnetName: subnet1
+                - name: internalapi
+                  fixedIP: 172.17.0.{{ 3 + i }}
+                  subnetName: subnet1
+                - name: storage
+                  fixedIP: 172.18.0.{{ 3 + i }}
+                  subnetName: subnet1
+                - name: tenant
+                  fixedIP: 172.19.0.{{ 3 + i }}
+                  subnetName: subnet1
+                - name: storagemgmt
+                  fixedIP: 172.20.0.{{ 3 + i }}
+                  subnetName: subnet1
+          {% endfor %}
 
     - name: Set TLS Everywhere in vars.yaml
       ansible.builtin.lineinfile:
