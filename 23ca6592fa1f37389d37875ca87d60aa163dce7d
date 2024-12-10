@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5db6de1_ab8d10bb",
+        "filename": "playbooks/data_plane_adoption/standalone_prepare_tests.yaml",
+        "patchSetId": 21
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 289
+      },
+      "writtenOn": "2024-12-10T14:27:50Z",
+      "side": 1,
+      "message": "Can we drop \u0027post_reboot_delay\u0027? Below there is \u0027Wait for service \u0027tripleo_nova_compute\u0027 to be running\u0027 which is IMO the right way to achieve the same thing.",
+      "revId": "23ca6592fa1f37389d37875ca87d60aa163dce7d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e886ca56_f6d76c57",
+        "filename": "playbooks/data_plane_adoption/standalone_prepare_tests.yaml",
+        "patchSetId": 21
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 289
+      },
+      "writtenOn": "2024-12-10T14:27:50Z",
+      "side": 1,
+      "message": "I think this doesn\u0027t provide anything additional over the \u0027reboot\u0027 above and can be dropped? The reboot task already verifies that it can re-connect and run Ansible commands.\n\nhttps://docs.ansible.com/ansible/latest/collections/ansible/builtin/reboot_module.html \n\nhttps://docs.ansible.com/ansible/latest/collections/ansible/builtin/wait_for_connection_module.html",
+      "revId": "23ca6592fa1f37389d37875ca87d60aa163dce7d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
