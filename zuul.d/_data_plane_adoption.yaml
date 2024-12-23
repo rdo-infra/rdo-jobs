@@ -108,6 +108,10 @@
         - 192.168.122.107
         - 192.168.122.108
       enable_octavia: "true"
+      edpm_node_controller_as_net_ips:
+        - 192.168.122.103
+        - 192.168.122.104
+        - 192.168.122.105
     host-vars:
       undercloud:
         address_suffix: 100
