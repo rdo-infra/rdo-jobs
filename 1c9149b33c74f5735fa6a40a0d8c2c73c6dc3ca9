@@ -16,6 +16,40 @@
       "message": "lgtm now",
       "revId": "1c9149b33c74f5735fa6a40a0d8c2c73c6dc3ca9",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "141eb6fa_3de05e35",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2024-12-23T10:29:23Z",
+      "side": 1,
+      "message": "We should also enable the controller adoption in current multinode adoption jobs, can you please update and also link the relevant Jira ticket for it.",
+      "revId": "1c9149b33c74f5735fa6a40a0d8c2c73c6dc3ca9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "800ce760_c35ccb7d",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2024-12-23T10:29:23Z",
+      "side": 1,
+      "message": "{%+ if edpm_node_networker_ips is defined or edpm_node_controller_as_net_ips is defined +%}",
+      "revId": "1c9149b33c74f5735fa6a40a0d8c2c73c6dc3ca9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
