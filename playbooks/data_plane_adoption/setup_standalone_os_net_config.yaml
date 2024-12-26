@@ -57,3 +57,15 @@
         ip a
         ping -c 2 -W 2 192.168.122.10
         ping -c 2 -W 2 192.168.122.11
+
+    - name: Ensure legacy iptables services are off
+      become: true
+      when: enable_tls|default('false')|bool
+      ansible.builtin.systemd:
+        name: "{{ item }}"
+        state: stopped
+        enabled: false
+      register: ipt_service
+      loop:
+        - iptables.service
+        - ip6tables.service
