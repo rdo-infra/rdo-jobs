@@ -57,3 +57,18 @@
         ip a
         ping -c 2 -W 2 192.168.122.10
         ping -c 2 -W 2 192.168.122.11
+
+    - name: Ensure nftables is installed
+      when: enable_tls|default('false')|bool
+      become: true
+      ansible.builtin.package:
+        name: nftables
+        state: present
+
+    - name: Ensure nftables is enabled and running
+      when: enable_tls|default('false')|bool
+      become: true
+      ansible.builtin.systemd:
+        name: nftables
+        state: started
+        enabled: true
