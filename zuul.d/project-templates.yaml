@@ -599,3 +599,9 @@
     gate:
       jobs:
         - opstools-deprecated-warning
+
+- project-template:
+    name: rdo-ftbfs-dashboard
+    openstack-promote-component:
+      jobs:
+        - create-ftbfs-report
