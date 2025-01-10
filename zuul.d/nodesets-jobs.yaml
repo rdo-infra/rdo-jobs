@@ -18,11 +18,11 @@
     attempts: 1
 
 - job:
-    name: nodeset-validator-rdo-centos-8
+    name: nodeset-validator-rdo-centos-9
     parent: nodeset-validator-base
-    nodeset: rdo-centos-8-stream
+    nodeset: rdo-centos-9-stream
 
 - project:
     check:
       jobs:
-        - nodeset-validator-rdo-centos-8
+        - nodeset-validator-rdo-centos-9

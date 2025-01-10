@@ -639,3 +639,12 @@
     vars:
       rdoinfo_release: antelope
       scenario: scenario003
+
+# fake job from https://github.com/openstack/openstack-zuul-jobs/blob/a5053c9e39d30f4cb89c8886861ca89e2b2cb717/zuul.d/jobs.yaml#L1765
+- job:
+    name: openstack-multinode-fips
+    abstract: true
+    parent: openstack-fips
+    description: |
+      Base job for OpenStack jobs to enable mutinode jobs while
+      being able to enable FIPS by specifying enable_fips as True.
