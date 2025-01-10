@@ -942,3 +942,58 @@
     groups:
       - name: tempest
         nodes: []
+
+
+- nodeset:
+    name: devstack-single-node-debian-bullseye
+    nodes:
+      - name: controller
+        label: cloud-centos-9-stream
+    groups:
+      - name: tempest
+        nodes: []
+
+- nodeset:
+    name: devstack-single-node-openeuler-22.03
+    nodes:
+      - name: controller
+        label: cloud-centos-9-stream
+    groups:
+      - name: tempest
+        nodes: []
+
+- nodeset:
+    name: openstack-single-node-focal
+    nodes:
+      - name: controller
+        label: cloud-centos-9-stream
+    groups:
+      - name: tempest
+        nodes: []
+
+- nodeset:
+    name: devstack-single-node-fedora-latest
+    nodes:
+      - name: controller
+        label: cloud-centos-9-stream
+    groups:
+      - name: tempest
+        nodes: []
+
+- nodeset:
+    name: devstack-single-node-opensuse-15
+    nodes:
+      - name: controller
+        label: cloud-centos-9-stream
+    groups:
+      - name: tempest
+        nodes: []
+
+- nodeset:
+    name: openstack-single-node-bionic
+    nodes:
+      - name: controller
+        label: cloud-centos-9-stream
+    groups:
+      - name: tempest
+        nodes: []
