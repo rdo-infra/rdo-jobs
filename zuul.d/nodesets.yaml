@@ -915,3 +915,30 @@
     groups:
       - name: tempest
         nodes: []
+
+- nodeset:
+    name: devstack-single-node-debian-bookworm
+    nodes:
+      - name: controller
+        label: debian-bookworm
+    groups:
+      - name: tempest
+        nodes: []
+
+- nodeset:
+    name: openstack-single-node-jammy
+    nodes:
+      - name: controller
+        label: ubuntu-jammy
+    groups:
+      - name: tempest
+        nodes: []
+
+- nodeset:
+    name: devstack-single-node-rockylinux-9
+    nodes:
+      - name: controller
+        label: rockylinux-9
+    groups:
+      - name: tempest
+        nodes: []
