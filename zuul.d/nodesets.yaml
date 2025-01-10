@@ -906,3 +906,13 @@
       - name: subnodes
         nodes:
           - secondary
+
+- nodeset:
+    name: devstack-single-node-centos-9-stream
+    nodes:
+      - name: controller
+        label: centos-9-stream
+    groups:
+      - name: tempest
+        nodes:
+          - []
