@@ -59,6 +59,7 @@
         ping -c 2 -W 2 192.168.122.11
 
     - name: Ensure legacy iptables services are off
+      failed_when: false
       become: true
       when: enable_tls|default('false')|bool
       ansible.builtin.systemd:
