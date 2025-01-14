@@ -16,6 +16,24 @@
       "message": "or, we chould chose an alternative to this https://github.com/openstack-k8s-operators/data-plane-adoption/pull/778\n\nThe point is, meta-ansible code that templates in/changes inline vars.yaml and secret.yaml is hard to follow, also nearly impossible to implement for complex multi-cell/multi-stack data structures, so I define those [directly](https://review.rdoproject.org/r/c/rdo-jobs/+/53192/145/zuul.d/_data_plane_adoption.yaml#159) in rdo-job definition of multi-cell job. And the issue is I cannot override secrets.yaml as it always takes the top precedence.",
       "revId": "ac39ccb339d334b8b5989a578926ad3715a2a5e4",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10a660d4_eceec195",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_multistack_run_repo_tests.yaml",
+        "patchSetId": 145
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 411
+      },
+      "writtenOn": "2025-01-14T12:22:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d547bcdb_ef176f24",
+      "revId": "ac39ccb339d334b8b5989a578926ad3715a2a5e4",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
