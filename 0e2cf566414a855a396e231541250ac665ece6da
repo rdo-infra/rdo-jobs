@@ -33,6 +33,41 @@
       "message": "I have probably removed it because MysqlRootPassword is directly evaluated from TRIPLEO_PASSWORDS in adoption tests cases. Removed external_db_root_password also worked for the multinode testproject:\n\nperiodic-adoption-multinode-to-crc-no-ceph https://softwarefactory-project.io/zuul/t/rdoproject.org/build/34446b3085f14bd79659797670e99772 : SUCCESS in 3h 57m 21s\nperiodic-adoption-multinode-to-crc-ceph https://softwarefactory-project.io/zuul/t/rdoproject.org/build/a97398b8887b47268dc5aac05f5fa59d : SUCCESS in 4h 32m 34s\n\nSo I am really puzzled now how this removal of seemingly redundant external_db_root_password has broken the standalone job(s)",
       "revId": "0e2cf566414a855a396e231541250ac665ece6da",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdcf3009_8a271065",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 411
+      },
+      "writtenOn": "2025-01-28T17:45:38Z",
+      "side": 1,
+      "message": "I see it now. We need to keep that value around, until we have https://github.com/openstack-k8s-operators/data-plane-adoption/pull/746/files#diff-8cd7a6a2a28da0b3c00f3590c3704894c4aff1a2fb1eb4bdd4e20a2616ea6562L8 reworked into https://github.com/openstack-k8s-operators/data-plane-adoption/pull/746/files#diff-50c1d11b8d50eb791a57420a1cb81ce7bce10dee4ec137c139146ade1ca9dc57R94",
+      "parentUuid": "3e83c987_17cdd7cc",
+      "revId": "0e2cf566414a855a396e231541250ac665ece6da",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29038f56_f23a8d8b",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 411
+      },
+      "writtenOn": "2025-01-28T17:45:38Z",
+      "side": 1,
+      "message": "let\u0027s please do also for deploy_tripleo_prepare.yaml (multinode)",
+      "revId": "0e2cf566414a855a396e231541250ac665ece6da",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
