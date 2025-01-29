@@ -223,7 +223,7 @@
           dataplane_os_net_config_iface: nic2
           dataplane_public_iface: eth1
           upstream_dns: "{{ standalone_gateway }}"
-          dataplane_os_net_config_set_route: false
+          dataplane_os_net_config_set_route: falsepodified-master-centos9
           os_cloud_name: overcloud
           edpm_user: zuul
           standalone_ip: "{{ standalone_ip | default('192.168.122.100') }}"
