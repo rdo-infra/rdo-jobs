@@ -16,7 +16,7 @@
       - name: openstack-k8s-operators/ci-framework
         override-checkout: main
       - rdo-jobs
-    roles: &adoption_common_roles
+    roles:
       - zuul: rdo-jobs
       - zuul: github.com/openstack-k8s-operators/ci-framework
     pre-run:
@@ -31,18 +31,17 @@
       - playbooks/data_plane_adoption/set_zuul_artifacts.yaml
       - playbooks/force_job_failure.yaml
     vars:
-      standalone_ip: 192.168.122.100
+      adoption_extra_vars: |
+        supported_volume_backends: ['ceph']
+        supported_backup_backends: ['ceph']
       standalone_vm_inventory: "standalone_vm_inventory"
+      standalone_ip: 192.168.122.100
       standalone_gateway: 192.168.122.10
       standalone_private_key: /home/zuul/.ssh/id_rsa
       upstream_control_plane_dns: 192.168.122.10
       enable_telemetry: "true"
       enable_barbican: "true"
       enable_octavia: "true"
-      adoption_extra_vars: |
-        supported_volume_backends: ['ceph']
-        supported_backup_backends: ['ceph']
-        standalone_ip: {{ standalone_ip }}
     irrelevant-files:
       - ^.*\.md$
       - ^.*\.rst$
@@ -80,7 +79,9 @@
     abstract: true
     parent: cifmw-adoption-base-source-multinode
     required-projects: *dpa_required_projects
-    roles: *adoption_common_roles
+    roles: &multinode_adoption_roles
+      - zuul: rdo-jobs
+      - zuul: github.com/openstack-k8s-operators/ci-framework
     pre-run: &multinode_adoption_pre_run
       - playbooks/data_plane_adoption/subnode_ip.yaml
       - playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml
@@ -95,7 +96,9 @@
       - playbooks/data_plane_adoption/set_zuul_artifacts.yaml
       - playbooks/force_job_failure.yaml
     vars:
-      # undercloud IP
+      adoption_extra_vars: |
+        supported_volume_backends: []
+        supported_backup_backends: []
       standalone_ip: 192.168.122.100
       standalone_gateway: 192.168.122.10
       standalone_private_key: /home/zuul/.ssh/id_rsa
@@ -105,10 +108,6 @@
         - 192.168.122.107
         - 192.168.122.108
       enable_octavia: "true"
-      adoption_extra_vars: |
-        supported_volume_backends: []
-        supported_backup_backends: []
-        standalone_ip: {{ standalone_ip }}
       edpm_node_controller_as_net_ips:
         - 192.168.122.103
         - 192.168.122.104
@@ -137,7 +136,7 @@
     abstract: true
     parent: cifmw-adoption-base-multinode-networker
     required-projects: *dpa_required_projects
-    roles: *adoption_common_roles
+    roles: *multinode_adoption_roles
     pre-run:
       - playbooks/data_plane_adoption/subnode_ip.yaml
       - playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml
@@ -153,8 +152,6 @@
       edpm_node_ips:
         - 192.168.122.106
         - 192.168.122.107
-      adoption_extra_vars: |
-        standalone_ip: {{ standalone_ip }}
     host-vars:
       undercloud:
         address_suffix: 100
