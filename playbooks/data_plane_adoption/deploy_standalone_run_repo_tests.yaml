@@ -71,13 +71,6 @@
       ansible.builtin.shell:
         ansible-playbook {{ rdo_dir }}/standalone_prepare_tests.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
 
-    - name: Place internal IP into vars.yaml for Mariadb multi-cell
-      when: multi_cell|default(false)
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/vars.yaml"
-        regexp: "'^source_mariadb_ip:'"
-        value: "source_mariadb_ip:\n  default: {{ source_mariadb_ips[0] }}"
-
     - name: Place internal IP into vars.yaml for Mariadb
       when: not multi_cell|default(false)
       ansible.builtin.lineinfile:
@@ -165,8 +158,6 @@
         regexp: "{{ item.key }}:"
         line: "{{ item.key }}: {{ tripleo_passwords['content'] | b64decode | regex_search(item.regex + ': (.+)', '\\1') | first }}"
       loop:
-        - key: 'source_db_root_password'
-          regex: 'MysqlRootPassword'
         - key: 'aodh_password'
           regex: 'AodhPassword'
         - key: 'barbican_password'
