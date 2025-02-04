@@ -158,6 +158,7 @@
       enable_octavia: false  # keep octavia disabled until adoption procedure is finished
       cloud_domain: "ooo.test"
       ipa_container_ip: "10.255.255.25"
+      migrate_swift: "true"
       registry_namespace: podified-antelope-centos9
       openstack_release: antelope
       promote_source: podified-ci-testing
