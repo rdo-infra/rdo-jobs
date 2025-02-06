@@ -35,7 +35,12 @@
     parent: container-tcib-build-centos-9-master
     vars:
       cifmw_build_containers_registry_namespace: podified-antelope-centos9
+      cifmw_build_containers_install_from_source: true
       openstack_release: antelope
+    required-projects:
+      - name: openstack-k8s-operators/tcib
+        override-checkout: '18.0-fr1'
+
 
 ## container push jobs
 - job:
