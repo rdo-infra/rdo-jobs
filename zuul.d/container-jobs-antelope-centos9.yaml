@@ -36,6 +36,10 @@
     vars:
       cifmw_build_containers_registry_namespace: podified-antelope-centos9
       openstack_release: antelope
+    required-projects:
+      - name: openstack-k8s-operators/tcib
+        override-checkout: '18.0'
+
 
 ## container push jobs
 - job:
