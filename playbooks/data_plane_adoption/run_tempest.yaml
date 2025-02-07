@@ -60,10 +60,6 @@
     content: "{{ tempest_run_output.stdout_lines }} \n {{ tempest_run_output.stderr}}"
     dest: "{{ pre_adoption_tempest_dir }}/dpa_tempest_workspace/tempest_run_output.txt"
 
-- name: REMOVE BEFORE MERGE!!!
-  debug:
-    var: tempest_run_output
-
 - name: Delete subnet created for tempest
   shell:
     cmd: "OS_CLOUD={{ os_cloud_name }} openstack subnet delete {{ subnet_details.id }}"
