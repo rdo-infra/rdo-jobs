@@ -94,6 +94,22 @@
         - "edpm_node_ip"
         - "source_ovndb_ip"
 
+    - name: Set source DB in vars.yaml
+      ansible.builtin.blockinfile:
+        marker_begin: "BEGIN edpm_node_ip hostname vars"
+        marker_end: "END edpm_node_ip hostname vars"
+        path: "{{ rdo_dir }}/vars.yaml"
+        block: |
+          {%+ if multi_cell|default(false) +%}
+          source_galera_members:
+            default:
+              - name: standalone
+                ip: {{ source_mariadb_ips[0] }}
+          {%+ else +%}
+          source_galera_members: |
+            ["standalone"]="{{ source_mariadb_ips[0] }}"
+          {%+ endif +%}
+
     - name: Set EDPM node hostname in vars.yaml
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
