@@ -24,18 +24,22 @@
         - rpmlint:
             dependencies:
               - DLRN-rpmbuild-centos9
+              - DLRN-rpmbuild-centos10
             branches: ^rpm-master$
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos9
+        - DLRN-rpmbuild-centos10
         - distgit-cbs-validate-centos9
     gate:
       jobs:
         - DLRN-rpmbuild
         - DLRN-rpmbuild-centos9
+        - DLRN-rpmbuild-centos10
         - distgit-cbs-final-build-centos9
     experimental:
       jobs:
         - DLRN-rpmbuild-centos9
+        - DLRN-rpmbuild-centos10
 
 
 - project-template:
