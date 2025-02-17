@@ -7,6 +7,18 @@
   when:
     - ansible_distribution == "CentOS"
 
+- name: Install mock from EPEL repo
+  changed_when: true
+  shell:
+    cmd: |
+      sudo dnf install -y epel-release;
+      sudo dnf install -y mock;
+      sudo dnf remove -y epel-release;
+  become: true
+  when:
+    - ansible_distribution == "CentOS"
+    - ansible_distribution_major_version == "10"
+
 - name: Ensure bindep.txt dependencies are installed
   include_role:
     name: bindep
