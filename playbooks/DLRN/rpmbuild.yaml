@@ -36,6 +36,15 @@
         state: present
       become: true
 
+    - name: Ensure python3.12 is installed
+      package:
+        name:
+          - python3.12
+        state: present
+      become: true
+      when:
+        - centos_version == "centos10"
+
     - name: run_tests.sh
       changed_when: true
       shell:
@@ -53,6 +62,9 @@
           elif [ ${CENTOS_VERS} = "centos9" ]; then
              export PYTHON_VERSION="py39"
              export TARGET="centos9-stream"
+          elif [ ${CENTOS_VERS} = "centos10" ]; then
+             export PYTHON_VERSION="py312"
+             export TARGET="centos10-stream"
           fi
           #
           if [ -z "{{ pinned | default('') }}" ];then

@@ -92,8 +92,22 @@
       centos_version: 'centos9'
 
 - job:
+    name: DLRN-rpmbuild-centos10
+    parent: DLRN-rpmbuild-base
+    branches: ^((rpm-master)|(epoxy-rdo))$
+    vars:
+      centos_version: 'centos10'
+
+- job:
     name: DLRN-rpmbuild-centos9-pinned
     parent: DLRN-rpmbuild-centos9
+    branches: ^rpm-master$
+    vars:
+      pinned: true
+
+- job:
+    name: DLRN-rpmbuild-centos10-pinned
+    parent: DLRN-rpmbuild-centos10
     branches: ^rpm-master$
     vars:
       pinned: true
