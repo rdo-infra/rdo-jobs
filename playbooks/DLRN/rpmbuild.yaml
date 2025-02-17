@@ -53,6 +53,9 @@
           elif [ ${CENTOS_VERS} = "centos9" ]; then
              export PYTHON_VERSION="py39"
              export TARGET="centos9-stream"
+          elif [ ${CENTOS_VERS} = "centos10" ]; then
+             export PYTHON_VERSION="py312"
+             export TARGET="centos10-stream"
           fi
           #
           if [ -z "{{ pinned | default('') }}" ];then
