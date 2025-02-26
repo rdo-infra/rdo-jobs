@@ -197,6 +197,8 @@
           regex: 'OctaviaPassword'
         - key: 'swift_password'
           regex: 'SwiftPassword'
+        - key: 'libvirt_password'
+          regex: 'LibvirtTLSPassword'
 
     - name: Set standalone login var controller1_ssh in secrets.yaml
       ansible.builtin.lineinfile:
