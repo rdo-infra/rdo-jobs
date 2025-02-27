@@ -16,6 +16,23 @@
       "message": "please merge",
       "revId": "000eaec8744c97eec00c5d9f3094defdbe68f764",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0350f7b_87ddf835",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 495
+      },
+      "writtenOn": "2025-02-27T14:40:29Z",
+      "side": 1,
+      "message": "test project passed \nhttps://softwarefactory-project.io/zuul/t/rdoproject.org/status#56607\n\nI can see \n```\nTASK [dataplane_adoption : create libvirt-secret] ******************************\nchanged: [localhost] \u003d\u003e {\"changed\": true, \"cmd\": \"set -euxo pipefail\\n\\n\\noc apply -f - \u003c\u003cEOF\\napiVersion: v1\\nkind: Secret\\nmetadata:\\n    name: libvirt-secret\\n    namespace: openstack\\ntype: Opaque\\ndata:\\n  LibvirtPassword: eHl5ZkJUUDNSM1RVdjZWNnNpQ1pvUVVZVQ\u003d\u003d\\nEOF\\n\", \"delta\": \"0:00:00.243428\", \"end\": \"2025-02-27 07:55:27.780165\", \"msg\": \"\", \"rc\": 0, \"start\": \"2025-02-27 07:55:27.536737\", \"stderr\": \"+ oc apply -f -\", \"stderr_lines\": [\"+ oc apply -f -\"], \"stdout\": \"secret/libvirt-secret configured\", \"stdout_lines\": [\"secret/libvirt-secret configured\"]}\n```\n\nin the logs.",
+      "revId": "000eaec8744c97eec00c5d9f3094defdbe68f764",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
