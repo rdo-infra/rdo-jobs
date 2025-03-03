@@ -155,7 +155,7 @@
     parent: adoption-multinode-to-crc-no-ceph
     vars:
       enable_tls: "true"
-      enable_octavia: false  # keep octavia disabled until adoption procedure is finished
+      enable_octavia: "true"  # keep octavia disabled until adoption procedure is finished
       cloud_domain: "ooo.test"
       ipa_container_ip: "10.255.255.25"
       migrate_swift: "true"
