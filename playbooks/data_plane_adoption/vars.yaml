@@ -36,26 +36,6 @@ source_galera_members:
     - name: standalone.localdomain
       ip: 172.17.0.100
 
-edpm_nodes:
-  cell1:
-    standalone:
-      hostName: standalone.localdomain
-      ansible:
-        ansibleHost: 192.168.122.100
-      networks:
-        - defaultRoute: true
-          fixedIP: 192.168.122.100
-          name: ctlplane
-          subnetName: subnet1
-        - name: internalapi
-          subnetName: subnet1
-        - name: storage
-          subnetName: subnet1
-        - name: tenant
-          subnetName: subnet1
-        - name: storagemgmt
-          subnetName: subnet1
-
 cells:
   - default
 
