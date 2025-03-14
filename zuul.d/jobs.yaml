@@ -96,10 +96,6 @@
     parent: DLRN-rpmbuild-base
     voting: false
     branches: ^((rpm-master)|(epoxy-rdo))$
-    nodeset:
-      nodes:
-        - name: rdo-centos-10-stream
-          label: cloud-centos-10-stream
     vars:
       centos_version: 'centos10'
 
