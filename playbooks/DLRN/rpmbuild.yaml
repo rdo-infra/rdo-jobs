@@ -66,6 +66,7 @@
           if [[ "{{ zuul.pipeline }}" =~ "openstack-" ]]; then
               ARGS=""
           fi
+          curl -L -o /dev/null ${REPO_SERVER}/${CENTOS_VERS}/delorean-deps.repo
           ./scripts/run_tests.sh {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/rdoinfo'].src_dir }} $ARGS
         chdir: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
       environment:
