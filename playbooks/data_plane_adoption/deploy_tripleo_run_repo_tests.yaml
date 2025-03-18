@@ -226,6 +226,12 @@
         regexp: "'^neutron_qe_test:'"
         value: "neutron_qe_test: {{ neutron_qe_test | default('false') }}"
 
+    - name: Set tobiko_qe_test in vars.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: "'^tobiko_qe_test:'"
+        value: "tobiko_qe_test: {{ tobiko_qe_test | default('false') }}"
+
     - name: Set neutron_qe_dir in vars.yaml
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
