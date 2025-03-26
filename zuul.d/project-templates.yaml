@@ -373,6 +373,46 @@
     name: weirdo-master-promotion-pipeline
     openstack-periodic-daily:
       jobs:
+        - weirdo-flamingo-promote-consistent-to-puppet-ci-testing
+        - weirdo-flamingo-promote-puppet-scenario001-centos-stream-9:
+            dependencies:
+              - weirdo-flamingo-promote-consistent-to-puppet-ci-testing
+        - weirdo-flamingo-promote-puppet-scenario002-centos-stream-9:
+            dependencies:
+              - weirdo-flamingo-promote-consistent-to-puppet-ci-testing
+        - weirdo-flamingo-promote-puppet-scenario003-centos-stream-9:
+            dependencies:
+              - weirdo-flamingo-promote-consistent-to-puppet-ci-testing
+        - weirdo-flamingo-promote-puppet-scenario004-centos-stream-9:
+            dependencies:
+              - weirdo-flamingo-promote-consistent-to-puppet-ci-testing
+        - weirdo-flamingo-promote-puppet-scenario005-centos-stream-9:
+            dependencies:
+              - weirdo-flamingo-promote-consistent-to-puppet-ci-testing
+        - weirdo-flamingo-promote-packstack-scenario001-centos-stream-9:
+            dependencies:
+              - weirdo-flamingo-promote-consistent-to-puppet-ci-testing
+        - weirdo-flamingo-promote-packstack-scenario002-centos-stream-9:
+            dependencies:
+              - weirdo-flamingo-promote-consistent-to-puppet-ci-testing
+        - weirdo-flamingo-promote-packstack-scenario003-centos-stream-9:
+            dependencies:
+              - weirdo-flamingo-promote-consistent-to-puppet-ci-testing
+        - weirdo-flamingo-promote-puppet-ci-testing-to-puppet-passed-ci:
+            dependencies:
+              - weirdo-flamingo-promote-puppet-scenario001-centos-stream-9
+              - weirdo-flamingo-promote-puppet-scenario002-centos-stream-9
+              - weirdo-flamingo-promote-puppet-scenario003-centos-stream-9
+              - weirdo-flamingo-promote-puppet-scenario004-centos-stream-9
+              - weirdo-flamingo-promote-puppet-scenario005-centos-stream-9
+              - weirdo-flamingo-promote-packstack-scenario001-centos-stream-9
+              - weirdo-flamingo-promote-packstack-scenario002-centos-stream-9
+              - weirdo-flamingo-promote-packstack-scenario003-centos-stream-9
+
+- project-template:
+    name: weirdo-epoxy-promotion-pipeline
+    openstack-periodic-daily2:
+      jobs:
         - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
         - weirdo-epoxy-promote-puppet-scenario001-centos-stream-9:
             dependencies:
