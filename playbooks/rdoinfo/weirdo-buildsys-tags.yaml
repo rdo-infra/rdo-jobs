@@ -168,6 +168,7 @@
               -e content_provider_containers_image_tag="{{ containers_image_tag }}" \
               -e openstack_release=$RELEASE \
           {% endif %}
+              -e refspec=refs/changes/88/945688/1
               $ADDITIONAL_OPTS
 
       changed_when: true
