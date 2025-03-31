@@ -12,6 +12,7 @@
         src: '/root/'
         dest: '/home/zuul/logs/standalone/root/'
         mode: pull
+      ignore_errors: true
 
     - name: Ensure logs/standalone/containers folder exists
       delegate_to: localhost
