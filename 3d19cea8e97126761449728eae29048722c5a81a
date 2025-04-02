@@ -16,6 +16,23 @@
       "message": "tested here https://github.com/openstack-k8s-operators/data-plane-adoption/pull/881",
       "revId": "3d19cea8e97126761449728eae29048722c5a81a",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "466b9744_1247fb9b",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 411
+      },
+      "writtenOn": "2025-04-02T10:08:22Z",
+      "side": 1,
+      "message": "So, edpm_nodes is broadly used in existing multinode jobs, so the MUST convert it for multi-cell data formats.\nBut it was never used until that patch in standalone jobs, and there is nothing to convert, it comes with cell1 dict key out of box.\n\nWhile source_mariadb_ip, source_galera_members is used in both standalone and mutlinode, so we must convert it for both files",
+      "revId": "3d19cea8e97126761449728eae29048722c5a81a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
