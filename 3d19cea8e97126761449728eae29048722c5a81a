@@ -101,6 +101,24 @@
       "message": "why we need this as i same we have in role defaults https://github.com/openstack-k8s-operators/data-plane-adoption/blob/e91511f452dc43f2c17f3c35a0e7bb6b32465d27/tests/roles/dataplane_adoption/defaults/main.yaml#L73-L91\n\nPreviously we dropped it from vars for same reason https://review.rdoproject.org/r/c/rdo-jobs/+/56653",
       "revId": "3d19cea8e97126761449728eae29048722c5a81a",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0800360d_48888206",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2025-04-03T11:16:15Z",
+      "side": 1,
+      "message": "Looking again and discussing with Mikolaj got the reason as now common_defaults role also rely on edpm_nodes: now with change https://github.com/openstack-k8s-operators/data-plane-adoption/pull/881\n\nSome reasoning on commit message about this would have been good.",
+      "parentUuid": "205eb6d5_93869695",
+      "revId": "3d19cea8e97126761449728eae29048722c5a81a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
