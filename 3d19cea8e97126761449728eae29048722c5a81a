@@ -84,6 +84,23 @@
       "message": "So, edpm_nodes is broadly used in existing multinode jobs, so the MUST convert it for multi-cell data formats.\nBut it was never used until that patch in standalone jobs, and there is nothing to convert, it comes with cell1 dict key out of box.\n\nWhile source_mariadb_ip, source_galera_members is used in both standalone and mutlinode, so we must convert it for both files",
       "revId": "3d19cea8e97126761449728eae29048722c5a81a",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "205eb6d5_93869695",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2025-04-03T10:57:02Z",
+      "side": 1,
+      "message": "why we need this as i same we have in role defaults https://github.com/openstack-k8s-operators/data-plane-adoption/blob/e91511f452dc43f2c17f3c35a0e7bb6b32465d27/tests/roles/dataplane_adoption/defaults/main.yaml#L73-L91\n\nPreviously we dropped it from vars for same reason https://review.rdoproject.org/r/c/rdo-jobs/+/56653",
+      "revId": "3d19cea8e97126761449728eae29048722c5a81a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
