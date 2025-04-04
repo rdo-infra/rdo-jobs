@@ -207,6 +207,55 @@
       cifmw_tempest_tempestconf_config: *tempestconf_config_tls
 
 - job:
+    name: periodic-adoption-multinode-to-crc-no-ceph-novacells
+    description: multiple Nova cells source OSP17.1 adopted to RHOSO 18. No Ceph, no tls, no telemetry.
+    parent: adoption-multinode-to-extracted-crc-no-ceph-novacells
+    vars:
+      enable_tls: "false"
+      cloud_domain: "ooo.test"
+      migrate_swift: "false"
+      registry_namespace: podified-antelope-centos9
+      openstack_release: antelope
+      promote_source: podified-ci-testing
+      cifmw_repo_setup_promotion: podified-ci-testing
+      cifmw_dlrn_report_result: true
+      cifmw_repo_setup_branch: antelope
+      cifmw_run_test_role: test_operator
+      cifmw_test_operator_tempest_registry: quay.rdoproject.org
+      cifmw_test_operator_tempest_namespace: podified-antelope-centos9
+      cifmw_test_operator_tempest_container: openstack-tempest-all
+      cifmw_test_operator_timeout: 10000
+      cifmw_test_operator_default_groups:
+        - openstack-operator
+        - keystone-operator
+        - neutron-operator
+        - nova-operator
+        - glance-operator
+        - cinder-operator
+      cifmw_test_operator_default_jobs:
+        - openstack-operator
+        - keystone-operator
+        - neutron-operator
+        - glance-operator
+        - cinder-operator
+        - nova-operator
+      cifmw_test_operator_tempest_exclude_list: |
+        # Disable image tests that require an active cinder-volume (disabled in the "no-ceph" adoption job)
+        tempest.api.image.v2.test_images_dependency.ImageDependencyTests.*
+        tempest.api.compute.servers.test_server_metadata.*
+        tempest.api.compute.admin.test_servers_on_multinodes.ServersOnMultiNodesTest
+        tempest.api.compute.admin.test_migrations.MigrationsAdminTest.*
+        tempest.api.compute.servers.test_delete_server.DeleteServersTestJSON.test_delete_server_while_in_verify_resize_state
+        tempest.api.compute.servers.test_disk_config.ServerDiskConfigTestJSON.test_resize_server_from_auto_to_manual
+        tempest.api.compute.servers.test_disk_config.ServerDiskConfigTestJSON.test_resize_server_from_manual_to_auto
+        tempest.api.network.admin.test_floating_ips_admin_actions.FloatingIPAdminTestJSON.test_list_floating_ips_from_admin_and_nonadmin
+        # Disable prometheus based autoscaling testing until we have Caracal content.
+        telemetry_tempest_plugin.scenario.test_telemetry_integration_prometheus.PrometheusGabbiTest.test_autoscaling
+        # Disable Cinder volume tests (cinder-volume not deployed in no-ceph jobs)
+        tempest.api.volume
+      cifmw_tempest_tempestconf_config: *tempestconf_config_tls
+
+- job:
     name: periodic-adoption-multinode-to-crc-ceph
     description: multinode source OSP 17.1 adopted to crc RHOSO 18. Has Ceph, telemetry enabled and no TLS.
     parent: periodic-adoption-multinode-to-crc-no-ceph
