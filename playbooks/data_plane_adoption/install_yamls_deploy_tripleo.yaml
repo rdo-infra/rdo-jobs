@@ -25,7 +25,7 @@
           EDPM_CONFIGURE_NETWORKING: "{{ configure_networking | default('false') | string | lower }}"
           EDPM_ATTACH_EXTNET: "{{ attach_external_net | default('true') | string | lower }}"
           DNS_DOMAIN: "{{ cloud_domain | default('localdomain') }}"
-          TLS_ENABLED: "{{ enable_tls | default('false') }}"
+          TLS_ENABLED: true
           RH_REGISTRY_PWD: ""
           RH_REGISTRY_USER: ""
           TELEMETRY_ENABLED: "{{ enable_telemetry | default('false') }}"
