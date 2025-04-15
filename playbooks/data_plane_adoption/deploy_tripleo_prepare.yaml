@@ -59,7 +59,6 @@
           loop: "{{ groups['rh-subscription'] }}"
 
     - name: Setup overcloud nodes for free-ipa when enable_tls true
-      when: enable_tls|default('false')|bool
       vars:
         overcloud_hosts: "{{ groups['rh-subscription'] | reject('search', 'undercloud') | list }}"
       block:
