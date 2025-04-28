@@ -1,0 +1,8 @@
+- hosts: all
+  become: true
+  tasks:
+    - name: Download gpg file expected by repo check
+      get_url:
+        url: https://www.centos.org/keys/RPM-GPG-KEY-CentOS-Official-SHA256
+        dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial-SHA256
+        mode: "0644"
