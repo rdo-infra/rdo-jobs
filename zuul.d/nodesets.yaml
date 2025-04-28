@@ -997,3 +997,27 @@
     groups:
       - name: tempest
         nodes: []
+
+# CentOS 10 nodesets
+- nodeset:
+    name: cloud-centos-10-stream
+    nodes:
+      - name: primary
+        label: cloud-centos-10-stream
+    groups:
+      - name: switch
+        nodes: []
+      - name: peers
+        nodes: []
+
+- nodeset:
+    name: single-centos-10-stream-node
+    nodes:
+      - name: primary
+        label: cloud-centos-10-stream
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
