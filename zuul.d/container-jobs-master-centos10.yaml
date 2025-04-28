@@ -1,0 +1,60 @@
+---
+# master promote jobs - CentOS 10
+
+## promote-consistent-to-podified-ci-testing
+- job:
+    name: periodic-centos-10-master-promote-consistent-to-podified-ci-testing
+    parent: openstack-ci-base-promote-hash
+    nodeset: cloud-centos-10-stream
+    vars:
+      release: master
+      promote_source: consistent
+      promote_target: podified-ci-testing
+
+## promote-podified-ci-testing-to-current-podified
+- job:
+    name: periodic-centos-10-master-promote-podified-ci-testing-to-current-podified
+    parent: openstack-ci-base-promote-hash
+    nodeset: cloud-centos-10-stream
+    vars:
+      release: master
+      promote_source: podified-ci-testing
+      promote_target: current-podified
+
+## dlrn check promotion criteria job from podified-ci-testing to current-podified
+- job:
+    name: periodic-centos-10-master-dlrn-check-promotion-criteria-podified-ci-testing-to-current-podified
+    parent: periodic-centos-9-master-dlrn-check-promotion-criteria-podified-ci-testing-to-current-podified
+    nodeset: cloud-centos-10-stream
+    vars:
+      cifmw_dlrn_promote_criteria_file: "{{ ansible_user_dir }}/src/review.rdoproject.org/rdo-jobs/criteria/centos10/{{ cifmw_repo_setup_branch }}.yaml"
+
+## container build job
+- job:
+    name: container-tcib-build-centos-10-master
+    parent: container-tcib-build-centos-9-master
+    nodeset: single-centos-10-stream-node
+    timeout: 3000
+    pre-run: playbooks/podified-containers/centos-10-copy-gpg.yaml
+    vars:
+      tcib_repo: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/tcib"
+      cifmw_build_containers_tcib_src: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/tcib"
+      openstack_release: master
+      cifmw_build_containers_repo_dir: "{{ ansible_user_dir }}/ci-framework/artifacts/repositories"
+      cifmw_build_containers_container_name_prefix: openstack
+      cifmw_build_containers_containers_base_image: quay.io/centos/centos:stream10
+      promote_source: podified-ci-testing
+      cifmw_repo_setup_promotion: podified-ci-testing
+      cifmw_build_containers_push_registry: quay.rdoproject.org
+      cifmw_build_containers_registry_namespace: podified-master-centos10
+      trunk_url: https://trunk.rdoproject.org/
+      cifmw_build_containers_exclude_containers:
+        master:
+          centos10:
+            - redis
+            - horizontest
+      cifmw_build_containers_install_from_source: true
+
+
+## container push job
+# To add after namespaces exist
