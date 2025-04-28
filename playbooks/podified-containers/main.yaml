@@ -30,14 +30,27 @@
     - name: Use proxy mirrors
       when:
         - mirror_path.stat.exists
-      ansible.builtin.shell: |
-        source /etc/ci/mirror_info.sh
-        echo "export NODEPOOL_CENTOS_MIRROR=${NODEPOOL_CENTOS_MIRROR}" >> repo_setup_env
-        echo "export NODEPOOL_RDO_PROXY=${NODEPOOL_RDO_PROXY}" >> repo_setup_env
-        sed -i -e "s|https://trunk.rdoproject.org|$NODEPOOL_RDO_PROXY|g" *.repo
-        sed -i -e "s|http://mirror.stream.centos.org|$NODEPOOL_CENTOS_MIRROR|g" *.repo
-      args:
-        chdir: "{{ ansible_user_dir }}/ci-framework/artifacts/repositories"
+      block:
+        - name: Use RDO proxy mirrors
+          ansible.builtin.shell: |
+            source /etc/ci/mirror_info.sh
+            echo "export NODEPOOL_RDO_PROXY=${NODEPOOL_RDO_PROXY}" >> repo_setup_env
+            sed -i -e "s|https://trunk.rdoproject.org|$NODEPOOL_RDO_PROXY|g" *.repo
+          args:
+            chdir: "{{ ansible_user_dir }}/ci-framework/artifacts/repositories"
+
+        # TODO(rlandy) remove when CentOS 10 mirrors exist on Nodepool Hosts
+        # mirror ref: http://mirror.regionone.vexxhost-nodepool-sf.rdoproject.org/centos-stream/
+        - name: Use RDO CentOS mirrors (remove CentOS 10 conditional when Nodepool mirrors exist)
+          when:
+            - ansible_distribution | lower == 'centos'
+            - ansible_distribution_major_version is not version('10', '==')
+          ansible.builtin.shell: |
+            source /etc/ci/mirror_info.sh
+            echo "export NODEPOOL_CENTOS_MIRROR=${NODEPOOL_CENTOS_MIRROR}" >> repo_setup_env
+            sed -i -e "s|http://mirror.stream.centos.org|$NODEPOOL_CENTOS_MIRROR|g" *.repo
+          args:
+            chdir: "{{ ansible_user_dir }}/ci-framework/artifacts/repositories"
 
     - name: Copy repo-setup generated repos to yum.repos.d directory
       become: true
