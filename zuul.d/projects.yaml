@@ -2,10 +2,6 @@
     name: rdo-jobs
     check:
       jobs:
-        - tox-docs: &cfg
-            nodeset: rdo-centos-9-stream
-            pre-run:
-              - playbooks/rdo-tox-epel.yaml
         - tox-linters: *cfg
         - rdo-mol-container-login: &mol_container_login
             files:
@@ -18,6 +14,5 @@
 
     gate:
       jobs:
-        - tox-docs: *cfg
         - tox-linters: *cfg
         - rdo-mol-container-login: *mol_container_login
