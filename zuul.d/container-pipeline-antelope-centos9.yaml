@@ -70,3 +70,5 @@
         - periodic-container-tcib-build-push-centos-9-antelope:
             dependencies: *promote_hash_to_testing
         - periodic-centos-9-antelope-promote-consistent-to-podified-ci-testing
+        # Adding epoxy promote job to produce a hash for content provider jobs
+        - periodic-centos-9-epoxy-promote-consistent-to-podified-ci-testing
