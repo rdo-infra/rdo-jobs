@@ -72,3 +72,12 @@
         - periodic-container-tcib-build-push-centos-9-master:
             dependencies: *promote_hash_to_testing
         - periodic-centos-9-master-promote-consistent-to-podified-ci-testing
+        # Master CentOS 10 build/push/test jobs
+        - periodic-container-tcib-build-push-centos-10-master:
+            vars:
+              promote_source: current
+              cifmw_repo_setup_promotion: current
+            # When DLRN promotions are possible
+            # dependencies:
+              # - periodic-centos-10-master-promote-consistent-to-podified-ci-testing
+        # - periodic-centos-10-master-promote-consistent-to-podified-ci-testing
