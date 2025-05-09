@@ -1,0 +1,30 @@
+---
+# epoxy promote jobs
+
+## promote-consistent-to-podified-ci-testing
+- job:
+    name: periodic-centos-9-epoxy-promote-consistent-to-podified-ci-testing
+    parent: periodic-centos-9-master-promote-consistent-to-podified-ci-testing
+    vars:
+      release: epoxy
+
+## promote-podified-ci-testing-to-current-podified
+- job:
+    name: periodic-centos-9-epoxy-promote-podified-ci-testing-to-current-podified
+    parent: periodic-centos-9-master-promote-podified-ci-testing-to-current-podified
+    vars:
+      release: epoxy
+
+## dlrn promotion check crtieria from podified-ci-testing to current-podified
+- job:
+    name: periodic-centos-9-epoxy-dlrn-check-promotion-criteria-podified-ci-testing-to-current-podified
+    parent: periodic-centos-9-master-dlrn-check-promotion-criteria-podified-ci-testing-to-current-podified
+    vars:
+      cifmw_repo_setup_branch: epoxy
+
+## dlrn-promote-podified-ci-testing to current-podified
+- job:
+    name: periodic-centos-9-epoxy-dlrn-promote-podified-ci-testing-to-current-podified
+    parent: periodic-centos-9-master-dlrn-promote-podified-ci-testing-to-current-podified
+    vars:
+      cifmw_repo_setup_branch: epoxy
