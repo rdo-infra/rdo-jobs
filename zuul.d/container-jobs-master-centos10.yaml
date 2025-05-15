@@ -120,3 +120,37 @@
       container_build_push_job_name: periodic-edpm-build-push-images-centos-10-master
       cifmw_dlrn_report_result: true
       cifmw_repo_setup_branch: master
+
+## container tag job
+- job:
+    name: container-tag-centos-10-master
+    parent: container-tcib-build-base
+    abstract: true
+    nodeset: single-centos-10-stream-node
+    pre-run:
+      - playbooks/base/pre.yaml
+      - playbooks/podified-containers/centos-10-copy-gpg.yaml
+    run: playbooks/podified-containers/tag-containers.yaml
+    required-projects:
+      - name: github.com/openstack-k8s-operators/ci-framework
+        override-checkout: main
+    roles:
+      - zuul: github.com/openstack-k8s-operators/ci-framework
+    vars:
+      cifmw_build_containers_tag_string: current-tested
+      cifmw_build_containers_check_logs_for_images: false
+
+- job:
+    name: periodic-container-tag-centos-10-master
+    parent: container-tag-centos-10-master
+    dependencies: ["periodic-container-tcib-build-push-centos-10-master"]
+    vars:
+      buildah_login: true
+      registry_login_enabled: true
+      cifmw_dlrn_report_result: true
+      openstack_release: master
+      secret_distro_ver: "_{{ ansible_distribution | lower }}{{ ansible_distribution_major_version }}"
+      cifmw_build_containers_container_name_prefix: openstack
+      cifmw_build_containers_push_registry: quay.rdoproject.org
+      cifmw_build_containers_registry_namespace: podified-master-centos10
+      trunk_url: https://trunk.rdoproject.org/

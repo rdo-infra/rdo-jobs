@@ -72,3 +72,8 @@
     - name: Copy files from {{ work_dir }} on node
       include_role:
         name: fetch-output
+
+    - name: Return containers build job log path
+      zuul_return:
+        data:
+          containers_built_artifacts_url: "{{ zuul_log_url }}/{{ zuul_log_path }}/"
