@@ -1,0 +1,7 @@
+---
+- hosts: primary
+  tasks:
+    - name: Tag containers with human readable tag
+      ansible.builtin.include_role:
+        name: build_containers
+        tasks_from: 'tag.yml'
