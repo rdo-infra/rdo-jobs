@@ -1,0 +1,10 @@
+---
+- hosts: primary
+  tasks:
+    - name: Tag containers with human readable tag
+      ansible.builtin.include_role:
+        name: build_containers
+        tasks_from: 'tag.yml'
+      vars:
+        cifmw_build_containers_check_logs_for_images: "{{ cifmw_build_containers_check_logs_for_image }}"
+        cifmw_build_containers_tag_string: "{{ cifmw_build_containers_tag_string }}"
