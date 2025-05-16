@@ -74,11 +74,8 @@
       cifmw_repo_setup_promotion: podified-ci-testing
       cifmw_build_containers_push_registry: quay.rdoproject.org
       cifmw_build_containers_registry_namespace: podified-master-centos10
+      cifmw_build_containers_image_tag: "{{ cifmw_repo_setup_promotion }}"
       trunk_url: https://trunk.rdoproject.org/
-      cifmw_build_containers_exclude_containers:
-        master:
-          centos10:
-            - horizontest
 
 ## container push job
 - job:
