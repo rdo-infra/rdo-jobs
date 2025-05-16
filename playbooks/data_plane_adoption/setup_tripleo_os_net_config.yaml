@@ -16,17 +16,48 @@
     manage_default_route: "{{ tripleo_network.manage_default_route | default(false) | bool }}"
     tripleo_networking: "{{ tripleo_network.configure_networking | default(false) | bool }}"
   tasks:
-    - name: Setup repos and install deps for running os-net-config
+    - name: Enable baseos subscription
       become: true
-      ansible.builtin.shell: |
-        sudo subscription-manager repos \
-           --enable=rhel-9-for-x86_64-baseos-eus-rpms \
-           --enable=rhel-9-for-x86_64-appstream-eus-rpms \
-           --enable=rhel-9-for-x86_64-highavailability-eus-rpms \
-           --enable=openstack-17.1-for-rhel-9-x86_64-rpms \
-           --enable=fast-datapath-for-rhel-9-x86_64-rpms
-        dnf install -y openvswitch os-net-config
-        mkdir -p /etc/os-net-config/
+      community.general.rhsm_repository:
+        name: "rhel-9-for-{{ ansible_architecture }}-baseos-eus-rpms"
+        state: enabled
+
+    - name: Enable appstream subscription
+      become: true
+      community.general.rhsm_repository:
+        name: "rhel-9-for-{{ ansible_architecture }}-appstream-eus-rpms"
+        state: enabled
+
+    - name: Enable highavailability subscription
+      become: true
+      community.general.rhsm_repository:
+        name: "rhel-9-for-{{ ansible_architecture }}-highavailability-eus-rpms"
+
+    - name: Install openstack repo
+      become: true
+      community.general.rhsm_repository:
+        name: "openstack-17.1-for-rhel-9-{{ ansible_architecture }}-rpms"
+        state: enabled
+
+    - name: Enable fast datapath to install openvswitch
+      become: true
+      community.general.rhsm_repository:
+        name: "fast-datapath-for-rhel-9-{{ ansible_architecture }}-rpms"
+        state: enabled
+
+    - name: Install openvswitch and os-net-config
+      become: true
+      ansible.builtin.package:
+        name:
+          - openvswitch
+          - os-net-config
+        state: present
+
+    - name: Create os-net-config dir
+      become: true
+      ansible.builtin.file:
+        path: /etc/os-net-config
+        state: directory
 
     - name: Template out the os-net-config config from install_yamls src checkout
       become: true
@@ -73,10 +104,15 @@
         path: /home/zuul/.ssh/id_rsa.pub
       register: controller_ssh_pub
 
+    - name: Install ansible-core
+      become: true
+      ansible.builtin.package:
+        name: ansible-core
+        state: present
+
     - name: Install ansible.posix collection from ansible-galaxy
       become: true
       ansible.builtin.shell: |
-        sudo dnf install -y ansible-core
         ansible-galaxy collection install ansible.posix
 
     - name: Place controller public key in authorized_keys for zuul and root

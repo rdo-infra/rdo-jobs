@@ -12,13 +12,31 @@
     standalone_vm: false
     additional_networks: []
   tasks:
-    - name: Setup repos and install deps for running os-net-config
+    - name: Install openstack repo
       become: true
-      ansible.builtin.shell: |
-        subscription-manager repos --enable openstack-17.1-for-rhel-9-x86_64-rpms
-        subscription-manager repos --enable fast-datapath-for-rhel-9-x86_64-rpms
-        dnf install -y openvswitch os-net-config
-        mkdir -p /etc/os-net-config/
+      community.general.rhsm_repository:
+        name: "openstack-17.1-for-rhel-9-{{ ansible_architecture }}-rpms"
+        state: enabled
+
+    - name: Enable fast datapath to install openvswitch
+      become: true
+      community.general.rhsm_repository:
+        name: "fast-datapath-for-rhel-9-{{ ansible_architecture }}-rpms"
+        state: enabled
+
+    - name: Install openvswitch and os-net-config
+      become: true
+      ansible.builtin.package:
+        name:
+          - openvswitch
+          - os-net-config
+        state: present
+
+    - name: Create os-net-config dir
+      become: true
+      ansible.builtin.file:
+        path: /etc/os-net-config
+        state: directory
 
     - name: Template out the os-net-config config from install_yamls src checkout
       become: true
