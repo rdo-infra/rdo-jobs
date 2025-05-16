@@ -73,18 +73,6 @@
       - rdoinfo
 
 - job:
-    name: DLRN-rpmbuild
-    parent: DLRN-rpmbuild-base
-    branches: ^(queens-rdo)|(rocky-rdo)|(stein-rdo)|(train-rdo)$
-
-- job:
-    name: DLRN-rpmbuild-pinned
-    parent: DLRN-rpmbuild
-    voting: false
-    vars:
-      tag: 'yoga-uc'
-
-- job:
     name: DLRN-rpmbuild-centos9
     parent: DLRN-rpmbuild-base
     branches: ^((rpm-master)|((\w+)-rdo))$
