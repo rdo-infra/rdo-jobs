@@ -52,8 +52,21 @@
               - periodic-container-tcib-build-push-centos-9-master
               - periodic-edpm-build-push-images-centos-9-master
             required-projects: *rp
+        - periodic-container-tcib-build-push-centos-9-master:
+            dependencies: *promote_hash_to_testing
+        - periodic-centos-9-master-promote-consistent-to-podified-ci-testing
+        # Master CentOS 10 build/push/test jobs
+        # Using current as DLRN endpoint is not yet available
+        # TODO (rlandy): remove use of current and add DLRN promote jobs
+        - periodic-container-tcib-build-push-centos-10-master:
+            vars:
+              promote_source: current
+              cifmw_repo_setup_promotion: current
+              cifmw_dlrn_report_result: false
+        # Job to validate cs10 content
         - periodic-watcher-operator-validation-master:
-            dependencies: *deps
+            dependencies:
+              - periodic-container-tcib-build-push-centos-10-master
             required-projects:
               - name: openstack-k8s-operators/install_yamls
                 override-checkout: main
@@ -69,14 +82,3 @@
                 override-checkout: main
               - name: github.com/openstack-k8s-operators/watcher-operator
                 override-checkout: main
-        - periodic-container-tcib-build-push-centos-9-master:
-            dependencies: *promote_hash_to_testing
-        - periodic-centos-9-master-promote-consistent-to-podified-ci-testing
-        # Master CentOS 10 build/push/test jobs
-        # Using current as DLRN endpoint is not yet available
-        # TODO (rlandy): remove use of current and add DLRN promote jobs
-        - periodic-container-tcib-build-push-centos-10-master:
-            vars:
-              promote_source: current
-              cifmw_repo_setup_promotion: current
-              cifmw_dlrn_report_result: false
