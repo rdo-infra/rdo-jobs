@@ -1,0 +1,355 @@
+# NOTE(bogdando): these values are suit a single-cell standalone setup.
+# Multinode/multi-cell jobs provide custom values via templating it in
+# playbooks/data_plane_adoption/*_tests.yaml (or directly, in a job vars)
+
+# Path to install_yamls repo
+install_yamls_path: /home/zuul/src/github.com/openstack-k8s-operators/install_yamls/
+
+# This flag signifies if TLS Everywhere is enabled on the source cloud
+enable_tlse: {{ enable_tls | default('false') }}
+
+# This flag signifies if the tests should create a barbican secret before
+# adoption to check it after the adoption
+prelaunch_barbican_secret: {{ enable_barbican | default('false') }}
+
+# To enable TLS-E, the standalone hostname must be set to standalone.ooo.test
+edpm_node_networker_hostname: CUSTOMIZE_THIS
+
+# Configure whether to run octavia adoption
+octavia_adoption: {{ enable_octavia | default('true') }}
+
+# Whether to remove all the persistent data (databases, dumbs, ansible logs)
+# before the test
+reset_crc_storage: true
+
+# source SC for the local-storage SC to be created from it
+storage_class_name: crc-csi-hostpath-provisioner  # CUSTOMIZE_THIS
+storage_reclaim_policy: Delete  # or Retain
+
+# Snippet to get the desired 'oc' command onto $PATH.
+oc_header: ''
+
+cells:
+  - default
+
+default_cell_name: cell1
+
+# virsh --connect=qemu:///system -q domifaddr standalone | awk 'NF>1{print $NF}' | cut -d/ -f1
+
+# Auth URL to use for adopted Keystone.
+auth_url: http://keystone-public-openstack.apps-crc.testing
+
+# Set verbose logging for CI jobs (no secrets here)
+use_no_log: false
+
+run_pre_adoption_validation: true
+
+os_cloud_name: standalone
+
+# Optional test
+neutron_qe_test: {{ neutron_qe_test | default('false') }}
+neutron_qe_dir: {{ neutron_qe_dir | default('false') }}
+tobiko_qe_test: {{ tobiko_qe_test | default('false') }}
+
+{%+ if edpm_bootstrap_command is defined +%}
+# BEGIN edpm_bootstrap_command vars
+edpm_bootstrap_command: |
+  {{ edpm_bootstrap_command | indent(2) }}
+# END edpm_bootstrap_command vars
+{%+ endif +%}
+
+{% if edpm_telemetry_node_exporter_image is defined %}
+edpm_telemetry_node_exporter_image: {{ edpm_telemetry_node_exporter_image }}
+{% endif %}
+
+{%+ if edpm_container_registry_logins is defined and
+        edpm_container_registry_logins is mapping +%}
+# BEGIN edpm_container_registry_logins vars
+edpm_container_registry_logins:
+  {% for login, value in edpm_container_registry_logins.items() -%}
+  {{ login | indent(2) }}:
+    {{ value | to_nice_yaml | trim }}
+  {% endfor -%}
+# END edpm_container_registry_logins vars
+{%+ endif +%}
+
+{% if ping_test | default(false) | bool %}
+# BEGIN ping test related vars
+ping_test: true
+prelaunch_test_instance: true
+ping_test_loss_threshold: {{ ping_test_loss_threshold | default(0) }}
+ping_test_loss_threshold_percent: {{ ping_test_loss_threshold_percent | default(0) }}
+# END ping test related vars
+{% endif %}
+
+{% if 'periodic' in zuul.job or (force_periodic | default(false) | bool) %}
+# BEGIN periodic container vars
+periodic: true
+container_registry: "{{ dpa_container_registry | default('quay.rdoproject.org') }}"
+container_namespace: "{{ dpa_container_namespace | default('podified-antelope-centos9') }}"
+container_tag: {{ dlrn_hash_tag | default(latest_dlrn_tag.content) }}
+# END periodic container vars
+
+{% if dpa_standalone_ntp_server is defined %}
+timesync_ntp_servers:
+  - hostname: {{ dpa_standalone_ntp_server }}
+{% endif %}
+{% endif %}
+
+{% if dpa_container_registry is defined and
+        dpa_container_namespace is defined %}
+# BEGIN dataplane container vars
+registry_name: "{{ dpa_container_registry }}"
+registry_namespace: "{{ dpa_container_namespace }}"
+image_tag: "{{ dpa_container_tag | default('current-podified') }}"
+# END dataplane container vars
+{% endif %}
+
+{% if edpm_container_registry_insecure_registries is defined %}
+# BEGIN edpm_container_registry_insecure_registries vars
+edpm_container_registry_insecure_registries:
+{{ edpm_container_registry_insecure_registries | to_nice_yaml }}
+# END edpm_container_registry_insecure_registries vars
+{% endif %}
+
+{% if upstream_control_plane_dns is defined or
+        upstream_dns is defined %}
+upstream_dns: {{ upstream_control_plane_dns|default(upstream_dns) }}
+{% endif %}
+
+{% if dpa_skip_patch_csv| default(false) | bool %}
+skip_patching_ansibleee_csv: {{ dpa_skip_patch_csv | string | lower }}
+{% endif %}
+
+{% if edpm_ansible_file.stat.exists %}
+ansibleee_runner_img: {{ ansibleee_runner_img }}
+{% endif %}
+
+{% if tripleo_scenario | default('false') | bool %}
+source_ovndb_ip: {{ source_ovndb_ip }}
+{% elif standalone_scenario | default('false') | bool %}
+source_ovndb_ip: {{ standalone_ip }}
+{% endif %}
+
+# BEGIN source DB, edpm_node_ip hostname vars
+{% if tripleo_scenario | default('false') | bool %}
+edpm_node_hostname:  {{ compute0_hostname }}
+edpm_node_ip: {{ edpm_node_ips[0] | default('192.168.122.100') }}
+{% elif standalone_scenario | default('false') | bool %}
+edpm_node_hostname: standalone.{{ cloud_domain | default('localdomain') }}
+edpm_node_ip: {{ standalone_ip }}
+{% endif %}
+
+{%+ if tripleo_scenario | default('false') | bool +%}
+{%+ if edpm_node_networker_ips is defined or edpm_node_controller_as_net_ips is defined +%}
+edpm_networkers: |
+{%+ if edpm_node_networker_ips is defined +%}
+{% for i in range(edpm_node_networker_ips | length) %}
+  ["{{ lookup('vars', 'networker' ~ i ~ '_hostname') }}"]="{{ edpm_node_networker_ips[i | int] }}"
+{% endfor %}
+{%+ endif +%}
+{%+ if edpm_node_controller_as_net_ips is defined +%}
+{% for i in range(edpm_node_controller_as_net_ips | length) %}
+  ["{{ lookup('vars', 'controller' ~ i ~ '_hostname') }}"]="{{ edpm_node_controller_as_net_ips[i | int] }}"
+{% endfor %}
+{%+ endif +%}
+{%+ endif +%}
+{%+ endif +%}
+
+{%+ if tripleo_scenario | default('false') | bool +%}
+{%+ if multi_cell|default(false) +%}
+{%+ if source_galera_members is not defined +%}
+source_galera_members:
+  default:
+{% for i in range(source_mariadb_ips | length) %}
+    - name: {{lookup('vars', 'controller' ~ i ~ '_hostname') | default('standalone.localdomain') }}
+      ip: {{ source_mariadb_ips[i | int] | default('172.17.0.100') }}
+{% endfor %}
+{%+ endif +%}
+{%+ if source_mariadb_ip is not defined +%}
+source_mariadb_ip:
+  default: {{ source_mariadb_ips[0] | default('172.17.0.100') }}
+{%+ endif +%}
+{% else %}
+source_galera_members: |
+{% for i in range(source_mariadb_ips | length) %}
+  ["{{lookup('vars', 'controller' ~ i ~ '_hostname') | default('standalone.localdomain') }}"]="{{ source_mariadb_ips[i | int] | default('172.17.0.100') }}"
+{% endfor %}
+source_mariadb_ip: {{ source_mariadb_ips[0] | default('172.17.0.100') }}
+{%+ endif +%}
+
+edpm_nodes:
+{%+ if edpm_node_names_map is not defined or not multi_cell|default(false) +%}
+{% for i in range(edpm_node_ips | length) %}
+  {{ compute_hostnames.results[i | int]['content'] | b64decode | trim }}:
+    hostName: "{{ lookup('vars', 'compute' ~ i ~ '_hostname') }}"
+    ansible:
+      ansibleHost: {{ edpm_node_ips[i | int] }}
+    networks:
+      - defaultRoute: true
+        fixedIP: {{ edpm_node_ips[i | int] }}
+        name: ctlplane
+        subnetName: subnet1
+      - name: internalapi
+        fixedIP: 172.17.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
+        subnetName: subnet1
+      - name: storage
+        fixedIP: 172.18.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
+        subnetName: subnet1
+      - name: tenant
+        fixedIP: 172.19.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
+        subnetName: subnet1
+      - name: storagemgmt
+        fixedIP: 172.20.0.{{ edpm_node_ips[i | int].split('.')[-1] }}
+        subnetName: subnet1
+{% endfor %}
+{%+ else +%}
+{% for cell in renamed_cells %}
+{%+ if edpm_node_ips[cell] | default([]) | length > 0 +%}
+  {{ cell }}:
+{%+ endif +%}
+{% for i in range(edpm_node_ips[cell] | default([]) | length) %}
+    {{ lookup('vars', edpm_node_names_map[cell][i | int].split('.')[0]) }}:
+      hostName: "{{ lookup('vars', edpm_node_names_map[cell][i | int]) }}"
+      ansible:
+        ansibleHost: {{ edpm_node_ips[cell][i | int] }}
+      networks:
+        - defaultRoute: true
+          fixedIP: {{ edpm_node_ips[cell][i | int] }}
+          name: ctlplane
+          subnetName: subnet1
+        - name: internalapi
+          fixedIP: 172.17.0.{{ edpm_node_ips[cell][i | int].split('.')[-1] }}
+          subnetName: subnet1
+        - name: storage
+          fixedIP: 172.18.0.{{ edpm_node_ips[cell][i | int].split('.')[-1] }}
+          subnetName: subnet1
+        - name: tenant
+          fixedIP: 172.19.0.{{ edpm_node_ips[cell][i | int].split('.')[-1] }}
+          subnetName: subnet1
+        - name: storagemgmt
+          fixedIP: 172.20.0.{{ edpm_node_ips[cell][i | int].split('.')[-1] }}
+          subnetName: subnet1
+{% endfor %}
+{% endfor %}
+{%+ endif +%}
+
+{%+ endif +%}
+
+{%+ if edpm_node_networker_ips is defined or edpm_node_controller_as_net_ips is defined +%}
+edpm_nodes_networker:
+{%+ if edpm_node_networker_ips is defined +%}
+{% for i in range(edpm_node_networker_ips | length) %}
+  {{ networker_hostnames.results[i | int]['content'] | b64decode | trim }}:
+    hostName: "{{ lookup('vars', 'networker' ~ i ~ '_hostname') }}"
+    ansible:
+      ansibleHost: {{ edpm_node_networker_ips[i | int] }}
+    networks:
+      - defaultRoute: true
+        fixedIP: {{ edpm_node_networker_ips[i | int] }}
+        name: ctlplane
+        subnetName: subnet1
+      - name: internalapi
+        fixedIP: 172.17.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
+        subnetName: subnet1
+      - name: storage
+        fixedIP: 172.18.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
+        subnetName: subnet1
+      - name: tenant
+        fixedIP: 172.19.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
+        subnetName: subnet1
+      - name: storagemgmt
+        fixedIP: 172.20.0.{{ edpm_node_networker_ips[i | int].split('.')[-1] }}
+        subnetName: subnet1
+{% endfor %}
+{%+ endif +%}
+{%+ if edpm_node_controller_as_net_ips is defined +%}
+{% for i in range(edpm_node_controller_as_net_ips | length) %}
+  {{ controller_hostnames.results[i | int]['content'] | b64decode | trim }}:
+    hostName: "{{ lookup('vars', 'controller' ~ i ~ '_hostname') }}"
+    ansible:
+      ansibleHost: {{ edpm_node_controller_as_net_ips[i | int] }}
+    networks:
+      - defaultRoute: true
+        fixedIP: {{ edpm_node_controller_as_net_ips[i | int] }}
+        name: ctlplane
+        subnetName: subnet1
+      - name: internalapi
+        fixedIP: 172.17.0.{{ edpm_node_controller_as_net_ips[i | int].split('.')[-1] }}
+        subnetName: subnet1
+      - name: storage
+        fixedIP: 172.18.0.{{ edpm_node_controller_as_net_ips[i | int].split('.')[-1] }}
+        subnetName: subnet1
+      - name: tenant
+        fixedIP: 172.19.0.{{ edpm_node_controller_as_net_ips[i | int].split('.')[-1] }}
+        subnetName: subnet1
+      - name: storagemgmt
+        fixedIP: 172.20.0.{{ edpm_node_controller_as_net_ips[i | int].split('.')[-1] }}
+        subnetName: subnet1
+{% endfor %}
+{%+ endif +%}
+{% elif standalone_scenario | default('false') | bool %}
+{%+ if multi_cell|default(false) +%}
+source_galera_members:
+  default:
+    - name: standalone
+      ip: {{ source_mariadb_ips[0] }}
+{%+ else +%}
+source_galera_members: |
+  ["standalone"]="{{ source_mariadb_ips[0] }}"
+{%+ endif +%}
+
+{%+ if multi_cell|default(false) +%}
+source_mariadb_ip:
+  default: {{ source_mariadb_ips[0] }}
+{% else %}
+source_mariadb_ip: {{ source_mariadb_ips[0] }}
+{%+ endif +%}
+
+edpm_nodes:
+  cell1:
+    standalone:
+      hostName: standalone.{{ cloud_domain | default('localdomain') }}
+      ansible:
+        ansibleHost: {{ standalone_ip }}
+      networks:
+        - defaultRoute: true
+          fixedIP: {{ standalone_ip }}
+          name: ctlplane
+          subnetName: subnet1
+        - name: internalapi
+          fixedIP: 172.17.0.{{ standalone_ip.split('.')[-1] }}
+          subnetName: subnet1
+        - name: storage
+          fixedIP: 172.18.0.{{ standalone_ip.split('.')[-1] }}
+          subnetName: subnet1
+        - name: tenant
+          fixedIP: 172.19.0.{{ standalone_ip.split('.')[-1] }}
+          subnetName: subnet1
+        - name: storagemgmt
+          fixedIP: 172.20.0.{{ standalone_ip.split('.')[-1] }}
+          subnetName: subnet1
+{%+ endif +%}
+# END source DB, edpm_node_ip hostname vars
+
+# BEGIN os-net-config vars
+dataplane_os_net_config_iface: nic2
+dataplane_public_iface: eth1
+dataplane_os_net_config_set_route: false
+{% if tripleo_scenario | default('false') | bool %}
+upstream_dns: "{{ standalone_gateway }}"
+{% elif standalone_scenario | default('false') | bool and
+        upstream_control_plane_dns is defined %}
+upstream_dns: {{ upstream_control_plane_dns }}
+{% endif %}
+os_cloud_name: overcloud
+edpm_user: zuul
+standalone_ip: "{{ standalone_ip | default('192.168.122.100') }}"
+neutron_physical_bridge_name: br-ex
+# END os-net-config vars
+
+{% if adoption_extra_vars is defined %}
+# BEGIN adoption extra vars
+{{ adoption_extra_vars }}
+# END adoption extra vars
+{% endif %}
