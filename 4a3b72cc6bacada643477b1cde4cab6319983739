@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25cfb668_65193a6b",
+        "filename": "zuul.d/container-jobs-master-centos10.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 242
+      },
+      "writtenOn": "2025-05-27T11:12:28Z",
+      "side": 1,
+      "message": "Just checking the logic here ...\nThe workflow is that the containers will be pushed with current and then retagged in the same job to podified-ci-testing?\nThen we will run the EDPM job\nThen we will retag with current-tested?",
+      "revId": "4a3b72cc6bacada643477b1cde4cab6319983739",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
