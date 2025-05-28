@@ -82,3 +82,7 @@
                 override-checkout: main
               - name: github.com/openstack-k8s-operators/watcher-operator
                 override-checkout: main
+        - periodic-container-tag-centos-10-master:
+            dependencies:
+              - periodic-container-tcib-build-push-centos-10-master
+              - periodic-watcher-operator-validation-master
