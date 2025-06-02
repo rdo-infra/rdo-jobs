@@ -20,10 +20,17 @@
           # Use the latest repository hash
           # If DLRN built multiple packages, there will be multiple repositories.
           # We want the latest repository which contains all of the packages that were just built.
-          repository="${logs}/centos9/current"
+          repository_cs9="${logs}/centos9/current"
+          repository_cs10="${logs}/centos10/current"
 
           # If we could not find a working repository, give up
-          curl -o /dev/null -sIf "${repository}" || exit 1
+          curl -o /dev/null -sIf "${repository_cs9}"
+          if [ $? -eq 0 ]; then
+              repository=${repository_cs9}
+          else
+              curl -o /dev/null -sIf "${repository_cs10}" || exit 1
+              repository=${repository_cs10}
+          fi
 
           # Configure the repository
           name="delorean-zuul"
