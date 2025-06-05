@@ -232,6 +232,30 @@
         regexp: "'^tobiko_qe_test:'"
         value: "tobiko_qe_test: {{ tobiko_qe_test | default('false') }}"
 
+    - name: Set tobiko_version in vars.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: "'^tobiko_version'"
+        value: "tobiko_version: {{ tobiko_version | default('master') }}"
+
+    - name: Set tobiko_test_workflow in vars.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: "'^tobiko_test_workflow'"
+        value: "tobiko_test_workflow: {{ tobiko_test_workflow | default('create-resources') }}"
+
+    - name: Set tobiko_pytest_addopts in vars.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: "'^tobiko_pytest_addopts'"
+        value: "tobiko_pytest_addopts: {{ tobiko_pytest_addopts | default('') }}"
+
+    - name: Set tobiko_conf_file in vars.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: "'^tobiko_conf_file'"
+        value: "tobiko_conf_file: '{{ tobiko_conf_file | default('') }}'"
+
     - name: Set neutron_qe_dir in vars.yaml
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
