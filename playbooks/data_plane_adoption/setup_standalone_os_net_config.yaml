@@ -25,20 +25,29 @@
       community.general.rhsm_repository:
         name: "openstack-17.1-for-rhel-9-{{ ansible_architecture }}-rpms"
         state: enabled
+      retries: 5
+      delay: 30
+      register: _rhsm_openstack
+      until: not _rhsm_openstack.failed
 
     - name: Enable fast datapath to install openvswitch
       become: true
       community.general.rhsm_repository:
         name: "fast-datapath-for-rhel-9-{{ ansible_architecture }}-rpms"
         state: enabled
+      retries: 5
+      delay: 30
+      register: _rhsm_fast_datapath
+      until: not _rhsm_fast_datapath.failed
 
     - name: Install openvswitch and os-net-config
       become: true
-      ansible.builtin.package:
+      ansible.builtin.dnf:
         name:
           - openvswitch
           - os-net-config
         state: present
+        update_cache: true
 
     - name: Create os-net-config dir
       become: true
