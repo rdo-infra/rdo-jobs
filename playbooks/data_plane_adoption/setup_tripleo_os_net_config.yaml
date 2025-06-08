@@ -32,7 +32,7 @@
       retries: 5
       delay: 30
       register: _rhsm_baseos
-      until: not _rhsm_baseos_datapath.failed
+      until: not _rhsm_baseos.failed
 
     - name: Enable appstream subscription
       become: true
