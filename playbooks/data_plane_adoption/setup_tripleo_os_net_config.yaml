@@ -81,6 +81,10 @@
           - os-net-config
         state: present
         update_cache: true
+      retries: 5
+      delay: 30
+      register: _openvswitch_install
+      until: _openvswitch_install.changed
 
     - name: Create os-net-config dir
       become: true
@@ -143,6 +147,10 @@
       become: true
       ansible.builtin.shell: |
         ansible-galaxy collection install ansible.posix
+      retries: 5
+      delay: 30
+      register: _galaxy_install
+      until: _galaxy_install.rc == 0
 
     - name: Place controller public key in authorized_keys for zuul and root
       become: "{{ item == 'root' }}"
