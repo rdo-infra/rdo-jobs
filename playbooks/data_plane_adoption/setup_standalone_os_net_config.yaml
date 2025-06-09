@@ -48,6 +48,10 @@
           - os-net-config
         state: present
         update_cache: true
+      retries: 5
+      delay: 30
+      register: _openvswitch_install
+      until: _openvswitch_install is succeeded
 
     - name: Create os-net-config dir
       become: true
