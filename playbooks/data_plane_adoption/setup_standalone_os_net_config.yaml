@@ -20,15 +20,9 @@
       ansible.builtin.debug:
         msg: "{{ _current_rh_release.stdout }}"
 
-    - name: Install openstack repo
+    - name: Clean dnf cache before enabling repos
       become: true
-      community.general.rhsm_repository:
-        name: "openstack-17.1-for-rhel-9-{{ ansible_architecture }}-rpms"
-        state: enabled
-      retries: 5
-      delay: 30
-      register: _rhsm_openstack
-      until: not _rhsm_openstack.failed
+      ansible.builtin.command: yum clean all
 
     - name: Enable fast datapath to install openvswitch
       become: true
@@ -39,6 +33,26 @@
       delay: 30
       register: _rhsm_fast_datapath
       until: not _rhsm_fast_datapath.failed
+
+    - name: Install openstack repo
+      become: true
+      community.general.rhsm_repository:
+        name: "openstack-17.1-for-rhel-9-{{ ansible_architecture }}-rpms"
+        state: enabled
+      retries: 5
+      delay: 30
+      register: _rhsm_openstack
+      until: not _rhsm_openstack.failed
+
+    - name: Get all enabled repos
+      become: true
+      ansible.builtin.shell: |
+        yum repolist --enabled
+      register: _enabled_repos
+
+    - name: Print all enabled repos
+      ansible.builtin.debug:
+        msg: "{{ _enabled_repos.stdout }}"
 
     - name: Install openvswitch and os-net-config
       become: true
