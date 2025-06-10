@@ -20,10 +20,6 @@
       ansible.builtin.command: cat /etc/redhat-release
       register: _current_rh_release
 
-    - name: Print current /etc/redhat-release
-      ansible.builtin.debug:
-        msg: "{{ _current_rh_release.stdout }}"
-
     - name: Enable baseos subscription
       become: true
       community.general.rhsm_repository:
@@ -53,6 +49,16 @@
       register: _rhsm_ha
       until: not _rhsm_ha.failed
 
+    - name: Enable fast datapath to install openvswitch
+      become: true
+      community.general.rhsm_repository:
+        name: "fast-datapath-for-rhel-9-{{ ansible_architecture }}-rpms"
+        state: enabled
+      retries: 5
+      delay: 30
+      register: _rhsm_fast_datapath
+      until: not _rhsm_fast_datapath.failed
+
     - name: Install openstack repo
       become: true
       community.general.rhsm_repository:
@@ -63,15 +69,11 @@
       register: _rhsm_openstack
       until: not _rhsm_openstack.failed
 
-    - name: Enable fast datapath to install openvswitch
+    - name: Get all enabled repos
       become: true
-      community.general.rhsm_repository:
-        name: "fast-datapath-for-rhel-9-{{ ansible_architecture }}-rpms"
-        state: enabled
-      retries: 5
-      delay: 30
-      register: _rhsm_fast_datapath
-      until: not _rhsm_fast_datapath.failed
+      ansible.builtin.shell: |
+        yum repolist --enabled
+      register: _enabled_repos
 
     - name: Install openvswitch and os-net-config
       become: true
