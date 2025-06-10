@@ -40,6 +40,16 @@
       register: _rhsm_fast_datapath
       until: not _rhsm_fast_datapath.failed
 
+    - name: Get all enabled repos
+      become: true
+      ansible.builtin.shell: |
+        yum repolist --enabled
+      register: _enabled_repos
+
+    - name: Print all enabled repos
+      ansible.builtin.debug:
+        msg: "{{ _enabled_repos.stdout }}"
+
     - name: Install openvswitch and os-net-config
       become: true
       ansible.builtin.dnf:
