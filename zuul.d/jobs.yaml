@@ -194,6 +194,17 @@
     nodeset: rdo-centos-9-stream
 
 - job:
+    name: rdoinfo-DLRN-check-centos10
+    parent: rdoinfo-DLRN-check
+    timeout: 18000
+    vars:
+      centos_version: centos10
+    nodeset:
+      nodes:
+        - name: rdo-centos-10-stream
+          label: cloud-centos-10-stream
+
+- job:
     name: validate-buildsys-tags
     parent: base
     run: playbooks/validate-buildsys-tags/run.yaml
