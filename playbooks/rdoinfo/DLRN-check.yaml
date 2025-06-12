@@ -62,12 +62,31 @@
       become: true
       changed_when: true
 
+    - name: Install epel-release in centos10
+      when:
+        - ansible_distribution_major_version|int >= 10
+        - ansible_distribution == "CentOS"
+      package:
+        name:
+          - epel-release
+      become: true
+
     - name: install rdopkg dependencies
       become: true
       changed_when: true
       shell:
         cmd: |
           dnf install -y python3-pip rpmlint python3-rpm {{ 'python3-pyOpenSSL' if ansible_distribution_major_version == "8" }}
+
+    - name: Remove epel-release in centos10
+      when:
+        - ansible_distribution_major_version|int >= 10
+        - ansible_distribution == "CentOS"
+      package:
+        name:
+          - epel-release
+        state: absent
+      become: true
 
     - name: Build packages for tags being updated
       shell:
