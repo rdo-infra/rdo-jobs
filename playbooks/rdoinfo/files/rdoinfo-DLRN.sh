@@ -14,6 +14,9 @@ if [ "$CENTOS_VERSION" = "centos8" ];then
 elif [ "$CENTOS_VERSION" = "centos9" ];then
     target="centos9-stream"
     PYTHON_VERSION="py39"
+elif [ "$CENTOS_VERSION" = "centos10" ];then
+    target="centos10-stream"
+    PYTHON_VERSION="py312"
 else
     target=${CENTOS_VERSION}
     PYTHON_VERSION="py36"
