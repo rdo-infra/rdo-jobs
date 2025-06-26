@@ -221,6 +221,7 @@
         neutron_physical_bridge_name: br-ex
         edpm_user: zuul
         # NOTE: vlans and networks ordering must match those above and in install_yamls config-download-multistack.j2 and ci-framework adoption.yaml
+        configure_ipam: true
         netconfig_networks:
           - name: ctlplane
             dnsDomain: ctlplane.example.com
