@@ -60,6 +60,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f07bd9e0_1ea363ed",
+        "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 289
+      },
+      "writtenOn": "2025-06-27T07:01:06Z",
+      "side": 1,
+      "message": "Yes but IMO it\u0027s better to always have the regexes, that\u0027s a general pattern that will always work, even if the task is executed multiple times etc.\n\nThe other thing that i just noticed is that the regexes should include the \u0027:\u0027 character so that they don\u0027t do a partial match by accident. Given the names i don\u0027t think a partial match is a considerable risk here, but the correct way would be to include them.",
+      "parentUuid": "7459b370_8b50b775",
+      "revId": "a4bceb6eeacb050b151ea4b6129c8466601addd1",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "91b98e71_80b2951f",
         "filename": "playbooks/data_plane_adoption/deploy_tripleo_run_repo_tests.yaml",
         "patchSetId": 11
