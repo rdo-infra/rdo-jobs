@@ -268,7 +268,7 @@
         block: |
           registry_name: "{{ dpa_container_registry }}"
           registry_namespace: "{{ dpa_container_namespace }}"
-          image_tag: "{{ dpa_container_tag | default('current-podified') }}"
+          image_tag: "{{ dlrn_hash_tag | default(latest_dlrn_tag.content) }}"
 
     - name: Insert edpm_container_registry_insecure_registries into dataplane test vars
       ansible.builtin.blockinfile:
