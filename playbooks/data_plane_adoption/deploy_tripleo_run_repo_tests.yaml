@@ -16,6 +16,10 @@
   gather_facts: false
   vars: *ooo_vars
   tasks:
+    - name: test briyan or daniel
+      fail:
+        msg: "because we want to fail"
+
     - name: Place control0 IP into vars.yaml for ovndb
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
