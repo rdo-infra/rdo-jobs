@@ -69,6 +69,29 @@
         src: "{{ zuul.executor.src_root }}/{{ cifmw_installyamls_repos }}/devsetup/standalone/net_config.j2"
         dest: /etc/os-net-config/standalone_config.yaml
 
+    # --- BEGIN overrides to avoid duplicate ctlplane IP ---
+    - name: Use br-ctlplane instead of br-ex (single owner of ctlplane IP)
+      become: true
+      ansible.builtin.replace:
+        path: /etc/os-net-config/standalone_config.yaml
+        regexp: '(^\s*name:\s*)br-ex\b'
+        replace: '\1br-ctlplane'
+
+    - name: Keep config.yaml in sync (avoid a second, conflicting file later)
+      become: true
+      ansible.builtin.copy:
+        src: /etc/os-net-config/standalone_config.yaml
+        dest: /etc/os-net-config/config.yaml
+        remote_src: true
+        mode: "0644"
+
+    - name: Remove legacy br-ex ifcfg so the IP can’t reappear
+      become: true
+      ansible.builtin.file:
+        path: /etc/sysconfig/network-scripts/ifcfg-br-ex
+        state: absent
+    # --- END minimal overrides ---
+
     - name: Remove ci-framework created Network Manager connections
       failed_when: false
       become: true
@@ -92,8 +115,7 @@
 
     - name: Run os-net-config to create standalone networking
       become: true
-      ansible.builtin.shell: |
-        os-net-config -c /etc/os-net-config/standalone_config.yaml
+      ansible.builtin.shell: os-net-config -c /etc/os-net-config/config.yaml -v
 
     - name: Sanity check standalone can ping crc and controller nodes on 192.168.122.0/24
       ansible.builtin.shell: |
