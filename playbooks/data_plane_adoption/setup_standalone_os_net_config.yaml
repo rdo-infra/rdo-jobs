@@ -92,8 +92,7 @@
 
     - name: Run os-net-config to create standalone networking
       become: true
-      ansible.builtin.shell: |
-        os-net-config -c /etc/os-net-config/standalone_config.yaml
+      ansible.builtin.shell: os-net-config -c /etc/os-net-config/config.yaml -v
 
     - name: Sanity check standalone can ping crc and controller nodes on 192.168.122.0/24
       ansible.builtin.shell: |
