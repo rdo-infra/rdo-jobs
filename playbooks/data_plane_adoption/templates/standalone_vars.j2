@@ -1,0 +1,176 @@
+# These variables are templated to be used in the standalone deployment
+# scenario for data plane adoption
+
+######################################
+# Copied from previous vars.yaml file
+######################################
+
+# Path to install_yamls repo
+install_yamls_path: /home/zuul/src/github.com/openstack-k8s-operators/install_yamls/
+
+# To enable TLS-E, the standalone hostname must be set to standalone.ooo.test
+edpm_node_networker_hostname: CUSTOMIZE_THIS
+
+# Whether to remove all the persistent data (databases, dumbs, ansible logs)
+# before the test
+reset_crc_storage: true
+
+# To enable TLS-E, the standalone hostname must be set to standalone.ooo.test
+edpm_node_networker_hostname: CUSTOMIZE_THIS
+
+# source SC for the local-storage SC to be created from it
+storage_class_name: crc-csi-hostpath-provisioner  # CUSTOMIZE_THIS
+storage_reclaim_policy: Delete  # or Retain
+
+# Snippet to get the desired 'oc' command onto $PATH.
+oc_header: ''
+
+cells:
+  - default
+
+default_cell_name: cell1
+
+# Auth URL to use for adopted Keystone.
+auth_url: http://keystone-public-openstack.apps-crc.testing
+
+# Set verbose logging for CI jobs (no secrets here)
+use_no_log: false
+
+run_pre_adoption_validation: true
+
+
+#########################
+# Vars templated from deploy_standalone_run_repo_test
+#########################
+
+# --- Insert adoption extra vars when defined ---
+{% if adoption_extra_vars is defined %}
+{{ adoption_extra_vars }}
+{% endif %}
+
+# Set edpm_node_ip and source_ovndb_ip
+edpm_node_ip: {{ standalone_ip }}
+source_ovndb_ip: {{ standalone_ip }}
+
+# Configure whether to run octavia adoption
+octavia_adoption: {{ enable_octavia | default('true') }}
+
+os_cloud_name: standalone
+
+# This flag signifies if TLS Everywhere is enabled on the source cloud
+enable_tlse: {{ enable_tls | default('false') }}
+
+edpm_node_networker_ip: CUSTOMIZE_THIS
+
+# This flag signifies if the tests should create a barbican secret before
+# adoption to check it after the adoption
+prelaunch_barbican_secret: true
+
+# Set edpm_node_hostname
+edpm_node_hostname: standalone.{{ cloud_domain | default('localdomain') }}
+
+# Optional test vars
+neutron_qe_test: CUSTOMIZE_THIS
+neutron_qe_dir: CUSTOMIZE_THIS
+tobiko_qe_test: CUSTOMIZE_THIS
+
+# Setting source_galera_members and source_mariadb_ip and edpm_nodes
+{%+ if multi_cell|default(false) +%}
+source_galera_members:
+  default:
+    - name: standalone
+      ip: {{ source_mariadb_ips[0] }}
+{%+ else +%}
+source_galera_members: |
+  ["standalone"]="{{ source_mariadb_ips[0] }}"
+{%+ endif +%}
+
+{%+ if multi_cell|default(false) +%}
+source_mariadb_ip:
+  default: {{ source_mariadb_ips[0] }}
+{% else %}
+source_mariadb_ip: {{ source_mariadb_ips[0] }}
+{%+ endif +%}
+
+edpm_nodes:
+  cell1:
+    standalone:
+      hostName: standalone.{{ cloud_domain | default('localdomain') }}
+      ansible:
+        ansibleHost: {{ standalone_ip }}
+      networks:
+        - defaultRoute: true
+          fixedIP: {{ standalone_ip }}
+          name: ctlplane
+          subnetName: subnet1
+        - name: internalapi
+          fixedIP: 172.17.0.{{ standalone_ip.split('.')[-1] }}
+          subnetName: subnet1
+        - name: storage
+          fixedIP: 172.18.0.{{ standalone_ip.split('.')[-1] }}
+          subnetName: subnet1
+        - name: tenant
+          fixedIP: 172.19.0.{{ standalone_ip.split('.')[-1] }}
+          subnetName: subnet1
+        - name: storagemgmt
+          fixedIP: 172.20.0.{{ standalone_ip.split('.')[-1] }}
+          subnetName: subnet1
+
+# os-net-config
+dataplane_os_net_config_iface: nic2
+dataplane_public_iface: eth1
+dataplane_os_net_config_set_route: false
+
+# vars needed for periodic job
+periodic: true
+container_registry: "{{ dpa_container_registry | default('quay.rdoproject.org') }}"
+container_namespace: "{{ dpa_container_namespace | default('podified-antelope-centos9') }}"
+container_tag: {{ dlrn_hash_tag | default(latest_dlrn_tag.content) }}
+
+# Set edpm_bootstrap_command
+{% if edpm_bootstrap_command is defined %}
+edpm_bootstrap_command: |
+  {{ edpm_bootstrap_command | indent(2) }}
+{% endif %}
+
+# set edpm_telemetry_node_exporter_image
+{% if edpm_telemetry_node_exporter_image is defined %}
+edpm_telemetry_node_exporter_image: {{ edpm_telemetry_node_exporter_image }}
+{% endif %}
+
+# Insert edpm_container_registry_logins var into dataplane tests vars ---
+# Using manual indentation for the sake of consistency
+{% if edpm_container_registry_logins is defined and edpm_container_registry_logins is mapping %}
+edpm_container_registry_logins:
+  {% for login, value in edpm_container_registry_logins.items() -%}
+  {{ login | indent(2) }}:
+    {{ value | to_nice_yaml | trim }}
+  {% endfor -%}
+{% endif %}
+
+# --- Set timesync_ntp_servers if dpa_standalone_ntp_server set ---
+{% if dpa_standalone_ntp_server is defined %}
+timesync_ntp_servers:
+  - hostname: {{ dpa_standalone_ntp_server }}
+{% endif %}
+
+# --- Insert edpm_container_registry_insecure_registries into dataplane test vars ---
+{% if edpm_container_registry_insecure_registries is defined %}
+edpm_container_registry_insecure_registries:
+{{ edpm_container_registry_insecure_registries | to_nice_yaml | indent(2) }}
+{% endif %}
+
+# --- Store upstream dns server in vars.yaml if defined ---
+{% if upstream_control_plane_dns is defined %}
+upstream_dns: {{ upstream_control_plane_dns }}
+{% endif %}
+
+# --- Set var to skip ansibleee csv patching
+{% if dpa_skip_patch_csv | default(false) | bool %}
+skip_patching_ansibleee_csv: {{ dpa_skip_patch_csv | string | lower }}
+{% endif %}
+
+# --- Insert ansibleee_runner_img var into vars.yaml ---
+{% if ansibleee_runner_img is defined %}
+ansibleee_runner_img: {{ ansibleee_runner_img }}
+{% endif %}
