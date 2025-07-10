@@ -14,6 +14,13 @@
       - fast-datapath-for-rhel-9-x86_64-rpms
       - rhel-9-for-x86_64-highavailability-eus-rpms
   tasks:
+    - name: Ensure required standalone vars are set before any usage
+      ansible.builtin.set_fact:
+        standalone_scenario: true
+        standalone_ip: "{{ standalone_ip | default('192.168.122.100') }}"
+        standalone_gateway: "{{ standalone_gateway | default('192.168.122.1') }}"
+        cloud_domain: "{{ cloud_domain | default('localdomain') }}"
+
     - name: Create inventory to run tasks inside vm
       ansible.builtin.template:
         src: "{{ playbook_dir }}/files/standalone_vm_inventory.yaml.j2"
@@ -70,95 +77,6 @@
     - name: Run test preparation in standalone vm
       ansible.builtin.shell:
         ansible-playbook {{ rdo_dir }}/standalone_prepare_tests.yaml -i /home/zuul/{{ standalone_vm_inventory | default("standalone_vm_inventory") }}
-
-    - name: Place standalone_ip into vars.yaml for edpm, mariadb, ovndb
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/vars.yaml"
-        regexp: "'^{{ item }}:'"
-        value: "{{ item }}: {{ standalone_ip }}"
-      loop:
-        - "edpm_node_ip"
-        - "source_ovndb_ip"
-
-    - name: Set source DB in vars.yaml
-      ansible.builtin.blockinfile:
-        marker_begin: "BEGIN source DB, edpm_nodes vars"
-        marker_end: "END source DB, edpm_nodes vars"
-        path: "{{ rdo_dir }}/vars.yaml"
-        block: |
-          {%+ if multi_cell|default(false) +%}
-          source_galera_members:
-            default:
-              - name: standalone
-                ip: {{ source_mariadb_ips[0] }}
-          {%+ else +%}
-          source_galera_members: |
-            ["standalone"]="{{ source_mariadb_ips[0] }}"
-          {%+ endif +%}
-
-          {%+ if multi_cell|default(false) +%}
-          source_mariadb_ip:
-            default: {{ source_mariadb_ips[0] }}
-          {% else %}
-          source_mariadb_ip: {{ source_mariadb_ips[0] }}
-          {%+ endif +%}
-
-          edpm_nodes:
-            cell1:
-              standalone:
-                hostName: standalone.{{ cloud_domain | default('localdomain') }}
-                ansible:
-                  ansibleHost: {{ standalone_ip }}
-                networks:
-                  - defaultRoute: true
-                    fixedIP: {{ standalone_ip }}
-                    name: ctlplane
-                    subnetName: subnet1
-                  - name: internalapi
-                    fixedIP: 172.17.0.{{ standalone_ip.split('.')[-1] }}
-                    subnetName: subnet1
-                  - name: storage
-                    fixedIP: 172.18.0.{{ standalone_ip.split('.')[-1] }}
-                    subnetName: subnet1
-                  - name: tenant
-                    fixedIP: 172.19.0.{{ standalone_ip.split('.')[-1] }}
-                    subnetName: subnet1
-                  - name: storagemgmt
-                    fixedIP: 172.20.0.{{ standalone_ip.split('.')[-1] }}
-                    subnetName: subnet1
-
-    - name: Set EDPM node hostname in vars.yaml
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/vars.yaml"
-        regexp: "'^edpm_node_hostname:'"
-        value: "edpm_node_hostname: standalone.{{ cloud_domain | default('localdomain') }}"
-
-    - name: Set TLS Everywhere in vars.yaml
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/vars.yaml"
-        regexp: "'^enable_tlse:'"
-        value: "enable_tlse: {{ enable_tls | default('false') }}"
-
-    - name: Set prelaunch_barbican_secret in vars.yaml
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/vars.yaml"
-        regexp: "'^prelaunch_barbican_secret:'"
-        value: "prelaunch_barbican_secret: {{ enable_barbican | default('false') }}"
-
-    - name: Configure whether to run octavia adoption
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/vars.yaml"
-        line: "octavia_adoption: {{ enable_octavia | default('true') }}"
-
-    - name: Insert vars for data plane operator and os-net-config with zuul native standalone node
-      ansible.builtin.blockinfile:
-        marker_begin: "BEGIN os-net-config vars"
-        marker_end: "END os-net-config vars"
-        path: "{{ rdo_dir }}/vars.yaml"
-        block: |
-          dataplane_os_net_config_iface: nic2
-          dataplane_public_iface: eth1
-          dataplane_os_net_config_set_route: false
 
     - name: Read the standalone ssh key downloaded from standalone
       ansible.builtin.slurp:
@@ -240,37 +158,6 @@
         name: python-openstackclient
         executable: pip3
 
-    - name: Insert edpm_bootstrap_command var into dataplane tests vars
-      ansible.builtin.blockinfile:
-        path: "{{ rdo_dir }}/vars.yaml"
-        marker_begin: "BEGIN edpm_bootstrap_command vars"
-        marker_end: "END edpm_bootstrap_command vars"
-        block: |
-          edpm_bootstrap_command: |
-            {{ edpm_bootstrap_command | indent(2) }}
-      when: edpm_bootstrap_command is defined
-
-    - name: Store node-exporter image in vars.yaml if defined
-      when: edpm_telemetry_node_exporter_image is defined
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/vars.yaml"
-        line: "edpm_telemetry_node_exporter_image: {{ edpm_telemetry_node_exporter_image }}"
-
-    - name: Insert edpm_container_registry_logins var into dataplane tests vars
-      ansible.builtin.blockinfile:
-        path: "{{ rdo_dir }}/vars.yaml"
-        marker_begin: "BEGIN edpm_container_registry_logins vars"
-        marker_end: "END edpm_container_registry_logins vars"
-        block: |
-          edpm_container_registry_logins:
-            {% for login, value in edpm_container_registry_logins.items() -%}
-            {{ login | indent(2) }}:
-              {{ value | to_nice_yaml | trim }}
-            {% endfor -%}
-      when:
-        - edpm_container_registry_logins is defined
-        - edpm_container_registry_logins is mapping
-
     - name: Fetch hash and set ci_testing_hash fact for periodic
       when: "'periodic' in zuul.job or (force_periodic|default(false)|bool)"
       block:
@@ -283,64 +170,6 @@
           until: latest_dlrn_tag.status == 200
           retries: 6
           delay: 5
-
-        - name: Insert vars needed for periodic job into test vars.yaml
-          ansible.builtin.blockinfile:
-            marker_begin: "BEGIN periodic container vars"
-            marker_end: "END periodic container vars"
-            path: "{{ rdo_dir }}/vars.yaml"
-            block: |
-              periodic: true
-              container_registry: "{{ dpa_container_registry | default('quay.rdoproject.org') }}"
-              container_namespace: "{{ dpa_container_namespace | default('podified-antelope-centos9') }}"
-              container_tag: {{ dlrn_hash_tag | default(latest_dlrn_tag.content) }}
-
-        - name: Set timesync_ntp_servers if dpa_standalone_ntp_server set
-          ansible.builtin.blockinfile:
-            path: "{{ rdo_dir }}/vars.yaml"
-            block: |
-              timesync_ntp_servers:
-                - hostname: {{ dpa_standalone_ntp_server }}
-          when: dpa_standalone_ntp_server is defined
-
-    - name: Insert vars needed to override edpm images into test vars.yaml
-      when:
-        - dpa_container_registry is defined
-        - dpa_container_namespace is defined
-      ansible.builtin.blockinfile:
-        marker_begin: "BEGIN dataplane container vars"
-        marker_end: "END dataplane container vars"
-        path: "{{ rdo_dir }}/vars.yaml"
-        block: |
-          registry_name: "{{ dpa_container_registry }}"
-          registry_namespace: "{{ dpa_container_namespace }}"
-          image_tag: "{{ dlrn_hash_tag | default(latest_dlrn_tag.content) }}"
-
-    - name: Insert edpm_container_registry_insecure_registries into dataplane test vars
-      ansible.builtin.blockinfile:
-        path: "{{ rdo_dir }}/vars.yaml"
-        marker_begin: "BEGIN edpm_container_registry_insecure_registries vars"
-        marker_end: "END edpm_container_registry_insecure_registries vars"
-        block: |
-          edpm_container_registry_insecure_registries:
-          {{ edpm_container_registry_insecure_registries | to_nice_yaml }}
-      when:
-        - edpm_container_registry_insecure_registries is defined
-
-    - name: Store upstream dns server in vars.yaml if defined
-      # we need to expose this so that the tests can then point the dnsmasq in
-      # the controlplane to a working dns server to resolve names outside of
-      # openstack
-      when: upstream_control_plane_dns is defined
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/vars.yaml"
-        line: "upstream_dns: {{ upstream_control_plane_dns }}"
-
-    - name: Set var to skip ansibleee csv patching
-      when: dpa_skip_patch_csv| default(false) | bool
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/vars.yaml"
-        line: "skip_patching_ansibleee_csv: {{ dpa_skip_patch_csv | string | lower }}"
 
     - name: Check if edpm-ansible.yml file was created
       ansible.builtin.stat:
@@ -360,11 +189,6 @@
             edpm_ansible_dict: "{{ edpm_ansible_output['content'] | b64decode | from_yaml }}"
           ansible.builtin.set_fact:
             ansibleee_runner_img: "{{ edpm_ansible_dict['cifmw_update_containers_ansibleee_image_url'] }}"
-
-        - name: Insert ansibleee_runner_img var into vars.yaml
-          ansible.builtin.lineinfile:
-            path: "{{ rdo_dir }}/vars.yaml"
-            line: "ansibleee_runner_img: {{ ansibleee_runner_img }}"
 
     - name: Workaround systemd-container
       # Note: This WA applies to version <= 17.1.3
@@ -398,14 +222,23 @@
       become: true
       ansible.builtin.shell: "subscription-manager repos --disable {{ osp_17_repos | join(' --disable ') }}"
 
-    - name: Insert adoption extra vars when defined
-      when: adoption_extra_vars is defined
-      ansible.builtin.blockinfile:
-        marker_begin: "BEGIN adoption extra vars"
-        marker_end: "END adoption extra vars"
-        path: "{{ rdo_dir }}/vars.yaml"
-        block: |
-          {{ adoption_extra_vars }}
+    - name: Create vars from template file
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/templates/standalone_vars.j2"
+        dest: "{{ rdo_dir }}/vars.yaml"
+
+    - name: DEBUG - Display contents of generated vars.yaml
+      block:
+        - name: Read the vars.yaml file
+          ansible.builtin.command: "cat {{ rdo_dir }}/vars.yaml"
+          register: vars_yaml_content
+          changed_when: false
+
+        - name: Print the file contents
+          ansible.builtin.debug:
+            var: vars_yaml_content.stdout_lines
+      ignore_errors: true  # Use ignore_errors so it doesn't stop if the file is missing
+
 
     - name: "Run data-plane-adoption tests from {{ dpa_dir }}"
       community.general.make:
