@@ -180,51 +180,6 @@
         name: python-openstackclient
         executable: pip3
 
-    # NOTE: source of trurh is adoption-multinode-* jobs, first try to
-    # inline via adoption_extra_vars directly instead of templating here!
-    - name: Insert edpm_bootstrap_command var into dataplane tests vars
-      ansible.builtin.blockinfile:
-        path: "{{ rdo_dir }}/vars.yaml"
-        marker_begin: "BEGIN edpm_bootstrap_command vars"
-        marker_end: "END edpm_bootstrap_command vars"
-        block: |
-          edpm_bootstrap_command: |
-            {{ edpm_bootstrap_command | indent(2) }}
-      when: edpm_bootstrap_command is defined
-
-    - name: Store node-exporter image in vars.yaml if defined
-      when: edpm_telemetry_node_exporter_image is defined
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/vars.yaml"
-        line: "edpm_telemetry_node_exporter_image: {{ edpm_telemetry_node_exporter_image }}"
-
-    - name: Insert edpm_container_registry_logins var into dataplane tests vars
-      ansible.builtin.blockinfile:
-        path: "{{ rdo_dir }}/vars.yaml"
-        marker_begin: "BEGIN edpm_container_registry_logins vars"
-        marker_end: "END edpm_container_registry_logins vars"
-        block: |
-          edpm_container_registry_logins:
-            {% for login, value in edpm_container_registry_logins.items() -%}
-            {{ login | indent(2) }}:
-              {{ value | to_nice_yaml | trim }}
-            {% endfor -%}
-      when:
-        - edpm_container_registry_logins is defined
-        - edpm_container_registry_logins is mapping
-
-    - name: Insert ping test related variables
-      when: ping_test | default(false) | bool
-      ansible.builtin.blockinfile:
-        marker_begin: "BEGIN ping test related vars"
-        marker_end: "END ping test related vars"
-        path: "{{ rdo_dir }}/vars.yaml"
-        block: |
-          ping_test: true
-          prelaunch_test_instance: true
-          ping_test_loss_threshold: {{ ping_test_loss_threshold | default(0) }}
-          ping_test_loss_threshold_percent: {{ ping_test_loss_threshold_percent | default(0) }}
-
     - name: Fetch hash and set ci_testing_hash fact for periodic
       when: "'periodic' in zuul.job or (force_periodic|default(false)|bool)"
       block:
@@ -237,64 +192,6 @@
           until: latest_dlrn_tag.status == 200
           retries: 6
           delay: 5
-
-        - name: Insert vars needed for periodic job into test vars.yaml
-          ansible.builtin.blockinfile:
-            marker_begin: "BEGIN periodic container vars"
-            marker_end: "END periodic container vars"
-            path: "{{ rdo_dir }}/vars.yaml"
-            block: |
-              periodic: true
-              container_registry: "{{ dpa_container_registry | default('quay.rdoproject.org') }}"
-              container_namespace: "{{ dpa_container_namespace | default('podified-antelope-centos9') }}"
-              container_tag: {{ dlrn_hash_tag | default(latest_dlrn_tag.content) }}
-
-        - name: Set timesync_ntp_servers if dpa_standalone_ntp_server set
-          ansible.builtin.blockinfile:
-            path: "{{ rdo_dir }}/vars.yaml"
-            block: |
-              timesync_ntp_servers:
-                - hostname: {{ dpa_standalone_ntp_server }}
-          when: dpa_standalone_ntp_server is defined
-
-    - name: Insert vars needed to override edpm images into test vars.yaml
-      when:
-        - dpa_container_registry is defined
-        - dpa_container_namespace is defined
-      ansible.builtin.blockinfile:
-        marker_begin: "BEGIN dataplane container vars"
-        marker_end: "END dataplane container vars"
-        path: "{{ rdo_dir }}/vars.yaml"
-        block: |
-          registry_name: "{{ dpa_container_registry }}"
-          registry_namespace: "{{ dpa_container_namespace }}"
-          image_tag: "{{ dlrn_hash_tag | default(latest_dlrn_tag.content) }}"
-
-    - name: Insert edpm_container_registry_insecure_registries into dataplane test vars
-      ansible.builtin.blockinfile:
-        path: "{{ rdo_dir }}/vars.yaml"
-        marker_begin: "BEGIN edpm_container_registry_insecure_registries vars"
-        marker_end: "END edpm_container_registry_insecure_registries vars"
-        block: |
-          edpm_container_registry_insecure_registries:
-          {{ edpm_container_registry_insecure_registries | to_nice_yaml }}
-      when:
-        - edpm_container_registry_insecure_registries is defined
-
-    - name: Store upstream dns server in vars.yaml if defined
-      # we need to expose this so that the tests can then point the dnsmasq in
-      # the controlplane to a working dns server to resolve names outside of
-      # openstack
-      when: (upstream_control_plane_dns is defined or upstream_dns is defined)
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/vars.yaml"
-        line: "upstream_dns: {{ upstream_control_plane_dns|default(upstream_dns) }}"
-
-    - name: Set var to skip ansibleee csv patching
-      when: dpa_skip_patch_csv| default(false) | bool
-      ansible.builtin.lineinfile:
-        path: "{{ rdo_dir }}/vars.yaml"
-        line: "skip_patching_ansibleee_csv: {{ dpa_skip_patch_csv | string | lower }}"
 
     - name: Check if edpm-ansible.yml file was created
       ansible.builtin.stat:
@@ -314,11 +211,6 @@
             edpm_ansible_dict: "{{ edpm_ansible_output['content'] | b64decode | from_yaml }}"
           ansible.builtin.set_fact:
             ansibleee_runner_img: "{{ edpm_ansible_dict['cifmw_update_containers_ansibleee_image_url'] }}"
-
-        - name: Insert ansibleee_runner_img var into vars.yaml
-          ansible.builtin.lineinfile:
-            path: "{{ rdo_dir }}/vars.yaml"
-            line: "ansibleee_runner_img: {{ ansibleee_runner_img }}"
 
     - name: Workaround systemd-container
       # Note: This WA applies to version <= 17.1.3
@@ -352,25 +244,6 @@
       become: true
       ansible.builtin.shell: "subscription-manager repos --disable {{ osp_17_ceph_repos | join(' --disable ') }}"
       loop: "{{ groups['rh-subscription'] }}"
-
-    - name: Insert adoption extra vars when defined
-      when: adoption_extra_vars is defined
-      ansible.builtin.blockinfile:
-        marker_begin: "BEGIN adoption extra vars"
-        marker_end: "END adoption extra vars"
-        path: "{{ rdo_dir }}/vars.yaml"
-        block: |
-          {{ adoption_extra_vars }}
-
-    - name: Insert edpm_bootstrap_command var into dataplane tests vars
-      ansible.builtin.blockinfile:
-        path: "{{ rdo_dir }}/vars.yaml"
-        marker_begin: "BEGIN edpm_bootstrap_command vars"
-        marker_end: "END edpm_bootstrap_command vars"
-        block: |
-          edpm_bootstrap_command: |
-            {{ edpm_bootstrap_command | indent(2) }}
-      when: edpm_bootstrap_command is defined
 
     - name: Read the tripleo passwords downloaded from undercloud
       ansible.builtin.slurp:
