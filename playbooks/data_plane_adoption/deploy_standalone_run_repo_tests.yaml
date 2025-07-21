@@ -407,6 +407,18 @@
         block: |
           {{ adoption_extra_vars }}
 
+    - name: DEBUG - Display contents of generated vars.yaml
+      block:
+        - name: Read the vars.yaml file
+          ansible.builtin.command: "cat {{ rdo_dir }}/vars.yaml"
+          register: vars_yaml_content
+          changed_when: false
+
+        - name: Print the file contents
+          ansible.builtin.debug:
+            var: vars_yaml_content.stdout_lines
+      ignore_errors: true  # Use ignore_errors so it doesn't stop if the file is missing
+
     - name: "Run data-plane-adoption tests from {{ dpa_dir }}"
       community.general.make:
         chdir: "{{ dpa_dir }}"
