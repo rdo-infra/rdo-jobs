@@ -1,0 +1,13 @@
+---
+- name: Read vars
+  ansible.builtin.slurp:
+    src: "{{ file_location }}"
+  register: _parsed_vars
+  no_log: true
+
+- name: Set vars as fact
+  ansible.builtin.set_fact:
+    "{{ item.key }}": "{{ item.value }}"
+    cacheable: true
+  loop: "{{ _parsed_vars['content'] | b64decode | from_yaml | dict2items }}"
+  no_log: true
