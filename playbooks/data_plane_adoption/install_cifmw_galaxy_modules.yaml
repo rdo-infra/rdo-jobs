@@ -1,0 +1,13 @@
+---
+- name: Install galaxy modules before executing jobs with required modules
+  hosts: controller
+  vars:
+    framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
+  tasks:
+    - name: Install community.general collection
+      ansible.builtin.command: ansible-galaxy collection install community.general
+
+    - name: Install galaxy from ci-framework dir
+      ansible.builtin.command: ansible-galaxy collection install .
+      args:
+        chdir: "{{ framework_dir }}"
