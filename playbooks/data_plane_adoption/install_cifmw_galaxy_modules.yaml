@@ -1,0 +1,85 @@
+---
+- name: Install galaxy modules before executing jobs with required modules
+  hosts: controller
+  vars:
+    cifmw_project_dir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/openstack-k8s-operators/ci-framework'].src_dir }}"
+    ansible_collection_dir: "{{ ansible_user_dir }}/.ansible/collections/ansible_collections"
+  tasks:
+    - name: Install community.general collection
+      ansible.builtin.command: ansible-galaxy collection install community.general
+
+    - name: Check if the ci-framework exists
+      ansible.builtin.stat:
+        path: "{{ cifmw_project_dir }}"
+      register: _cifmw_project_dir_stat
+
+    - name: Make symlink to ansible collection dir
+      when: _cifmw_project_dir_stat.stat.exists
+      block:
+        - name: Install galaxy from ci-framework dir
+          ansible.builtin.command: ansible-galaxy collection install .
+          args:
+            chdir: "{{ cifmw_project_dir }}"
+          ignore_errors: true
+
+        - name: Check if cifmw general collection exists
+          ansible.builtin.stat:
+            path: "{{ ansible_collection_dir }}/cifmw/general/plugins"
+          register: _cifmw_gen_collection
+          ignore_errors: true
+
+        - name: Check if cifmw general collection exists
+          when: not _cifmw_gen_collection.stat.exists
+          block:
+            - name: Workaround for earlier nested ansible execution
+              ansible.builtin.file:
+                path: "{{ ansible_collection_dir }}/cifmw/general/"
+                state: directory
+              ignore_errors: true
+
+            - name: Create symlink to the modules
+              ansible.builtin.file:
+                src: "{{ cifmw_project_dir }}/plugins"
+                dest: "{{ ansible_collection_dir }}/cifmw/general/plugins"
+                state: link
+                force: true
+              ignore_errors: true
+
+# Would be great if zuul executor will like it.
+# Zuul like it. Good
+- name: Install galaxy modules before executing jobs with required modules - localhost
+  hosts: localhost
+  vars:
+    cifmw_project_dir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/openstack-k8s-operators/ci-framework'].src_dir }}"
+    ansible_collection_dir: "{{ ansible_user_dir }}/.ansible/collections/ansible_collections"
+  tasks:
+    - name: Check if the ci-framework exists
+      ansible.builtin.stat:
+        path: "{{ cifmw_project_dir }}"
+      register: _cifmw_project_dir_stat
+
+    - name: Make symlink to ansible collection dir
+      when: _cifmw_project_dir_stat.stat.exists
+      block:
+        - name: Check if cifmw general collection exists
+          ansible.builtin.stat:
+            path: "{{ ansible_collection_dir }}/cifmw/general/plugins"
+          register: _cifmw_gen_collection
+          ignore_errors: true
+
+        - name: Check if cifmw general collection exists
+          when: not _cifmw_gen_collection.stat.exists
+          block:
+            - name: Workaround for earlier nested ansible execution
+              ansible.builtin.file:
+                path: "{{ ansible_collection_dir }}/cifmw/general/"
+                state: directory
+              ignore_errors: true
+
+            - name: Create symlink to the modules
+              ansible.builtin.file:
+                src: "{{ cifmw_project_dir }}/plugins"
+                dest: "{{ ansible_collection_dir }}/cifmw/general/plugins"
+                state: link
+                force: true
+              ignore_errors: true
