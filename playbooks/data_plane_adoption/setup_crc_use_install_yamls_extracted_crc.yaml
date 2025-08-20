@@ -1,3 +1,4 @@
+---
 - hosts: controller
   vars:
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
@@ -10,41 +11,118 @@
     - name: Install community.general collection
       ansible.builtin.command: ansible-galaxy collection install community.general
 
+    - name: Install galaxy from ci-framework dir
+      ansible.builtin.command: ansible-galaxy collection install .
+      args:
+        chdir: "{{ framework_dir }}"
+
     - name: Create bootstrap_common_vars file
       ansible.builtin.template:
         src: "{{ playbook_dir }}/files/common_bootstrap_params.yml.j2"
         dest: "{{ bootstrap_common_vars }}"
 
+    - name: Read bootstrap common vars
+      ansible.builtin.slurp:
+        src: "{{ bootstrap_common_vars }}"
+      register: _bootstrap_common_vars
+      no_log: true
+
+    - name: Set bootstrap_common_vars as fact
+      ansible.builtin.set_fact:
+        "{{ item.key }}": "{{ item.value }}"
+        cacheable: true
+      loop: "{{ _bootstrap_common_vars['content'] | b64decode | from_yaml | dict2items }}"
+      no_log: true
+
+    - name: Include dpa_cifmw_bootstrap_vars when defined
+      when: dpa_cifmw_bootstrap_vars is defined
+      block:
+        - name: Read dpa_cifmw_bootstrap_vars
+          ansible.builtin.slurp:
+            src: "{{ dpa_cifmw_bootstrap_vars }}"
+          register: _dpa_cifmw_bootstrap_vars
+          no_log: true
+
+        - name: Set dpa_cifmw_bootstrap_vars as fact
+          ansible.builtin.set_fact:
+            "{{ item.key }}": "{{ item.value }}"
+            cacheable: true
+          loop: "{{ _dpa_cifmw_bootstrap_vars['content'] | b64decode | from_yaml | dict2items }}"
+          no_log: true
+
+    - name: Include cifmw_extras vars
+      when: cifmw_extras is defined
+      vars:
+        file_location: "{{ item }}"
+      ansible.builtin.include_tasks:
+        file: set_vars_as_fact.yaml
+      loop: "{{ cifmw_extras }}"
+
+    # FIXME: if delegate_to would not work, start new play on
+    # cifmw_target_host | default('localhost')
+
+    # Earlier it was ansible-playbook command that takes
+    # playbooks/01-bootstrap.yml playbook.
     - name: Prepare ci-framework environment and install openshift client
-      ansible.builtin.shell:
-        cmd: >
-          ansible-playbook playbooks/01-bootstrap.yml --tags bootstrap
-          -e "@{{ bootstrap_common_vars }}"
-          {% if dpa_cifmw_bootstrap_vars is defined %}
-          -e "@{{ dpa_cifmw_bootstrap_vars }}"
-          {% endif %}
-          {%- if cifmw_extras is defined %}
-          {%-   for extra_vars in cifmw_extras %}
-          -e "{{   extra_vars }}"
-          {%-   endfor %}
-          {%- endif %}
-        chdir: "{{ framework_dir }}"
+      ansible.builtin.include_role:
+        name: cifmw_setup
+        tasks_from: bootstrap
+        apply:
+          delegate_to: "{{ item }}"
+      tags: bootstrap
+      loop: "{{ groups['all'][cifmw_target_host] | default('localhost') }}"
+
+    - name: Run pre_infra hook
+      vars:
+        step: pre_infra
+      ansible.builtin.include_role:
+        name: run_hook
+        apply:
+          delegate_to: "{{ item }}"
+      loop: "{{ groups['all'][cifmw_target_host] | default('localhost') }}"
 
     - name: Dump parameters to a file to pass them easily to cifmw playbooks
       ansible.builtin.template:
         src: "{{ playbook_dir }}/files/ci_framework_params.yaml.j2"
         dest: "{{ cifmw_parameters_file }}"
 
+    - name: Read cifmw_parameters_file file
+      ansible.builtin.slurp:
+        src: "{{ cifmw_parameters_file }}"
+      register: _cifmw_parameters_file
+      no_log: true
+
+    - name: Set cifmw_parameters_file as fact
+      ansible.builtin.set_fact:
+        "{{ item.key }}": "{{ item.value }}"
+        cacheable: true
+      loop: "{{ _cifmw_parameters_file['content'] | b64decode | from_yaml | dict2items }}"
+      no_log: true
+
+    - name: Run pre_infra hooks
+      vars:
+        step: pre_infra
+      ansible.builtin.include_role:
+        name: run_hook
+        apply:
+          delegate_to: "{{ item }}"
+      loop: "{{ groups['all'][cifmw_target_host] | default('localhost') }}"
+
+    - name: Prepare libvirt environment
+      ansible.builtin.include_role:
+        name: cifmw_setup
+        tasks_from: host_virtualization
+        apply:
+          delegate_to: "{{ item }}"
+      loop: "{{ groups['all']['virthosts'] | default(groups['all'][cifmw_target_host]) | default('localhost')] }}"
+
     - name: Prepare openshift and libvirt environment
-      ansible.builtin.shell:
-        cmd: >
-          ansible-playbook -v playbooks/02-infra.yml -e "@{{cifmw_parameters_file}}"
-          {%- if cifmw_extras is defined %}
-          {%-   for extra_vars in cifmw_extras %}
-          -e "{{   extra_vars }}"
-          {%-   endfor %}
-          {%- endif %}
-        chdir: "{{ framework_dir }}"
+      ansible.builtin.include_role:
+        name: cifmw_setup
+        tasks_from: infra
+        apply:
+          delegate_to: "{{ item }}"
+      loop: "{{ groups['all'][cifmw_target_host] | default('localhost') }}"
 
     - name: Write content-provider vars to file if present
       when: cifmw_operator_build_output is defined and cifmw_operator_build_output
@@ -53,7 +131,7 @@
           ansible.builtin.set_fact:
             cifmw_content_provider_params:
               cifmw_operator_build_output: "{{ cifmw_operator_build_output }}"
-              cifmw_operator_build_meta_name: 'openstack-operator'
+              cifmw_operator_build_meta_name: "openstack-operator"
 
         - name: Write variables to cifmw custom params file
           ansible.builtin.lineinfile:
@@ -70,23 +148,27 @@
                 operators:
                   openstack-operator:
                     image_catalog: "{{ operators_catalog_img['openstack-operator'] }}"
-              cifmw_operator_build_meta_name: 'openstack-operator'
+              cifmw_operator_build_meta_name: "openstack-operator"
 
         - name: Write variables to cifmw custom params file
           ansible.builtin.lineinfile:
             path: "{{ cifwm_data_folder }}/custom-params.yml"
             line: "{{ cifmw_content_provider_params | to_nice_yaml }}"
 
+    - name: Run pre_deploy hooks
+      when:
+        - cifmw_architecture_scenario is not defined
+      vars:
+        step: pre_deploy
+      ansible.builtin.import_role:
+        name: run_hook
+
+    # FIXME: finish porting from playbooks/06-deploy-edpm.yml
+
     - name: Install operators via ci-framework using edpm code
-      ansible.builtin.shell:
-        cmd: >
-          ansible-playbook -v playbooks/06-deploy-edpm.yml -e "@{{cifmw_parameters_file}}"
-          {%- if cifmw_extras is defined %}
-          {%-   for extra_vars in cifmw_extras %}
-          -e "{{   extra_vars }}"
-          {%-   endfor %}
-          {%- endif %}
-        chdir: "{{ framework_dir }}"
+      ansible.builtin.include_role:
+        name: cifmw_setup
+        tasks_from: deploy-edpm
 
     - name: Copy kubeconfig to .kube folder where oc expects it
       ansible.builtin.copy:
