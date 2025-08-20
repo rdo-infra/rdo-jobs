@@ -15,36 +15,36 @@
         src: "{{ playbook_dir }}/files/common_bootstrap_params.yml.j2"
         dest: "{{ bootstrap_common_vars }}"
 
+    - name: Read bootstrap common vars
+      ansible.builtin.include_vars: "{{ framework_dir }}/{{ bootstrap_common_vars }}"
+
+    - name: Include dpa_cifmw_bootstrap_vars
+      when: dpa_cifmw_bootstrap_vars is defined
+      ansible.builtin.include_vars: "{{ framework_dir }}/{{ dpa_cifmw_bootstrap_vars }}"
+
+    - name: Include cifmw_extras vars
+      when: cifmw_extras is defined
+      ansible.builtin.include_vars: "{{ framework_dir }}/{{ item }}"
+      loop: "{{ cifmw_extras }}"
+
     - name: Prepare ci-framework environment and install openshift client
-      ansible.builtin.shell:
-        cmd: >
-          ansible-playbook playbooks/01-bootstrap.yml --tags bootstrap
-          -e "@{{ bootstrap_common_vars }}"
-          {% if dpa_cifmw_bootstrap_vars is defined %}
-          -e "@{{ dpa_cifmw_bootstrap_vars }}"
-          {% endif %}
-          {%- if cifmw_extras is defined %}
-          {%-   for extra_vars in cifmw_extras %}
-          -e "{{   extra_vars }}"
-          {%-   endfor %}
-          {%- endif %}
-        chdir: "{{ framework_dir }}"
+      ansible.builtin.include_role:
+        name: cifmw_setup
+        tasks_from: bootstrap
+      tags: bootstrap
 
     - name: Dump parameters to a file to pass them easily to cifmw playbooks
       ansible.builtin.template:
         src: "{{ playbook_dir }}/files/ci_framework_params.yaml.j2"
         dest: "{{ cifmw_parameters_file }}"
 
+    - name: Read cifmw_parameters_file file
+      ansible.builtin.include_vars: "{{ framework_dir }}/{{ cifmw_parameters_file }}"
+
     - name: Prepare openshift and libvirt environment
-      ansible.builtin.shell:
-        cmd: >
-          ansible-playbook -v playbooks/02-infra.yml -e "@{{cifmw_parameters_file}}"
-          {%- if cifmw_extras is defined %}
-          {%-   for extra_vars in cifmw_extras %}
-          -e "{{   extra_vars }}"
-          {%-   endfor %}
-          {%- endif %}
-        chdir: "{{ framework_dir }}"
+      ansible.builtin.include_role:
+        name: cifmw_setup
+        tasks_from: infra
 
     - name: Write content-provider vars to file if present
       when: cifmw_operator_build_output is defined and cifmw_operator_build_output
@@ -78,15 +78,9 @@
             line: "{{ cifmw_content_provider_params | to_nice_yaml }}"
 
     - name: Install operators via ci-framework using edpm code
-      ansible.builtin.shell:
-        cmd: >
-          ansible-playbook -v playbooks/06-deploy-edpm.yml -e "@{{cifmw_parameters_file}}"
-          {%- if cifmw_extras is defined %}
-          {%-   for extra_vars in cifmw_extras %}
-          -e "{{   extra_vars }}"
-          {%-   endfor %}
-          {%- endif %}
-        chdir: "{{ framework_dir }}"
+      ansible.builtin.include_role:
+        name: cifmw_setup
+        tasks_from: deploy-edpm
 
     - name: Copy kubeconfig to .kube folder where oc expects it
       ansible.builtin.copy:
