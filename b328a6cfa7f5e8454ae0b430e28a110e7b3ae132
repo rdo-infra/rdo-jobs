@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcea8013_e6b4351d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2025-08-28T06:38:38Z",
+      "side": 1,
+      "message": "Symlink to cifmw modules on zuul executor bublewrap is possible:\n```\n- name: Install galaxy modules before executing jobs with required modules - localhost\n  hosts: localhost\n  vars:\n    cifmw_project_dir: \"{{ ansible_user_dir }}/{{ zuul.projects[\u0027github.com/openstack-k8s-operators/ci-framework\u0027].src_dir }}\"\n    ansible_collection_dir: \"{{ ansible_user_dir }}/.ansible/collections/ansible_collections\"\n  tasks:\n    - name: Install galaxy from ci-framework dir\n      ansible.builtin.command: ansible-galaxy collection install .\n      args:\n        chdir: \"{{ cifmw_project_dir }}\"\n      ignore_errors: true\n\n    - name: Check if cifmw general collection exists\n      ansible.builtin.stat:\n        path: \"{{ ansible_collection_dir }}/cifmw/general/plugins\"\n      register: _cifmw_gen_collection\n      ignore_errors: true\n\n    - name: Check if cifmw general collection exists\n      when: not _cifmw_gen_collection.stat.exists\n      block:\n        # FIXME\n        - name: Show ansible dir\n          ansible.builtin.shell: |\n            ls -la {{ ansible_collection_dir }}/cifmw/general\n          ignore_errors: true\n\n        - name: Workaround for earlier nested ansible execution\n          ansible.builtin.file:\n            path: \"{{ ansible_collection_dir }}/cifmw/general/\"\n            state: directory\n          ignore_errors: true\n\n        - name: Create symlink to the modules\n          ansible.builtin.file:\n            src: \"{{ cifmw_project_dir }}/plugins\"\n            dest: \"{{ ansible_collection_dir }}/cifmw/general/plugins\"\n            state: link\n            force: true\n          ignore_errors: true\n```\n\nStill tests ongoing.",
+      "revId": "b328a6cfa7f5e8454ae0b430e28a110e7b3ae132",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
