@@ -1,0 +1,208 @@
+---
+- hosts: controller
+  tasks:
+    - name: Install community.general collection
+      ansible.builtin.command: ansible-galaxy collection install community.general
+
+    - name: Create bootstrap_common_vars file
+      vars:
+        rdo_jobs_dir: "{{ ansible_user_dir }}/src/review.rdoproject.org/rdo-jobs"
+        rdo_dir: "{{ rdo_jobs_dir }}/playbooks/data_plane_adoption"
+        bootstrap_common_vars: "{{ rdo_dir }}/common_bootstrap_params.yml"
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/files/common_bootstrap_params.yml.j2"
+        dest: "{{ bootstrap_common_vars }}"
+
+    - name: Run bootstrap
+      ansible.builtin.import_role:
+        name: cifmw_setup # noqa syntax-check[specific]
+        tasks_from: bootstrap.yml
+
+    - name: Run pre_infra hooks
+      vars:
+        step: pre_infra
+      ansible.builtin.import_role:
+        name: run_hook
+      tags:
+        - infra
+
+    - name: Dump parameters to a file to pass them easily to cifmw playbooks
+      vars:
+        cifmw_parameters_file: "{{ ansible_user_dir }}/vars.yaml"
+        cifmw_installyamls_repos: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls"
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/files/ci_framework_params.yaml.j2"
+        dest: "{{ cifmw_parameters_file }}"
+
+- name: Prepare host virtualization
+  hosts: "{{ ('virthosts' in groups) | ternary('virthosts', cifmw_target_host | default('localhost') ) }}"
+  tasks:
+    - name: Run prepare host virtualization
+      vars:
+        step: pre_infra
+      ansible.builtin.import_role:
+        name: cifmw_setup
+        tasks_from: host_virtualization.yml
+      tags:
+        - infra
+
+- name: Run cifmw_setup infra, build package, container and operators, deploy EDPM
+  hosts: "{{ cifmw_target_host | default('localhost') }}"
+  tasks:
+    - name: Prepare the platform
+      vars:
+        step: pre_infra
+      ansible.builtin.import_role:
+        name: cifmw_setup
+        tasks_from: infra.yml
+      tags:
+        - infra
+
+    - name: Write content-provider vars to file if present
+      when: cifmw_operator_build_output is defined and cifmw_operator_build_output
+      block:
+        - name: Set content-provider variables dictionary
+          ansible.builtin.set_fact:
+            cifmw_content_provider_params:
+              cifmw_operator_build_output: "{{ cifmw_operator_build_output }}"
+              cifmw_operator_build_meta_name: "openstack-operator"
+
+        - name: Write variables to cifmw custom params file
+          vars:
+            cifwm_data_folder: "{{ ansible_user_dir }}/ci-framework-data/artifacts/parameters"
+          ansible.builtin.lineinfile:
+            path: "{{ cifwm_data_folder }}/custom-params.yml"
+            line: "{{ cifmw_content_provider_params | to_nice_yaml }}"
+
+    - name: Write build-push-openstack-operator-catalog vars to file if present
+      when: operators_catalog_img is defined and operators_catalog_img and 'openstack-operator' in operators_catalog_img
+      block:
+        - name: Set content-provider variables dictionary
+          ansible.builtin.set_fact:
+            cifmw_content_provider_params:
+              cifmw_operator_build_output:
+                operators:
+                  openstack-operator:
+                    image_catalog: "{{ operators_catalog_img['openstack-operator'] }}"
+              cifmw_operator_build_meta_name: "openstack-operator"
+
+        - name: Write variables to cifmw custom params file
+          vars:
+            cifwm_data_folder: "{{ ansible_user_dir }}/ci-framework-data/artifacts/parameters"
+          ansible.builtin.lineinfile:
+            path: "{{ cifwm_data_folder }}/custom-params.yml"
+            line: "{{ cifmw_content_provider_params | to_nice_yaml }}"
+
+    - name: Deploy EDPM
+      ansible.builtin.import_role:
+        name: cifmw_setup
+        tasks_from: deploy_edpm.yml
+      tags:
+        - edpm
+
+- name: Deploy NFS server on target nodes
+  become: true
+  hosts: "{{ groups[cifmw_nfs_target | default('computes')][0] | default([]) }}"
+  tasks:
+    - name: Run cifmw_nfs role
+      vars:
+        nftables_path: /etc/nftables
+        nftables_conf: /etc/sysconfig/nftables.conf
+      when:
+        - cifmw_edpm_deploy_nfs | default(false) | bool
+      ansible.builtin.import_role:
+        name: cifmw_nfs
+
+- name: Clear ceph target hosts facts to force refreshing in HCI deployments
+  hosts: "{{ cifmw_ceph_target | default('computes')  }}"
+  tasks:
+    # end_play will end only current play, not the main edpm-deploy.yml
+    - name: Early end if architecture deploy
+      when:
+        - cifmw_architecture_scenario is defined
+      ansible.builtin.meta: end_play
+
+    - name: Clear ceph target hosts facts
+      when: cifmw_edpm_deploy_hci | default(false) | bool
+      ansible.builtin.meta: clear_facts
+
+- name: Deploy ceph using hooks
+  hosts: "{{ cifmw_target_host | default('localhost') }}"
+  vars:
+    post_ceph:
+      - name: 80 Run Ceph hook playbook
+        type: playbook
+        source: ceph.yml
+  tasks:
+    - name: Run post_ceph hooks - deploy Ceph on target nodes
+      vars:
+        step: post_ceph
+        _deploy_ceph: >-
+          {{
+            (cifmw_edpm_deploy_hci | default(false) | bool) and
+            cifmw_architecture_scenario is undefined
+          }}
+        storage_network_range: 172.18.0.0/24
+        storage_mgmt_network_range: 172.20.0.0/24
+      ansible.builtin.import_role:
+        name: run_hook
+
+- name: Continue HCI deploy, deploy architecture and validate workflow
+  hosts: "{{ cifmw_target_host | default('localhost') }}"
+  gather_facts: false
+  tasks:
+    - name: Continue HCI deploy
+      ansible.builtin.import_role:
+        name: cifmw_setup
+        tasks_from: hci_deploy.yml
+      tags:
+        - edpm
+
+    - name: Run pre_deploy hooks
+      when: cifmw_architecture_scenario is defined
+      vars:
+        step: pre_deploy
+      ansible.builtin.import_role:
+        name: run_hook
+
+    - name: Early end if not architecture deploy
+      tags:
+        - always
+      when: cifmw_architecture_scenario is not defined
+      ansible.builtin.meta: end_play
+
+    - name: Run cifmw_setup deploy_architecture
+      when: cifmw_architecture_scenario is defined
+      ansible.builtin.import_role:
+        name: cifmw_setup
+        tasks_from: deploy_architecture.yml
+      tags:
+        - edpm
+
+    - name: Run validations
+      ansible.builtin.include_role:
+        name: validations
+      when: cifmw_execute_validations | default(false) | bool
+
+    - name: Copy kubeconfig to .kube folder where oc expects it
+      ansible.builtin.copy:
+        src: "{{ cifmw_openshift_kubeconfig }}"
+        dest: "/home/zuul/.kube/config"
+        remote_src: true
+
+    - name: Make sure all Openstack operators are deployed
+      ansible.builtin.shell: |
+        set -o pipefail && \
+        oc get csv -l operators.coreos.com/openstack-operator.openstack-operators -n "openstack-operators" --no-headers=true | grep -i "succeeded"
+      register: operator_status
+      until: operator_status.rc == 0
+      changed_when: false
+      retries: 30
+      delay: 30
+
+    - name: Get the name of the control plane deployed by 06-deploy-edpm.yml
+      ansible.builtin.command: oc get -n openstack openstackcontrolplane -o name
+      register: control_plane
+
+    - name: Delete control plane deployed by 06-deploy-edpm.yml
+      ansible.builtin.command: oc delete -n openstack "{{ control_plane.stdout }}"
