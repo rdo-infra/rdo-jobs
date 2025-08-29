@@ -13,10 +13,13 @@ skip_list:
     - unnamed-task
 verbosity: 1
 mock_roles:
-  - common
   - ci-common-vars
+  - cifmw_nfs
+  - cifmw_setup
+  - common
   - fetch-zuul-cloner-fork
   - mirror-info-fork
+  - run_hook
   - set-artifact-path-for-children
   - submit-log-processor-jobs
   - submit-logstash-jobs
