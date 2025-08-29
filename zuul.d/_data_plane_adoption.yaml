@@ -16,6 +16,8 @@
       - name: openstack-k8s-operators/ci-framework
         override-checkout: main
       - rdo-jobs
+      - name: openstack-k8s-operators/architecture
+        override-checkout: main
     roles: &adoption_common_roles
       - zuul: rdo-jobs
       - zuul: github.com/openstack-k8s-operators/ci-framework
