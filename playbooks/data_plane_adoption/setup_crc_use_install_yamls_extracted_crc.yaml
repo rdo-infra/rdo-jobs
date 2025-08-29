@@ -1,3 +1,4 @@
+---
 - hosts: controller
   vars:
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
@@ -15,17 +16,19 @@
         src: "{{ playbook_dir }}/files/common_bootstrap_params.yml.j2"
         dest: "{{ bootstrap_common_vars }}"
 
+    # FIXME: add `--tags bootstrap`
     - name: Prepare ci-framework environment and install openshift client
       ansible.builtin.shell:
         cmd: >
-          ansible-playbook playbooks/01-bootstrap.yml --tags bootstrap
+          ansible localhost -m include_role
+          -a "name=cifmw_setup tasks_from=bootstrap.yml"
           -e "@{{ bootstrap_common_vars }}"
           {% if dpa_cifmw_bootstrap_vars is defined %}
           -e "@{{ dpa_cifmw_bootstrap_vars }}"
           {% endif %}
           {%- if cifmw_extras is defined %}
           {%-   for extra_vars in cifmw_extras %}
-          -e "{{   extra_vars }}"
+          -e "{{ extra_vars }}"
           {%-   endfor %}
           {%- endif %}
         chdir: "{{ framework_dir }}"
@@ -38,10 +41,12 @@
     - name: Prepare openshift and libvirt environment
       ansible.builtin.shell:
         cmd: >
-          ansible-playbook -v playbooks/02-infra.yml -e "@{{cifmw_parameters_file}}"
+          ansible localhost -m include_role
+          -a "name=cifmw_setup tasks_from=infra.yml"
+          -e "@{{ cifmw_parameters_file }}"
           {%- if cifmw_extras is defined %}
           {%-   for extra_vars in cifmw_extras %}
-          -e "{{   extra_vars }}"
+          -e "{{ extra_vars }}"
           {%-   endfor %}
           {%- endif %}
         chdir: "{{ framework_dir }}"
@@ -53,7 +58,7 @@
           ansible.builtin.set_fact:
             cifmw_content_provider_params:
               cifmw_operator_build_output: "{{ cifmw_operator_build_output }}"
-              cifmw_operator_build_meta_name: 'openstack-operator'
+              cifmw_operator_build_meta_name: "openstack-operator"
 
         - name: Write variables to cifmw custom params file
           ansible.builtin.lineinfile:
@@ -70,23 +75,109 @@
                 operators:
                   openstack-operator:
                     image_catalog: "{{ operators_catalog_img['openstack-operator'] }}"
-              cifmw_operator_build_meta_name: 'openstack-operator'
+              cifmw_operator_build_meta_name: "openstack-operator"
 
         - name: Write variables to cifmw custom params file
           ansible.builtin.lineinfile:
             path: "{{ cifwm_data_folder }}/custom-params.yml"
             line: "{{ cifmw_content_provider_params | to_nice_yaml }}"
 
+    # - name: Install operators via ci-framework using edpm code
+    #   ansible.builtin.shell:
+    #     cmd: >
+    #       ansible-playbook -v playbooks/06-deploy-edpm.yml -e "@{{cifmw_parameters_file}}"
+    #       {%- if cifmw_extras is defined %}
+    #       {%-   for extra_vars in cifmw_extras %}
+    #       -e "{{   extra_vars }}"
+    #       {%-   endfor %}
+    #       {%- endif %}
+    #     chdir: "{{ framework_dir }}"
+
+    - name: Run pre_deploy hooks
+      when: cifmw_architecture_scenario is not defined
+      ansible.builtin.shell:
+        cmd: >
+          ansible localhost -m include_role
+          -a "name=run_hook tasks_from=pre_deploy.yml"
+          -e "step=pre_deploy"
+      args:
+        chdir: "{{ framework_dir }}"
+
     - name: Install operators via ci-framework using edpm code
       ansible.builtin.shell:
         cmd: >
-          ansible-playbook -v playbooks/06-deploy-edpm.yml -e "@{{cifmw_parameters_file}}"
+          ansible localhost -m include_role
+          -a "name=cifmw_setup tasks_from=deploy-edpm.yml"
+          -e "@{{ cifmw_parameters_file }}"
           {%- if cifmw_extras is defined %}
           {%-   for extra_vars in cifmw_extras %}
-          -e "{{   extra_vars }}"
+          -e "{{ extra_vars }}"
           {%-   endfor %}
           {%- endif %}
+      args:
         chdir: "{{ framework_dir }}"
+
+- name: Deploy NFS server on target nodes
+  become: true
+  hosts: "{{ groups[cifmw_nfs_target | default('computes')][0] | default([]) }}"
+  tasks:
+    - name: Run cifmw_nfs role
+      when: cifmw_edpm_deploy_nfs | default(false)
+      ansible.builtin.shell:
+        cmd: >
+          ansible localhost -m include_role
+          -a "name=cifmw_setup tasks_from=cifmw_nfs.yml"
+          -e "nftables_path=/etc/nftables"
+          -e "nftables_conf=/etc/sysconfig/nftables.conf"
+      args:
+        chdir: "{{ framework_dir }}"
+
+- name: Clear ceph target hosts facts to force refreshing in HCI deployments
+  hosts: "{{ cifmw_ceph_target | default('computes') }}"
+  tasks:
+    # end_play will end only current play, not the main edpm-deploy.yml
+    - name: Early end if architecture deploy
+      when: cifmw_architecture_scenario is defined
+      ansible.builtin.meta: end_play
+
+    - name: Clear ceph target hosts facts
+      when: cifmw_edpm_deploy_hci | default(false)
+      ansible.builtin.meta: clear_facts
+
+- name: Deploy ceph using hooks
+  hosts: "{{ cifmw_target_host | default('controller') }}"
+  vars:
+    post_ceph:
+      - name: 80 Run Ceph hook playbook
+        type: playbook
+        source: ceph.yml
+    _deploy_ceph: >-
+      {{
+        (cifmw_edpm_deploy_hci | default(false) | bool) and
+        cifmw_architecture_scenario is undefined
+      }}
+  tasks:
+    - name: Run post_ceph hooks - deploy Ceph on target nodes
+      ansible.builtin.shell:
+        cmd: >
+          ansible localhost -m import_role
+          -a "name=run_hook"
+          -e "storage_network_range=172.18.0.0/24"
+          -e "storage_mgmt_network_range=172.20.0.0/24"
+          -e "_deploy_ceph={{ _deploy_ceph | bool }}"
+          -e "step=post_ceph"
+          -e "post_ceph={{ post_ceph }}"
+      args:
+        chdir: "{{ framework_dir }}"
+
+- name: Continue HCI deploy
+  hosts: "{{ cifmw_target_host | default('controller') }}"
+  gather_facts: false
+  tasks:
+    - name: Continue HCI deploy
+      ansible.builtin.include_role:
+        name: cifmw_setup
+        tasks_from: hci_deploy.yml
 
     - name: Copy kubeconfig to .kube folder where oc expects it
       ansible.builtin.copy:
