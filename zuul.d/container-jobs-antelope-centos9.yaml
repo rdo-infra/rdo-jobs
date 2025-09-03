@@ -309,6 +309,9 @@
         # Disable prometheus based autoscaling testing until we have Caracal content.
         telemetry_tempest_plugin.scenario.test_telemetry_integration_prometheus.PrometheusGabbiTest.test_autoscaling
         manila_tempest_tests.tests.api.test_share_network_subnets.ShareNetworkSubnetsTest.test_create_delete_subnet
+      # More info: https://github.com/openstack-k8s-operators/ci-framework/pull/3248
+      cifmw_excluded_updating_rpm:
+        - "openssl-libs*"
     timeout: 18000
 
 - job:
