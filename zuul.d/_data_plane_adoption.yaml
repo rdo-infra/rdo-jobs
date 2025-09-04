@@ -21,7 +21,7 @@
       - zuul: github.com/openstack-k8s-operators/ci-framework
     pre-run:
       - playbooks/data_plane_adoption/subnode_ip.yaml
-      - playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml
+      - "{{ zuul.projects['github.com/openstack-k8s-operators/ci-framework'].src_dir }}/deploy-edpm.yml"
       - playbooks/data_plane_adoption/setup_standalone_os_net_config.yaml
     run:
       - playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml
@@ -83,7 +83,7 @@
     roles: *adoption_common_roles
     pre-run: &multinode_adoption_pre_run
       - playbooks/data_plane_adoption/subnode_ip.yaml
-      - playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml
+      - "{{ zuul.projects['github.com/openstack-k8s-operators/ci-framework'].src_dir }}/deploy-edpm.yml"
       - playbooks/data_plane_adoption/setup_tripleo_os_net_config.yaml
       - playbooks/data_plane_adoption/setup_tripleo_hostnamemap.yaml
     run: &multinode_adoption_run
@@ -299,14 +299,14 @@
 - job:
     name: adoption-multinode-networker-to-crc
     description: |
-        base (abstract) multinode source OSP17.1 with networker nodes adopted to crc RHOSO 18.
+      base (abstract) multinode source OSP17.1 with networker nodes adopted to crc RHOSO 18.
     abstract: true
     parent: cifmw-adoption-base-multinode-networker
     required-projects: *dpa_required_projects
     roles: *adoption_common_roles
     pre-run:
       - playbooks/data_plane_adoption/subnode_ip.yaml
-      - playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc.yaml
+      - "{{ zuul.projects['github.com/openstack-k8s-operators/ci-framework'].src_dir }}/deploy-edpm.yml"
       - playbooks/data_plane_adoption/setup_tripleo_os_net_config.yaml
       - playbooks/data_plane_adoption/setup_tripleo_hostnamemap_networker.yaml
     run: *multinode_adoption_run
