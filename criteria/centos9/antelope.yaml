@@ -6,8 +6,9 @@ current-podified:
   - periodic-podified-multinode-edpm-deployment-antelope-ocp-crc-cs9
   - periodic-adoption-standalone-to-crc-ceph
   - periodic-adoption-standalone-to-crc-no-ceph
-  - periodic-adoption-multinode-to-crc-ceph
-  - periodic-adoption-multinode-to-crc-no-ceph
+  # Skipping these jobs due to CIX, OSPCIX-1025
+  #- periodic-adoption-multinode-to-crc-ceph
+  #- periodic-adoption-multinode-to-crc-no-ceph
   - periodic-adoption-multinode-to-crc-no-ceph-rollback
   - periodic-adoption-multinode-to-crc-no-ceph-novacells
   - periodic-whitebox-neutron-tempest-plugin-podified-multinode-edpm-deployment-crc-2comp
