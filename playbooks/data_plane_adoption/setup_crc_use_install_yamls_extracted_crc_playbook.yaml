@@ -1,0 +1,24 @@
+---
+- name: validate workflow
+  hosts: "{{ cifmw_target_host | default('localhost') }}"
+  gather_facts: false
+  tasks:
+    - name: Copy kubeconfig to .kube folder where oc expects it
+      ansible.builtin.copy:
+        src: "{{ cifmw_openshift_kubeconfig }}"
+        dest: "/home/zuul/.kube/config"
+        remote_src: true
+    - name: Make sure all Openstack operators are deployed
+      ansible.builtin.shell: |
+        set -o pipefail && \
+        oc get csv -l operators.coreos.com/openstack-operator.openstack-operators -n "openstack-operators" --no-headers=true | grep -i "succeeded"
+      register: operator_status
+      until: operator_status.rc == 0
+      changed_when: false
+      retries: 30
+      delay: 30
+    - name: Get the name of the control plane deployed by 06-deploy-edpm.yml
+      ansible.builtin.command: oc get -n openstack openstackcontrolplane -o name
+      register: control_plane
+    - name: Delete control plane deployed by 06-deploy-edpm.yml
+      ansible.builtin.command: oc delete -n openstack "{{ control_plane.stdout }}"
