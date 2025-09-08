@@ -324,19 +324,21 @@
       # Note: This WA applies to version <= 17.1.3
       become: true
       delegate_to: "{{ item }}"
+      when: item != 'undercloud'
       ansible.builtin.dnf:
         name:
           - systemd-container
         state: present
-      loop: "{{ groups['tripleo_computes'] | default([]) }}"
+      loop: "{{ groups['rh-subscription'] }}"
 
     - name: Update sos-reports package to use it with must-gather
       delegate_to: "{{ item }}"
       become: true
+      when: item != 'undercloud'
       ansible.builtin.dnf:
         name: sos
         state: latest
-      loop: "{{ groups['tripleo_computes'] }}"
+      loop: "{{ groups['rh-subscription'] }}"
 
     - name: Disable OSP17.1 repos before running OSP 18 setup and adoption
       delegate_to: "{{ item }}"
