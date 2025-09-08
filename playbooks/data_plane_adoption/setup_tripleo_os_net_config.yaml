@@ -137,7 +137,7 @@
     - name: Run os-net-config to create tripleo networking
       become: true
       ansible.builtin.shell: |
-        os-net-config -c /etc/os-net-config/tripleo_config.yaml
+        os-net-config -v -c /etc/os-net-config/tripleo_config.yaml
 
     - name: Sanity check standalone can ping crc and controller nodes on 192.168.122.0/24
       ansible.builtin.shell: |
