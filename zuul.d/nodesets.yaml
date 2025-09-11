@@ -943,6 +943,14 @@
       - name: tempest
         nodes: []
 
+- nodeset:
+    name: devstack-single-node-rockylinux-10
+    nodes:
+      - name: controller
+        label: cloud-centos-10-stream
+    groups:
+      - name: tempest
+        nodes: []
 
 - nodeset:
     name: devstack-single-node-debian-bullseye
