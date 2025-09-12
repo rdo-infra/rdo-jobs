@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1abb51cb_966c1f2b",
+        "filename": "playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc_playbook.yaml",
+        "patchSetId": 28
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2025-09-12T11:01:18Z",
+      "side": 1,
+      "message": "the point of this parameter file was to pass the parameters easily to the nested ansible calls, now that they are gone, all tasks related to this file should be removed as well",
+      "revId": "48d4613824bb85f26f34b1488261be8ee16edb0a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db5e5088_eef756fa",
+        "filename": "playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc_playbook.yaml",
+        "patchSetId": 28
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2025-09-12T11:01:18Z",
+      "side": 1,
+      "message": "Ideally for adoption we would want that this role only installs operators and sets up networking, but does not actually deploy the control plane, not sure if the role supports that",
+      "revId": "48d4613824bb85f26f34b1488261be8ee16edb0a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25f8aa10_6bf83480",
+        "filename": "playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc_playbook.yaml",
+        "patchSetId": 28
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2025-09-12T11:01:18Z",
+      "side": 1,
+      "message": "the nfs and ceph tasks are not needed. when using ceph, the adoption jobs deploy it initially using tripleo and then adoption while running the test, we should not configure any storage using cifmw at this pont",
+      "revId": "48d4613824bb85f26f34b1488261be8ee16edb0a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "800c3eae_d8552f46",
+        "filename": "zuul.d/_data_plane_adoption.yaml",
+        "patchSetId": 28
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 832
+      },
+      "writtenOn": "2025-09-12T11:01:18Z",
+      "side": 1,
+      "message": "why is this needed?, IIRC these jobs do not use the architecture repo at all",
+      "revId": "48d4613824bb85f26f34b1488261be8ee16edb0a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
