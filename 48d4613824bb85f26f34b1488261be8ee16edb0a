@@ -18,6 +18,24 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dfc9ecf_beaa54e8",
+        "filename": "playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc_playbook.yaml",
+        "patchSetId": 28
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2025-09-13T09:28:20Z",
+      "side": 1,
+      "message": "Not really. `common_bootstrap_params.yml.j2` have `BMO_SETUP: false` which is needed. If I will overwrite it, other keys would be removed. Need to stay as it is.\nSame in other places - some vars are already defined, but some other not. More, there are many reassigned vars. Don\u0027t want to rewrite it.",
+      "parentUuid": "1abb51cb_966c1f2b",
+      "revId": "48d4613824bb85f26f34b1488261be8ee16edb0a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db5e5088_eef756fa",
@@ -52,6 +70,24 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72b933fa_a6d5a41f",
+        "filename": "playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc_playbook.yaml",
+        "patchSetId": 28
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2025-09-13T09:28:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25f8aa10_6bf83480",
+      "revId": "48d4613824bb85f26f34b1488261be8ee16edb0a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "800c3eae_d8552f46",
@@ -65,6 +101,24 @@
       "writtenOn": "2025-09-12T11:01:18Z",
       "side": 1,
       "message": "why is this needed?, IIRC these jobs do not use the architecture repo at all",
+      "revId": "48d4613824bb85f26f34b1488261be8ee16edb0a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "049d7ea3_85eb53fe",
+        "filename": "zuul.d/_data_plane_adoption.yaml",
+        "patchSetId": 28
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2025-09-13T09:28:20Z",
+      "side": 1,
+      "message": "it is required in some ci local storage tasks. Dont remember exactly, but it is searching for: `https://github.com/openstack-k8s-operators/architecture/tree/main/examples/common/olm`",
+      "parentUuid": "800c3eae_d8552f46",
       "revId": "48d4613824bb85f26f34b1488261be8ee16edb0a",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
