@@ -19,6 +19,15 @@
         name: cifmw_helpers
         tasks_from: var_file.yml
 
+    - name: Set vars as fact - cifmw_extras
+      when: cifmw_extras is defined and cifmw_extras | length > 1
+      vars:
+        provided_file: "{{ item }}"
+      ansible.builtin.include_role:
+        name: cifmw_helpers
+        tasks_from: var_file.yml
+      loop: "{{ cifmw_extras | default([]) }}"
+
     - name: Run bootstrap
       ansible.builtin.import_role:
         name: cifmw_setup
@@ -47,6 +56,15 @@
 - name: Prepare host virtualization
   hosts: "{{ ('virthosts' in groups) | ternary('virthosts', cifmw_target_host | default('localhost') ) }}"
   tasks:
+    - name: Set vars as fact - cifmw_extras
+      when: cifmw_extras is defined and cifmw_extras | length > 1
+      vars:
+        provided_file: "{{ item }}"
+      ansible.builtin.include_role:
+        name: cifmw_helpers
+        tasks_from: var_file.yml
+      loop: "{{ cifmw_extras | default([]) }}"
+
     - name: Run prepare host virtualization
       vars:
         step: pre_infra
