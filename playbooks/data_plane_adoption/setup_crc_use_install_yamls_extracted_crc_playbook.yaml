@@ -6,6 +6,7 @@
     bootstrap_common_vars: "{{ rdo_dir }}/common_bootstrap_params.yml"
     cifmw_parameters_file: "{{ ansible_user_dir }}/vars.yaml"
     cifmw_installyamls_repos: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/install_yamls"
+    cifmw_helpers_no_log: false
   tasks:
     - name: Create bootstrap_common_vars file
       ansible.builtin.template:
@@ -18,6 +19,10 @@
       ansible.builtin.include_role:
         name: cifmw_helpers
         tasks_from: var_file.yml
+
+    - name: Include vars from cifmw_extras
+      ansible.builtin.include_vars: "{{ item | replace('@','') }}"
+      loop: "{{ cifmw_extras | select('match', '^@.*\\.(yml|yaml)$') | list }}"
 
     - name: Run bootstrap
       ansible.builtin.import_role:
@@ -47,6 +52,10 @@
 - name: Prepare host virtualization
   hosts: "{{ ('virthosts' in groups) | ternary('virthosts', cifmw_target_host | default('localhost') ) }}"
   tasks:
+    - name: Include vars from cifmw_extras
+      ansible.builtin.include_vars: "{{ item | replace('@','') }}"
+      loop: "{{ cifmw_extras | select('match', '^@.*\\.(yml|yaml)$') | list }}"
+
     - name: Run prepare host virtualization
       vars:
         step: pre_infra
