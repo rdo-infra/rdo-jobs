@@ -19,6 +19,10 @@
         name: cifmw_helpers
         tasks_from: var_file.yml
 
+    - name: Include vars from cifmw_extras
+      ansible.builtin.include_vars: "{{ item | replace('@','') }}"
+      loop: "{{ cifmw_extras | select('match', '^@.*\\.(yml|yaml)$') | list }}"
+
     - name: Run bootstrap
       ansible.builtin.import_role:
         name: cifmw_setup
@@ -47,6 +51,10 @@
 - name: Prepare host virtualization
   hosts: "{{ ('virthosts' in groups) | ternary('virthosts', cifmw_target_host | default('localhost') ) }}"
   tasks:
+    - name: Include vars from cifmw_extras
+      ansible.builtin.include_vars: "{{ item | replace('@','') }}"
+      loop: "{{ cifmw_extras | select('match', '^@.*\\.(yml|yaml)$') | list }}"
+
     - name: Run prepare host virtualization
       vars:
         step: pre_infra
