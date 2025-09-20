@@ -20,6 +20,9 @@
         tasks_from: var_file.yml
 
     - name: Include vars from cifmw_extras
+      when:
+      - cifmw_extras is defined
+      - cifmw_extras | length > 0
       ansible.builtin.include_vars: "{{ item | replace('@','') }}"
       loop: "{{ cifmw_extras | select('match', '^@.*\\.(yml|yaml)$') | list }}"
 
@@ -52,6 +55,9 @@
   hosts: "{{ ('virthosts' in groups) | ternary('virthosts', cifmw_target_host | default('localhost') ) }}"
   tasks:
     - name: Include vars from cifmw_extras
+      when:
+      - cifmw_extras is defined
+      - cifmw_extras | length > 0
       ansible.builtin.include_vars: "{{ item | replace('@','') }}"
       loop: "{{ cifmw_extras | select('match', '^@.*\\.(yml|yaml)$') | list }}"
 
