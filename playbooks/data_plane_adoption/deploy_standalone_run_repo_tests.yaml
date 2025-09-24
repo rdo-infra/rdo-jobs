@@ -24,6 +24,13 @@
 
     - name: Write repo commands and deploy standalone using ci-framework without a vm
       block:
+        - name: Render OIDC federation env file on controller (for standalone deploy)
+          when: enable_federation | default(false) | bool
+          ansible.builtin.template:
+            src: "{{ playbook_dir }}/files/enable_federation_openidc.yaml.j2"
+            dest: "/tmp/aditional_env_file.yaml"
+            mode: "0644"
+
         - name: Write out the repo setup commands to file for standalone to use
           ansible.builtin.lineinfile:
             create: true
@@ -42,6 +49,7 @@
             -e "use_ceph={{ use_ceph | default('true') }}"
             -e "cloud_domain={{ cloud_domain | default('localdomain') }}"
             -e "enable_tls={{ enable_tls | default('false') }}"
+            -e "enable_federation={{ enable_federation | default('false') }}"
             -e "enable_telemetry={{ enable_telemetry | default('false') }}"
             -e "enable_barbican={{ enable_barbican | default('false') }}"
             -e "enable_octavia={{ enable_octavia | default('true') }}"
@@ -138,6 +146,12 @@
         path: "{{ rdo_dir }}/vars.yaml"
         regexp: "'^enable_tlse:'"
         value: "enable_tlse: {{ enable_tls | default('false') }}"
+
+    - name: Set federation flag in vars.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: "'^enable_federation:'"
+        value: "enable_federation: {{ enable_federation | default('false') }}"
 
     - name: Set prelaunch_barbican_secret in vars.yaml
       ansible.builtin.lineinfile:
@@ -397,6 +411,13 @@
       delegate_to: standalone
       become: true
       ansible.builtin.shell: "subscription-manager repos --disable {{ osp_17_repos | join(' --disable ') }}"
+
+    - name: Run post overcloud hooks (OIDC on OSP 17.1)
+      when: enable_federation | default(false) | bool
+      vars:
+        step: "post_overcloud_overcloud"
+      ansible.builtin.include_role:
+        name: run_hook
 
     - name: Insert adoption extra vars when defined
       when: adoption_extra_vars is defined
