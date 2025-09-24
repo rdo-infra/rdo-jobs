@@ -23,6 +23,7 @@
           EDPM_COMPUTE_CEPH_NOVA: "{{ use_ceph | default('true') }}"
           DNS_DOMAIN: "{{ cloud_domain | default('localdomain') }}"
           TLS_ENABLED: "{{ enable_tls | default('false') }}"
+          ADDITIONAL_ENV_FILE: "/tmp/aditional_env_file.yaml"
           TELEMETRY_ENABLED: "{{ enable_telemetry | default('false') }}"
           # keep octavia disabled by default due to CIX
           OCTAVIA_ENABLED: "{{ enable_octavia | default('false') }}"
