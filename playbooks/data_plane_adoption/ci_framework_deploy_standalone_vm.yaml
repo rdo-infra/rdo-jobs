@@ -2,6 +2,16 @@
   vars:
     framework_dir: "/home/zuul/src/github.com/openstack-k8s-operators/ci-framework"
   tasks:
+    - name: Check if additional heat environment file exists
+      ansible.builtin.stat:
+        path: "{{ additional_heat_env_file | default('/home/zuul/proteccio_heat_vars.yaml') }}"
+      register: _additional_heat_env_file_stat
+
+    - name: Set additional heat env parameter if file exists
+      when: _additional_heat_env_file_stat.stat.exists
+      ansible.builtin.set_fact:
+        _standalone_additional_heat_env: "{{ _additional_heat_env_file_stat.stat.path }}"
+
     - name: Deploy standalone
       ansible.builtin.include_role:
         name: 'install_yamls_makes'
@@ -28,3 +38,4 @@
           OCTAVIA_ENABLED: "{{ enable_octavia | default('false') }}"
           BARBICAN_SERVICE_ENABLED: "{{ enable_barbican | default('false') }}"
           SWIFT_REPLICATED: "{{ swift_replicated | default('false') }}"
+          ADDITIONAL_HEAT_PARAMS: "{{ _standalone_additional_heat_env | default('') }}"

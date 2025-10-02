@@ -96,6 +96,15 @@
 
     - name: Write repo commands and deploy undercloud with install_yamls
       block:
+        - name: Copy proteccio heat environment file if it exists
+          when:
+            - proteccio_heat_vars_file is defined
+            - proteccio_heat_vars_file | length > 0
+          ansible.builtin.copy:
+            src: "{{ proteccio_heat_vars_file }}"
+            dest: "/home/zuul/proteccio_heat_vars.yaml"
+            mode: '0644'
+
         - name: Write out the repo setup commands to file for undercloud to use
           ansible.builtin.lineinfile:
             create: true
