@@ -18,6 +18,30 @@
       changed_when: false
       register: _worker_is_sudoer
 
+    - name: Check for CA cert file
+      ansible.builtin.stat:
+        path: "/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt"
+      register: ca_file
+
+    - name: Create symlink for certfile
+      when: not ca_file.stat.exists
+      become: true
+      block:
+        - name: Ensure ca-trust directory exists
+          ansible.builtin.file:
+            path: /etc/pki/ca-trust/extracted/openssl
+            state: directory
+            mode: '0755'
+            owner: root
+            group: root
+
+        - name: Create symlink for ca-bundle trust certificate
+          ansible.builtin.file:
+            src: /etc/pki/tls/certs/ca-bundle.crt
+            dest: /etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt
+            state: link
+            force: true
+
     - import_role:
         name: configure-mirrors
       vars:
