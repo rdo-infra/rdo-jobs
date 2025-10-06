@@ -16,6 +16,23 @@
       "message": "There are a lot of references in this patch to proteccio.  I think the idea here is to provide a generic mechanism to provide an extra file with THT params.\n\nThat way, we can deploy proteccio or some other HSM, or federation or some other feature unrelated to either barbican or keystone.",
       "revId": "296d76eb21120bb6b40a690a7fe0a58345720da8",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8b871e9_c0fc89a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 321
+      },
+      "writtenOn": "2025-10-06T20:51:20Z",
+      "side": 1,
+      "message": "To be clear - what we want is a generalization of https://review.rdoproject.org/r/c/rdo-jobs/+/58349\n\nso that we can do either federation or proteccio or anything else.",
+      "revId": "296d76eb21120bb6b40a690a7fe0a58345720da8",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
