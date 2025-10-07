@@ -1,0 +1,71 @@
+---
+# Tasks to prepare RHOSO 18 Barbican with Proteccio HSM support
+# This should be executed after CRC/OpenShift is deployed and before adoption tests run
+
+- name: Display Barbican backend being used
+  ansible.builtin.debug:
+    msg: "Preparing RHOSO 18 Barbican with PKCS11/Proteccio backend to match OSP 17.1 configuration"
+
+- name: Prepare RHOSO with Proteccio
+  block:
+    #- name: Create modified barbican images with Proteccio client
+    #  ansible.builtin.include_role:
+    #    name: "ansible-role-rhoso-proteccio-hsm"
+    #    tasks_from: create_image
+    #  vars:
+    #    proteccio_iso_url: "{{ rhoso_proteccio_hsm_proteccio_iso_url }}"
+    #    barbican_src_api_image_name: "{{ rhoso_proteccio_hsm_image_api_base }}"
+    #    barbican_src_worker_image_name: "{{ rhoso_proteccio_hsm_image_worker_base }}"
+    #    barbican_dest_api_image_name: "{{ rhoso_proteccio_hsm_image_api_dest }}"
+    #    barbican_dest_worker_image_name: "{{ rhoso_proteccio_hsm_image_worker_dest }}"
+    #    barbican_dest_image_tag: "{{ rhoso_proteccio_hsm_image_tag }}"
+    #    barbican_dest_image_registry: "{{ rhoso_proteccio_hsm_registry }}"
+    #    barbican_dest_image_namespace: "{{ rhoso_proteccio_hsm_namespace }}"
+
+    #- name: Create Proteccio secrets in OpenShift
+    #  ansible.builtin.include_role:
+    #    name: "ansible-role-rhoso-proteccio-hsm"
+    #    tasks_from: create_secrets
+    #  vars:
+    #    proteccio_client_cert_url: "{{ rhoso_proteccio_hsm_proteccio_client_cert_url }}"
+    #    proteccio_client_key_url: "{{ rhoso_proteccio_hsm_proteccio_client_key_url }}"
+    #    proteccio_server_cert_url: "{{ rhoso_proteccio_hsm_proteccio_server_cert_url }}"
+    #    proteccio_rc_content: "{{ rhoso_proteccio_hsm_proteccio_rc_content }}"
+    #    client_data_secret: "{{ rhoso_proteccio_hsm_client_data_secret }}"
+    #    login_secret: "{{ rhoso_proteccio_hsm_login_secret }}"
+    #    pin: "{{ rhoso_proteccio_hsm_pin }}"
+    #    target_namespace: "openstack"
+    #   kubeconfig_path: "{{ rhoso_proteccio_hsm_kubeconfig_path }}"
+    #    oc_dir: "{{ rhoso_proteccio_hsm_oc_dir }}"
+
+    - name: Create kustomization for Barbican with Proteccio
+      ansible.builtin.copy:
+        dest: "{{ ansible_user_dir }}/ci-framework-data/artifacts/93-barbican-proteccio.yaml"
+        mode: '0644'
+        content: |
+          apiVersion: kustomize.config.k8s.io/v1alpha1
+          kind: Component
+          patches:
+          - target:
+              kind: OpenStackControlPlane
+            patch: |-
+              - op: replace
+                path: /spec/barbican/template/barbicanAPI/containerImage
+                value: {{ rhoso_proteccio_hsm_registry }}/{{ rhoso_proteccio_hsm_namespace }}/{{ rhoso_proteccio_hsm_image_api_dest }}:{{ rhoso_proteccio_hsm_image_tag }}
+              - op: replace
+                path: /spec/barbican/template/barbicanWorker/containerImage
+                value: {{ rhoso_proteccio_hsm_registry }}/{{ rhoso_proteccio_hsm_namespace }}/{{ rhoso_proteccio_hsm_image_worker_dest }}:{{ rhoso_proteccio_hsm_image_tag }}
+
+    - name: Update kustomization.yaml to include Barbican Proteccio patch
+      ansible.builtin.lineinfile:
+        path: "{{ ansible_user_dir }}/ci-framework-data/artifacts/kustomization.yaml"
+        insertafter: "^components:"
+        line: "  - 93-barbican-proteccio.yaml"
+        state: present
+
+  vars:
+    hsm_role_path: "{{ zuul.projects['github.com/openstack-k8s-operators/ansible-role-rhoso-proteccio-hsm'].src_dir }}"
+
+- name: Set fact for adoption tests
+  ansible.builtin.set_fact:
+    barbican_hsm_enabled: true
