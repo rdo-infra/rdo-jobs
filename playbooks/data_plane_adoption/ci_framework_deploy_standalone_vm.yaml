@@ -28,3 +28,4 @@
           OCTAVIA_ENABLED: "{{ enable_octavia | default('false') }}"
           BARBICAN_SERVICE_ENABLED: "{{ enable_barbican | default('false') }}"
           SWIFT_REPLICATED: "{{ swift_replicated | default('false') }}"
+          ADDITIONAL_ENV_FILE: "/home/zuul/enable-barbican-proteccio.yaml"
