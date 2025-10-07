@@ -28,3 +28,4 @@
           OCTAVIA_ENABLED: "{{ enable_octavia | default('false') }}"
           BARBICAN_SERVICE_ENABLED: "{{ enable_barbican | default('false') }}"
           SWIFT_REPLICATED: "{{ swift_replicated | default('false') }}"
+          ADDITIONAL_HEAT_PARAMS: "/tmp/additional_heat_params.yaml"
