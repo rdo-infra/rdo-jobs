@@ -13,6 +13,29 @@
       - rhceph-7-tools-for-rhel-9-x86_64-rpms
       - fast-datapath-for-rhel-9-x86_64-rpms
       - rhel-9-for-x86_64-highavailability-eus-rpms
+
+  pre_tasks:
+    - name: Display ansible_roles_path BEFORE
+      ansible.builtin.debug:
+        msg: "{{ ansible_roles_path }}"
+
+    - name: Checkout ansible-role-rhoso-proteccio-hsm
+      ansible.builtin.git:
+        repo: "{{ rhoso_proteccio_hsm_repo | default('https://github.com/openstack-k8s-operators/ansible-role-rhoso-proteccio-hsm.git') }}"
+        dest: "/home/zuul/proteccio/roles/ansible-role-rhoso-proteccio-hsm"
+        version: "{{ rhoso_proteccio_hsm_version | default('main') }}"
+        force: true
+
+    - name: Dynamically set Ansible roles_path to include the proteccio role
+      ansible.builtin.set_fact:
+        ansible_roles_path:
+          - "/home/zuul/proteccio/roles"
+          - "{{ ansible_roles_path | default([]) }}"
+
+    - name: Display ansible_roles_path AFTER
+      ansible.builtin.debug:
+        msg: "{{ ansible_roles_path }}"
+
   tasks:
     - name: Create inventory to run tasks inside vm
       ansible.builtin.template:
@@ -21,6 +44,17 @@
 
     - name: Install collections to use nmcli and libvirt ansible modules
       ansible.builtin.command: ansible-galaxy collection install community.general community.libvirt
+
+    - name: Generate Barbican Proteccio Heat environment file if variables are defined
+      when:
+        - enable_barbican is defined
+        - enable_barbican | bool
+        - cifmw_hsm_password is defined
+        - cifmw_barbican_proteccio_partition is defined
+      ansible.builtin.copy:
+        mode: '0644'
+        dest: "/home/zuul/enable-barbican-proteccio.yaml"
+        content: "{{ cifmw_hsm_proteccio_heat_environment_file }}"
 
     - name: Write repo commands and deploy standalone using ci-framework without a vm
       block:
@@ -144,6 +178,20 @@
         path: "{{ rdo_dir }}/vars.yaml"
         regexp: "'^prelaunch_barbican_secret:'"
         value: "prelaunch_barbican_secret: {{ enable_barbican | default('false') }}"
+
+    - name: Set Barbican HSM variables in vars.yaml
+      when: enable_barbican | default(false) | bool
+      ansible.builtin.blockinfile:
+        marker_begin: "BEGIN barbican HSM vars"
+        marker_end: "END barbican HSM vars"
+        path: "{{ rdo_dir }}/vars.yaml"
+        block: |
+          barbican_hsm_enabled: {{ barbican_hsm_enabled | default('false') }}
+          proteccio_library_path: {{ proteccio_library_path | default('/usr/lib64/libnethsm.so') }}
+          proteccio_hsm_tokens: {{ proteccio_hsm_tokens | default(['VHSM1']) }}
+          proteccio_mkek_name: {{ proteccio_mkek_name | default('ci_mkek_adoption_1') }}
+          proteccio_hmac_name: {{ proteccio_hmac_name | default('ci_hmac_adoption_1') }}
+          proteccio_login_password: {{ proteccio_login_password | default('') }}
 
     - name: Configure whether to run octavia adoption
       ansible.builtin.lineinfile:
@@ -381,6 +429,10 @@
       ansible.builtin.dnf:
         name: sos
         state: latest
+
+    - name: Prepare RHOSO 18 Barbican with Proteccio HSM support (if needed)
+      when: enable_barbican | default(false) | bool
+      ansible.builtin.include_tasks: tasks/prepare_barbican_proteccio_rhoso.yaml
 
     - name: Call test role before adoption tests
       become: true
