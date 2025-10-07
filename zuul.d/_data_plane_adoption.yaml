@@ -41,8 +41,6 @@
       enable_telemetry: "true"
       enable_barbican: "true"
       enable_octavia: "true"
-      proteccio_heat_vars_file: "{{ ansible_user_dir }}/src/review.rdoproject.org/rdo-jobs/proteccio_heat_vars.yaml"
-      additional_heat_env_file: "/home/zuul/proteccio_heat_vars.yaml"
       adoption_extra_vars: |
         supported_volume_backends: ['ceph']
         supported_backup_backends: ['ceph']
@@ -109,8 +107,6 @@
         - 192.168.122.107
         - 192.168.122.108
       enable_octavia: "true"
-      proteccio_heat_vars_file: "{{ ansible_user_dir }}/src/review.rdoproject.org/rdo-jobs/proteccio_heat_vars.yaml"
-      additional_heat_env_file: "/home/zuul/proteccio_heat_vars.yaml"
       adoption_extra_vars: |
         supported_volume_backends: []
         supported_backup_backends: []
@@ -325,8 +321,6 @@
       edpm_node_ips:
         - 192.168.122.106
         - 192.168.122.107
-      proteccio_heat_vars_file: "{{ ansible_user_dir }}/src/review.rdoproject.org/rdo-jobs/proteccio_heat_vars.yaml"
-      additional_heat_env_file: "/home/zuul/proteccio_heat_vars.yaml"
       adoption_extra_vars: |
         standalone_ip: {{ standalone_ip }}
     host-vars:

@@ -4,7 +4,7 @@
   tasks:
     - name: Check if additional heat environment file exists
       ansible.builtin.stat:
-        path: "{{ additional_heat_env_file | default('/home/zuul/proteccio_heat_vars.yaml') }}"
+        path: "{{ additional_heat_env_file | default('/home/zuul/additional_heat_params.yaml') }}"
       register: _additional_heat_env_file_stat
 
     - name: Set additional heat env parameter if file exists

@@ -96,13 +96,13 @@
 
     - name: Write repo commands and deploy undercloud with install_yamls
       block:
-        - name: Copy proteccio heat environment file if it exists
+        - name: Copy additional heat environment file if provided
           when:
-            - proteccio_heat_vars_file is defined
-            - proteccio_heat_vars_file | length > 0
+            - source_heat_env_file is defined
+            - source_heat_env_file | length > 0
           ansible.builtin.copy:
-            src: "{{ proteccio_heat_vars_file }}"
-            dest: "/home/zuul/proteccio_heat_vars.yaml"
+            src: "{{ source_heat_env_file }}"
+            dest: "{{ additional_heat_env_file | default('/home/zuul/additional_heat_params.yaml') }}"
             mode: '0644'
 
         - name: Write out the repo setup commands to file for undercloud to use
