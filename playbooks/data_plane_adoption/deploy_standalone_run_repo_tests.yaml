@@ -22,6 +22,31 @@
     - name: Install collections to use nmcli and libvirt ansible modules
       ansible.builtin.command: ansible-galaxy collection install community.general community.libvirt
 
+    - name: Build parameter_defaults with ATOSVars nested inside
+      when:
+        - enable_barbican is defined
+        - enable_barbican | bool
+        - cifmw_hsm_password is defined
+        - cifmw_barbican_proteccio_partition is defined
+      set_fact:
+        merged_params: "{{ parameter_defaults | combine({'ATOSVars': ATOSVars}) }}"
+
+    - name: Generate Barbican Proteccio Heat environment file if variables are defined
+      when:
+        - enable_barbican is defined
+        - enable_barbican | bool
+        - cifmw_hsm_password is defined
+        - cifmw_barbican_proteccio_partition is defined
+      ansible.builtin.copy:
+        mode: '0644'
+        dest: "/home/zuul/enable-barbican-proteccio.yaml"
+        content: |
+          parameter_defaults:
+          {{ merged_params | to_nice_yaml | indent(2, True) }}
+
+          resource_registry:
+          {{ resource_registry | to_nice_yaml | indent(2, True) }}
+
     - name: Write repo commands and deploy standalone using ci-framework without a vm
       block:
         - name: Write out the repo setup commands to file for standalone to use
@@ -144,6 +169,20 @@
         path: "{{ rdo_dir }}/vars.yaml"
         regexp: "'^prelaunch_barbican_secret:'"
         value: "prelaunch_barbican_secret: {{ enable_barbican | default('false') }}"
+
+    - name: Set Barbican HSM variables in vars.yaml
+      when: enable_barbican | default(false) | bool
+      ansible.builtin.blockinfile:
+        marker_begin: "BEGIN barbican HSM vars"
+        marker_end: "END barbican HSM vars"
+        path: "{{ rdo_dir }}/vars.yaml"
+        block: |
+          barbican_hsm_enabled: {{ barbican_hsm_enabled | default('false') }}
+          proteccio_library_path: {{ proteccio_library_path | default('/usr/lib64/libnethsm.so') }}
+          proteccio_hsm_tokens: {{ proteccio_hsm_tokens | default(['VHSM1']) }}
+          proteccio_mkek_name: {{ proteccio_mkek_name | default('ci_mkek_adoption_1') }}
+          proteccio_hmac_name: {{ proteccio_hmac_name | default('ci_hmac_adoption_1') }}
+          proteccio_login_password: {{ proteccio_login_password | default('') }}
 
     - name: Configure whether to run octavia adoption
       ansible.builtin.lineinfile:
@@ -406,6 +445,10 @@
         path: "{{ rdo_dir }}/vars.yaml"
         block: |
           {{ adoption_extra_vars }}
+
+    - name: Prepare RHOSO 18 Barbican with Proteccio HSM support (if needed)
+      when: enable_barbican | default(false) | bool
+      ansible.builtin.include_tasks: tasks/prepare_barbican_proteccio_rhoso.yaml
 
     - name: "Run data-plane-adoption tests from {{ dpa_dir }}"
       community.general.make:
