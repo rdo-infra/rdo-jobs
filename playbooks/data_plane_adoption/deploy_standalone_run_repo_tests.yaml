@@ -24,6 +24,16 @@
 
     - name: Write repo commands and deploy standalone using ci-framework without a vm
       block:
+        - name: Copy additional heat environment file if provided
+          when:
+            - additional_heat_env_file is defined
+            - additional_heat_env_file | length > 0
+          ansible.builtin.copy:
+            src: "{{ additional_heat_env_file }}"
+            dest: "/tmp/additional_heat_params.yaml"
+            mode: '0644'
+            remote_src: true
+
         - name: Write out the repo setup commands to file for standalone to use
           ansible.builtin.lineinfile:
             create: true
