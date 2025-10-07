@@ -24,6 +24,15 @@
 
     - name: Write repo commands and deploy standalone using ci-framework without a vm
       block:
+        - name: Copy additional heat environment file if provided
+          when:
+            - source_heat_env_file is defined
+            - source_heat_env_file | length > 0
+          ansible.builtin.copy:
+            src: "{{ source_heat_env_file }}"
+            dest: "{{ additional_heat_env_file | default('/home/zuul/additional_heat_params.yaml') }}"
+            mode: '0644'
+
         - name: Write out the repo setup commands to file for standalone to use
           ansible.builtin.lineinfile:
             create: true
