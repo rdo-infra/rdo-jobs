@@ -14,10 +14,10 @@
 
     - name: Set vars as fact - bootstrap common vars
       vars:
-        provided_file: "{{ bootstrap_common_vars }}"
+        included_file: "{{ bootstrap_common_vars }}"
       ansible.builtin.include_role:
         name: cifmw_helpers
-        tasks_from: var_file.yml
+        tasks_from: include_file.yml
 
     - name: Include vars from cifmw_extras
       when:
@@ -38,10 +38,10 @@
 
     - name: Set vars as fact - cifmw parameters
       vars:
-        provided_file: "{{ cifmw_parameters_file }}"
+        included_file: "{{ cifmw_parameters_file }}"
       ansible.builtin.include_role:
         name: cifmw_helpers
-        tasks_from: var_file.yml
+        tasks_from: include_file.yml
 
     - name: Run pre_infra hooks
       vars:
