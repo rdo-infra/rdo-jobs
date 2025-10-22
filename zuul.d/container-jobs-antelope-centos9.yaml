@@ -111,7 +111,7 @@
         tempest.api.compute.servers.test_server_metadata.*
         # Disable prometheus based autoscaling testing until we have Caracal content.
         telemetry_tempest_plugin.scenario.test_telemetry_integration_prometheus.PrometheusGabbiTest.test_autoscaling
-      cifmw_tempest_tempestconf_config: &tempestconf_config_notls
+      cifmw_test_operator_tempest_tempestconf_config: &tempestconf_config_notls
         overrides: |
           service_available.sg_core true
           service_available.ceilometer true
@@ -139,7 +139,7 @@
       cloud_domain: "ooo.test"
       use_ceph: "false"
       dpa_test_suite: "test-minimal"
-      cifmw_tempest_tempestconf_config: &tempestconf_config_tls
+      cifmw_test_operator_tempest_tempestconf_config: &tempestconf_config_tls
         overrides: |
           service_available.sg_core true
           service_available.ceilometer true
@@ -204,7 +204,7 @@
         telemetry_tempest_plugin.scenario.test_telemetry_integration_prometheus.PrometheusGabbiTest.test_autoscaling
         # Disable Cinder volume tests (cinder-volume not deployed in no-ceph jobs)
         tempest.api.volume
-      cifmw_tempest_tempestconf_config: *tempestconf_config_tls
+      cifmw_test_operator_tempest_tempestconf_config: *tempestconf_config_tls
 
 - job:
     name: periodic-adoption-multinode-to-crc-no-ceph-novacells
@@ -255,7 +255,7 @@
         tempest.api.volume
         # Also disabled in downstream multi-cell greenfield deploy testing
         test_unshelve_to_specific_host
-      cifmw_tempest_tempestconf_config: *tempestconf_config_tls
+      cifmw_test_operator_tempest_tempestconf_config: *tempestconf_config_tls
 
 - job:
     name: periodic-adoption-multinode-to-crc-ceph
@@ -274,7 +274,7 @@
       cifmw_dlrn_report_result: true
       cifmw_repo_setup_branch: antelope
       enable_telemetry: "true"
-      cifmw_tempest_tempestconf_config: *tempestconf_config_notls
+      cifmw_test_operator_tempest_tempestconf_config: *tempestconf_config_notls
       cifmw_test_operator_default_groups:
         - openstack-operator
         - keystone-operator
