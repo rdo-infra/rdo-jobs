@@ -953,6 +953,15 @@
         nodes: []
 
 - nodeset:
+    name: devstack-single-node-almalinux-10
+    nodes:
+      - name: controller
+        label: cloud-centos-10-stream
+    groups:
+      - name: tempest
+        nodes: []
+
+- nodeset:
     name: devstack-single-node-debian-bullseye
     nodes:
       - name: controller
