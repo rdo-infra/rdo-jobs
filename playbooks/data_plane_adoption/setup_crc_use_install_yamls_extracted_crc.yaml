@@ -18,6 +18,7 @@
         cmd: >
           ansible-playbook
           -i "{{ ansible_user_dir }}/ci-framework-data/artifacts/zuul_inventory.yml"
+          -e "@{{ framework_dir }}/group_vars/all.yml"
           -e "@{{ ansible_user_dir }}/ci-framework-data/artifacts/parameters/zuul-params.yml"
           {{ rdo_jobs_dir }}/playbooks/data_plane_adoption/setup_crc_use_install_yamls_extracted_crc_playbook.yaml
       args:
