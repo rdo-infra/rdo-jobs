@@ -9,7 +9,7 @@
       ansible.builtin.include_role:
         name: repo_setup
       vars:
-        cifmw_repo_setup_basedir: "{{ cifmw_basedir | default(ansible_user_dir ~ '/ci-framework') }}"
+        cifmw_repo_setup_basedir: "{{ ansible_user_dir }}/ci-framework"
         cifmw_repo_setup_promotion: "{{ promote_source }}"
         cifmw_repo_setup_branch: "{{ openstack_release }}"
         cifwm_repo_setup_dlrn_uri: "{{ trunk_url }}"
