@@ -926,6 +926,15 @@
         nodes: []
 
 - nodeset:
+    name: devstack-single-node-debian-trixie
+    nodes:
+      - name: controller
+        label: cloud-centos-9-stream
+    groups:
+      - name: tempest
+        nodes: []
+
+- nodeset:
     name: openstack-single-node-jammy
     nodes:
       - name: controller
