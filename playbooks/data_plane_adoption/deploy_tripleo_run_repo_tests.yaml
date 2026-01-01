@@ -262,6 +262,18 @@
         regexp: "'^neutron_qe_dir:'"
         value: "neutron_qe_dir: {{ neutron_qe_dir | default('false') }}"
 
+    - name: Set octavia_ssh_pubkey_path in vars.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: "'^octavia_ssh_pubkey_path:'"
+        value: "octavia_ssh_pubkey_path: {{ octavia_ssh_pubkey_path | default('/etc/octavia/ssh/octavia_id_rsa') }}"
+
+    - name: Set prelaunch_octavia_workload in vars.yaml
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: "'^prelaunch_octavia_workload:'"
+        value: "prelaunch_octavia_workload: {{ prelaunch_octavia_workload | default('false') }}"
+
     - name: Set prelaunch_barbican_secret in vars.yaml
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
