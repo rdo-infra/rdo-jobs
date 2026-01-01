@@ -107,6 +107,8 @@
         - 192.168.122.107
         - 192.168.122.108
       enable_octavia: "true"
+      dpa_pre_adoption_tempest_plugins:
+        - python3-octavia-tests-tempest
       adoption_extra_vars: |
         supported_volume_backends: []
         supported_backup_backends: []
