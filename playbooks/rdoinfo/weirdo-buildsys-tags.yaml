@@ -167,6 +167,9 @@
               -e content_provider_containers_org="{{ containers_org }}" \
               -e content_provider_containers_image_tag="{{ containers_image_tag }}" \
               -e openstack_release=$RELEASE \
+          {% if cifmw_build_containers_exclude_containers is defined %}
+              -e content_provider_containers_excludes="{{ cifmw_build_containers_exclude_containers }}" \
+          {% endif %}
           {% endif %}
               $ADDITIONAL_OPTS
 

@@ -323,6 +323,14 @@
     post-run: playbooks/podified-containers/collect-logs.yaml
     vars:
       scenario: scenario000
+      cifmw_build_containers_exclude_containers:
+        antelope: &exclude
+          centos9:
+            - tempest-extras
+          centos10:
+            - tempest-extras
+        master: *exclude
+        flamingo: *exclude
 
 - job:
     name: validate-buildsys-tags-flamingo-testing-cifmw-crc-podified-edpm-baremetal
