@@ -37,4 +37,5 @@
           {{ ansible_user_dir }}/test-python/bin/ansible-playbook
           -i localhost,
           -c local
+          -e "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/ci-framework/group_vars/all.yml"
           copy-container.yml
