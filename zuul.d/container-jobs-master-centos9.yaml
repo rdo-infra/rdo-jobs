@@ -93,6 +93,9 @@
       - playbooks/podified-containers/pre-push.yaml
       - playbooks/podified-containers/copy_container_run.yaml
     post-run: playbooks/podified-containers/collect-push-logs.yaml
+    required-projects:
+      - name: github.com/openstack-k8s-operators/ci-framework
+        override-checkout: stable
     attempts: 1
     vars:
       openstack_release: master
