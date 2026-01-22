@@ -73,3 +73,4 @@
       vars:
         cifmw_build_containers_openstack_release: "{{ openstack_release }}"
         cifmw_build_containers_image_tag: "{{ md5_value['content'] | b64decode | trim }}"
+        cifmw_basedir: "{{ ansible_user_dir }}/ci-framework"
