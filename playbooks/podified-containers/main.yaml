@@ -1,5 +1,9 @@
 ---
 - hosts: primary
+  vars:
+    # FIXME(dpawlik): Don't ask me, why someone choose the ci-framework
+    # instead of ci-framework-data. Something to fix in the future.
+    cifmw_basedir: "{{ ansible_user_dir }}/ci-framework"
   tasks:
     - name: Install virtualenv
       ansible.builtin.pip:
@@ -9,7 +13,7 @@
       ansible.builtin.include_role:
         name: repo_setup
       vars:
-        cifmw_repo_setup_basedir: "{{ ansible_user_dir }}/ci-framework"
+        cifmw_repo_setup_basedir: "{{ cifmw_basedir }}"
         cifmw_repo_setup_promotion: "{{ promote_source }}"
         cifmw_repo_setup_branch: "{{ openstack_release }}"
         cifwm_repo_setup_dlrn_uri: "{{ trunk_url }}"
@@ -19,7 +23,7 @@
 
     - name: Find MD5 hash value from file
       ansible.builtin.slurp:
-        src: "{{ ansible_user_dir }}/ci-framework/artifacts/repositories/delorean.repo.md5"
+        src: "{{ cifmw_basedir }}/artifacts/repositories/delorean.repo.md5"
       register: md5_value
 
     - name: check for /etc/ci/mirror_info.sh
@@ -37,7 +41,7 @@
             echo "export NODEPOOL_RDO_PROXY=${NODEPOOL_RDO_PROXY}" >> repo_setup_env
             sed -i -e "s|https://trunk.rdoproject.org|$NODEPOOL_RDO_PROXY|g" *.repo
           args:
-            chdir: "{{ ansible_user_dir }}/ci-framework/artifacts/repositories"
+            chdir: "{{ cifmw_basedir }}/artifacts/repositories"
 
         # TODO(rlandy) remove when CentOS 10 mirrors exist on Nodepool Hosts
         # mirror ref: http://mirror.regionone.vexxhost-nodepool-sf.rdoproject.org/centos-stream/
@@ -50,13 +54,13 @@
             echo "export NODEPOOL_CENTOS_MIRROR=${NODEPOOL_CENTOS_MIRROR}" >> repo_setup_env
             sed -i -e "s|http://mirror.stream.centos.org|$NODEPOOL_CENTOS_MIRROR|g" *.repo
           args:
-            chdir: "{{ ansible_user_dir }}/ci-framework/artifacts/repositories"
+            chdir: "{{ cifmw_basedir }}/artifacts/repositories"
 
     - name: Copy repo-setup generated repos to yum.repos.d directory
       become: true
       ansible.builtin.copy:
         remote_src: true
-        src: "{{ ansible_user_dir }}/ci-framework/artifacts/repositories/"
+        src: "{{ cifmw_basedir }}/artifacts/repositories/"
         dest: "/etc/yum.repos.d/"
 
     # - name: Disable tripleo repo if it exists
