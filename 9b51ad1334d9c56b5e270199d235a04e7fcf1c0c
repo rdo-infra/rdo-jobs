@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10718c4e_3bdb06da",
+        "filename": "playbooks/data_plane_adoption/ci_framework_deploy_standalone_vm.yaml",
+        "patchSetId": 60
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2026-01-26T16:25:47Z",
+      "side": 1,
+      "message": "nit:\nconsider to change like: `ADDITIONAL_ENV_FILE: \"{{ barbican_env_file | default(\u0027/home/zuul/enable-barbican-proteccio.yaml\u0027) }}\"`",
+      "revId": "9b51ad1334d9c56b5e270199d235a04e7fcf1c0c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
