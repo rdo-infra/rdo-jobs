@@ -31,10 +31,14 @@
               {% endfor %}
             dest: "{{ ansible_user_dir }}/zuul-output/logs/logs/containers-built.log"
 
+    - name: Set var for cifmw_basedir
+      ansible.builtin.set_fact:
+        cifmw_basedir: "{{ ansible_user_dir }}/ci-framework"
+
     - name: Check if we get ci-framework-data basedir
       register: cifmw_state
       ansible.builtin.stat:
-        path: "{{ ansible_user_dir }}/ci-framework-data"
+        path: "{{ cifmw_basedir }}"
 
     - name: Collect ci-framework-data content of interest
       when:
@@ -49,8 +53,8 @@
           ansible.builtin.shell:
             chdir: "{{ ansible_user_dir }}/zuul-output/logs/ci-framework-data"
             cmd: |
-              cp -ra {{ ansible_user_dir }}/ci-framework-data/logs . ;
-              cp -ra {{ ansible_user_dir }}/ci-framework-data/artifacts . ;
+              cp -ra {{ cifmw_basedir }}/logs . ;
+              cp -ra {{ cifmw_basedir }}/artifacts . ;
 
     - name: Collect logs
       args:
