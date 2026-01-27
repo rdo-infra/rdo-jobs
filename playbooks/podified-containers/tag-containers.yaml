@@ -2,6 +2,8 @@
 - hosts: primary
   tasks:
     - name: Tag containers with human readable tag
+      vars:
+        cifmw_basedir: "{{ ansible_user_dir }}/ci-framework"
       ansible.builtin.include_role:
         name: build_containers
         tasks_from: 'tag.yml'
