@@ -15,7 +15,7 @@
           GATEWAY: "{{ standalone_gateway }}"
           EDPM_COMPUTE_NETWORK_IP: "192.168.122"
           IP: "{{ standalone_ip }}"
-          IP_ADRESS_SUFFIX: "100"
+          IP_ADDRESS_SUFFIX: "100"
           NETWORK_MTU: "{{ crc_ci_bootstrap_networking.networks.default.mtu | default(1450) | int }}"
           DATAPLANE_DNS_SERVER: "{{ standalone_gateway }}"
           HOST_PRIMARY_RESOLV_CONF_ENTRY: "{{ standalone_gateway }}"
