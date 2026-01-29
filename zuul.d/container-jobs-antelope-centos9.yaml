@@ -111,6 +111,8 @@
         tempest.api.compute.servers.test_server_metadata.*
         # Disable prometheus based autoscaling testing until we have Caracal content.
         telemetry_tempest_plugin.scenario.test_telemetry_integration_prometheus.PrometheusGabbiTest.test_autoscaling
+        # this test is not stable in antelope - it is fixed in tempest master branch with https://review.opendev.org/c/974996
+        tempest.api.compute.servers.test_create_server.ServersV294TestFqdnHostnames.test_verify_hostname_allows_fqdn
       cifmw_test_operator_tempest_tempestconf_config: &tempestconf_config_notls
         overrides: |
           service_available.sg_core true
