@@ -32,3 +32,4 @@
           # keep octavia disabled by default due to CIX
           OCTAVIA_ENABLED: "{{ enable_octavia | default('false') }}"
           SWIFT_REPLICATED: "{{ swift_replicated | default('false') }}"
+          INTERFACE_MTU: "{{ crc_ci_bootstrap_networking.networks.default.mtu | default(1450) | int }}"
