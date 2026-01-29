@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86be124c_db372496",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 63
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2026-01-29T11:29:33Z",
+      "side": 1,
+      "message": "is there testproject that validated it don\u0027t break adoption existing jobs?",
+      "revId": "38d3281990eb0ae2816aeafe278a88f382b15c84",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c156db7_94946070",
+        "filename": "playbooks/data_plane_adoption/ci_framework_deploy_standalone_vm.yaml",
+        "patchSetId": 63
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2026-01-29T11:29:33Z",
+      "side": 1,
+      "message": "seems will not break but doesn\u0027t feel good to pass optional service specific file by default, i.e should be passed only when barbican enabled.",
+      "revId": "38d3281990eb0ae2816aeafe278a88f382b15c84",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
