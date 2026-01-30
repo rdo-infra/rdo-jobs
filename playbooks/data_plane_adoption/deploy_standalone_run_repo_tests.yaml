@@ -336,6 +336,12 @@
         path: "{{ rdo_dir }}/vars.yaml"
         line: "upstream_dns: {{ upstream_control_plane_dns }}"
 
+    - name: Override network mtu when defined
+      when: crc_ci_bootstrap_networking.networks.default.mtu is defined
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        line: "network_mtu: {{ crc_ci_bootstrap_networking.networks.default.mtu | default(1450) | int }}"
+
     - name: Set var to skip ansibleee csv patching
       when: dpa_skip_patch_csv| default(false) | bool
       ansible.builtin.lineinfile:
