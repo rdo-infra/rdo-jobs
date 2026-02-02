@@ -1,9 +1,21 @@
 ---
 - hosts: primary
   tasks:
-    - name: Tag containers with human readable tag
+    - name: Include necessary variables from ci-framework
       vars:
-        cifmw_basedir: "{{ ansible_user_dir }}/ci-framework"
+        _cifmw_project_dir: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/ci-framework"
+        included_file: "{{ _cifmw_project_dir }}/group_vars/all.yml"
+      ansible.builtin.include_role:
+        name: cifmw_helpers
+        tasks_from: include_file.yml
+      ignore_errors: true
+
+    - name: Set cifmw_basedir if not defined
+      when: (cifmw_basedir is not defined) or (cifmw_basedir | length < 1)
+      ansible.builtin.set_fact:
+        cifmw_basedir: "{{ ansible_user_dir }}/ci-framework-data"
+
+    - name: Tag containers with human readable tag
       ansible.builtin.include_role:
         name: build_containers
         tasks_from: 'tag.yml'

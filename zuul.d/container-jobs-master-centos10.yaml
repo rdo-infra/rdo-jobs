@@ -67,7 +67,6 @@
       cifmw_build_containers_tcib_src: "{{ ansible_user_dir }}/src/github.com/openstack-k8s-operators/tcib"
       openstack_release: master
       secret_distro_ver: "_{{ ansible_distribution | lower }}{{ ansible_distribution_major_version }}"
-      cifmw_build_containers_repo_dir: "{{ ansible_user_dir }}/ci-framework/artifacts/repositories"
       cifmw_build_containers_container_name_prefix: openstack
       cifmw_build_containers_containers_base_image: quay.io/centos/centos:stream10
       promote_source: podified-ci-testing
