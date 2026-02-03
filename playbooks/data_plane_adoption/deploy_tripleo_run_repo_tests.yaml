@@ -283,7 +283,7 @@
       when: crc_ci_bootstrap_networking.networks.default.mtu is defined
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
-        line: "network_mtu: {{ crc_ci_bootstrap_networking.networks.default.mtu | default(1450) | int }}"
+        line: "network_mtu: 1400"
 
     - name: Insert vars for data plane operator and os-net-config with zuul native undercloud node
       ansible.builtin.blockinfile:
