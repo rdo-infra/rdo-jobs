@@ -340,7 +340,7 @@
       when: crc_ci_bootstrap_networking.networks.default.mtu is defined
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
-        line: "network_mtu: {{ crc_ci_bootstrap_networking.networks.default.mtu | default(1450) | int }}"
+        line: "network_mtu: 1420"
 
     - name: Set var to skip ansibleee csv patching
       when: dpa_skip_patch_csv| default(false) | bool
