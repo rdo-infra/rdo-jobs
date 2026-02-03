@@ -6,7 +6,7 @@
     ctlplane_vip: 192.168.122.99
     gateway_ip: "{{ standalone_gateway }}"
     dns_server: "{{ standalone_gateway }}"
-    interface_mtu: "{{ crc_ci_bootstrap_networking.networks.default.mtu | default(1450) | int }}"
+    interface_mtu: "{{ (crc_ci_bootstrap_networking.networks.default.mtu | default(1450) | int) - 50 }}"
     ip_address_suffix: "{{ address_suffix }}"
     os_net_config_iface: nic2
     standalone_vm: false
