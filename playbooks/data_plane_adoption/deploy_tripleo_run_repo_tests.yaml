@@ -279,11 +279,11 @@
         path: "{{ rdo_dir }}/vars.yaml"
         line: "octavia_adoption: {{ enable_octavia | default('true') }}"
 
-    - name: Override network mtu when defined
+    - name: Override network mtu when defined and subtract (-50)
       when: crc_ci_bootstrap_networking.networks.default.mtu is defined
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
-        line: "network_mtu: {{ crc_ci_bootstrap_networking.networks.default.mtu | default(1450) | int }}"
+        line: "network_mtu: {{ (crc_ci_bootstrap_networking.networks.default.mtu | default(1450) | int) - 50 }}"
 
     - name: Insert vars for data plane operator and os-net-config with zuul native undercloud node
       ansible.builtin.blockinfile:
