@@ -223,9 +223,11 @@
         neutron_physical_bridge_name: br-ex
         edpm_user: zuul
         # NOTE: vlans and networks ordering must match those above and in install_yamls config-download-multistack.j2 and ci-framework adoption.yaml
+        control_plane_mtu: 1400
         netconfig_networks:
           - name: ctlplane
             dnsDomain: ctlplane.example.com
+            mtu: {{ control_plane_mtu }}
             subnets:
               - name: subnet1
                 allocationRanges:
@@ -240,6 +242,7 @@
                     nexthop: 192.168.122.1
           - name: internalapi
             dnsDomain: internalapi.example.com
+            mtu: {{ control_plane_mtu }}
             subnets:
               - name: subnet1
                 allocationRanges:
@@ -249,6 +252,7 @@
                 vlan: 20
           - name: storage
             dnsDomain: storage.example.com
+            mtu: {{ control_plane_mtu }}
             subnets:
               - name: subnet1
                 allocationRanges:
@@ -258,6 +262,7 @@
                 vlan: 21
           - name: tenant
             dnsDomain: tenant.example.com
+            mtu: {{ control_plane_mtu }}
             subnets:
               - name: subnet1
                 allocationRanges:
@@ -267,6 +272,7 @@
                 vlan: 22
           - name: storagemgmt
             dnsDomain: storagemgmt.example.com
+            mtu: {{ control_plane_mtu }}
             subnets:
               - name: subnet1
                 allocationRanges:
@@ -276,6 +282,7 @@
                 vlan: 23
           - name: external
             dnsDomain: external.example.com
+            mtu: {{ control_plane_mtu }}
             subnets:
               - name: subnet1
                 allocationRanges:
