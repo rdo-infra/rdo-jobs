@@ -220,6 +220,18 @@
         regexp: "'^enable_tlse:'"
         value: "enable_tlse: {{ enable_tls | default('false') }}"
 
+    - name: Set dhcp neutron agent in vars.yaml on compute edpm
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: "'^edpm_neutron_dhcp_agent_enabled:'"
+        value: "edpm_neutron_dhcp_agent_enabled: {{ edpm_neutron_dhcp_agent_enabled | default('true') }}"
+
+    - name: Set dhcp neutron agent in vars.yaml on networker edpm
+      ansible.builtin.lineinfile:
+        path: "{{ rdo_dir }}/vars.yaml"
+        regexp: "'^edpm_networker_neutron_dhcp_agent_enabled:'"
+        value: "edpm_networker_neutron_dhcp_agent_enabled: {{ edpm_networker_neutron_dhcp_agent_enabled | default('false') }}"
+
     - name: Set neutron_qe_test in vars.yaml
       ansible.builtin.lineinfile:
         path: "{{ rdo_dir }}/vars.yaml"
