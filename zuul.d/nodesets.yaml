@@ -506,6 +506,18 @@
         nodes: []
 
 - nodeset:
+    name: openstack-two-node-jammy
+    nodes:
+      - name: primary
+        label: upstream-centos-8-stream
+    groups:
+      - name: switch
+        nodes:
+          - primary
+      - name: peers
+        nodes: []
+
+- nodeset:
     name: openstack-two-node-noble
     nodes:
       - name: primary
