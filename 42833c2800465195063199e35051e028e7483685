@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e594eb1_b888c90d",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2026-03-04T10:30:44Z",
+      "side": 1,
+      "message": "nit: in newer Ansible version it would raise an warning, that you use \"item\".\nwould be good to use:\n```\nloop_control:\n  loop_var: r_content\n```",
+      "revId": "42833c2800465195063199e35051e028e7483685",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
