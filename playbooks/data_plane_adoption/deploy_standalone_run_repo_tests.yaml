@@ -328,6 +328,30 @@
         path: "{{ rdo_dir }}/vars.yaml"
         line: "edpm_telemetry_node_exporter_image: {{ edpm_telemetry_node_exporter_image }}"
 
+    - name: Fetch and use token file if exists
+      when: registry_token_dest_path is defined
+      block:
+        - name: Check if the secret file exists
+          ansible.builtin.stat:
+            path: "{{ registry_token_dest_path }}"
+          register: remote_file_check
+
+        - name: Slurp the secret if defined and available
+          when:
+            - remote_file_check.stat.exists
+          ansible.builtin.slurp:
+            src: "{{ registry_token_dest_path }}"
+          register: remote_content
+
+        - name: Flatten variables into global scope
+          ansible.builtin.set_fact:
+            "{{ item.key }}": "{{ item.value }}"
+          loop: "{{ (remote_content.content | b64decode | from_yaml) | dict2items }}"
+          when:
+            - remote_file_check.stat.exists
+            - remote_content.content is defined
+          no_log: true
+
     - name: Insert edpm_container_registry_logins var into dataplane tests vars
       ansible.builtin.blockinfile:
         path: "{{ rdo_dir }}/vars.yaml"
