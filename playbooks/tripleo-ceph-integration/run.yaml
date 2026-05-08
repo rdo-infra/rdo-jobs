@@ -35,7 +35,7 @@
     - name: Define buildset artifacts location
       zuul_return:
         data:
-          buildset_artifacts_url: "https://logserver.rdoproject.org/{{ zuul_log_path }}/buildset"
+          buildset_artifacts_url: "https://gateway-cloud-softwarefactory.apps.ocp.cloud.ci.centos.org/logs/{{ zuul_log_path }}/buildset"
 
     - name: Copy logs to logs directory
       changed_when: true

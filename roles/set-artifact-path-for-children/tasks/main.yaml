@@ -6,4 +6,4 @@
   delegate_to: localhost
   zuul_return:
     data:
-      rdo_artifact_path: "https://logserver.rdoproject.org/{{ zuul_log_path }}/"
+      rdo_artifact_path: "https://gateway-cloud-softwarefactory.apps.ocp.cloud.ci.centos.org/logs/{{ zuul_log_path }}/"

@@ -29,7 +29,7 @@
           pip install 'ruamel.yaml<=0.18.3' rdopkg
           pushd {{ ansible_user_dir }}/{{ zuul.projects['review.rdoproject.org/gating_scripts'].src_dir }}/buildsys-tags
           # define logs variable with the URL wher logs will be pushed
-          export logs="https://logserver.rdoproject.org/{{ zuul_log_path }}/buildset"
+          export logs="https://gateway-cloud-softwarefactory.apps.ocp.cloud.ci.centos.org/logs/{{ zuul_log_path }}/buildset"
           export WORKSPACE="{{ ansible_user_dir }}/workspace"
           mkdir -p $WORKSPACE
           case $PROJECT in

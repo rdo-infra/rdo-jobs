@@ -81,4 +81,4 @@
     - name: Return containers build job log path
       zuul_return:
         data:
-          containers_built_artifacts_url: "{{ zuul_log_url | default('https://logserver.rdoproject.org') }}/{{ zuul_log_path }}/"
+          containers_built_artifacts_url: "{{ zuul_log_url | default('https://gateway-cloud-softwarefactory.apps.ocp.cloud.ci.centos.org/logs') }}/{{ zuul_log_path }}/"

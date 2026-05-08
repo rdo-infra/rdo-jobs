@@ -83,7 +83,7 @@
             # Note, LOG_PATH is expected since we reconstruct it inside
             # zuul_functions.py
             LOG_PATH="${BASE_LOG_PATH}/${ZUUL_PIPELINE}/${job}/${ZUUL_REF}"
-            logs="https://logserver.rdoproject.org/${LOG_PATH}"
+            logs="https://gateway-cloud-softwarefactory.apps.ocp.cloud.ci.centos.org/logs/${LOG_PATH}"
 
             curl -o /dev/null -sIf "${logs}" || continue
             break

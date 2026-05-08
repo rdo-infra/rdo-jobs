@@ -78,7 +78,7 @@
           ZUUL_REF=$(echo $ZUUL_REF |cut -f4 -d /)
           job="validate-buildsys-tags"
           LOG_PATH="$BASE_LOG_PATH/$ZUUL_PIPELINE/$job/$ZUUL_REF"
-          logs="https://logserver.rdoproject.org/$LOG_PATH/"
+          logs="https://gateway-cloud-softwarefactory.apps.ocp.cloud.ci.centos.org/logs/$LOG_PATH/"
 
           # NOTE(pabelanger): Override logs for zuulv3 jobs.
           if [[ -d /home/zuul ]]; then
