@@ -1,9 +1,15 @@
 ---
 - hosts: primary
   tasks:
-    - name: Tag containers with human readable tag
+    - name: Include group_vars/all.yml from ci-framework project
       vars:
-        cifmw_basedir: "{{ ansible_user_dir }}/ci-framework"
+        cifmw_project_dir: "{{ ansible_user_dir }}/{{ zuul.projects['github.com/openstack-k8s-operators/ci-framework'].src_dir }}"
+        included_file: "{{ cifmw_project_dir }}/group_vars/all.yml"
+      ansible.builtin.include_role:
+        name: cifmw_helpers
+        tasks_from: include_file.yml
+
+    - name: Tag containers with human readable tag
       ansible.builtin.include_role:
         name: build_containers
-        tasks_from: 'tag.yml'
+        tasks_from: "tag.yml"
