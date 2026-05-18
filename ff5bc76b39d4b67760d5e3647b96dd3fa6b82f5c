@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0525217_047602f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 786
+      },
+      "writtenOn": "2026-05-18T11:28:01Z",
+      "side": 1,
+      "message": "Hardcoding ADDITIONAL_ENV_FILE to /tmp/aditional_env_file.yaml breaks non-federation scenarios — the template only renders when enable_federation is true, so the file won\u0027t exist otherwise. The old barbican_env_file | default(omit) logic needs to be preserved as fallback. Also, typo: \"aditional\" → \"additional\". See inline comments.",
+      "revId": "ff5bc76b39d4b67760d5e3647b96dd3fa6b82f5c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2391b97b_0e013638",
+        "filename": "playbooks/data_plane_adoption/ci_framework_deploy_standalone_vm.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 786
+      },
+      "writtenOn": "2026-05-18T11:28:01Z",
+      "side": 1,
+      "message": "This hardcodes the env file path unconditionally, replacing the previous {{ barbican_env_file | default(omit) }} logic. When enable_federation is false, the template task in deploy_standalone_run_repo_tests.yaml won\u0027t render this file, so ADDITIONAL_ENV_FILE will point to a non-existent path. This could break existing non-federation jobs (e.g. Barbican standalone scenarios).\n\nSuggestion — make it conditional:\n\nADDITIONAL_ENV_FILE: \"{{ \u0027/tmp/additional_env_file.yaml\u0027 if (enable_federation | default(false) | bool) else (barbican_env_file | default(omit)) }}\"\n\nAlso: typo — \"aditional\" should be \"additional\".",
+      "revId": "ff5bc76b39d4b67760d5e3647b96dd3fa6b82f5c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd6d07a1_e8129e27",
+        "filename": "playbooks/data_plane_adoption/deploy_standalone_run_repo_tests.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 786
+      },
+      "writtenOn": "2026-05-18T11:28:01Z",
+      "side": 1,
+      "message": "The rendered file contains KeystoneOpenIdcClientSecret. Consider tightening permissions to 0600 instead of 0644 to avoid world-readable secrets on the controller node, even in CI.",
+      "revId": "ff5bc76b39d4b67760d5e3647b96dd3fa6b82f5c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae7dc713_520d36fd",
+        "filename": "playbooks/data_plane_adoption/files/enable_federation_openidc.yaml.j2",
+        "patchSetId": 14
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 786
+      },
+      "writtenOn": "2026-05-18T11:28:01Z",
+      "side": 1,
+      "message": "Nit: The default \u0027openstack\u0027 is fine for CI but worth calling out in documentation that it must not be used outside test environments.",
+      "revId": "ff5bc76b39d4b67760d5e3647b96dd3fa6b82f5c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50e8cbc3_f8109eff",
+        "filename": "playbooks/data_plane_adoption/files/enable_federation_openidc.yaml.j2",
+        "patchSetId": 14
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 786
+      },
+      "writtenOn": "2026-05-18T11:28:01Z",
+      "side": 1,
+      "message": "Nit: This is correct for mod_auth_openidc, but consider making it configurable via a variable (e.g. cifmw_keystone_OIDC_RemoteIdAttribute | default(\u0027HTTP_OIDC_ISS\u0027)) for flexibility with different IdP setups in the future.",
+      "revId": "ff5bc76b39d4b67760d5e3647b96dd3fa6b82f5c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
