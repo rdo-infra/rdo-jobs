@@ -106,7 +106,8 @@
       from_namespace: podified-master-centos9
       to_namespace: podified-master-centos9
       trunk_url: https://trunk.rdoproject.org
-      promote_source: podified-ci-testing
+      promote_source: &promote_source podified-ci-testing
+      cifmw_default_container_image_tag: *promote_source
       cifmw_dlrn_report_result: true
       cifmw_repo_setup_branch: master
 
