@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7946ac08_d9d4071c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 321
+      },
+      "writtenOn": "2026-06-05T16:02:04Z",
+      "side": 1,
+      "message": "LGTM.  I think the addtional_env_files mechanism should be improved, but what is here works for this PR.",
+      "revId": "c7088ac0b2c7a6087f4a9f21dc5903ae88b66976",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a5e0e1e_80e4ad61",
+        "filename": "playbooks/data_plane_adoption/ci_framework_deploy_standalone_vm.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 321
+      },
+      "writtenOn": "2026-06-05T16:02:04Z",
+      "side": 1,
+      "message": "I\u0027m not particularly enthusiastic about this construction either, but I don\u0027t want to hold this up the is PR to fix this.  If anything, fixing this will likely require fixing how we do the barbican customization and/or how we handle additional environment files.\n\nBut the way we do this is limiting - what happens when someone else wants to use this mechanism?  what if we want to enable barbican HSM and federation?\n\nThis probably needs to be a more generic mechanism which allows you to add multiple additional environment files.",
+      "range": {
+        "startLine": 32,
+        "startChar": 10,
+        "endLine": 32,
+        "endChar": 158
+      },
+      "revId": "c7088ac0b2c7a6087f4a9f21dc5903ae88b66976",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
