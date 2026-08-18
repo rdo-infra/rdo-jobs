@@ -1,0 +1,71 @@
+---
+# Speculative s2i container builds for upstream OpenStack projects.
+#
+# When a Gerrit change lands on one of these projects, the s2i content
+# provider auto-detects which container images reference the triggering
+# project in their sources.txt and rebuilds only those images with the
+# speculative source.
+#
+# The "auto" mode inspects containers/*/sources.txt for lines matching
+# the zuul.project canonical name and builds the affected targets.
+
+# -- tempest (full pipeline: build + consumer validation) ----------------
+
+- project:
+    name: opendev.org/openstack/tempest
+    check:
+      jobs:
+        - openstack-k8s-operators-content-provider:
+            vars:
+              cifmw_install_yamls_sdk_version: v1.41.1
+        - s2i-openstack-container-content-provider:
+            vars:
+              s2i_ci_images: auto
+        - test-operator-kuttl-s2i-tempest:
+            voting: false
+            dependencies:
+              - openstack-k8s-operators-content-provider
+              - s2i-openstack-container-content-provider
+        - podified-multinode-edpm-deployment-crc-test-operator-s2i-tempest:
+            voting: false
+            dependencies:
+              - openstack-k8s-operators-content-provider
+              - s2i-openstack-container-content-provider
+
+# -- build-only validation (no consumer jobs yet) -----------------------
+
+- project:
+    name: opendev.org/openstack/cinder
+    check:
+      jobs:
+        - s2i-openstack-container-content-provider:
+            voting: false
+            vars:
+              s2i_ci_images: auto
+
+- project:
+    name: opendev.org/openstack/glance
+    check:
+      jobs:
+        - s2i-openstack-container-content-provider:
+            voting: false
+            vars:
+              s2i_ci_images: auto
+
+- project:
+    name: opendev.org/openstack/manila
+    check:
+      jobs:
+        - s2i-openstack-container-content-provider:
+            voting: false
+            vars:
+              s2i_ci_images: auto
+
+- project:
+    name: opendev.org/openstack/watcher
+    check:
+      jobs:
+        - s2i-openstack-container-content-provider:
+            voting: false
+            vars:
+              s2i_ci_images: auto
