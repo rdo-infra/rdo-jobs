@@ -91,15 +91,6 @@
       register: _openvswitch_install
       until: _openvswitch_install is success
 
-    - name: Install ansible.posix collection from ansible-galaxy
-      become: true
-      ansible.builtin.shell: |
-        ansible-galaxy collection install ansible.posix
-      retries: 5
-      delay: 30
-      register: _galaxy_install
-      until: _galaxy_install.rc == 0
-
     - name: Create os-net-config dir
       become: true
       ansible.builtin.file:
