@@ -517,6 +517,19 @@
       ansible.builtin.shell: "subscription-manager repos --disable {{ osp_17_repos | join(' --disable ') }}"
 
 
+    - name: Insert ping test related variables
+      when: ping_test | default(false) | bool
+      ansible.builtin.blockinfile:
+        marker_begin: "BEGIN ping test related vars"
+        marker_end: "END ping test related vars"
+        path: "{{ rdo_dir }}/vars.yaml"
+        block: |
+          ping_test: true
+          prelaunch_test_instance: true
+          ping_test_log_file: {{ dpa_dir }}/tests/logs/ping_results.txt
+          ping_test_loss_threshold: {{ ping_test_loss_threshold | default(0) }}
+          ping_test_loss_threshold_percent: {{ ping_test_loss_threshold_percent | default(0) }}
+
     - name: Insert adoption extra vars when defined
       when: adoption_extra_vars is defined
       ansible.builtin.blockinfile:
@@ -531,7 +544,7 @@
         chdir: "{{ dpa_dir }}"
         target: "{{ dpa_test_suite | default('test-with-ceph') }}"
         params:
-          TEST_CONFIG: "{{ dpa_test_ansible_cfg | default(rdo_dir  ~ '/ansible.cfg') }}"
+          TEST_CONFIG: "{{ dpa_test_ansible_cfg | default(dpa_dir ~ '/tests/ansible.cfg') }}"
           TEST_SECRETS: "{{ rdo_dir }}/secrets.yaml"
           TEST_VARS: "{{ rdo_dir }}/vars.yaml"
           TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"

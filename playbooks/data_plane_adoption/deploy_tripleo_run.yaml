@@ -7,7 +7,7 @@
         chdir: "{{ dpa_dir }}"
         target: "{{ dpa_test_suite | default('test-minimal') }}"
         params:
-          TEST_CONFIG: "{{ dpa_test_ansible_cfg | default(rdo_dir  ~ '/ansible.cfg') }}"
+          TEST_CONFIG: "{{ dpa_test_ansible_cfg | default(dpa_dir ~ '/tests/ansible.cfg') }}"
           TEST_SECRETS: "{{ rdo_dir}}/secrets.yaml"
           TEST_VARS: "{{ rdo_dir }}/vars.yaml"
           TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"
@@ -87,7 +87,7 @@
             chdir: "{{ dpa_dir }}"
             target: "test-ceph-migration"
             params:
-              TEST_CONFIG: "{{ dpa_test_ansible_cfg | default(rdo_dir  ~ '/ansible.cfg') }}"
+              TEST_CONFIG: "{{ dpa_test_ansible_cfg | default(dpa_dir ~ '/tests/ansible.cfg') }}"
               TEST_SECRETS: "{{ rdo_dir}}/secrets.yaml"
               TEST_VARS: "{{ rdo_dir }}/vars.yaml"
               TEST_CEPH_OVERRIDES: "{{ rdo_dir }}/ceph_overrides.yaml"
@@ -103,7 +103,7 @@
         chdir: "{{ dpa_dir }}"
         target: "test-swift-migration"
         params:
-          TEST_CONFIG: "{{ dpa_test_ansible_cfg | default(rdo_dir  ~ '/ansible.cfg') }}"
+          TEST_CONFIG: "{{ dpa_test_ansible_cfg | default(dpa_dir ~ '/tests/ansible.cfg') }}"
           TEST_SECRETS: "{{ rdo_dir}}/secrets.yaml"
           TEST_VARS: "{{ rdo_dir }}/vars.yaml"
           TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"
