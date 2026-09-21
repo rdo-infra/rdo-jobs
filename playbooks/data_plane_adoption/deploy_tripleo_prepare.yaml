@@ -246,6 +246,7 @@
         block: |
           ping_test: true
           prelaunch_test_instance: true
+          ping_test_log_file: {{ dpa_dir }}/tests/logs/ping_results.txt
           ping_test_loss_threshold: {{ ping_test_loss_threshold | default(0) }}
           ping_test_loss_threshold_percent: {{ ping_test_loss_threshold_percent | default(0) }}
 

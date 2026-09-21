@@ -2,17 +2,22 @@
   hosts: controller
   gather_facts: false
   tasks:
-    - name: "Run data-plane-adoption tests from {{ dpa_dir }}"
-      community.general.make:
-        chdir: "{{ dpa_dir }}"
-        target: "{{ dpa_test_suite | default('test-minimal') }}"
-        params:
-          TEST_CONFIG: "{{ dpa_test_ansible_cfg | default(rdo_dir  ~ '/ansible.cfg') }}"
-          TEST_SECRETS: "{{ rdo_dir}}/secrets.yaml"
-          TEST_VARS: "{{ rdo_dir }}/vars.yaml"
-          TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"
-      register: make_res
-      failed_when: '"failed=0" not in make_res.stdout_lines[-1]'
+    - name: Run data-plane-adoption tests and parse ping drops
+      block:
+        - name: "Run data-plane-adoption tests from {{ dpa_dir }}"
+          community.general.make:
+            chdir: "{{ dpa_dir }}"
+            target: "{{ dpa_test_suite | default('test-minimal') }}"
+            params:
+              TEST_CONFIG: "{{ dpa_test_ansible_cfg | default(rdo_dir  ~ '/ansible.cfg') }}"
+              TEST_SECRETS: "{{ rdo_dir}}/secrets.yaml"
+              TEST_VARS: "{{ rdo_dir }}/vars.yaml"
+              TEST_INVENTORY: "tests/inventory.sample-crc-vagrant.yaml"
+          register: make_res
+          failed_when: '"failed=0" not in make_res.stdout_lines[-1]'
+      always:
+        - name: Parse ping drop windows
+          ansible.builtin.include_tasks: parse_ping_drops.yaml
 
     - name: Unregister tripleo osp17.1 nodes with subscription-manager
       delegate_to: "{{ item }}"

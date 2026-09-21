@@ -1,0 +1,42 @@
+- name: Look for ping test log
+  ansible.builtin.stat:
+    path: "{{ ping_test_log_file | default(dpa_dir ~ '/tests/logs/ping_results.txt') }}"
+  register: dpa_ping_log
+
+- name: Look for human-readable ping log
+  ansible.builtin.stat:
+    path: "{{ dpa_dir }}/tests/logs/ping_results-hr.txt"
+  register: dpa_ping_log_hr
+
+- name: Parse ping drop windows
+  when: dpa_ping_log.stat.exists or dpa_ping_log_hr.stat.exists
+  vars:
+    dpa_ping_log_path: "{{ dpa_ping_log.stat.path if dpa_ping_log.stat.exists else dpa_ping_log_hr.stat.path }}"
+  ansible.builtin.command:
+    argv:
+      - python3
+      - "{{ rdo_dir }}/files/parse_ping_drops.py"
+      - "{{ dpa_ping_log_path }}"
+      - --ansible-log
+      - "{{ dpa_dir }}/tests/logs/test_*_out_*.log"
+  register: dpa_ping_drops
+  changed_when: false
+  failed_when: false
+
+- name: Write ping drop windows report
+  when:
+    - dpa_ping_drops is defined
+    - not (dpa_ping_drops.skipped | default(false))
+  ansible.builtin.copy:
+    dest: "{{ dpa_dir }}/tests/logs/ping_drop_windows.txt"
+    content: |
+      {{ dpa_ping_drops.stdout }}
+      {{ dpa_ping_drops.stderr }}
+    mode: "0644"
+
+- name: Show ping drop windows
+  when:
+    - dpa_ping_drops is defined
+    - not (dpa_ping_drops.skipped | default(false))
+  ansible.builtin.debug:
+    msg: "{{ dpa_ping_drops.stdout_lines | default([]) + dpa_ping_drops.stderr_lines | default([]) }}"
