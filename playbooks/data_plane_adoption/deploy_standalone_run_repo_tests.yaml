@@ -56,9 +56,10 @@
         - enable_barbican | bool
         - cifmw_hsm_password is defined
         - cifmw_hsm_proteccio_partition is defined
+        - cifmw_hsm_proteccio_heat_environment_file is defined
       ansible.builtin.copy:
         mode: '0644'
-        dest: "/home/zuul/enable-barbican-proteccio.yaml"
+        dest: "{{ barbican_env_file | default('/home/zuul/enable-barbican-proteccio.yaml') }}"
         content: "{{ cifmw_hsm_proteccio_heat_environment_file }}"
 
     - name: Replace HSM password placeholder in Heat environment file
@@ -67,8 +68,9 @@
         - enable_barbican | bool
         - cifmw_hsm_password is defined
         - cifmw_hsm_proteccio_partition is defined
+        - cifmw_hsm_proteccio_heat_environment_file is defined
       ansible.builtin.replace:
-        path: "/home/zuul/enable-barbican-proteccio.yaml"
+        path: "{{ barbican_env_file | default('/home/zuul/enable-barbican-proteccio.yaml') }}"
         regexp: 'PLACEHOLDER_HSM_PASSWORD'
         replace: "{{ cifmw_hsm_password }}"
       no_log: true
@@ -224,7 +226,7 @@
         block: |
           barbican_hsm_enabled: {{ barbican_hsm_enabled | default('false') }}
           proteccio_library_path: {{ proteccio_library_path | default('/usr/lib64/libnethsm.so') }}
-          proteccio_hsm_tokens: {{ proteccio_hsm_tokens | default(['VHSM1']) }}
+          proteccio_hsm_tokens: {{ proteccio_hsm_tokens | default([cifmw_hsm_proteccio_partition | default('vhsm1')]) }}
           proteccio_mkek_name: {{ proteccio_mkek_name | default('ci_mkek_adoption_1') }}
           proteccio_hmac_name: {{ proteccio_hmac_name | default('ci_hmac_adoption_1') }}
           proteccio_login_password: {{ proteccio_login_password | default('') }}
@@ -525,6 +527,30 @@
         path: "{{ rdo_dir }}/vars.yaml"
         block: |
           {{ adoption_extra_vars }}
+
+    - name: Merge Proteccio DPA extra vars if staged by extra pre-run
+      when: enable_barbican | default(false) | bool
+      block:
+        - name: Stat Proteccio DPA extra vars
+          ansible.builtin.stat:
+            path: /home/zuul/proteccio-dpa-extra-vars.yaml
+          register: _proteccio_dpa_extra
+        - name: Slurp Proteccio DPA extra vars
+          when: _proteccio_dpa_extra.stat.exists
+          no_log: true
+          ansible.builtin.slurp:
+            src: /home/zuul/proteccio-dpa-extra-vars.yaml
+          register: _proteccio_dpa_extra_slurp
+        - name: Write Proteccio DPA extra vars into vars.yaml
+          when:
+            - _proteccio_dpa_extra.stat.exists
+            - _proteccio_dpa_extra_slurp.content is defined
+          no_log: true
+          ansible.builtin.blockinfile:
+            marker_begin: "BEGIN proteccio extra"
+            marker_end: "END proteccio extra"
+            path: "{{ rdo_dir }}/vars.yaml"
+            block: "{{ _proteccio_dpa_extra_slurp.content | b64decode }}"
 
     - name: "Run data-plane-adoption tests from {{ dpa_dir }}"
       community.general.make:
