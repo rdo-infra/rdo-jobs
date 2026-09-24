@@ -90,6 +90,16 @@
         - network
         - openvswitch
 
+    - name: To avoid ifcfg config change and interface restart during adoption
+      become: true
+      ansible.posix.sysctl:
+        name: "{{ item.key }}"
+        value: "{{ item.value }}"
+        sysctl_set: yes
+      with_dict:
+        net.ipv6.conf.default.disable_ipv6: 0
+        net.ipv6.conf.default.accept_ra: 0
+
     - name: Run os-net-config to create standalone networking
       become: true
       ansible.builtin.shell: |
