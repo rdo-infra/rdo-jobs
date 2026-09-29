@@ -134,6 +134,22 @@
         - network
         - openvswitch
 
+    # Workaround for OSPRH-37952 newer os-net-config emits
+    # IPV6_* ifcfg keys that force an interface restart on later DNS/domain
+    # re-apply during adoption. Disable IPv6 and pre-seed those keys so the
+    # re-apply stays idempotent and does not bounce OVS ports (data-plane cut).
+    - name: Disable IPv6 to avoid os-net-config IPV6 ifcfg restart (OSPRH-37952)
+      become: true
+      ansible.posix.sysctl:
+        name: "{{ item }}"
+        value: "1"
+        state: present
+        sysctl_file: /etc/sysctl.d/99-disable-ipv6.conf
+        reload: true
+      loop:
+        - net.ipv6.conf.all.disable_ipv6
+        - net.ipv6.conf.default.disable_ipv6
+
     - name: Run os-net-config to create tripleo networking
       become: true
       ansible.builtin.shell: |
