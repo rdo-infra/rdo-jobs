@@ -12,7 +12,7 @@
         override-checkout: main
       - opendev.org/zuul/zuul-jobs
       - name: openstack-k8s-operators/data-plane-adoption
-        override-checkout: main
+        override-checkout: 18-stable
       - name: openstack-k8s-operators/ci-framework
         override-checkout: main
       - rdo-jobs
