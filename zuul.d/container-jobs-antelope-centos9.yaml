@@ -116,7 +116,8 @@
       cifmw_test_operator_tempest_exclude_list: |
         tempest.api.compute.servers.test_server_metadata.*
         # Disable prometheus based autoscaling testing until we have Caracal content.
-        telemetry_tempest_plugin.scenario.test_telemetry_integration_prometheus.PrometheusGabbiTest.test_autoscaling
+        # Disable sg-core testing until we have Indri content.
+        telemetry_tempest_plugin.scenario.test_telemetry_integration_prometheus.PrometheusGabbiTest.*
         # this test is not stable in antelope - it is fixed in tempest master branch with https://review.opendev.org/c/974996
         tempest.api.compute.servers.test_create_server.ServersV294TestFqdnHostnames.test_verify_hostname_allows_fqdn
       cifmw_test_operator_tempest_tempestconf_config: &tempestconf_config_notls
@@ -147,6 +148,18 @@
       cloud_domain: "ooo.test"
       use_ceph: "false"
       dpa_test_suite: "test-minimal"
+      cifmw_test_operator_tempest_extra_mounts:
+        - name: sg-core-client-certs
+          region: r1
+          extraVol:
+          - mounts:
+            - mountPath: /etc/tempest/sg-core-client
+              name: sg-core-client
+              readOnly: true
+            volumes:
+              - name: sg-core-client
+                secret:
+                  secretName: cert-metric-storage-prometheus-client
       cifmw_test_operator_tempest_tempestconf_config: &tempestconf_config_tls
         overrides: |
           service_available.sg_core true
@@ -156,6 +169,8 @@
           telemetry.prometheus_service_url "https://metric-storage-prometheus.openstack.svc.cluster.local:9090"
           telemetry.sg_core_service_url "https://ceilometer-internal.openstack.svc.cluster.local:3000"
           telemetry.alarm_threshold 10000000000
+          telemetry.sg_core_client_cert /etc/tempest/sg-core-client/tls.crt
+          telemetry.sg_core_client_key /etc/tempest/sg-core-client/tls.key
 
 - job:
     name: periodic-adoption-multinode-to-crc-no-ceph
@@ -213,6 +228,18 @@
         # Disable Cinder volume tests (cinder-volume not deployed in no-ceph jobs)
         tempest.api.volume
       cifmw_test_operator_tempest_tempestconf_config: *tempestconf_config_tls
+      cifmw_test_operator_tempest_extra_mounts:
+        - name: sg-core-client-certs
+          region: r1
+          extraVol:
+          - mounts:
+            - mountPath: /etc/tempest/sg-core-client
+              name: sg-core-client
+              readOnly: true
+            volumes:
+              - name: sg-core-client
+                secret:
+                  secretName: cert-metric-storage-prometheus-client
 
 - job:
     name: periodic-adoption-multinode-to-crc-no-ceph-novacells
