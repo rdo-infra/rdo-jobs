@@ -2,19 +2,20 @@
 # antelope container build, test, promotion pipeline
 - project-template:
     name: container-pipeline-antelope-centos9
-    openstack-promote-component:
-      jobs:
-        - periodic-centos-9-antelope-dlrn-check-promotion-criteria-podified-ci-testing-to-current-podified
-        - periodic-container-quay-push-centos-9-antelope:
-            dependencies:
-              - periodic-centos-9-antelope-dlrn-check-promotion-criteria-podified-ci-testing-to-current-podified
-        - periodic-edpm-container-image-quay-push-centos-9-antelope:
-            dependencies:
-              - periodic-centos-9-antelope-dlrn-check-promotion-criteria-podified-ci-testing-to-current-podified
-        - periodic-centos-9-antelope-dlrn-promote-podified-ci-testing-to-current-podified:
-            dependencies:
-              - periodic-container-quay-push-centos-9-antelope
-              - periodic-edpm-container-image-quay-push-centos-9-antelope
+    # Periodic execution disabled (every 2h promote-component slot); uncomment to re-enable
+#    openstack-promote-component:
+#      jobs:
+#        - periodic-centos-9-antelope-dlrn-check-promotion-criteria-podified-ci-testing-to-current-podified
+#        - periodic-container-quay-push-centos-9-antelope:
+#            dependencies:
+#              - periodic-centos-9-antelope-dlrn-check-promotion-criteria-podified-ci-testing-to-current-podified
+#        - periodic-edpm-container-image-quay-push-centos-9-antelope:
+#            dependencies:
+#              - periodic-centos-9-antelope-dlrn-check-promotion-criteria-podified-ci-testing-to-current-podified
+#        - periodic-centos-9-antelope-dlrn-promote-podified-ci-testing-to-current-podified:
+#            dependencies:
+#              - periodic-container-quay-push-centos-9-antelope
+#              - periodic-edpm-container-image-quay-push-centos-9-antelope
     openstack-periodic-container-antelope-centos9:
       jobs:
         - periodic-adoption-standalone-to-crc-ceph:
