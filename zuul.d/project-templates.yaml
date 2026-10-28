@@ -418,43 +418,44 @@
 
 - project-template:
     name: weirdo-epoxy-promotion-pipeline
-    openstack-periodic-daily2:
-      jobs:
-        - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
-        - weirdo-epoxy-promote-puppet-scenario001-centos-stream-9:
-            dependencies:
-              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
-        - weirdo-epoxy-promote-puppet-scenario002-centos-stream-9:
-            dependencies:
-              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
-        - weirdo-epoxy-promote-puppet-scenario003-centos-stream-9:
-            dependencies:
-              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
-        - weirdo-epoxy-promote-puppet-scenario004-centos-stream-9:
-            dependencies:
-              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
-        - weirdo-epoxy-promote-puppet-scenario005-centos-stream-9:
-            dependencies:
-              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
-        - weirdo-epoxy-promote-packstack-scenario001-centos-stream-9:
-            dependencies:
-              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
-        - weirdo-epoxy-promote-packstack-scenario002-centos-stream-9:
-            dependencies:
-              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
-        - weirdo-epoxy-promote-packstack-scenario003-centos-stream-9:
-            dependencies:
-              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
-        - weirdo-epoxy-promote-puppet-ci-testing-to-puppet-passed-ci:
-            dependencies:
-              - weirdo-epoxy-promote-puppet-scenario001-centos-stream-9
-              - weirdo-epoxy-promote-puppet-scenario002-centos-stream-9
-              - weirdo-epoxy-promote-puppet-scenario003-centos-stream-9
-              - weirdo-epoxy-promote-puppet-scenario004-centos-stream-9
-              - weirdo-epoxy-promote-puppet-scenario005-centos-stream-9
-              - weirdo-epoxy-promote-packstack-scenario001-centos-stream-9
-              - weirdo-epoxy-promote-packstack-scenario002-centos-stream-9
-              - weirdo-epoxy-promote-packstack-scenario003-centos-stream-9
+    # Periodic execution disabled (18:00 UTC daily2 slot); uncomment to re-enable
+#    openstack-periodic-daily2:
+#      jobs:
+#        - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
+#        - weirdo-epoxy-promote-puppet-scenario001-centos-stream-9:
+#            dependencies:
+#              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
+#        - weirdo-epoxy-promote-puppet-scenario002-centos-stream-9:
+#            dependencies:
+#              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
+#        - weirdo-epoxy-promote-puppet-scenario003-centos-stream-9:
+#            dependencies:
+#              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
+#        - weirdo-epoxy-promote-puppet-scenario004-centos-stream-9:
+#            dependencies:
+#              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
+#        - weirdo-epoxy-promote-puppet-scenario005-centos-stream-9:
+#            dependencies:
+#              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
+#        - weirdo-epoxy-promote-packstack-scenario001-centos-stream-9:
+#            dependencies:
+#              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
+#        - weirdo-epoxy-promote-packstack-scenario002-centos-stream-9:
+#            dependencies:
+#              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
+#        - weirdo-epoxy-promote-packstack-scenario003-centos-stream-9:
+#            dependencies:
+#              - weirdo-epoxy-promote-consistent-to-puppet-ci-testing
+#        - weirdo-epoxy-promote-puppet-ci-testing-to-puppet-passed-ci:
+#            dependencies:
+#              - weirdo-epoxy-promote-puppet-scenario001-centos-stream-9
+#              - weirdo-epoxy-promote-puppet-scenario002-centos-stream-9
+#              - weirdo-epoxy-promote-puppet-scenario003-centos-stream-9
+#              - weirdo-epoxy-promote-puppet-scenario004-centos-stream-9
+#              - weirdo-epoxy-promote-puppet-scenario005-centos-stream-9
+#              - weirdo-epoxy-promote-packstack-scenario001-centos-stream-9
+#              - weirdo-epoxy-promote-packstack-scenario002-centos-stream-9
+#              - weirdo-epoxy-promote-packstack-scenario003-centos-stream-9
 
 - project-template:
     name: weirdo-dalmatian-promotion-pipeline
@@ -498,43 +499,44 @@
 
 - project-template:
     name: weirdo-caracal-promotion-pipeline
-    openstack-periodic-daily2:
-      jobs:
-        - weirdo-caracal-promote-consistent-to-puppet-ci-testing
-        - weirdo-caracal-promote-puppet-scenario001-centos-stream-9:
-            dependencies:
-              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
-        - weirdo-caracal-promote-puppet-scenario002-centos-stream-9:
-            dependencies:
-              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
-        - weirdo-caracal-promote-puppet-scenario003-centos-stream-9:
-            dependencies:
-              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
-        - weirdo-caracal-promote-puppet-scenario004-centos-stream-9:
-            dependencies:
-              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
-        - weirdo-caracal-promote-puppet-scenario005-centos-stream-9:
-            dependencies:
-              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
-        - weirdo-caracal-promote-packstack-scenario001-centos-stream-9:
-            dependencies:
-              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
-        - weirdo-caracal-promote-packstack-scenario002-centos-stream-9:
-            dependencies:
-              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
-        - weirdo-caracal-promote-packstack-scenario003-centos-stream-9:
-            dependencies:
-              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
-        - weirdo-caracal-promote-puppet-ci-testing-to-puppet-passed-ci:
-            dependencies:
-              - weirdo-caracal-promote-puppet-scenario001-centos-stream-9
-              - weirdo-caracal-promote-puppet-scenario002-centos-stream-9
-              - weirdo-caracal-promote-puppet-scenario003-centos-stream-9
-              - weirdo-caracal-promote-puppet-scenario004-centos-stream-9
-              - weirdo-caracal-promote-puppet-scenario005-centos-stream-9
-              - weirdo-caracal-promote-packstack-scenario001-centos-stream-9
-              - weirdo-caracal-promote-packstack-scenario002-centos-stream-9
-              - weirdo-caracal-promote-packstack-scenario003-centos-stream-9
+    # Periodic execution disabled (18:00 UTC daily2 slot); uncomment to re-enable
+#    openstack-periodic-daily2:
+#      jobs:
+#        - weirdo-caracal-promote-consistent-to-puppet-ci-testing
+#        - weirdo-caracal-promote-puppet-scenario001-centos-stream-9:
+#            dependencies:
+#              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
+#        - weirdo-caracal-promote-puppet-scenario002-centos-stream-9:
+#            dependencies:
+#              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
+#        - weirdo-caracal-promote-puppet-scenario003-centos-stream-9:
+#            dependencies:
+#              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
+#        - weirdo-caracal-promote-puppet-scenario004-centos-stream-9:
+#            dependencies:
+#              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
+#        - weirdo-caracal-promote-puppet-scenario005-centos-stream-9:
+#            dependencies:
+#              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
+#        - weirdo-caracal-promote-packstack-scenario001-centos-stream-9:
+#            dependencies:
+#              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
+#        - weirdo-caracal-promote-packstack-scenario002-centos-stream-9:
+#            dependencies:
+#              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
+#        - weirdo-caracal-promote-packstack-scenario003-centos-stream-9:
+#            dependencies:
+#              - weirdo-caracal-promote-consistent-to-puppet-ci-testing
+#        - weirdo-caracal-promote-puppet-ci-testing-to-puppet-passed-ci:
+#            dependencies:
+#              - weirdo-caracal-promote-puppet-scenario001-centos-stream-9
+#              - weirdo-caracal-promote-puppet-scenario002-centos-stream-9
+#              - weirdo-caracal-promote-puppet-scenario003-centos-stream-9
+#              - weirdo-caracal-promote-puppet-scenario004-centos-stream-9
+#              - weirdo-caracal-promote-puppet-scenario005-centos-stream-9
+#              - weirdo-caracal-promote-packstack-scenario001-centos-stream-9
+#              - weirdo-caracal-promote-packstack-scenario002-centos-stream-9
+#              - weirdo-caracal-promote-packstack-scenario003-centos-stream-9
 
 - project-template:
     name: weirdo-bobcat-promotion-pipeline
@@ -578,43 +580,44 @@
 
 - project-template:
     name: weirdo-antelope-promotion-pipeline
-    openstack-periodic-daily2:
-      jobs:
-        - weirdo-antelope-promote-consistent-to-puppet-ci-testing
-        - weirdo-antelope-promote-puppet-scenario001-centos-stream-9:
-            dependencies:
-              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
-        - weirdo-antelope-promote-puppet-scenario002-centos-stream-9:
-            dependencies:
-              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
-        - weirdo-antelope-promote-puppet-scenario003-centos-stream-9:
-            dependencies:
-              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
-        - weirdo-antelope-promote-puppet-scenario004-centos-stream-9:
-            dependencies:
-              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
-        - weirdo-antelope-promote-puppet-scenario005-centos-stream-9:
-            dependencies:
-              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
-        - weirdo-antelope-promote-packstack-scenario001-centos-stream-9:
-            dependencies:
-              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
-        - weirdo-antelope-promote-packstack-scenario002-centos-stream-9:
-            dependencies:
-              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
-        - weirdo-antelope-promote-packstack-scenario003-centos-stream-9:
-            dependencies:
-              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
-        - weirdo-antelope-promote-puppet-ci-testing-to-puppet-passed-ci:
-            dependencies:
-              - weirdo-antelope-promote-puppet-scenario001-centos-stream-9
-              - weirdo-antelope-promote-puppet-scenario002-centos-stream-9
-              - weirdo-antelope-promote-puppet-scenario003-centos-stream-9
-              - weirdo-antelope-promote-puppet-scenario004-centos-stream-9
-              - weirdo-antelope-promote-puppet-scenario005-centos-stream-9
-              - weirdo-antelope-promote-packstack-scenario001-centos-stream-9
-              - weirdo-antelope-promote-packstack-scenario002-centos-stream-9
-              - weirdo-antelope-promote-packstack-scenario003-centos-stream-9
+    # Periodic execution disabled (18:00 UTC daily2 slot); uncomment to re-enable
+#    openstack-periodic-daily2:
+#      jobs:
+#        - weirdo-antelope-promote-consistent-to-puppet-ci-testing
+#        - weirdo-antelope-promote-puppet-scenario001-centos-stream-9:
+#            dependencies:
+#              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
+#        - weirdo-antelope-promote-puppet-scenario002-centos-stream-9:
+#            dependencies:
+#              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
+#        - weirdo-antelope-promote-puppet-scenario003-centos-stream-9:
+#            dependencies:
+#              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
+#        - weirdo-antelope-promote-puppet-scenario004-centos-stream-9:
+#            dependencies:
+#              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
+#        - weirdo-antelope-promote-puppet-scenario005-centos-stream-9:
+#            dependencies:
+#              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
+#        - weirdo-antelope-promote-packstack-scenario001-centos-stream-9:
+#            dependencies:
+#              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
+#        - weirdo-antelope-promote-packstack-scenario002-centos-stream-9:
+#            dependencies:
+#              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
+#        - weirdo-antelope-promote-packstack-scenario003-centos-stream-9:
+#            dependencies:
+#              - weirdo-antelope-promote-consistent-to-puppet-ci-testing
+#        - weirdo-antelope-promote-puppet-ci-testing-to-puppet-passed-ci:
+#            dependencies:
+#              - weirdo-antelope-promote-puppet-scenario001-centos-stream-9
+#              - weirdo-antelope-promote-puppet-scenario002-centos-stream-9
+#              - weirdo-antelope-promote-puppet-scenario003-centos-stream-9
+#              - weirdo-antelope-promote-puppet-scenario004-centos-stream-9
+#              - weirdo-antelope-promote-puppet-scenario005-centos-stream-9
+#              - weirdo-antelope-promote-packstack-scenario001-centos-stream-9
+#              - weirdo-antelope-promote-packstack-scenario002-centos-stream-9
+#              - weirdo-antelope-promote-packstack-scenario003-centos-stream-9
 
 - project-template:
     name: centos-opstools
