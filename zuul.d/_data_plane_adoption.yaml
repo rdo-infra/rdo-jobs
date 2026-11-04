@@ -9,7 +9,7 @@
     parent: cifmw-adoption-base
     required-projects: &dpa_required_projects
       - name: openstack-k8s-operators/install_yamls
-        override-checkout: main
+        override-checkout: 18-stable
       - opendev.org/zuul/zuul-jobs
       - name: openstack-k8s-operators/data-plane-adoption
         override-checkout: 18-stable
