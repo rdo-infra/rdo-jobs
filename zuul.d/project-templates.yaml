@@ -363,18 +363,6 @@
 
 - project-template:
     name: periodic-cloudsig-jobs
-    description: |
-     Periodic jobs to validate CloudSIG repos
-    periodic:
-      jobs:
-        - periodic-cloudsig-antelope-release-puppet-scenario001-centos9
-        - periodic-cloudsig-antelope-release-puppet-scenario002-centos9
-        - periodic-cloudsig-antelope-release-puppet-scenario003-centos9
-        - periodic-cloudsig-antelope-release-puppet-scenario004-centos9
-        - periodic-cloudsig-antelope-release-puppet-scenario005-centos9
-        - periodic-cloudsig-antelope-release-packstack-scenario001-centos9
-        - periodic-cloudsig-antelope-release-packstack-scenario002-centos9
-        - periodic-cloudsig-antelope-release-packstack-scenario003-centos9
 
 - project-template:
     name: weirdo-master-promotion-pipeline
